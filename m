@@ -2,225 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F70E79B16B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:56:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFE1279ADFB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:41:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233784AbjIKUsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:48:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57802 "EHLO
+        id S234063AbjIKUsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:48:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237592AbjIKNAC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 09:00:02 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45EDAE5F;
-        Mon, 11 Sep 2023 05:59:57 -0700 (PDT)
-X-UUID: 190e4fdc50a311eea33bb35ae8d461a2-20230911
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=w/LH6F+DXbMVBinlLWUoliHxop2Yd8lhNtNGD6SFJ8U=;
-        b=twDvHrhBVICCxSogwOA4GhbX44ZEjioNzYTPZuXA9fCXh0IoXMKvTaFMp3DoQQq62Pmo4C3sBFT1dVu0pu2qpgSZO2VBEYRVQsV249p1g1WzLak1iTvEau94EX49XIVZABrcFvhjm/oTkSUH9x18L1yFRnyMCfqtJ415kdRchuI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:5609049c-33de-4d25-b931-99bcd91a4553,IP:0,U
-        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:-5
-X-CID-META: VersionHash:0ad78a4,CLOUDID:16c4e4c2-1e57-4345-9d31-31ad9818b39f,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-        DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 190e4fdc50a311eea33bb35ae8d461a2-20230911
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1293412056; Mon, 11 Sep 2023 20:59:52 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.194) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 11 Sep 2023 20:59:51 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 11 Sep 2023 20:59:50 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Nathan Hebert <nhebert@chromium.org>
-CC:     Chen-Yu Tsai <wenst@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH 13/14] media: medkatek: vcodec: disable wait interrupt for svp mode
-Date:   Mon, 11 Sep 2023 20:59:35 +0800
-Message-ID: <20230911125936.10648-14-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230911125936.10648-1-yunfei.dong@mediatek.com>
-References: <20230911125936.10648-1-yunfei.dong@mediatek.com>
+        with ESMTP id S237641AbjIKNET (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 09:04:19 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF8A3DF;
+        Mon, 11 Sep 2023 06:04:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1694437453; x=1725973453;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=EMruZn7KJAod3p21S8e62jnjMl5BS9upTMZiKyPocf0=;
+  b=IXz+ymP/i47Xc+ZJ+WVAKOGaxBYinE97u8h0ElO/0ptQpCYpWj74BPNS
+   lzFpfZR1m6PnAC8v7hRm4ArRUphz/oneauAZWbLvjS2KOwCzMfyrNpl5s
+   0+VkHYyg0hay7rK2ZUTUF8cHXolrnRp0a7NvOAPQUwjMg/AapQd/AGB2E
+   oyMqnd2EbiyFxW/qiUHr9M95u4B2OyWUniaxDoOd9dxgwPiQ0yw4S799F
+   o792ShgQ2a9fdy9zdV5Upf1gZXVCYEJ/ac0wwa6VXkM7yFsrj96tdidPK
+   8Xlc034U3UmfFg95KuXkFuIIFithsqsHfxGkof4q+8t6o5RA75RE0+Ubx
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="358377179"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; 
+   d="scan'208";a="358377179"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Sep 2023 06:03:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="1074123880"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; 
+   d="scan'208";a="1074123880"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Sep 2023 06:03:10 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1qfgZG-008Kb6-0W;
+        Mon, 11 Sep 2023 16:03:06 +0300
+Date:   Mon, 11 Sep 2023 16:03:05 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Mehdi Djait <mehdi.djait.k@gmail.com>,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        lars@metafoo.de, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v8 6/7] iio: accel: kionix-kx022a: Add a function to
+ retrieve number of bytes in buffer
+Message-ID: <ZP8QCVbOpUOMxV8g@smile.fi.intel.com>
+References: <CAFukWp2Z0OCrJdTy+wzVs9jdCm70YNR-66q06=xoyGhaHg=aog@mail.gmail.com>
+ <ZOdfeaW6AxE4eeqw@smile.fi.intel.com>
+ <CAFukWp0ubncNcMiw-s_h5GoP1_RsjTaw3XxayGMuaeJJJneBow@mail.gmail.com>
+ <ZOdrtNQijmhN9RAx@smile.fi.intel.com>
+ <20230827190732.5e2215d0@jic23-huawei>
+ <61247547-690c-fb8b-3a45-cd60754836a7@gmail.com>
+ <ZOx8rAFBXMylgNzm@smile.fi.intel.com>
+ <7ca3b60f-e59f-b578-7c22-48487663cfa7@gmail.com>
+ <ZPiixW6CiR+z8s/r@smile.fi.intel.com>
+ <8b73d2d9-ebba-8f3c-4b39-e3671117acf1@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8b73d2d9-ebba-8f3c-4b39-e3671117acf1@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Waiting interrupt in optee-os for svp mode, need to disable it in kernel
-in case of interrupt is cleaned.
+On Thu, Sep 07, 2023 at 09:33:47AM +0300, Matti Vaittinen wrote:
+> On 9/6/23 19:03, Andy Shevchenko wrote:
+> > On Tue, Aug 29, 2023 at 09:33:27AM +0300, Matti Vaittinen wrote:
+> > > On 8/28/23 13:53, Andy Shevchenko wrote:
+> > > > On Mon, Aug 28, 2023 at 09:24:25AM +0300, Matti Vaittinen wrote:
+> > > > > On 8/27/23 21:09, Jonathan Cameron wrote:
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- .../vcodec/decoder/mtk_vcodec_dec_hw.c        | 34 +++++------
- .../decoder/vdec/vdec_h264_req_multi_if.c     | 57 +++++++++++--------
- 2 files changed, 50 insertions(+), 41 deletions(-)
+...
 
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_hw.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_hw.c
-index 881d5de41e05..46fa28de3893 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_hw.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_hw.c
-@@ -72,26 +72,28 @@ static irqreturn_t mtk_vdec_hw_irq_handler(int irq, void *priv)
- 
- 	ctx = mtk_vcodec_get_curr_ctx(dev->main_dev, dev->hw_idx);
- 
--	/* check if HW active or not */
--	cg_status = readl(dev->reg_base[VDEC_HW_SYS] + VDEC_HW_ACTIVE_ADDR);
--	if (cg_status & VDEC_HW_ACTIVE_MASK) {
--		mtk_v4l2_vdec_err(ctx, "vdec active is not 0x0 (0x%08x)", cg_status);
--		return IRQ_HANDLED;
--	}
-+	if (!ctx->is_svp_mode) {
-+		/* check if HW active or not */
-+		cg_status = readl(dev->reg_base[VDEC_HW_SYS] + VDEC_HW_ACTIVE_ADDR);
-+		if (cg_status & VDEC_HW_ACTIVE_MASK) {
-+			mtk_v4l2_vdec_err(ctx, "vdec active is not 0x0 (0x%08x)", cg_status);
-+			return IRQ_HANDLED;
-+		}
- 
--	dec_done_status = readl(vdec_misc_addr);
--	if ((dec_done_status & MTK_VDEC_IRQ_STATUS_DEC_SUCCESS) !=
--	    MTK_VDEC_IRQ_STATUS_DEC_SUCCESS)
--		return IRQ_HANDLED;
-+		dec_done_status = readl(vdec_misc_addr);
-+		if ((dec_done_status & MTK_VDEC_IRQ_STATUS_DEC_SUCCESS) !=
-+		    MTK_VDEC_IRQ_STATUS_DEC_SUCCESS)
-+			return IRQ_HANDLED;
- 
--	/* clear interrupt */
--	writel(dec_done_status | VDEC_IRQ_CFG, vdec_misc_addr);
--	writel(dec_done_status & ~VDEC_IRQ_CLR, vdec_misc_addr);
-+		/* clear interrupt */
-+		writel(dec_done_status | VDEC_IRQ_CFG, vdec_misc_addr);
-+		writel(dec_done_status & ~VDEC_IRQ_CLR, vdec_misc_addr);
- 
--	wake_up_dec_ctx(ctx, MTK_INST_IRQ_RECEIVED, dev->hw_idx);
-+		wake_up_dec_ctx(ctx, MTK_INST_IRQ_RECEIVED, dev->hw_idx);
- 
--	mtk_v4l2_vdec_dbg(3, ctx, "wake up ctx %d, dec_done_status=%x",
--			  ctx->id, dec_done_status);
-+		mtk_v4l2_vdec_dbg(3, ctx, "wake up ctx %d, dec_done_status=%x",
-+				  ctx->id, dec_done_status);
-+	}
- 
- 	return IRQ_HANDLED;
- }
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c
-index a0bfb4890e8e..7317f8467a8d 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c
-@@ -593,14 +593,16 @@ static int vdec_h264_slice_core_decode(struct vdec_lat_buf *lat_buf)
- 		goto vdec_dec_end;
- 	}
- 
--	/* wait decoder done interrupt */
--	timeout = mtk_vcodec_wait_for_done_ctx(inst->ctx, MTK_INST_IRQ_RECEIVED,
--					       WAIT_INTR_TIMEOUT_MS, MTK_VDEC_CORE);
--	if (timeout)
--		mtk_vdec_err(ctx, "core decode timeout: pic_%d", ctx->decoded_frame_cnt);
--	inst->vsi_core->dec.timeout = !!timeout;
--
--	vpu_dec_core_end(vpu);
-+	if (!ctx->is_svp_mode) {
-+		/* wait decoder done interrupt */
-+		timeout = mtk_vcodec_wait_for_done_ctx(inst->ctx, MTK_INST_IRQ_RECEIVED,
-+						       WAIT_INTR_TIMEOUT_MS, MTK_VDEC_CORE);
-+		if (timeout)
-+			mtk_vdec_err(ctx, "core decode timeout: pic_%d", ctx->decoded_frame_cnt);
-+		inst->vsi_core->dec.timeout = !!timeout;
-+
-+		vpu_dec_core_end(vpu);
-+	}
- 	mtk_vdec_debug(ctx, "pic[%d] crc: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x",
- 		       ctx->decoded_frame_cnt,
- 		       inst->vsi_core->dec.crc[0], inst->vsi_core->dec.crc[1],
-@@ -724,14 +726,16 @@ static int vdec_h264_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
- 		vdec_msg_queue_qbuf(&inst->ctx->msg_queue.core_ctx, lat_buf);
- 	}
- 
--	/* wait decoder done interrupt */
--	timeout = mtk_vcodec_wait_for_done_ctx(inst->ctx, MTK_INST_IRQ_RECEIVED,
--					       WAIT_INTR_TIMEOUT_MS, MTK_VDEC_LAT0);
--	if (timeout)
--		mtk_vdec_err(inst->ctx, "lat decode timeout: pic_%d", inst->slice_dec_num);
--	inst->vsi->dec.timeout = !!timeout;
-+	if (!inst->ctx->is_svp_mode) {
-+		/* wait decoder done interrupt */
-+		timeout = mtk_vcodec_wait_for_done_ctx(inst->ctx, MTK_INST_IRQ_RECEIVED,
-+						       WAIT_INTR_TIMEOUT_MS, MTK_VDEC_LAT0);
-+		if (timeout)
-+			mtk_vdec_err(inst->ctx, "lat decode timeout: pic_%d", inst->slice_dec_num);
-+		inst->vsi->dec.timeout = !!timeout;
- 
--	err = vpu_dec_end(vpu);
-+		err = vpu_dec_end(vpu);
-+	}
- 	if (err == SLICE_HEADER_FULL || err == TRANS_BUFFER_FULL) {
- 		if (!IS_VDEC_INNER_RACING(inst->ctx->dev->dec_capability))
- 			vdec_msg_queue_qbuf(&inst->ctx->msg_queue.lat_ctx, lat_buf);
-@@ -831,16 +835,19 @@ static int vdec_h264_slice_single_decode(void *h_vdec, struct mtk_vcodec_mem *bs
- 	if (err)
- 		goto err_free_fb_out;
- 
--	/* wait decoder done interrupt */
--	err = mtk_vcodec_wait_for_done_ctx(inst->ctx, MTK_INST_IRQ_RECEIVED,
--					   WAIT_INTR_TIMEOUT_MS, MTK_VDEC_CORE);
--	if (err)
--		mtk_vdec_err(inst->ctx, "decode timeout: pic_%d", inst->ctx->decoded_frame_cnt);
--
--	inst->vsi->dec.timeout = !!err;
--	err = vpu_dec_end(vpu);
--	if (err)
--		goto err_free_fb_out;
-+	if (!inst->ctx->is_svp_mode) {
-+		/* wait decoder done interrupt */
-+		err = mtk_vcodec_wait_for_done_ctx(inst->ctx, MTK_INST_IRQ_RECEIVED,
-+						   WAIT_INTR_TIMEOUT_MS, MTK_VDEC_CORE);
-+		if (err)
-+			mtk_vdec_err(inst->ctx, "decode timeout: pic_%d",
-+				     inst->ctx->decoded_frame_cnt);
-+
-+		inst->vsi->dec.timeout = !!err;
-+		err = vpu_dec_end(vpu);
-+		if (err)
-+			goto err_free_fb_out;
-+	}
- 
- 	memcpy(&inst->vsi_ctx, inst->vpu.vsi, sizeof(inst->vsi_ctx));
- 	mtk_vdec_debug(inst->ctx, "pic[%d] crc: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x",
+> > > > > I think that people who work on a driver like this should guess what this is
+> > > > > for.
+> > > > 
+> > > > _This_ is the result of what people always forgot to think about, i.e.
+> > > > newcomers.
+> > > 
+> > > Thanks Andy. This was a good heads-up for me. I do also see the need for
+> > > fresh blood here - we aren't getting any younger.
+> > > 
+> > > > What _if_ the newcomer starts with this code and already being puzzled
+> > > > enough on what the heck the function does. With all ambiguity we rise
+> > > > the threshold for the newcomers and make the kernel project not
+> > > > attractive to start with
+> > > 
+> > > I really appreciate you making a point about attracting newcomers (and there
+> > > is no sarcasm in this statement). I however don't think we're rising the bar
+> > > here. If a newcomer wants to work on a device-driver, the _first_ thing to
+> > > do is to be familiar with the device. Without prior experience of this kind
+> > > of devices it is really a must to get the data-sheet and see how the device
+> > > operates before jumping into reading the code. I would say that after
+> > > reading the fifo lvl description from data-sheet this should be obvious -
+> > > and no, I don't think we should replicate the data-sheet documentation in
+> > > the drivers for parts that aren't very peculiar.
+> > 
+> > There are (at least?) two approaches on the contribution:
+> > 1) generic / library wise;
+> > 2) specific hardware wise.
+> > 
+> > You are talking about 2), while my remark is about both. I can imagine a
+> > newcomer who possess a hardware that looks similar to what this driver is
+> > for.
+> 
+> Yes. I am talking about 2). And my stance is that device drivers belong to
+> category 2). If one works with a device driver for some HW, then he/she
+> needs to be willing to understand the hardware.
+> 
+> > Now, they would like to write a new driver (note, that compatibility can be
+> > checked by reading the RTL definitions, so no need to dive into the code)
+> > and use this as a (nice) reference. With that in mind, they can read a
+> > function named get_fifo_bytes() with not so extensive documentation nor
+> > fully self-explanatory name. One may mistakenly though about this as a
+> > function for something that returns FIFO capacity, but in the reality it is
+> > current amount of valid / data bytes in the FIFO for the ongoing
+> > communication with the device.
+> 
+> I can't avoid having a feeling that this is a very unlikely scenario. I am
+> afraid that by requesting this type of improvements at patch series which is
+> at v8 and has been running for half an year (and which was of a good quality
+> to start with, especially knowing this was the author's first driver) is
+> going to be more repulsive to the newcomers than the potential obfuscation.
+
+I agree and this is a side talk to the topic.
+
+> I don't try claiming that no-one could ever hit this trap (even if I don't
+> see it likely). I still believe that if one does so, he/she will also get
+> such a bug fixed without being totally discouraged - it's business as usual.
+> 
+> I hope this does not come out as rude. I do appreciate your reviews, it's
+> comforting to know someone looks my code with sharp eyes and points out
+> things like the dead code in BM1390 driver! I just like the words Jonathan
+> once spilled out:
+> 
+> "Don't let the perfect be enemy of good" (or something along those lines).
+
+True.
+
+> > > But the question how to attract newcomers to kernel is very valid and I
+> > > guess that not too many of us is thinking of it. Actually, I think we should
+> > > ask from the newcomers we have that what has been the most repulsive part of
+> > > the work when they have contributed.
+> > 
+> > > > (besides the C language which is already considered as mastodon among
+> > > > youngsters).
+> > > 
+> > > I think this is at least partially the truth. However, I think that in many
+> > > cases one of the issues goes beyond the language - many younger generation
+> > > people I know aren't really interested in _why_ things work, they just want
+> > > to get things working in any way they can - and nowadays when you can find a
+> > > tutorial for pretty much anything - one really can just look up instruction
+> > > about how a "foobar can be made to buzz" instead of trying to figure out
+> > > what makes a "foobar to buzz" in order to make it to buzz. So, I don't blame
+> > > people getting used to take a different approach. (Not sure this makes sense
+> > > - don't really know how to express my thoughts about this in a clear way -
+> > > besides, it may not even matter).
+> > 
+> > Yeah, I share your frustration and agree that people are loosing the feel of
+> > curiosity. Brave New World in front of us...
+> 
+> Well, who knows how things will be working out for the new generations?
+> Maybe they won't need the kernel in the future? Yes, I am stubbornly hanging
+> in the past practices and values. Direction things seem to head do not
+> always appeal to me - but perhaps it's just me? Who can say my values and
+> practices are the right ones for new generations :) My oldest son just moved
+> to his own home and I need to accept that young do build their own lives on
+> different values I had. And who knows, maybe the approach of just doing
+> things without knowing what exactly happens under the hood makes this world
+> very good for them?
+> 
+> But yes - I don't think it suits the kernel project at all :) This is a
+> project of dinosaurs like us XD
+> 
+> (DISCLAIMER: I don't know quite all young people in the world. Frankly to
+> tell, not even 90% XD So, I am not trying to say "all young people are like
+> this or that".
+
+Operating in terms of universal quantifier is always wrong (pun intended).
+
+> I just have a feeling that certain way of thinking is more
+> common amongst certain generations - but maybe it's just my misjudgement.
+> Please, don't be offended).
+> 
+> > > Anyways, I am pretty sure that - as with any community - the way people
+> > > are treated and how their contribution is appreciated is the key to make
+> > > them feel good and like the work. I think that in some cases it may
+> > > include allowing new contributors to get their code merged when it has
+> > > reached "good enough" state - even if it was not perfect. (Sure, when
+> > > things are good enough is subject to greater minds than me to ponder) ;)
+
 -- 
-2.18.0
+With Best Regards,
+Andy Shevchenko
+
 
