@@ -2,71 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 747F179A37A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 08:26:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FCAA79A381
+	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 08:27:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233908AbjIKG0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 02:26:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55732 "EHLO
+        id S231543AbjIKG1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 02:27:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233680AbjIKG0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 02:26:22 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B984118
-        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:26:10 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-52eed139ec2so3574867a12.2
-        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:26:10 -0700 (PDT)
+        with ESMTP id S233352AbjIKG1m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 02:27:42 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 104CFEC
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:27:37 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-31768ce2e81so4041386f8f.1
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:27:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694413568; x=1695018368; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1694413655; x=1695018455; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=602xwMxmXuh7pmF89QMiFJmde3kiK+7O6M1QlBanRF4=;
-        b=WQA8WO5Wj/Pz2uJXnchLwwk41f81pWfbMN59eDO4xDviZySGjjmrxpeQsEqavIHaaD
-         7XfgP/Usoj9033kG15W3O/PFZBCmxmJ+4AYoShpgoAGNWKOblmqeOHkcFWemStqyW9Rr
-         oGdZ5wv0dv3uoUN3hG//bsU54FCQfZ0KJ2puFRSQBw1JlRNIiopVoMDnVX/IELzaRExX
-         eonafZoj6DldfCl9y+gspMzGASllw6v8yrI/v0wF3wNs+C+8IvTR9wFMS0YwAJbonjhk
-         nVKMgh5aaHZJNju3r+tCKdBFLJSgLcNbauhF7QBaNprpLOlOdUAlcl805atGIO8XsBsf
-         ynOQ==
+        bh=RJTJsFK3T0/Rm5w8uJvF7R9ahpNsdXBenI0aBQZljWI=;
+        b=rounOXkfgIZsC7NkU4+jT+m5JD86820sfpExxOV1KSiPKJlRzc7IwKUk/tBvbcw5EY
+         giLs9dV67Bp6yj6m/WnrEmSZ9DDJc/HuTF7xVoqeUtcO2MyPnQfNuU/cusM7j1Kgc5PN
+         g/DxBMED7De/96bncj7UkyTmDdEL5scsnFtDY94XLLdMuxMWJeraBiJOavs40I1XxSsl
+         J124lf19yYH+9Q5/gI+6lNQu1bxJEzQ4YLeZFQaECakijfHi8+tMGAUWXn6HXOE5K0k1
+         jImOeUDt+qlQyri5authxf6sx0/JoIp+lxVKKQRyAoYXY3VqhzUAb4oRx29dQAdc8Qzx
+         U0IQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694413568; x=1695018368;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1694413655; x=1695018455;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=602xwMxmXuh7pmF89QMiFJmde3kiK+7O6M1QlBanRF4=;
-        b=e0rnhIMqK4Xzi1zjn3tl53Nzpz684syv6VoMZ6qhk9FUoEZ2TZfdJU5OhNCO9ZFoZG
-         C3+XrLC7R980HT74/rF7zbEq+NyTpl8i2dsZirj/UUe9xstEVehthxvxdp+S6yOxAC8R
-         4V44DQUn916nNSGiQ9vvYXsoY7qDp9cP4CUOhXkzGbrXlxhZmB56zwtQH3Tim+wP/NVn
-         9cq4SJXGNHxEdLzwVIghEfcADdFgTMhHl/iCf8M2wARwB9Zd26JtBwOKwTD6Mc4WvcDG
-         /pmpsnI1mO1kxF9hBT+f0I0GHdrSn8CKLTHFGplUtBr5lhc4Fddk5hLTZP9jQJ3Y32+v
-         bmhQ==
-X-Gm-Message-State: AOJu0YzAW62p4DWIIHKhm1nIp7h/xQmDTaavaO6MhOCAztaQZxxOG37r
-        t63D/wdHb5mBrPCqattyvUZfMA==
-X-Google-Smtp-Source: AGHT+IGEC+tOirQCReCMY1VVEPGCqzzXXwp2ylU3JczCrMaopcxpe+paYOVVe47RO8jX2TctjEdeyQ==
-X-Received: by 2002:a05:6402:31e6:b0:52e:d08f:af79 with SMTP id dy6-20020a05640231e600b0052ed08faf79mr7012458edb.41.1694413568582;
-        Sun, 10 Sep 2023 23:26:08 -0700 (PDT)
+        bh=RJTJsFK3T0/Rm5w8uJvF7R9ahpNsdXBenI0aBQZljWI=;
+        b=sbXRfzwUd/qNyPqbGIxo2Pf+69qvU9nugIA3gL2pRBmMwDLCTCE5j4hQ97ZkmI6SY1
+         sTd6UmQIYDPyctuB87+Dxt7uYbhhL+jAJEL2sQTVMazCEqBCMFwXceyThLbj+ZCkcM/I
+         4dJsJMvimiBO3OYsEs9s/+j+31u9G/M6rwTC/m/rSvKiheR9tqrpQtFVusucK0bsUEjR
+         Knoy4lnOq6z7FDrm3wJmo7Ai/FDlZE5lwVmQJDEAbYWGZjf9QFgHfIX/juga47rafuDJ
+         ykpXG7qjDbXn9Ub8IJ2Bnhdilcm0Yjs0UTkeHZJj9x/eS8WYjgKoieeXhyNzXFUI96b0
+         gD/Q==
+X-Gm-Message-State: AOJu0YylIQ/wc+DVjXM2AbYItBavx1ZC3+FOUI3AQOjx9hruYp8KzSXJ
+        AUkgDDhGLCNXJcFfJPcQ4Jw6nw==
+X-Google-Smtp-Source: AGHT+IHdUYdZOEzSeRxYewp5a8kC9KI+sz7pgbVDMTSbrYiymqBDmQF9SeR7P0v4wf06XCXdnmaRsA==
+X-Received: by 2002:a5d:4e02:0:b0:317:5f04:bc00 with SMTP id p2-20020a5d4e02000000b003175f04bc00mr6273595wrt.27.1694413655449;
+        Sun, 10 Sep 2023 23:27:35 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id p26-20020aa7d31a000000b005222c6fb512sm4185312edq.1.2023.09.10.23.26.07
+        by smtp.gmail.com with ESMTPSA id a11-20020aa7d74b000000b0052a404e5929sm4095585eds.66.2023.09.10.23.27.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Sep 2023 23:26:08 -0700 (PDT)
-Message-ID: <34ede760-d612-4628-17e6-600c133ee878@linaro.org>
-Date:   Mon, 11 Sep 2023 08:26:06 +0200
+        Sun, 10 Sep 2023 23:27:34 -0700 (PDT)
+Message-ID: <0231fa19-bc71-db11-ffd4-8c922d110447@linaro.org>
+Date:   Mon, 11 Sep 2023 08:27:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH 2/3] dt-bindings: regulator: Add mps,mpq2286
- power-management IC
-To:     Saravanan Sekar <saravanan@linumiz.com>, sravanhome@gmail.com,
-        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux@roeck-us.net, jdelvare@suse.com
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-hwmon@vger.kernel.org
-References: <20230911034150.181880-1-saravanan@linumiz.com>
- <20230911034150.181880-3-saravanan@linumiz.com>
+Subject: Re: [PATCH] scsi: ufs: qcom: dt-bindings: Add MCQ ESI property
 Content-Language: en-US
+To:     Ziqi Chen <quic_ziqichen@quicinc.com>, quic_asutoshd@quicinc.com,
+        quic_cang@quicinc.com, bvanassche@acm.org, mani@kernel.org,
+        adrian.hunter@intel.com, beanhuo@micron.com, avri.altman@wdc.com,
+        junwoo80.lee@samsung.com, martin.petersen@oracle.com,
+        quic_nguyenb@quicinc.com, quic_nitirawa@quicinc.com
+Cc:     linux-scsi@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <1694163203-39123-1-git-send-email-quic_ziqichen@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230911034150.181880-3-saravanan@linumiz.com>
+In-Reply-To: <1694163203-39123-1-git-send-email-quic_ziqichen@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,54 +87,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/09/2023 05:41, Saravanan Sekar wrote:
-> Document mpq2286 power-management IC
+On 08/09/2023 10:53, Ziqi Chen wrote:
+> Document the description for the qcom,esi-affinity-mask.
+
+This tells me nothing what is this feature for.
+
 > 
-> Signed-off-by: Saravanan Sekar <saravanan@linumiz.com>
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. It's: regulator: dt-bindings:
-
+> Signed-off-by: Ziqi Chen <quic_ziqichen@quicinc.com>
 > ---
->  .../bindings/regulator/mps,mpq2286.yaml       | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/mps,mpq2286.yaml
+>  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/regulator/mps,mpq2286.yaml b/Documentation/devicetree/bindings/regulator/mps,mpq2286.yaml
-> new file mode 100644
-> index 000000000000..d00d887870a9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/mps,mpq2286.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/mps,mpq2286.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Monolithic Power System MPQ2286 PMIC
-> +
-> +maintainers:
-> +  - Saravanan Sekar <saravanan@linumiz.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mps,mpq2286
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  regulators:
-> +    type: object
-> +
-> +    properties:
-> +      "buck0":
+> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> index bdfa86a..323595f 100644
+> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> @@ -97,6 +97,10 @@ properties:
+>      description:
+>        GPIO connected to the RESET pin of the UFS memory device.
+>  
+> +  qcom,esi-affinity-mask:
 
-You did not test it... Sigh. Anyway, there is no need for entire
-regulators node for one regulator. Can the device do anything else than
-being a regulator?
+Not tested. You also miss proper type.
+
+> +    description:
+> +       UFS MCQ ESI affinity mask. Affine ESI on registration according to this CPU mask.
+
+And why is this a property of DT? Aren't you now describing driver?
+
+
 
 Best regards,
 Krzysztof
