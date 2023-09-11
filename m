@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDD0479BBC9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:13:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DBD079B70F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:06:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232930AbjIKUvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:51:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49650 "EHLO
+        id S235467AbjIKUtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:49:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235538AbjIKIwt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 04:52:49 -0400
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 805D71A2
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 01:52:44 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-59b9b47e35dso1339997b3.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 01:52:44 -0700 (PDT)
+        with ESMTP id S235563AbjIKI7S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 04:59:18 -0400
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61C72CCA
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 01:59:10 -0700 (PDT)
+Received: by mail-yb1-xb36.google.com with SMTP id 3f1490d57ef6-d7b91422da8so3642003276.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 01:59:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694422363; x=1695027163; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694422749; x=1695027549; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=N+TBKfXcW4VNeT7h3JrMxAlQteRcuMFFm4dXlpFkqqk=;
-        b=qCWhxUxB92NKRMNnvDvHjVczsYel3m8v4+U/vXbhiUQIrJvlIdkXgIG/FSCrPTdtHc
-         9dAuIuZLIPNabti4CS7eFQqcNDZo+g/SD8GBw13xP+dzOEfGxXHAPw6ynvRfb+Ey/BUK
-         Hc5fk/PR83hhMfuEy8dKdfDZgQGW5YzTfOkLOkqiIH+98NPj96BdujAF8PRRwm4Ot7c1
-         AIJLi2gRehu9qH79M6CqpQDRAE8MUzeU1i/UAhiHKm/+Y18rrxqi9n1nSShdXBtdXhTC
-         rI7Zo5cFiF09b+gJLv8ekJGsyY9er2PAu6b7UxcqRfvAwEiTY3R5yEGbxXwm0VwajnEJ
-         Zy9Q==
+        bh=5j7bzaXTGQxBwdqsbxqml+pJHHm9UN8WsX9mKBjvcIw=;
+        b=Deao1VjAsVhk7tD7KBbWFq3JhmweOLLjzn4VQJg1m2vy6kMAq5PppNa/UFICjkcygW
+         ETiYjKYjW00ykr2HFlDnNV2C7eGVaEbI66bAddlsbiR+Q1/lzaTGwpzbIgPe9LM0s8D9
+         id0RO8+ircRAS77X0EwzdMdetMMbYRqgFNHr1zzlWBtrY484OzrzNGN8/VDSU3102yqY
+         Dc17l5orVjCdMOl5fbg2nAtfLpIh6GyMdP2Np5hOFL2Fp2SxOpdx7Lx12tYsUHjn9GHk
+         UOO3dFBKr1SVx/Zh2In1Sq1xDa8kxZJvF1cO11hbDq8TNurhelf9LFmXgfhIJdXJGVfL
+         U++Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694422363; x=1695027163;
+        d=1e100.net; s=20230601; t=1694422749; x=1695027549;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=N+TBKfXcW4VNeT7h3JrMxAlQteRcuMFFm4dXlpFkqqk=;
-        b=V6q6Jcaf32dwEN+Xk1NW+54XBtiptS5v29TznFlRtYFTuLc/Mqm0rx3ckesk6NoRBw
-         aqHMLYXVW2TT6SZYKus+NLC5tLlNbFbUeQ4kAMV6iOtiRYJLUaudEINss2afjyril7Tn
-         JQ8bsO7n8Hp4bIdQjKaJTPRvIoMdwaVH8LlrVpXbLI1AbqX89+fauypdlN+if5qd0swK
-         PAoyfnVpCaDrG+stFmrGRrQR8m0x3RhAe5yZQ0TZZWyO9cRRVSljMKEUvKLcFyeHHETm
-         InAO59Ppuzewur4d2hgeig39LNI9I4qxBZvaj0sHs6opm5HluzO+OQ20e40MaUDzOMu2
-         uHSg==
-X-Gm-Message-State: AOJu0Yy24e4I4aPTBQVKFkTec0oO6OvBdGIZ6l0Hyv6iTIUyVL/P/C3v
-        8rwh1KigfeXq6Q7n9FGNzs9JNJlI9lUMEr45qZ5/aA==
-X-Google-Smtp-Source: AGHT+IG/7XXVErcSB7fRMvEak2L05rtVWPjY5fxZdBayCUIhiXjJE6hICBmuHJK0LCu4wfYW2GHb2Ql3VGOVdjSdOK8=
-X-Received: by 2002:a25:e74a:0:b0:d80:bef:3035 with SMTP id
- e71-20020a25e74a000000b00d800bef3035mr8806351ybh.52.1694422363761; Mon, 11
- Sep 2023 01:52:43 -0700 (PDT)
+        bh=5j7bzaXTGQxBwdqsbxqml+pJHHm9UN8WsX9mKBjvcIw=;
+        b=n8Ylxg0lUdoooETDXk0nI8+GDSMPl7SnEj1n9nyWm4gZItLqC4/yOFtP+OSx3Xg4qb
+         h+viur+6sCWAaCCuzHxnVu8KkbQjPkDIkSdTAkoOwWEpIjuF1q691dcpsAq3D7w2pMcH
+         xrWCKEnjZ4YCnFn2q7B7/6KhRHelFoQavAGZm43hSzIvUeOWLTlBxQlHcihb1epygS3c
+         /H9++lcfi6SLcUeoZdTJd8KWcyZcar/Jpwij8xqkove3N8T0mukTVJ5T8346Z9XmbIGw
+         DPX7Eu64VoffgJLe15aDyuedzZX+7jAbr7KTPezOKJ1klHf1gy/+5T/p0vaXrtkp8L0U
+         5LlA==
+X-Gm-Message-State: AOJu0YwgedJU2KMeVkKe1qSqsL1yFZHAWUfFHGEUUrPc7iR/xYqEXfQ3
+        CiI7tJGEFXayeooUVl+NBswkWkiTt5s0ZVOrwv+Yxg==
+X-Google-Smtp-Source: AGHT+IFrDkhIuonhGPWsSr/0CsH5jkyOknouXdFhWw74YYsKqzq8F0T7V5nmyx3QoBDjukDUHRvrrhaHI0NsT4T/4vs=
+X-Received: by 2002:a25:2e07:0:b0:bcb:9b43:5a89 with SMTP id
+ u7-20020a252e07000000b00bcb9b435a89mr8407423ybu.61.1694422749580; Mon, 11 Sep
+ 2023 01:59:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230824105703.19612-1-tychang@realtek.com> <20230824105703.19612-7-tychang@realtek.com>
-In-Reply-To: <20230824105703.19612-7-tychang@realtek.com>
+References: <20230824105703.19612-1-tychang@realtek.com> <20230824105703.19612-2-tychang@realtek.com>
+In-Reply-To: <20230824105703.19612-2-tychang@realtek.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 11 Sep 2023 10:52:32 +0200
-Message-ID: <CACRpkdbehdVKbcJjdGb-4_KuTwAJVuj1ucBihkg5tX+VJe1z5A@mail.gmail.com>
-Subject: Re: [PATCH v2 6/7] dt-bindings: pinctrl: realtek: add RTD1319D
- pinctrl binding
+Date:   Mon, 11 Sep 2023 10:58:58 +0200
+Message-ID: <CACRpkda8_nV1UiDO0_qvcc_z8ODQqckwaCGg6A5-Qm0NADi_Ng@mail.gmail.com>
+Subject: Re: [PATCH v2 1/7] pinctrl: realtek: Add common pinctrl driver for
+ Realtek DHC RTD SoCs
 To:     Tzuyi Chang <tychang@realtek.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -71,19 +71,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Tzuyi,
+
+thanks for the new version! This is starting to look really good.
+
 On Thu, Aug 24, 2023 at 12:57=E2=80=AFPM Tzuyi Chang <tychang@realtek.com> =
 wrote:
 
-> Add device tree bindings for RTD1319D.
+> The RTD SoCs share a similar design for pinmux and pinconfig.
+> This common pinctrl driver supports different variants within the RTD
+> SoCs.
 >
 > Signed-off-by: Tzuyi Chang <tychang@realtek.com>
-> ---
-> v1 to v2 change:
+(...)
+> +static void rtd_pinctrl_update_bits(struct rtd_pinctrl *data, unsigned i=
+nt offset,
+> +                                   unsigned int mask, unsigned int val)
+> +{
+> +       unsigned int reg =3D readl_relaxed(data->base + offset);
+> +
+> +       reg &=3D ~mask;
+> +       reg |=3D (mask & val);
+> +       writel_relaxed(reg, data->base + offset);
+> +}
 
-My comments are addressed so:
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+This function is essentially a reimplementation of regmap_update_bits()
+using regmap_mmio with .user_relaxed_mmio property set in the
+config.
 
-(Then you need to also fix Rob's comments.)
+Have you considered just using regmap-mmio for this?
 
 Yours,
 Linus Walleij
