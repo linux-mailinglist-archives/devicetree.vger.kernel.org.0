@@ -2,122 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F11679A352
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 08:09:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C4CB79A355
+	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 08:12:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229905AbjIKGJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 02:09:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39034 "EHLO
+        id S234358AbjIKGM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 02:12:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230042AbjIKGJS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 02:09:18 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 792F7FE
-        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:09:14 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-402d0eda361so47118845e9.0
-        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:09:14 -0700 (PDT)
+        with ESMTP id S232144AbjIKGM1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 02:12:27 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6106EC
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:12:22 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-31fa15f4cc6so774264f8f.2
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:12:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694412553; x=1695017353; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694412741; x=1695017541; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zWcdRs7/4PDNa35mC9WiHzYrOk8ak/seb1it3OwsXbs=;
-        b=LZ8kMsArYlIUajJpjwTV/inX900P9eNJuRYaop3j2HHVccpspwbVYsRT/TYABotozy
-         uHf/OxTMS+HJ4JyN55HzetD8RozpBiw0j/AkAJ3jA08sC6ecgU3TWfeiJKzKS0HTmkTx
-         wp/VuSzzzOzpsp5+7Wo259+mrn0K8SxjwPov036vSHq/xICfqNcFVN6tR3kZPJCP4+YY
-         yUzdZPsaaxV6XGGoymIbekg+0No5w+iD/14ultcu287ce2PFNBnajKnrMX6hZSFTlozW
-         yhuCIJdFIr7CSLYVVmm7s/mTc9UUxIYa2H7/wrzSSBfG0g1yvzf4XrcLbLjPEjhkhjsm
-         ol4g==
+        bh=XezrCl8ZqDRyxio73LdcaLmnL38z1MHmy6zWkUdZX0c=;
+        b=X+cwB4ZzNrWI6CycQ59R5S2CxtUzQ0h0/RoKFVNpDZVMvU8b9r50SaBij12YRK/dCE
+         6HgNS74geWGDZjLHJWq0Mj4ign6g595JrNm6oszpjfa7WcFf5siz49pLv0MVggX2ZTHx
+         MztL/tt5dX3wuByRUNgCm6mnTs3TJkMp5AnbmuxeoGjm5qHUxNa5Zlcy5hypGw8bD6BO
+         wVHMaym8Hr3fL+HcX2wAZKiH5lAD7VtYJdZaL9FnQk27xSp8Ej17zzdns6i6T9SQ8pdC
+         QuslvrmLywoWPtyEJvpUscWJNYc2TyloqAdwwHU6bjaYj7VIB4OdmOT0sxfmFjc1IaQW
+         XLJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694412553; x=1695017353;
+        d=1e100.net; s=20230601; t=1694412741; x=1695017541;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zWcdRs7/4PDNa35mC9WiHzYrOk8ak/seb1it3OwsXbs=;
-        b=bAo5oAUi2byxapw//HZxknQVjmmrlA7mVmL6IS3VhaWVFi+dzC4FvMWOOJ+HCgHg4B
-         RcqEAx6MS8bya8UtqoPKbnTxM0frDtZK8LIbNuigEG7lHwfe9BwafhOxC9qtSTH4zOBr
-         k0pROE6knftNloEt74RFK3DtG5cQ4Okk9Pl0aXmVqLEjDZryV8cULad/pevCQklfrWfB
-         efomrAfSk6G6a78NQf+PMTtsCgNBa908xNnLMfJpaSpnDyOvEBuu56oz5NA3xH9fWMet
-         1o/TPgXzLbgycGhq8LIg1hHHNJJFCPO6WMx5BbaJ/2u8gr/NZ5ENB78TQuJhfcP6nude
-         LfuA==
-X-Gm-Message-State: AOJu0YyJ8nDIvM2ZEKFRGHK5L0qzAxhNgxGny121/sgXM/Ff4drp3lF/
-        ZjDn7ATLIOesuEyjX7wPsSfvZw==
-X-Google-Smtp-Source: AGHT+IG4W706F67nRSS4jrADVmi+lVT+lP0BNJIguoVA2dZItMhEsHe6WItR7qXF+U7xSCxn069nAw==
-X-Received: by 2002:a5d:4c50:0:b0:31a:ed75:75d6 with SMTP id n16-20020a5d4c50000000b0031aed7575d6mr6938145wrt.15.1694412552884;
-        Sun, 10 Sep 2023 23:09:12 -0700 (PDT)
+        bh=XezrCl8ZqDRyxio73LdcaLmnL38z1MHmy6zWkUdZX0c=;
+        b=nLblelvi1a+HZOFZBfa6P/t44ncdfGmul05n+uhMlWmiDPbj5iPNy4IDD1UAdTveGH
+         meIhhguxGgyBZmMKX56qw1w9lUtfgpc8XCGdgo28AlWZMqjBt2YucFTH834l9GO5Wo7U
+         qDwVa9ZD8J4FxAp58M9j+Lqf0PrpkGa8zlrFe1FrvuJWmkdEHH9a34G9GgRkzaQObVWS
+         G3++c0XkZWRAonGnwE8sUYgQiBKt862wQuLb9gxJL84XIx1nZLZ4BMK1FBT/axxICUJv
+         ZbFv6FCn8OfOa1EPtIvmdqeJ0o4Jbsjva9I1Tx3oBkbaPWhu1AUKiyW2LxPMcIrAo1wx
+         2ohA==
+X-Gm-Message-State: AOJu0YyMIy37P5YP4jWv5a9ihCQl9Fn5ij0CaPnwIQykfsmt2LZJ3oh+
+        6zVKqKFdg2MvKbd9XMQ9y4G9lA==
+X-Google-Smtp-Source: AGHT+IE5Ebjr5i6VAf1KdNZGjQGiz4Iee/J02faavRwi1z0yfclTmtfOj/Jn0i8zTJzMyqK6vWlhfw==
+X-Received: by 2002:adf:e68a:0:b0:317:5ed6:887 with SMTP id r10-20020adfe68a000000b003175ed60887mr6707475wrm.66.1694412741175;
+        Sun, 10 Sep 2023 23:12:21 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id d16-20020adff2d0000000b0031981c500aasm8950963wrp.25.2023.09.10.23.09.11
+        by smtp.gmail.com with ESMTPSA id x5-20020a1c7c05000000b003fef5402d2dsm12227048wmc.8.2023.09.10.23.12.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Sep 2023 23:09:12 -0700 (PDT)
-Message-ID: <ef81697f-473e-898e-ec13-4dd255e2e3d7@linaro.org>
-Date:   Mon, 11 Sep 2023 08:09:10 +0200
+        Sun, 10 Sep 2023 23:12:20 -0700 (PDT)
+Message-ID: <bf43b771-35e3-1b37-24f5-e21b2c34a415@linaro.org>
+Date:   Mon, 11 Sep 2023 08:12:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH] dt-bindings: arm64: dts: mediatek: add description for
- mt8365-evk board
+Subject: Re: [PATCH] ASoC: dwc: Add Single DMA mode support
 Content-Language: en-US
-To:     Macpaul Lin <macpaul.lin@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Myunguk Kim <mwkim@gaonchips.com>, alsa-devel@alsa-project.org
+Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Maxim Kochetkov <fido_max@inbox.ru>,
+        Xingyu Wu <xingyu.wu@starfivetech.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        =?UTF-8?Q?Uw_e_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Cc:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>
-References: <20230910062852.15415-1-macpaul.lin@mediatek.com>
- <f8864242-daa1-e72f-4759-aac3fa1bbcf2@linaro.org>
- <12bdd17a-98f4-5551-4253-229dc36f0c77@mediatek.com>
+        Jose Abreu <joabreu@synopsys.com>, devicetree@vger.kernel.org
+References: <20230911024023.43833-1-mwkim@gaonchips.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <12bdd17a-98f4-5551-4253-229dc36f0c77@mediatek.com>
+In-Reply-To: <20230911024023.43833-1-mwkim@gaonchips.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/09/2023 14:07, Macpaul Lin wrote:
+On 11/09/2023 04:40, Myunguk Kim wrote:
+> There is a SoC between dwc and DMA block (ie. PL330)
+> that does not have a burst signal and supports only single.
 > 
+> So write not-support-burst property on dts, it support single DMA mode.
 > 
-> On 9/10/23 17:09, Krzysztof Kozlowski wrote:
->>> +      - description: MediaTek Genio 350 Boards (Genio 350 EVK)
->>
->> That's a bit confusing. So all of the boards here will be Genio 350 EVK?
->> I don't get what is the point of this description.
->>
->>
->>> +        items:
->>>            - enum:
->>>                - mediatek,mt8365-evk
->>>            - const: mediatek,mt8365
+> Signed-off-by: Myunguk Kim <mwkim@gaonchips.com>
+> ---
+>  .../bindings/sound/snps,designware-i2s.yaml          |  3 +++
+
+Bindings are always separate patch.
+
+Please run scripts/checkpatch.pl and fix reported warnings. Some
+warnings can be ignored, but the code here looks like it needs a fix.
+Feel free to get in touch if the warning is not clear.
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
+
+
+>  include/sound/designware_i2s.h                       |  1 +
+>  sound/soc/dwc/dwc-i2s.c                              | 12 ++++++++++--
+>  3 files changed, 14 insertions(+), 2 deletions(-)
 > 
-> Thes boards with compatible 'mediatek,mt8365-evk' is indeed used by
+> diff --git a/Documentation/devicetree/bindings/sound/snps,designware-i2s.yaml b/Documentation/devicetree/bindings/sound/snps,designware-i2s.yaml
+> index a48d040b0a4f..43a46ba2a70c 100644
+> --- a/Documentation/devicetree/bindings/sound/snps,designware-i2s.yaml
+> +++ b/Documentation/devicetree/bindings/sound/snps,designware-i2s.yaml
+> @@ -86,6 +86,9 @@ properties:
+>        The phandle to System Register Controller syscon node and the I2S-rx(ADC)
+>        enabled control offset and mask of SYS_SYSCONSAIF__SYSCFG register.
+>  
+> +  no-burst:
+> +    description: Use single transaction only between DesignWare I2S and DMA IP.
 
-Boards?
+This was not tested. Missing vendor prefix, type.
 
-> Genio 350-EVK, which Baylibre helped to do upstream tasks. The only 
-> production version of hardware will be available on the market. The 
-> derived version of customer's hardware is not available yet.
-> 
-> The separate patch for renaming mt8365-evk.dts file should be send next 
-> week for aligning the naming rules.
+Anyway please provide some explanation why this cannot be deduced from
+the compatible.
 
-So the description is not correct.
-
-Anyway, this patch does not make much sense to me considering nothing
-like this was merged. You just sent v5 doing the same!
 
 Best regards,
 Krzysztof
