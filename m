@@ -2,162 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 657C279B25B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:58:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95AD279AD52
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:39:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238121AbjIKUxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:53:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41704 "EHLO
+        id S229633AbjIKUuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:50:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236822AbjIKLaR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 07:30:17 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A8B0CDD;
-        Mon, 11 Sep 2023 04:30:07 -0700 (PDT)
-X-UUID: 8bc8f2a0509611ee8051498923ad61e6-20230911
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=8Wc0C//ZFIUk4bGiU2mG/6OEkogqZJF2AkljuEJa1ws=;
-        b=d+2g5ouPo5QVJfSMhWLkLzRipzzHXeOdSuygmUeaFR2f9nO1ut4We/6b65sO26W03np04Sl5/tTaY6JdzrFcLfab1pFKmlQ6ettOju4xkirBAsnJ634k9KmNoRwqkM7jsfnpjVC5MnPSaqEpUW0+xU3zZQtM3PdGItYjUJ3RjS4=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:c420191b-2253-4087-b703-9dbeefb3a1ea,IP:0,U
-        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:-5
-X-CID-META: VersionHash:0ad78a4,CLOUDID:2882b3be-14cc-44ca-b657-2d2783296e72,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-        DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 8bc8f2a0509611ee8051498923ad61e6-20230911
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
-        (envelope-from <shawn.sung@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1451906846; Mon, 11 Sep 2023 19:30:01 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with ShadowRedundancy id
- 15.2.1118.7; Mon, 11 Sep 2023 11:29:57 +0000
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 11 Sep 2023 15:42:43 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 11 Sep 2023 15:42:43 +0800
-From:   Hsiao Chien Sung <shawn.sung@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Conor Dooley <conor+dt@kernel.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        with ESMTP id S235400AbjIKIeU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 04:34:20 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 518A61A1
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 01:34:15 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99bf3f59905so514875866b.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 01:34:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1694421254; x=1695026054; darn=vger.kernel.org;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XJm1KaNRweMkGVAymSAxQbFYuR9Q/QDHdaAfSIOtOtY=;
+        b=snoiVXErePqPv15Ov6YYqDsErLkyeRomEvttbFZlvfsaKz8W7DEzqzhqqOv4JPO58e
+         hueYhhGy4d//Ns30AaauvV6CiM8JrDN6bbz8/7uEHD9m8zqSaSxpk93orUy4uiROjT2A
+         XnDn+Du8jSzlH9TgsKmSwU0ka4kqIW5aw59TV5n7r3R7RHi5LwnIWBbCyt2gWT1g3VMW
+         CzE/MaW7BbgLmmQF4oTS3INXAQZflcmS/mn67R029HtPhkcZfrh4M5QCNNrlfV+LtRL4
+         eBjJlx2KAnMpzzNQnA/13u0L9gBRZ7puIXew2OogC76rmA12X/JOUCmIJkYuQgx9v3mS
+         fbaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694421254; x=1695026054;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=XJm1KaNRweMkGVAymSAxQbFYuR9Q/QDHdaAfSIOtOtY=;
+        b=ZFkMjNqezqN9rtj5EXzWJPVnFMbhn/qc9u8EPlVNDTdw74pBDxJB3YOS3EMPSGFbwS
+         zHa5yjSVsFc+ehQZo3uEkPejE3VEH0A3VzIA5xRkiZhjt0s5koM0obgl+3R4jGInrt/Y
+         mP8i6ui9F3f3VBY1eDvtc+6jbUyfl9S5QslvI5saAFSqjLN3wZTGRcASYlw0W+1afCXX
+         Qlya4qdaPOW5BvAhdlG5ZQ1igI7K2GvUAOdWa8xQLOd0QoH1/fPz8Lz1R7tLoAXtyzrw
+         2X2/iHFPeaDUJoyqTGQEsDhOjnONo8xruL0eW+uvOQq7PcF2nrXHZDBA7YrX3XOGitn0
+         fMQg==
+X-Gm-Message-State: AOJu0YzOX8YdTnrwufPYNhHa3HSGxjlIi28k0pWLJF1uw1URSzmkwDK3
+        MCDzkVWmZmyjfy21drfgZ4mrTw==
+X-Google-Smtp-Source: AGHT+IFj11zWwg4l2ZYoi5wwOlV3+q/kHSKszsCHlHHWLxUQKUTp28BwxRBudKWY2XQcGgljf2DGcg==
+X-Received: by 2002:a17:906:5a49:b0:9a2:24f9:fabe with SMTP id my9-20020a1709065a4900b009a224f9fabemr7402648ejc.66.1694421253741;
+        Mon, 11 Sep 2023 01:34:13 -0700 (PDT)
+Received: from localhost (k10064.upc-k.chello.nl. [62.108.10.64])
+        by smtp.gmail.com with ESMTPSA id w20-20020a1709064a1400b00991faf3810esm5046605eju.146.2023.09.11.01.34.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Sep 2023 01:34:13 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 11 Sep 2023 10:34:12 +0200
+Message-Id: <CVFY7D7ND3WS.2B2EYB4ZO86P@otso>
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+To:     "Luca Weiss" <luca.weiss@fairphone.com>,
+        "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+Cc:     <cros-qcom-dts-watchers@chromium.org>,
+        "Andy Gross" <agross@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        "Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        "Viresh Kumar" <viresh.kumar@linaro.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Singo Chang <singo.chang@mediatek.com>,
-        "Nancy . Lin" <nancy.lin@mediatek.com>,
-        "Jason-JH . Lin" <jason-jh.lin@mediatek.com>,
-        Hsiao Chien Sung <shawn.sung@mediatek.com>
-Subject: [RESEND PATCH v6 00/20] Add display driver for MT8188 VDOSYS1
-Date:   Mon, 11 Sep 2023 15:42:13 +0800
-Message-ID: <20230911074233.31556-1-shawn.sung@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=no
-        autolearn_force=no version=3.4.6
+        <linux-gpio@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: Re: [PATCH 04/11] arm64: dts: qcom: pm7250b: make SID configurable
+X-Mailer: aerc 0.15.2
+References: <20230830-fp5-initial-v1-0-5a954519bbad@fairphone.com>
+ <20230830-fp5-initial-v1-4-5a954519bbad@fairphone.com>
+ <b82f4683-e8b5-b424-8f7a-6d2ba1cab61f@linaro.org>
+ <CV6NF0466658.20DGU7QKF2UBR@otso>
+ <CAA8EJpr1+W3f08X-FpiiVrJ98kg52HaMwbbKn=fG15Whm4C8aQ@mail.gmail.com>
+ <728003b9-db27-fdc0-e761-197a02a38c24@linaro.org>
+ <CAA8EJpoXreHpxZQ2G10n0OiQzUX4ffk=gvo87dAU4-r+Svqpeg@mail.gmail.com>
+ <CVAUDGBO4S08.1F0O66ZE6I4IG@otso>
+In-Reply-To: <CVAUDGBO4S08.1F0O66ZE6I4IG@otso>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Resend patch to add devicetree@vger.kernel.org to cc list for
-automated tooling.
+On Tue Sep 5, 2023 at 10:30 AM CEST, Luca Weiss wrote:
+> On Thu Aug 31, 2023 at 2:27 PM CEST, Dmitry Baryshkov wrote:
+> > On Thu, 31 Aug 2023 at 14:54, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> > >
+> > > On 31/08/2023 13:33, Dmitry Baryshkov wrote:
+> > > > On Thu, 31 Aug 2023 at 13:13, Luca Weiss <luca.weiss@fairphone.com>=
+ wrote:
+> > > >>
+> > > >> On Wed Aug 30, 2023 at 12:06 PM CEST, Krzysztof Kozlowski wrote:
+> > > >>> On 30/08/2023 11:58, Luca Weiss wrote:
+> > > >>>> Like other Qualcomm PMICs the PM7250B can be used on different a=
+ddresses
+> > > >>>> on the SPMI bus. Use similar defines like the PMK8350 to make th=
+is
+> > > >>>> possible.
+> > > >>>>
+> > > >>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> > > >>>> ---
+> > > >>>>  arch/arm64/boot/dts/qcom/pm7250b.dtsi | 23 ++++++++++++++++----=
+---
+> > > >>>>  1 file changed, 16 insertions(+), 7 deletions(-)
+> > > >>>>
+> > > >>>> diff --git a/arch/arm64/boot/dts/qcom/pm7250b.dtsi b/arch/arm64/=
+boot/dts/qcom/pm7250b.dtsi
+> > > >>>> index e8540c36bd99..3514de536baa 100644
+> > > >>>> --- a/arch/arm64/boot/dts/qcom/pm7250b.dtsi
+> > > >>>> +++ b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
+> > > >>>> @@ -7,6 +7,15 @@
+> > > >>>>  #include <dt-bindings/interrupt-controller/irq.h>
+> > > >>>>  #include <dt-bindings/spmi/spmi.h>
+> > > >>>>
+> > > >>>> +/* This PMIC can be configured to be at different SIDs */
+> > > >>>> +#ifndef PM7250B_SID
+> > > >>>> +   #define PM7250B_SID 2
+> > > >>>> +#endif
+> > > >>>
+> > > >>> Why do you send the same patch as v1, without any reference to pr=
+evious
+> > > >>> discussions?
+> > > >>>
+> > > >>> You got here feedback already.
+> > > >>>
+> > > >>> https://lore.kernel.org/linux-arm-msm/f52524da-719b-790f-ad2c-0c3=
+f313d9fe9@linaro.org/
+> > > >>
+> > > >> Hi Krzysztof,
+> > > >>
+> > > >> I did mention that original patch in the cover letter of this seri=
+es.
+> > > >> I'm definitely aware of the discussion earlier this year there but=
+ also
+> > > >> tried to get an update lately if there's any update with no respon=
+se.
+> > > >
+> > > > I think the overall consensus was that my proposal is too complicat=
+ed
+> > > > for the DT files.
+> > >
+> > > I proposed to duplicate the entries. Do you keep QUP nodes in DTSI an=
+d
+> > > customize per address? No.
+> >
+> > At the same time, we do keep SoC files separate from the board files.
+> > Yes, I'm slightly exaggerating here.
+> >
+> > I think that for PMIC files it makes sense to extract common parts if
+> > that eases reuse of the common parts.
+>
+> Hi all,
+>
+> what can I do for v2 now?
+>
+> 1. Keep this patch as-is, and keep pm7250b in device dts.
+>
+> 2. Drop pm7250b patch and drop from device dts, until _someone_ figures
+> out a solution talking to the PMIC on different SID.
+>
+> 3. Something else like copy-pasting pm7250b.dtsi to pm7250-8.dtsi and
+> changing the SID there, and using that in device dts.
+>
+> Please let me know what to do.
+>
+> Regards
+> Luca
 
-Changes in v6:
-- Separate the commits into smaller ones
-- Add DPI input mode setting
+Hi,
 
-Changes in v5:
-- Reuse .clk_enable/.clk_disable in struct mtk_ddp_comp_funcs
-  in mtk_disp_ovl_adaptor.c
-- Adjust commits order
+if there's no feedback I'll keep this patch in v2 of this series and we
+can continue to discuss there (if necessary).
 
-Changes in v4:
-- Add new functions in mtk_disp_ovl_adaptor.c to enable/disable
-  components and reuse them when clock enable/disable
-- Rename components in mtk_disp_ovl_adaptor.c and sort them in
-  alphabetical order
+Regards
+Luca
 
-Changes in v3:
-- Define macro MMSYS_RST_NR in mtk-mmsys.h and update reset table
-- Fix typos (ETDHR -> ETHDR, VSNYC -> VSYNC)
-- Rebase dt-bindings on linux-next
-- Refine description of Padding
-- Squash reset bit map commits for VDO0 and VDO1 into one
-
-Changes in v2:
-- Remove redundant compatibles of MT8188 because it shares the same
-  configuration with MT8195
-- Separate dt-bindings by modules
-- Support reset bit mapping in mmsys driver
-
-Hsiao Chien Sung (20):
-  dt-bindings: display: mediatek: ethdr: Add compatible for MT8188
-  dt-bindings: display: mediatek: mdp-rdma: Add compatible for MT8188
-  dt-bindings: display: mediatek: merge: Add compatible for MT8188
-  dt-bindings: display: mediatek: padding: Add MT8188
-  dt-bindings: arm: mediatek: Add compatible for MT8188
-  dt-bindings: reset: mt8188: Add VDOSYS reset control bits
-  soc: mediatek: Support MT8188 VDOSYS1 in mtk-mmsys
-  soc: mediatek: Support MT8188 VDOSYS1 Padding in mtk-mmsys
-  soc: mediatek: Support reset bit mapping in mmsys driver
-  soc: mediatek: Add MT8188 VDOSYS reset bit map
-  drm/mediatek: Rename OVL_ADAPTOR_TYPE_RDMA
-  drm/mediatek: Refine device table of OVL adaptor
-  drm/mediatek: Sort OVL adaptor components
-  drm/mediatek: Add component ID to component match structure
-  drm/mediatek: Manage component's clock with function pointers
-  drm/mediatek: Make sure the power-on sequence of LARB and RDMA
-  drm/mediatek: Support MT8188 Padding in display driver
-  drm/mediatek: Add Padding to OVL adaptor
-  drm/mediatek: Support MT8188 VDOSYS1 in display driver
-  drm/mediatek: Set DPI input to 1T2P mode
-
- .../bindings/arm/mediatek/mediatek,mmsys.yaml |   1 +
- .../display/mediatek/mediatek,ethdr.yaml      |   6 +-
- .../display/mediatek/mediatek,mdp-rdma.yaml   |   6 +-
- .../display/mediatek/mediatek,merge.yaml      |   3 +
- .../display/mediatek/mediatek,padding.yaml    |  81 +++++++
- drivers/gpu/drm/mediatek/Makefile             |   3 +-
- drivers/gpu/drm/mediatek/mtk_disp_drv.h       |   3 +
- .../gpu/drm/mediatek/mtk_disp_ovl_adaptor.c   | 216 +++++++++---------
- drivers/gpu/drm/mediatek/mtk_dpi.c            |   2 +-
- drivers/gpu/drm/mediatek/mtk_drm_drv.c        |   4 +
- drivers/gpu/drm/mediatek/mtk_drm_drv.h        |   2 +-
- drivers/gpu/drm/mediatek/mtk_mdp_rdma.c       |  20 +-
- drivers/gpu/drm/mediatek/mtk_padding.c        | 136 +++++++++++
- drivers/soc/mediatek/mt8188-mmsys.h           | 210 +++++++++++++++++
- drivers/soc/mediatek/mtk-mmsys.c              |  23 ++
- drivers/soc/mediatek/mtk-mmsys.h              |  32 +++
- drivers/soc/mediatek/mtk-mutex.c              |  51 +++++
- include/dt-bindings/reset/mt8188-resets.h     |  75 ++++++
- include/linux/soc/mediatek/mtk-mmsys.h        |   8 +
- 19 files changed, 764 insertions(+), 118 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
- create mode 100644 drivers/gpu/drm/mediatek/mtk_padding.c
-
---
-2.18.0
+>
+> >
+> > >
+> > > I definitely do not agree to these ifndef->define. Maybe using just
+> > > define would work (so drop ifndef->define), because this makes it
+> > > obvious and fail-safe if included in wrong place... except that it is
+> > > still not the define we expect. This is not the coding style present =
+in
+> > > other DTSes.
+> > >
+> > > The true problem how these SPMI bindings were created. Requiring SID
+> > > address in every child is clearly redundant and I think we do not fol=
+low
+> > > such approach anywhere else.
+> > >
+> > > Best regards,
+> > > Krzysztof
+> > >
 
