@@ -2,112 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CE9079BEE1
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:18:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72A6C79BC96
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:14:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235066AbjIKUsg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:48:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51294 "EHLO
+        id S238409AbjIKUx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:53:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241576AbjIKPKs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:10:48 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58941E4B;
-        Mon, 11 Sep 2023 08:10:42 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38BFAX2o059252;
-        Mon, 11 Sep 2023 10:10:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1694445033;
-        bh=GpivPZjtRoWE1QE6kdCTM1vklv/tVLesZ1YHxVwRqFY=;
-        h=From:To:CC:Subject:Date;
-        b=t03gcwyYilIHB3CNO3eaeOxIpqFNOEuziKA5XZR2cQXBaWaCNTmFoS/0VipkFZX9+
-         01dYNvD78YWJkzO1LK3DipZLtpJsCGF0+YYPLFe8Jvp5Yl/AyfluAnez8rmFZ7yF6E
-         mwngDXiWcjplb04YvV9hObW8z+9jwmcRgES2DF5Q=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38BFAXnj028510
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 11 Sep 2023 10:10:33 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
- Sep 2023 10:10:32 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 11 Sep 2023 10:10:32 -0500
-Received: from fllv0040.itg.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38BFAW4i018459;
-        Mon, 11 Sep 2023 10:10:32 -0500
-From:   Andrew Davis <afd@ti.com>
-To:     Peter Rosin <peda@axentia.se>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Andrew Davis <afd@ti.com>
-Subject: [PATCH v3] mux: mmio: use reg property when parent device is not a syscon
-Date:   Mon, 11 Sep 2023 10:10:30 -0500
-Message-ID: <20230911151030.71100-1-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
+        with ESMTP id S241777AbjIKPOW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:14:22 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF9B5FA;
+        Mon, 11 Sep 2023 08:14:16 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 6E69BC0025;
+        Mon, 11 Sep 2023 15:13:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1694445255;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ojuPiNmXmCazeh3wr8WutwjTo9jG8jJh57glhlUbxKQ=;
+        b=IjcYBOellcOfTpijLCpK9WnTM4/S/aHyvMuAt5a98uJnhkxBmZKIURIgO3VH/+TVpKUVf2
+        aG+r9ONNUgm0rHj8yq6enm0iDDgY7XptJJipf55c1DMLRXAKUjwPa+QVs87DmPJHVL2K/m
+        7Wu0kxenpt3iwns8cXXXFRSxcxoHCSdozRAE1ddfnLZone36fnaQUhOPIL8h4g8sTgDrMi
+        J5/RQinVOdc3JHbQDIlFv8bWneJfngxF6pk6Y6YWiOBCrFNQeIPlldLSgmo+hyHu2TvCPQ
+        XWWAJyKyrx+9XCOhC3y6VaPdoPSK7MWUWFCYv6COmBp6ITiS5UNbvwXWPZSljw==
+Date:   Mon, 11 Sep 2023 17:13:19 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Lizhi Hou <lizhi.hou@amd.com>
+Cc:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robh@kernel.org>,
+        <max.zhen@amd.com>, <sonal.santan@amd.com>,
+        <stefano.stabellini@xilinx.com>
+Subject: Re: [PATCH V13 2/5] PCI: Create device tree node for bridge
+Message-ID: <20230911171319.495bb837@bootlin.com>
+In-Reply-To: <1692120000-46900-3-git-send-email-lizhi.hou@amd.com>
+References: <1692120000-46900-1-git-send-email-lizhi.hou@amd.com>
+        <1692120000-46900-3-git-send-email-lizhi.hou@amd.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-GND-Sasl: herve.codina@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DT binding for the reg-mux compatible states it can be used when the
-"parent device of mux controller is not syscon device". It also allows
-for a reg property. When the reg property is provided, use that to
-identify the address space for this mux. If not provided fallback to
-using the parent device as a regmap provider.
+Hi Lizhi,
 
-Signed-off-by: Andrew Davis <afd@ti.com>
-Reviewed-by: Nishanth Menon <nm@ti.com>
----
+On Tue, 15 Aug 2023 10:19:57 -0700
+Lizhi Hou <lizhi.hou@amd.com> wrote:
+...
+> +void of_pci_make_dev_node(struct pci_dev *pdev)
+> +{
+> +	struct device_node *ppnode, *np = NULL;
+> +	const char *pci_type;
+> +	struct of_changeset *cset;
+> +	const char *name;
+> +	int ret;
+> +
+> +	/*
+> +	 * If there is already a device tree node linked to this device,
+> +	 * return immediately.
+> +	 */
+> +	if (pci_device_to_OF_node(pdev))
+> +		return;
+> +
+> +	/* Check if there is device tree node for parent device */
+> +	if (!pdev->bus->self)
+> +		ppnode = pdev->bus->dev.of_node;
+> +	else
+> +		ppnode = pdev->bus->self->dev.of_node;
+> +	if (!ppnode)
+> +		return;
+> +
+> +	if (pci_is_bridge(pdev))
+> +		pci_type = "pci";
+> +	else
+> +		pci_type = "dev";
+> +
+> +	name = kasprintf(GFP_KERNEL, "%s@%x,%x", pci_type,
+> +			 PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
+> +	if (!name)
+> +		return;
+> +
+> +	cset = kmalloc(sizeof(*cset), GFP_KERNEL);
+> +	if (!cset)
+> +		goto failed;
+> +	of_changeset_init(cset);
+> +
+> +	np = of_changeset_create_node(ppnode, name, cset);
+> +	if (!np)
+> +		goto failed;
 
-Changes from v2:
- - Rebased on v6.6-rc1
+The "goto failed" will leak the cset previously allocated.
 
-Changes from v1:
- - Flip logic as suggested in v1[0]
+np->data = cset; (next line) allows to free the cset when the node is destroyed
+(of_node_put() calls). When the node cannot be created, the allocated cset should
+be freed.
 
-[0] https://lore.kernel.org/lkml/1c27d9d4-b1cc-c158-90f7-f7e47e02c424@ti.com/T/
+> +	np->data = cset;
+> +
+> +	ret = of_pci_add_properties(pdev, cset, np);
+> +	if (ret)
+> +		goto failed;
+> +
+> +	ret = of_changeset_apply(cset);
+> +	if (ret)
+> +		goto failed;
+> +
+> +	pdev->dev.of_node = np;
+> +	kfree(name);
+> +
+> +	return;
+> +
+> +failed:
+> +	if (np)
+> +		of_node_put(np);
+> +	kfree(name);
+> +}
+> +#endif
+> +
+>  #endif /* CONFIG_PCI */
+>  
+...
+> +static int of_pci_prop_intr_map(struct pci_dev *pdev, struct of_changeset *ocs,
+> +				struct device_node *np)
+> +{
+> +	struct of_phandle_args out_irq[OF_PCI_MAX_INT_PIN];
+> +	u32 i, addr_sz[OF_PCI_MAX_INT_PIN], map_sz = 0;
+> +	__be32 laddr[OF_PCI_ADDRESS_CELLS] = { 0 };
+> +	u32 int_map_mask[] = { 0xffff00, 0, 0, 7 };
+> +	struct device_node *pnode;
+> +	struct pci_dev *child;
+> +	u32 *int_map, *mapp;
+> +	int ret;
+> +	u8 pin;
+> +
+> +	pnode = pci_device_to_OF_node(pdev->bus->self);
+> +	if (!pnode)
+> +		pnode = pci_bus_to_OF_node(pdev->bus);
+> +
+> +	if (!pnode) {
+> +		pci_err(pdev, "failed to get parent device node");
+> +		return -EINVAL;
+> +	}
+> +
+> +	laddr[0] = cpu_to_be32((pdev->bus->number << 16) | (pdev->devfn << 8));
+> +	for (pin = 1; pin <= OF_PCI_MAX_INT_PIN;  pin++) {
+> +		i = pin - 1;
+> +		out_irq[i].np = pnode;
+> +		out_irq[i].args_count = 1;
+> +		out_irq[i].args[0] = pin;
+> +		ret = of_irq_parse_raw(laddr, &out_irq[i]);
+> +		if (ret) {
+> +			pci_err(pdev, "parse irq %d failed, ret %d", pin, ret);
+> +			continue;
+> +		}
+> +		ret = of_property_read_u32(out_irq[i].np, "#address-cells",
+> +					   &addr_sz[i]);
+> +		if (ret)
+> +			addr_sz[i] = 0;
+> +	}
 
- drivers/mux/mmio.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+if of_irq_parse_raw() fails, addr_sz[i] is not initialized and map_sz bellow is
+computed with uninitialized values.
+On the test I did, this lead to a kernel crash due to the following kcalloc()
+called with incorrect values.
 
-diff --git a/drivers/mux/mmio.c b/drivers/mux/mmio.c
-index fd1d121a584ba..b6095b7853ed2 100644
---- a/drivers/mux/mmio.c
-+++ b/drivers/mux/mmio.c
-@@ -44,10 +44,13 @@ static int mux_mmio_probe(struct platform_device *pdev)
- 	int ret;
- 	int i;
- 
--	if (of_device_is_compatible(np, "mmio-mux"))
-+	if (of_device_is_compatible(np, "mmio-mux")) {
- 		regmap = syscon_node_to_regmap(np->parent);
--	else
--		regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
-+	} else {
-+		regmap = device_node_to_regmap(np);
-+		if (IS_ERR(regmap))
-+			regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
-+	}
- 	if (IS_ERR(regmap)) {
- 		ret = PTR_ERR(regmap);
- 		dev_err(dev, "failed to get regmap: %d\n", ret);
+Are interrupt-map and interrupt-map-mask properties needed in all cases ?
+I mean are they mandatory for the host pci bridge ?
+
+> +
+> +	list_for_each_entry(child, &pdev->subordinate->devices, bus_list) {
+> +		for (pin = 1; pin <= OF_PCI_MAX_INT_PIN; pin++) {
+> +			i = pci_swizzle_interrupt_pin(child, pin) - 1;
+> +			map_sz += 5 + addr_sz[i] + out_irq[i].args_count;
+
+of_irq_parse_raw() can fail on some pins.
+Is it correct to set map_sz based on information related to all pins even if
+of_irq_parse_raw() previously failed on some pins ?
+
+> +		}
+> +	}
+> +
+> +	int_map = kcalloc(map_sz, sizeof(u32), GFP_KERNEL);
+> +	mapp = int_map;
+> +
+> +	list_for_each_entry(child, &pdev->subordinate->devices, bus_list) {
+> +		for (pin = 1; pin <= OF_PCI_MAX_INT_PIN; pin++) {
+> +			*mapp = (child->bus->number << 16) |
+> +				(child->devfn << 8);
+> +			mapp += OF_PCI_ADDRESS_CELLS;
+> +			*mapp = pin;
+> +			mapp++;
+> +			i = pci_swizzle_interrupt_pin(child, pin) - 1;
+> +			*mapp = out_irq[i].np->phandle;
+> +			mapp++;
+> +			if (addr_sz[i]) {
+> +				ret = of_property_read_u32_array(out_irq[i].np,
+> +								 "reg", mapp,
+> +								 addr_sz[i]);
+> +				if (ret)
+> +					goto failed;
+> +			}
+> +			mapp += addr_sz[i];
+> +			memcpy(mapp, out_irq[i].args,
+> +			       out_irq[i].args_count * sizeof(u32));
+> +			mapp += out_irq[i].args_count;
+> +		}
+> +	}
+> +
+> +	ret = of_changeset_add_prop_u32_array(ocs, np, "interrupt-map", int_map,
+> +					      map_sz);
+> +	if (ret)
+> +		goto failed;
+> +
+> +	ret = of_changeset_add_prop_u32(ocs, np, "#interrupt-cells", 1);
+> +	if (ret)
+> +		goto failed;
+> +
+> +	ret = of_changeset_add_prop_u32_array(ocs, np, "interrupt-map-mask",
+> +					      int_map_mask,
+> +					      ARRAY_SIZE(int_map_mask));
+> +	if (ret)
+> +		goto failed;
+> +
+> +	kfree(int_map);
+> +	return 0;
+> +
+> +failed:
+> +	kfree(int_map);
+> +	return ret;
+> +}
+> +
+...
+
+Regards,
+Hervé
+
 -- 
-2.39.2
-
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
