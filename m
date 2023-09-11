@@ -2,115 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E694D79C0AB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:20:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C87B079BED7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:18:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230377AbjIKUtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:49:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51216 "EHLO
+        id S233131AbjIKUwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:52:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242652AbjIKQCB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 12:02:01 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD9C81AE;
-        Mon, 11 Sep 2023 09:01:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1694448116; x=1725984116;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=lKHyicF0p9BaS5ys6PVn7lp6R/aWgLwg26A6LMOSZlE=;
-  b=z7WIJKdGfvou2O0P9SAvdWfqMAdFxe4E4Avq/aFNSQMRt/c37zWfrEc5
-   JbCaUAskMJgBZirlLPO24IH3QIzg2xAEsrUSl4LZqaZD0aCjiRvAyuz2M
-   TuWShe1ebQyYQEd1q/jwoLwweSyLVHgH0I2I2HB6R1m9W/eGQCwFI9BLA
-   jjmOrkoB883hLE8oMEC2jRVp+1/Fuw/5NxNgAx6rPUX6ae6Q3IF7xLSnS
-   mCLfuaiO537+QKmWmnlfVYpw2jiymm5cCGOEc9wiAxJn/Q5JJAwMgpJ/H
-   l61bNH0reyqaju82Nxcjr5Ejo7ZrD8/8t5A1Rw0IfXP+ofZVISPnTylaF
-   Q==;
-X-CSE-ConnectionGUID: +foy2RZLSUOIYXipKZdYxg==
-X-CSE-MsgGUID: ZKrN9PlRR+q/ZjuwzBu+Kw==
-X-ThreatScanner-Verdict: Negative
-X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; 
-   d="scan'208";a="4164260"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Sep 2023 09:01:56 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 11 Sep 2023 09:01:55 -0700
-Received: from [10.159.245.205] (10.10.85.11) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
- Transport; Mon, 11 Sep 2023 09:01:53 -0700
-Message-ID: <18943157-a1fb-0fda-e3d4-e0478d18a849@microchip.com>
-Date:   Mon, 11 Sep 2023 18:01:39 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 2/2] ARM: dts: at91: sama5d29_curiosity: Add device tree
- for sama5d29_curiosity board
-Content-Language: en-US, fr-FR
-To:     claudiu beznea <claudiu.beznea@tuxon.dev>,
-        <Mihai.Sain@microchip.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <alexandre.belloni@bootlin.com>, <andre.przywara@arm.com>,
-        <Andrei.Simion@microchip.com>, <Jerry.Ray@microchip.com>,
-        <devicetree@vger.kernel.org>,
+        with ESMTP id S242853AbjIKQZz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 12:25:55 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 855EFCCA;
+        Mon, 11 Sep 2023 09:25:50 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38BGPeKB083440;
+        Mon, 11 Sep 2023 11:25:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1694449540;
+        bh=xXNNi9ecgv9n4lP0nkXFlMFa2mNAsjzCTU9VoQct/FE=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=VTI4bWQBA/DjcNP4McbwHGzxW5LB6s8OXC1gJWlvyLhCNldrWAdvJeXgxJybfUWAJ
+         jUKC/zTKgXSfRSG3cNpFKXmh37SJV4lfn7uIKjqhXkIjtaCme96iJskcKMbWneIVdU
+         TQyy4FKuj3nntkrNwWnIiYhfg4eWru7ktYjnEqdE=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38BGPeN7022338
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 11 Sep 2023 11:25:40 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
+ Sep 2023 11:25:40 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 11 Sep 2023 11:25:40 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38BGPeo8012541;
+        Mon, 11 Sep 2023 11:25:40 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Vignesh <vigneshr@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <Cristian.Birsan@microchip.com>
-References: <20230801111151.6546-1-mihai.sain@microchip.com>
- <20230801111151.6546-2-mihai.sain@microchip.com>
- <14d628cf-a40c-11e6-7743-e3ba3bd8aa2d@tuxon.dev>
- <PH8PR11MB68049899CFD7947B0B3A03EF820BA@PH8PR11MB6804.namprd11.prod.outlook.com>
- <9ce18601-02d8-686e-ebe0-04c5dc29f6c9@tuxon.dev>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <9ce18601-02d8-686e-ebe0-04c5dc29f6c9@tuxon.dev>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Tom Rini <trini@konsulko.com>, Bryan <bb@ti.com>,
+        Praneeth <praneeth@ti.com>,
+        Robert Nelson <robertcnelson@gmail.com>
+Subject: [PATCH 1/3] arm64: dts: ti: k3-am625: Add boot phase tags marking
+Date:   Mon, 11 Sep 2023 11:25:33 -0500
+Message-ID: <20230911162535.1044560-2-nm@ti.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230911162535.1044560-1-nm@ti.com>
+References: <20230911162535.1044560-1-nm@ti.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mihai, Claudiu,
+bootph-all as phase tag was added to dt-schema
+(dtschema/schemas/bootph.yaml) to describe various node usage during
+boot phases with DT.
 
-First of all, thanks a lot for your help on this board DT, that's great!
+On TI K3 AM625 SoC, only secure_proxy_sa3 and esm nodes are
+exclusively used by R5 bootloader, rest of the dts nodes with bootph-* are
+used by later boot stages also.
 
-On 03/08/2023 at 11:09, claudiu beznea wrote:
-> Hi, Mihai,
-> 
-> On 02.08.2023 15:19,Mihai.Sain@microchip.com  wrote:
->>> +&macb0 {
->>> +     pinctrl-names = "default";
->>> +     pinctrl-0 = <&pinctrl_macb0_default &pinctrl_macb0_phy_irq>;
->>> +     #address-cells = <1>;
->>> +     #size-cells = <0>;
->>> +     phy-mode = "rmii";
->>> +     status = "disabled";
->> Should any phy/mdio container be placed here? Also, any reason this node is disabled?
->> The board has no phy.
->> We will add external phy boards to macb interface and they will be present in dt-overlay.
->>
-> Then remove the macb0 node from here and keep it in overlay.
+Add bootph-all for all other nodes that are used in the bootloader on
+K3 AM625 SoC, and bootph-pre-ram is not needed specifically for any
+other node in kernel dts.
 
-What about choosing a phy and making it enabled by default. Because I 
-doubt people will use this board without a phy under Linux, honestly.
-Overlays would remove this "by default" node and add the replacing phy 
-if hardware plugged-in is different.
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi   | 10 ++++++++++
+ arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi    |  2 ++
+ arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi |  2 ++
+ arch/arm64/boot/dts/ti/k3-am62.dtsi        |  3 +++
+ 4 files changed, 17 insertions(+)
 
-By doing this we avoid having difficult situations where the most used 
-phy with this board is disabled or non existant and that we absolutely 
-need an overlay for such a basic thing as having Ethernet working 
-out-of-the-box...
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+index 284b90c94da8..ac760d9b831d 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+@@ -81,6 +81,7 @@ audio_refclk1: clock-controller@82e4 {
+ 	};
+ 
+ 	dmss: bus@48000000 {
++		bootph-all;
+ 		compatible = "simple-mfd";
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+@@ -90,6 +91,7 @@ dmss: bus@48000000 {
+ 		ti,sci-dev-id = <25>;
+ 
+ 		secure_proxy_main: mailbox@4d000000 {
++			bootph-all;
+ 			compatible = "ti,am654-secure-proxy";
+ 			#mbox-cells = <1>;
+ 			reg-names = "target_data", "rt", "scfg";
+@@ -165,6 +167,7 @@ main_pktdma: dma-controller@485c0000 {
+ 	};
+ 
+ 	dmsc: system-controller@44043000 {
++		bootph-all;
+ 		compatible = "ti,k2g-sci";
+ 		ti,host-id = <12>;
+ 		mbox-names = "rx", "tx";
+@@ -174,16 +177,19 @@ dmsc: system-controller@44043000 {
+ 		reg = <0x00 0x44043000 0x00 0xfe0>;
+ 
+ 		k3_pds: power-controller {
++			bootph-all;
+ 			compatible = "ti,sci-pm-domain";
+ 			#power-domain-cells = <2>;
+ 		};
+ 
+ 		k3_clks: clock-controller {
++			bootph-all;
+ 			compatible = "ti,k2g-sci-clk";
+ 			#clock-cells = <2>;
+ 		};
+ 
+ 		k3_reset: reset-controller {
++			bootph-all;
+ 			compatible = "ti,sci-reset";
+ 			#reset-cells = <2>;
+ 		};
+@@ -202,6 +208,7 @@ crypto: crypto@40900000 {
+ 	};
+ 
+ 	secure_proxy_sa3: mailbox@43600000 {
++		bootph-pre-ram;
+ 		compatible = "ti,am654-secure-proxy";
+ 		#mbox-cells = <1>;
+ 		reg-names = "target_data", "rt", "scfg";
+@@ -217,6 +224,7 @@ secure_proxy_sa3: mailbox@43600000 {
+ 	};
+ 
+ 	main_pmx0: pinctrl@f4000 {
++		bootph-all;
+ 		compatible = "pinctrl-single";
+ 		reg = <0x00 0xf4000 0x00 0x2ac>;
+ 		#pinctrl-cells = <1>;
+@@ -225,12 +233,14 @@ main_pmx0: pinctrl@f4000 {
+ 	};
+ 
+ 	main_esm: esm@420000 {
++		bootph-pre-ram;
+ 		compatible = "ti,j721e-esm";
+ 		reg = <0x00 0x420000 0x00 0x1000>;
+ 		ti,esm-pins = <160>, <161>, <162>, <163>, <177>, <178>;
+ 	};
+ 
+ 	main_timer0: timer@2400000 {
++		bootph-all;
+ 		compatible = "ti,am654-timer";
+ 		reg = <0x00 0x2400000 0x00 0x400>;
+ 		interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+index 80a3e1db26a9..0e0b234581c6 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+@@ -7,6 +7,7 @@
+ 
+ &cbass_mcu {
+ 	mcu_pmx0: pinctrl@4084000 {
++		bootph-all;
+ 		compatible = "pinctrl-single";
+ 		reg = <0x00 0x04084000 0x00 0x88>;
+ 		#pinctrl-cells = <1>;
+@@ -15,6 +16,7 @@ mcu_pmx0: pinctrl@4084000 {
+ 	};
+ 
+ 	mcu_esm: esm@4100000 {
++		bootph-pre-ram;
+ 		compatible = "ti,j721e-esm";
+ 		reg = <0x00 0x4100000 0x00 0x1000>;
+ 		ti,esm-pins = <0>, <1>, <2>, <85>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+index eae052887186..fef76f52a52e 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+@@ -7,6 +7,7 @@
+ 
+ &cbass_wakeup {
+ 	wkup_conf: syscon@43000000 {
++		bootph-all;
+ 		compatible = "syscon", "simple-mfd";
+ 		reg = <0x00 0x43000000 0x00 0x20000>;
+ 		#address-cells = <1>;
+@@ -14,6 +15,7 @@ wkup_conf: syscon@43000000 {
+ 		ranges = <0x0 0x00 0x43000000 0x20000>;
+ 
+ 		chipid: chipid@14 {
++			bootph-all;
+ 			compatible = "ti,am654-chipid";
+ 			reg = <0x14 0x4>;
+ 		};
+diff --git a/arch/arm64/boot/dts/ti/k3-am62.dtsi b/arch/arm64/boot/dts/ti/k3-am62.dtsi
+index 11f14eef2d44..f1e15206e1ce 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62.dtsi
+@@ -47,6 +47,7 @@ pmu: pmu {
+ 	};
+ 
+ 	cbass_main: bus@f0000 {
++		bootph-all;
+ 		compatible = "simple-bus";
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+@@ -86,6 +87,7 @@ cbass_main: bus@f0000 {
+ 			 <0x00 0x43000000 0x00 0x43000000 0x00 0x00020000>;
+ 
+ 		cbass_mcu: bus@4000000 {
++			bootph-all;
+ 			compatible = "simple-bus";
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
+@@ -93,6 +95,7 @@ cbass_mcu: bus@4000000 {
+ 		};
+ 
+ 		cbass_wakeup: bus@b00000 {
++			bootph-all;
+ 			compatible = "simple-bus";
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
+-- 
+2.40.0
 
-Just my $0.02, but it might simplify our life in the long run...
-
-Best regards,
-   Nicolas
