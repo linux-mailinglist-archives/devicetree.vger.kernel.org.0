@@ -2,55 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E233A79BA51
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:11:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CE9079BEE1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:18:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233304AbjIKUwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:52:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45518 "EHLO
+        id S235066AbjIKUsg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:48:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241503AbjIKPKF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:10:05 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12C4FFA;
-        Mon, 11 Sep 2023 08:10:01 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2B2AC433CA;
-        Mon, 11 Sep 2023 15:09:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694445000;
-        bh=HBK913hbzSRgMTx4gQeXjHRhatWJrh9efNenYNX4HvE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XWCISGVQTm+q4IZ0aIgoiBhr0vMMgWqKcq6/4A/0XFK+f8gvISxV56VsG3PCFFdB3
-         cHEqBxscq6koa28/cAEzJ6KRNdbzw/LVspl2gBCvYdKsn5a7J88Mgh3Pc0a2z2h/CA
-         5tQAZG0VuwL+hM48f0osvnjm2G8rPdX/6HDIwNaxBuFiKn5ayFZvfKx3+CZplth6ul
-         9uJc2Y4QxOfr8ygilTH2YRDGpyL5Sfwa+coHnnMNJAl7b06sGk+LC10jduURemQV5L
-         VsC56QP3mubqcxk9J+tnfVHXhZLNTSH1L0E2PEAH0+IA+gq5k5YQD23IKYygQ54Z5w
-         yRRhLWeX0mr3g==
-Received: (nullmailer pid 1259085 invoked by uid 1000);
-        Mon, 11 Sep 2023 15:09:58 -0000
-Date:   Mon, 11 Sep 2023 10:09:58 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Gatien Chevallier <gatien.chevallier@foss.st.com>
-Cc:     Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
+        with ESMTP id S241576AbjIKPKs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:10:48 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58941E4B;
+        Mon, 11 Sep 2023 08:10:42 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38BFAX2o059252;
+        Mon, 11 Sep 2023 10:10:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1694445033;
+        bh=GpivPZjtRoWE1QE6kdCTM1vklv/tVLesZ1YHxVwRqFY=;
+        h=From:To:CC:Subject:Date;
+        b=t03gcwyYilIHB3CNO3eaeOxIpqFNOEuziKA5XZR2cQXBaWaCNTmFoS/0VipkFZX9+
+         01dYNvD78YWJkzO1LK3DipZLtpJsCGF0+YYPLFe8Jvp5Yl/AyfluAnez8rmFZ7yF6E
+         mwngDXiWcjplb04YvV9hObW8z+9jwmcRgES2DF5Q=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38BFAXnj028510
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 11 Sep 2023 10:10:33 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
+ Sep 2023 10:10:32 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 11 Sep 2023 10:10:32 -0500
+Received: from fllv0040.itg.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38BFAW4i018459;
+        Mon, 11 Sep 2023 10:10:32 -0500
+From:   Andrew Davis <afd@ti.com>
+To:     Peter Rosin <peda@axentia.se>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Lionel Debieve <lionel.debieve@foss.st.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 07/10] dt-bindings: rng: add st,rng-lock-conf
-Message-ID: <20230911150958.GA1255978-robh@kernel.org>
-References: <20230908165120.730867-1-gatien.chevallier@foss.st.com>
- <20230908165120.730867-8-gatien.chevallier@foss.st.com>
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis <afd@ti.com>
+Subject: [PATCH v3] mux: mmio: use reg property when parent device is not a syscon
+Date:   Mon, 11 Sep 2023 10:10:30 -0500
+Message-ID: <20230911151030.71100-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230908165120.730867-8-gatien.chevallier@foss.st.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,52 +66,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 08, 2023 at 06:51:17PM +0200, Gatien Chevallier wrote:
-> If st,rng-lock-conf is set, the RNG configuration in RNG_CR, RNG_HTCR
-> and RNG_NSCR will be locked. It is supported starting from the RNG
-> version present in the STM32MP13
+The DT binding for the reg-mux compatible states it can be used when the
+"parent device of mux controller is not syscon device". It also allows
+for a reg property. When the reg property is provided, use that to
+identify the address space for this mux. If not provided fallback to
+using the parent device as a regmap provider.
 
-This should be squashed into the prior binding patch.
+Signed-off-by: Andrew Davis <afd@ti.com>
+Reviewed-by: Nishanth Menon <nm@ti.com>
+---
 
-> 
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
-> ---
->  .../devicetree/bindings/rng/st,stm32-rng.yaml      | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml b/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
-> index 59abdc85a9fb..0055f14a8e3f 100644
-> --- a/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
-> +++ b/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
-> @@ -37,6 +37,20 @@ required:
->    - reg
->    - clocks
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - st,stm32mp13-rng
-> +    then:
-> +      properties:
-> +        st,rng-lock-conf:
-> +          type: boolean
-> +          description: If set, the RNG configuration in RNG_CR, RNG_HTCR and
-> +                       RNG_NSCR will be locked.
+Changes from v2:
+ - Rebased on v6.6-rc1
 
-Define the property at the top-level and then restrict its presence in 
-a if/then schema.
+Changes from v1:
+ - Flip logic as suggested in v1[0]
 
-> +
->  additionalProperties: false
+[0] https://lore.kernel.org/lkml/1c27d9d4-b1cc-c158-90f7-f7e47e02c424@ti.com/T/
 
-Did you test this property is allowed? No, because additionalProperties 
-won't work with properties defined in if/then schemas.
+ drivers/mux/mmio.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
->  
->  examples:
-> -- 
-> 2.25.1
-> 
+diff --git a/drivers/mux/mmio.c b/drivers/mux/mmio.c
+index fd1d121a584ba..b6095b7853ed2 100644
+--- a/drivers/mux/mmio.c
++++ b/drivers/mux/mmio.c
+@@ -44,10 +44,13 @@ static int mux_mmio_probe(struct platform_device *pdev)
+ 	int ret;
+ 	int i;
+ 
+-	if (of_device_is_compatible(np, "mmio-mux"))
++	if (of_device_is_compatible(np, "mmio-mux")) {
+ 		regmap = syscon_node_to_regmap(np->parent);
+-	else
+-		regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
++	} else {
++		regmap = device_node_to_regmap(np);
++		if (IS_ERR(regmap))
++			regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
++	}
+ 	if (IS_ERR(regmap)) {
+ 		ret = PTR_ERR(regmap);
+ 		dev_err(dev, "failed to get regmap: %d\n", ret);
+-- 
+2.39.2
+
