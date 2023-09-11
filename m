@@ -2,64 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58D4D79B3DD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:00:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E029179ACBF
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:37:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233253AbjIKUrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:47:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59824 "EHLO
+        id S237018AbjIKUu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:50:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236495AbjIKKqY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 06:46:24 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C325E4
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 03:46:19 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-52eed139ec2so3905220a12.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 03:46:19 -0700 (PDT)
+        with ESMTP id S236508AbjIKKrY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 06:47:24 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CCB3F0
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 03:47:19 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9a9cd066db5so543018566b.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 03:47:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694429177; x=1695033977; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694429237; x=1695034037; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1POdEc/E2ZusgejphNXd3OJhAFK6/wwgs/QP11+1gVg=;
-        b=EOdMZOHUjFCh2GZ7q3gstHGRSpbiu3cgdHcEqk+a4DcUM9vkDOPVxoAxb9b1Br0leT
-         jOJAjmGfMwsFKQfsiEgLdN48k1ujyogfOMAaL4kXYsvS0AZOgBiQMKKrHlRxWtjIQCBR
-         HXOHcex7S0b6OrR560kB2PT6duWiEXQ95hpPKMu2JcGBtuVyaEkmZSOYVUJTCnW8iuyI
-         2CMQmbRdYOl5RwhDJJRmfNVgReGx92oM/WPfuSSIlw2t4a1CdbyhdlLBeDeeKuf3BNC7
-         kIqSHzbay+uofeVdzAsgyF3XCbQAHJko2hzPIgItEbt6hfroYVzveyeAn+zlrSXsRLVC
-         euUA==
+        bh=wZtKfEYhqkPEDT7kYfKYKbjw5LAGLLC/AvM8pJEf11E=;
+        b=xMOvJXilFyyddQuAECxFjaERWGdJHTWK6+fXZdjb2zp5PY05hk1qDFnpyQcfVExsMZ
+         nwHnNIoFCl0YQhw4ZdZuQodkthi3vXGu50c1axLZmOWBEKbtzOE0FRDNINP+mdOL8FNl
+         rw1f4UUV7caMl7WsK7x2DoL8FKIDx60FvJNd7vt+eboIF33WyU2OdxhZ31MtYOHa+u97
+         lmOGwY3tyYvQmdeSBjX1gWIN+eaknKkYCwonfx0FXFQFxI6cGS/00xkBh0fLbDEde6F+
+         kgcywLooTxy3XVXc3wcQYOCN45Rop8PW+Y9xeAWPt2iZakUymtDB2JBWPWtoAMluLN+V
+         xb6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694429177; x=1695033977;
+        d=1e100.net; s=20230601; t=1694429237; x=1695034037;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1POdEc/E2ZusgejphNXd3OJhAFK6/wwgs/QP11+1gVg=;
-        b=bdNBJuJdYYxnRC1aAHhK1MPhg2FMOYIj6qdqi5pw+Z3gYM5NfjF3TX+lWB4Rtg05YD
-         /CiStCXYUE7F5spkakS7WKvEgu38q7vKts3ZekdqtCJa26KL3T83X+qXi1QiMq0/FT4f
-         27VtaRBk/wezdFI8sndIbwC7btOQ6PNurTnw/PER8kNyO4DVyynB1i3eQjNA5UBovUDj
-         whyo5Lg2+WRq4/kdIZKTMCanvMVDz7JBfHrdrYNyyStwVqSc7VcvVJ+Vx6O/v2pOhj9x
-         8mSX6FJWUN35USBoV04jI8qE35QXBF5TPxueWzDfDT6RPaxrRBYbHEM0xsgxnQgvaIfd
-         Km8A==
-X-Gm-Message-State: AOJu0YxPIiRKAwUeZuthu4XFjZxOGTGusXIbo1D2C4ulmBEFo/hQbbyg
-        nG4tzMcgnl7xKEAfzj4ocSHj8Q==
-X-Google-Smtp-Source: AGHT+IGrKbf96+hmTkM28gwb18InoQ1Gar1UQttHOdx7jpOSjyR5QgXjIJJgRj7M7NjHoVVE83Mxhw==
-X-Received: by 2002:a17:906:5db4:b0:9aa:e13:426a with SMTP id n20-20020a1709065db400b009aa0e13426amr4778375ejv.73.1694429177493;
-        Mon, 11 Sep 2023 03:46:17 -0700 (PDT)
+        bh=wZtKfEYhqkPEDT7kYfKYKbjw5LAGLLC/AvM8pJEf11E=;
+        b=c7PWPrcdV6/BGx6Y4Aecfxla/mX1B5kMdBT/7NZVGHiDVjtSqePeF0WXs0KYpJnvFW
+         +5mnYRP/dCNHeYcm7vx+pbhWaluq746Olpf6T7vRIerNnCQdJTBUQUfuXCOkWlapMOuk
+         gJoBMkFwUcb+/2pvDEJGnIKpeMe+8avKKJ2817rOTtsKV5TE1yLYf/zeEs/mmttENBxj
+         mUq5mttuc5LTM65UtG8r9g86DQwn3aszLOhpbyUaHsqXN9B/CPRBCr4VFjzSQyp0u78P
+         T7zKp4ME0RnOCBbI/ZcRupMYLkw6yxzRzIZhx1pC6VH+hyFkGqKt0LXlXx3BdDWEj+nv
+         5W/A==
+X-Gm-Message-State: AOJu0YxA8PKYxQyiwD0niwjg9lPXWJqTi/CC/zJhoBwg1t225EKgpfYb
+        Di+mgUc06KC2kPPkV2/GJxse4w==
+X-Google-Smtp-Source: AGHT+IEhCVG0bDd8mw7oaQ/AnTyRP9aiXmQy/pIVwW3hSWYCQgiB8WukqJX3T6/6fJbc20K2QFegwQ==
+X-Received: by 2002:a17:906:5db4:b0:9aa:e13:426a with SMTP id n20-20020a1709065db400b009aa0e13426amr4779637ejv.73.1694429237522;
+        Mon, 11 Sep 2023 03:47:17 -0700 (PDT)
 Received: from [192.168.69.115] (tfy62-h01-176-171-221-76.dsl.sta.abo.bbox.fr. [176.171.221.76])
-        by smtp.gmail.com with ESMTPSA id q8-20020a1709064c8800b0098963eb0c3dsm5170227eju.26.2023.09.11.03.46.15
+        by smtp.gmail.com with ESMTPSA id a7-20020a1709062b0700b009a1dbf55665sm5164198ejg.161.2023.09.11.03.47.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Sep 2023 03:46:17 -0700 (PDT)
-Message-ID: <c742bdb3-1981-82e1-b63a-cd4b61666f14@linaro.org>
-Date:   Mon, 11 Sep 2023 12:46:14 +0200
+        Mon, 11 Sep 2023 03:47:16 -0700 (PDT)
+Message-ID: <5afdb9b9-e335-a774-fccb-d64382e02d07@linaro.org>
+Date:   Mon, 11 Sep 2023 12:47:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
  Gecko/20100101 Thunderbird/102.15.0
-Subject: Re: [PATCH v4 4/4] MAINTAINERS: Update MIPS/LOONGSON1 entry
+Subject: Re: [PATCH v4 2/4] dt-bindings: net: Add Loongson-1 Ethernet
+ Controller
 Content-Language: en-US
-To:     Keguang Zhang <keguang.zhang@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Keguang Zhang <keguang.zhang@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         "David S . Miller" <davem@davemloft.net>,
@@ -70,18 +71,17 @@ Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
         Giuseppe Cavallaro <peppe.cavallaro@st.com>,
         Alexandre Torgue <alexandre.torgue@foss.st.com>,
         Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 References: <20230830134241.506464-1-keguang.zhang@gmail.com>
- <20230830134241.506464-5-keguang.zhang@gmail.com>
- <1cc2c8f8-1f9b-1d47-05d4-9bcad9a246cd@linaro.org>
- <CAJhJPsVj1836-DoKTokxMd664FPX70vtSv96x4DfHzBFRZ_9Tg@mail.gmail.com>
+ <20230830134241.506464-3-keguang.zhang@gmail.com>
 From:   =?UTF-8?Q?Philippe_Mathieu-Daud=c3=a9?= <philmd@linaro.org>
-In-Reply-To: <CAJhJPsVj1836-DoKTokxMd664FPX70vtSv96x4DfHzBFRZ_9Tg@mail.gmail.com>
+In-Reply-To: <20230830134241.506464-3-keguang.zhang@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,47 +89,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/8/23 13:01, Keguang Zhang wrote:
-> On Thu, Aug 31, 2023 at 4:40 PM Philippe Mathieu-Daudé
-> <philmd@linaro.org> wrote:
->>
->> Hi,
->>
->> On 30/8/23 15:42, Keguang Zhang wrote:
->>> Add two new F: entries for Loongson1 Ethernet driver
->>> and dt-binding document.
->>> Add a new F: entry for the rest Loongson-1 dt-binding documents.
->>>
->>> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
->>> ---
->>> V3 -> V4: Update the dt-binding document entry of Loongson1 Ethernet
->>> V2 -> V3: Update the entries and the commit message
->>> V1 -> V2: Improve the commit message
->>>
->>>    MAINTAINERS | 3 +++
->>>    1 file changed, 3 insertions(+)
->>>
->>> diff --git a/MAINTAINERS b/MAINTAINERS
->>> index ff1f273b4f36..2519d06b5aab 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -14344,9 +14344,12 @@ MIPS/LOONGSON1 ARCHITECTURE
->>>    M:  Keguang Zhang <keguang.zhang@gmail.com>
->>>    L:  linux-mips@vger.kernel.org
->>>    S:  Maintained
->>> +F:   Documentation/devicetree/bindings/*/loongson,ls1x-*.yaml
->>> +F:   Documentation/devicetree/bindings/net/loongson,ls1*.yaml
->>
->> Why not simply squash in patch 2
->>
->>>    F:  arch/mips/include/asm/mach-loongson32/
->>>    F:  arch/mips/loongson32/
->>>    F:  drivers/*/*loongson1*
->>> +F:   drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
->>
->> and 3 of this series?
+On 30/8/23 15:42, Keguang Zhang wrote:
+> Add devicetree binding document for Loongson-1 Ethernet controller.
 > 
-> Do you mean squashing patch 2 and patch 4 into one patch?
+> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> V3 -> V4: Add "|" to description part
+>            Amend "phy-mode" property
+> V2 -> V3: Split the DT-schema file into loongson,ls1b-gmac.yaml
+>            and loongson,ls1c-emac.yaml (suggested by Serge Semin)
+>            Change the compatibles to loongson,ls1b-gmac and loongson,ls1c-emac
+>            Rename loongson,dwmac-syscon to loongson,ls1-syscon
+>            Amend the title
+>            Add description
+>            Add Reviewed-by tag from Krzysztof Kozlowski(Sorry! I'm not sure)
+> V1 -> V2: Fix "clock-names" and "interrupt-names" property
+>            Rename the syscon property to "loongson,dwmac-syscon"
+>            Drop "phy-handle" and "phy-mode" requirement
+>            Revert adding loongson,ls1b-dwmac/loongson,ls1c-dwmac
+>            to snps,dwmac.yaml
+> 
+>   .../bindings/net/loongson,ls1b-gmac.yaml      | 114 ++++++++++++++++++
+>   .../bindings/net/loongson,ls1c-emac.yaml      | 113 +++++++++++++++++
+>   2 files changed, 227 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/net/loongson,ls1b-gmac.yaml
+>   create mode 100644 Documentation/devicetree/bindings/net/loongson,ls1c-emac.yaml
 
-No, simply modify MAINTAINERS at the same time you add the new
-files.
+Squash:
+
+-- >8 --
+diff --git a/MAINTAINERS b/MAINTAINERS
+index ff1f273b4f36..2519d06b5aab 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -14344,9 +14344,12 @@ MIPS/LOONGSON1 ARCHITECTURE
+  M:	Keguang Zhang <keguang.zhang@gmail.com>
+  L:	linux-mips@vger.kernel.org
+  S:	Maintained
++F:	Documentation/devicetree/bindings/*/loongson,ls1x-*.yaml
++F:	Documentation/devicetree/bindings/net/loongson,ls1*.yaml
+  F:	arch/mips/include/asm/mach-loongson32/
+  F:	arch/mips/loongson32/
+  F:	drivers/*/*loongson1*
+---
