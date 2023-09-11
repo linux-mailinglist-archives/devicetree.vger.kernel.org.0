@@ -2,51 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 782FE79A298
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 06:49:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E78779A294
+	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 06:49:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231669AbjIKEtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 00:49:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50802 "EHLO
+        id S233603AbjIKEtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 00:49:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbjIKEtF (ORCPT
+        with ESMTP id S231764AbjIKEtF (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 00:49:05 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFE81115;
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B00F1B8;
         Sun, 10 Sep 2023 21:49:00 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3D888C433CC;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 593E7C43395;
         Mon, 11 Sep 2023 04:49:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
         s=k20201202; t=1694407740;
-        bh=4iGN1mNqjhTv2/45qd5GAIWS2WXD3KccY9OqIJAh7lI=;
+        bh=4lLgVJb3LOG8DBSrlEzmuFBXuW0+M3lIby4bathQEJQ=;
         h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=FwMGtnw6Lqjn3s+1QST4ObHA1pKHhE3vdVtkAjvmU2sBou2VFeHaL8JsSBsrMuXj+
-         E0+JUeHxqds9zH/DMmSzbOmbfk2GmT+QK3rMvc/P0109nxXY9AV0HqQgNaNznFyiH0
-         aw41EJNKpozRJrIcLxMzaSzZYmXbYlLh9aKAN9eSl3kCS1hPcdf/96/rnfr0oysDfU
-         bOG5pOsz9/lk4apbE1BKgypWLqPVhjn2TPS9lfLAaw97pGSzrhWNBJcObIFWLV2bUl
-         h/JsNocgEvwTqyy6l555xZU2MhH6vsOp2yWaqSboTdesP+OjYR2QFJIuT2VpWcJENi
-         Vj/F+zxaU060g==
+        b=C6/eNd9fiXyxGRt5Q8ahEQOhSgCzOfaDjiTl1H8jdUB7+nyLMvI8Z8jnvHGjBdQ49
+         pDudL3FXplQYq7jTK8HLgIy9ITXlxnbVaDIU/4PMDDSn6qJkGjrWtox5bdK/GK3F5p
+         C4G4DS2Wf1CiQbnf16oHi2/OLxkMc9s/eBeQrSQGCwpUsCE1in9Is3GDGfvYRWlM/7
+         2tlXMXWIRD3zJvcrlFXk8QeGnir5Z0kGUyv09GiSS8f+5ARo1lX8qkv1qJbHYp6gz6
+         YuEAVFmOzlKTCXnu+2B+mWUy9DGN2PXOf9rTw2PXn8k2N7iypmSeDiYERSZBfuV9XL
+         EZljecptFgb1A==
 Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 28E0BE21EC0;
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 3D213E21EC1;
         Mon, 11 Sep 2023 04:49:00 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2] dt-bindings: usb: connector: disallow additional
- properties
+Subject: Re: [PATCH] pwm: Explicitly include correct DT includes
 From:   patchwork-bot+chrome-platform@kernel.org
-Message-Id: <169440774016.22573.10427035970076911833.git-patchwork-notify@kernel.org>
+Message-Id: <169440774024.22573.12945048122079663648.git-patchwork-notify@kernel.org>
 Date:   Mon, 11 Sep 2023 04:49:00 +0000
-References: <20230725102325.76336-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230725102325.76336-1-krzysztof.kozlowski@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, bleung@chromium.org, groeck@chromium.org,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        gregkh@linuxfoundation.org, pmalani@chromium.org,
-        waynec@nvidia.com, devicetree@vger.kernel.org,
-        chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20230714174852.4062251-1-robh@kernel.org>
+In-Reply-To: <20230714174852.4062251-1-robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        claudiu.beznea@microchip.com, bleung@chromium.org,
+        groeck@chromium.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        paul@crapouillou.net, vz@mleia.com, neil.armstrong@linaro.org,
+        khilman@baylibre.com, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com, conor.dooley@microchip.com,
+        daire.mcnamara@microchip.com, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, michael@walle.cc, orsonzhai@gmail.com,
+        baolin.wang@linux.alibaba.com, zhang.lyra@gmail.com, wens@csie.org,
+        jernej.skrabec@gmail.com, samuel@sholland.org,
+        hammerh0314@gmail.com, jonathanh@nvidia.com,
+        nobuhiro1.iwamatsu@toshiba.co.jp, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        chrome-platform@lists.linux.dev, linux-mips@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-tegra@vger.kernel.org
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -60,22 +74,23 @@ X-Mailing-List: devicetree@vger.kernel.org
 Hello:
 
 This patch was applied to chrome-platform/linux.git (for-next)
-by Rob Herring <robh@kernel.org>:
+by Thierry Reding <thierry.reding@gmail.com>:
 
-On Tue, 25 Jul 2023 12:23:25 +0200 you wrote:
-> USB connector bindings is complete, thus no additional properties should
-> be allowed.  Add missing 'reg' property and change additionalProperties
-> to false, so the schema will check for anything not unexpected.  This
-> also allows to drop the 'reg' from other bindings referencing the
-> usb-connector.yaml and make it required.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Fri, 14 Jul 2023 11:48:50 -0600 you wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
 > 
 > [...]
 
 Here is the summary with links:
-  - [v2] dt-bindings: usb: connector: disallow additional properties
-    https://git.kernel.org/chrome-platform/c/e251a4e28a27
+  - pwm: Explicitly include correct DT includes
+    https://git.kernel.org/chrome-platform/c/0a41b0c5d97a
 
 You are awesome, thank you!
 -- 
