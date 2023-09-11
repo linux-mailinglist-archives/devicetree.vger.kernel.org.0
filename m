@@ -2,76 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAB1479B709
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:06:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81FED79BD4D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:15:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236038AbjIKUw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:52:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56822 "EHLO
+        id S229522AbjIKUud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:50:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235936AbjIKJql (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 05:46:41 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78055ED
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:46:36 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-401187f8071so26232205e9.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:46:36 -0700 (PDT)
+        with ESMTP id S236028AbjIKJtZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 05:49:25 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06BA1ED
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:49:21 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-51a52a7d859so11432263a12.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:49:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694425595; x=1695030395; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sQuS2BsowzkIWazbpQjvlfNfkQEbmTp9QyiIj+7bzpE=;
-        b=q9W3tzqpkq3o2DkIs7037oyM7IGIDDHbM5tD5iMFcVNZblG6H7PKtlEgK3M4zPIdsH
-         FPXaKvQtfYgzEte3tkbzTwjdxEu+QvV1GgPxRUXwzEVUDFMSEP6jhpHT7sA4GdwWMvxn
-         k+viEzCMVs7BnGrt21Lf4EUaKtQtOKNDPphgwsqeMIKXMbC9r3hEkUWXTbsjChb9nzlV
-         Aj9D9H+cr7SPQfApiU7JNcjSAoBaPQqUDKx9quODTwkwhBs+k7IqXuIzjnMXh0rfUpn+
-         jfEMUgrOQPFt+uFoQFIJK7wPjkYVA5H8+Em0f5/c5oiPig0Wc+wPSs3qu9oCENEB6iDg
-         2o3g==
+        d=linaro.org; s=google; t=1694425759; x=1695030559; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vyK3BidgXxixuZrAM9KK/EHXaa+kHXgf2/8oda8qsKE=;
+        b=iLAiwuDSCvts7mrGqXO1HaN3T/wHAR/hA+uqQL3szngNPoLaVp4X5GVvCfZUB78laM
+         hCR353TtOAC2dNHRiSOd3348PfwYSA3d2bc9SL2jxyMcosI9AIFyvEhcneC3hsv+TdeZ
+         zZwToAZbAzfMVkJFX0FfAoaQ1S9lD6OS7wbq2Bi1sVgZhdsL3ozGN1MrJ6JI9zbb6IUv
+         04o/68DEsdqz1+56HibXC2b136fRi4wVYBoasmsLLmMJsvF3T2M3gQPWIHMW7Ibz8nlz
+         6quejvSm8kUeXVd9EDh9VLH0aY1OoosML6T9LddzomOH+UMMzrjFMThxmzxDI0fSPMfA
+         32Xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694425595; x=1695030395;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sQuS2BsowzkIWazbpQjvlfNfkQEbmTp9QyiIj+7bzpE=;
-        b=RctEM4KacVlCGI4VWCri3ydHao8nwexfq7enq5hQWrQfMG42Mogiz2YjzCSQ2dIkqM
-         RI3fKEkUUCNUdDRtS9Uy7JHNfFg2AmVeFVALfUQR+00PKWlxWcAtFxVbfEacc1GVgVUp
-         Gl1LA+ZSNpyrUinD9my6aVFGgopdyWBDb2Wt5Xg/SxoPleJbU1GsxV/V6DR0+EV6Aa3N
-         CGMQDAnLhNWO/dOd1WDcih85je4FeX8uJhGrtg0tbJ/9FY6VGUVUcuQRt0tde9HWlNWS
-         04p/ooYQ5yGN+Y6FHh5sOd+5XIKv25bM+6QDEm1l6xWIm0SOXnDsaYA2nIuqLIJnD+UK
-         RbOw==
-X-Gm-Message-State: AOJu0YxrWXnFZvSn+VKFs6uGElrF+FgNtwHEw1eBo+TatNuFQ4sh4J83
-        ck4ij8sU8jOufqlmBmN1V4/F5w==
-X-Google-Smtp-Source: AGHT+IE+dacoiI3EJshUztkwZYbtUVUfQH+ts8646ie2hzrqg4cqFndrT0+5nykG0OuaI8QpwY44mQ==
-X-Received: by 2002:a05:600c:4f02:b0:403:aced:f7f4 with SMTP id l2-20020a05600c4f0200b00403acedf7f4mr839734wmq.12.1694425594969;
-        Mon, 11 Sep 2023 02:46:34 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id d13-20020adff84d000000b00317909f9985sm9503496wrq.113.2023.09.11.02.46.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Sep 2023 02:46:34 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20230601; t=1694425759; x=1695030559;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vyK3BidgXxixuZrAM9KK/EHXaa+kHXgf2/8oda8qsKE=;
+        b=H3ViUR9gUuQ4E9mA82jDAHT3N6+BGzj+ElplXfivEEaJRu7Hy08oIM1Nagdz8wEh8M
+         v6A3re6D9H+BVC6sRAYsyxqYgQhOekm6oPy6GeJPACZByRs9OZHB+/UdZ+yXfev71jH7
+         1rAJ53/TFn1/o+/TrXVtL2gkzPjbI1DVRmy8Ba7CwPBX6Wzbq1UfTy/g0Jj41PeONbD7
+         LmV9a227DluHKLGe8Qv0nH3PbyMaPJj1GPlIc/gZ+JS25vNIstWcyaSyILu037iMOqSy
+         o+KVA521JP3oM+kYNSeR9V500PD2MbhQOQFNo/oso9hKpEJ9zbhCoj1JXUw1uKZukyBm
+         gksw==
+X-Gm-Message-State: AOJu0YxMbm7sNwvJ+7AN6OT5NoPEzvTygSoiFH1EpSzUW00im80IybOo
+        yuy9tawCRbMqLoP3MW9XzC8WKw==
+X-Google-Smtp-Source: AGHT+IF0eAg3rbqM0cYf1GKEx/klkn6QYNhBM5luwQhzQPxpsJHoR2ZDxfOVJVSwtzNPJyCgxfVVkg==
+X-Received: by 2002:a17:906:32c3:b0:9a1:b33a:e464 with SMTP id k3-20020a17090632c300b009a1b33ae464mr14227042ejk.31.1694425759428;
+        Mon, 11 Sep 2023 02:49:19 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id l15-20020a1709060e0f00b0099bcd1fa5b0sm5067137eji.192.2023.09.11.02.49.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Sep 2023 02:49:18 -0700 (PDT)
+Message-ID: <53cd72f7-5a8d-ee9e-4d8a-f5159cafb3e7@linaro.org>
+Date:   Mon, 11 Sep 2023 11:49:17 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v2] dt-bindings: arm64: dts: mediatek: add description for
+ mt8365-evk board
+Content-Language: en-US
+To:     Macpaul Lin <macpaul.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Arseniy Krasnov <avkrasnov@salutedevices.com>
-Cc:     oxffffaa@gmail.com, kernel@sberdevices.ru,
-        Liang Yang <liang.yang@amlogic.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230828133647.3712644-1-avkrasnov@salutedevices.com>
-References: <20230828133647.3712644-1-avkrasnov@salutedevices.com>
-Subject: Re: [PATCH v1] arm64: dts: amlogic: meson-axg: Meson NAND node
-Message-Id: <169442559402.3235506.17344571540273411910.b4-ty@linaro.org>
-Date:   Mon, 11 Sep 2023 11:46:34 +0200
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Cc:     Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>
+References: <20230911081126.18463-1-macpaul.lin@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230911081126.18463-1-macpaul.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,39 +85,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, 28 Aug 2023 16:36:47 +0300, Arseniy Krasnov wrote:
-> Add description of the Meson NAND controller node.
+On 11/09/2023 10:11, Macpaul Lin wrote:
+> Fix the missing description for MediaTek mt8365-evk board.
 > 
+> Fixes: 4f5fc078ac6f ("dt-bindings: arm64: dts: mediatek: Add mt8365-evk board")
+
+This is a friendly reminder during the review process.
+
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
+
+Thank you.
+
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> ---
+>  Documentation/devicetree/bindings/arm/mediatek.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
+> change for v2:
+>  - rebase this patch to follow the v5 patch set of mt8395.
+>   - depends on https://lore.kernel.org/lkml/20230909132819.21626-2-macpaul.lin@mediatek.com/T/
+>  - Fix description as a single board.
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> index 2e8ad49c3479..b163995e32d5 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> @@ -244,7 +244,8 @@ properties:
+>            - enum:
+>                - mediatek,mt8183-pumpkin
+>            - const: mediatek,mt8183
+> -      - items:
+> +      - description: MediaTek Genio 350 Board (Genio 350 EVK)
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/arm64-dt)
+Drop, no need, redundant (copies the compatible) and your other entries
+do not have it.
 
-[1/1] arm64: dts: amlogic: meson-axg: Meson NAND node
-      https://git.kernel.org/amlogic/c/7ca2ef33179f4e1887727c1b5fac39721db8050e
+> +        items:
+>            - enum:
 
-These changes has been applied on the intermediate git tree [1].
+This is still confusing. Why do you have enum here with such description.
 
-The v6.7/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
+Best regards,
+Krzysztof
 
