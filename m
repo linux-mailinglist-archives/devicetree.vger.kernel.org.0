@@ -2,139 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85CA579A38C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 08:34:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C66A79A39D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 08:41:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231460AbjIKGeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 02:34:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52798 "EHLO
+        id S229449AbjIKGlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 02:41:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231259AbjIKGeT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 02:34:19 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14D7BEA;
-        Sun, 10 Sep 2023 23:34:10 -0700 (PDT)
-X-UUID: 33f4a7f0506d11ee8051498923ad61e6-20230911
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=Unhb0nlK5Mot54hOxYBqdWjaYrSaOaet6VqslMUP6i4=;
-        b=iEuCl7LUn1tXVFzW7khoeivtt3myqKRbFSHKje0cP5uLQjv8Ba1F+TIa320lgtoaTqj3tgToc5DGH2XrWV6sHVKP6c0WtiDFKopmKhDmQfXJEGyy29F48FjZ32/y1XeV7vxExW55SOqN0TQk4U9rXr3Ml74gf4cbtcxVGpr4m38=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:b8682b48-2fc3-4d49-aecb-f62c4969b70d,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:0ad78a4,CLOUDID:a546ca13-4929-4845-9571-38c601e9c3c9,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-        DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 33f4a7f0506d11ee8051498923ad61e6-20230911
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <macpaul.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1930735932; Mon, 11 Sep 2023 14:34:04 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 11 Sep 2023 14:34:03 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Mon, 11 Sep 2023 14:34:03 +0800
-Message-ID: <82a0ab25-a3cc-3e87-e379-9b15b3fbbf76@mediatek.com>
-Date:   Mon, 11 Sep 2023 14:34:02 +0800
+        with ESMTP id S234445AbjIKGls (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 02:41:48 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53BFE12C;
+        Sun, 10 Sep 2023 23:41:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1694414503; x=1725950503;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=AdaezQUleKG+/B6n1dXDyf5XHTCTu/yKGrZTURQZxD4=;
+  b=eOuMhg63bhAfGJjUrzKq0KHW5lXRfaa5zYdW8GxaZOU83eVkqqD5kUfa
+   tm5yxF+q8zouQt7iLtDj9bn1qE5OLdisfrYjw+kN0YnBNS7ybkzc0IJX7
+   Lmu9XajqChBAJzl2CWgUBPSFJszBwv12xq5FjGrdUU7vTqot5i6evEy4O
+   ibEv/BYtD/bAy9R8+0SV1LPC5zqGzVzt1svl5hiFkgg9jKQOgalQKNym9
+   RUlsQg0TYEFboVz49b4Icuq+uvJMTNKM9pAKXBirXUPjCk+8L2WxoKD56
+   OVSdskhaWhJjQzRPIuEoJ/5/QATlbIUcyX0RM9GtGCNpGxYTnhQ55nHbg
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="381809446"
+X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; 
+   d="scan'208";a="381809446"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Sep 2023 23:41:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="692981431"
+X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; 
+   d="scan'208";a="692981431"
+Received: from lkp-server01.sh.intel.com (HELO 59b3c6e06877) ([10.239.97.150])
+  by orsmga003.jf.intel.com with ESMTP; 10 Sep 2023 23:41:38 -0700
+Received: from kbuild by 59b3c6e06877 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qfac3-0005uD-2V;
+        Mon, 11 Sep 2023 06:41:35 +0000
+Date:   Mon, 11 Sep 2023 14:40:55 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Saravanan Sekar <saravanan@linumiz.com>, sravanhome@gmail.com,
+        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux@roeck-us.net, jdelvare@suse.com
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-hwmon@vger.kernel.org,
+        Saravanan Sekar <saravanan@linumiz.com>
+Subject: Re: [PATCH 1/3] hwmon: (pmbus/mpq7932) Get page count based on chip
+ info
+Message-ID: <202309111406.BSKHGe9U-lkp@intel.com>
+References: <20230911034150.181880-2-saravanan@linumiz.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] dt-bindings: arm64: dts: mediatek: add description for
- mt8365-evk board
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-CC:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>
-References: <20230910062852.15415-1-macpaul.lin@mediatek.com>
- <f8864242-daa1-e72f-4759-aac3fa1bbcf2@linaro.org>
- <12bdd17a-98f4-5551-4253-229dc36f0c77@mediatek.com>
- <ef81697f-473e-898e-ec13-4dd255e2e3d7@linaro.org>
-From:   Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <ef81697f-473e-898e-ec13-4dd255e2e3d7@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230911034150.181880-2-saravanan@linumiz.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/11/23 14:09, Krzysztof Kozlowski wrote:
-> 	
-> 
-> External email : Please do not click links or open attachments until you 
-> have verified the sender or the content.
-> 
-> On 10/09/2023 14:07, Macpaul Lin wrote:
->> 
->> 
->> On 9/10/23 17:09, Krzysztof Kozlowski wrote:
->>>> +      - description: MediaTek Genio 350 Boards (Genio 350 EVK)
->>>
->>> That's a bit confusing. So all of the boards here will be Genio 350 EVK?
->>> I don't get what is the point of this description.
->>>
->>>
->>>> +        items:
->>>>            - enum:
->>>>                - mediatek,mt8365-evk
->>>>            - const: mediatek,mt8365
->> 
->> Thes boards with compatible 'mediatek,mt8365-evk' is indeed used by
-> 
-> Boards?
+Hi Saravanan,
 
-I'm not sure if there will be more hardware version released to market.
-Current the p1v3 is the final version of mt8365-evk.
+kernel test robot noticed the following build warnings:
 
->> Genio 350-EVK, which Baylibre helped to do upstream tasks. The only 
->> production version of hardware will be available on the market. The 
->> derived version of customer's hardware is not available yet.
->> 
->> The separate patch for renaming mt8365-evk.dts file should be send next 
->> week for aligning the naming rules.
-> 
-> So the description is not correct.
-> 
-> Anyway, this patch does not make much sense to me considering nothing
-> like this was merged. You just sent v5 doing the same!
+[auto build test WARNING on groeck-staging/hwmon-next]
+[also build test WARNING on broonie-regulator/for-next linus/master v6.6-rc1 next-20230911]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Saravanan-Sekar/hwmon-pmbus-mpq7932-Get-page-count-based-on-chip-info/20230911-114451
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20230911034150.181880-2-saravanan%40linumiz.com
+patch subject: [PATCH 1/3] hwmon: (pmbus/mpq7932) Get page count based on chip info
+config: x86_64-randconfig-005-20230911 (https://download.01.org/0day-ci/archive/20230911/202309111406.BSKHGe9U-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230911/202309111406.BSKHGe9U-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202309111406.BSKHGe9U-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/hwmon/pmbus/mpq7932.c:108:16: warning: cast to smaller integer type 'int' from 'const void *' [-Wvoid-pointer-to-int-cast]
+           info->pages = (int)device_get_match_data(&client->dev);
+                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 warning generated.
 
 
-Sorry I'm confused now.
-These are independent patches.
-This patch is for SOC mt83'6'5 and board mt8365-evk, which is not relate 
-SOC mt83'9'5 and board mt8395-evk.
-Although they are all belongs to Genio EVK's product line.
-This patch is not related to that v5 change for mt8395.
+vim +108 drivers/hwmon/pmbus/mpq7932.c
 
-This is an independent patch for adding more detail description for 
-mt83'6'5 and mt83'6'5-evk.
+    95	
+    96	static int mpq7932_probe(struct i2c_client *client)
+    97	{
+    98		struct mpq7932_data *data;
+    99		struct pmbus_driver_info *info;
+   100		struct device *dev = &client->dev;
+   101		int i;
+   102	
+   103		data = devm_kzalloc(dev, sizeof(struct mpq7932_data), GFP_KERNEL);
+   104		if (!data)
+   105			return -ENOMEM;
+   106	
+   107		info = &data->info;
+ > 108		info->pages = (int)device_get_match_data(&client->dev);
+   109		info->format[PSC_VOLTAGE_OUT] = direct;
+   110		info->m[PSC_VOLTAGE_OUT] = 160;
+   111		info->b[PSC_VOLTAGE_OUT] = -33;
+   112		for (i = 0; i < info->pages; i++) {
+   113			info->func[i] = PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT
+   114					| PMBUS_HAVE_STATUS_TEMP;
+   115		}
+   116	
 
-> Best regards,
-> Krzysztof
-> 
-
-Thanks
-Macpaul Lin
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
