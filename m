@@ -2,331 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9910979A163
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 04:33:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06CD979A17C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 04:47:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233147AbjIKCdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Sep 2023 22:33:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45692 "EHLO
+        id S230229AbjIKCrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Sep 2023 22:47:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230007AbjIKCdD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 22:33:03 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1177BCD5;
-        Sun, 10 Sep 2023 19:32:19 -0700 (PDT)
-X-UUID: 6428c00e504b11ee8051498923ad61e6-20230911
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=k7eKKqiU9u1VTQEhbL4g+T+8Z/Im5zTAmaqVcrzlJog=;
-        b=oKAqoGGgHnTwU2Nrzr77Lv7TzaetUwm2zBYVB2mGQH8flZ/fZGDLB2cPKgwRMRTzdzgWxH2poaxG79v5uQ+IVM6mcX2FUiQzRvCQ1UbaPN7RiFQij01a502CP/yNilRPd3s/shqR3mVWpLZ9o4FqblhdHwlWX2yZpexGuDIZUqw=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:2b9c6210-8e26-4923-9451-89365963a96c,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:0ad78a4,CLOUDID:dc85c713-4929-4845-9571-38c601e9c3c9,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-        DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 6428c00e504b11ee8051498923ad61e6-20230911
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 650081513; Mon, 11 Sep 2023 10:32:02 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.194) by
- MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 11 Sep 2023 10:32:01 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 11 Sep 2023 10:32:00 +0800
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        <christian.koenig@amd.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229450AbjIKCrc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 22:47:32 -0400
+X-Greylist: delayed 396 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 10 Sep 2023 19:47:27 PDT
+Received: from smtp3.hiworks.co.kr (smtp3.hiworks.co.kr [121.254.168.205])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF2CED2
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 19:47:27 -0700 (PDT)
+Received: (qmail 187494 invoked from network); 11 Sep 2023 11:40:45 +0900
+Received: from unknown (HELO hiworks.co.kr) (192.168.10.38)
+        by 0 (qmail 1.03 + ejcp v14) with SMTP;
+        11 Sep 2023 11:40:45 +0900
+Received: (qmail 28400 invoked from network); 11 Sep 2023 11:40:45 +0900
+Received: from unknown (HELO saram-MINIPC-PN53..) (mwkim@gaonchips.com@220.88.49.178)
+        by 0 (qmail 1.03 + ejcp v14) with SMTP;
+        11 Sep 2023 11:40:45 +0900
+X-Authinfo: HIWORKS SMTP authenticated <mwkim@gaonchips.com|220.88.49.178|mwkim@gaonchips.com|230911114045_542828023>
+X-MailFrom-INFO: Info <country_code:KR|rbl_level:0>
+From:   Myunguk Kim <mwkim@gaonchips.com>
+To:     alsa-devel@alsa-project.org
+Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Maxim Kochetkov <fido_max@inbox.ru>,
+        Xingyu Wu <xingyu.wu@starfivetech.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        =?UTF-8?q?Uw=20e=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Myunguk Kim <mwkim@gaonchips.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Brian Starkey <Brian.Starkey@arm.com>,
-        John Stultz <jstultz@google.com>, <tjmercier@google.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Yong Wu <yong.wu@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <linaro-mm-sig@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <jianjiao.zeng@mediatek.com>,
-        <kuohong.wang@mediatek.com>
-Subject: [PATCH 9/9] dma_buf: heaps: mtk_sec_heap: Add a new CMA heap
-Date:   Mon, 11 Sep 2023 10:30:38 +0800
-Message-ID: <20230911023038.30649-10-yong.wu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230911023038.30649-1-yong.wu@mediatek.com>
-References: <20230911023038.30649-1-yong.wu@mediatek.com>
+        Jose Abreu <joabreu@synopsys.com>, devicetree@vger.kernel.org
+Subject: [PATCH] ASoC: dwc: Add Single DMA mode support
+Date:   Mon, 11 Sep 2023 11:40:23 +0900
+Message-Id: <20230911024023.43833-1-mwkim@gaonchips.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--7.150000-8.000000
-X-TMASE-MatchedRID: l/nE+SiO7Ibv9W9IPgV+ekKcYi5Qw/RVJNtuyL6mpIWgaf0+XUrNk6jp
-        YrigUiQ3RgA/t103tXOp3RVRr+fKXKawq2pdPD7UA9lly13c/gG94JvJnfFrHg6QlBHhBZuwYXo
-        6e6cMykyCrhXL3UcSds/8MSwnHgK56fubsV+A+k+yntSjDrb64SQwGQSJ46NmXCmcAC8DBrPrio
-        8O85DXBtuU0Ipyd28f+kFR4g8YiAE/eX/eRWk3RZA6S0SjvcYUmyqQJWNsukna+IH8mvgPVEttN
-        R/47hK8ALglGcpZqpxRomVnnmsja5e/bF1ays2S4RtSDjG+z7BzijlDBYeD/Jsoi2XrUn/Jn6Kd
-        MrRsL14qtq5d3cxkNTx61AcxE5RmHl89tzhQNcPdxB32r2oE1NRT50T+gtKLgL5DmE5InGnToZA
-        9tPKpDJ6oP1a0mRIj
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--7.150000-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: D012446BA56B603C0A9C42A245B2817DF015B66332AAB4883A6336DF0FC547C72000:8
-X-MTK:  N
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Create a new mtk_svp_cma heap from the CMA reserved buffer.
+There is a SoC between dwc and DMA block (ie. PL330)
+that does not have a burst signal and supports only single.
 
-When the first allocating buffer, use cma_alloc to prepare whole the
-CMA range, then send its range to TEE to protect and manage.
-For the later allocating, we just adds the cma_used_size.
+So write not-support-burst property on dts, it support single DMA mode.
 
-When SVP done, cma_release will release the buffer, then kernel may
-reuse it.
-
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+Signed-off-by: Myunguk Kim <mwkim@gaonchips.com>
 ---
- drivers/dma-buf/heaps/Kconfig           |   2 +-
- drivers/dma-buf/heaps/mtk_secure_heap.c | 121 +++++++++++++++++++++++-
- 2 files changed, 119 insertions(+), 4 deletions(-)
+ .../bindings/sound/snps,designware-i2s.yaml          |  3 +++
+ include/sound/designware_i2s.h                       |  1 +
+ sound/soc/dwc/dwc-i2s.c                              | 12 ++++++++++--
+ 3 files changed, 14 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/dma-buf/heaps/Kconfig b/drivers/dma-buf/heaps/Kconfig
-index 729c0cf3eb7c..e101f788ecbf 100644
---- a/drivers/dma-buf/heaps/Kconfig
-+++ b/drivers/dma-buf/heaps/Kconfig
-@@ -15,7 +15,7 @@ config DMABUF_HEAPS_CMA
+diff --git a/Documentation/devicetree/bindings/sound/snps,designware-i2s.yaml b/Documentation/devicetree/bindings/sound/snps,designware-i2s.yaml
+index a48d040b0a4f..43a46ba2a70c 100644
+--- a/Documentation/devicetree/bindings/sound/snps,designware-i2s.yaml
++++ b/Documentation/devicetree/bindings/sound/snps,designware-i2s.yaml
+@@ -86,6 +86,9 @@ properties:
+       The phandle to System Register Controller syscon node and the I2S-rx(ADC)
+       enabled control offset and mask of SYS_SYSCONSAIF__SYSCFG register.
  
- config DMABUF_HEAPS_MTK_SECURE
- 	bool "DMA-BUF MediaTek Secure Heap"
--	depends on DMABUF_HEAPS && TEE
-+	depends on DMABUF_HEAPS && TEE && CMA
- 	help
- 	  Choose this option to enable dma-buf MediaTek secure heap for Secure
- 	  Video Path. This heap is backed by TEE client interfaces. If in
-diff --git a/drivers/dma-buf/heaps/mtk_secure_heap.c b/drivers/dma-buf/heaps/mtk_secure_heap.c
-index daf6cf2121a1..3f568fe6b569 100644
---- a/drivers/dma-buf/heaps/mtk_secure_heap.c
-+++ b/drivers/dma-buf/heaps/mtk_secure_heap.c
-@@ -4,11 +4,12 @@
-  *
-  * Copyright (C) 2023 MediaTek Inc.
-  */
--
-+#include <linux/cma.h>
- #include <linux/dma-buf.h>
- #include <linux/dma-heap.h>
- #include <linux/err.h>
- #include <linux/module.h>
-+#include <linux/of_reserved_mem.h>
- #include <linux/scatterlist.h>
- #include <linux/slab.h>
- #include <linux/tee_drv.h>
-@@ -25,9 +26,11 @@
-  * MediaTek secure (chunk) memory type
-  *
-  * @KREE_MEM_SEC_CM_TZ: static chunk memory carved out for trustzone.
-+ * @KREE_MEM_SEC_CM_CMA: dynamic chunk memory carved out from CMA.
-  */
- enum kree_mem_type {
- 	KREE_MEM_SEC_CM_TZ = 1,
-+	KREE_MEM_SEC_CM_CMA,
- };
++  no-burst:
++    description: Use single transaction only between DesignWare I2S and DMA IP.
++
+ allOf:
+   - $ref: dai-common.yaml#
+   - if:
+diff --git a/include/sound/designware_i2s.h b/include/sound/designware_i2s.h
+index f6803205a9fb..f0207f21f09d 100644
+--- a/include/sound/designware_i2s.h
++++ b/include/sound/designware_i2s.h
+@@ -36,6 +36,7 @@ struct i2s_platform_data 
+{ 	#define DW_I2S_QUIRK_COMP_REG_OFFSET	(1 << 0)
+ 	#define DW_I2S_QUIRK_COMP_PARAM1	(1 << 1)
+ 	#define DW_I2S_QUIRK_16BIT_IDX_OVERRIDE (1 << 2)
++	#define DW_I2S_QUIRK_NO_BURST		(1 << 3)
+ 	unsigned int quirks;
+ 	unsigned int i2s_reg_comp1;
+ 	unsigned int i2s_reg_comp2;
+diff --git a/sound/soc/dwc/dwc-i2s.c b/sound/soc/dwc/dwc-i2s.c
+index 5ab1b3eb2d28..71ff894035a4 100644
+--- a/sound/soc/dwc/dwc-i2s.c
++++ b/sound/soc/dwc/dwc-i2s.c
+@@ -713,7 +713,10 @@ static int dw_configure_dai_by_dt(struct dw_i2s_dev *dev,
+ 		dev->play_dma_data.dt.addr = res->start + I2S_TXDMA;
+ 		dev->play_dma_data.dt.fifo_size = fifo_depth *
+ 			(fifo_width[idx2]) >> 8;
+-		dev->play_dma_data.dt.maxburst = 16;
++		if (dev->quirks & DW_I2S_QUIRK_NO_BURST)
++			dev->play_dma_data.dt.maxburst = 1;
++		else
++			dev->play_dma_data.dt.maxburst = 16;
+ 	}
+ 	if (COMP1_RX_ENABLED(comp1)) 
+{ 		idx2 = COMP2_RX_WORDSIZE_0(comp2);
+@@ -722,7 +725,10 @@ static int dw_configure_dai_by_dt(struct dw_i2s_dev *dev,
+ 		dev->capture_dma_data.dt.addr = res->start + I2S_RXDMA;
+ 		dev->capture_dma_data.dt.fifo_size = fifo_depth *
+ 			(fifo_width[idx2] >> 8);
+-		dev->capture_dma_data.dt.maxburst = 16;
++		if (dev->quirks & DW_I2S_QUIRK_NO_BURST)
++			dev->capture_dma_data.dt.maxburst = 1;
++		else
++			dev->capture_dma_data.dt.maxburst = 16;
+ 	}
  
- struct mtk_secure_heap_buffer {
-@@ -42,6 +45,13 @@ struct mtk_secure_heap {
- 	const enum kree_mem_type mem_type;
- 	u32			 mem_session;
- 	struct tee_context	*tee_ctx;
-+
-+	struct cma		*cma;
-+	struct page		*cma_page;
-+	unsigned long		cma_paddr;
-+	unsigned long		cma_size;
-+	unsigned long		cma_used_size;
-+	struct mutex		lock; /* lock for cma_used_size */
- };
- 
- struct mtk_secure_heap_attachment {
-@@ -90,6 +100,42 @@ static int mtk_kree_secure_session_init(struct mtk_secure_heap *sec_heap)
- 	return ret;
- }
- 
-+static int mtk_sec_mem_cma_allocate(struct mtk_secure_heap *sec_heap, size_t size)
-+{
-+	/*
-+	 * Allocate CMA only when allocating buffer for the first time, and just
-+	 * increase cma_used_size at the other times.
-+	 */
-+	mutex_lock(&sec_heap->lock);
-+	if (sec_heap->cma_used_size)
-+		goto add_size;
-+
-+	mutex_unlock(&sec_heap->lock);
-+	sec_heap->cma_page = cma_alloc(sec_heap->cma, sec_heap->cma_size >> PAGE_SHIFT,
-+				       get_order(PAGE_SIZE), false);
-+	if (!sec_heap->cma_page)
-+		return -ENOMEM;
-+
-+	mutex_lock(&sec_heap->lock);
-+add_size:
-+	sec_heap->cma_used_size += size;
-+	mutex_unlock(&sec_heap->lock);
-+	return sec_heap->cma_used_size;
-+}
-+
-+static void mtk_sec_mem_cma_free(struct mtk_secure_heap *sec_heap, size_t size)
-+{
-+	bool cma_is_empty;
-+
-+	mutex_lock(&sec_heap->lock);
-+	sec_heap->cma_used_size -= size;
-+	cma_is_empty = !sec_heap->cma_used_size;
-+	mutex_unlock(&sec_heap->lock);
-+
-+	if (cma_is_empty)
-+		cma_release(sec_heap->cma, sec_heap->cma_page, sec_heap->cma_size >> PAGE_SHIFT);
-+}
-+
- static int
- mtk_sec_mem_tee_service_call(struct tee_context *tee_ctx, u32 session,
- 			     unsigned int command, struct tee_param *params)
-@@ -114,23 +160,47 @@ static int mtk_sec_mem_allocate(struct mtk_secure_heap *sec_heap,
- {
- 	struct tee_param params[MTK_TEE_PARAM_NUM] = {0};
- 	u32 mem_session = sec_heap->mem_session;
-+	bool cma_frst_alloc = false;
- 	int ret;
- 
-+	if (sec_heap->cma) {
-+		ret = mtk_sec_mem_cma_allocate(sec_heap, sec_buf->size);
-+		if (ret < 0)
-+			return ret;
-+		/*
-+		 * When CMA allocates for the first time, pass the CMA range to TEE
-+		 * to protect it. It's the first allocating if the cma_used_size is equal
-+		 * to this required buffer size.
-+		 */
-+		cma_frst_alloc = (ret == sec_buf->size);
-+	}
-+
- 	params[0].attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_INPUT;
- 	params[0].u.value.a = SZ_4K;			/* alignment */
- 	params[0].u.value.b = sec_heap->mem_type;	/* memory type */
- 	params[1].attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_INPUT;
- 	params[1].u.value.a = sec_buf->size;
- 	params[2].attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_INOUT;
-+	if (sec_heap->cma && cma_frst_alloc) {
-+		params[2].u.value.a = sec_heap->cma_paddr;
-+		params[2].u.value.b = sec_heap->cma_size;
-+	}
- 
- 	/* Always request zeroed buffer */
- 	ret = mtk_sec_mem_tee_service_call(sec_heap->tee_ctx, mem_session,
- 					   TZCMD_MEM_SECURECM_ZALLOC, params);
--	if (ret)
--		return -ENOMEM;
-+	if (ret) {
-+		ret = -ENOMEM;
-+		goto free_cma;
-+	}
- 
- 	sec_buf->sec_handle = params[2].u.value.a;
  	return 0;
-+
-+free_cma:
-+	if (sec_heap->cma)
-+		mtk_sec_mem_cma_free(sec_heap, sec_buf->size);
-+	return ret;
- }
- 
- static void mtk_sec_mem_release(struct mtk_secure_heap *sec_heap,
-@@ -145,6 +215,9 @@ static void mtk_sec_mem_release(struct mtk_secure_heap *sec_heap,
- 
- 	mtk_sec_mem_tee_service_call(sec_heap->tee_ctx, mem_session,
- 				     TZCMD_MEM_SECURECM_UNREF, params);
-+
-+	if (sec_heap->cma)
-+		mtk_sec_mem_cma_free(sec_heap, sec_buf->size);
- }
- 
- static int mtk_sec_heap_attach(struct dma_buf *dmabuf, struct dma_buf_attachment *attachment)
-@@ -317,8 +390,41 @@ static struct mtk_secure_heap mtk_sec_heap[] = {
- 		.name		= "mtk_svp",
- 		.mem_type	= KREE_MEM_SEC_CM_TZ,
- 	},
-+	{
-+		.name		= "mtk_svp_cma",
-+		.mem_type	= KREE_MEM_SEC_CM_CMA,
-+	},
- };
- 
-+static int __init mtk_secure_cma_init(struct reserved_mem *rmem)
-+{
-+	struct mtk_secure_heap *sec_heap = NULL;
-+	int ret, i;
-+
-+	for (i = 0; i < ARRAY_SIZE(mtk_sec_heap); i++) {
-+		if (mtk_sec_heap[i].mem_type != KREE_MEM_SEC_CM_CMA)
-+			continue;
-+		sec_heap = &mtk_sec_heap[i];
-+		break;
-+	}
-+	if (!sec_heap)
-+		return -ENOENT;
-+
-+	ret = cma_init_reserved_mem(rmem->base, rmem->size, 0, sec_heap->name,
-+				    &sec_heap->cma);
-+	if (ret) {
-+		pr_err("%s: %s set up CMA fail\n", __func__, rmem->name);
-+		return ret;
-+	}
-+	sec_heap->cma_paddr = rmem->base;
-+	sec_heap->cma_size = rmem->size;
-+
-+	return 0;
-+}
-+
-+RESERVEDMEM_OF_DECLARE(mtk_secure_cma, "mediatek,secure_cma_chunkmem",
-+		       mtk_secure_cma_init);
-+
- static int mtk_sec_heap_init(void)
- {
- 	struct mtk_secure_heap *sec_heap = mtk_sec_heap;
-@@ -331,6 +437,15 @@ static int mtk_sec_heap_init(void)
- 		exp_info.ops = &mtk_sec_heap_ops;
- 		exp_info.priv = (void *)sec_heap;
- 
-+		if (sec_heap->mem_type == KREE_MEM_SEC_CM_CMA) {
-+			if (!sec_heap->cma) {
-+				pr_err("CMA is not ready for %s.\n", sec_heap->name);
-+				continue;
-+			} else {
-+				mutex_init(&sec_heap->lock);
-+			}
-+		}
-+
- 		heap = dma_heap_add(&exp_info);
- 		if (IS_ERR(heap))
- 			return PTR_ERR(heap);
+@@ -979,6 +985,8 @@ static int dw_i2s_probe(struct platform_device *pdev)
+ 		ret = dw_configure_dai_by_pd(dev, dw_i2s_dai, res, pdata);
+ 	} else 
+{ 		clk_id = "i2sclk";
++		if (of_get_property(pdev->dev.of_node, "no-burst", NULL))
++			dev->quirks |= DW_I2S_QUIRK_NO_BURST;
+ 		ret = dw_configure_dai_by_dt(dev, dw_i2s_dai, res);
+ 	}
+ 	if (ret < 0)
 -- 
-2.25.1
+2.34.1
 
