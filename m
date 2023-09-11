@@ -2,257 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46CCB79BE87
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:17:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E57F179BE57
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:17:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238011AbjIKUxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:53:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33312 "EHLO
+        id S235394AbjIKUtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:49:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237146AbjIKME4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 08:04:56 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50317CDD;
-        Mon, 11 Sep 2023 05:04:51 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38B9TRMx011593;
-        Mon, 11 Sep 2023 14:04:36 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding:content-type; s=
-        selector1; bh=hSxqmUlk2hJj59CbsgqPB1VmndAOfkviEoiZW/4IWcA=; b=OM
-        n0FZmynnq73MTeo789qq1K+B94wVluknLaszXaAR4ln0c/CQeQnloeFAvKDWHNpH
-        NmOOldCyb0xOThm+UUthEqS949B/E5UU5cwatOPaB8xKMvv6DN/cZiNdgfgR3mad
-        OJdnz7MAt62vQIh4FAA56ZwY+JFKsFvPD4yXuRPDJ4PSANMpoqaqRFQjlJ/3bLb6
-        lcfRGnlWyQ2iD0+oVN42L/jL6fWC3BkVwF89DJtSK0pTg9JiZCa8uV7FD1ZtJ6Bi
-        O5XQNcMV9Guwm57Mcff7xlDeRcjsdY2RrMTyFY5KWcs6PYjoDo4HfriU1ixWJ20v
-        g8kZmS4pxBQFBeb5bJiw==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3t0du5100r-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 11 Sep 2023 14:04:36 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 50BB4100061;
-        Mon, 11 Sep 2023 14:04:35 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 454D5252259;
-        Mon, 11 Sep 2023 14:04:35 +0200 (CEST)
-Received: from localhost (10.201.20.32) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 11 Sep
- 2023 14:04:34 +0200
-From:   Gatien Chevallier <gatien.chevallier@foss.st.com>
-To:     Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     Lionel Debieve <lionel.debieve@foss.st.com>,
-        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
+        with ESMTP id S237165AbjIKMIG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 08:08:06 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2643CEB;
+        Mon, 11 Sep 2023 05:07:52 -0700 (PDT)
+X-UUID: d1d8ff6a509b11eea33bb35ae8d461a2-20230911
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=vo2+Ht37rnzqncUjP5jQLU3n66LjuW5bTm8lsUZgRBs=;
+        b=cxjUr8GVZQ/7AK54Bk5oI274CX1haREkAjeEh3Db+TidObOT4GOkW9gYdK4DLL1FKQ39BOAoGC2jseNdmBuJznCXBRZMkBKNPVhidlGKoG1noHYhCKL1gpK00/EJ+L5e2PF5COI0go992Uhcnek3aqEFDwpDb8yGYUiLvY1ZUVw=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:f52b5986-b4fe-48e9-ab8e-0c5296812f8a,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:-5
+X-CID-META: VersionHash:0ad78a4,CLOUDID:bd71e4c2-1e57-4345-9d31-31ad9818b39f,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
+        NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: d1d8ff6a509b11eea33bb35ae8d461a2-20230911
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+        (envelope-from <shuijing.li@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 2032066479; Mon, 11 Sep 2023 20:07:46 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.194) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 11 Sep 2023 20:07:45 +0800
+Received: from mszsdhlt06.gcn.mediatek.inc (10.16.6.206) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 11 Sep 2023 20:07:44 +0800
+From:   Shuijing Li <shuijing.li@mediatek.com>
+To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
+        <airlied@gmail.com>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <matthias.bgg@gmail.com>,
+        <angelogioacchino.delregno@collabora.com>, <jitao.shi@mediatek.com>
+CC:     <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>,
-        Gatien Chevallier <gatien.chevallier@foss.st.com>
-Subject: [PATCH v2 09/10] hwrng: stm32 - rework power management sequences
-Date:   Mon, 11 Sep 2023 14:02:02 +0200
-Message-ID: <20230911120203.774632-10-gatien.chevallier@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230911120203.774632-1-gatien.chevallier@foss.st.com>
-References: <20230911120203.774632-1-gatien.chevallier@foss.st.com>
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Shuijing Li <shuijing.li@mediatek.com>
+Subject: [PATCH v4,2/3] drm/mediatek: dsi: Add dsi cmdq_ctl to send panel initial code
+Date:   Mon, 11 Sep 2023 20:07:59 +0800
+Message-ID: <20230911120800.17369-3-shuijing.li@mediatek.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230911120800.17369-1-shuijing.li@mediatek.com>
+References: <20230911120800.17369-1-shuijing.li@mediatek.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.201.20.32]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-11_06,2023-09-05_01,2023-05-22_02
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,T_SPF_TEMPERROR,
+        UNPARSEABLE_RELAY autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Implement stm32_rng_suspend()/stm32_rng_resume() low-power APIs
-called when the hardware block context will be lost.
+For mt8188, add dsi cmdq reg control to send long packets to panel
+initialization. MT8188 hardware has been changed to automatically
+set the cmdq_size value by default when sending long packets.
+In this patch, the cmdq_size value is set manually instead.
+Remain consistent with previous IC.
 
-There is no need to save the RNG_CR register in
-stm32_rng_runtime_suspend() as the context is not lost. Therefore,
-only enable/disable the RNG in the runtime sequences.
-
-Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
+Changes in v4:
+Add a comment per suggestion from the previous thread:
+https://lore.kernel.org/all/14e03873-3723-8293-0190-445a71828b25@collabora.com/
+Changes in v3:
+reorder patch 2/3 and 3/3, and describe more about why mt8188 need this
+patch,
+per suggestion from the previous thread:
+https://lore.kernel.org/lkml/411ddbf95e2c2298b84899065691d478069ec273.camel@mediatek.com/
+Changes in v2:
+use mtk_dsi_mask(dsi, DSI_CMDQ_SIZE, CMDQ_SIZE_SEL, CMDQ_SIZE_SEL); directly,
+per suggestion from the previous thread:
+https://lore.kernel.org/lkml/015f4c60-ed77-9e1f-8a6b-cda6e4f6ac93@gmail.com/
+---
+ drivers/gpu/drm/mediatek/mtk_dsi.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Changes in V2:
-	- Use pm_ptr() and add __maybe_unused to the pm API
-
- drivers/char/hw_random/stm32-rng.c | 108 ++++++++++++++++++++++++++---
- 1 file changed, 97 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/char/hw_random/stm32-rng.c b/drivers/char/hw_random/stm32-rng.c
-index 4a602d666dad..01198a2e32c6 100644
---- a/drivers/char/hw_random/stm32-rng.c
-+++ b/drivers/char/hw_random/stm32-rng.c
-@@ -55,11 +55,25 @@ struct stm32_rng_data {
- 	bool	has_cond_reset;
+diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
+index d8bfc2cce54d..623aa829ef6b 100644
+--- a/drivers/gpu/drm/mediatek/mtk_dsi.c
++++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+@@ -86,6 +86,7 @@
+ 
+ #define DSI_CMDQ_SIZE		0x60
+ #define CMDQ_SIZE			0x3f
++#define CMDQ_SIZE_SEL		BIT(15)
+ 
+ #define DSI_HSTX_CKL_WC		0x64
+ 
+@@ -178,6 +179,7 @@ struct mtk_dsi_driver_data {
+ 	const u32 reg_cmdq_off;
+ 	bool has_shadow_ctl;
+ 	bool has_size_ctl;
++	bool cmdq_long_packet_ctl;
  };
  
-+/**
-+ * struct stm32_rng_config - RNG configuration data
-+ *
-+ * @cr:			RNG configuration. 0 means default hardware RNG configuration
-+ * @nscr:		Noise sources control configuration.
-+ * @htcr:		Health tests configuration.
-+ */
-+struct stm32_rng_config {
-+	u32 cr;
-+	u32 nscr;
-+	u32 htcr;
-+};
-+
- struct stm32_rng_private {
- 	struct hwrng rng;
- 	void __iomem *base;
- 	struct clk *clk;
- 	struct reset_control *rst;
-+	struct stm32_rng_config pm_conf;
- 	const struct stm32_rng_data *data;
- 	bool ced;
- 	bool lock_conf;
-@@ -355,11 +369,10 @@ static int stm32_rng_remove(struct platform_device *ofdev)
- 	return 0;
- }
+ struct mtk_dsi {
+@@ -996,6 +998,10 @@ static void mtk_dsi_cmdq(struct mtk_dsi *dsi, const struct mipi_dsi_msg *msg)
  
--#ifdef CONFIG_PM
--static int stm32_rng_runtime_suspend(struct device *dev)
-+static int __maybe_unused stm32_rng_runtime_suspend(struct device *dev)
- {
--	u32 reg;
- 	struct stm32_rng_private *priv = dev_get_drvdata(dev);
-+	u32 reg;
- 
- 	reg = readl_relaxed(priv->base + RNG_CR);
- 	reg &= ~RNG_CR_RNGEN;
-@@ -369,25 +382,98 @@ static int stm32_rng_runtime_suspend(struct device *dev)
- 	return 0;
- }
- 
--static int stm32_rng_runtime_resume(struct device *dev)
-+static int __maybe_unused stm32_rng_suspend(struct device *dev)
-+{
-+	struct stm32_rng_private *priv = dev_get_drvdata(dev);
-+
-+	if (priv->data->has_cond_reset) {
-+		priv->pm_conf.nscr = readl_relaxed(priv->base + RNG_NSCR);
-+		priv->pm_conf.htcr = readl_relaxed(priv->base + RNG_HTCR);
+ 	mtk_dsi_mask(dsi, reg_cmdq_off, cmdq_mask, reg_val);
+ 	mtk_dsi_mask(dsi, DSI_CMDQ_SIZE, CMDQ_SIZE, cmdq_size);
++	if (dsi->driver_data->cmdq_long_packet_ctl) {
++		/* Disable setting cmdq_size automatically for long packets */
++		mtk_dsi_mask(dsi, DSI_CMDQ_SIZE, CMDQ_SIZE_SEL, CMDQ_SIZE_SEL);
 +	}
-+
-+	/* Do not save that RNG is enabled as it will be handled at resume */
-+	priv->pm_conf.cr = readl_relaxed(priv->base + RNG_CR) & ~RNG_CR_RNGEN;
-+
-+	writel_relaxed(priv->pm_conf.cr, priv->base + RNG_CR);
-+
-+	clk_disable_unprepare(priv->clk);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused stm32_rng_runtime_resume(struct device *dev)
- {
--	u32 reg;
- 	struct stm32_rng_private *priv = dev_get_drvdata(dev);
-+	int err;
-+	u32 reg;
-+
-+	err = clk_prepare_enable(priv->clk);
-+	if (err)
-+		return err;
-+
-+	/* Clean error indications */
-+	writel_relaxed(0, priv->base + RNG_SR);
- 
--	clk_prepare_enable(priv->clk);
- 	reg = readl_relaxed(priv->base + RNG_CR);
- 	reg |= RNG_CR_RNGEN;
- 	writel_relaxed(reg, priv->base + RNG_CR);
- 
- 	return 0;
  }
--#endif
  
--static const struct dev_pm_ops stm32_rng_pm_ops = {
-+static int __maybe_unused stm32_rng_resume(struct device *dev)
-+{
-+	struct stm32_rng_private *priv = dev_get_drvdata(dev);
-+	int err;
-+	u32 reg;
-+
-+	err = clk_prepare_enable(priv->clk);
-+	if (err)
-+		return err;
-+
-+	/* Clean error indications */
-+	writel_relaxed(0, priv->base + RNG_SR);
-+
-+	if (priv->data->has_cond_reset) {
-+		/*
-+		 * Correct configuration in bits [29:4] must be set in the same
-+		 * access that set RNG_CR_CONDRST bit. Else config setting is
-+		 * not taken into account. CONFIGLOCK bit must also be unset but
-+		 * it is not handled at the moment.
-+		 */
-+		writel_relaxed(priv->pm_conf.cr | RNG_CR_CONDRST, priv->base + RNG_CR);
-+
-+		writel_relaxed(priv->pm_conf.nscr, priv->base + RNG_NSCR);
-+		writel_relaxed(priv->pm_conf.htcr, priv->base + RNG_HTCR);
-+
-+		reg = readl_relaxed(priv->base + RNG_CR);
-+		reg |= RNG_CR_RNGEN;
-+		reg &= ~RNG_CR_CONDRST;
-+		writel_relaxed(reg, priv->base + RNG_CR);
-+
-+		err = readl_relaxed_poll_timeout_atomic(priv->base + RNG_CR, reg,
-+							reg & ~RNG_CR_CONDRST, 10, 100000);
-+
-+		if (err) {
-+			clk_disable_unprepare(priv->clk);
-+			dev_err((struct device *)priv->rng.priv,
-+				"%s: timeout:%x CR: %x!\n", __func__, err, reg);
-+			return -EINVAL;
-+		}
-+	} else {
-+		reg = priv->pm_conf.cr;
-+		reg |= RNG_CR_RNGEN;
-+		writel_relaxed(reg, priv->base + RNG_CR);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct __maybe_unused dev_pm_ops stm32_rng_pm_ops = {
- 	SET_RUNTIME_PM_OPS(stm32_rng_runtime_suspend,
- 			   stm32_rng_runtime_resume, NULL)
--	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
--				pm_runtime_force_resume)
-+	SET_SYSTEM_SLEEP_PM_OPS(stm32_rng_suspend,
-+				stm32_rng_resume)
- };
- 
- static const struct stm32_rng_data stm32mp13_rng_data = {
-@@ -467,7 +553,7 @@ static int stm32_rng_probe(struct platform_device *ofdev)
- static struct platform_driver stm32_rng_driver = {
- 	.driver = {
- 		.name = "stm32-rng",
--		.pm = &stm32_rng_pm_ops,
-+		.pm = pm_ptr(&stm32_rng_pm_ops),
- 		.of_match_table = stm32_rng_match,
- 	},
- 	.probe = stm32_rng_probe,
+ static ssize_t mtk_dsi_host_send_cmd(struct mtk_dsi *dsi,
 -- 
-2.25.1
+2.40.1
 
