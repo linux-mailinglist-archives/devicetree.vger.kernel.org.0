@@ -2,129 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A7ED79A301
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 07:46:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A84E679A33B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 08:03:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234111AbjIKFqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 01:46:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40712 "EHLO
+        id S229601AbjIKGDb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 02:03:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229596AbjIKFqn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 01:46:43 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35E0E1AE;
-        Sun, 10 Sep 2023 22:46:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1694411199; x=1725947199;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wWthW3CAQOeR24yqLtHN12hyt+cgqArE3vdOGuNIP74=;
-  b=aGGRWsZJnRY4xxiH+mk4ZOyZXtup42L4hv1pXyKncOUrqwNxWGpCPC3O
-   onFGQIqcqJTRwaVcF3fGVcsBfaSOKlQH3Rh9Xsi/B65XmAQ+Wj9SjMVTO
-   /rhflb0mfG0JKO9K9OBM3SvQP3G5TuJtwbCMfP4GjNkk9xi1u81MS8c28
-   JFruAwDQaDm0n1s7JUO+iCQ9ytKZBSOyiIPlNcLP5duihTSw4K/LYQC1a
-   GbnOCrLbh0/204KtTUziza0134+NMtF/tWNu8/rTkML0oPkKCCl0PcXs2
-   bPt2FJkNE2SI7WEAFLfn+/teQgOHQ0r26jrNgcwQE3WVpvqygzsbCzv3Y
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="375353787"
-X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; 
-   d="scan'208";a="375353787"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Sep 2023 22:46:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="858188074"
-X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; 
-   d="scan'208";a="858188074"
-Received: from lkp-server01.sh.intel.com (HELO 59b3c6e06877) ([10.239.97.150])
-  by fmsmga002.fm.intel.com with ESMTP; 10 Sep 2023 22:46:35 -0700
-Received: from kbuild by 59b3c6e06877 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qfZkn-0005qa-1u;
-        Mon, 11 Sep 2023 05:46:33 +0000
-Date:   Mon, 11 Sep 2023 13:46:22 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Saravanan Sekar <saravanan@linumiz.com>, sravanhome@gmail.com,
-        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux@roeck-us.net, jdelvare@suse.com
-Cc:     oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Saravanan Sekar <saravanan@linumiz.com>
-Subject: Re: [PATCH 1/3] hwmon: (pmbus/mpq7932) Get page count based on chip
- info
-Message-ID: <202309111345.BXkwu3pD-lkp@intel.com>
-References: <20230911034150.181880-2-saravanan@linumiz.com>
+        with ESMTP id S233974AbjIKGD0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 02:03:26 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3874B1BE;
+        Sun, 10 Sep 2023 23:02:40 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38B629cH000420;
+        Mon, 11 Sep 2023 01:02:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1694412129;
+        bh=9ATVOVPWJwJ8fvU0+Op5VStbUwr5g7KLMfdJN1X3w/Q=;
+        h=From:To:CC:Subject:Date;
+        b=AfJ6yI00hfHsA2gv4azcAW/7xHdOYxNHDkT9umOj4k9s2fLGYnQeX3/BBJnz6rQ7a
+         QVZdh4YFI+y0ZGDr6H9Jt9Jv14lfeB2mCDqVl+yfxsxNT0d4UDzv9pqcQ0SI8JcoRd
+         oo5R5HnBkA2/WVo/pXe0nEGg3osF4TZtTSlprq0w=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38B629jr010613
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 11 Sep 2023 01:02:09 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
+ Sep 2023 01:02:09 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 11 Sep 2023 01:02:09 -0500
+Received: from lelv0854.itg.ti.com (lelv0854.itg.ti.com [10.181.64.140])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38B629fO016131;
+        Mon, 11 Sep 2023 01:02:09 -0500
+Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.199])
+        by lelv0854.itg.ti.com (8.14.7/8.14.7) with ESMTP id 38B628UP000503;
+        Mon, 11 Sep 2023 01:02:08 -0500
+From:   MD Danish Anwar <danishanwar@ti.com>
+To:     Andrew Lunn <andrew@lunn.ch>, Roger Quadros <rogerq@ti.com>,
+        MD Danish Anwar <danishanwar@ti.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Simon Horman <horms@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
+Subject: [PATCH net-next v2 0/2] Add Half Duplex support for ICSSG Driver
+Date:   Mon, 11 Sep 2023 11:31:58 +0530
+Message-ID: <20230911060200.2164771-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230911034150.181880-2-saravanan@linumiz.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Saravanan,
+This series adds support for half duplex operation for ICSSG driver.
 
-kernel test robot noticed the following build warnings:
+In order to support half-duplex operation at 10M and 100M link speeds, the
+PHY collision detection signal (COL) should be routed to ICSSG GPIO pin
+(PRGx_PRU0/1_GPI10) so that firmware can detect collision signal and apply
+the CSMA/CD algorithm applicable for half duplex operation. A DT property,
+"ti,half-duplex-capable" is introduced for this purpose in the first patch
+of the series. If board has PHY COL pin conencted to PRGx_PRU1_GPIO10,
+this DT property can be added to eth node of ICSSG, MII port to support
+half duplex operation at that port.
 
-[auto build test WARNING on groeck-staging/hwmon-next]
-[also build test WARNING on broonie-regulator/for-next linus/master v6.6-rc1 next-20230911]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Second patch of the series configures driver to support half-duplex
+operation if the DT property "ti,half-duplex-capable" is enabled.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Saravanan-Sekar/hwmon-pmbus-mpq7932-Get-page-count-based-on-chip-info/20230911-114451
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20230911034150.181880-2-saravanan%40linumiz.com
-patch subject: [PATCH 1/3] hwmon: (pmbus/mpq7932) Get page count based on chip info
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20230911/202309111345.BXkwu3pD-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230911/202309111345.BXkwu3pD-lkp@intel.com/reproduce)
+This series addresses comments on [v1] (which was posted as RFC).
+This series is based on the latest net-next/main. This series has no
+dependency.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202309111345.BXkwu3pD-lkp@intel.com/
+Changes from v1 to v2:
+*) Dropped the RFC tag.
+*) Added RB tags of Andrew and Roger.
 
-All warnings (new ones prefixed by >>):
+[1] https://lore.kernel.org/all/20230830113134.1226970-1-danishanwar@ti.com/
 
-   drivers/hwmon/pmbus/mpq7932.c: In function 'mpq7932_probe':
->> drivers/hwmon/pmbus/mpq7932.c:108:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-     108 |         info->pages = (int)device_get_match_data(&client->dev);
-         |                       ^
+Thanks and Regards,
+Md Danish Anwar
+
+MD Danish Anwar (2):
+  dt-bindings: net: Add documentation for Half duplex support.
+  net: ti: icssg-prueth: Add support for half duplex operation
+
+ .../bindings/net/ti,icssg-prueth.yaml           |  7 +++++++
+ drivers/net/ethernet/ti/icssg/icssg_config.c    | 14 ++++++++++++++
+ drivers/net/ethernet/ti/icssg/icssg_prueth.c    | 17 +++++++++++++++--
+ drivers/net/ethernet/ti/icssg/icssg_prueth.h    |  2 ++
+ 4 files changed, 38 insertions(+), 2 deletions(-)
 
 
-vim +108 drivers/hwmon/pmbus/mpq7932.c
-
-    95	
-    96	static int mpq7932_probe(struct i2c_client *client)
-    97	{
-    98		struct mpq7932_data *data;
-    99		struct pmbus_driver_info *info;
-   100		struct device *dev = &client->dev;
-   101		int i;
-   102	
-   103		data = devm_kzalloc(dev, sizeof(struct mpq7932_data), GFP_KERNEL);
-   104		if (!data)
-   105			return -ENOMEM;
-   106	
-   107		info = &data->info;
- > 108		info->pages = (int)device_get_match_data(&client->dev);
-   109		info->format[PSC_VOLTAGE_OUT] = direct;
-   110		info->m[PSC_VOLTAGE_OUT] = 160;
-   111		info->b[PSC_VOLTAGE_OUT] = -33;
-   112		for (i = 0; i < info->pages; i++) {
-   113			info->func[i] = PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT
-   114					| PMBUS_HAVE_STATUS_TEMP;
-   115		}
-   116	
-
+base-commit: 73be7fb14e83d24383f840a22f24d3ed222ca319
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
