@@ -2,184 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1380379B693
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:05:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BFBC79BF5A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:18:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234944AbjIKUwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:52:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46776 "EHLO
+        id S236311AbjIKUtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:49:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236075AbjIKJuZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 05:50:25 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45CCBE50
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:50:19 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-401d24f1f27so48258765e9.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:50:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694425818; x=1695030618; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cWlkPQI1Yw2OHhpnK3b6UUH+RFe3hIOhoTtTQ2y5gKM=;
-        b=bxdWuFsCv+gPBYLhDq7IeyMJI3mBwnJE2cot9q471e37BkuoZtHa6NtaxvB5DXvgi6
-         IrCKVebgeg8q2sl11CIpWGKNvJYtWNwhRmXqt+3NGY2CAH4hPlgBkLNgSH5UlyDtFnS1
-         KOTPvoR3RStGy7+RKKt5Xu/129sM+nBwuWArZhLGcZ9/cviZjTnHIeIq6+BQZ7wkqK3w
-         x+uroxGEi2oinrxIVmuIJV3uNBpLcmBM/YkGHAVD+Uci4IgtkUODLU0wPonf7kicbKfX
-         +sgQ6DyAJ0w5HWEYLGZvvWrm1moto8I6ZtGtmOCtDtGtzRKx6ukmhVRZEBKgdI05PJwg
-         gkmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694425818; x=1695030618;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=cWlkPQI1Yw2OHhpnK3b6UUH+RFe3hIOhoTtTQ2y5gKM=;
-        b=rsPSDr/fvxJRP7HN9fcf0jgdEhaWbxObHA8anU6fO5AYxqVHQaRLkX+Kp6cu7tBc2S
-         F2Hxkj4aFCvAvc4EehEbnIjRuqVRFB+2wAqkNtuhI7lmz9VCDrTDiKZRzduFLkjTV1i5
-         ol2/9Jz42R+AghhxD/nz6VGlnSyAMzVQPT2SaBTKakasRwNOtbQ6u4RISmrA1joY1Vhh
-         hsVPjGzRVPj/5ySwmZElwfFNlkuqgslVnkNy+Fird7Uwuq26pmp5zfBgFJOYZYMOVg3J
-         rbbLrStf23RGObVvniH5Y1HXVlEysTTxQK1aC1biIeL7lhlaI3uRlfSa3m1v+TyGSaxK
-         M5Ag==
-X-Gm-Message-State: AOJu0YznBg+soI7y6iLzlLYkNjqWw8pySn5J8v8fGW1hcbL4AjfI9GYg
-        eWrC1UAq8SG1cP8cgXuxsmxChRvR1aGRPwsLw0aSpArX
-X-Google-Smtp-Source: AGHT+IHI4A4EOkbJF57yZhPXziUj9HK5tk+YTi+LsfYa3ihobo23dDVK8lc8xP8GO52BwhM5r5OH4Q==
-X-Received: by 2002:a05:600c:2207:b0:401:b6f6:d90c with SMTP id z7-20020a05600c220700b00401b6f6d90cmr8256405wml.35.1694425817657;
-        Mon, 11 Sep 2023 02:50:17 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:daaa:8bc3:eeb7:ce8? ([2a01:e0a:982:cbb0:daaa:8bc3:eeb7:ce8])
-        by smtp.gmail.com with ESMTPSA id h13-20020a05600c260d00b003fe4ca8decdsm12797392wma.31.2023.09.11.02.50.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Sep 2023 02:50:17 -0700 (PDT)
-Message-ID: <fc85d3e4-1266-4173-a21e-b97cc51622ce@linaro.org>
-Date:   Mon, 11 Sep 2023 11:50:16 +0200
+        with ESMTP id S236295AbjIKKLs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 06:11:48 -0400
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91669E68;
+        Mon, 11 Sep 2023 03:11:42 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+        by mx1.sberdevices.ru (Postfix) with ESMTP id 3E3D4100004;
+        Mon, 11 Sep 2023 13:11:38 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 3E3D4100004
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+        s=mail; t=1694427098;
+        bh=CUCA25pe+EJ7rjxGI1Dne/+MwMfzDg+e7/fpUBa8JFE=;
+        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+        b=bgwj6E3VB+Nmeo/oywFsvAj9hVK0PiszDXwQ8xCHld0b03OWEVfXy9rZR3uzEn1sO
+         vZol+Ujk9Tb5/HY9s1dOHaAKLo2+Eje6K/fg7PtOq3jOr8sOdfO1B5M0Br0OseBb/y
+         P5ndPouLdIe2mBiPCoYuQ069zec02AjvVe2jYMoOXQLhw2uSy+3MWtFa+omzUwe5Te
+         czqTssX/yWWLnCbhJVB8w37ZCxJs/gwlSlVfrKggRXJbYr75ZrwWHeDToKrpE4Gq0U
+         fEHN+3OtblOE8MLD40f3m+4I/L1GnTYWNqY9WbeEZLJGWXPt5w1z5Y118qLE22fS3s
+         YCDTd1cBVpn8g==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx1.sberdevices.ru (Postfix) with ESMTPS;
+        Mon, 11 Sep 2023 13:11:37 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Mon, 11 Sep 2023 13:11:36 +0300
+From:   Alexey Romanov <avromanov@salutedevices.com>
+To:     <narmstrong@baylibre.com>, <neil.armstrong@linaro.org>,
+        <olivia@selenic.com>, <herbert@gondor.apana.org.au>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <conor@kernel.org>, <khilman@baylibre.com>,
+        <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+        <f.fainelli@gmail.com>, <hkallweit1@gmail.com>, <lists@kaiser.cx>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-crypto@vger.kernel.org>, <kernel@sberdevices.ru>,
+        Alexey Romanov <avromanov@salutedevices.com>
+Subject: [PATCH v3 0/3]  Meson S4 HW RNG Support
+Date:   Mon, 11 Sep 2023 13:11:26 +0300
+Message-ID: <20230911101129.10604-1-avromanov@salutedevices.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 00/15] arm64: dts: meson: a1: introduce several
- peripheral IPs
-Content-Language: en-US, fr
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>, jbrunet@baylibre.com,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
-        martin.blumenstingl@googlemail.com, conor+dt@kernel.org
-Cc:     kernel@sberdevices.ru, sdfw_system_team@sberdevices.ru,
-        rockosov@gmail.com, linux-amlogic@lists.infradead.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230823213630.12936-1-ddrokosov@sberdevices.ru>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20230823213630.12936-1-ddrokosov@sberdevices.ru>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 179765 [Sep 11 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 530 530 ecb1547b3f72d1df4c71c0b60e67ba6b4aea5432, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/09/11 06:02:00 #21866861
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2023 23:36, Dmitry Rokosov wrote:
-> This patch series introduces device tree declarations for various
-> peripheral IPs of the A1 SoC family, including clock controllers, EFUSE,
-> USB, SPI Flash Controller, SDIO, and UART_AO:
->      - CLK: A1 SoC has four types on the board, namely PLL, Peripherals,
->        CPU, and Audio, but only Amlogic A1 PLL and Peripherals clock
->        controllers are currently supported.
->      - EFUSE: consists of a 4k bit One Time Programmable (OTP) memory
->        divided into 32 128-bit blocks, and data is accessed using the APB
->        bus through software or the Key-ladder integrated with the EFUSE
->        block.
->      - USB: only one USB 2.0 high-speed port is available in the A1 SoC,
->        supporting both HOST and DEVICE modes for OTG.
->      - SPI Flash Controller: 4-bit QPI/SPI NOR Flash or NAND FLASH
->        controller.
->      - SDIO: for WiFi/IEEE802.11 connection.
->      - UART_AO: for Bluetooth connection.
->      - HWRNG: hardware random generator integrated into SoC.
->      - AO SECURE: board info registers.
-> 
-> The above peripherals are integrated to new AD402 board device tree.
-> 
-> Changes v2 since v1 at [1]:
->      - reorder meson-a1 dtsi includes to keep them sorted
->      - remove extra empty lines
->      - purge the unnecessary 'okay' status
->      - reorder all device tree nodes (existing and new) sorted by 'reg'
->        values
->      - introduce new saradc definition
->      - add hwrng dts node
->      - provide ao secure dts node with board info registers
->      - include all changes to new AD402 board device tree
->      - add AD402 board to bindings
-> 
-> Links:
->      [1] https://lore.kernel.org/all/20230607201641.20982-1-ddrokosov@sberdevices.ru/
-> 
-> Alexey Romanov (3):
->    arm64: dts: meson: a1: enable efuse controller and setup its clk
->    arm64: dts: meson: a1: add hw rng node
->    arm64: dts: meson: a1: add ao secure node
-> 
-> Dmitry Rokosov (8):
->    arm64: dts: meson: a1: reorder includes to keep them sorted
->    arm64: dts: meson: a1: remove extra empty line before reset node
->    arm64: dts: meson: a1: remove the unnecessary 'okay' status pwrc value
->    arm64: dts: meson: a1: reorder gpio_intc node definition
->    arm64: dts: meson: a1: introduce PLL and Peripherals clk controllers
->    arm64: dts: meson: a1: support USB controller in OTG mode
->    arm64: dts: introduce Amlogic AD402 reference board based on A113L SoC
->    dt-bindings: arm: amlogic: add Amlogic AD402 bindings
-> 
-> George Stark (1):
->    arm64: dts: meson: a1: add saradc definition
-> 
-> Jan Dakinevich (1):
->    arm64: dts: meson: a1: add eMMC controller and its pins
-> 
-> Martin Kurbanov (1):
->    arm64: dts: meson: a1: introduce SPI Flash Controller
-> 
-> Oleg Lyovin (1):
->    arm64: dts: meson: a1: introduce UART_AO mux definitions
-> 
->   .../devicetree/bindings/arm/amlogic.yaml      |   1 +
->   arch/arm64/boot/dts/amlogic/Makefile          |   1 +
->   .../arm64/boot/dts/amlogic/meson-a1-ad402.dts | 145 ++++++++++++
->   arch/arm64/boot/dts/amlogic/meson-a1.dtsi     | 213 +++++++++++++++++-
->   4 files changed, 348 insertions(+), 12 deletions(-)
->   create mode 100644 arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
-> 
+Hello!
 
-B4 missed it but I applied this patchset into v6.7/arm64-dt.
+This patch series adds hwrng support for Amlogic S4-series.
+Now, S4 uses a new random number generation algorithm.
+This changes implemnents new algo and also adds description
+to meson-s4.dtsi.
 
-Thanks,
-Neil
+V2:
+
+- Use readl_relaxed_poll_timeout_atomic() function instead of loop.
+- Use two different functions: meson_rng_read() and meson_s4_rng_read().
+- Fix naming in DT schema (meson-s4-hwrng instead of meson-hwrng-s4).
+- A little code style fixes.
+
+V3:
+
+- Fix commit message in patch with dt-bindings schema changes.
+
+Alexey Romanov (3):
+  drivers: rng: meson: add support for S4
+  dt-bindings: rng: meson: add meson-rng-s4 compatible
+  arch/arm64: dts: meson-s4: add hwrng node
+
+ .../bindings/rng/amlogic,meson-rng.yaml       |  1 +
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |  5 ++
+ drivers/char/hw_random/meson-rng.c            | 80 ++++++++++++++++++-
+ 3 files changed, 83 insertions(+), 3 deletions(-)
+
+-- 
+2.25.1
+
