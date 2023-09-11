@@ -2,147 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CA1479B75F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:06:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 220DC79BEC0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:17:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233727AbjIKUvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:51:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44480 "EHLO
+        id S231366AbjIKUvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:51:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242534AbjIKPqB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:46:01 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 666D6121
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:45:57 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-401b3ea0656so49013705e9.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:45:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1694447156; x=1695051956; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=w8GmnivYIya/kXsBEnAOi5/Fi2lHPHk3tyJN33w5ic4=;
-        b=MdFBr7kuYpRk46PzUng5XfTQtMhFRQxb7PZcy4EkbiX1GyUq2TByswGx5SfNOBmIF0
-         QITv7kS+Iep0XRHcnT2j4UYugK1qBZx0D7570nyXIaSerpJqlpGgDh49OFJ5KEyC1ANu
-         m8U8iFwng0y0xg7jGdzFg+YJLKkhorid2YhHS1sdL4XEzgKrnUYswHiWGvfzKeuggSqD
-         C/AF9AYAw6e5ssM5qTxAXeepH23TMNEVTcuuvJaLlQ9vBbNDt3oltY/Gn000ivSaQaKI
-         fp4oq5yHTTUuz3QedWbU5L1OQFe4YZrWY82yt7x18JUY685Mdrj90cmMxnvwXytoWBs5
-         hbGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694447156; x=1695051956;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=w8GmnivYIya/kXsBEnAOi5/Fi2lHPHk3tyJN33w5ic4=;
-        b=E3wDvasq8GBqiNGnfg0EV/x8EdT7hztKL9VQzlY+isse8b23LWf9TIWm0aplfR+WhU
-         98P9eO+ESYflqlkKkOTwT/F8ptjFZr3dSAXQtVO/oHG8vH3tlytAawokANOX2HFt5QmH
-         1WZ4iAp9FNkiro6dwsB+xBHYT1fdQdxT8tE/vD5qUATVvc/QzhhD2rRjUIbNpQ7mD/Zg
-         8Jm9m2iwkwq7BP37Sjm3RkWUbalCfvyKS9vGNkTbQXmM5DC1JdXNkXZo+oFqtjUww/+v
-         AiD4J6C6xFA9B7BRSeBSQuyAKcmERyyQka9mvzJbgO4VzeaUu8eN+IEGWjBjnJm5p3h5
-         v8qw==
-X-Gm-Message-State: AOJu0YzRqxaMOWbMilb5gh7rpsEjaZiX0opDynKC+WHrPwcvgcFyUwhB
-        4kXwUGgsiGo3eumjQPxC6bUNnQ==
-X-Google-Smtp-Source: AGHT+IEOdC6N4yffuUJH7WsfrdAEJ+HeWUa6KJ6KGJQUIHAReIzAkUYcbtQ2ckSxfrRuPEHZZd+3aQ==
-X-Received: by 2002:a05:600c:2294:b0:401:b204:3b98 with SMTP id 20-20020a05600c229400b00401b2043b98mr8950146wmf.19.1694447155928;
-        Mon, 11 Sep 2023 08:45:55 -0700 (PDT)
-Received: from toaster.lan ([2a01:e0a:3c5:5fb1:55be:8f7e:5f59:7ed1])
-        by smtp.googlemail.com with ESMTPSA id q12-20020a05600c040c00b003fe539b83f2sm13616255wmb.42.2023.09.11.08.45.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Sep 2023 08:45:55 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH 4/5] arm64: dts: meson: u200: use TDM C for HDMI
-Date:   Mon, 11 Sep 2023 17:45:40 +0200
-Message-Id: <20230911154541.471484-5-jbrunet@baylibre.com>
+        with ESMTP id S242555AbjIKPs3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:48:29 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8760D121;
+        Mon, 11 Sep 2023 08:48:25 -0700 (PDT)
+Received: from localhost.localdomain (unknown [171.76.82.102])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: vignesh)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 273F1660730D;
+        Mon, 11 Sep 2023 16:48:19 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1694447304;
+        bh=ze+691gluuYjd9QZFnsV1mOxXtAD9BcYbDEUMd5HdqA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=d5HmoLaP3nDDR6SjO8DPkA5j40pJ6od+w0ZpxP9tduK4CLWJecfYSWjGMzMAmQV9A
+         dVL5JOI0QzY4g1bLh9cm/gbNZMitL1s+Lc/OuKl+ZTnB/hrPzgMAKnDRnje8N4tXl+
+         t3CPT4/3pXidlet0VbWwiquUT7eMl81CmtqpBfSd7h/xGg4mSIJekmlLiYsw15ACMz
+         34mNj8MbLmVp2+In/x7fzIgZLwTryPZJiDx9D+YY6uDnS8QI8Hyfu71xqy+yGh+XUD
+         uofzQuR2QgQ9QQ00tQDdwV9Y2N1MsxMUa5c0EzUTnc8gXutrFrNF74RNNbXvML3tCQ
+         2OX8nZWqxsgng==
+From:   Vignesh Raman <vignesh.raman@collabora.com>
+To:     devicetree@vger.kernel.org
+Cc:     helen.koike@collabora.com, guilherme.gallo@collabora.com,
+        sergi.blanch.torne@collabora.com, david.heidelberg@collabora.com,
+        daniels@collabora.com, emma@anholt.net, robdclark@gmail.com,
+        mripard@kernel.org, dmitry.baryshkov@linaro.org,
+        krzysztof.kozlowski@linaro.org, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: apq8016-sbc: Add overlay for usb host mode
+Date:   Mon, 11 Sep 2023 21:17:42 +0530
+Message-Id: <20230911154742.648057-1-vignesh.raman@collabora.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230911154541.471484-1-jbrunet@baylibre.com>
-References: <20230911154541.471484-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On the u200, TDM B is wired to the onboard AD82584F i2c speaker codec.
-This makes TDM B a poor choice for the interface dedicated to HDMI which
-uses 4 i2s lanes.
+Due to the presence of the fastboot micro cable in the CI farm,
+it causes the hardware to remain in gadget mode instead of host mode.
+So it doesn't find the network, which results in failure to mount root
+fs via NFS.
 
-TDM A is not a good choice either as it is connected to the SDIO wifi/bt
-chip.
+Add an overlay dtso file that sets the dr_mode to host, allowing the
+USB controllers to work in host mode. With commit 15d16d6dadf6
+("kbuild: Add generic rule to apply fdtoverlay"), overlay target can
+be used to simplify the build of DTB overlays. It uses fdtoverlay to
+merge base device tree with the overlay dtso. apq8016-sbc-usb-host.dtb
+file can be used by drm-ci, mesa-ci.
 
-TDM C is not used externally by default, which makes it a better choice for
-the HDMI interface.
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Suggested-by: Maxime Ripard <mripard@kernel.org>
+Signed-off-by: Helen Koike <helen.koike@collabora.com>
+Signed-off-by: David Heidelberg <david.heidelberg@collabora.com>
+Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ arch/arm64/boot/dts/qcom/Makefile                  | 4 ++++
+ arch/arm64/boot/dts/qcom/apq8016-sbc-usb-host.dtso | 8 ++++++++
+ 2 files changed, 12 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/apq8016-sbc-usb-host.dtso
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-index 921b62c5ab33..da66e2e1dffb 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-@@ -159,10 +159,10 @@ vddcpu: regulator-vddcpu {
- 	sound {
- 		compatible = "amlogic,axg-sound-card";
- 		model = "U200";
--		audio-aux-devs = <&tdmout_b>;
--		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
--				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
--				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+		audio-aux-devs = <&tdmout_c>;
-+		audio-routing = "TDMOUT_C IN 0", "FRDDR_A OUT 2",
-+				"TDMOUT_C IN 1", "FRDDR_B OUT 2",
-+				"TDMOUT_C IN 2", "FRDDR_C OUT 2",
- 				"TDM_B Playback", "TDMOUT_B OUT",
- 				"SPDIFOUT IN 0", "FRDDR_A OUT 3",
- 				"SPDIFOUT IN 1", "FRDDR_B OUT 3",
-@@ -193,7 +193,7 @@ dai-link-2 {
- 
- 		/* 8ch hdmi interface */
- 		dai-link-3 {
--			sound-dai = <&tdmif_b>;
-+			sound-dai = <&tdmif_c>;
- 			dai-format = "i2s";
- 			dai-tdm-slot-tx-mask-0 = <1 1>;
- 			dai-tdm-slot-tx-mask-1 = <1 1>;
-@@ -202,7 +202,7 @@ dai-link-3 {
- 			mclk-fs = <256>;
- 
- 			codec {
--				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_C>;
- 			};
- 		};
- 
-@@ -412,11 +412,11 @@ &spdifout_b {
- 	status = "okay";
- };
- 
--&tdmif_b {
-+&tdmif_c {
- 	status = "okay";
- };
- 
--&tdmout_b {
-+&tdmout_c {
- 	status = "okay";
- };
- 
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index 2cca20563a1d..99190a6ba6ff 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -1,5 +1,9 @@
+ # SPDX-License-Identifier: GPL-2.0
+ dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc.dtb
++
++apq8016-sbc-usb-host-dtbs	:= apq8016-sbc.dtb apq8016-sbc-usb-host.dtbo
++
++dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc-usb-host.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc-d3-camera-mezzanine.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= apq8039-t2.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
+diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc-usb-host.dtso b/arch/arm64/boot/dts/qcom/apq8016-sbc-usb-host.dtso
+new file mode 100644
+index 000000000000..a82c26b7eae8
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/apq8016-sbc-usb-host.dtso
+@@ -0,0 +1,8 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++
++/dts-v1/;
++/plugin/;
++
++&usb {
++         dr_mode = "host";
++};
 -- 
 2.40.1
 
