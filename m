@@ -2,129 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E5D679ACA8
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:37:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0BB079ACA1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:37:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234169AbjIKUuw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:50:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53702 "EHLO
+        id S236037AbjIKUtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:49:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242596AbjIKPx6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:53:58 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FEAE1AB
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:53:52 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-31ad779e6b3so4633555f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:53:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694447631; x=1695052431; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p3zHV6iao/svbvabAHUWRziqjkkVulJ/SFHDJG1zdw8=;
-        b=Jo1Ez3MVKvg1qxcMEU5pA1KjKQ+RXNTPuCDGSWySWwGVifm9m3pPSGfGHe9//4vDMj
-         KBlmdbEuvnGD4jb4Qsgf1M7pRsUx+MshbpHCjbWGvANGPCoGlvGPgvA9mMTX7qNhvifo
-         Xo0KAUXBfywtLae4R3KS3QjdzLzgRQeBWliqwHiVjCzZMOT/9nK6mZkYAAJLinNapAnV
-         hfYZ7HRJTHg+Dd5yYxGtB5bYSrzxTI/rtwuGeJYrMjXI7Uu28N++OVCHPMX86qdh+s8w
-         GHqg7NpNKrOQ7vQVzFdYoIplw0WmH2+U6NxvBMf8QeiOJbMtpwE8UF94qmThlzxAVh1N
-         2jtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694447631; x=1695052431;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p3zHV6iao/svbvabAHUWRziqjkkVulJ/SFHDJG1zdw8=;
-        b=uAi6fbm4NUBltbUoAPh/ucZdeiWU3BgIvXMX8+f2x8m6bc1gbUTL7+3EEp13rL845Q
-         pRUUEV5YeAVjA0owXJv74cydVsEPx20CY1jIN9yp4k2dhYFA506/whwdBi/kgabTn49V
-         fCEhIlmwASyZuyrCgVs7S850d+ZNMr3MBdo5RxVsvk9qIZbmslpIc7XzcKx498/M11yc
-         +V47qoiIxZbpCfRBMcJWrkypz0uEeMeb9w8VTCdqsNfl0lbR3nL35/QJK3zct+JQGXcm
-         mX8a2RKHij8PJgMDGcmbNkT6/N3g/bc0qndh7H/ikzvO0jv1zybeh6NJ0ggyJBYSIVIQ
-         CYiw==
-X-Gm-Message-State: AOJu0YzezEXDDx9vgW/dhOp7mHjXZK3I+Hjeggp3PK0OTS6Dg9x1dWgk
-        4QohKFMFLsljxo4CYyUU47wPHg==
-X-Google-Smtp-Source: AGHT+IH9qzC3rYF8IeSOT1RPV7CsdG0ReQBfjcjNjLurVYgv7naSOiSTRp7oUKIY9gGW+TXEpd81cQ==
-X-Received: by 2002:adf:de8a:0:b0:306:46c4:d313 with SMTP id w10-20020adfde8a000000b0030646c4d313mr7882614wrl.28.1694447630648;
-        Mon, 11 Sep 2023 08:53:50 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id n16-20020a05600c3b9000b003fe407ca05bsm14047580wms.37.2023.09.11.08.53.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Sep 2023 08:53:50 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Kevin Hilman <khilman@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>
-Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20230911154541.471484-1-jbrunet@baylibre.com>
-References: <20230911154541.471484-1-jbrunet@baylibre.com>
-Subject: Re: [PATCH 0/5] arm64: dts: meson: u200 audio clean up
-Message-Id: <169444762970.3994411.2239837675633536062.b4-ty@linaro.org>
-Date:   Mon, 11 Sep 2023 17:53:49 +0200
+        with ESMTP id S242624AbjIKP6F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:58:05 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1396D1B6;
+        Mon, 11 Sep 2023 08:58:01 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B36E2C433C7;
+        Mon, 11 Sep 2023 15:57:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694447880;
+        bh=TZqMa028quiSQSHPEyotkXIBKsiJ+ehaCJ4ItKr3fr4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=W9DI1iQ3Ai1faZto8k6V5a1/4EuSBX3Z9Rhu+CEy4exXRelKDiDxPGuleeVzBB6j8
+         Zr4GQ0mpDtzmjzriohiZDwQUQUl0sgid7HA0ay5PGNX2whgHzHoA+95rISUk2M8e9R
+         C3Ey9fveYbYnuNJTS4I//CKT0moZhAXRV1qg+oS4BmTBhjFmDxkDSR3QAF/b5M+adU
+         u4nlkvT5fDj0DTOtk/mtoKUZ828YVQ1M6YH56496f/wKl/wEBdvw3eACJGs5DW1uJv
+         IyIagmBTRQiqw1k86eE0zA20FIl6uE1bvsXDN3H0RO/E61jGCUa4EAg63hFw9b1ZYV
+         9sNCPUtsl6a2A==
+Date:   Mon, 11 Sep 2023 16:57:55 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Nicolas Ferre <nicolas.ferre@microchip.com>
+Cc:     Mihai Sain <mihai.sain@microchip.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
+        andre.przywara@arm.com, andrei.simion@microchip.com,
+        jerry.ray@microchip.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        cristian.birsan@microchip.com
+Subject: Re: [PATCH 1/2] dt-bindings: ARM: at91: Document Microchip SAMA5D29
+ Curiosity
+Message-ID: <20230911-chevron-overture-002166f20aad@spud>
+References: <20230801111151.6546-1-mihai.sain@microchip.com>
+ <20230801-unbalance-baguette-cd0d4e7e0107@spud>
+ <d0296fbd-63d9-10af-4326-68857c6580be@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="QhFBVfyMkBitxQNP"
+Content-Disposition: inline
+In-Reply-To: <d0296fbd-63d9-10af-4326-68857c6580be@microchip.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Mon, 11 Sep 2023 17:45:36 +0200, Jerome Brunet wrote:
-> This patchset fixes the recently merged audio support for u200 and adds the
-> missing onboard audio devices
-> 
-> Jerome Brunet (5):
->   arm64: dts: meson: u200: fix spdif output pin
->   arm64: dts: meson: u200: add missing audio clock controller
->   arm64: dts: meson: u200: add spdifout b routes
->   arm64: dts: meson: u200: use TDM C for HDMI
->   arm64: dts: meson: u200: add onboard devices
-> 
-> [...]
+--QhFBVfyMkBitxQNP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/arm64-dt)
+On Mon, Sep 11, 2023 at 05:03:07PM +0200, Nicolas Ferre wrote:
+> On 01/08/2023 at 17:35, Conor Dooley wrote:
+> > > diff --git a/Documentation/devicetree/bindings/arm/atmel-at91.yaml b/=
+Documentation/devicetree/bindings/arm/atmel-at91.yaml
+> > > index dfb8fd089197..89d75fbb1de4 100644
+> > > --- a/Documentation/devicetree/bindings/arm/atmel-at91.yaml
+> > > +++ b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
+> > > @@ -79,6 +79,13 @@ properties:
+> > >             - const: atmel,sama5d2
+> > >             - const: atmel,sama5
+> > > +      - description: Microchip SAMA5D29 Curiosity
+> > > +        items:
+> > > +          - const: microchip,sama5d29-curiosity
+> > > +          - const: atmel,sama5d29
+> > > +          - const: atmel,sama5d2
+> > > +          - const: atmel,sama5
+> > What is the benefit of adding the two familial compatibles? Is there
+> > software that actually uses these?
+>=20
+> "atmel,sama5d2" is used by arch/arm/mach-at91/sama5.c file
+> "atmel,sama5" is used by drivers/soc/atmel/soc.c file, so yes they are
+> needed to instantiate a sama5d29 SoC.
 
-[1/5] arm64: dts: meson: u200: fix spdif output pin
-      https://git.kernel.org/amlogic/c/66561cb158d0a25054bbcf423d59dd782311f60d
-[2/5] arm64: dts: meson: u200: add missing audio clock controller
-      https://git.kernel.org/amlogic/c/f9dc2d96e1bfb33635df7edf0a1b8572bbb20954
-[3/5] arm64: dts: meson: u200: add spdifout b routes
-      https://git.kernel.org/amlogic/c/4e47ea869289dab588c0152ec90d6eb5bf7f7169
-[4/5] arm64: dts: meson: u200: use TDM C for HDMI
-      https://git.kernel.org/amlogic/c/956236a24aec8364a3ee5d287e23c0c01cfb9c7c
-[5/5] arm64: dts: meson: u200: add onboard devices
-      https://git.kernel.org/amlogic/c/f1decbd5629bf0dbd3af3b2f803f72a27eb01c7f
+Okay.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-These changes has been applied on the intermediate git tree [1].
+Thanks,
+Conor.
 
-The v6.7/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+--QhFBVfyMkBitxQNP
+Content-Type: application/pgp-signature; name="signature.asc"
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+-----BEGIN PGP SIGNATURE-----
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZP85AwAKCRB4tDGHoIJi
+0tq7AQC31b777BGi1fMhydSbFoJ0l4+ytEoMg4vr7HbkC3GOMQD/Y3QYEk4qcMAv
+agWAci9nMQ/vVJ6irhfb07mu4xCpsQw=
+=9YnG
+-----END PGP SIGNATURE-----
 
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
-
+--QhFBVfyMkBitxQNP--
