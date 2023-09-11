@@ -2,261 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1C7379B8A9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:08:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E04B79B930
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:09:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233799AbjIKUtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:49:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48884 "EHLO
+        id S237461AbjIKUvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:51:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242395AbjIKPaT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:30:19 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73085CE5
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:30:12 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-5007616b756so7561754e87.3
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:30:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694446210; x=1695051010; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IewnJfJyIc3JF1ZmFRQB+j/PW2AOwYNqv6ATRNcWgHA=;
-        b=MSsPrJDKE5xoSmNh46Kaa2J0koTBNgoYVM3y3IGS8j/GqYohrp2r34J0cCGJFCoYyb
-         bua0xQOqRN/faoadazGZcAiC6QzRRrg4MMnk+di9x3met538a1jFaNgcHVjkSgLhfvDR
-         JyKxEhWqGjCLD7EGiefBBrT+7fQLd+OrCFqqlh1FuxbwecesoaEyQt1qBS6b93HCDxWD
-         qxupakS10sE8YCdeXS4esjlMNHOf1S0SE3GSOttS9nrryvyei38Zb8ZFYqRaRBX3QDNZ
-         wj7bFjpMn6I0Vgq6PkIGnsHoDRAYokoeBiqka5BowLuuulnO6Y/qgjkIWio6z0QHCS8r
-         pUwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694446210; x=1695051010;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IewnJfJyIc3JF1ZmFRQB+j/PW2AOwYNqv6ATRNcWgHA=;
-        b=t+XB7QbtJhB8Apkf8RpyHJYkJy9rQQ3uRGSHaY7F03dlJXltCDz0UQ4Xui75JniLHw
-         VUofObIX776zYs7iHewJe3FoTqEL23gAZL6YbhR3+aXjmASdbfhF6H7p7j80b2ACWk0d
-         rr6lglEmjkVLRHlO4AwVN1eY4I4Lc/1GTKvCub43Cfg8lvBvoE7inlIcBd7u9HV8TesW
-         bsB2ItG4PQhXZgtFdPiHrpi1FBcgsH10TY2N3TrOIGOsyiofcbqzh5GGprXio30uPYID
-         +hYMcK7gotuto8feG3DGBfaA1WLUMA6eLRteWE99ui14XIZU4myPVLmBSJOVQZ0PNnSX
-         v6gg==
-X-Gm-Message-State: AOJu0YwqGsrZWy+F1Xij8tTS1n2cxXZVI4WJRwvxIzEu+3/odKAdVdlq
-        vn9yMG8NTRsM4O5JMH15J0ps/Q==
-X-Google-Smtp-Source: AGHT+IGk3bVe3SE1qLDOb/MT3TwaHl4EvuUcgJ1iHxbI55reTaiI7wcaDe1/Z2ro+fK9iZ8cENhnaw==
-X-Received: by 2002:a05:6512:1592:b0:4fb:fe97:5e35 with SMTP id bp18-20020a056512159200b004fbfe975e35mr11258000lfb.47.1694446210474;
-        Mon, 11 Sep 2023 08:30:10 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id w5-20020ac25985000000b00500a4679148sm1383886lfn.20.2023.09.11.08.30.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Sep 2023 08:30:09 -0700 (PDT)
-Message-ID: <e95c5633-8a36-4500-8414-70b7b201a85e@linaro.org>
-Date:   Mon, 11 Sep 2023 18:30:09 +0300
+        with ESMTP id S242450AbjIKPgZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:36:25 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69B49E9;
+        Mon, 11 Sep 2023 08:36:19 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id BAB6C40004;
+        Mon, 11 Sep 2023 15:35:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1694446577;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=3ANDeLZjV5lzAaJjoCPyh76BQ46mQC+o7bmbGehRwMY=;
+        b=X//OkO1AojU8koknd9JyYVKBEmbSLqFNl9OMqJS8PHtuhmXasUTxRa8dd4d432BoBRTAa3
+        liY5GQszHTiWjz1YCdXghxRFaeAXGSeCDkfyR6aQYey1c/yvEWPjm+16dK+eDv89BWP7tL
+        thlyLBEhWXqlsMO0EZQUsbi5wJLMnJ0W3TB73HdjYnmPjLPkxZdPbZznbdcu42ZCPSzyGO
+        TwqcJkY0YxKFXCdci0kpINnBoVJxuqyPmXj11A4/Y2Y9JnUA1OCp4gjAzmObtaLwXOQmfr
+        /L2yxRRMzThTPfumWfup1XLJeNwYthK0yvuv0qxs3uI/fJGeiuv7Z0oXwQmpLQ==
+Date:   Mon, 11 Sep 2023 17:35:03 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc:     Lizhi Hou <lizhi.hou@amd.com>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <robh@kernel.org>, <max.zhen@amd.com>, <sonal.santan@amd.com>,
+        <stefano.stabellini@xilinx.com>,
+        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH V13 2/5] PCI: Create device tree node for bridge
+Message-ID: <20230911173503.0db85e4b@bootlin.com>
+In-Reply-To: <20230911154856.000076c3@Huawei.com>
+References: <1692120000-46900-1-git-send-email-lizhi.hou@amd.com>
+        <1692120000-46900-3-git-send-email-lizhi.hou@amd.com>
+        <20230911154856.000076c3@Huawei.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/10] drm/msm/a6xx: Add skeleton A7xx support
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-References: <20230628-topic-a7xx_drmmsm-v3-0-4ee67ccbaf9d@linaro.org>
- <20230628-topic-a7xx_drmmsm-v3-5-4ee67ccbaf9d@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230628-topic-a7xx_drmmsm-v3-5-4ee67ccbaf9d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2023 15:55, Konrad Dybcio wrote:
-> A7xx GPUs are - from kernel's POV anyway - basically another generation
-> of A6xx. They build upon the A650/A660_family advancements, skipping some
-> writes (presumably more values are preset correctly on reset), adding
-> some new ones and changing others.
-> 
-> One notable difference is the introduction of a second shadow, called BV.
-> To handle this with the current code, allocate it right after the current
-> RPTR shadow.
-> 
-> BV handling and .submit are mostly based on Jonathan Marek's work.
-> 
-> All A7xx GPUs are assumed to have a GMU.
-> A702 is not an A7xx-class GPU, it's a weird forked A610.
-> 
-> Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8550-QRD
-> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # sm8450
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   drivers/gpu/drm/msm/adreno/a6xx_gmu.c   |  95 +++++--
->   drivers/gpu/drm/msm/adreno/a6xx_gpu.c   | 451 ++++++++++++++++++++++++++++----
->   drivers/gpu/drm/msm/adreno/adreno_gpu.c |   1 +
->   drivers/gpu/drm/msm/adreno/adreno_gpu.h |  10 +-
->   drivers/gpu/drm/msm/msm_ringbuffer.h    |   2 +
->   5 files changed, 478 insertions(+), 81 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
-> index 03fa89bf3e4b..75984260898e 100644
-> --- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
-> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
-> @@ -200,9 +200,10 @@ int a6xx_gmu_wait_for_idle(struct a6xx_gmu *gmu)
->   
->   static int a6xx_gmu_start(struct a6xx_gmu *gmu)
->   {
-> +	struct a6xx_gpu *a6xx_gpu = container_of(gmu, struct a6xx_gpu, gmu);
-> +	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
-> +	u32 mask, reset_val, val;
->   	int ret;
-> -	u32 val;
-> -	u32 mask, reset_val;
->   
->   	val = gmu_read(gmu, REG_A6XX_GMU_CM3_DTCM_START + 0xff8);
->   	if (val <= 0x20010004) {
-> @@ -218,7 +219,11 @@ static int a6xx_gmu_start(struct a6xx_gmu *gmu)
->   	/* Set the log wptr index
->   	 * note: downstream saves the value in poweroff and restores it here
->   	 */
-> -	gmu_write(gmu, REG_A6XX_GPU_GMU_CX_GMU_PWR_COL_CP_RESP, 0);
-> +	if (adreno_is_a7xx(adreno_gpu))
-> +		gmu_write(gmu, REG_A6XX_GMU_GENERAL_9, 0);
-> +	else
-> +		gmu_write(gmu, REG_A6XX_GPU_GMU_CX_GMU_PWR_COL_CP_RESP, 0);
-> +
->   
->   	gmu_write(gmu, REG_A6XX_GMU_CM3_SYSRESET, 0);
->   
-> @@ -518,7 +523,9 @@ static void a6xx_gmu_rpmh_init(struct a6xx_gmu *gmu)
->   	if (IS_ERR(pdcptr))
->   		goto err;
->   
-> -	if (adreno_is_a650(adreno_gpu) || adreno_is_a660_family(adreno_gpu))
-> +	if (adreno_is_a650(adreno_gpu) ||
-> +	    adreno_is_a660_family(adreno_gpu) ||
-> +	    adreno_is_a7xx(adreno_gpu))
->   		pdc_in_aop = true;
->   	else if (adreno_is_a618(adreno_gpu) || adreno_is_a640_family(adreno_gpu))
->   		pdc_address_offset = 0x30090;
-> @@ -550,7 +557,8 @@ static void a6xx_gmu_rpmh_init(struct a6xx_gmu *gmu)
->   	gmu_write_rscc(gmu, REG_A6XX_RSCC_PDC_MATCH_VALUE_HI, 0x4514);
->   
->   	/* Load RSC sequencer uCode for sleep and wakeup */
-> -	if (adreno_is_a650_family(adreno_gpu)) {
-> +	if (adreno_is_a650_family(adreno_gpu) ||
-> +	    adreno_is_a7xx(adreno_gpu)) {
->   		gmu_write_rscc(gmu, REG_A6XX_RSCC_SEQ_MEM_0_DRV0, 0xeaaae5a0);
->   		gmu_write_rscc(gmu, REG_A6XX_RSCC_SEQ_MEM_0_DRV0 + 1, 0xe1a1ebab);
->   		gmu_write_rscc(gmu, REG_A6XX_RSCC_SEQ_MEM_0_DRV0 + 2, 0xa2e0a581);
-> @@ -635,11 +643,18 @@ static void a6xx_gmu_rpmh_init(struct a6xx_gmu *gmu)
->   /* Set up the idle state for the GMU */
->   static void a6xx_gmu_power_config(struct a6xx_gmu *gmu)
->   {
-> +	struct a6xx_gpu *a6xx_gpu = container_of(gmu, struct a6xx_gpu, gmu);
-> +	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
-> +
->   	/* Disable GMU WB/RB buffer */
->   	gmu_write(gmu, REG_A6XX_GMU_SYS_BUS_CONFIG, 0x1);
->   	gmu_write(gmu, REG_A6XX_GMU_ICACHE_CONFIG, 0x1);
->   	gmu_write(gmu, REG_A6XX_GMU_DCACHE_CONFIG, 0x1);
->   
-> +	/* A7xx knows better by default! */
-> +	if (adreno_is_a7xx(adreno_gpu))
-> +		return;
-> +
->   	gmu_write(gmu, REG_A6XX_GMU_PWR_COL_INTER_FRAME_CTRL, 0x9c40400);
->   
->   	switch (gmu->idle_level) {
-> @@ -702,7 +717,7 @@ static int a6xx_gmu_fw_load(struct a6xx_gmu *gmu)
->   	u32 itcm_base = 0x00000000;
->   	u32 dtcm_base = 0x00040000;
->   
-> -	if (adreno_is_a650_family(adreno_gpu))
-> +	if (adreno_is_a650_family(adreno_gpu) || adreno_is_a7xx(adreno_gpu))
->   		dtcm_base = 0x10004000;
->   
->   	if (gmu->legacy) {
-> @@ -751,14 +766,22 @@ static int a6xx_gmu_fw_start(struct a6xx_gmu *gmu, unsigned int state)
->   {
->   	struct a6xx_gpu *a6xx_gpu = container_of(gmu, struct a6xx_gpu, gmu);
->   	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
-> +	u32 fence_range_lower, fence_range_upper;
->   	int ret;
->   	u32 chipid;
->   
-> -	if (adreno_is_a650_family(adreno_gpu)) {
-> +	/* Vote veto for FAL10 */
-> +	if (adreno_is_a650_family(adreno_gpu) || adreno_is_a7xx(adreno_gpu)) {
->   		gmu_write(gmu, REG_A6XX_GPU_GMU_CX_GMU_CX_FALNEXT_INTF, 1);
->   		gmu_write(gmu, REG_A6XX_GPU_GMU_CX_GMU_CX_FAL_INTF, 1);
->   	}
->   
-> +	/* Turn on TCM (Tightly Coupled Memory) retention */
-> +	if (adreno_is_a7xx(adreno_gpu))
-> +		a6xx_llc_write(a6xx_gpu, REG_A7XX_CX_MISC_TCM_RET_CNTL, 1);
-> +	else
-> +		gmu_write(gmu, REG_A6XX_GMU_GENERAL_7, 1);
-> +
->   	if (state == GMU_WARM_BOOT) {
->   		ret = a6xx_rpmh_start(gmu);
->   		if (ret)
-> @@ -768,9 +791,6 @@ static int a6xx_gmu_fw_start(struct a6xx_gmu *gmu, unsigned int state)
->   			"GMU firmware is not loaded\n"))
->   			return -ENOENT;
->   
-> -		/* Turn on register retention */
-> -		gmu_write(gmu, REG_A6XX_GMU_GENERAL_7, 1);
-> -
->   		ret = a6xx_rpmh_start(gmu);
->   		if (ret)
->   			return ret;
-> @@ -780,6 +800,7 @@ static int a6xx_gmu_fw_start(struct a6xx_gmu *gmu, unsigned int state)
->   			return ret;
->   	}
->   
-> +	/* Clear init result to make sure we are getting a fresh value */
->   	gmu_write(gmu, REG_A6XX_GMU_CM3_FW_INIT_RESULT, 0);
->   	gmu_write(gmu, REG_A6XX_GMU_CM3_BOOT_CONFIG, 0x02);
->   
-> @@ -787,8 +808,18 @@ static int a6xx_gmu_fw_start(struct a6xx_gmu *gmu, unsigned int state)
->   	gmu_write(gmu, REG_A6XX_GMU_HFI_QTBL_ADDR, gmu->hfi.iova);
->   	gmu_write(gmu, REG_A6XX_GMU_HFI_QTBL_INFO, 1);
->   
-> +	if (adreno_is_a7xx(adreno_gpu)) {
-> +		fence_range_upper = 0x32;
-> +		fence_range_lower = 0x8a0;
-> +	} else {
-> +		fence_range_upper = 0xa;
-> +		fence_range_lower = 0xa0;
-> +	}
-> +
->   	gmu_write(gmu, REG_A6XX_GMU_AHB_FENCE_RANGE_0,
-> -		(1 << 31) | (0xa << 18) | (0xa0));
-> +		  BIT(31) |
-> +		  FIELD_PREP(GENMASK(30, 18), fence_range_upper) |
-> +		  FIELD_PREP(GENMASK(17, 0), fence_range_lower));
+Hi Jonathan,
 
-This fails on arm32 because of the missing #include <linux/bitfields.h>
+On Mon, 11 Sep 2023 15:48:56 +0100
+Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
 
->   
->   	/*
->   	 * Snapshots toggle the NMI bit which will result in a jump to the NMI
+> On Tue, 15 Aug 2023 10:19:57 -0700
+> Lizhi Hou <lizhi.hou@amd.com> wrote:
+> 
+> > The PCI endpoint device such as Xilinx Alveo PCI card maps the register
+> > spaces from multiple hardware peripherals to its PCI BAR. Normally,
+> > the PCI core discovers devices and BARs using the PCI enumeration process.
+> > There is no infrastructure to discover the hardware peripherals that are
+> > present in a PCI device, and which can be accessed through the PCI BARs.
+> > 
+> > Apparently, the device tree framework requires a device tree node for the
+> > PCI device. Thus, it can generate the device tree nodes for hardware
+> > peripherals underneath. Because PCI is self discoverable bus, there might
+> > not be a device tree node created for PCI devices. Furthermore, if the PCI
+> > device is hot pluggable, when it is plugged in, the device tree nodes for
+> > its parent bridges are required. Add support to generate device tree node
+> > for PCI bridges.
+> > 
+> > Add an of_pci_make_dev_node() interface that can be used to create device
+> > tree node for PCI devices.
+> > 
+> > Add a PCI_DYNAMIC_OF_NODES config option. When the option is turned on,
+> > the kernel will generate device tree nodes for PCI bridges unconditionally.
+> > 
+> > Initially, add the basic properties for the dynamically generated device
+> > tree nodes which include #address-cells, #size-cells, device_type,
+> > compatible, ranges, reg.
+> > 
+> > Acked-by: Bjorn Helgaas <bhelgaas@google.com>
+> > Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>  
+> 
+> I tried to bring this up for a custom PCIe card emulated in QEMU on an ARM ACPI
+> machine.
+> 
+> There are some missing parts that were present in Clements series, but not this
+> one, particularly creation of the root pci object.
+> 
+> Anyhow, hit an intermittent crash...
+
+I am facing the same issues.
+
+I use a custom PCIe board too but on x86 ACPI machine.
+
+In order to have a working system, I need also to build a DT node for the PCI
+Host bridge (previously done by Clement's patch) and I am a bit stuck with
+interrupts.
+
+On your side (ACPI machine) how do you handle this ?
+I mean is your PCI host bridge provided by ACPI ? And if so, you probably need
+to build a DT node for this PCI host bridge and add some interrupt-map,
+interrupt-map-mask properties in the DT node.
+
+Best regards,
+Hervé
 
 -- 
-With best wishes
-Dmitry
-
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
