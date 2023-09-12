@@ -2,92 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3962979D764
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 19:18:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 702B079D76E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 19:22:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237010AbjILRSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 13:18:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34244 "EHLO
+        id S233506AbjILRWL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 13:22:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237006AbjILRSR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 13:18:17 -0400
+        with ESMTP id S232252AbjILRWL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 13:22:11 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07C8310F4;
-        Tue, 12 Sep 2023 10:18:14 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8967CC433C8;
-        Tue, 12 Sep 2023 17:18:13 +0000 (UTC)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4184810D9;
+        Tue, 12 Sep 2023 10:22:07 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5492C433C8;
+        Tue, 12 Sep 2023 17:22:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694539093;
-        bh=+2q46O7efDXVGtNITaVnlXpqniY/rjlpX0v8ey8+6L0=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=fgFTkWWLOfuQzE/RIqe1KySaJA0A6/r1GgKbxoH2HvpA9PiX4Fmq2wZ0+RIifXEFo
-         ArgRoNDAQxa2IZjNtwQIwfwP25wDrnGaeOKu1p+6eRCIjTbuWjJVckt0t87hWvZwwn
-         TJSM+HTmP8j6wQdDGbwVRGQuaI4wIdi/cQJNW0dKbK9+72cXNqOLqhmuRMq5kZ7P8M
-         hU/pOqpFd121kKYuOotZJDhKqvZc85Dhcye8la7Fbim9Qfn+IB+nxo2/yVkSO0LMd+
-         QKHBiiuths6GeyeGXHnEuncCEkVv7Y+XckSEvHTSvjZynHvLtr+P/9Nh7vzrcZNJ08
-         aUdpNTF7QBH0g==
-Message-ID: <82adb75659e0d278e25b65b0e81df99a.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+        s=k20201202; t=1694539326;
+        bh=rRrJDnsPwd8jMYw4Teztqav9PlNugqhsqBqwAuwaVlo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Iii5UWu1mdHxD2eSbuXqs6kx4AHgW0/LoRft/f7lyOXJm52Rgi8Ss5jvrOQ7BrJTL
+         HGjHS80pVjavTF4tfpykYr5T/7fkgKiE9YpmlWEPyBR3aNc+/hYiE191mnmhexl3o1
+         CRosDNzzFYjKhuhcjmbbUjN7j01k4T3tOUv4i5jUygNoHPfOGH8XZQUtk5OaNdJ9eW
+         pYLBfVy1Flo6/FS3VYYYvSj35AGFS9ADHfByzFRZStVVmWm0ObNv49tZznX+1faQlU
+         TpLaRb6QGs2E99A0+EPgis0PHVuXqBCvx2SRZ1SqYeDb/y2Uldr0StaNvnp99RkhVo
+         nBx3TcaF+l1Gw==
+Date:   Tue, 12 Sep 2023 18:21:58 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+        Simon Horman <horms@kernel.org>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 08/31] dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc:
+ Add support for QMC HDLC
+Message-ID: <20230912-capable-stash-c7a3e33078ac@spud>
+References: <20230912081527.208499-1-herve.codina@bootlin.com>
+ <20230912101018.225246-1-herve.codina@bootlin.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <f67b354c-8a4b-49f5-6275-66b7d614301a@quicinc.com>
-References: <20230901091823.30242-1-quic_luoj@quicinc.com> <20230901091823.30242-5-quic_luoj@quicinc.com> <27ae3297ad161fd67706db70b402db04.sboyd@kernel.org> <16d09acf-7bdd-04ee-6faf-936c0366df03@quicinc.com> <17681a9f756cc70a190c674c51b90140.sboyd@kernel.org> <5a4805f7-f802-b1ba-9804-59c0fe6c7f26@quicinc.com> <92058c25fb11b75ee0a2298a684825e9.sboyd@kernel.org> <f67b354c-8a4b-49f5-6275-66b7d614301a@quicinc.com>
-Subject: Re: [PATCH v6 4/4] clk: qcom: add clock controller driver for qca8386/qca8084
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_srichara@quicinc.com
-To:     Jie Luo <quic_luoj@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, catalin.marinas@arm.com, conor+dt@kernel.org,
-        konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        mturquette@baylibre.com, p.zabel@pengutronix.de,
-        robh+dt@kernel.org, will@kernel.org
-Date:   Tue, 12 Sep 2023 10:18:11 -0700
-User-Agent: alot/0.10
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="bf5FPf5K5KaccQV9"
+Content-Disposition: inline
+In-Reply-To: <20230912101018.225246-1-herve.codina@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Jie Luo (2023-09-12 05:07:02)
->=20
->=20
-> On 9/12/2023 4:11 AM, Stephen Boyd wrote:
-> > Quoting Jie Luo (2023-09-08 04:10:35)
-> >>
-> >> For example, when the uniphy works on PHY_INTERFACE_MODE_2500BASEX, th=
-en
-> >> the parent uniphy clock rate is 312.5M, which is decided by hardware a=
-nd
-> >> can't be changed. when a branch clock requires a 25M clock, the parent
-> >> uniphy clock maybe updated to 125M by clock framework if the flag
-> >> CLK_SET_RATE_PARENT is set here, but the actual hardware clock rate of
-> >> uniphy is still 315.5M since the uniphy still works in the interface
-> >> mode PHY_INTERFACE_MODE_2500BASEX.
-> >>
-> >=20
-> > If the parent rate can't change because CLK_SET_RATE_PARENT is missing
-> > and the hardware doesn't allow it, then perhaps instead of having a
-> > frequency table we should have rcg clk ops for determine_rate that
-> > simply looks at the parent rates and finds the rate closest to what is
-> > desired. And for the set_rate clk_op we can have it be simple and just
-> > program a fixed divider. The benefit is less frequency tables that don't
-> > do anything and less hard-coding of the frequency. I thought we already
-> > had those rcg clk_ops but I couldn't find them with a quick glance.
->=20
-> Thanks Stephen for the suggestion.
-> looks you are saying the clk ops clk_dp_ops for the fix parent rate?=20
-> which seems not meet the clock requirement of this clock.
 
-Yeah that is close, but the determine_rate clk_op needs to look at all
-possible parents. With the dp clk_ops we assume that only one parent is
-possible.
+--bf5FPf5K5KaccQV9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Sep 12, 2023 at 12:10:18PM +0200, Herve Codina wrote:
+> The QMC (QUICC mutichannel controller) is a controller present in some
+> PowerQUICC SoC such as MPC885.
+> The QMC HDLC uses the QMC controller to transfer HDLC data.
 >=20
-> For the device qca8k, it is also possible to switch the interface modes=20
-> between PHY_INTERFACE_MODE_2500BASEX(312.5M) and=20
-> PHY_INTERFACE_MODE_SGMII(125M) during the running time, and there are=20
-> multiple parent clock source(P_UNIPHY0_RX or P_UNIPHY0_TX) for the RCG=20
-> clocks to select according to the current work mode. so the parent_map=20
-> and freq_tbl are necessary to this clock.
+> Additionally, a framer can be connected to the QMC HDLC.
+> If present, this framer is the interface between the TDM bus used by the
+> QMC HDLC and the E1/T1 line.
+> The QMC HDLC can use this framer to get information about the E1/T1 line
+> and configure the E1/T1 line.
+>=20
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  .../bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml   | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-sc=
+c-qmc.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-=
+qmc.yaml
+> index 82d9beb48e00..b5073531f3f1 100644
+> --- a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.y=
+aml
+> +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.y=
+aml
+> @@ -101,6 +101,16 @@ patternProperties:
+>            Channel assigned Rx time-slots within the Rx time-slots routed=
+ by the
+>            TSA to this cell.
+> =20
+> +      compatible:
+> +        const: fsl,qmc-hdlc
+> +
+> +      fsl,framer:
+> +        $ref: /schemas/types.yaml#/definitions/phandle
+> +        description:
+> +          phandle to the framer node. The framer is in charge of an E1/T=
+1 line
+> +          interface connected to the TDM bus. It can be used to get the =
+E1/T1 line
+> +          status such as link up/down.
 
-I still don't see why the freq_tbl is necessary.
+Sounds like this fsl,framer property should depend on the compatible
+being present, no?
+
+Thanks,
+Conor.
+
+> +
+>      required:
+>        - reg
+>        - fsl,tx-ts-mask
+> @@ -159,5 +169,8 @@ examples:
+>              fsl,operational-mode =3D "hdlc";
+>              fsl,tx-ts-mask =3D <0x00000000 0x0000ff00>;
+>              fsl,rx-ts-mask =3D <0x00000000 0x0000ff00>;
+> +
+> +            compatible =3D "fsl,qmc-hdlc";
+> +            fsl,framer =3D <&framer>;
+>          };
+>      };
+> --=20
+> 2.41.0
+>=20
+
+--bf5FPf5K5KaccQV9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQCeNgAKCRB4tDGHoIJi
+0iOYAQDpq19XBQVxAut3ryCZTWFRliPi5kerZHMkKGzgUwIbKwEA+gnc9IR2Iao6
+Qt/bYjPuz9mjrBe0gcXcC3CDZicWwAE=
+=QoY/
+-----END PGP SIGNATURE-----
+
+--bf5FPf5K5KaccQV9--
