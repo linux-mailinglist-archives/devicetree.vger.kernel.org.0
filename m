@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F5AF79D28D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 15:44:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01F2A79D28F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 15:44:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235637AbjILNoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 09:44:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44500 "EHLO
+        id S235670AbjILNoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 09:44:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235526AbjILNoh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 09:44:37 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38C2C10D0
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 06:44:33 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2bfb12b24e5so166311fa.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 06:44:33 -0700 (PDT)
+        with ESMTP id S235636AbjILNoi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 09:44:38 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BD6C10D7
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 06:44:34 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-5007616b756so9309089e87.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 06:44:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694526271; x=1695131071; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=LqEXetn7S/Qdpis0iF4PB46W2IEBIemF0WMhXfkuJNg=;
-        b=WX+dwjclAPwOUZ4WmmxGfCkvvMhyCxYZ5PeCtK7SNBvc3KG7/yIHeJUq9+Mo2hZL/O
-         Sb0oCqkwsfNNztN2vBGrQfaypqR+L1WJQWY9hf9r9xJK2TcYRyE5zeWbzQilRxyG6Hbk
-         nHMcH7pbcOolTf5nzk908Us1QYPiUKBU25GcAKj++5iw2XVq2q1DjZI7Cmy8B5QrIV0Q
-         2ULQscYsJ37nv9LmO53D9f2aIPnE6ToZ9WKjDCBOyDc8VDW1bbaNmQrgd0kxTeZxIHNn
-         4/Lcs14pEn4JHEEC4nNPAivU1uG0Kw9cP7BG+LD8Os/2iTqA9KcRe5IdQPeFlirzGonU
-         pqwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694526271; x=1695131071;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1694526272; x=1695131072; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=LqEXetn7S/Qdpis0iF4PB46W2IEBIemF0WMhXfkuJNg=;
-        b=K/p32bYe8V4TSM34IQgWxef/CodbFLSAmw8xjeLtN7NE64hMrBkYXOiV2nRO/6b2Nx
-         PIKDhBNz9dMi2+4zq6aU9IsJqyrGM/JFxBQ1y/ROAnsGcyrVObR4s2I9R5VjWbFwxP8b
-         Qs6izeVkKMqI/NVvBd36KYpcWTs1Bclk7YddFlEBrL0R7ZLT7uGw9+6Jnmx99ByCkJkj
-         Pjflc4UIVa1Wk5mcuFvOJ/07Yzf38s20RAFL7yI8v4sgaDGKpmXlKH++MiueipEWD7pp
-         scqqnpf4k3Py/OOcPEQSRwLjHaD7nGI0J92CFyZKeBToGyJ7xCAVkZm1GW6ttOeOQl5a
-         kClQ==
-X-Gm-Message-State: AOJu0YyYMmMYef5jPUSDXKn+CVxkrZtFMOJoX7lLRu790fbHH1WiPq1q
-        ral7WiMZ97vfZgWiO2b4ur5OOg==
-X-Google-Smtp-Source: AGHT+IEo89uii1zTosruLmOdCqBsm5JCTq0FHFuDWHzgBJ/fnXoADgua8Rk9pZT2u0stjzt78VvlRw==
-X-Received: by 2002:a05:6512:3189:b0:500:b0e8:a899 with SMTP id i9-20020a056512318900b00500b0e8a899mr11452651lfe.30.1694526271445;
-        Tue, 12 Sep 2023 06:44:31 -0700 (PDT)
+        bh=zr1tndUa8GJ+rpTLKAA728oy8bkiMEVH1LyXXvtzocQ=;
+        b=ljM6uTY8TLHrVWuTsqAw98/sjye7NvFIIU3xXeOnql3N4k1SPvpvXiwUf8SON2sqnz
+         ITjEEDogB8bX2WuCiSdq0dKuwwLHq8S07PeW4xPVAYg1XoFCH96oN4ikRQDSvpR+epoe
+         SmgcaxYsEPLlL63QynjdtpmnUwOeMz66roO3HYiFupf7iBO1IRejrDuUWVXc0oWhVVbC
+         FtBgrUiWVOl1ZDetmCXhCNNZzpvaYDvuLG+rBRnKV16KlCPkiNVdI4X0nL7WnPwjYNlB
+         qXSKYM7y1HAsRSYN9P1fkBU3f72cPZyl9RtPFw5akLjhapJQlE8pBEYi32lyFSH1utji
+         HdCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694526272; x=1695131072;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zr1tndUa8GJ+rpTLKAA728oy8bkiMEVH1LyXXvtzocQ=;
+        b=I7ZYGjoSnljp+lfcmX+6eC8rGbPufqHi4uhMle9NOsDc7+3l9p+iBGVlQqj5s/33yu
+         0Xnt7/iYKgmNoQGn88LyaJ+oBnlw8Pv/yqQsQpvD+5p18Uuq0rvfjrwOpVn/FB+lo0J/
+         QajWvqrmAWGbTUI22Q/ElynDx7tS7B2O4pYWaK3UtssznseLePghwFI4SkdKKocS4zvk
+         OUb8Y7G9OzFoiBjpzA5OIrLvNRNT8zPMIPCUy3bhfkRWpWYVwPltkPFzPuI+i7ow2Rg0
+         EnihPCXL9uWC8+XF+2vkaEtJ0VAVYv5st0JnRVEBBrx6AMk/oGUH8n+Lenae+XSdRwpb
+         ntzQ==
+X-Gm-Message-State: AOJu0Yz754geLaSDRVp84ETTN8iemTDo5hsuSgz4sug8voeIo5/VSyII
+        g17Han/MjZKDa1KNv0a559ITnQ==
+X-Google-Smtp-Source: AGHT+IExYOF8Z1H2+7WrYkOmXEqxoUhVgHZ5qH3K2fmA63lrB/Qf8UcVmXqkOUgjL2O2q/QfFc1XVQ==
+X-Received: by 2002:a05:6512:3082:b0:501:be3d:8a46 with SMTP id z2-20020a056512308200b00501be3d8a46mr12680112lfd.26.1694526272217;
+        Tue, 12 Sep 2023 06:44:32 -0700 (PDT)
 Received: from [127.0.1.1] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id y6-20020ac255a6000000b00500a2091e30sm1755020lfg.115.2023.09.12.06.44.30
+        by smtp.gmail.com with ESMTPSA id y6-20020ac255a6000000b00500a2091e30sm1755020lfg.115.2023.09.12.06.44.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Tue, 12 Sep 2023 06:44:31 -0700 (PDT)
 From:   Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH 0/2] Rewrite GPIO LED trigger to use trigger-sources
-Date:   Tue, 12 Sep 2023 15:44:29 +0200
-Message-Id: <20230912-gpio-led-trigger-dt-v1-0-1b50e3756dda@linaro.org>
+Date:   Tue, 12 Sep 2023 15:44:30 +0200
+Subject: [PATCH 1/2] dt-bindings: leds: Mention GPIO triggers
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAD1rAGUC/x3MMQqAMAxA0atIZgNtnPQq4mBtrAFpJS0iSO9uc
- XzD/y9kVuEMU/eC8i1ZUmywfQfbscbAKL4ZyNBgRmsxXJLwZI9FJQRW9AVHIueY7L4SQSsv5V2
- e/zovtX4cyOn/ZQAAAA==
+Message-Id: <20230912-gpio-led-trigger-dt-v1-1-1b50e3756dda@linaro.org>
+References: <20230912-gpio-led-trigger-dt-v1-0-1b50e3756dda@linaro.org>
+In-Reply-To: <20230912-gpio-led-trigger-dt-v1-0-1b50e3756dda@linaro.org>
 To:     =?utf-8?q?Jan_Kundr=C3=A1t?= <jan.kundrat@cesnet.cz>,
         Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -72,26 +72,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This rewrites the platform-data GPIO LED trigger to instead
-use fwnode trigger-sources to describe the LED used.
+We reuse the trigger-sources phandle to just point to
+GPIOs we may want to use as LED triggers.
 
-This will work out-of-the-box with e.g. device tree.
+Example:
+
+gpio: gpio@0 {
+    compatible "my-gpio";
+    gpio-controller;
+    #gpio-cells = <2>;
+    interrupt-controller;
+    #interrupt-cells = <2>;
+    #trigger-source-cells = <2>;
+};
+
+leds {
+    compatible = "gpio-leds";
+    led-my-gpio {
+        label = "device:blue:myled";
+        gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
+        default-state = "off";
+        linux,default-trigger = "gpio";
+        trigger-sources = <&gpio 1 GPIO_ACTIVE_HIGH>;
+    };
+};
 
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
-Linus Walleij (2):
-      dt-bindings: leds: Mention GPIO triggers
-      leds: triggers: gpio: Rewrite to use trigger-sources
+ Documentation/devicetree/bindings/leds/common.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- Documentation/devicetree/bindings/leds/common.yaml |   2 +
- drivers/leds/trigger/Kconfig                       |   5 +-
- drivers/leds/trigger/ledtrig-gpio.c                | 136 ++++++---------------
- 3 files changed, 42 insertions(+), 101 deletions(-)
----
-base-commit: 0bb80ecc33a8fb5a682236443c1e740d5c917d1d
-change-id: 20230911-gpio-led-trigger-dt-922bbe21fa22
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index 5fb7007f3618..b42950643b9d 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -191,6 +191,8 @@ properties:
+       each of them having its own LED assigned (assuming they are not
+       hardwired). In such cases this property should contain phandle(s) of
+       related source device(s).
++      Another example is a GPIO line that will be monitored and mirror the
++      state of the line (with or without inversion flags) to the LED.
+       In many cases LED can be related to more than one device (e.g. one USB LED
+       vs. multiple USB ports). Each source should be represented by a node in
+       the device tree and be referenced by a phandle and a set of phandle
 
-Best regards,
 -- 
-Linus Walleij <linus.walleij@linaro.org>
+2.34.1
 
