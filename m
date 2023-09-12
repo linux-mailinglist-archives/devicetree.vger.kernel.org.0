@@ -2,138 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0C5579C854
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 09:39:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C95279C8AD
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 09:51:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231688AbjILHjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 03:39:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41468 "EHLO
+        id S232036AbjILHvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 03:51:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229675AbjILHjj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 03:39:39 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB2F2E7C;
-        Tue, 12 Sep 2023 00:39:35 -0700 (PDT)
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38C3N8bC006265;
-        Tue, 12 Sep 2023 09:39:15 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-        message-id:date:mime-version:subject:to:cc:references:from
-        :in-reply-to:content-type:content-transfer-encoding; s=
-        selector1; bh=W6ZFSny7x5hTX7VHE3RAqqRXrh5zcFFP1oA9ZYe1TR0=; b=O6
-        sEC3DWDxvkpK0fP1ZfbdNaRLyz8DljJOJRxQLP6ZnPjlk1F3sauZHJU4q5Nau8Oh
-        pyPoKMerndpDvj4If+UI6pm5XzLqujorcuntOJvNCgQ7TgWxDFa4rmfDrBRNhvgY
-        DHc1ad/Wgev9ePRbu/lF/7CNHM0pXZreVgsft2F8eicATDeTNEfuuu1bjWdxDvuo
-        MhYyoNLjI0gDrO/5M0d0a2aKg4NPuePM0TjSKkMnUsl5AZSJF5AsOXwtYBTca5Ak
-        8CcDovAp5Dok02K27+Cg3Qak3+5NlHjZ0eACKoX9h0v52B6PpIc0bcn57Cdsr7Vh
-        sb637vw6RgiuHv0MT3xw==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3t2g1hryc7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 12 Sep 2023 09:39:15 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6D0C0100058;
-        Tue, 12 Sep 2023 09:39:14 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 548FF21ED3A;
-        Tue, 12 Sep 2023 09:39:14 +0200 (CEST)
-Received: from [10.201.20.32] (10.201.20.32) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 12 Sep
- 2023 09:39:13 +0200
-Message-ID: <3c138ce6-7766-87a7-1447-22f597863ab3@foss.st.com>
-Date:   Tue, 12 Sep 2023 09:39:13 +0200
+        with ESMTP id S232323AbjILHv0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 03:51:26 -0400
+X-Greylist: delayed 557 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 12 Sep 2023 00:50:59 PDT
+Received: from mail.tryweryn.pl (mail.tryweryn.pl [5.196.29.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3E5010C3
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 00:50:59 -0700 (PDT)
+Received: by mail.tryweryn.pl (Postfix, from userid 1002)
+        id D685224B71; Tue, 12 Sep 2023 07:41:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tryweryn.pl; s=mail;
+        t=1694504469; bh=Bo+/jg3TCpOeS79PpZREuOWEeqJV//jojylD9dSrSik=;
+        h=Date:From:To:Subject:From;
+        b=wfR9KQoImvZ57CbuRQDMJirdDo5wiSALknw9NQHLDv1igVfgItzyPlAL0MQ05TKs4
+         cJIUgrHpcOT7spFSyI9F6j/3oGUf6BxSW9OepKkzLjG1NCZHb/dqmgLa1v2QgxZYSQ
+         N2R4olSj6fEGe9f2wzRp1dOJJDdjtRfucWpszvTBdwYvPr/eX/YLZlLNyUjtYHG2pQ
+         yJfncwMl2gwFmDwRcNmJdyRf9D7FPsR/Dp6CMfasMX2mL6QGj6UK5msAY2C+ZX2+Nd
+         4pQaQMGapEadS60+p0Wgfmeq1ct+3Npq1gSFrr8PK/gykAYDRVPsEZ8z6B/+XvO48o
+         YH/4MH5i1MIKA==
+Received: by mail.tryweryn.pl for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 07:40:56 GMT
+Message-ID: <20230912064501-0.1.1l.jswc.0.6k7um37qtg@tryweryn.pl>
+Date:   Tue, 12 Sep 2023 07:40:56 GMT
+From:   "Karol Michun" <karol.michun@tryweryn.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: Prezentacja
+X-Mailer: mail.tryweryn.pl
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 07/10] dt-bindings: rng: add st,rng-lock-conf
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Lionel Debieve <lionel.debieve@foss.st.com>,
-        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230908165120.730867-1-gatien.chevallier@foss.st.com>
- <20230908165120.730867-8-gatien.chevallier@foss.st.com>
- <20230911150958.GA1255978-robh@kernel.org>
-From:   Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-In-Reply-To: <20230911150958.GA1255978-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.20.32]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-12_04,2023-09-05_01,2023-05-22_02
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rob,
+Dzie=C5=84 dobry!
 
-On 9/11/23 17:09, Rob Herring wrote:
-> On Fri, Sep 08, 2023 at 06:51:17PM +0200, Gatien Chevallier wrote:
->> If st,rng-lock-conf is set, the RNG configuration in RNG_CR, RNG_HTCR
->> and RNG_NSCR will be locked. It is supported starting from the RNG
->> version present in the STM32MP13
-> 
-> This should be squashed into the prior binding patch.
-> 
+Czy m=C3=B3g=C5=82bym przedstawi=C4=87 rozwi=C4=85zanie, kt=C3=B3re umo=C5=
+=BCliwia monitoring ka=C5=BCdego auta w czasie rzeczywistym w tym jego po=
+zycj=C4=99, zu=C5=BCycie paliwa i przebieg?
 
-Ok, I will squash both for V3.
+Dodatkowo nasze narz=C4=99dzie minimalizuje koszty utrzymania samochod=C3=
+=B3w, skraca czas przejazd=C3=B3w, a tak=C5=BCe tworzenie planu tras czy =
+dostaw.
 
->>
->> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
->> ---
->>   .../devicetree/bindings/rng/st,stm32-rng.yaml      | 14 ++++++++++++++
->>   1 file changed, 14 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml b/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
->> index 59abdc85a9fb..0055f14a8e3f 100644
->> --- a/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
->> +++ b/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
->> @@ -37,6 +37,20 @@ required:
->>     - reg
->>     - clocks
->>   
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - st,stm32mp13-rng
->> +    then:
->> +      properties:
->> +        st,rng-lock-conf:
->> +          type: boolean
->> +          description: If set, the RNG configuration in RNG_CR, RNG_HTCR and
->> +                       RNG_NSCR will be locked.
-> 
-> Define the property at the top-level and then restrict its presence in
-> a if/then schema.
-> 
+Z naszej wiedzy i do=C5=9Bwiadczenia korzysta ju=C5=BC ponad 49 tys. Klie=
+nt=C3=B3w. Monitorujemy 809 000 pojazd=C3=B3w na ca=C5=82ym =C5=9Bwiecie,=
+ co jest nasz=C4=85 najlepsz=C4=85 wizyt=C3=B3wk=C4=85.
 
-Ok, will change in V3. Thanks for your input
+Bardzo prosz=C4=99 o e-maila zwrotnego, je=C5=9Bli mogliby=C5=9Bmy wsp=C3=
+=B3lnie om=C3=B3wi=C4=87 potencja=C5=82 wykorzystania takiego rozwi=C4=85=
+zania w Pa=C5=84stwa firmie.
 
->> +
->>   additionalProperties: false
-> 
-> Did you test this property is allowed? No, because additionalProperties
-> won't work with properties defined in if/then schemas.
-> 
->>   
->>   examples:
->> -- 
->> 2.25.1
->>
 
-Best regards,
-Gatien
+Pozdrawiam
+Karol Michun
