@@ -2,113 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 909A979D481
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 17:13:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 481B279D48B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 17:14:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236100AbjILPNX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 11:13:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55308 "EHLO
+        id S236227AbjILPOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 11:14:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235748AbjILPNW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 11:13:22 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0D7E115;
-        Tue, 12 Sep 2023 08:13:18 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 913A6C433C7;
-        Tue, 12 Sep 2023 15:13:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694531598;
-        bh=ea+gMZwwDwB8LmUzQVtkGw+0MFVf843FNDk6DOXglVo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sE73tRM9zXQ57IeeWPVn1gj240Ttf6nKGWLct5GGBDXfzIWYaLMaEh2Mlp7YcUjyw
-         h+oWDvDVYIgTLsxb3Db9Ay6loOpQFSuRUfc9y1NWZVpGWQd8gxxKT/LQdEsudZbuml
-         ZhU238OvG4ngMBhX3m897VrnybUvn4X+H/73GK3h2LIXI57MNdlwWKkOSMSB/LF50U
-         el7vXuIjDNIrUbzj3pqKCWN1iIRMaBF3ZrV1q6vutU4m4cF4j0dtJy5CW44L3imA6S
-         qLIEVKnMk31PQIm4CLVjmap1Dliwnaz3Y/WbBkii/toChj92gQ6WNOK7+fvWG/W4ux
-         R8VZIUFp0goEw==
-Received: (nullmailer pid 811693 invoked by uid 1000);
-        Tue, 12 Sep 2023 15:13:16 -0000
-Date:   Tue, 12 Sep 2023 10:13:16 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marcello Sylvester Bauer <sylv@sylv.io>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RESEND PATCH v4] dt-bindings: hwmon: Add MAX6639
-Message-ID: <20230912151316.GA809732-robh@kernel.org>
-References: <20230831092403.1929317-1-Naresh.Solanki@9elements.com>
+        with ESMTP id S235748AbjILPOa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 11:14:30 -0400
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5145C12E;
+        Tue, 12 Sep 2023 08:14:26 -0700 (PDT)
+Received: by mail-pg1-x52c.google.com with SMTP id 41be03b00d2f7-51f64817809so678445a12.1;
+        Tue, 12 Sep 2023 08:14:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694531666; x=1695136466; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EmhnU1mUBTvGooJ8RY5P2rzvLlRqBBo52eULg86WrB4=;
+        b=LucxwN6EDigLSwLeCQjYJRaf9zRo6v/qRDFE3rvQmSaFldJ30ljv0fNqU6zebOSGP/
+         8L5b1PQoDvGbID/BHBut5JwZOutlGBqwDJsNZrMEImDW6yz1r7UJGqColJ2gDL0bacCX
+         LdRbawDEJkK9vc/rA0tM8oPvWqozACmePev2YfNJBAd/geyNMSnn5PFyrB5mJdARFXQd
+         HktG5BNJ0+Ax4NcEQDKblH5qYDTWubzM00P9YcYaHQwaid0hBa8DeY2CK5QLghfuBr2m
+         etmgOyH8tvpkhFhfFWkx7u8y7dHa8iSSWFfIhzJUqPdcRaTJQB5dsZ2cAJTL3QM1aSvH
+         AfYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694531666; x=1695136466;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EmhnU1mUBTvGooJ8RY5P2rzvLlRqBBo52eULg86WrB4=;
+        b=HjJUQwrB/PONLnqvm2FKEnor1XSOct/q6DvSdmcE2hgau68qZpIjOcEHmyrZzygvY1
+         2cTT87rHQc+yi3KeFC6xW4x4GFOhmxDkXsSgCWOibwWS89/M2xsRbsHw7oxiGujCOvsb
+         slPqpY24cI/l1UVwIVj9u+56Z66mGdS34IVyv7RtTyMcRksPH5CWfM5yJZBUee4X9s6t
+         WtvKfS5VHS1ETCnPtKiicgZJYl3I6B6bwypMRns1UOWGNw1Bu6+WMiIviYT5xucKOnF5
+         VCe/k2zPG6Soh2S6ApXXHBL+5K8HfMUL/lXcYlphcLHXdKv8A6D9XcFU6IBPltaBHEO8
+         gK+g==
+X-Gm-Message-State: AOJu0Yzi5g1fLaUtd5By3/VrQMNk48G4ECVFr7L9bgoFMSUu4u8VuGMg
+        GnlhuP6QINa/jkkEqqeOi89hvgWmZ4yvKz6YnQw=
+X-Google-Smtp-Source: AGHT+IEDx0Xvd6FTrq5LXjrHvQW9X9/hVgAwJQ2qx5fukPQYXdAbKJmbOIMNh2wpMGXCeJrZHwzePfCPFLzb1jBlTFQ=
+X-Received: by 2002:a17:90a:1210:b0:263:f36e:d610 with SMTP id
+ f16-20020a17090a121000b00263f36ed610mr11612777pja.0.1694531665742; Tue, 12
+ Sep 2023 08:14:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230831092403.1929317-1-Naresh.Solanki@9elements.com>
+References: <20230831130242.2290502-1-festevam@gmail.com> <CAJZ5v0jKmxxFMO5TkHujEtdSjeEqKqEOwRyXAXbaeRQUTythdg@mail.gmail.com>
+ <18b23d536827559f113ebae99c859cfc@denx.de> <CAJZ5v0iROqUP+HGM9djazVCYnRP_QOikgPAH1kympaC2qy_hcg@mail.gmail.com>
+In-Reply-To: <CAJZ5v0iROqUP+HGM9djazVCYnRP_QOikgPAH1kympaC2qy_hcg@mail.gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 12 Sep 2023 12:14:14 -0300
+Message-ID: <CAOMZO5AHGr9A2RFQ89SzLnzkwOFez3vO2BH3Lh4yZOL-aSn9cA@mail.gmail.com>
+Subject: Re: [PATCH v7 1/3] dt-bindings: thermal-zones: Document critical-action
+To:     "Rafael J. Wysocki" <rafael@kernel.org>, amitk@kernel.org,
+        daniel.lezcano@linaro.org
+Cc:     Fabio Estevam <festevam@denx.de>, rui.zhang@intel.com,
+        linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 31, 2023 at 11:24:03AM +0200, Naresh Solanki wrote:
-> From: Marcello Sylvester Bauer <sylv@sylv.io>
-> 
-> Add binding documentation for Maxim MAX6639 fan-speed controller.
-> 
-> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> ---
-> Changes in V4:
-> - Drop property pulses-per-revolution
-> Changes in V3:
-> - Update title
-> - Add pulses-per-revolution, supplies & interrupts
-> Changes in V2:
-> - Update subject
-> - Drop blank lines
-> ---
->  .../bindings/hwmon/maxim,max6639.yaml         | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> new file mode 100644
-> index 000000000000..9c06a61d57c9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Maxim MAX6639 Fan Controller
-> +
-> +maintainers:
-> +  - Naresh Solanki <Naresh.Solanki@9elements.com>
-> +
-> +description: |
-> +  The MAX6639 is a 2-channel temperature monitor with dual, automatic, PWM
-> +  fan-speed controller.  It monitors its own temperature and one external
-> +  diode-connected transistor or the temperatures of two external diode-connected
-> +  transistors, typically available in CPUs, FPGAs, or GPUs.
-> +
-> +  Datasheets:
-> +    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - maxim,max6639
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  fan-supply:
-> +    description: Phandle to the regulator that provides power to the fan.
+Hi Amit and Daniel,
 
-Still a fan property, not a fan controller property. 
+On Fri, Sep 8, 2023 at 3:02=E2=80=AFPM Rafael J. Wysocki <rafael@kernel.org=
+> wrote:
+>
+> On Fri, Sep 8, 2023 at 7:37=E2=80=AFPM Fabio Estevam <festevam@denx.de> w=
+rote:
+> >
+> > Hi Rafael,
+> >
+> > On 07/09/2023 13:23, Rafael J. Wysocki wrote:
+> >
+> > > So one more question here: Why is this a property of a thermal zone
+> > > and not the property of the whole system?
+> > >
+> > > Presumably, on a system where the platform integrator prefers to
+> > > reboot on critical temperature, it would be necessary to add this
+> > > property to every thermal zone.
+> > >
+> > > Also, what if this property has different values for different therma=
+l
+> > > zones?
+> >
+> > I got your point and I can make the 'critical-action' property to be
+> > valid
+> > for the whole thermal system.
+> >
+> > Originally, I have been doing like this:
+> >
+> >         thermal-zones {
+> >                 cpu-thermal {
+> >                         critical-action =3D "reboot";
+> >                         polling-delay-passive =3D <250>;
+> >                         polling-delay =3D <2000>;
+> >                         thermal-sensors =3D <&tmu>;
+> >
+> >                         trips {
+> >                                 cpu_alert0: trip0 {
+> >                                         temperature =3D <85000>;
+> >                                         hysteresis =3D <2000>;
+> >                                         type =3D "passive";
+> >                                 };
+> >
+> > I can change it to be:
+> >
+> >
+> >         thermal-zones {
+> >                 critical-action =3D "reboot";
+> >
+> >                 cpu-thermal {
+> >                         polling-delay-passive =3D <250>;
+> >                         polling-delay =3D <2000>;
+> >                         thermal-sensors =3D <&tmu>;
+> >
+> >                         trips {
+> >                                 cpu_alert0: trip0 {
+> >                                         temperature =3D <85000>;
+> >                                         hysteresis =3D <2000>;
+> >                                         type =3D "passive";
+> >                                 };
+> >
+>
+> I think that this would match the use case better.
+>
+> I still would love to hear about it from the people who take care of
+> the DT-based thermal control (mostly Daniel and Amit, who BTW is
+> listed as the maintainer of the file being updated by this patch),
+> though.
 
-Please participate in the discussion with Billy on common fan binding.
+Please let us know what you think.
 
-Rob
+I can send v8 which places the 'critical-action' property to be valid
+for the whole thermal system, as suggested by Rafael.
+
+Thanks
