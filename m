@@ -2,220 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EF5E79D967
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 21:14:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D36A279D97B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 21:24:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229904AbjILTOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 15:14:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54478 "EHLO
+        id S232681AbjILTYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 15:24:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231854AbjILTOZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 15:14:25 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1798E189;
-        Tue, 12 Sep 2023 12:14:21 -0700 (PDT)
-Received: from mercury (unknown [185.254.75.45])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C369166072FE;
-        Tue, 12 Sep 2023 20:14:19 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1694546059;
-        bh=/fJbT61tks33SfamqyMRWAFhKbNaDeidExucjC94Ro0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=M9uOeccny6w8Rrgpe7su62PFaV6Pj247XrRdkm+mx2UmsOlPYHdeBNYEL2gdx1Uh2
-         zSxN+aC8sKMAXXJCUyHj9nHEZOhymPyI6inDy6+aos1UFDGEfsXchEMrmtjBfQkfrN
-         bUwLE+qTu+3CrvX3IFdl6wO9CtXr+gxOUS9N59ihoaGiiRHzgE/oL6l/vVyE3Rvggj
-         XkXOyQN+RDtY43AVl9eSuie9JYOuZl5mnPvGD6GbbaPIRzsAELFtmvQeXxoYvaPzby
-         HJkA5EdH4QmgabuLoYrl5E+ieApcEPPfLwddSnmHSQ1i6T9SduQNHC6UqJaHG7ukNK
-         26bOpY5EWsP4Q==
-Received: by mercury (Postfix, from userid 1000)
-        id 0B61D106098A; Tue, 12 Sep 2023 21:14:17 +0200 (CEST)
-Date:   Tue, 12 Sep 2023 21:14:16 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-Cc:     Alexandre Courbot <acourbot@nvidia.com>,
-        azkali <a.ffcc7@gmail.com>, CTCaer <ctcaer@gmail.com>,
+        with ESMTP id S229781AbjILTYH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 15:24:07 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8200F1B2;
+        Tue, 12 Sep 2023 12:24:02 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 44DD31BF207;
+        Tue, 12 Sep 2023 19:23:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+        t=1694546641;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=8NZeUieWGIH4FCtXbzG8+QrsUPwd3uZJU/4DYFsvIUU=;
+        b=YAaGe5kFs4iHlGtkZ9HLtYXMxer3HiGn6HNlojbyUaS3Q6tO/qbb2YRRwQehFtEy5NTULX
+        eP1cwwXCCwCZMs7QM35Kg8t+5F9h+fvyr9MWIjJGo975vd00GjFJMDYP7KQvrtEIMhPsjx
+        ucOgDpCEOxjal4ljm/UmJBTsC5HtCx4GldHKtkTl8+HiuRTv6g6ia93MFHYPKlZIieqmwd
+        J3y0qskw3BVw07/BCseSws6d9hS//h+pTTjyIs1s4YxsOdZgZDuR5N0qW8O9CKgXrrgtT0
+        Ls5pdNR17CeYFpalEj7RD0JpTMv4Z1pw14w9VTm6pkmLkdZsYE9WtAocE+qIAg==
+Message-ID: <036c0763-f1b2-49ff-bc82-1ff16eec27ab@arinc9.com>
+Date:   Tue, 12 Sep 2023 22:23:51 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
+Content-Language: en-US
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] power: supply: bq24190_charger: Export current
- regulator
-Message-ID: <20230912191416.j6rqwx2vsisu47nl@mercury.elektranox.org>
-References: <20230824131342.206784-1-linkmauve@linkmauve.fr>
- <20230824131342.206784-4-linkmauve@linkmauve.fr>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="2kfue3755npbb3he"
-Content-Disposition: inline
-In-Reply-To: <20230824131342.206784-4-linkmauve@linkmauve.fr>
+        Conor Dooley <conor+dt@kernel.org>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, mithat.guner@xeront.com,
+        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <47b61929-5c2d-4906-b153-2046a94858c8@arinc9.com>
+ <20230813112026.ohsx6srbt2staxma@skbuf>
+ <8a8e14f1-0493-4298-a2cc-6e7ae7929334@arinc9.com>
+ <20230813190157.4y3zoro53qsz43pe@skbuf>
+ <f5f468c1-b5a2-4336-b1d9-fd82da95b21d@arinc9.com>
+ <20230814143601.mnpxtcm2zybnbvoh@skbuf>
+ <0cee0928-74c9-4048-8cd8-70bfbfafd9b2@arinc9.com>
+ <20230827121235.zog4c3ehu2cyd3jy@skbuf>
+ <676d1a2b-6ffa-4aff-8bed-a749c373f5b3@arinc9.com>
+ <87325ce9-595a-4dda-a6a1-b5927d25719b@arinc9.com>
+ <20230911225126.rk23g3u3bzo3agby@skbuf>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <20230911225126.rk23g3u3bzo3agby@skbuf>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: arinc.unal@arinc9.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12.09.2023 01:51, Vladimir Oltean wrote:
+> On Sat, Sep 09, 2023 at 11:53:50AM +0300, Arınç ÜNAL wrote:
+>> What to do:
+>> - For mscc,vsc7514-switch, enforce phylink bindings for ports.
+>> - For mscc,vsc7512-switch, enforce phylink bindings for user ports.
+> 
+> you can also look at dsa_switches_apply_workarounds[], and if the switch
+> isn't there, then you can replace "user ports" with "ports" here and
+> everywhere.
 
---2kfue3755npbb3he
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The phylink bindings for user ports I ended up making by looking up the 
+existing devicetrees are different than the phylink bindings for the 
+shared (CPU and DSA) ports currently enforced on all switches.
 
-Hi,
+My phylink bindings for user ports:
 
-On Thu, Aug 24, 2023 at 03:13:31PM +0200, Emmanuel Gil Peyrot wrote:
-> From: Alexandre Courbot <acourbot@nvidia.com>
->=20
-> This prevents the charger from ever going over the current limit.
->=20
-> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
-> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-> ---
+             allOf:
+               - anyOf:
+                   - required: [ fixed-link ]
+                   - required: [ phy-handle ]
+                   - required: [ managed ]
 
-This would need to be documented in the DT binding, but it
-duplicates control for POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT
-anyways. Please introduce DT property "input-current-limit-microamp"
-for this driver, just like e.g. bq2515x_charger.c (and update the DT
-binding accordingly).
+               - if:
+                   required: [ fixed-link ]
+                 then:
+                   not:
+                     required: [ managed ]
 
--- Sebastian
+The phylink bindings for shared ports enforced on all switches on 
+dsa-port.yaml:
 
->  drivers/power/supply/bq24190_charger.c | 82 ++++++++++++++++++++++++++
->  1 file changed, 82 insertions(+)
->=20
-> diff --git a/drivers/power/supply/bq24190_charger.c b/drivers/power/suppl=
-y/bq24190_charger.c
-> index a56122b39687..cc1bd87f4982 100644
-> --- a/drivers/power/supply/bq24190_charger.c
-> +++ b/drivers/power/supply/bq24190_charger.c
-> @@ -530,6 +530,79 @@ static int bq24190_set_otg_vbus(struct bq24190_dev_i=
-nfo *bdi, bool enable)
->  }
-> =20
->  #ifdef CONFIG_REGULATOR
-> +static int bq24190_set_charging_current(struct regulator_dev *dev,
-> +			int min_uA, int max_uA)
-> +{
-> +	struct bq24190_dev_info *bdi =3D rdev_get_drvdata(dev);
-> +	u8 ss_reg;
-> +	int in_current_limit;
-> +	int ret =3D 0;
-> +
-> +	ret =3D bq24190_read(bdi, BQ24190_REG_SS, &ss_reg);
-> +	if (ret < 0)
-> +		goto error;
-> +
-> +	if (max_uA =3D=3D 0 && ss_reg !=3D 0)
-> +		return ret;
-> +
-> +	if (!(ss_reg & BQ24190_REG_SS_VBUS_STAT_MASK))
-> +		in_current_limit =3D 500;
-> +	else
-> +		in_current_limit =3D max_uA / 1000;
-> +
-> +	return bq24190_set_field_val(bdi, BQ24190_REG_ISC,
-> +			BQ24190_REG_ISC_IINLIM_MASK,
-> +			BQ24190_REG_ISC_IINLIM_SHIFT,
-> +			bq24190_isc_iinlim_values,
-> +			ARRAY_SIZE(bq24190_isc_iinlim_values),
-> +			in_current_limit);
-> +error:
-> +	dev_err(bdi->dev, "Charger enable failed, err =3D %d\n", ret);
-> +	return ret;
-> +}
-> +
-> +static const struct regulator_ops bq24190_chrg_ops =3D {
-> +	.set_current_limit =3D bq24190_set_charging_current,
-> +};
-> +
-> +static const struct regulator_desc bq24190_chrg_desc =3D {
-> +	.name =3D "charger",
-> +	.of_match =3D "charger",
-> +	.type =3D REGULATOR_CURRENT,
-> +	.owner =3D THIS_MODULE,
-> +	.ops =3D &bq24190_chrg_ops,
-> +};
-> +
-> +static const struct regulator_init_data bq24190_chrg_init_data =3D {
-> +	.constraints =3D {
-> +		.valid_ops_mask =3D REGULATOR_CHANGE_STATUS | REGULATOR_CHANGE_CURRENT,
-> +		.min_uA =3D 0,
-> +		.max_uA =3D 3000000,
-> +	},
-> +};
-> +
-> +static int bq24190_register_chrg_regulator(struct bq24190_dev_info *bdi)
-> +{
-> +	struct bq24190_platform_data *pdata =3D bdi->dev->platform_data;
-> +	struct regulator_config cfg =3D { };
-> +	struct regulator_dev *reg;
-> +	int ret =3D 0;
-> +
-> +	cfg.dev =3D bdi->dev;
-> +	if (pdata && pdata->regulator_init_data)
-> +		cfg.init_data =3D pdata->regulator_init_data;
-> +	else
-> +		cfg.init_data =3D &bq24190_chrg_init_data;
-> +	cfg.driver_data =3D bdi;
-> +	reg =3D devm_regulator_register(bdi->dev, &bq24190_chrg_desc, &cfg);
-> +	if (IS_ERR(reg)) {
-> +		ret =3D PTR_ERR(reg);
-> +		dev_err(bdi->dev, "Can't register regulator: %d\n", ret);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
->  static int bq24190_vbus_enable(struct regulator_dev *dev)
->  {
->  	return bq24190_set_otg_vbus(rdev_get_drvdata(dev), true);
-> @@ -611,6 +684,11 @@ static int bq24190_register_vbus_regulator(struct bq=
-24190_dev_info *bdi)
->  	return ret;
->  }
->  #else
-> +static int bq24190_register_chrg_regulator(struct bq24190_dev_info *bdi)
-> +{
-> +	return 0;
-> +}
-> +
->  static int bq24190_register_vbus_regulator(struct bq24190_dev_info *bdi)
->  {
->  	return 0;
-> @@ -1879,6 +1957,10 @@ static int bq24190_probe(struct i2c_client *client)
->  		goto out_charger;
->  	}
-> =20
-> +	ret =3D bq24190_register_chrg_regulator(bdi);
-> +	if (ret < 0)
-> +		goto out_charger;
-> +
->  	ret =3D bq24190_register_vbus_regulator(bdi);
->  	if (ret < 0)
->  		goto out_charger;
-> --=20
-> 2.42.0
->=20
+   allOf:
+     - required:
+         - phy-mode
+     - oneOf:
+         - required:
+             - fixed-link
+         - required:
+             - phy-handle
+         - required:
+             - managed
 
---2kfue3755npbb3he
-Content-Type: application/pgp-signature; name="signature.asc"
+Here's what I understand:
 
------BEGIN PGP SIGNATURE-----
+- For switches in dsa_switches_apply_workarounds[]
+   - Enforce the latter for shared ports.
+   - Enforce the former for user ports.
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmUAuHwACgkQ2O7X88g7
-+prPAhAAjBH96YIU058xt3NUESRXpx0XGE//BxFYdfX3LGk63hYWd8DDm2FHyyrQ
-MgTysNchxJrHCH1OVGgPNK37HNGgXMe+Z6WiZFMgOa0q6Mq57YqTwMyEoOgT2SYK
-RMtSRS7SLXYQMr5K+Xb+mmS6z5jnqswRY1YAiuOdyJJPIrr9XgSVid4EDI4MLK2Y
-TcBuC7vWevmPqLbLqJdGGMLiEIKZCDpNwW8FXlgHsDP/4K27+PtJhXfoPeIfXcB2
-pvdcTqxJm/hrfRPmdTs3hhAZdF55ff+rnfeL9PDEBs7ebRBsXVHCy2oixbpYEnys
-yiFkPchhvUhieEnTNDlBXUjGwgTgzUplP+Txy4DWPsMSaCWI3WV0Tpvn24v4i4Kt
-aD7ACqbjYwEilJcKSqId03A+Yeud6fzGFW7MAaIJQtXmuqnNDSekEcG7+lCXTjUw
-YoI2WYnNnlqkEdcUHbyXv9dQ5xKt0cHtuMwqXD0rRltjOeNfYPMnHbPglWSb7aJe
-QVclYRnQ9ZPKE6N7t3ipZTWQNKMHqiFQoVPy8CWVcTZDakIRpf5/TLtu23CaVMNn
-P7BfDvs6/xeu7XzJUfz7mZLrDcKVRsT7sqipnsY59xtSr3lmg2QSs9LNzLftF/wV
-Tyq4ZSB4H3JJmCdB+dpXxrP61lSS75TLfnlw7w64K21+MYxzbwY=
-=d1sz
------END PGP SIGNATURE-----
+- For switches not in dsa_switches_apply_workarounds[]
+   - Enforce the former for all ports.
 
---2kfue3755npbb3he--
+> 
+>> - renesas,rzn1-a5psw.yaml
+>>    - renesas,r9a06g032-a5psw, renesas,rzn1-a5psw
+>>
+>> What to do:
+>> - Document "mdio".
+> 
+> Not clear here and for all the schemas quoted below.. is "mdio" not documented already?
+
+They are, or rather I didn't care while constructing this text. I will 
+mention "mdio" is already documented per schema on the patch log.
+
+Arınç
