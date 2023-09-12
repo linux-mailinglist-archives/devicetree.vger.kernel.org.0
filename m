@@ -2,228 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A63079DA98
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 23:13:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D74379DBE4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 00:32:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233826AbjILVN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 17:13:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37074 "EHLO
+        id S235041AbjILWcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 18:32:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230453AbjILVN4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 17:13:56 -0400
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C3FA10CC;
-        Tue, 12 Sep 2023 14:13:52 -0700 (PDT)
-Received: from local
-        by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1qgAhe-0007po-1g;
-        Tue, 12 Sep 2023 21:13:46 +0000
-Date:   Tue, 12 Sep 2023 22:13:35 +0100
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     Jeremy Kerr <jk@codeconstruct.com.au>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234813AbjILWcV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 18:32:21 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18B5D10C8;
+        Tue, 12 Sep 2023 15:32:17 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-991c786369cso818214866b.1;
+        Tue, 12 Sep 2023 15:32:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694557935; x=1695162735; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=oHGhnV3TjdN0FnFldEVPz9KrEFKfvPykYPDqTHVGIBs=;
+        b=Trr1Il/48N2AqFH7HSNkZXISlg/q0dXCkK8hscNnv2XEnDQYx9w3kFAdKWPFr642jr
+         BTl78G87AdIDFdH7LesPfoN9YviNjzOJYO4Iz9NPG3j8G23GW1dQazQesJqeGnsymbr6
+         mHbt0V64m2Pw58gRvB0OG7r91ZuSW/2aixJqXst9TiMAAW1skJsSekSCVSUvh2/qe9Oo
+         Ji+L43q+kYrueX2rHCR1XANaK+sSpZmzpORhO40MCBym7IDM4MhPDHaBOBbVWWLFRiBL
+         oSrOMI99dpIe/RcPEYxz24F38rUuNFkmciUjITx7WAfE29tIHGWDqjQAiWvt8Au8ixmz
+         DIxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694557935; x=1695162735;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oHGhnV3TjdN0FnFldEVPz9KrEFKfvPykYPDqTHVGIBs=;
+        b=lL6TKoBXmX6YBRgw8fovimVZPs9E7KnzgtnzlP0kwxNB/RmExxo6512v5CJ79pFMPj
+         91I7Xeb+QVunkKJ0r0ElJqr+JFWoICt5qaLy/PqnSgQ9uZqyOVjtu1UyORdkFv5gQq8l
+         j/KGfZ9fA8s/z8/mp/XNqLunz7SjSt1W2eUZpDWmGdvAx8azUY91uVaVtFtrLZ8s8gsS
+         gOZ7G+y2tkKEisz4QLl0Hw1q1jn5Vz6+bo8xZ87gZy6bGtIMAiZgjn3oUEIpJ6ubnzkn
+         b+Bur8Lhd4vRSphTumagnOLUFOAm5mQWVprgjVFH0UNJbgdAE+rN3k1d9DWTC6XILlrw
+         dOZw==
+X-Gm-Message-State: AOJu0YyGY1/F5SyIhZR/FPNQsV6GIK9pS75/LFWZI1NXCUPlvvO0OROv
+        9TA1qhEQ7znXDbzp0bpKQ4Q=
+X-Google-Smtp-Source: AGHT+IFoFjvI5+2n0TYglHgn435yeXiMScCnLmeQ+gvlW6z4mDjsLd0Mij4yOQbqByz17gmPvANBNA==
+X-Received: by 2002:a17:907:763c:b0:9a9:e5bb:eddc with SMTP id jy28-20020a170907763c00b009a9e5bbeddcmr472712ejc.16.1694557935294;
+        Tue, 12 Sep 2023 15:32:15 -0700 (PDT)
+Received: from skbuf ([188.25.254.186])
+        by smtp.gmail.com with ESMTPSA id n12-20020a17090695cc00b00993928e4d1bsm7405814ejy.24.2023.09.12.15.32.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Sep 2023 15:32:15 -0700 (PDT)
+Date:   Wed, 13 Sep 2023 01:32:12 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Eric Dumazet <edumazet@google.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Arun Ramadoss <arun.ramadoss@microchip.com>,
+        Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v4 2/2] mfd: syscon: allow reset control for syscon
- devices
-Message-ID: <ZQDUf3BkFUNsNqF7@makrotopia.org>
-References: <20230105005010.124948-1-jk@codeconstruct.com.au>
- <20230105005010.124948-3-jk@codeconstruct.com.au>
+        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        UNGLinuxDriver@microchip.com,
+        "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v4 2/2] net: dsa: microchip: Add drive strength
+ configuration
+Message-ID: <20230912223212.5allvc62okewwcym@skbuf>
+References: <20230912045459.1864085-1-o.rempel@pengutronix.de>
+ <20230912045459.1864085-1-o.rempel@pengutronix.de>
+ <20230912045459.1864085-3-o.rempel@pengutronix.de>
+ <20230912045459.1864085-3-o.rempel@pengutronix.de>
+ <20230912113553.fselyj2v5ynddme2@skbuf>
+ <35c1c9ee-357f-4ba5-dd47-95d4c064e69b@wanadoo.fr>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230105005010.124948-3-jk@codeconstruct.com.au>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <35c1c9ee-357f-4ba5-dd47-95d4c064e69b@wanadoo.fr>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jeremy,
-
-On Thu, Jan 05, 2023 at 08:50:10AM +0800, Jeremy Kerr wrote:
-> Simple syscon devices may require deassertion of a reset signal in order
-> to access their register set. Rather than requiring a custom driver to
-> implement this, we can use the generic "resets" specifiers to link a
-> reset line to the syscon.
+On Tue, Sep 12, 2023 at 08:38:05PM +0200, Christophe JAILLET wrote:
+> Le 12/09/2023 à 13:35, Vladimir Oltean a écrit :
+> > > +	if (!found)
+> > > +		return 0;
+> > 
+> > Maybe "have_any_prop" would be a better name to avoid Christophe's confusion?
 > 
-> This change adds an optional reset line to the syscon device
-> description, and deasserts the reset if detected.
+> Not sure it worth it.
 > 
-> Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
-> Reviewed-by: Arnd Bergmann <arnd@arndb.de>
+> Christophe should learn to read code or avoid some quick feed-back before
+> morning coffee :)
 > 
-> ---
-> v2:
->  * do reset control in the early of_syscon_register() path, rather than
->    the platform device init, which isn't used.
-> v3:
->  * use a direct reset_control_deassert rather than handling in the
->    regmap
-> v4:
->  * collapse unnecessary `else` block
-> ---
->  drivers/mfd/syscon.c | 27 +++++++++++++++++++++------
->  1 file changed, 21 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/mfd/syscon.c b/drivers/mfd/syscon.c
-> index bdb2ce7ff03b..57b29c325131 100644
-> --- a/drivers/mfd/syscon.c
-> +++ b/drivers/mfd/syscon.c
-> @@ -20,6 +20,7 @@
->  #include <linux/platform_data/syscon.h>
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
-> +#include <linux/reset.h>
->  #include <linux/mfd/syscon.h>
->  #include <linux/slab.h>
->  
-> @@ -31,6 +32,7 @@ static LIST_HEAD(syscon_list);
->  struct syscon {
->  	struct device_node *np;
->  	struct regmap *regmap;
-> +	struct reset_control *reset;
+> 'found' looks good enough.
 
-You are reserving a field 'reset' in this struct but then never use it.
-I stumbled upon this because I was wondering if it'd make sense to have
-something like
-
-int syscon_reset(struct syscon *syscon)
-{
-	if (!syscon->reset)
-		return -EOPNOTSUPP;
-
-	return reset_control_reset(syscon->reset);
-}
-
-But then, of course, why not have syscon_reset_assert, *_deassert, ... ?
-Wrapping the reset control ops, of course, would have the advantage the
-syscon driver would be able to track whether reset is asserted.
-
-However, making the reset shared also allows the syscon user to use the
-reset as well and is mich easier to implement:
-
-diff --git a/drivers/mfd/syscon.c b/drivers/mfd/syscon.c
-index 57b29c3251312..55f3f855f0305 100644
---- a/drivers/mfd/syscon.c
-+++ b/drivers/mfd/syscon.c
-@@ -32,7 +32,6 @@ static LIST_HEAD(syscon_list);
- struct syscon {
- 	struct device_node *np;
- 	struct regmap *regmap;
--	struct reset_control *reset;
- 	struct list_head list;
- };
- 
-@@ -130,15 +129,16 @@ static struct syscon *of_syscon_register(struct device_node *np, bool check_res)
- 				goto err_attach_clk;
- 		}
- 
--		reset = of_reset_control_get_optional_exclusive(np, NULL);
-+		reset = of_reset_control_get_shared(np, NULL);
- 		if (IS_ERR(reset)) {
- 			ret = PTR_ERR(reset);
--			goto err_attach_clk;
-+			if (ret != -ENOENT)
-+				goto err_attach_clk;
-+		} else {
-+			ret = reset_control_deassert(reset);
-+			if (ret)
-+				goto err_reset;
- 		}
--
--		ret = reset_control_deassert(reset);
--		if (ret)
--			goto err_reset;
- 	}
- 
- 	syscon->regmap = regmap;
----
-
-Let me know what you think.
-
-
->  	struct list_head list;
->  };
->  
-> @@ -40,7 +42,7 @@ static const struct regmap_config syscon_regmap_config = {
->  	.reg_stride = 4,
->  };
->  
-> -static struct syscon *of_syscon_register(struct device_node *np, bool check_clk)
-> +static struct syscon *of_syscon_register(struct device_node *np, bool check_res)
->  {
->  	struct clk *clk;
->  	struct syscon *syscon;
-> @@ -50,6 +52,7 @@ static struct syscon *of_syscon_register(struct device_node *np, bool check_clk)
->  	int ret;
->  	struct regmap_config syscon_config = syscon_regmap_config;
->  	struct resource res;
-> +	struct reset_control *reset;
->  
->  	syscon = kzalloc(sizeof(*syscon), GFP_KERNEL);
->  	if (!syscon)
-> @@ -114,7 +117,7 @@ static struct syscon *of_syscon_register(struct device_node *np, bool check_clk)
->  		goto err_regmap;
->  	}
->  
-> -	if (check_clk) {
-> +	if (check_res) {
->  		clk = of_clk_get(np, 0);
->  		if (IS_ERR(clk)) {
->  			ret = PTR_ERR(clk);
-> @@ -124,8 +127,18 @@ static struct syscon *of_syscon_register(struct device_node *np, bool check_clk)
->  		} else {
->  			ret = regmap_mmio_attach_clk(regmap, clk);
->  			if (ret)
-> -				goto err_attach;
-> +				goto err_attach_clk;
->  		}
-> +
-> +		reset = of_reset_control_get_optional_exclusive(np, NULL);
-> +		if (IS_ERR(reset)) {
-> +			ret = PTR_ERR(reset);
-> +			goto err_attach_clk;
-> +		}
-> +
-> +		ret = reset_control_deassert(reset);
-> +		if (ret)
-> +			goto err_reset;
->  	}
->  
->  	syscon->regmap = regmap;
-> @@ -137,7 +150,9 @@ static struct syscon *of_syscon_register(struct device_node *np, bool check_clk)
->  
->  	return syscon;
->  
-> -err_attach:
-> +err_reset:
-> +	reset_control_put(reset);
-> +err_attach_clk:
->  	if (!IS_ERR(clk))
->  		clk_put(clk);
->  err_clk:
-> @@ -150,7 +165,7 @@ static struct syscon *of_syscon_register(struct device_node *np, bool check_clk)
->  }
->  
->  static struct regmap *device_node_get_regmap(struct device_node *np,
-> -					     bool check_clk)
-> +					     bool check_res)
->  {
->  	struct syscon *entry, *syscon = NULL;
->  
-> @@ -165,7 +180,7 @@ static struct regmap *device_node_get_regmap(struct device_node *np,
->  	spin_unlock(&syscon_list_slock);
->  
->  	if (!syscon)
-> -		syscon = of_syscon_register(np, check_clk);
-> +		syscon = of_syscon_register(np, check_res);
->  
->  	if (IS_ERR(syscon))
->  		return ERR_CAST(syscon);
-> -- 
-> 2.38.1
-> 
+Maybe I should have said "Christophe's (expressed) and my (unexpressed) confusion"?
+Actually I had no time to be confused because I saw your comment first,
+but I would have likely made the same suggestion regardless.
