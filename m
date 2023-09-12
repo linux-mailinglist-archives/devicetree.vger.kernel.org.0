@@ -2,110 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 527B179DC50
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 01:00:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CC8D79DCA5
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 01:30:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235523AbjILXAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 19:00:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58250 "EHLO
+        id S236741AbjILXaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 19:30:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233749AbjILXAm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 19:00:42 -0400
-Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F332189
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 16:00:38 -0700 (PDT)
-Received: by mail-qt1-x82d.google.com with SMTP id d75a77b69052e-415155b2796so61181cf.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 16:00:38 -0700 (PDT)
+        with ESMTP id S231672AbjILXaw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 19:30:52 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1469C10C7
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 16:30:48 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2bbbda48904so104034321fa.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 16:30:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1694559637; x=1695164437; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1694561445; x=1695166245; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=HyJmDwSUEBAT5TkJCd5pReZaLPzxfz30Afne5dFuwCE=;
-        b=Kpvobm1wnpQ+fWxNPUTube1GEHxHedwSoZoGO/2mU4IJn8Ot8UDuR2rJdwR5r3Am57
-         vilNY2yO/ymj8ixnIdqQJyzPRZSYfXDZLbVwvOJtucbmHotywzvtnUgsFVpe5jSlcAFg
-         borvFbIbhjYNWx1L8zLEEo+oMpsDNI7EdlookF38o104UP3qWJynSj50PPbB/z3LqzES
-         W61L65G3wth4GhlE8LtziVEZv4r4PCCkGsgQJkjOB93zfj21yS0NJEg6ljTxhuUX2op5
-         rYMU2pW4gYEVrUSQtKfK8vt5XtBp+mOkQkFqMTgkAUBx7VsvRVqwo7HNvICu2v0cW6Hr
-         G/Rw==
+        bh=TiT6xmXSdGoBaHZvckfZjy18MoIhmr9QJ20ZYjr0eBk=;
+        b=jwxjtWtnNgZGQxDzXYAC6JaARkuWiqA+k1hrJNVsQWvd8C7G/ZWIzu7BkAm6/r60Ss
+         JHFzXYmNd/+UkcyZQ8xqQ1nOxjxyB+kpBbda63ChSNTmBmlwOpzfn1k6JJhsc14CWJtU
+         43PuDrmhDY9XddaLWfiy+CXavUyR3/ClsBhWw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694559637; x=1695164437;
+        d=1e100.net; s=20230601; t=1694561445; x=1695166245;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HyJmDwSUEBAT5TkJCd5pReZaLPzxfz30Afne5dFuwCE=;
-        b=e8U6+VXbcJ6CntnL5JXv3arA7S51DkUpVmDex/1k6EwGIW5vrffffUKXbRDJxdWJhF
-         Yqju8/6aE+IKSZz9HAk+Rhlt82exEzZpKN32e8cwTnseU3AobsbBgAHSLKvNX8vShwUk
-         hia0aeYRyf7vi7hyqgybyyXiXA0NZRALvtv/wImf/I1TwQuBFKcIrj694UUm/mJNxTg5
-         do+Jl9ifD0ADKuNfYKtlS6UydNFb5+t8XAPSM2qqBk8qNkpJb0HJDsr8uIaCqojiP61t
-         tyyMMSyYahoSu9yR92yWil2HGGPWtpTuEaxt/8oU70fiNjEQ1isYx7oMTLjTOjwAg1hA
-         mmWA==
-X-Gm-Message-State: AOJu0Yy4nXo7ezIGc1gYXQjn+nltVlazck9s7We8ECRWKZ10ZhfPUDqx
-        PG64IE6iioP7OF0hoCrX8nWXbBLjddpUIJT++8u0mQ==
-X-Google-Smtp-Source: AGHT+IG3EcPXprLCAz21KTVrZkubgDDyvYv8YnsUJ3H3R/WudOZ5LBCK6NOqf5lVyujbVWA/U47VjCUJj4AsCKvlQJo=
-X-Received: by 2002:ac8:58d0:0:b0:410:88a5:92f with SMTP id
- u16-20020ac858d0000000b0041088a5092fmr116138qta.0.1694559637027; Tue, 12 Sep
- 2023 16:00:37 -0700 (PDT)
+        bh=TiT6xmXSdGoBaHZvckfZjy18MoIhmr9QJ20ZYjr0eBk=;
+        b=Rqee3ED1lvvwBESbTXYppXssK7wMH0a0YEYLPNdVQMijyhwuNmsNVtx/jOK3D4lpjD
+         N0K0RcFuD+S48TOzQscj+dz2t+gFhGVhGVGvIRbVPToY3OLqBFPr5SbF3mxz6hrhEEjw
+         rf391CKzge0erK7qC1e8nkK6EYfFfmpGly7DVCnBE6GIyuLHQFwbangSvWID0vtziMtK
+         RbSNOANEaFzld21VgBQYUVriQ4Ddo7TbhAF+KqfkdwHlM0hchlnVT5JzkQiodEqmgEJg
+         bdOpcrttt5UWAQ1QDg4JoTNybY/aRt+tMqEBHaNQqZpdFYkk0rhQv0A94ogSq5wEi2F0
+         T9Zg==
+X-Gm-Message-State: AOJu0Yy2/MNRyINfgOXN+mtBvrUZ1GN7kpptWek3vLe4pk6tO3XE3sdy
+        XerpzQR2tS2CeUe9fZXX8X8oPoZkuQCddTAGJt2PWA==
+X-Google-Smtp-Source: AGHT+IERI3rr3CaCesY2PptENeGbQVVNtd8ZrG00DBYZxsfVvkMZQAsUeN2jhdra67OhwmGw5ClQbg==
+X-Received: by 2002:a2e:9290:0:b0:2bd:1dc0:5ed5 with SMTP id d16-20020a2e9290000000b002bd1dc05ed5mr921609ljh.23.1694561444709;
+        Tue, 12 Sep 2023 16:30:44 -0700 (PDT)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com. [209.85.128.46])
+        by smtp.gmail.com with ESMTPSA id gt33-20020a1709072da100b009ad854daea6sm1670323ejc.132.2023.09.12.16.30.43
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Sep 2023 16:30:43 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4009fdc224dso15285e9.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 16:30:43 -0700 (PDT)
+X-Received: by 2002:a05:600c:5123:b0:403:9d52:195f with SMTP id
+ o35-20020a05600c512300b004039d52195fmr57028wms.6.1694561443510; Tue, 12 Sep
+ 2023 16:30:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230912174928.528414-1-apatel@ventanamicro.com> <20230912174928.528414-4-apatel@ventanamicro.com>
-In-Reply-To: <20230912174928.528414-4-apatel@ventanamicro.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 12 Sep 2023 16:00:00 -0700
-Message-ID: <CAGETcx8vXifmS2U5PTtmBySA=dih3GUOQ93A_qA5nm3faQqcGg@mail.gmail.com>
-Subject: Re: [PATCH v8 03/16] of: property: Add fw_devlink support for msi-parent
-To:     Anup Patel <apatel@ventanamicro.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+References: <20230912071205.11502-1-david@ixit.cz> <20230912071205.11502-2-david@ixit.cz>
+In-Reply-To: <20230912071205.11502-2-david@ixit.cz>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 12 Sep 2023 16:30:31 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XYdvcF2mo9=-EBb4Ann1UAM1VFW61MH3yOWjyLqCJRiw@mail.gmail.com>
+Message-ID: <CAD=FV=XYdvcF2mo9=-EBb4Ann1UAM1VFW61MH3yOWjyLqCJRiw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sdm845: cheza doesn't support
+ LMh node
+To:     David Heidelberg <david@ixit.cz>
+Cc:     cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 12, 2023 at 10:50=E2=80=AFAM Anup Patel <apatel@ventanamicro.co=
-m> wrote:
+Hi,
+
+On Tue, Sep 12, 2023 at 12:14=E2=80=AFAM David Heidelberg <david@ixit.cz> w=
+rote:
 >
-> This allows fw_devlink to create device links between consumers of
-> a MSI and the supplier of the MSI.
+> Cheza firmware doesn't allow controlling LMh from the operating system.
 >
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> ---
->  drivers/of/property.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index cf8dacf3e3b8..758ea822e46d 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1267,6 +1267,7 @@ DEFINE_SIMPLE_PROP(resets, "resets", "#reset-cells"=
+> Fixes: 36c6581214c4 ("arm64: dts: qcom: sdm845: Add support for LMh node"=
 )
->  DEFINE_SIMPLE_PROP(leds, "leds", NULL)
->  DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
->  DEFINE_SIMPLE_PROP(panel, "panel", NULL)
-> +DEFINE_SIMPLE_PROP(msi_parent, "msi-parent", "#msi-cells")
->  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
->  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
->
-> @@ -1361,6 +1362,7 @@ static const struct supplier_bindings of_supplier_b=
-indings[] =3D {
->         { .parse_prop =3D parse_regulators, },
->         { .parse_prop =3D parse_gpio, },
->         { .parse_prop =3D parse_gpios, },
-> +       { .parse_prop =3D parse_msi_parent, },
+> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+> v2:
+>  - moved power-domains removal from this patch to previous one, since
+>    it's not related to LMh support
+>  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 
-Please follow the same ordering here as the DEFINE_SIMPLE_PROP macros.
-So, this should come after the panel one.
+I haven't used a cheza in years, but this seems reasonable to me.
 
--Saravana
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
