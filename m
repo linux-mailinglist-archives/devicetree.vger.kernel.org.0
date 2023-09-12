@@ -2,111 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59D2A79D3E5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 16:39:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC40479D3ED
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 16:41:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236062AbjILOjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 10:39:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56392 "EHLO
+        id S235913AbjILOlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 10:41:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236030AbjILOjG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 10:39:06 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57933118
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 07:39:02 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-500c37d479aso9289376e87.2
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 07:39:02 -0700 (PDT)
+        with ESMTP id S230347AbjILOlM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 10:41:12 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40933115
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 07:41:08 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id 41be03b00d2f7-53fa455cd94so4078979a12.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 07:41:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694529540; x=1695134340; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=90jC6lxpRCDPUe28BcYQwA0xCL7xf56sZ85Q5b+uKGA=;
-        b=aqAhKfuyhcfd/L9Fom5gVmpiQCjpykKy0PepnjX0APVDNn1YFDCBaIm9FPqhkjpAGx
-         QRKWtmwPrNCe0C/tiAld1SYGyL0ybuqCXC8mL/mRSiebw+JNLR9fdknpe0OgmVbd3waX
-         XudS8qKPBAQ9uaucP1DvnuFU8ws8x4YTclJ0RK3bO8RFzYAOEqDdsK3WJ+QFCWqXh0j1
-         xLXmMG08br6DxSDa8Qe7xjbriS9siMocmLIwSYZicQF0ZEG19Y6hSVKenQQczWkPQn4R
-         9GXPfkaytRnSIB08kqECRGGnQZLlyjEtheerYXb/5mygfnlp2mYZ5TEjylHsyhgEbGit
-         CrVQ==
+        d=linaro.org; s=google; t=1694529668; x=1695134468; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7IA9vO5OF4PfvbjWyLsSgk3yi/uHzp9q+67eqvoiYFs=;
+        b=ccSMZ1+gT7HzhJ83pd8JAaRBvIuyeNDQP3gNephwYBViaMutUkRqgRMNAmj/kQYzQk
+         3pqX4mBv9mwWAv45zfyS3u+KVn05SxE7tCqRKNJzEuz+A956jEzehUiAQfvjQhIh4UKJ
+         K9SHR7F7DmM5izZL2oNgPgzHbuXQtwCzUHrlLbHlP0a5nCwVKRZioZTTXbM3gehporUs
+         hMPv+JA9KskKPBJKDn+h3cHfWw5laaJ8m+HeDM8lxUrvQwQYT85LOMVJRuVajAKs+f0b
+         oEjWnkA//Y55uXGoATRNrtFK/AwGRvfryMr3y5vqwxbDs9a+ebgHinicC14q4WcGn9bl
+         VaAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694529540; x=1695134340;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=90jC6lxpRCDPUe28BcYQwA0xCL7xf56sZ85Q5b+uKGA=;
-        b=uqj82Dfqn/RctPmv0uxvTF+uDOdFc0h3osb9SAGWJtmNRKlSpX8cr2ReQ/5LJrXyfj
-         dFUJC/QtmsqJtbg4CFP4yX/OjrlBEtNETmD3OYiV7ipx7GAk7uW1pRhQXX7DDYRygfOY
-         aTF+mHYsGpsV83UxzeIjtF3r0QeGTfoVChf1Cie6hThFtusYr3Z2wCizBDg/a4YuLh+m
-         kLZEwyLvud95Wagc+fgd/RKXp09xxqxlbzRf7ckNQhrpaHsD61MTCJJI67wL3K+ybIop
-         AicrR+PysoonYmMjP5UL2nvHS36MEmPshDnkCK/p8KQ7qiCi3M4w3ARNMj0g2+0t6Gi2
-         sOVg==
-X-Gm-Message-State: AOJu0Yzq4azIIf2po/BMM6Wg/bPb5pUNxNbNN9dvI8gReZtXIMA+wZ/r
-        l3+jPb9m8fsVXCSIUcVGWW7JPg==
-X-Google-Smtp-Source: AGHT+IGTLkWR/G9NZRRA7prqCKEl3s/MsYlgvEESmIxQqGWWdnJSzY4il2hoUqsAEx+R0TwNJNs6YQ==
-X-Received: by 2002:a05:6512:b95:b0:500:a6c1:36f7 with SMTP id b21-20020a0565120b9500b00500a6c136f7mr12163748lfv.3.1694529540570;
-        Tue, 12 Sep 2023 07:39:00 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id d32-20020a056402402000b00521d2f7459fsm4484835eda.49.2023.09.12.07.38.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Sep 2023 07:39:00 -0700 (PDT)
-Message-ID: <327ff0b3-21c9-1452-af1b-e9b6ece52924@linaro.org>
-Date:   Tue, 12 Sep 2023 16:38:58 +0200
+        d=1e100.net; s=20230601; t=1694529668; x=1695134468;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7IA9vO5OF4PfvbjWyLsSgk3yi/uHzp9q+67eqvoiYFs=;
+        b=OyUYETjVE8TZD4SdrOnu/00JPdkuyYwk02TtG94qXCeOEThRxFC66QaQ/CvNeVTVhO
+         7KBBOgkRqu5F+VAeYeXN1QAudUXOHRsoaHGUKeln9eolhiPTQ3oYhHtKkFdOA011x5rb
+         lo9x551+Jf2JMjsF4U4zg+cBy9biGZDmDhqffFgV8u+CSJ5p7uqt4aov3GRZ+SAJ38aD
+         9RrO6UPZcrIKaEFz2IZ+h1sq06Lb6AMB76D2GOnaDEHWzSPlyjQDsdRFI2+qbvoRsa67
+         zn6hBh6Kkl6kr8xnkYdvOXimGadCZxr2HCa173rqRYXvBTcQjdebwiyTshgJau7f3iO9
+         QmfQ==
+X-Gm-Message-State: AOJu0Yx9S+KEg+sFf7fzBjOonhakY/OBZTbO+4MqFu4pxza3oX4x5zEf
+        4QlEI2cKMli627kd8DTVXha9BA==
+X-Google-Smtp-Source: AGHT+IGI9zf7neD/ytF0XaIRN6SetT6z4G2tT486Bd7sTiE6fcv43FJe/iFhqQFbhtCjZimu2u4lgw==
+X-Received: by 2002:a17:90b:909:b0:271:a9b2:5162 with SMTP id bo9-20020a17090b090900b00271a9b25162mr9472055pjb.27.1694529667739;
+        Tue, 12 Sep 2023 07:41:07 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:ed04:a14b:64d6:aece])
+        by smtp.gmail.com with ESMTPSA id x3-20020a17090ab00300b00268b9862343sm5377469pjq.24.2023.09.12.07.41.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Sep 2023 07:41:07 -0700 (PDT)
+Date:   Tue, 12 Sep 2023 08:41:04 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Iuliana Prodan <iuliana.prodan@nxp.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>,
+        "S.J. Wang" <shengjiu.wang@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-imx <linux-imx@nxp.com>,
+        linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        LnxRevLi <LnxRevLi@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Mpuaudiosw <Mpuaudiosw@nxp.com>,
+        "Iuliana Prodan (OSS)" <iuliana.prodan@oss.nxp.com>
+Subject: Re: [PATCH 2/2] arm64: dts: imx8mp: add reserve-memory nodes for DSP
+Message-ID: <ZQB4gMyfJK9sFXID@p14s>
+References: <20230911224452.15739-1-iuliana.prodan@oss.nxp.com>
+ <20230911224452.15739-3-iuliana.prodan@oss.nxp.com>
+ <67de5706-d966-dd71-85c3-c95bc1b72733@linaro.org>
+ <c0b32f41-46b4-81ad-9718-5f0856e42cb1@nxp.com>
+ <32287c0a-e3c1-e474-3c90-913fe2c79879@linaro.org>
+ <fe47a94e-6788-a5ee-e8ee-ca58e4fa62d6@nxp.com>
+ <af1959ce-d817-2a9e-9c28-fed8c608a3df@linaro.org>
+ <dc402d33-88b1-e828-e6a5-2de060fbcdca@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v2 10/10] ARM: dts: stm32: add RNG node for STM32MP13x
- platforms
-Content-Language: en-US
-To:     Gatien Chevallier <gatien.chevallier@foss.st.com>,
-        Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     Lionel Debieve <lionel.debieve@foss.st.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230911120203.774632-1-gatien.chevallier@foss.st.com>
- <20230911120203.774632-11-gatien.chevallier@foss.st.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230911120203.774632-11-gatien.chevallier@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dc402d33-88b1-e828-e6a5-2de060fbcdca@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/09/2023 14:02, Gatien Chevallier wrote:
-> The RNG on STM32MP13 offers upgrades like customization of its
-> configuration and the conditional reset.
+On Tue, Sep 12, 2023 at 01:51:42PM +0300, Iuliana Prodan wrote:
+> On 9/12/2023 12:36 PM, Krzysztof Kozlowski wrote:
+> > On 12/09/2023 10:49, Iuliana Prodan wrote:
+> > > > > Should I test this on other tree(s)?
+> > > > You test the patch on the tree you send it. What is the point to test it
+> > > > on some old code, cherry-pick with bugs and then send?
+> > > > 
+> > > > If you have cross-tree dependencies between subsystem, isn't linux-next
+> > > > for this?
+> > > TBH, I don't know, that's why I asked.
+> > > 
+> > > For sure one patch is for remoteproc.
+> > > For the other, I don't know who will pick it, but I'll tested on
+> > > linux-next, as you suggested.
+> > MAINTAINERS file (and get_maintainers.pl) will tell you. Specifically,
+> > this does not look really related to remoteproc patch, so it should not
+> > be together in one patchset.
 > 
-> The hardware RNG should be managed in the secure world for but it
-> is supported on Linux. Therefore, is it not default enabled.
+> Hi Mathieu,
 > 
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
-> ---
->  arch/arm/boot/dts/st/stm32mp131.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> I need to send a v2 - to fix the dtsi missing bracket on patch 2.
+> So, should I keep the 2 patches together or send them separately?
+>
+
+Marco is already aware of this patchset so I would keep them together.
+
+> Thanks,
+> Iulia
 > 
-> diff --git a/arch/arm/boot/dts/st/stm32mp131.dtsi b/arch/arm/boot/dts/st/stm32mp131.dtsi
-> index ac90fcbf0c09..39db82b782eb 100644
-> --- a/arch/arm/boot/dts/st/stm32mp131.dtsi
-> +++ b/arch/arm/boot/dts/st/stm32mp131.dtsi
-> @@ -1220,6 +1220,14 @@ mdma: dma-controller@58000000 {
->  			dma-requests = <48>;
->  		};
->  
-> +		rng: rng@54004000 {
-> +			compatible = "st,stm32mp13-rng";
-> +			reg = <0x54004000 0x400>;
-> +			clocks = <&rcc RNG1_K>;
-> +			resets = <&rcc RNG1_R>;
-> +			status = "disabled";
-
-Why? What other resources are missing?
-
-Best regards,
-Krzysztof
-
+> 
+> 
