@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EE0479C550
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 06:54:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19B2279C555
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 06:54:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229801AbjILEyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 00:54:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41136 "EHLO
+        id S229653AbjILEym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 00:54:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229923AbjILExd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 00:53:33 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D69381981
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 21:52:44 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so13436553a12.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 21:52:44 -0700 (PDT)
+        with ESMTP id S229567AbjILExl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 00:53:41 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E209D1993
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 21:52:46 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-52a40cf952dso6793796a12.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 21:52:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1694494363; x=1695099163; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1694494365; x=1695099165; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0TiFKFK+XRL8Y2Qq5YanADGgX/99HgRFoLldxYf1nF8=;
-        b=YtZyX6fee1IO+aOnbTokMR4XX16aVgMWzCsyarqP2QKtOW1lWjQ2UdwETjELmUllF/
-         Y16oLHPajwBTC08nDH6U0tq1QTpsnt7DDQLImNt+acxjND+nm0Iv4gEVdMbtn3JRQaW+
-         JwaYk019jwzZYOD4Y7qulXIZrrOO5mGBxdvBCnkTGBO3U71mYQ5dvAh6GQeudwkKk/Ej
-         DDa3dN2Amsbaql4s0iXjxVxtnvY4nt5LY9h9rh8674tIzzdti0NUkjzk/teZnabmZAXQ
-         xq4oZadhmfNaMfIdEd5g1952N+HlUibOk9YL4vBa0CjCy1G0vLOs19uVhAD3JczMVpjE
-         7p/w==
+        bh=jo/Dhp0OB8bboTWYwPIzrc1K3kv8uwjtpXTegipdPHc=;
+        b=qF7HnNVAZL97mkDnRyMiMWN+iIYqL+deXUmIJpY98pSzxYCAX/4FHlf228aZnyqAN4
+         i3R8Oq7lJC0mamK7Rlwg8+tzRjHZZjBYE72Jir8DamdrB0mP5XxV/Nyv05lt6A08Qju9
+         52Kpr+A1qoG2wIlAHP+hllWkzGv+VuNKhFm/LfQeT+Ufjw1d8EORVHh0L7g6OfrZdjDG
+         nZIzQqMMcrsp4EZx68nLaPhhztG9WH7QkH/TsioHCfmFmBXlOAgixjKw7HsTtp495q/d
+         VcPoUN8V+Oap9kYpfKF+/hDQk06y4AZXwu0AwFtybPSrH/B+mJODz9WGp70dzDOUEXgf
+         dVBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694494363; x=1695099163;
+        d=1e100.net; s=20230601; t=1694494365; x=1695099165;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=0TiFKFK+XRL8Y2Qq5YanADGgX/99HgRFoLldxYf1nF8=;
-        b=J5buYQG2Nmn2lzHvlxr690P35eUOghWVQCxsOdQBOyXGg1GQ6HD8H0O1umtxKUlgQL
-         5HbSWxpOIy6eNKOKXAtDYEZHEAPKgmT3QXi+a24zg6snp8p21xbfxw+UonkV4nkz/1L9
-         uiovTD8L1y7cwcKroy1nnBjuggpVudA+I12B19xHcGRJFl15i2a01o472nLDhmAOLeUq
-         2fqVHLgRq9dD4xZkbJaGOOkwv4DA1Yt/x2iBhw6wmhmGci8z32lJhugkqUmmyKRtd2vJ
-         BHoV5XGoDzYFOWU28ycAetDKoFt5EWCLKUDtafTi/QjZ/sbT1Eacafxd3EhIQ+3bhK6H
-         jxPQ==
-X-Gm-Message-State: AOJu0YwZWMY2ztqXrTthTPQvptmXhaJF1F3Ng7ESOPAua+DEwJJ6fa/s
-        Nem3XE6NUxk7ghphVuLLa1NQFg==
-X-Google-Smtp-Source: AGHT+IFx0wElgq/g5yJUbGwsVL7pK9O7R7ug3dBEnT+lubye7E7aMZMoI9sOzNhpCz2dZGVSV2hpdw==
-X-Received: by 2002:a05:6402:2899:b0:52a:586a:b19a with SMTP id eg25-20020a056402289900b0052a586ab19amr1381363edb.21.1694494363502;
-        Mon, 11 Sep 2023 21:52:43 -0700 (PDT)
+        bh=jo/Dhp0OB8bboTWYwPIzrc1K3kv8uwjtpXTegipdPHc=;
+        b=CaV1nsT+AcbKVx1FFd5vY8uZt6fvVSiKNOUVr3/6eDXz/D3nADnC1m4D5fEgGjcnYd
+         Pnswk8gyVpdrVEqxU/+TWYdgYlQoyHcpFofVXLFDjX0NA9lGzjnbF6s5A7dsVbyJ2IO9
+         XTv6ZUcbdLM75lmNTmv5uiR5atjyuxEGovTC1ZWLfnb1kTmg7su+YLcTGkrAzfrVSj8F
+         LdeWvYHIqcH5eFb5pINGb9G569j2CmrXqwSMXgaygPLwaTTg+CG3dZfgdbBnol6+8Yid
+         FYKee3GaE+XQ4h/quTV8+T3G5xDFyMioEppIOkp3qeNG4Lg7glA2BAL3HmXoEP5as/GT
+         orWA==
+X-Gm-Message-State: AOJu0Yw+BikTxSK9TN2g+pkKUR258/dEunV+rvFcVFhY/vLf/hljhxVs
+        a/X+YFWAtDSvd7TqVovFVD5HJw==
+X-Google-Smtp-Source: AGHT+IHQ/lVkuQFDtf8qYMcsBRGgpvmpbqpXE6jLiYty7Ri7fdqkUCoAD7dGqyQevjHt4iQoJ0Z6EA==
+X-Received: by 2002:a05:6402:333:b0:522:3d36:ff27 with SMTP id q19-20020a056402033300b005223d36ff27mr9729078edw.31.1694494365456;
+        Mon, 11 Sep 2023 21:52:45 -0700 (PDT)
 Received: from claudiu-X670E-Pro-RS.. ([82.78.167.145])
-        by smtp.gmail.com with ESMTPSA id f21-20020a05640214d500b0051e22660835sm5422415edx.46.2023.09.11.21.52.41
+        by smtp.gmail.com with ESMTPSA id f21-20020a05640214d500b0051e22660835sm5422415edx.46.2023.09.11.21.52.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Sep 2023 21:52:43 -0700 (PDT)
+        Mon, 11 Sep 2023 21:52:45 -0700 (PDT)
 From:   Claudiu <claudiu.beznea@tuxon.dev>
 X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
 To:     geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
@@ -67,9 +67,9 @@ Cc:     linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
         linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
         linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH 13/37] clk: renesas: rzg2l: use FIELD_GET() for PLL register fields
-Date:   Tue, 12 Sep 2023 07:51:33 +0300
-Message-Id: <20230912045157.177966-14-claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH 14/37] clk: renesas: rzg2l: use u32 for flag and mux_flags
+Date:   Tue, 12 Sep 2023 07:51:34 +0300
+Message-Id: <20230912045157.177966-15-claudiu.beznea.uj@bp.renesas.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
 References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
@@ -81,44 +81,28 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Use FIELD_GET() for PLL register fields. This is its purpose.
+flag and mux_flags are intended to keep bit masks. Use u32 type for it.
 
 Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 ---
- drivers/clk/renesas/rzg2l-cpg.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/clk/renesas/rzg2l-cpg.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/clk/renesas/rzg2l-cpg.c b/drivers/clk/renesas/rzg2l-cpg.c
-index d8801f88df8e..50f69bbe1a6e 100644
---- a/drivers/clk/renesas/rzg2l-cpg.c
-+++ b/drivers/clk/renesas/rzg2l-cpg.c
-@@ -11,6 +11,7 @@
-  * Copyright (C) 2015 Renesas Electronics Corp.
-  */
+diff --git a/drivers/clk/renesas/rzg2l-cpg.h b/drivers/clk/renesas/rzg2l-cpg.h
+index 6cee9e56acc7..0b28870a6f9d 100644
+--- a/drivers/clk/renesas/rzg2l-cpg.h
++++ b/drivers/clk/renesas/rzg2l-cpg.h
+@@ -92,8 +92,8 @@ struct cpg_core_clk {
+ 	unsigned int conf;
+ 	const struct clk_div_table *dtable;
+ 	const char * const *parent_names;
+-	int flag;
+-	int mux_flags;
++	u32 flag;
++	u32 mux_flags;
+ 	int num_parents;
+ };
  
-+#include <linux/bitfield.h>
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/clk/renesas.h>
-@@ -38,14 +39,13 @@
- #define WARN_DEBUG(x)	do { } while (0)
- #endif
- 
--#define DIV_RSMASK(v, s, m)	((v >> s) & m)
- #define GET_SHIFT(val)		((val >> 12) & 0xff)
- #define GET_WIDTH(val)		((val >> 8) & 0xf)
- 
--#define KDIV(val)		DIV_RSMASK(val, 16, 0xffff)
--#define MDIV(val)		DIV_RSMASK(val, 6, 0x3ff)
--#define PDIV(val)		DIV_RSMASK(val, 0, 0x3f)
--#define SDIV(val)		DIV_RSMASK(val, 0, 0x7)
-+#define KDIV(val)		FIELD_GET(GENMASK(31, 16), val)
-+#define MDIV(val)		FIELD_GET(GENMASK(15, 6), val)
-+#define PDIV(val)		FIELD_GET(GENMASK(5, 0), val)
-+#define SDIV(val)		FIELD_GET(GENMASK(2, 0), val)
- 
- #define CLK_ON_R(reg)		(reg)
- #define CLK_MON_R(reg)		(0x180 + (reg))
 -- 
 2.39.2
 
