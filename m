@@ -2,198 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 553D079D44A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 17:05:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BB8179D473
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 17:11:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236133AbjILPFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 11:05:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50104 "EHLO
+        id S236178AbjILPLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 11:11:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236110AbjILPFl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 11:05:41 -0400
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46BDF1BB
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 08:05:37 -0700 (PDT)
-Received: by mail-qk1-x72a.google.com with SMTP id af79cd13be357-770ef4d36f2so228726185a.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 08:05:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1694531136; x=1695135936; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=vM3oyGRFxtHxm1neHgA67Osk9iJA5NE4DNejEYZfvZ8=;
-        b=bCskFdpgHM/CSy0ZSLzi0ZaVLCc6R02F7zfxu1ulgQ4Gg34Xsjx+sguK855gCPRPAS
-         5y1yU0Qwfc6/NxxYS566OBijR4WiesaFPyUJK3hXcoTppT40C4yi50xnfTJKdfFUHsMA
-         7xR+2P7U2DHyJ6B+5LPtNyK1seerXwe61yGxkFjfVwhT6vWooQDNFoNyBqISh4E9iQF/
-         +nZcFH9cIwj5hr6lONW4p7KUOZajr6Jmt/y8jGZ5SZgXt8Fc/3KqTcKsvwW9RU6rjTFj
-         C0Hx+flROkQpnZTY5Y68ptpw3EEauPLyxugDnm56MhuLj2Ei2QR6UVOoLO0zgfwy9KBB
-         MDOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694531136; x=1695135936;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vM3oyGRFxtHxm1neHgA67Osk9iJA5NE4DNejEYZfvZ8=;
-        b=qIPyxxqTP9r7dThl08ZVRojPbN18lZLH6Ace4KMJPm8PIAFnexMxmT087wi1URy2o5
-         TFJobGLn9FH3BaiuMrpoEDRuHgDknvcmoyWwY8mA5EzkHMoDVVMRsoU8Jx9GESdLzO/G
-         Ur6/BGNVxScW84OMwoPSECPMjAG4+UaD2GV4ugRuJDlYSmO99MDdQF6ErU3h+q0n1Dd3
-         YIu/pnZR/RwxAragCgBh58hk9BOceAPigrvJNJXOgsKyEIURiHTurmkHBbECvMIGcirM
-         GRqXrO2Jhu84BDIn+iRofzWY+80XrE0xnQVR5eRq/zFNzxD5FbkAh86Lsn2d4sA4o/R3
-         v/Dw==
-X-Gm-Message-State: AOJu0YzbTHfz5Obr6px7FX2XxzqI8XJ2oyXmKRLHyobzfLmLkC2Sdz3Y
-        g6bGhNe2Hi2Kj02N2INTcoFVkw==
-X-Google-Smtp-Source: AGHT+IETEyxKiwuQg/hyiHZWR8ejsoB5rvNcCqFck37LlPZlL1+L6Aam0BaJ+MZGh5Xo6lDDiukNdA==
-X-Received: by 2002:a05:620a:454c:b0:76c:aff9:9f27 with SMTP id u12-20020a05620a454c00b0076caff99f27mr17152733qkp.59.1694531136409;
-        Tue, 12 Sep 2023 08:05:36 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain ([2606:6d00:15:bae9::7a9])
-        by smtp.gmail.com with ESMTPSA id s41-20020a05622a1aa900b004053bcffe49sm3380085qtc.9.2023.09.12.08.05.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Sep 2023 08:05:36 -0700 (PDT)
-Message-ID: <d15067b12571f8868925aace9dc84473cd74ec1f.camel@ndufresne.ca>
-Subject: Re: [PATCH 3/9] dma-heap: Provide accessors so that in-kernel
- drivers can allocate dmabufs from specific heaps
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Yong Wu =?UTF-8?Q?=28=E5=90=B4=E5=8B=87=29?= 
-        <Yong.Wu@mediatek.com>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "christian.koenig@amd.com" <christian.koenig@amd.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "jstultz@google.com" <jstultz@google.com>,
-        "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Jianjiao Zeng =?UTF-8?Q?=28=E6=9B=BE=E5=81=A5=E5=A7=A3=29?= 
-        <Jianjiao.Zeng@mediatek.com>,
-        Kuohong Wang =?UTF-8?Q?=28=E7=8E=8B=E5=9C=8B=E9=B4=BB=29?= 
-        <kuohong.wang@mediatek.com>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "Brian.Starkey@arm.com" <Brian.Starkey@arm.com>,
-        "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
-        "tjmercier@google.com" <tjmercier@google.com>,
+        with ESMTP id S236355AbjILPLe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 11:11:34 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3939115;
+        Tue, 12 Sep 2023 08:11:30 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EE9DC433C7;
+        Tue, 12 Sep 2023 15:11:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694531490;
+        bh=XvqdyTkbzYdmIFvzaFz0sUeabWQuIJEg/eBAxc9nVRQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OP3qBhadnTTrB4c6LnMwpMtXpd4trRfjk9GCUS0TFWfaopUqFNZnW7UJz/P2KamPy
+         bQUZqhV/yMRPKcymm9Tw9LBFhQ50yeAxFoJUk8g1X2QPycP7h0M8AeKKjbTi2n0r2x
+         PjKLjVEDvxGvZLO0m1qbWm8Qx6MvtOrvbzmXLBCuewZ7qI6ujXgzbhq5uNUIjFhTPA
+         2fujaj+jQ22/XPML+ropjSomHtLx4H0hNgIoTJ7+jMjQL0/D6QJhVarlKnXKbm+MF/
+         jsINXr7R7mHL49BZVRMNaYZB7YvVS/UQrbQhsSrupWHzyecnNGKEQhFOtyf/EVxD64
+         LT+BBefVm8Icg==
+Received: (nullmailer pid 809556 invoked by uid 1000);
+        Tue, 12 Sep 2023 15:11:27 -0000
+Date:   Tue, 12 Sep 2023 10:11:27 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>
+Cc:     "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
         "krzysztof.kozlowski+dt@linaro.org" 
         <krzysztof.kozlowski+dt@linaro.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "naresh.solanki@9elements.com" <naresh.solanki@9elements.com>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>
-Date:   Tue, 12 Sep 2023 11:05:35 -0400
-In-Reply-To: <8e795311ff93c7a336eb688818f055c5c569741e.camel@mediatek.com>
-References: <20230911023038.30649-1-yong.wu@mediatek.com>
-         <20230911023038.30649-4-yong.wu@mediatek.com>
-         <827b859e3ff8176ef0b18c29bc17481b4105e368.camel@ndufresne.ca>
-         <8e795311ff93c7a336eb688818f055c5c569741e.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>,
+        "patrick@stwcx.xyz" <patrick@stwcx.xyz>
+Subject: Re: [PATCH v8 1/3] dt-bindings: hwmon: fan: Add fan binding to schema
+Message-ID: <20230912151127.GA752403-robh@kernel.org>
+References: <20230830123202.3408318-1-billy_tsai@aspeedtech.com>
+ <20230830123202.3408318-2-billy_tsai@aspeedtech.com>
+ <20230905170010.GA3505375-robh@kernel.org>
+ <SG2PR06MB336567E43537C7F4947E342F8BEEA@SG2PR06MB3365.apcprd06.prod.outlook.com>
+ <20230907194351.GA2033402-robh@kernel.org>
+ <SG2PR06MB3365B916E3AD2CE331A0D4258BEDA@SG2PR06MB3365.apcprd06.prod.outlook.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SG2PR06MB3365B916E3AD2CE331A0D4258BEDA@SG2PR06MB3365.apcprd06.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le mardi 12 septembre 2023 =C3=A0 08:47 +0000, Yong Wu (=E5=90=B4=E5=8B=87)=
- a =C3=A9crit=C2=A0:
-> On Mon, 2023-09-11 at 12:12 -0400, Nicolas Dufresne wrote:
-> >  	=20
-> > External email : Please do not click links or open attachments until
-> > you have verified the sender or the content.
-> >  Hi,
-> >=20
-> > Le lundi 11 septembre 2023 =C3=A0 10:30 +0800, Yong Wu a =C3=A9crit :
-> > > From: John Stultz <jstultz@google.com>
-> > >=20
-> > > This allows drivers who don't want to create their own
-> > > DMA-BUF exporter to be able to allocate DMA-BUFs directly
-> > > from existing DMA-BUF Heaps.
-> > >=20
-> > > There is some concern that the premise of DMA-BUF heaps is
-> > > that userland knows better about what type of heap memory
-> > > is needed for a pipeline, so it would likely be best for
-> > > drivers to import and fill DMA-BUFs allocated by userland
-> > > instead of allocating one themselves, but this is still
-> > > up for debate.
-> >=20
-> >=20
-> > Would be nice for the reviewers to provide the information about the
-> > user of
-> > this new in-kernel API. I noticed it because I was CCed, but
-> > strangely it didn't
-> > make it to the mailing list yet and its not clear in the cover what
-> > this is used
-> > with.=20
-> >=20
-> > I can explain in my words though, my read is that this is used to
-> > allocate both
-> > user visible and driver internal memory segments in MTK VCODEC
-> > driver.
-> >=20
-> > I'm somewhat concerned that DMABuf objects are used to abstract
-> > secure memory
-> > allocation from tee. For framebuffers that are going to be exported
-> > and shared
-> > its probably fair use, but it seems that internal shared memory and
-> > codec
-> > specific reference buffers also endup with a dmabuf fd (often called
-> > a secure fd
-> > in the v4l2 patchset) for data that is not being shared, and requires
-> > a 1:1
-> > mapping to a tee handle anyway. Is that the design we'd like to
-> > follow ?=20
->=20
-> Yes. basically this is right.
->=20
-> > Can't
-> > we directly allocate from the tee, adding needed helper to make this
-> > as simple
-> > as allocating from a HEAP ?
->=20
-> If this happens, the memory will always be inside TEE. Here we create a
-> new _CMA heap, it will cma_alloc/free dynamically. Reserve it before
-> SVP start, and release to kernel after SVP done.
+On Fri, Sep 08, 2023 at 08:49:25AM +0000, Billy Tsai wrote:
+> On Thu, Sep 07, 2023 at 07:17:55AM +0000, Billy Tsai wrote:
+> > > On Wed, Aug 30, 2023 at 08:32:00PM +0800, Billy Tsai wrote:
+> > > >> From: Naresh Solanki <naresh.solanki@9elements.com>
+> > > >> 
+> > > >> Add common fan properties bindings to a schema.
+> > > >> 
+> > > >> Bindings for fan controllers can reference the common schema for the
+> > > >> fan
+> 
+> 
+> > > >> +properties:
+> > > >> +  max-rpm:
+> > > >> +    description:
+> > > >> +      Max RPM supported by fan.
+> > > >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > 
+> > > > Physics will limit this to something much less than 2^32. Add some 
+> > > > constraints. 10000?
+> > > 
+> > > 
+> > > >> +
+> > > >> +  min-rpm:
+> > > >> +    description:
+> > > >> +      Min RPM supported by fan.
+> > > >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > 
+> > > > ditto
+> > > 
+> > > >> +
+> > > >> +  pulses-per-revolution:
+> > > >> +    description:
+> > > >> +      The number of pulse from fan sensor per revolution.
+> > > >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > 
+> > > >Needs constraints. I assume this is never more than 4 (or 2 even)?
+> > > 
+> > > Do you think we should add the contraint in the common binding?
+> > > In my option, the limit of the max/min rpm should be declared by
+> > > the binding if necessary, because the usage of each fan monitor is
+> > > based on the connection of the tach pin.
+> 
+> > Yes, I think we should have default limits.
+> 
+> > Unless we go as far as a schema for every specific fan model, then there 
+> > is actually no way we can have specific limits unless the fan 
+> > controllers have some limits.
+> 
+> > The most I see in tree for pulses-per-revolution is 2. There's no value 
+> > in more. So set the max to 4 and then if anyone needs more they can bump 
+> > the value.
+> 
+> > Or maybe there's some electrical/mechanical design reason fans are 1 or 
+> > 2 pulses and we'll never see anything else? This document[1] seems to 
+> > indicate that is indeed the case. (First hit googling "fan tach signal 
+> > pulses")
+> 
+> OK, I will add the maximum value for the max-rpm, min-rpm and pulses-per-revolution.
+> 
+> > > 
+> > > 
+> > > >> +  div:
+> > > 
+> > > > Too generic of a name.
+> > > 
+> > > >> +    description:
+> > > >> +      Fan clock divisor
+> > > 
+> > > > But what is a fan clock?
+> > > 
+> > > This is the divisor for the tachometer sampling clock, which determines the sensitivity of the tach pin.
+> > > So, if the name of the property changes to 'tach-div,' is it acceptable to you?
+> 
+> > That sounds like a property of the controller, not the fan, so it 
+> > belongs in the controller binding. Is this really a common thing?
+> 
+> Yes, I believe this is a common feature for fans. You can refer to the Documentation/hwmon/sysfs-interface.rst,
+> where the fan divisor is defined for users, determining the fan's sensitivity.
 
-Ok, I see the benefit of having a common driver then. It would add to the
-complexity, but having a driver for the tee allocator and v4l2/heaps would =
-be
-another option?
+It's a feature of the controller, but I guess since it may be a per 
+fan or tach channel setting having it in the fan node is fine. 
+'tach-div' is fine.
 
->  =20
-> Secondly. the v4l2/drm has the mature driver control flow, like
-> drm_gem_prime_import_dev that always use dma_buf ops. So we can use the
-> current flow as much as possible without having to re-plan a flow in
-> the TEE.
+>  
+> > > >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > >> +
+> > > >> +  target-rpm:
+> > > >> +    description:
+> > > >> +      Target RPM the fan should be configured during driver probe.
+> > > 
+> > > > What driver? By the time the OS driver runs, a bunch of other boot 
+> > > > software has already run on modern systems. So this value would likely 
+> > > > be used much earlier. The point is that when exactly is outside the 
+> > > > scope of DT. This is "what RPM do I use in case of no other information 
+> > > > (e.g. temperature)".
+> > > 
+> > > So, the description should be changed to 'The default desired fan speed in RPM,'
+> > > and we shouldn't mention the timing of the property's operation in the DT, is that correct?
+> 
+> > Correct.
+> 
+> > > 
+> > > >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > >> +
+> > > >> +  mode:
+> > > 
+> > > > Too generic.
+> > > 
+> > > >> +    description:
+> > > >> +      Select the operational mode of the fan.
+> > > 
+> > > > What are modes? Spin and don't spin?
+> > > 
+> > > The mode is used to indicate the driving mode of the fan (DC, PWM and so on).
+> > > So, if the name of the property changes to 'fan-driving-mode,' is it acceptable to you?
+> 
+> > I tend to think that should be implied from the parent node and/or other 
+> > properties. PWM if "pwms" property is present. DC if the supply is 
+> > variable. We could also use compatible strings in the fan nodes if 
+> > there's a need.
+> 
+> So, it looks that this property isn't necessary for the fan. And it should be determined by the
+> present of the driving source. is that correct?
 
-From what I've read from Yunfei series, this is only partially true for V4L=
-2.
-The vb2 queue MMAP feature have dmabuf exportation as optional, but its not=
- a
-problem to always back it up with a dmabuf object. But for internal SHM buf=
-fers
-used for firmware communication, I've never seen any driver use a DMABuf.
+Looking back, I see Guenter asked for something like this. So I guess it 
+is fine to keep if he still thinks we need it. I think it could also be 
+implied a bit more clearly if we do 'cooling-levels' as below. The fan 
+controller should know what modes it can do. Duty cycle vs. voltage in 
+uV is pretty easy to distinguish.
 
-Same applies for primary decode buffers when frame buffer compression or po=
-st-
-processing it used (or reconstruction buffer in encoders), these are not us=
-er
-visible and are usually not DMABuf.
+> 
+> > That reminds me, both of these modes probably need a table of 
+> > voltage/duty-cycle to RPMs. I imagine it's not always a linear response.  
+> > Naresh also privately sent me (don't do that) an updated common binding 
+> > which we discussed the need for this. I expect him to comment further 
+> > with details.
+> 
+> For this purpose, we should add the speed-map like the usage of the gpio-fan, right?
+> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/hwmon/gpio-fan.txt
 
->=20
-> >=20
-> > Nicolas
-> >=20
-> > >=20
-> > > Signed-off-by: John Stultz <jstultz@google.com>
-> > > Signed-off-by: T.J. Mercier <tjmercier@google.com>
-> > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > > [Yong: Fix the checkpatch alignment warning]
-> > > ---
-> > >  drivers/dma-buf/dma-heap.c | 60 ++++++++++++++++++++++++++++----
-> > ------
-> > >  include/linux/dma-heap.h   | 25 ++++++++++++++++
-> > >  2 files changed, 69 insertions(+), 16 deletions(-)
-> > >=20
-> [snip]
+That should be fine. I guess it comes down to whether we want one 
+property or 3 depending on whether the control is voltage, duty-cycle, 
+GPIO pins state, etc. Unfortunately, it's "gpio-fan,speed-map", not 
+"speed-map", so we can't use that as-is. There's also "cooling-levels" 
+which can accomplish the same thing. We don't know RPMs with that, but 
+do we need to? Maybe, as it seems some drivers want to set speed in RPMs 
+from userspace. Could also do something like this:
 
+cooling-levels = < 33   66  100>;
+rpm-levels =     <500 1000 1500>;
+
+"rpm-levels" would replace the min-rpm/max-rpm properties.
+
+
+Also, looking at gpio-fan.txt, it looks like you should add 
+"#cooling-cells" as well.
+
+Rob
