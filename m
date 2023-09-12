@@ -2,123 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 708D879D675
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 18:37:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6159079D680
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 18:38:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236922AbjILQhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 12:37:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37678 "EHLO
+        id S236801AbjILQiq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 12:38:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236874AbjILQhQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 12:37:16 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90162115;
-        Tue, 12 Sep 2023 09:37:12 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35ED1C433C7;
-        Tue, 12 Sep 2023 16:37:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694536632;
-        bh=OJuoXIE82hjK2NBMYhWXwpJGkmlI7rC+5Tx9u3yV2tM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Ps2S5DYSbulUYf7oy7lT6QUeIC8SEE8uDrovxyzlP1aFanperwJfPxgxOSDoMicdj
-         QPhK/QjxkpPvjv2poRuKEjUgTqjp60TdQnRQmmahJid4JusPVASg0K1uVbLr45UAB9
-         O+q5IVvxkSBtPB4uIoSzebjqIZKeWLsg1NRa9ESumUogVOWqga9FHZ4uTwbMwFliV4
-         inf0fEeH4WTZISjvzOruneKr+bXI0QcpZaEpr0gdpaoAWUmP+DefmPc84zsLhd9NP2
-         YObhh1gBw/Dws7ynhREpR3QXWW0o3PhgfgfBYRLDlXE9yJVBmWttawahid5gfYz9Cd
-         Kjln+OFCXKa7w==
-Date:   Tue, 12 Sep 2023 17:37:03 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Simon Horman <horms@kernel.org>,
-        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 07/31] dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc:
- Add 'additionalProperties: false' in child nodes
-Message-ID: <20230912-pancreas-hacked-ddcaa726fa8e@spud>
-References: <20230912081527.208499-1-herve.codina@bootlin.com>
- <20230912081527.208499-8-herve.codina@bootlin.com>
+        with ESMTP id S236920AbjILQiq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 12:38:46 -0400
+Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com [IPv6:2607:f8b0:4864:20::c30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF3901703
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 09:38:41 -0700 (PDT)
+Received: by mail-oo1-xc30.google.com with SMTP id 006d021491bc7-578a49f7e57so71800eaf.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 09:38:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694536721; x=1695141521; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=a3xRu+YNAaBODdgaeXRLq5j+CcEvpc1L8H9RF8ulaQo=;
+        b=NA+kInnTtJMPNfh9U6ft5NYsE4udsA3hSn+79VAHcQVBgGkyd4Iq9sVs+5EjsZTqmf
+         W8EN8jnDeEEjt7wBP2+o7TyFeGO+RoLBF2Ud96ULasl1YPZ1D7d+RZ8xmfmi4Y+gEjJA
+         iUczviZRsaNFc8pl/M4neufdSg893+NaLA8S97DgQIYTgJhu/5lDwLynYT1BGEAqDLKN
+         SRPYIhYAJtD83eoFuLeo48zpHcNw4rapw69GABqhRFAoCVpAKFW6Q+mjLkuHV77UvnlQ
+         P2AneCzWvi2v7FSzi5BtRv+4SrD1NaAJT8xM08Omtbru8fAaBYG+OlM4Xop4xuE4e1vc
+         T+FA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694536721; x=1695141521;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a3xRu+YNAaBODdgaeXRLq5j+CcEvpc1L8H9RF8ulaQo=;
+        b=kIIJZ+sdsuigTDUVAMOsgEoklh3Iuvk+p5nGE3KogtMWJmpMyDss9W4aImRKhb1+9t
+         paiJT9+S/281baJfryzZEQePGpxmyvb0A1sbYjXUaQthcWNF9LtGSJHOMPLmWJ64FNv7
+         i5kEd8D2QT8iDKPnDDViE8ta6Zpc9LOPYOfyYJjgj0jLX6WdblG9M4Ub7290ZIk7Z/i0
+         zq4can+JEfAuUenIJMw2M003ANYqdIL3cFQLmI5OPcpXwDpHuVMWkOcVDuzdY6WZm1KI
+         PlAlPgAGlUSO4Ig/2L+OPC9ich2Op7J1jfsSfLK6OXQShUnMPH0mPjZx7mweUuHuDvAA
+         YsBQ==
+X-Gm-Message-State: AOJu0YzJncSJGFhryn+zyGwWEQAoc57a+tnEXcAnZGTILB1CDaJlfuu5
+        FQmhNLSPDYsaKK/0ItcOMPo=
+X-Google-Smtp-Source: AGHT+IHEyDy54+csWJetTPUbx8mAityAJ+V61r74welMAlw+I8u8beU6kLbhkV9IcEAcSiFnyzfwhQ==
+X-Received: by 2002:a05:6820:80e:b0:576:8c96:15a2 with SMTP id bg14-20020a056820080e00b005768c9615a2mr186436oob.1.1694536720871;
+        Tue, 12 Sep 2023 09:38:40 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:676a:5a77:75a8:efc8])
+        by smtp.gmail.com with ESMTPSA id v4-20020a4aad84000000b00565fbd0d4c0sm4012426oom.28.2023.09.12.09.38.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Sep 2023 09:38:40 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, mirela.rabulea@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        alexander.stein@ew.tq-group.com, Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v3 1/3] dt-bindings: imx8-jpeg: Add clocks entries
+Date:   Tue, 12 Sep 2023 13:38:08 -0300
+Message-Id: <20230912163810.1750488-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="H5/71ZKZWMUncSI5"
-Content-Disposition: inline
-In-Reply-To: <20230912081527.208499-8-herve.codina@bootlin.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Fabio Estevam <festevam@denx.de>
 
---H5/71ZKZWMUncSI5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The JPEG decoder/encoder present in iMX8QXP and iMX8QM SoCs need
+the PER and IPG clocks to be functional, so add the clock entries.
 
-On Tue, Sep 12, 2023 at 10:14:58AM +0200, Herve Codina wrote:
-> Additional properties in child node should not be allowed.
->=20
-> Prevent them adding 'additionalProperties: false'
->=20
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+This also fixes the following schema warning: 
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+imx8qm-apalis-eval.dtb: jpegdec@58400000: 'assigned-clock-rates', 'assigned-clocks', 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/media/nxp,imx8-jpeg.yaml#
 
-Thanks,
-Conor.
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+Changes since v2:
+- Remove clock-names. (Mirela)
 
-> ---
->  .../devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml     | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-sc=
-c-qmc.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-=
-qmc.yaml
-> index 450a0354cb1d..82d9beb48e00 100644
-> --- a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.y=
-aml
-> +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.y=
-aml
-> @@ -64,6 +64,7 @@ patternProperties:
->      description:
->        A channel managed by this controller
->      type: object
-> +    additionalProperties: false
-> =20
->      properties:
->        reg:
-> --=20
-> 2.41.0
->=20
+ .../devicetree/bindings/media/nxp,imx8-jpeg.yaml         | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
---H5/71ZKZWMUncSI5
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+index 3d9d1db37040..3383a275c94a 100644
+--- a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
++++ b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+@@ -31,6 +31,9 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  clocks:
++    maxItems: 2
++
+   interrupts:
+     description: |
+       There are 4 slots available in the IP, which the driver may use
+@@ -49,6 +52,7 @@ properties:
+ required:
+   - compatible
+   - reg
++  - clocks
+   - interrupts
+   - power-domains
+ 
+@@ -56,12 +60,15 @@ additionalProperties: false
+ 
+ examples:
+   - |
++    #include <dt-bindings/clock/imx8-lpcg.h>
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+     #include <dt-bindings/firmware/imx/rsrc.h>
+ 
+     jpegdec: jpegdec@58400000 {
+         compatible = "nxp,imx8qxp-jpgdec";
+         reg = <0x58400000 0x00050000 >;
++        clocks = <&img_jpeg_dec_lpcg IMX_LPCG_CLK_0>,
++                 <&img_jpeg_dec_lpcg IMX_LPCG_CLK_4>;
+         interrupts = <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>,
+@@ -76,6 +83,8 @@ examples:
+     jpegenc: jpegenc@58450000 {
+         compatible = "nxp,imx8qm-jpgenc", "nxp,imx8qxp-jpgenc";
+         reg = <0x58450000 0x00050000 >;
++        clocks = <&img_jpeg_enc_lpcg IMX_LPCG_CLK_0>,
++                 <&img_jpeg__lpcg IMX_LPCG_CLK_4>;
+         interrupts = <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
+-- 
+2.34.1
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQCTrwAKCRB4tDGHoIJi
-0n+XAQCw6AgUOq0NyPZHrHWu5ogYxBjVGRRZ4L314GuJF/TwRAEA3G14ilDkYP5o
-3fMneddHCQlNQIVPUgNd/ldquYguZwQ=
-=eFLQ
------END PGP SIGNATURE-----
-
---H5/71ZKZWMUncSI5--
