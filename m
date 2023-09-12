@@ -2,210 +2,287 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C13C479D1E9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 15:17:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49CA679D1F2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 15:20:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235447AbjILNRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 09:17:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60172 "EHLO
+        id S235500AbjILNUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 09:20:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232331AbjILNRg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 09:17:36 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98E4810CB
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 06:17:32 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-31c3df710bdso5116945f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 06:17:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694524651; x=1695129451; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eVCcTaSbY9rwe8V8Di2XAdZ+iClnwLVfIq169SCBZEA=;
-        b=PR7iuU0BYQQmEucjMMPUMWOjrTO6TWwQLH5Xt0cD7Qk7fICKPMQsV5DbG7c5cqiMSg
-         CFTiWb+KWBWULdvTgZ7Wwxr2Zx0Ya0RvIaZrjry+2oHHmWf94k3kPeiFWld29V9j89+r
-         rjdAfuMDuOvn6irhywEYX4gHzgEkkDCj/9jC2/06hVMGgtCf+ZK7r1HqZM7stPaAgvqT
-         /MFt3AMZn8XeFH9Oc2IY0qyJdtH9z1U4FEYTtagImaZKBtwFI4DQWkIm1lo1q3JIkiWd
-         sJuLZiAnYgwwwwaYfZnEw8jAwxlYeqakp0Ky5qVUbLUHTtmN7kTKIPC6Hct3RRlzSwO3
-         u5MA==
+        with ESMTP id S235509AbjILNUQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 09:20:16 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FC9710DE
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 06:20:11 -0700 (PDT)
+Received: from mail-oi1-f200.google.com (mail-oi1-f200.google.com [209.85.167.200])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id C70873F639
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 13:20:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1694524809;
+        bh=Sf56SkwawGpbC/RXPSnmT5Ux3keGTDqMFdPqD5kK9Z4=;
+        h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=O0qtfvA/Dr9x7CWNrHDBntzk5TKybBarsUQKGf4ap/xA3xGF4OWpqxi5P7rV67YDt
+         B4belnNHzsoNrzuU/eogwYa5jcrVQVd9exFkbh/EKJ5ctE3VRQBiLD5uPPEEGXQ/Mo
+         cCe+5pcq2L9iveev0fk3WV+NISWCjA6J4Y8bUJOeqprLYi4aRa8GeODc7UPwhurP7Y
+         +CNYnJXIckHlD8ZaV8J1QntZfuNwrKyy+7h9y68ahDR8aIzN1PepIDxj7l9UlZkeEz
+         GWch2L1gRTi9anCKC1Jpg8W2obOqYS7FsfKRgzMutaq+fOJ3rzvMmdKMAmyfqhS/yx
+         9J3PJ2EcLpsBQ==
+Received: by mail-oi1-f200.google.com with SMTP id 5614622812f47-3aa172b512eso7000414b6e.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 06:20:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694524651; x=1695129451;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eVCcTaSbY9rwe8V8Di2XAdZ+iClnwLVfIq169SCBZEA=;
-        b=STAZ68Yl+QqQfDnmwLRE2vgHUylyhLmBeP7du7hybFg8P3YcuRAKiFmRYWir1Af970
-         vCXiM3fhLq1MLGNlwHsPll+ESdaIYKTzWRI8ZgxMWQyTDGvqgRokQCsv7LlDcLjkdNHa
-         jfqZZZWLpv+tEmeEzZoXaueJPzPIZ/Xe+twc/HCpaYt5y0nzXWjx68ppsbmdCxZ3VufU
-         g9FtuIqvJhUc2JrPj5cJEHHafS6KXa0obHUkkmxEPDDvsu3+BfrRYnwXZC1+WjDrXriU
-         gkPMcGQPtVw/oMGI62zkZEoQPNvxaPVYQwG7lnPBNcM29RP8uee4HiVUxyUST+Rr7+7V
-         9eEA==
-X-Gm-Message-State: AOJu0YznHPpQLpyV0VghJ0LHBW79MGsaT3fqk0vwFGAQj7BibMiX933j
-        HWfpaBVm8LjH8dVspyBX1b3S0g==
-X-Google-Smtp-Source: AGHT+IFHrdYQ+Sq9vpHXLwlvE6jWB4jziFsIr4mUbMR721FEezxCHK3S5u+XI12b+yFvlUmuc3bs1Q==
-X-Received: by 2002:a5d:69c3:0:b0:319:74b5:b67d with SMTP id s3-20020a5d69c3000000b0031974b5b67dmr9932380wrw.66.1694524650901;
-        Tue, 12 Sep 2023 06:17:30 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id z2-20020a5d4c82000000b0031aca6cc69csm12859647wrs.2.2023.09.12.06.17.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Sep 2023 06:17:30 -0700 (PDT)
-Message-ID: <439bf5eb-c146-2f67-1d64-4efa100ee85a@linaro.org>
-Date:   Tue, 12 Sep 2023 15:17:26 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [RFC PATCH net-next 6/6] microchip: lan865x: add device-tree
- support for Microchip's LAN865X MACPHY
-To:     Parthiban.Veerasooran@microchip.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        Horatiu.Vultur@microchip.com, Woojung.Huh@microchip.com,
-        Nicolas.Ferre@microchip.com, UNGLinuxDriver@microchip.com,
-        Thorsten.Kummermehr@microchip.com, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, corbet@lwn.net, Steen.Hegelund@microchip.com,
-        rdunlap@infradead.org, horms@kernel.org, casper.casan@gmail.com,
-        andrew@lunn.ch
-References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
- <20230908142919.14849-7-Parthiban.Veerasooran@microchip.com>
- <feb8eaeb-954c-416d-6e30-acb4b92764e0@linaro.org>
- <f429ea93-9cb2-8869-a98d-fb55161cf880@microchip.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f429ea93-9cb2-8869-a98d-fb55161cf880@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        d=1e100.net; s=20230601; t=1694524808; x=1695129608;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Sf56SkwawGpbC/RXPSnmT5Ux3keGTDqMFdPqD5kK9Z4=;
+        b=AM+in+bL05gXWxMlDMPzPSrLWwuwIrmwcoXI8Lxu/AGuQULrbg97JSUAiCpUmTXWy+
+         kGORsLdLBNq1XnS6DoYGflxthMIPnjbCY9Um4zee3tmQF5DoAMzpePlt5jB/tH4gOejv
+         4UmHA1cOPKWRbNRZTF2mpnzwi5KMmmgjyyeGU/Ljd9Tx7mPkDKzKhThTElOYSpuFhdci
+         cLyMDTqPYmPbSzG7GN0XGGPq0QEwUEM96JaR6szKIxE8YSplvv76RvRwPr/TqTqrhuwg
+         wft9AEwXUUwcUOLvLMUl+M2DnZpLZ2yYeSc6ikZNwOlrN6+KfZZesa3Y18hJWAO6wmQ8
+         ehzQ==
+X-Gm-Message-State: AOJu0Ywj54nKebpGLckiZrBqxOxbMK+zkLvYK9TAS2Jjn5/qwvfwcUAP
+        o8x8ayIcLoz0Tbil6eYv5lN/PqU2agoe3VLj676u5z/fI9mM7gfRAgP3ySoG1urf2kqIz2cB4fE
+        9NYspI4HTf3+l6jSQUPQF4h7zO8RrrmeC9nPv0s6UjGkc+7nP6XgjHRA=
+X-Received: by 2002:a54:4101:0:b0:3a4:1f0f:d108 with SMTP id l1-20020a544101000000b003a41f0fd108mr14393059oic.46.1694524808657;
+        Tue, 12 Sep 2023 06:20:08 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG4tqK3LNB3nC4RtCAQYbX1Quh3QzmjM4JzXHKI7S/+TjQFf7rCkw4++4RrSzzbyNfkzEgQDnrmo7gpHJADav4=
+X-Received: by 2002:a54:4101:0:b0:3a4:1f0f:d108 with SMTP id
+ l1-20020a544101000000b003a41f0fd108mr14393037oic.46.1694524808389; Tue, 12
+ Sep 2023 06:20:08 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 12 Sep 2023 06:20:07 -0700
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20230912081402.51477-6-william.qiu@starfivetech.com>
+References: <20230912081402.51477-1-william.qiu@starfivetech.com> <20230912081402.51477-6-william.qiu@starfivetech.com>
+Mime-Version: 1.0
+Date:   Tue, 12 Sep 2023 06:20:07 -0700
+Message-ID: <CAJM55Z9riu4vwfgri1a4UsAtCmTeatVhKCGA3LAtTXsHsddtXA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] mmc: starfive: Change tuning implementation
+To:     William Qiu <william.qiu@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-mmc@vger.kernel.org
+Cc:     Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2023 14:15, Parthiban.Veerasooran@microchip.com wrote:
-> Hi Krzysztof,
-> 
-> Thank you for reviewing the patch.
-> 
-> On 10/09/23 4:25 pm, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> On 08/09/2023 16:29, Parthiban Veerasooran wrote:
->>> Add device-tree support for Microchip's LAN865X MACPHY for configuring
->>> the OPEN Alliance 10BASE-T1x MACPHY Serial Interface parameters.
->>
->> Please use subject prefixes matching the subsystem. You can get them for
->> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
->> your patch is touching.
-> Ok sure, so it will become like,
-> 
-> dt-bindings: net: add device-tree support for Microchip's LAN865X MACPHY
-> 
-> I will correct it in the next revision.
+William Qiu wrote:
+> Before, we used syscon to achieve tuning, but the actual measurement
+> showed little effect, so the tuning implementation was modified here,
+> and it was realized by reading and writing the UHS_REG_EXT register.
+>
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> ---
+>  drivers/mmc/host/dw_mmc-starfive.c | 137 +++++++++--------------------
+>  1 file changed, 40 insertions(+), 97 deletions(-)
+>
+> diff --git a/drivers/mmc/host/dw_mmc-starfive.c b/drivers/mmc/host/dw_mmc-starfive.c
+> index fd05a648a8bb..ad8f39c62fed 100644
+> --- a/drivers/mmc/host/dw_mmc-starfive.c
+> +++ b/drivers/mmc/host/dw_mmc-starfive.c
+> @@ -5,6 +5,7 @@
+>   * Copyright (c) 2022 StarFive Technology Co., Ltd.
+>   */
+>
+> +#include <linux/bitfield.h>
+>  #include <linux/clk.h>
+>  #include <linux/delay.h>
+>  #include <linux/mfd/syscon.h>
+> @@ -20,13 +21,7 @@
+>  #define ALL_INT_CLR		0x1ffff
+>  #define MAX_DELAY_CHAIN		32
+>
+> -struct starfive_priv {
+> -	struct device *dev;
+> -	struct regmap *reg_syscon;
+> -	u32 syscon_offset;
+> -	u32 syscon_shift;
+> -	u32 syscon_mask;
+> -};
+> +#define STARFIVE_SMPL_PHASE     GENMASK(20, 16)
+>
+>  static void dw_mci_starfive_set_ios(struct dw_mci *host, struct mmc_ios *ios)
+>  {
+> @@ -44,117 +39,65 @@ static void dw_mci_starfive_set_ios(struct dw_mci *host, struct mmc_ios *ios)
+>  	}
+>  }
+>
+> +static void dw_mci_starfive_set_sample_phase(struct dw_mci *host, u32 smpl_phase)
+> +{
+> +	/* change driver phase and sample phase */
+> +	u32 reg_value = mci_readl(host, UHS_REG_EXT);
+> +
+> +	/* In UHS_REG_EXT, only 5 bits valid in DRV_PHASE and SMPL_PHASE */
+> +	reg_value &= ~STARFIVE_SMPL_PHASE;
+> +	reg_value |= FIELD_PREP(STARFIVE_SMPL_PHASE, smpl_phase);
+> +	mci_writel(host, UHS_REG_EXT, reg_value);
+> +
+> +	/* We should delay 1ms wait for timing setting finished. */
+> +	mdelay(1);
+> +}
+> +
+>  static int dw_mci_starfive_execute_tuning(struct dw_mci_slot *slot,
+>  					     u32 opcode)
+>  {
+>  	static const int grade  = MAX_DELAY_CHAIN;
+>  	struct dw_mci *host = slot->host;
+> -	struct starfive_priv *priv = host->priv;
+> -	int rise_point = -1, fall_point = -1;
+> -	int err, prev_err = 0;
+> -	int i;
+> -	bool found = 0;
+> -	u32 regval;
+> -
+> -	/*
+> -	 * Use grade as the max delay chain, and use the rise_point and
+> -	 * fall_point to ensure the best sampling point of a data input
+> -	 * signals.
+> -	 */
+> -	for (i = 0; i < grade; i++) {
+> -		regval = i << priv->syscon_shift;
+> -		err = regmap_update_bits(priv->reg_syscon, priv->syscon_offset,
+> -						priv->syscon_mask, regval);
+> -		if (err)
+> -			return err;
+> +	int smpl_phase, smpl_raise = -1, smpl_fall = -1;
+> +	int ret;
+> +
+> +	for (smpl_phase = 0; smpl_phase < grade; smpl_phase++) {
+> +		dw_mci_starfive_set_sample_phase(host, smpl_phase);
+>  		mci_writel(host, RINTSTS, ALL_INT_CLR);
+>
+> -		err = mmc_send_tuning(slot->mmc, opcode, NULL);
+> -		if (!err)
+> -			found = 1;
+> +		ret = mmc_send_tuning(slot->mmc, opcode, NULL);
+>
+> -		if (i > 0) {
+> -			if (err && !prev_err)
+> -				fall_point = i - 1;
+> -			if (!err && prev_err)
+> -				rise_point = i;
+> +		if (!ret && smpl_raise < 0) {
+> +			smpl_raise = smpl_phase;
+> +		} else if (ret && smpl_raise >= 0) {
+> +			smpl_fall = smpl_phase - 1;
+> +			break;
+>  		}
+> -
+> -		if (rise_point != -1 && fall_point != -1)
+> -			goto tuning_out;
+> -
+> -		prev_err = err;
+> -		err = 0;
+>  	}
+>
+> -tuning_out:
+> -	if (found) {
+> -		if (rise_point == -1)
+> -			rise_point = 0;
+> -		if (fall_point == -1)
+> -			fall_point = grade - 1;
+> -		if (fall_point < rise_point) {
+> -			if ((rise_point + fall_point) >
+> -			    (grade - 1))
+> -				i = fall_point / 2;
+> -			else
+> -				i = (rise_point + grade - 1) / 2;
+> -		} else {
+> -			i = (rise_point + fall_point) / 2;
+> -		}
+> -
+> -		regval = i << priv->syscon_shift;
+> -		err = regmap_update_bits(priv->reg_syscon, priv->syscon_offset,
+> -						priv->syscon_mask, regval);
+> -		if (err)
+> -			return err;
+> -		mci_writel(host, RINTSTS, ALL_INT_CLR);
+> +	if (smpl_phase >= grade && smpl_raise >= 0)
+> +		smpl_fall = grade - 1;
 
-"device-tree support for " is redundant, drop
+If you switch the order of the two if's above and below you won't need the
+smpl_raise >= 0 clause here. With that cleaned up:
 
->>
->>>
->>> Signed-off-by: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
->>> ---
->>>   .../bindings/net/microchip,lan865x.yaml       | 54 +++++++++++++++++++
->>>   MAINTAINERS                                   |  1 +
->>>   2 files changed, 55 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/net/microchip,lan865x.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/microchip,lan865x.yaml b/Documentation/devicetree/bindings/net/microchip,lan865x.yaml
->>> new file mode 100644
->>> index 000000000000..3465b2c97690
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/net/microchip,lan865x.yaml
->>> @@ -0,0 +1,54 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/net/microchip,lan865x.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Microchip LAN8650/1 10BASE-T1S MACPHY Ethernet Controllers
->>> +
->>> +maintainers:
->>> +  - Parthiban Veerasooran <parthiban.veerasooran@microchip.com>
->>> +
->>> +description: |
->>> +  Device tree properties for LAN8650/1 10BASE-T1S MACPHY Ethernet
->>
->> Drop "Device tree properties for" and instead describe the hardware.
-> sure, will do it.
->>
->>> +  controller.
->>> +
->>> +allOf:
->>> +  - $ref: ethernet-controller.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>
->> No need for items. Just enum.
-> Ok noted.
->>
->>
->>> +      - enum:
->>> +          - microchip,lan865x
->>
->> No wildcards in compatibles.
-> Yes then we don't need enum also isn't it?
+Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
-I don't see correlation between these two. Please read the writing
-bindings guidelines.
-
-
->>
->> Missing blank line.
-> Ok will add it.
->>
->>
->>
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  local-mac-address: true
->>> +  oa-chunk-size: true
->>> +  oa-tx-cut-through: true
->>> +  oa-rx-cut-through: true
->>> +  oa-protected: true
->>
->> What are all these? Where are they defined that you skip description,
->> type and vendor prefix?
-> Ok missed it. Will do it in the next revision.
-
-No, drop them or explain why they are hardware properties.
-
->>
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    spi {
->>> +        #address-cells = <1>;
->>> +        #size-cells = <0>;
->>> +
->>> +        ethernet@1{
->>
->> Missing space
-> Ok will add it.
->>
->>> +            compatible = "microchip,lan865x";
->>> +            reg = <1>; /* CE0 */
->>
->> CE0? chip-select? What does this comment mean in this context?
-> Yes it is chip-select. Will add proper comment.
-
-Why? isn't reg obvious?
-
-Best regards,
-Krzysztof
-
+>
+> -		dev_info(host->dev, "Found valid delay chain! use it [delay=%d]\n", i);
+> -	} else {
+> +	if (smpl_raise < 0) {
+> +		smpl_phase = 0;
+>  		dev_err(host->dev, "No valid delay chain! use default\n");
+> -		err = -EINVAL;
+> +		ret = -EINVAL;
+> +		goto out;
+>  	}
+>
+> -	mci_writel(host, RINTSTS, ALL_INT_CLR);
+> -	return err;
+> -}
+> -
+> -static int dw_mci_starfive_parse_dt(struct dw_mci *host)
+> -{
+> -	struct of_phandle_args args;
+> -	struct starfive_priv *priv;
+> -	int ret;
+> -
+> -	priv = devm_kzalloc(host->dev, sizeof(*priv), GFP_KERNEL);
+> -	if (!priv)
+> -		return -ENOMEM;
+> +	smpl_phase = (smpl_raise + smpl_fall) / 2;
+> +	dev_dbg(host->dev, "Found valid delay chain! use it [delay=%d]\n", smpl_phase);
+> +	ret = 0;
+>
+> -	ret = of_parse_phandle_with_fixed_args(host->dev->of_node,
+> -						"starfive,sysreg", 3, 0, &args);
+> -	if (ret) {
+> -		dev_err(host->dev, "Failed to parse starfive,sysreg\n");
+> -		return -EINVAL;
+> -	}
+> -
+> -	priv->reg_syscon = syscon_node_to_regmap(args.np);
+> -	of_node_put(args.np);
+> -	if (IS_ERR(priv->reg_syscon))
+> -		return PTR_ERR(priv->reg_syscon);
+> -
+> -	priv->syscon_offset = args.args[0];
+> -	priv->syscon_shift  = args.args[1];
+> -	priv->syscon_mask   = args.args[2];
+> -
+> -	host->priv = priv;
+> -
+> -	return 0;
+> +out:
+> +	dw_mci_starfive_set_sample_phase(host, smpl_phase);
+> +	mci_writel(host, RINTSTS, ALL_INT_CLR);
+> +	return ret;
+>  }
+>
+>  static const struct dw_mci_drv_data starfive_data = {
+>  	.common_caps		= MMC_CAP_CMD23,
+>  	.set_ios		= dw_mci_starfive_set_ios,
+> -	.parse_dt		= dw_mci_starfive_parse_dt,
+>  	.execute_tuning		= dw_mci_starfive_execute_tuning,
+>  };
+>
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
