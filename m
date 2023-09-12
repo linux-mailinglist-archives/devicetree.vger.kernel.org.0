@@ -2,161 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E716679D9A0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 21:34:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D975B79DA2E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 22:37:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236057AbjILTe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 15:34:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57502 "EHLO
+        id S232350AbjILUhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 16:37:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232810AbjILTe7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 15:34:59 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 601B8199;
-        Tue, 12 Sep 2023 12:34:55 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99bcc0adab4so762134266b.2;
-        Tue, 12 Sep 2023 12:34:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694547294; x=1695152094; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Z8gdWrWuVeFlnSIKZ2NOJm7Y8BUbwd2ZNwalxRE+BW0=;
-        b=pIVTZev24UgmHyJqvdKLjXnZlirXrMgzcYKdE+ba8GHyxDJyocbHVfjhB1/Aehsqmc
-         t19iAbnupAbkjfV8hb8emBExePQN0eV7jsxAYLag3x6HZyn+/m1gTeQed0jhJhIwECC/
-         h9P1vz+T29vR/8RxlxysH1ev5xPDX9zEsDP4CwOklL5l45TZF+sLFU6T2DAzV45TjNJK
-         Cf8xz4AKh1tqYk5PXAqu7TUYS20M4cjc1SiqTJhK0SBgOKSjx0KbvxaWylxbSb9q5Y0d
-         fs75BKeN8FYNjUFwNdQ53R8bCJvYUMLzP91wEG9xKhMdr0HoWmAh4e2/2d2NRPSRUIYq
-         g9AQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694547294; x=1695152094;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z8gdWrWuVeFlnSIKZ2NOJm7Y8BUbwd2ZNwalxRE+BW0=;
-        b=VKWlHjsz/UxJUZ/FM7GzHZNq/zjoOkGev8QJn1jagdNVQlQJrxy/+9B6awRU6WsBJl
-         5aKPtrBVWhxdp29LpzzIxynDRCzO/AjtuLdpYVbHD27XdIr7s/ATWh2s1PoP5cSLmKMO
-         GQ/60QqinWF4hBQEt8tb/he7OVAuXtBafk8MxcYMya+Eq7PjCXh7WikPP57H9Fmj9Rqf
-         vjo/4omvGc8FUz1xmVJUapxCrlaS5lC7IISMw/eYS++PxwzOjFEe4xlDeOBz+OO9IV3j
-         WaQyu24lhZDZOvdAn7iad3/9kbSDgycew0eiRBJrokueCaHJrGpCcWKDK5avU1uhXh0g
-         xNtw==
-X-Gm-Message-State: AOJu0Yx9H5Ce/v/9mIxkm2GbjD+M7thhghaKLrylnxcOn79eznSoZRoH
-        GtuyGUduw7KDRKlOlRWyTVQ=
-X-Google-Smtp-Source: AGHT+IF2x+0PJReOu0h7LIhK4z/2N8GnhuzGa4jCv35kEX4WT+YNV6CCZ1h1zkd9sRMux2n4P4GJMQ==
-X-Received: by 2002:a17:906:3149:b0:9a5:cade:8044 with SMTP id e9-20020a170906314900b009a5cade8044mr186839eje.21.1694547293556;
-        Tue, 12 Sep 2023 12:34:53 -0700 (PDT)
-Received: from skbuf ([188.25.254.186])
-        by smtp.gmail.com with ESMTPSA id i18-20020a17090671d200b0099cf840527csm7290131ejk.153.2023.09.12.12.34.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Sep 2023 12:34:53 -0700 (PDT)
-Date:   Tue, 12 Sep 2023 22:34:50 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S234886AbjILUhv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 16:37:51 -0400
+Received: from smtp.smtpout.orange.fr (smtp-24.smtpout.orange.fr [80.12.242.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0485D189
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 13:37:46 -0700 (PDT)
+Received: from [192.168.1.18] ([86.243.2.178])
+        by smtp.orange.fr with ESMTPA
+        id gA8gqd7Tg4d7DgA8gqXZ6T; Tue, 12 Sep 2023 22:37:39 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+        s=t20230301; t=1694551059;
+        bh=lMcb8WrFX7B6OJqoOfSUz/GFKwhDlyO9IScBhzlH2nY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To;
+        b=NUYtJ1+M46Jm22jKLcunMpM+YLbndMczChoBGBxX6qMcUWkn2FF+NjlONpdrrhyJv
+         fm5z3kbVUblgnZe1UGlSADIi6wPS1NuiSa/R3YqXFGi9Qz8AT0jKVedzc2XccgdYgj
+         irV/jNn+uBmbH7MX1EzHxFmPArp7EYMhgZPN3cMbXx/VNnqcUTTuvvYHPWiSjtigYA
+         iPxmhOXGeWPVRePF1sY1tZGrUq9/THDVmGBfVJ3n9bVLy/PXNpi9FCuKsTUBTyPYZk
+         O2JvRGDc5P5HYHRFWhcrPOzsVa4Sdt+TukSgtaKGDDxf69tQyCHQ77rhyt54hdQHce
+         ymx2867p8gGMA==
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Tue, 12 Sep 2023 22:37:39 +0200
+X-ME-IP: 86.243.2.178
+Message-ID: <eab4324a-9e46-fa07-b849-792eba613ac8@wanadoo.fr>
+Date:   Tue, 12 Sep 2023 22:37:38 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v2 3/3] power: supply: bq24190_charger: Export current
+ regulator
+Content-Language: fr, en-US
+To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+Cc:     Alexandre Courbot <acourbot@nvidia.com>,
+        azkali <a.ffcc7@gmail.com>, CTCaer <ctcaer@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        UNGLinuxDriver@microchip.com,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, mithat.guner@xeront.com,
-        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
-Message-ID: <20230912193450.h5s6miubag46z623@skbuf>
-References: <8a8e14f1-0493-4298-a2cc-6e7ae7929334@arinc9.com>
- <20230813190157.4y3zoro53qsz43pe@skbuf>
- <f5f468c1-b5a2-4336-b1d9-fd82da95b21d@arinc9.com>
- <20230814143601.mnpxtcm2zybnbvoh@skbuf>
- <0cee0928-74c9-4048-8cd8-70bfbfafd9b2@arinc9.com>
- <20230827121235.zog4c3ehu2cyd3jy@skbuf>
- <676d1a2b-6ffa-4aff-8bed-a749c373f5b3@arinc9.com>
- <87325ce9-595a-4dda-a6a1-b5927d25719b@arinc9.com>
- <20230911225126.rk23g3u3bzo3agby@skbuf>
- <036c0763-f1b2-49ff-bc82-1ff16eec27ab@arinc9.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230824112741.201353-1-linkmauve@linkmauve.fr>
+ <20230824131342.206784-1-linkmauve@linkmauve.fr>
+ <20230824131342.206784-4-linkmauve@linkmauve.fr>
+From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20230824131342.206784-4-linkmauve@linkmauve.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <036c0763-f1b2-49ff-bc82-1ff16eec27ab@arinc9.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 12, 2023 at 10:23:51PM +0300, Arınç ÜNAL wrote:
-> On 12.09.2023 01:51, Vladimir Oltean wrote:
-> > On Sat, Sep 09, 2023 at 11:53:50AM +0300, Arınç ÜNAL wrote:
-> > > What to do:
-> > > - For mscc,vsc7514-switch, enforce phylink bindings for ports.
-> > > - For mscc,vsc7512-switch, enforce phylink bindings for user ports.
-> > 
-> > you can also look at dsa_switches_apply_workarounds[], and if the switch
-> > isn't there, then you can replace "user ports" with "ports" here and
-> > everywhere.
+Le 24/08/2023 à 15:13, Emmanuel Gil Peyrot a écrit :
+> From: Alexandre Courbot <acourbot@nvidia.com>
 > 
-> The phylink bindings for user ports I ended up making by looking up the
-> existing devicetrees are different than the phylink bindings for the shared
-> (CPU and DSA) ports currently enforced on all switches.
+> This prevents the charger from ever going over the current limit.
 > 
-> My phylink bindings for user ports:
+> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> ---
+>   drivers/power/supply/bq24190_charger.c | 82 ++++++++++++++++++++++++++
+>   1 file changed, 82 insertions(+)
 > 
->             allOf:
->               - anyOf:
->                   - required: [ fixed-link ]
->                   - required: [ phy-handle ]
->                   - required: [ managed ]
-> 
->               - if:
->                   required: [ fixed-link ]
->                 then:
->                   not:
->                     required: [ managed ]
+> diff --git a/drivers/power/supply/bq24190_charger.c b/drivers/power/supply/bq24190_charger.c
+> index a56122b39687..cc1bd87f4982 100644
+> --- a/drivers/power/supply/bq24190_charger.c
+> +++ b/drivers/power/supply/bq24190_charger.c
+> @@ -530,6 +530,79 @@ static int bq24190_set_otg_vbus(struct bq24190_dev_info *bdi, bool enable)
+>   }
+>   
+>   #ifdef CONFIG_REGULATOR
+> +static int bq24190_set_charging_current(struct regulator_dev *dev,
+> +			int min_uA, int max_uA)
+> +{
+> +	struct bq24190_dev_info *bdi = rdev_get_drvdata(dev);
+> +	u8 ss_reg;
+> +	int in_current_limit;
+> +	int ret = 0;
 
-Right, it should have been anyOf and not oneOf.. my mistake. It is a bug
-which should be fixed. It's the same phylink that gets used in both cases,
-user ports and shared ports :)
+Nit: Un-needed init.
 
-> 
-> The phylink bindings for shared ports enforced on all switches on
-> dsa-port.yaml:
-> 
->   allOf:
->     - required:
->         - phy-mode
->     - oneOf:
->         - required:
->             - fixed-link
->         - required:
->             - phy-handle
->         - required:
->             - managed
-> 
-> Here's what I understand:
-> 
-> - For switches in dsa_switches_apply_workarounds[]
->   - Enforce the latter for shared ports.
->   - Enforce the former for user ports.
-> 
-> - For switches not in dsa_switches_apply_workarounds[]
->   - Enforce the former for all ports.
+> +
+> +	ret = bq24190_read(bdi, BQ24190_REG_SS, &ss_reg);
+> +	if (ret < 0)
+> +		goto error;
+> +
+> +	if (max_uA == 0 && ss_reg != 0)
+> +		return ret;
 
-No, no. We enforce the dt-schema regardless of switch presence in
-dsa_switches_apply_workarounds[], to encourage users to fix device trees
-(those who run schema validation). The kernel workaround consists in
-doing something (skipping phylink) for the device trees where the schema
-warns on shared ports. But there should be a single sub-schema for
-validating phylink bindings, whatever port kind it is.
+ret is known to be 0 here. If it is the intension, return 0 would be 
+more explicit. Otherwise a ret = -<error_code> is missing.
+
+Just my 2c,
+
+CJ
+
+> +
+> +	if (!(ss_reg & BQ24190_REG_SS_VBUS_STAT_MASK))
+> +		in_current_limit = 500;
+> +	else
+> +		in_current_limit = max_uA / 1000;
+> +
+> +	return bq24190_set_field_val(bdi, BQ24190_REG_ISC,
+> +			BQ24190_REG_ISC_IINLIM_MASK,
+> +			BQ24190_REG_ISC_IINLIM_SHIFT,
+> +			bq24190_isc_iinlim_values,
+> +			ARRAY_SIZE(bq24190_isc_iinlim_values),
+> +			in_current_limit);
+> +error:
+> +	dev_err(bdi->dev, "Charger enable failed, err = %d\n", ret);
+> +	return ret;
+> +}
+
+...
+
