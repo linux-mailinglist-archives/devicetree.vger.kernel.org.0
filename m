@@ -2,69 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFEA579D8A7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 20:29:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B50879D8CD
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 20:38:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236901AbjILS3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 14:29:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48290 "EHLO
+        id S235863AbjILSiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 14:38:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232721AbjILS3O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 14:29:14 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3C6D10D8;
-        Tue, 12 Sep 2023 11:29:10 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9D3BC433C7;
-        Tue, 12 Sep 2023 18:29:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694543350;
-        bh=PCBBmd2rNXdYvalQ81EoedbVyQS1gg/YJ45YkQpk9R8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=h5lWbuDsz8fsbsQ9zdj4m+uoU7PwBXm5e9Vbhs+KCiZg6X060w5uyM3lUpJS7Z3vT
-         ko7rp60/iuf1Y1CrxT+IUXY3qSg+06DByf+LUjgENAD2oggPkJYKZIdt7Q1swUW04h
-         83y/GD1bothIes7zkBF7Izce/wFGMb6GJmFodUgiMf7zk+iP4y/gDLVbO6Ixfi5o27
-         7wC/9zqDd2ytNDQtS0g1cP5OEcsiMSYR6wHw1zK6CC3E6JiktWd26ynEoHpRrMLuiz
-         5cM+1C+ql85JTa1pyNPyMdXDIjx6LKY/yziHe/tkt9Zn/qNsnxEuIODMfGdThtRR6b
-         uxffXapQ+rb7Q==
-Received: (nullmailer pid 1164193 invoked by uid 1000);
-        Tue, 12 Sep 2023 18:29:07 -0000
-Date:   Tue, 12 Sep 2023 13:29:07 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ilia Lin <ilia.lin@kernel.org>, devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>, linux-pm@vger.kernel.org,
-        Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 3/4] dt-bindings: cpufreq: qcom-nvmem: Document MSM8909
-Message-ID: <169454334732.1164153.5118228878567772612.robh@kernel.org>
-References: <20230912-msm8909-cpufreq-v1-0-767ce66b544b@kernkonzept.com>
- <20230912-msm8909-cpufreq-v1-3-767ce66b544b@kernkonzept.com>
+        with ESMTP id S237399AbjILSiS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 14:38:18 -0400
+Received: from smtp.smtpout.orange.fr (smtp-15.smtpout.orange.fr [80.12.242.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C039110D3
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 11:38:14 -0700 (PDT)
+Received: from [192.168.1.18] ([86.243.2.178])
+        by smtp.orange.fr with ESMTPA
+        id g8GzqaTAidUSag8GzqmwHQ; Tue, 12 Sep 2023 20:38:13 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+        s=t20230301; t=1694543893;
+        bh=gJjWjCvzjTWsQueLFBTaq3Sqnmya67aAWoGNbP8Czo4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To;
+        b=fXyzuGJL535OOgG/gUoUYvhGpJSjMxj5+Ed+yyVpThO6lTRpKH7k1KKANGGSHVZA/
+         imnCaeFq7So19OjQawTGRRm8vjh6/mf4sqM6TqCHj5V/RrBIw1QxaTYHycwXsY5Akz
+         sbsmOPjfAMI54vFSppT7Y0lSuG1z4VazGb/t2VKy6XZF7DsFW2qiguOeZgbz/9r6kc
+         Z2OpymZVceBmy1ZHBtqUbR6m32LOnMggNcY97/ClnvD67ABlYqMlO7Nzjyv96DyWDt
+         Xrz0FPgG+7GKlNqUxo9AzNvxujyD0DZusSH8r815NVZ4X/UCbHl5tMNFoR/w/ChjM2
+         wcRrvSqhCkDPw==
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Tue, 12 Sep 2023 20:38:13 +0200
+X-ME-IP: 86.243.2.178
+Message-ID: <35c1c9ee-357f-4ba5-dd47-95d4c064e69b@wanadoo.fr>
+Date:   Tue, 12 Sep 2023 20:38:05 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230912-msm8909-cpufreq-v1-3-767ce66b544b@kernkonzept.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH net-next v4 2/2] net: dsa: microchip: Add drive strength
+ configuration
+Content-Language: fr
+To:     Vladimir Oltean <olteanv@gmail.com>,
+        Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Eric Dumazet <edumazet@google.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Arun Ramadoss <arun.ramadoss@microchip.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        UNGLinuxDriver@microchip.com,
+        "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        devicetree@vger.kernel.org
+References: <20230912045459.1864085-1-o.rempel@pengutronix.de>
+ <20230912045459.1864085-1-o.rempel@pengutronix.de>
+ <20230912045459.1864085-3-o.rempel@pengutronix.de>
+ <20230912045459.1864085-3-o.rempel@pengutronix.de>
+ <20230912113553.fselyj2v5ynddme2@skbuf>
+From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20230912113553.fselyj2v5ynddme2@skbuf>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Le 12/09/2023 à 13:35, Vladimir Oltean a écrit :
+> On Tue, Sep 12, 2023 at 06:54:59AM +0200, Oleksij Rempel wrote:
+>> Add device tree based drive strength configuration support. It is needed to
+>> pass EMI validation on our hardware.
+>>
+>> Configuration values are based on the vendor's reference driver.
+>>
+>> Tested on KSZ9563R.
+>>
+>> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+>> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+>> ---
 
-On Tue, 12 Sep 2023 11:40:17 +0200, Stephan Gerhold wrote:
-> Document that MSM8909 is used with qcom-cpufreq-nvmem for voltage
-> scaling and to restrict the maximum frequency based on the speedbin
-> encoded in the nvmem cells.
-> 
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-> ---
->  Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+>> +	if (!found)
+>> +		return 0;
+> 
+> Maybe "have_any_prop" would be a better name to avoid Christophe's confusion?
+
+Not sure it worth it.
+
+Christophe should learn to read code or avoid some quick feed-back 
+before morning coffee :)
+
+'found' looks good enough.
+
+CJ
+
 
