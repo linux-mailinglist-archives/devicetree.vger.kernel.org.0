@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0760779D7EA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 19:50:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E68379D7EC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 19:50:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235776AbjILRu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 13:50:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56370 "EHLO
+        id S236852AbjILRug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 13:50:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236845AbjILRu2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 13:50:28 -0400
+        with ESMTP id S236884AbjILRue (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 13:50:34 -0400
 Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1B93C1
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 10:50:24 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1bf11b1c7d0so726775ad.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 10:50:24 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06ED010EF
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 10:50:31 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1c1e780aa95so40602315ad.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 10:50:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1694541024; x=1695145824; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1694541030; x=1695145830; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=eNKC5KP8qQDW8slouBLKMG229/gzuMYaPiRbkfNYlhQ=;
-        b=GkTQE+t8ytpx1H0aeGvQa6IeSiGqjTv27CVdXnV8MoS/M9X+w3mmBbNjFahgBsyBEt
-         AnRUpQHAxJKu6cxarnCI70iidCMv6mWo5Qtf/eVWSOjCM6Ld9Nnl52m1KT5rW4rq61d3
-         PZLOM0/MhqZ7fGLOnCqOzYHcx5wPY5xOO/6bYGOl4g0LEQfK9oU3AeyjcyOfvWPwrVwC
-         k6NmddaJHftmxVaP2Kw2/LGhxM1r4kB+3N1istVaS5TpJeVipgvfLfN8EhYBZeI3KoTO
-         xXiaaZXbmzVRtutzgj1vb+9rEzH/ilfxdcW7QGSp12u8F+jdz6AFNMvi3L+md0TajtUL
-         +fjQ==
+        bh=9IKD5S2fbnJino2jsSEu0lyxkI20ofFJrbuG4PPQ6fw=;
+        b=o3x55fPZ6iwO23F8UrGX29emOODOiVCte7aeVIcROae4NVD4l/pIgJBOUrhCkfNF2B
+         lqu3gHnUpwssK6y1FdOPdnQ8F4NwPbRotWYK9vmJcJtvf0FXQquUaIAEgiVokn8ET5gx
+         XR+pVZSfEetcXdyIv5nTjjP2ZsTCHA5Vm94B+YONExOz/SdwRvJ3f0l8/LU5O4VcVxKG
+         s4xlhqS8S1Ld0pOj+6PvYNYGpWDLAhz2q4MRR4Hf/mX00ZhH9VhMEe3hyZvjzTIyiF4T
+         zuj43pIJe0G1mzpdP0ub+Ln4QuX/B9jyhEk0o7ctmhMY4A5fEfZ7qvPbI6MzPqaSmb8r
+         HGLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694541024; x=1695145824;
+        d=1e100.net; s=20230601; t=1694541030; x=1695145830;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=eNKC5KP8qQDW8slouBLKMG229/gzuMYaPiRbkfNYlhQ=;
-        b=DJWo6LvWSv7YAwcd4kDjZQv7EAE4qB6wUwL9V+D5dTdMKYgxjDkuxmBQHPHfWU73/t
-         MIVHL8u7iAkNRgBOqsuzpjwldrZBB0NM26AUL+3JcOORAZIukodHx8MyuZkWWWIWrXte
-         mzx3eBkUHPRJ0O/2upj9fFIafOZrPer6XFHA4n4HR0eQvOxN1tO+Yeux05ueCK/7tyIK
-         d0t18xGe5fovvfcxCqRdmXhnhVjQOmLQQdtmoPKJmg6Q6BtDyIl+5H674TynFoc99cl5
-         zzxcn7dsclEK0HdAFl6krh80p2DLdEC2F67+MXK6jNTF+2Sfq6ZWfrQ8Utxe3U5Aozo3
-         i3ZQ==
-X-Gm-Message-State: AOJu0YwY14P5FCW+54K98IsBhU4+aN1tjjpSbWYB29osfg3lVCc/YRnE
-        E38Vokn63sHwO+r7NLOyL6kDEw==
-X-Google-Smtp-Source: AGHT+IGYdL6w3dlhJOKNIocPNIplLHZdN81nYvMZmpKzRwhj2mf4FZSZ6OQM/ntbZzd7phR5FPxKTA==
-X-Received: by 2002:a17:902:dac2:b0:1c1:f0b4:f68f with SMTP id q2-20020a170902dac200b001c1f0b4f68fmr490270plx.10.1694541024051;
-        Tue, 12 Sep 2023 10:50:24 -0700 (PDT)
+        bh=9IKD5S2fbnJino2jsSEu0lyxkI20ofFJrbuG4PPQ6fw=;
+        b=j2YE+9EASlN4hA7f/n/kQT0RVmqalotcSltP9pZMJGbv/HBLCM1MccW7Wjc2AKyEyR
+         9v8NqW+PFyTDQY17w8hKmkV/9ZZTlHs5yW8qp3C8LaeX5wvrfaYjxDiLp7RVrlP9thpp
+         DbOCI9LcBNVKHTMkaeo+1ChnFN80yb6l7vxvniSN5dQCmUeW9uU10jS3JapSxAmtGvAs
+         khnywwSCQv3QfFRxP93cHdJrNGnTHQbGznI/llQR3bUbD6EomL9OmllQht0QYWozMZ1W
+         Vso10W4Lp3xqJVa/MMtxrXRTogCOiTpRYfkF5AjBHh6OctbXyRlzstZafXNs3ft9Mqja
+         EORg==
+X-Gm-Message-State: AOJu0Yx2LF+WZRAe6+rBIoDV+9DyQSwwUUevL2lDrFq4iEsCRycv8vnn
+        kzBvUrAYOWVJLTDhI2hu/OUtmw==
+X-Google-Smtp-Source: AGHT+IFMERBeKxTJB9AlyRI3xNpGXzEafM62yO44s+WaPRa/xDJk52ujsBlJpAigaAJ4jApqiclPeg==
+X-Received: by 2002:a17:902:e546:b0:1c3:bc7c:e14c with SMTP id n6-20020a170902e54600b001c3bc7ce14cmr578213plf.32.1694541030378;
+        Tue, 12 Sep 2023 10:50:30 -0700 (PDT)
 Received: from localhost.localdomain ([171.76.81.83])
-        by smtp.gmail.com with ESMTPSA id p12-20020a170902a40c00b001b891259eddsm8691440plq.197.2023.09.12.10.50.18
+        by smtp.gmail.com with ESMTPSA id p12-20020a170902a40c00b001b891259eddsm8691440plq.197.2023.09.12.10.50.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Sep 2023 10:50:23 -0700 (PDT)
+        Tue, 12 Sep 2023 10:50:29 -0700 (PDT)
 From:   Anup Patel <apatel@ventanamicro.com>
 To:     Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
@@ -65,9 +65,9 @@ Cc:     Atish Patra <atishp@atishpatra.org>,
         Anup Patel <anup@brainfault.org>,
         linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v8 01/16] RISC-V: Don't fail in riscv_of_parent_hartid() for disabled HARTs
-Date:   Tue, 12 Sep 2023 23:19:13 +0530
-Message-Id: <20230912174928.528414-2-apatel@ventanamicro.com>
+Subject: [PATCH v8 02/16] RISC-V: Add riscv_get_intc_hartid() function
+Date:   Tue, 12 Sep 2023 23:19:14 +0530
+Message-Id: <20230912174928.528414-3-apatel@ventanamicro.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230912174928.528414-1-apatel@ventanamicro.com>
 References: <20230912174928.528414-1-apatel@ventanamicro.com>
@@ -77,46 +77,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The riscv_of_processor_hartid() used by riscv_of_parent_hartid() fails
-for HARTs disabled in the DT. This results in the following warning
-thrown by the RISC-V INTC driver for the E-core on SiFive boards:
+We add a common riscv_get_intc_hartid() which help device drivers to
+get hartid of the HART associated with a INTC (i.e. local interrupt
+controller) fwnode. This new function is more generic compared to
+the existing riscv_of_parent_hartid() function hence we also replace
+use of riscv_of_parent_hartid() with riscv_get_intc_hartid().
 
-[    0.000000] riscv-intc: unable to find hart id for /cpus/cpu@0/interrupt-controller
-
-The riscv_of_parent_hartid() is only expected to read the hartid from
-the DT so we should directly call of_get_cpu_hwid() instead of calling
-riscv_of_processor_hartid().
-
-Fixes: ad635e723e17 ("riscv: cpu: Add 64bit hartid support on RV64")
 Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 ---
- arch/riscv/kernel/cpu.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ arch/riscv/include/asm/processor.h |  4 +++-
+ arch/riscv/kernel/cpu.c            | 13 ++++++++++++-
+ drivers/irqchip/irq-riscv-intc.c   |  2 +-
+ drivers/irqchip/irq-sifive-plic.c  |  3 ++-
+ 4 files changed, 18 insertions(+), 4 deletions(-)
 
+diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/processor.h
+index 3e23e1786d05..3ce64b3bea4e 100644
+--- a/arch/riscv/include/asm/processor.h
++++ b/arch/riscv/include/asm/processor.h
+@@ -119,7 +119,9 @@ static inline void wait_for_interrupt(void)
+ struct device_node;
+ int riscv_of_processor_hartid(struct device_node *node, unsigned long *hartid);
+ int riscv_early_of_processor_hartid(struct device_node *node, unsigned long *hartid);
+-int riscv_of_parent_hartid(struct device_node *node, unsigned long *hartid);
++
++struct fwnode_handle;
++int riscv_get_intc_hartid(struct fwnode_handle *node, unsigned long *hartid);
+ 
+ extern void riscv_fill_hwcap(void);
+ extern int arch_dup_task_struct(struct task_struct *dst, struct task_struct *src);
 diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-index c17dacb1141c..157ace8b262c 100644
+index 157ace8b262c..ee583eac3c5b 100644
 --- a/arch/riscv/kernel/cpu.c
 +++ b/arch/riscv/kernel/cpu.c
-@@ -125,13 +125,14 @@ int __init riscv_early_of_processor_hartid(struct device_node *node, unsigned lo
+@@ -123,7 +123,8 @@ int __init riscv_early_of_processor_hartid(struct device_node *node, unsigned lo
+  * To achieve this, we walk up the DT tree until we find an active
+  * RISC-V core (HART) node and extract the cpuid from it.
   */
- int riscv_of_parent_hartid(struct device_node *node, unsigned long *hartid)
+-int riscv_of_parent_hartid(struct device_node *node, unsigned long *hartid)
++static int riscv_of_parent_hartid(struct device_node *node,
++				  unsigned long *hartid)
  {
--	int rc;
--
  	for (; node; node = node->parent) {
  		if (of_device_is_compatible(node, "riscv")) {
--			rc = riscv_of_processor_hartid(node, hartid);
--			if (!rc)
--				return 0;
-+			*hartid = (unsigned long)of_get_cpu_hwid(node, 0);
-+			if (*hartid == ~0UL) {
-+				pr_warn("Found CPU without hart ID\n");
-+				return -ENODEV;
-+			}
-+			return 0;
- 		}
- 	}
+@@ -139,6 +140,16 @@ int riscv_of_parent_hartid(struct device_node *node, unsigned long *hartid)
+ 	return -1;
+ }
  
++/* Find hart ID of the INTC fwnode. */
++int riscv_get_intc_hartid(struct fwnode_handle *node, unsigned long *hartid)
++{
++	/* Extend this function ACPI in the future. */
++	if (!is_of_node(node))
++		return -ENODEV;
++
++	return riscv_of_parent_hartid(to_of_node(node), hartid);
++}
++
+ DEFINE_PER_CPU(struct riscv_cpuinfo, riscv_cpuinfo);
+ 
+ unsigned long riscv_cached_mvendorid(unsigned int cpu_id)
+diff --git a/drivers/irqchip/irq-riscv-intc.c b/drivers/irqchip/irq-riscv-intc.c
+index 4adeee1bc391..65f4a2afb381 100644
+--- a/drivers/irqchip/irq-riscv-intc.c
++++ b/drivers/irqchip/irq-riscv-intc.c
+@@ -143,7 +143,7 @@ static int __init riscv_intc_init(struct device_node *node,
+ 	int rc;
+ 	unsigned long hartid;
+ 
+-	rc = riscv_of_parent_hartid(node, &hartid);
++	rc = riscv_get_intc_hartid(of_fwnode_handle(node), &hartid);
+ 	if (rc < 0) {
+ 		pr_warn("unable to find hart id for %pOF\n", node);
+ 		return 0;
+diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
+index e1484905b7bd..56b0544b1f27 100644
+--- a/drivers/irqchip/irq-sifive-plic.c
++++ b/drivers/irqchip/irq-sifive-plic.c
+@@ -477,7 +477,8 @@ static int __init __plic_init(struct device_node *node,
+ 			continue;
+ 		}
+ 
+-		error = riscv_of_parent_hartid(parent.np, &hartid);
++		error = riscv_get_intc_hartid(of_fwnode_handle(parent.np),
++					      &hartid);
+ 		if (error < 0) {
+ 			pr_warn("failed to parse hart ID for context %d.\n", i);
+ 			continue;
 -- 
 2.34.1
 
