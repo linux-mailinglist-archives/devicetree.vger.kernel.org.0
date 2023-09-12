@@ -2,142 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAC2979C6E7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 08:30:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32EFA79C6F4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 08:34:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229905AbjILGaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 02:30:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53932 "EHLO
+        id S230019AbjILGeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 02:34:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbjILGaG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 02:30:06 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36BD9AF;
-        Mon, 11 Sep 2023 23:30:01 -0700 (PDT)
-X-UUID: c92cfc32513511eea33bb35ae8d461a2-20230912
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=Ps11xcFJ0x4uz6iyg7AMvaIUrjPAirlB6aY9czV4xDE=;
-        b=vCkFOL1vcaSohcJahl1Chi2ISjiaykoWU5d84NbbOnqzB9hG7rrF+73ra5roR4RSE5d/y1J2lptWWa/RoFqv0TxagT0/cNrUBhh0IwAQkslnvmjwA4wQsueoG+5hvYh2olWuIqDXmoD/BamXsAMPa/vDR28dASL9YTP9paI+59U=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:b201575f-c15e-4463-b57a-2f8980cd7f95,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:0ad78a4,CLOUDID:af8cecc2-1e57-4345-9d31-31ad9818b39f,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-        DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
-X-UUID: c92cfc32513511eea33bb35ae8d461a2-20230912
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
-        (envelope-from <macpaul.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1460391974; Tue, 12 Sep 2023 14:29:54 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.194) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 12 Sep 2023 14:29:53 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Tue, 12 Sep 2023 14:29:52 +0800
-Message-ID: <4010955c-9df7-da30-aef9-477ae8483e89@mediatek.com>
-Date:   Tue, 12 Sep 2023 14:29:51 +0800
+        with ESMTP id S229994AbjILGeN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 02:34:13 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 982C1AF
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 23:34:09 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-401da71b85eso57287705e9.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 23:34:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694500448; x=1695105248; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hjjNMLOd7UD2xCsLMNKlm6XzuuMq2uaNNbQdYjNnedw=;
+        b=KY++gDitEvRhig3VVgM5aWqVN+leD0ch2dtGlBVnCyYZP4oxnuictP5Wq8pFnvcKD4
+         ml5q8SDaKti2oDv4W6QAHMOiI2Wlu4Ie0YyV13NA7aZzo5Ioauf0dudAJwoFGGPgTBNm
+         uzWzrE3XoyxNeZvDwB8UxVCOvK5JuTBGVtgjS25Z9AlZxO8UEAWGrxLlQ6yZqDsbEPpA
+         uAKcsLRKA/yHujhlrrpAzpQ1bC/l4IgXHmB3EyYy/O9PG1eF7Yxl6Wd+BFdCIhqAKLHJ
+         CFK+iSjZLDZGkfgH8tNCXF3jw7z4WEcJxW8WcnaLaZVu3NSXgZWzX0JlGbVk/EBX7x07
+         X0Zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694500448; x=1695105248;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hjjNMLOd7UD2xCsLMNKlm6XzuuMq2uaNNbQdYjNnedw=;
+        b=nUXFPrqDkMB/q2pVo2Xnfa7w6VzzGTbcuG6nM1IDSXRHvsOWLYwUjkbASBe7q6AWPi
+         oxmlZ7fuiZpTmCId5vkYj/HkNp5wMGp2XXXpnUvpjT4Ix9Gtb5Z6WLeqWblBx6J45ivN
+         wSmcynl85km3BGuP3e21QMp+J83N7v0xfIYMONPU2GbCC1AoA+9JSvLosa3N1FpSHOvQ
+         T1+qRzWTShz717IpGwxcIaxdoUVW0fFFQrdmd4aRG9k/QR1MyPuTbN2/LM2+K+gF1i50
+         i2bMED5Rb1shu3HfAsXRE9QdrQ8+X5cngObN7y4TUFnHYTLJ2KxypQenCQS51YPHecIr
+         7IfQ==
+X-Gm-Message-State: AOJu0Yx9hmHKdaqPs/tLN04+qrSwxZfwSF8m4Z6WIYB/K7S/KTi86R7J
+        VQINZo3BeKQVbEJbaU+8/+QPVQ==
+X-Google-Smtp-Source: AGHT+IGSVPBJnLET6PEE9S7yg3QdrX6hcDdJ09TzEt7oGbCuNjTPGU9NEFZVrgl8WzSW/fH4Ly0w2A==
+X-Received: by 2002:a05:600c:2303:b0:3fe:785:abf9 with SMTP id 3-20020a05600c230300b003fe0785abf9mr10252285wmo.2.1694500447719;
+        Mon, 11 Sep 2023 23:34:07 -0700 (PDT)
+Received: from [192.168.0.163] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id a12-20020a5d456c000000b00317afc7949csm11972550wrc.50.2023.09.11.23.34.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Sep 2023 23:34:07 -0700 (PDT)
+Message-ID: <fae042e4-2ae6-44dc-b046-ec6be587768d@linaro.org>
+Date:   Tue, 12 Sep 2023 07:34:06 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2] dt-bindings: arm64: dts: mediatek: add description for
- mt8365-evk board
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/9] arm64: dts: qcom: msm8916: Disable venus by default
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-CC:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>
-References: <20230911081126.18463-1-macpaul.lin@mediatek.com>
- <53cd72f7-5a8d-ee9e-4d8a-f5159cafb3e7@linaro.org>
-From:   Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <53cd72f7-5a8d-ee9e-4d8a-f5159cafb3e7@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Stephan Gerhold <stephan@gerhold.net>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230911-msm8916-rmem-v1-0-b7089ec3e3a1@gerhold.net>
+ <20230911-msm8916-rmem-v1-1-b7089ec3e3a1@gerhold.net>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20230911-msm8916-rmem-v1-1-b7089ec3e3a1@gerhold.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/11/23 17:49, Krzysztof Kozlowski wrote:
-> 	
+On 11/09/2023 18:41, Stephan Gerhold wrote:
+> Venus needs firmware that is usually signed with a device-specific key.
+> There are also devices that might not need it (especially during
+> bring-up), so let's follow more recent SoCs and disable it by default.
 > 
-> External email : Please do not click links or open attachments until you 
-> have verified the sender or the content.
+> Enable it explicitly for all current devices except msm8916-mtp. That
+> one has just UART enabled currently so it cannot really benefit from
+> Venus.
 > 
-> On 11/09/2023 10:11, Macpaul Lin wrote:
->> Fix the missing description for MediaTek mt8365-evk board.
->> 
->> Fixes: 4f5fc078ac6f ("dt-bindings: arm64: dts: mediatek: Add mt8365-evk board")
-> 
-> This is a friendly reminder during the review process.
-> 
-> It seems my previous comments were not fully addressed. Maybe my
-> feedback got lost between the quotes, maybe you just forgot to apply it.
-> Please go back to the previous discussion and either implement all
-> requested changes or keep discussing them.
-> 
-> Thank you.
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 
-In the previous modifications, I overlooked this suggestion. It will be 
-corrected in the next version.
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
->> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
->> ---
->>  Documentation/devicetree/bindings/arm/mediatek.yaml | 3 ++-
->>  1 file changed, 2 insertions(+), 1 deletion(-)
->> 
->> change for v2:
->>  - rebase this patch to follow the v5 patch set of mt8395.
->>   - depends on https://lore.kernel.org/lkml/20230909132819.21626-2-macpaul.lin@mediatek.com/T/
->>  - Fix description as a single board.
->> 
->> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
->> index 2e8ad49c3479..b163995e32d5 100644
->> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
->> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
->> @@ -244,7 +244,8 @@ properties:
->>            - enum:
->>                - mediatek,mt8183-pumpkin
->>            - const: mediatek,mt8183
->> -      - items:
->> +      - description: MediaTek Genio 350 Board (Genio 350 EVK)
-> 
-> Drop, no need, redundant (copies the compatible) and your other entries
-> do not have it.
-
-The primary objective of this patch is to incorporate a description that 
-will prevent users from confusing this platform with others. 
-Additionally, it aids in identifying this as a "Genio EVK" for marketing 
-purposes.
-
-> 
->> +        items:
->>            - enum:
-> 
-> This is still confusing. Why do you have enum here with such description.
-> 
-
-In order to accommodate the current market situation for a single 
-reference board, will replace this with a 'const'.
-
-> Best regards,
-> Krzysztof
-> 
-
-Thanks
-Macpaul Lin
