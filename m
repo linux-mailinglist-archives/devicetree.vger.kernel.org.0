@@ -2,143 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 481B279D48B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 17:14:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AA3979D48F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 17:15:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236227AbjILPOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 11:14:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58652 "EHLO
+        id S236257AbjILPPm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 11:15:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235748AbjILPOa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 11:14:30 -0400
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5145C12E;
-        Tue, 12 Sep 2023 08:14:26 -0700 (PDT)
-Received: by mail-pg1-x52c.google.com with SMTP id 41be03b00d2f7-51f64817809so678445a12.1;
-        Tue, 12 Sep 2023 08:14:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694531666; x=1695136466; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EmhnU1mUBTvGooJ8RY5P2rzvLlRqBBo52eULg86WrB4=;
-        b=LucxwN6EDigLSwLeCQjYJRaf9zRo6v/qRDFE3rvQmSaFldJ30ljv0fNqU6zebOSGP/
-         8L5b1PQoDvGbID/BHBut5JwZOutlGBqwDJsNZrMEImDW6yz1r7UJGqColJ2gDL0bacCX
-         LdRbawDEJkK9vc/rA0tM8oPvWqozACmePev2YfNJBAd/geyNMSnn5PFyrB5mJdARFXQd
-         HktG5BNJ0+Ax4NcEQDKblH5qYDTWubzM00P9YcYaHQwaid0hBa8DeY2CK5QLghfuBr2m
-         etmgOyH8tvpkhFhfFWkx7u8y7dHa8iSSWFfIhzJUqPdcRaTJQB5dsZ2cAJTL3QM1aSvH
-         AfYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694531666; x=1695136466;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EmhnU1mUBTvGooJ8RY5P2rzvLlRqBBo52eULg86WrB4=;
-        b=HjJUQwrB/PONLnqvm2FKEnor1XSOct/q6DvSdmcE2hgau68qZpIjOcEHmyrZzygvY1
-         2cTT87rHQc+yi3KeFC6xW4x4GFOhmxDkXsSgCWOibwWS89/M2xsRbsHw7oxiGujCOvsb
-         slPqpY24cI/l1UVwIVj9u+56Z66mGdS34IVyv7RtTyMcRksPH5CWfM5yJZBUee4X9s6t
-         WtvKfS5VHS1ETCnPtKiicgZJYl3I6B6bwypMRns1UOWGNw1Bu6+WMiIviYT5xucKOnF5
-         VCe/k2zPG6Soh2S6ApXXHBL+5K8HfMUL/lXcYlphcLHXdKv8A6D9XcFU6IBPltaBHEO8
-         gK+g==
-X-Gm-Message-State: AOJu0Yzi5g1fLaUtd5By3/VrQMNk48G4ECVFr7L9bgoFMSUu4u8VuGMg
-        GnlhuP6QINa/jkkEqqeOi89hvgWmZ4yvKz6YnQw=
-X-Google-Smtp-Source: AGHT+IEDx0Xvd6FTrq5LXjrHvQW9X9/hVgAwJQ2qx5fukPQYXdAbKJmbOIMNh2wpMGXCeJrZHwzePfCPFLzb1jBlTFQ=
-X-Received: by 2002:a17:90a:1210:b0:263:f36e:d610 with SMTP id
- f16-20020a17090a121000b00263f36ed610mr11612777pja.0.1694531665742; Tue, 12
- Sep 2023 08:14:25 -0700 (PDT)
+        with ESMTP id S236002AbjILPPl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 11:15:41 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8A071BB;
+        Tue, 12 Sep 2023 08:15:37 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DA55C433C7;
+        Tue, 12 Sep 2023 15:15:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694531737;
+        bh=OG76LHlfGJHYkxKaHllr4SLoZMBHB960bsox/kYXmQQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Oo+6QA32tcA7Rmixlq1ZvNMqSHv0isoNpqQxy0GgmprY4fbhbLrRgt8ivlBvhAxAU
+         8IxOb8YTUm3dF83yoL4BRsbMd6Oo5o7cgCzx/z1+X9yiQeW4VEmC0LGXLp8WEhQIrd
+         xpEZrCq8cQ6AsyhmEHJreKu+jBAaTxCWPw+UNdr9bCjofTpyuD02HNgyCs941vrpHd
+         Fotvc546EVqSP6hZHZnOsr82LMl1s2a01zSj7xUS2bO8VCRqjf7gzzBn1l8oqQf5WL
+         LmfagrNExrgb5aBz4J5A19Xq1BewVm3hJ1+3woCMwkhmXyhBgJ2fR2fbio+bs44XHH
+         uqk3mQX+JlxAw==
+Received: (nullmailer pid 814342 invoked by uid 1000);
+        Tue, 12 Sep 2023 15:15:35 -0000
+Date:   Tue, 12 Sep 2023 10:15:35 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Joerg Schambacher <joerg.hifiberry@gmail.com>
+Cc:     a-krasser@ti.com, joerg@hifiberry.com,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] ASoC: pcm512x: Adds bindings for TAS575x devices
+Message-ID: <20230912151535.GA812148-robh@kernel.org>
+References: <20230907160851.14241-1-joerg.hifiberry@gmail.com>
 MIME-Version: 1.0
-References: <20230831130242.2290502-1-festevam@gmail.com> <CAJZ5v0jKmxxFMO5TkHujEtdSjeEqKqEOwRyXAXbaeRQUTythdg@mail.gmail.com>
- <18b23d536827559f113ebae99c859cfc@denx.de> <CAJZ5v0iROqUP+HGM9djazVCYnRP_QOikgPAH1kympaC2qy_hcg@mail.gmail.com>
-In-Reply-To: <CAJZ5v0iROqUP+HGM9djazVCYnRP_QOikgPAH1kympaC2qy_hcg@mail.gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 12 Sep 2023 12:14:14 -0300
-Message-ID: <CAOMZO5AHGr9A2RFQ89SzLnzkwOFez3vO2BH3Lh4yZOL-aSn9cA@mail.gmail.com>
-Subject: Re: [PATCH v7 1/3] dt-bindings: thermal-zones: Document critical-action
-To:     "Rafael J. Wysocki" <rafael@kernel.org>, amitk@kernel.org,
-        daniel.lezcano@linaro.org
-Cc:     Fabio Estevam <festevam@denx.de>, rui.zhang@intel.com,
-        linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230907160851.14241-1-joerg.hifiberry@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Amit and Daniel,
+On Thu, Sep 07, 2023 at 06:08:51PM +0200, Joerg Schambacher wrote:
+> The TAS5754/6 power amplifiers use the same pcm512x driver with
+> only minor restictions described in the bindings document.
+> 
+> Signed-off-by: Joerg Schambacher <joerg.hifiberry@gmail.com>
+> ---
+>  .../devicetree/bindings/sound/pcm512x.txt     | 22 +++++++++++++++----
+>  1 file changed, 18 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/pcm512x.txt b/Documentation/devicetree/bindings/sound/pcm512x.txt
+> index 3aae3b41bd8e..b16cd0463695 100644
+> --- a/Documentation/devicetree/bindings/sound/pcm512x.txt
+> +++ b/Documentation/devicetree/bindings/sound/pcm512x.txt
+> @@ -1,12 +1,12 @@
+> -PCM512x audio CODECs
+> +PCM512x and TAS575x audio CODECs/amplifiers
+>  
+>  These devices support both I2C and SPI (configured with pin strapping
+> -on the board).
+> +on the board). The TAS575x devices only support I2C.
+>  
+>  Required properties:
+>  
+> -  - compatible : One of "ti,pcm5121", "ti,pcm5122", "ti,pcm5141" or
+> -                 "ti,pcm5142"
+> +  - compatible : One of "ti,pcm5121", "ti,pcm5122", "ti,pcm5141",
+> +                 "ti,pcm5142", "ti,tas5754" or "ti,tas5756"
+>  
+>    - reg : the I2C address of the device for I2C, the chip select
+>            number for SPI.
+> @@ -25,6 +25,7 @@ Optional properties:
+>      through <6>.  The device will be configured for clock input on the
+>      given pll-in pin and PLL output on the given pll-out pin.  An
+>      external connection from the pll-out pin to the SCLK pin is assumed.
+> +    Caution: the TAS-desvices only support gpios 1,2 and 3
+>  
+>  Examples:
+>  
+> @@ -50,3 +51,16 @@ Examples:
+>  		pll-in = <3>;
+>  		pll-out = <6>;
+>  	};
+> +
+> +	tas5756: tas5756@4f {
+> +		compatible = "ti,tas5756";
 
-On Fri, Sep 8, 2023 at 3:02=E2=80=AFPM Rafael J. Wysocki <rafael@kernel.org=
-> wrote:
->
-> On Fri, Sep 8, 2023 at 7:37=E2=80=AFPM Fabio Estevam <festevam@denx.de> w=
-rote:
-> >
-> > Hi Rafael,
-> >
-> > On 07/09/2023 13:23, Rafael J. Wysocki wrote:
-> >
-> > > So one more question here: Why is this a property of a thermal zone
-> > > and not the property of the whole system?
-> > >
-> > > Presumably, on a system where the platform integrator prefers to
-> > > reboot on critical temperature, it would be necessary to add this
-> > > property to every thermal zone.
-> > >
-> > > Also, what if this property has different values for different therma=
-l
-> > > zones?
-> >
-> > I got your point and I can make the 'critical-action' property to be
-> > valid
-> > for the whole thermal system.
-> >
-> > Originally, I have been doing like this:
-> >
-> >         thermal-zones {
-> >                 cpu-thermal {
-> >                         critical-action =3D "reboot";
-> >                         polling-delay-passive =3D <250>;
-> >                         polling-delay =3D <2000>;
-> >                         thermal-sensors =3D <&tmu>;
-> >
-> >                         trips {
-> >                                 cpu_alert0: trip0 {
-> >                                         temperature =3D <85000>;
-> >                                         hysteresis =3D <2000>;
-> >                                         type =3D "passive";
-> >                                 };
-> >
-> > I can change it to be:
-> >
-> >
-> >         thermal-zones {
-> >                 critical-action =3D "reboot";
-> >
-> >                 cpu-thermal {
-> >                         polling-delay-passive =3D <250>;
-> >                         polling-delay =3D <2000>;
-> >                         thermal-sensors =3D <&tmu>;
-> >
-> >                         trips {
-> >                                 cpu_alert0: trip0 {
-> >                                         temperature =3D <85000>;
-> >                                         hysteresis =3D <2000>;
-> >                                         type =3D "passive";
-> >                                 };
-> >
->
-> I think that this would match the use case better.
->
-> I still would love to hear about it from the people who take care of
-> the DT-based thermal control (mostly Daniel and Amit, who BTW is
-> listed as the maintainer of the file being updated by this patch),
-> though.
+Is there anything new here? Just a different compatible doesn't justify 
+another example.
 
-Please let us know what you think.
+With that dropped,
 
-I can send v8 which places the 'critical-action' property to be valid
-for the whole thermal system, as suggested by Rafael.
-
-Thanks
+Reviewed-by: Rob Herring <robh@kernel.org>
