@@ -2,86 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC08979D897
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 20:23:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0240779D89F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 20:24:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237240AbjILSXz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 14:23:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36060 "EHLO
+        id S237296AbjILSYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 14:24:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236901AbjILSXy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 14:23:54 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC9D5115;
-        Tue, 12 Sep 2023 11:23:50 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8926BC433C7;
-        Tue, 12 Sep 2023 18:23:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694543030;
-        bh=9PjwsXYdvGXo7MUL7wecpovXv5ZiPln8ttPB8U75U30=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WiVa/+22NCGW7IrffV01g/GdWC+ihuiANID47Be41qQQoSSJ9MWdaOfhEb9E0Q5VN
-         +r4kMs1yWdxu3fZxSMVAhcb1TNaDtndauRq5uWXU7mBetG9qmN4n6Ms8G4M3GnEpT6
-         IL8BpNw0B4f3QGsuR4iJODP+YKbeKGtOxcoRwXCmSfOmpw58KNwvZgqZoqFU46XehM
-         k5yjfS85vh+C4lBLsV3Gf18j3jx11EzTme/IAilZ+vPSeoagRxi7yNKtU2wB8T0SMM
-         fviEL+q+o20LzIhi5DMS0RPSpg2+62je5UWbBK2PUNRUJjbewFTZnJJWrRJjpUPVGS
-         Iyia4kBEwqV/g==
-Received: (nullmailer pid 1158307 invoked by uid 1000);
-        Tue, 12 Sep 2023 18:23:46 -0000
-Date:   Tue, 12 Sep 2023 13:23:46 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        linux-gpio@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Simon Horman <horms@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        Takashi Iwai <tiwai@suse.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        Eric Dumazet <edumazet@google.com>,
-        Mark Brown <broonie@kernel.org>, netdev@vger.kernel.org,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        devicetree@vger.kernel.org,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Jaroslav Kysel a <perex@perex.cz>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Lee Jones <lee@kernel.org>, Li Yang <leoyang.li@nxp.com>
-Subject: Re: [PATCH v5 07/31] dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc:
- Add 'additionalProperties: false' in child nodes
-Message-ID: <169454302597.1158257.5413851001884233921.robh@kernel.org>
-References: <20230912081527.208499-1-herve.codina@bootlin.com>
- <20230912081527.208499-8-herve.codina@bootlin.com>
+        with ESMTP id S237399AbjILSYN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 14:24:13 -0400
+Received: from smtp.smtpout.orange.fr (smtp-30.smtpout.orange.fr [80.12.242.30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4E3C10F4
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 11:24:09 -0700 (PDT)
+Received: from [192.168.1.18] ([86.243.2.178])
+        by smtp.orange.fr with ESMTPA
+        id g83RqRmrEiBkug83RqO2gs; Tue, 12 Sep 2023 20:24:07 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+        s=t20230301; t=1694543048;
+        bh=BwabbmNDfoIMMoHR0PGecCbV9RImTYt/EdYJHgvIvUQ=;
+        h=Date:Subject:From:To:References:In-Reply-To;
+        b=OX266sJkHDWwgsJE5jCRB/QTRp50ddmqYY9P8Ul1ifjJBVPIxR4PPvO2+5UeejbxO
+         mZmBNovtlnpkwro8LTEixZeQcqDYt3KlaH5rguQcmSnJSswX4B7vWyIjRdbI/FsxTE
+         PJz5/a4gpD7QYUInCrAGGHKPNgqxYfDaxy0dLXgPspYNIwVRQlbuv1TaNSsq+3IaNS
+         GGpr7heMMJ4G93QQ1SjuBDVCdzixU7vyr9WhecfI19T9kkmakyxeJzUEpv0ShVloC1
+         IEZWX9woPVmVwgs+T8/cT5WuPo+BBDvm6fYMENko4biUvv3oEHGSp3Vzne7/BAjbsu
+         TYSBRyEpgnGVg==
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Tue, 12 Sep 2023 20:24:07 +0200
+X-ME-IP: 86.243.2.178
+Message-ID: <dec51c56-9169-d0f0-bdcd-e99790a7d86a@wanadoo.fr>
+Date:   Tue, 12 Sep 2023 20:24:05 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230912081527.208499-8-herve.codina@bootlin.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v3 4/5] clk: twl: add clock driver for TWL6032
+Content-Language: fr
+From:   Marion & Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To:     Andreas Kemnade <andreas@kemnade.info>, dmitry.torokhov@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, lee@kernel.org, bcousson@baylibre.com,
+        tony@atomide.com, mturquette@baylibre.com, sboyd@kernel.org,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20230911221346.1484543-1-andreas@kemnade.info>
+ <20230911221346.1484543-5-andreas@kemnade.info>
+ <a9b646c7-2c02-8a69-a4c8-7e981a630eef@wanadoo.fr>
+In-Reply-To: <a9b646c7-2c02-8a69-a4c8-7e981a630eef@wanadoo.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 12 Sep 2023 10:14:58 +0200, Herve Codina wrote:
-> Additional properties in child node should not be allowed.
-> 
-> Prevent them adding 'additionalProperties: false'
-> 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
->  .../devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml     | 1 +
->  1 file changed, 1 insertion(+)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Le 12/09/2023 à 19:15, Christophe JAILLET a écrit :
+> Le 12/09/2023 à 00:13, Andreas Kemnade a écrit :
+>> The TWL6032 has some clock outputs which are controlled like
+>> fixed-voltage regulators, in some drivers for these chips
+>> found in the wild, just the regulator api is abused for controlling
+>> them, so simply use something similar to the regulator functions.
+>> Due to a lack of hardware available for testing, leave out the
+>> TWL6030-specific part of those functions.
+>>
+>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+>> ---
+>>   drivers/clk/Kconfig   |   9 ++
+>>   drivers/clk/Makefile  |   1 +
+>>   drivers/clk/clk-twl.c | 197 ++++++++++++++++++++++++++++++++++++++++++
+>>   3 files changed, 207 insertions(+)
+>>   create mode 100644 drivers/clk/clk-twl.c
+>>
+> 
+> ...
+> 
+>> +static int twl_clks_probe(struct platform_device *pdev)
+>> +{
+>> +    struct clk_hw_onecell_data *clk_data;
+>> +    const struct twl_clks_data *hw_data;
+>> +
+>> +    struct twl_clock_info *cinfo;
+>> +    int ret;
+>> +    int i;
+>> +    int count;
+>> +
+>> +    hw_data = twl6032_clks;
+>> +    for (count = 0; hw_data[count].init.name; count++)
+>> +        ;
+> 
+> Nit: does removing the /* sentinel */ and using 
+> ARRAY_SIZE(twl_clks_data) would make sense and be simpler?
+> 
+> CJ
+> 
+>> +
+>> +    clk_data = devm_kzalloc(&pdev->dev,
+>> +                struct_size(clk_data, hws, count),
+>> +                GFP_KERNEL);
+>> +    if (!clk_data)
+>> +        return -ENOMEM;
+>> +
+>> +    clk_data->num = count;
+>> +    cinfo = devm_kcalloc(&pdev->dev, count, sizeof(*cinfo), GFP_KERNEL);
+>> +    if (!cinfo)
+>> +        return -ENOMEM;
+>> +
+>> +    for (i = 0; i < count; i++) {
+>> +        cinfo[i].base = hw_data[i].base;
+>> +        cinfo[i].dev = &pdev->dev;
+>> +        cinfo[i].hw.init = &hw_data[i].init;
+>> +        ret = devm_clk_hw_register(&pdev->dev, &cinfo[i].hw);
+>> +        if (ret) {
+>> +            dev_err(&pdev->dev, "Fail to register clock %s, %d\n",
+>> +                hw_data[i].init.name, ret);
+>> +            return ret;
+>> +        }
+>> +        clk_data->hws[i] = &cinfo[i].hw;
+>> +    }
+>> +
+>> +    ret = devm_of_clk_add_hw_provider(&pdev->dev,
+>> +                      of_clk_hw_onecell_get, clk_data);
+>> +    if (ret < 0)
+>> +        dev_err(&pdev->dev, "Fail to add clock driver, %d\n", ret);
+>> +
+>> +    return ret;
+> 
+> Nit: should there be a V4, some prefer return 0 to be more explicit.
 
+Oops, no, or a "return ret;" should be added as well a few lines above
+(it would more future proof, so)
+
+> 
+>> +}
+> 
+> ...
+> 
+> 
