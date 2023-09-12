@@ -2,95 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FCB679CAAD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 10:55:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A1DF79CAEF
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 11:02:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232880AbjILIz1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 04:55:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35952 "EHLO
+        id S233500AbjILJCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 05:02:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233013AbjILIzZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 04:55:25 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DEBC10C7
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 01:55:21 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id 3f1490d57ef6-d7e387c33f3so4653585276.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 01:55:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694508921; x=1695113721; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5cpNRcFT9dpKDqYIUxrODvQWj8t0YOkYRZZPM52uQ0k=;
-        b=e4vPvNjo8Yg1JafwyMjaSddkk4B9L0SSXbjWOy3mLdqW0fjGQPyVn+WXJS9YquNBZ7
-         FUaWRD/99pHA3Z2OUxVelTITZTe3dWDuiKf+YMTBVMwO2CmrFV7Uzunl05H3K02qScTn
-         JHBKZq1qWh63SeQZ2anyiIEFO82hyB+PIIvY7SEPq0gCHCocGqRvJFAB1son/hP3Xb2v
-         PCsNByLiGYeAOOPQNcR1bm2txL+cCXG+13lf9PfXGrn+jcn1TmYoBOzDguvQ4t/js/Qu
-         OCVYrr7Mr47HSEOPT7PAQLgGov/wUC+xBU2kwkh6KMhtPV/g2DXYh6dDVno6kxrRh/oQ
-         fdpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694508921; x=1695113721;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5cpNRcFT9dpKDqYIUxrODvQWj8t0YOkYRZZPM52uQ0k=;
-        b=M5R0aOHJhE51jLDeBWwfVSDMDrYTCGeiuEDNqD3qQhtFp043On8LsTDlt3rO5RdIRS
-         ThpWtPHhM4D1tb0gsMDmRRrIZMYWx7fo2QX3PaaTIrq0S7nfck9q4Ep9MjQE0s+bf6vn
-         NvdfcEEo0E0cc0WbIYn+0a9bBPp9Y+rVFKMSDaNslKtgDP0CSy1B2OAvBFdUv5ld4UTp
-         At3iC1o3iNlbzo9AwmylWBTzT+z2FTa4rM/MKpzsnXpwdQqfN8m0X8BSZdLfeuBzBEVD
-         3AB5MfiIAgHc2kNkF4cptkOJY3r9unEfr77fThamY6tNTNsxUk0CczGLnQsFwTUNTn4/
-         3aDw==
-X-Gm-Message-State: AOJu0YzVXOfRZZjs+BftYRGzpXut6GQaxX5Lk28BmKo7K7MT+aY7UxmF
-        n098XlFtOIo6PVgRhO+zGaP1jl7iD1pgYWNGOEKUAQ==
-X-Google-Smtp-Source: AGHT+IEGS3TFambdJO6EdNSaKvuN7uKr3gK0rinQYZQudCv8F8e445q/O/vPsuhqGcFuGeBnFL3BaIyBwDUyNvoDYZc=
-X-Received: by 2002:a5b:8:0:b0:d78:341d:e475 with SMTP id a8-20020a5b0008000000b00d78341de475mr10595508ybp.44.1694508920728;
- Tue, 12 Sep 2023 01:55:20 -0700 (PDT)
+        with ESMTP id S232316AbjILJBw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 05:01:52 -0400
+Received: from out-220.mta1.migadu.com (out-220.mta1.migadu.com [IPv6:2001:41d0:203:375::dc])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2872E10DE
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 02:01:46 -0700 (PDT)
+Date:   Tue, 12 Sep 2023 18:56:13 +1000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
+        t=1694509304;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=AQMG4IAKejf/CGnCOSYDfecunXNntYUhuM2biZeDc8E=;
+        b=yIZJ5OhdDceWTGU8MpBJJ9Lv0Ywhl3xSgMrkbjvJYrtXz99XD+m8oYp1m16KhKTEa9jqEn
+        MPT8Sb0wpXVL7vcuK0ACtJcWUHtO+J5VW9B+8Gb+YvGTF22WCsAOb2z4ASaJK1WSgCOXXi
+        1h4gF3MXZMiZlz5d4DxZp/LnWX+xkhU+DGtCAlHuwq1PwdTSBd7IRdO0BFKIsNLAJ4rLwF
+        2lWVX9wM/+V5aizAkrhX+wziUms5n3bupy6kN9tTVleK1Uu7xO0YuXjzLFjbbuIOm0MhKH
+        W/DabcmLaaYzuhosNQC/keG1e0VqPag4gF6pfVc5f/5HKJxcTTGWy6/xJhYA7Q==
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From:   John Watts <contact@jookia.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     dri-devel@lists.freedesktop.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Jagan Teki <jagan@edgeble.ai>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 8/8] dt-bindings: display: panel: add Fascontek
+ FS035VG158 panel
+Message-ID: <ZQAnrcYBfhLu-vbd@titan>
+References: <20230911090206.3121440-1-contact@jookia.org>
+ <20230911090206.3121440-9-contact@jookia.org>
+ <e22e61e7-02b1-8127-888d-e470838f4a18@linaro.org>
+ <ZP7il27e9cExVWaL@titan>
+ <c4d89d97-f8d4-da2e-dea9-6c054cf07eb3@linaro.org>
+ <ZP9Eoh06Sirl_97l@titan>
+ <42d4878a-4574-377e-e307-0dbef2354aa9@linaro.org>
 MIME-Version: 1.0
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 12 Sep 2023 10:55:08 +0200
-Message-ID: <CACRpkdYL46wY_4dm2w45kdPqOJ8zU9X=SSAXv_K=9wfBZFqyDQ@mail.gmail.com>
-Subject: Re: [PATCH 00/37] Add new Renesas RZ/G3S SoC and RZ/G3S SMARC EVK
-To:     Claudiu <claudiu.beznea@tuxon.dev>
-Cc:     geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, ulf.hansson@linaro.org,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        magnus.damm@gmail.com, catalin.marinas@arm.com, will@kernel.org,
-        prabhakar.mahadev-lad.rj@bp.renesas.com,
-        biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com,
-        arnd@arndb.de, konrad.dybcio@linaro.org, neil.armstrong@linaro.org,
-        nfraprado@collabora.com, rafal@milecki.pl,
-        wsa+renesas@sang-engineering.com,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <42d4878a-4574-377e-e307-0dbef2354aa9@linaro.org>
+X-Migadu-Flow: FLOW_OUT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 12, 2023 at 6:52=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
+On Tue, Sep 12, 2023 at 08:55:31AM +0200, Krzysztof Kozlowski wrote:
+> On 11/09/2023 18:47, John Watts wrote:
+> > On Mon, Sep 11, 2023 at 01:49:39PM +0200, Krzysztof Kozlowski wrote:
+> >> If the other panel has exactly the same case, then yes, you can do like
+> >> this. But it depends on the bindings - to which ones do you refer as
+> >> your tmeplate?
+> > 
+> > Documentation/devicetree/bindings/display/panel/leadtek,ltk035c5444t.yaml
+> 
+> The file is indeed serving as poor example.
 
-> This patch series adds initial support for The Renesas RZ/G3S (R9A08G045{=
-S33})
-> SoC. The RZ/G3S device is a general-purpose microprocessor with a
-> single-core Arm=C2=AE Cortex=C2=AE-A55 (1.1GHz) and a dual-core Arm=C2=AE=
- Cortex=C2=AE-M33 (250MHz),
-> perfect for an IOT gateway controller.
+I'm happy to fix it up according to your response and include it in v2 of the RFC.
+Should this be split in to two RFCs- one for cleanup, one for the new panel?
 
-I saw some of the patches are fixes. I expect that you and Geert
-figure these out so I can get a separate pull request for those
-ASAP. (Unless they are nonurgent.)
+> 
+> Best regards,
+> Krzysztof
+> 
 
-For new code try to use <linux/cleanup.h>.
-Or if you prefer take a sweep and introduce scoped guards
-everywhere (for spinlocks, mutexes..).
-
-Yours,
-Linus Walleij
+John.
