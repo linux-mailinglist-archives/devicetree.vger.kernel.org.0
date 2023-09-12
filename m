@@ -2,121 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6AA579CB9F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 11:24:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 582A379CBD9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 11:32:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232921AbjILJZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 05:25:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36918 "EHLO
+        id S231464AbjILJcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 05:32:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233056AbjILJY7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 05:24:59 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAE2FAA;
-        Tue, 12 Sep 2023 02:24:54 -0700 (PDT)
-X-UUID: 388ee9e2514e11eea33bb35ae8d461a2-20230912
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=fkseBfphNa4WkzVMYPDfaMKCcq8JsLkWDHhizmg0UQU=;
-        b=Gvi+vaEd8lxpOKIOpqYIdcW6eXCid8nH7FBToCZLyK9RDwcajnruK5b/KAn7XFKkF3zQ5dBl8vHsaVsLjD7MGFcQ7EeZObT9AZn/9ZMVUL4JBsnOSMOdws14yELNN0Q65LBoWvW/i2IuiGJX32ap6022pYPgN1NfxpBhU9fVpG0=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:8fededc3-69de-4a4e-8082-8d0d7548f8ee,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:0ad78a4,CLOUDID:8cbdeec2-1e57-4345-9d31-31ad9818b39f,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-        DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
-X-UUID: 388ee9e2514e11eea33bb35ae8d461a2-20230912
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
-        (envelope-from <macpaul.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1558729409; Tue, 12 Sep 2023 17:24:49 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.194) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 12 Sep 2023 17:24:47 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Tue, 12 Sep 2023 17:24:47 +0800
-From:   Macpaul Lin <macpaul.lin@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S232076AbjILJcF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 05:32:05 -0400
+X-Greylist: delayed 61 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 12 Sep 2023 02:32:00 PDT
+Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.183])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4405E64
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 02:32:00 -0700 (PDT)
+X-KPN-MessageId: 0d095a7b-514f-11ee-b85c-005056992ed3
+Received: from smtp.kpnmail.nl (unknown [10.31.155.5])
+        by ewsoutbound.so.kpn.org (Halon) with ESMTPS
+        id 0d095a7b-514f-11ee-b85c-005056992ed3;
+        Tue, 12 Sep 2023 11:30:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=xs4all.nl; s=xs4all01;
+        h=content-type:from:to:subject:mime-version:date:message-id;
+        bh=tbcgu7MNJKnt0lu/X9TWh5HxE0+gC7FcDZZymdF80oI=;
+        b=H7c42TRlL3s3WG+vc9ngeulpENmlXoaphkWusMMplUDJyfD71UzUXDikENsTPTBvaJnOlXVAa6c4s
+         4xyBkXjamlisIrvFWjW05OK6+SXEDhiDKlwPuP3nkO4CkHzJVOy//v+RVALQGG/PB3oMvAUa9X2/rD
+         yD/mLPTdoYF7FD74OYt8I8H/U8yAVhfFMltTdBDp/yRKCCp8eCXtIV3wzVG2uSaw08PRteso2mwvUu
+         iCdIzkyQ0SvtogNc25BDMbpmTucUMNp6V79PDQKtJNB8ekKJTmqnmoR7jx618LT3SDUqJeZRWkeO21
+         NIyljCXj5Yg2XJKOHEevWpvcfsP9Zww==
+X-KPN-MID: 33|nrxi0pWqsUgkX9IDvvIcpLP6/oTA2sYu8xIDYeMqD0+oUKUH+mJRjmGv5GVnWZb
+ JfKDI28NjYXjugeiwQzDBl7/JzGq6Y3egTWXYVneCbCc=
+X-KPN-VerifiedSender: Yes
+X-CMASSUN: 33|vGIDk8wX97GLaFMM2308imONnDauwJOLZSCt15+i5uErzb6+aNZS2o1TFzrqySU
+ Y/eFoqhWnOCtnYbNucx+SZQ==
+X-Originating-IP: 173.38.220.60
+Received: from [10.47.77.214] (unknown [173.38.220.60])
+        by smtp.xs4all.nl (Halon) with ESMTPSA
+        id 12decda6-514f-11ee-ac77-00505699b758;
+        Tue, 12 Sep 2023 11:30:56 +0200 (CEST)
+Message-ID: <d4cedcb0-32ed-495d-a8cd-a635d5105824@xs4all.nl>
+Date:   Tue, 12 Sep 2023 11:30:55 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 12/14] media: medkatek: vcodec: set secure mode to decoder
+ driver
+Content-Language: en-US
+To:     Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= 
+        <nfraprado@collabora.com>,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        Macpaul Lin <macpaul.lin@mediatek.com>,
-        =?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-CC:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>
-Subject: [PATCH v4 2/2] arm64: dts: mediatek: rename mt8365-evk to mt8365-genio-350-evk
-Date:   Tue, 12 Sep 2023 17:24:44 +0800
-Message-ID: <20230912092444.31635-2-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230912092444.31635-1-macpaul.lin@mediatek.com>
-References: <20230912092444.31635-1-macpaul.lin@mediatek.com>
-MIME-Version: 1.0
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Nathan Hebert <nhebert@chromium.org>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230911125936.10648-1-yunfei.dong@mediatek.com>
+ <20230911125936.10648-13-yunfei.dong@mediatek.com>
+ <1df3e79b84933dda0313d0d9719220dbc06c9022.camel@collabora.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <1df3e79b84933dda0313d0d9719220dbc06c9022.camel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--1.458800-8.000000
-X-TMASE-MatchedRID: 7KGNpgCqvMiTBdr4nKyKPYv2/i8VNqeOTJDl9FKHbrk1LB46LFAAkhTN
-        p00+u6eHNPoCkSGhfY8/0YJS2+Uc1h9J5bZqJbIJwCZxkTHxccl9LQinZ4QefPcjNeVeWlqY+gt
-        Hj7OwNO1YDuIRWpqxhheIjHYYxV+FRgo2jhGSEUO2rFf9R0TxVGkXgj6L1eq+qw/qoHoLsYq8NT
-        GKtRUkEuTAGB78h105NtdXyUGwvGsUKA0bsgzeG6MnTJRI0XInfXwUEm1ouDzLDYxFC1/7rjCBQ
-        Dy1BJScwL6SxPpr1/I=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--1.458800-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: 54436137ED49A886F6003118A46C973E921841F61101F171B3F9F544397967C52000:8
-X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rename mt8365-evk to mt8365-genio-350-evk for following the
-naming rules for MediaTek boards.
+Hi,
 
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/Makefile                           | 2 +-
- .../dts/mediatek/{mt8365-evk.dts => mt8365-genio-350-evk.dts}   | 0
- 2 files changed, 1 insertion(+), 1 deletion(-)
- rename arch/arm64/boot/dts/mediatek/{mt8365-evk.dts => mt8365-genio-350-evk.dts} (100%)
+On 9/11/23 17:54, Nicolas Dufresne wrote:
+> Hi,
+> 
+> Le lundi 11 septembre 2023 à 20:59 +0800, Yunfei Dong a écrit :
+>> Setting secure mode flag to kernel when trying to play secure video,
+>> then decoder driver will initialize tee related interface to support
+>> svp.
+> 
+> 
+> This is not what the patch is doing, please rework. This patch is an vendor API
+> addition introducing V4L2_CID_MPEG_MTK_SET_SECURE_MODE. I should not have to
+> read your patch to understand this.
+> 
+>>
+>> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+>> ---
+>>  .../vcodec/decoder/mtk_vcodec_dec_stateless.c     | 15 ++++++++++++++-
+>>  drivers/media/v4l2-core/v4l2-ctrls-defs.c         |  5 +++++
+>>  include/uapi/linux/v4l2-controls.h                |  1 +
+>>  3 files changed, 20 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
+>> index d2b09ce9f1cf..a981178c25d9 100644
+>> --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
+>> +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
+>> @@ -535,6 +535,17 @@ static int mtk_vdec_s_ctrl(struct v4l2_ctrl *ctrl)
+>>  		ctrl->val = mtk_dma_contig_get_secure_handle(ctx, ctrl->val);
+>>  		mtk_v4l2_vdec_dbg(3, ctx, "get secure handle: %d => 0x%x", sec_fd, ctrl->val);
+>>  		break;
+>> +	case V4L2_CID_MPEG_MTK_SET_SECURE_MODE:
+> 
+> Stepping back a little and focusing on the API, what makes your driver so
+> special that it should be the only one having a "secure mode" ? We are touching
+> in gap in the media pipeline in Linux, and this should come with consideration
+> of the global API.
+> 
+> Why is this API better then let's say Google Android one, were they expose 2
+> device nodes in their fork of the MFC driver (a secure and a non secure one) ?
 
-Changes for v1:
-Changes for v2:
- - None.
-Changes for v3:
- - New patch added into this patch set v3.
- - depends on https://lore.kernel.org/lkml/20230911115717.26184-1-macpaul.lin@mediatek.com/T/
-Changes for v4:
- - No change.
+Perhaps it is a good idea to first post an RFC with an uAPI proposal on how to
+handle secure video. I suspect this isn't mediatek specific, other SoCs with
+tee support could use this as well.
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 10e640c6ae08..b5d529d66393 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -52,6 +52,6 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-cherry-tomato-r2.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-cherry-tomato-r3.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-demo.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-evk.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-genio-350-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-genio-1200-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-genio-350-evk.dts
-similarity index 100%
-rename from arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-rename to arch/arm64/boot/dts/mediatek/mt8365-genio-350-evk.dts
--- 
-2.18.0
+As Nicolas said, it's long known to be a gap in our media support, so it is
+really great that you started work on this, but you need to look at this from
+a more generic point-of-view, and not mediatek-specific.
+
+Regards,
+
+	Hans
+
+> 
+> regards,
+> Nicolas
+> 
+> p.s. you forgot to document your control in the RST doc, please do in following
+> release.
+> 
+>> +		ctx->is_svp_mode = ctrl->val;
+>> +
+>> +		if (ctx->is_svp_mode) {
+>> +			ret = mtk_vcodec_dec_optee_open(ctx->dev->optee_private);
+>> +			if (ret)
+>> +				mtk_v4l2_vdec_err(ctx, "open secure mode failed.");
+>> +			else
+>> +				mtk_v4l2_vdec_dbg(3, ctx, "decoder in secure mode: %d", ctrl->val);
+>> +		}
+>> +		break;
+>>  	default:
+>>  		mtk_v4l2_vdec_dbg(3, ctx, "Not supported to set ctrl id: 0x%x\n", hdr_ctrl->id);
+>>  		return ret;
+>> @@ -573,7 +584,7 @@ static int mtk_vcodec_dec_ctrls_setup(struct mtk_vcodec_dec_ctx *ctx)
+>>  	unsigned int i;
+>>  	struct v4l2_ctrl *ctrl;
+>>  
+>> -	v4l2_ctrl_handler_init(&ctx->ctrl_hdl, NUM_CTRLS + 1);
+>> +	v4l2_ctrl_handler_init(&ctx->ctrl_hdl, NUM_CTRLS + 2);
+>>  	if (ctx->ctrl_hdl.error) {
+>>  		mtk_v4l2_vdec_err(ctx, "v4l2_ctrl_handler_init failed\n");
+>>  		return ctx->ctrl_hdl.error;
+>> @@ -592,6 +603,8 @@ static int mtk_vcodec_dec_ctrls_setup(struct mtk_vcodec_dec_ctx *ctx)
+>>  
+>>  	ctrl = v4l2_ctrl_new_std(&ctx->ctrl_hdl, &mtk_vcodec_dec_ctrl_ops,
+>>  				 V4L2_CID_MPEG_MTK_GET_SECURE_HANDLE, 0, 65535, 1, 0);
+>> +	ctrl = v4l2_ctrl_new_std(&ctx->ctrl_hdl, &mtk_vcodec_dec_ctrl_ops,
+>> +				 V4L2_CID_MPEG_MTK_SET_SECURE_MODE, 0, 65535, 1, 0);
+>>  
+>>  	v4l2_ctrl_handler_setup(&ctx->ctrl_hdl);
+>>  
+>> diff --git a/drivers/media/v4l2-core/v4l2-ctrls-defs.c b/drivers/media/v4l2-core/v4l2-ctrls-defs.c
+>> index d8cf01f76aab..a507045a3f30 100644
+>> --- a/drivers/media/v4l2-core/v4l2-ctrls-defs.c
+>> +++ b/drivers/media/v4l2-core/v4l2-ctrls-defs.c
+>> @@ -1042,6 +1042,7 @@ const char *v4l2_ctrl_get_name(u32 id)
+>>  	case V4L2_CID_MPEG_VIDEO_REF_NUMBER_FOR_PFRAMES:	return "Reference Frames for a P-Frame";
+>>  	case V4L2_CID_MPEG_VIDEO_PREPEND_SPSPPS_TO_IDR:		return "Prepend SPS and PPS to IDR";
+>>  	case V4L2_CID_MPEG_MTK_GET_SECURE_HANDLE:		return "MediaTek Decoder get secure handle";
+>> +	case V4L2_CID_MPEG_MTK_SET_SECURE_MODE:			return "MediaTek Decoder set secure mode";
+>>  
+>>  	/* AV1 controls */
+>>  	case V4L2_CID_MPEG_VIDEO_AV1_PROFILE:			return "AV1 Profile";
+>> @@ -1442,6 +1443,10 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
+>>  		*type = V4L2_CTRL_TYPE_INTEGER;
+>>  		*flags |= V4L2_CTRL_FLAG_WRITE_ONLY;
+>>  		break;
+>> +	case V4L2_CID_MPEG_MTK_SET_SECURE_MODE:
+>> +		*type = V4L2_CTRL_TYPE_INTEGER;
+>> +		*flags |= V4L2_CTRL_FLAG_WRITE_ONLY;
+>> +		break;
+>>  	case V4L2_CID_USER_CLASS:
+>>  	case V4L2_CID_CAMERA_CLASS:
+>>  	case V4L2_CID_CODEC_CLASS:
+>> diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
+>> index 7b3694985366..88e90d943e38 100644
+>> --- a/include/uapi/linux/v4l2-controls.h
+>> +++ b/include/uapi/linux/v4l2-controls.h
+>> @@ -957,6 +957,7 @@ enum v4l2_mpeg_mfc51_video_force_frame_type {
+>>  /*  MPEG-class control IDs specific to the MediaTek Decoder driver as defined by V4L2 */
+>>  #define V4L2_CID_MPEG_MTK_BASE			(V4L2_CTRL_CLASS_CODEC | 0x2000)
+>>  #define V4L2_CID_MPEG_MTK_GET_SECURE_HANDLE	(V4L2_CID_MPEG_MTK_BASE+8)
+>> +#define V4L2_CID_MPEG_MTK_SET_SECURE_MODE	(V4L2_CID_MPEG_MTK_BASE+9)
+>>  
+>>  /*  Camera class control IDs */
+>>  
+> 
 
