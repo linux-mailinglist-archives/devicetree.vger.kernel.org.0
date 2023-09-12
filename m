@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5067979C9BA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 10:22:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D78CC79C9C3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 10:23:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232443AbjILIWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 04:22:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39796 "EHLO
+        id S232335AbjILIXp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 04:23:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232530AbjILIWG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 04:22:06 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7941710C3
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 01:22:02 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-52bd9ddb741so6825848a12.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 01:22:02 -0700 (PDT)
+        with ESMTP id S231725AbjILIXo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 04:23:44 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A96B10C3
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 01:23:40 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9ad8d47ef2fso27650766b.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 01:23:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694506921; x=1695111721; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694507019; x=1695111819; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=134sTkyIYJwq60odkndkVX6XDM2LNYnyGhf+IscYT2k=;
-        b=xmx4BB15ZzCthDe7UZX4jn8qu8cXgrtwIqKBKFYOKo3qzxeAv/6etrXvo+Fwc/MoHL
-         sJfebo7UGdPR7GPAxboVT8fFR3nnZLgmHVW2epJJcBq5wknMOKBT7XcCbAsKOhsKUEtJ
-         +5CxIsIbPeFAiPP20HmZ0Oraga/05zvpQbo/QlGGKDVy4z5PL7PZQg2a+McNABaNfL44
-         MUqG9PBF/I7bz0Juk5kX9cylpeq16/LDGjoHIN1APagpcuHTN7bIjqNYo5C53oSiPjzj
-         2iKFL0ZkllgCtfrOoIZYV2JSq9c2Lc4s9D9lx142DA48kXa79BAGflaroWKZd0YritWk
-         6uRw==
+        bh=NecnTNhEs6mk/7xS4+yPxPBE+Iq+otCfvP8k/SUlgdY=;
+        b=cTUE7eaKTYcped+fkAc0xrMYniEqxAnfsNugnVq3k0uR0MrE4x+a9d+HCe9BnyIq0s
+         lT7JHB0TpdIO4AnaB6p7efaHEX2MXC0MwkSESYSZ1Ld831bSwKpy6O0z65V/ivyqe3Kd
+         WxkA6ljlWNUN4/fWnZB0l3qPM/s4vjC9SY5RJTOVUhluyvfMXv9EMB6WStVUmIUXUi1f
+         LbM7u5mDaR4RIZmMHzdqbcXff8qlpuyTS9/KJlae50NqXwRLWy5rZpJV8EgxL3LDGkyf
+         Ebvxg/b9wwAxMYADVS/fcHXHMneV4q/8GLxCyUm5zZQl5u7l51oHAg8IROUVExaBACcp
+         MDAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694506921; x=1695111721;
+        d=1e100.net; s=20230601; t=1694507019; x=1695111819;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=134sTkyIYJwq60odkndkVX6XDM2LNYnyGhf+IscYT2k=;
-        b=MrOXk6pl2r7MJ70pRQ2BEP4F9PE1PGrIVUhkO+3zVLLP0jGn+aaYCY9XHpzxRnRnU/
-         2gTZTcO16GIp1E29f3sZCrI/U+9uGKLdZMsczyt00LQKqM3OPg7LojNtXLdE8WbOPN4w
-         QF+4+PgOXSMccvgda4glQYgtNzyO7HAbJFOh+iUSJPC73FyqUIOS5byYPMKuHLKYof8k
-         rO5heB5Yb4fBvjP7sji2CXL9tQVsLp8RCrauqI6r5Z2TqxOCeOtqMkOGQ6cWlA7ww67N
-         f02ZwZGuQgYahOvUJTIac3MxvgU6qedVdeZTNwsoYawz/G6KTB72HjGmmmtpWW7jicYR
-         qKdA==
-X-Gm-Message-State: AOJu0YyLhQm8Kel+3zTMzwqJyQxUYbL129TvoZDcZQdXXajVFDJ2gf0v
-        p31EaFydsgbouWl+r7eOMEKRmw==
-X-Google-Smtp-Source: AGHT+IGYjGp3CXvM/xYQNS9e1ApRDKROqociEYndRpvvCGZhoBavvvSx1h696r7SBp0u74hDwV9oCQ==
-X-Received: by 2002:aa7:d8d0:0:b0:52d:212d:78e8 with SMTP id k16-20020aa7d8d0000000b0052d212d78e8mr9546980eds.34.1694506920920;
-        Tue, 12 Sep 2023 01:22:00 -0700 (PDT)
+        bh=NecnTNhEs6mk/7xS4+yPxPBE+Iq+otCfvP8k/SUlgdY=;
+        b=fydcJtNGhlDEFBs7NhjFDntTBjqBBWheGhlDmsL6gDRiumjSycfGFlnkf7l53rnBIR
+         mz0QVdIrs6z0BJAsdiAQkyKADxJk+5CBAH5Z3UJiJbcKMf1iF1HjsXOitrTS1rDAFT1B
+         UVmB3Ja9cY47Rh6H4L30aLrr4cDNkNVzZDNn2zmNN/Lzv8Zd9rnYY4uxVJQbfg7NgvW1
+         xE0pEuMUByHz4UvT5boHgYhuhZLaYWvObqG6sXTpQrK/oH5v4HIYFkangywPupKFKYAY
+         aDBkRmPAJUHJN179etMvggxg0kHy3D3aaS3T4ErI+jhNWjh6wz9IcWOwlU8+g1DC2Ft8
+         Gx0A==
+X-Gm-Message-State: AOJu0YzQJS7HMUvFpTquld/ulpMInnKsneCv0L+c1gbESFdclPmxWyO/
+        fbIvNsivy88huBRWgsYjq4aYog==
+X-Google-Smtp-Source: AGHT+IFUhAhviWgQLFU03MSAKRTyIaNN7fIQ2Ll6cz8uur8tvWrxceUtpGTQvZh5kUvI/HNWPpsu2g==
+X-Received: by 2002:a17:907:a0c6:b0:9a2:86a:f9b7 with SMTP id hw6-20020a170907a0c600b009a2086af9b7mr9091015ejc.59.1694507018283;
+        Tue, 12 Sep 2023 01:23:38 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id j2-20020aa7ca42000000b0052a401d8ef6sm5611858edt.71.2023.09.12.01.21.58
+        by smtp.gmail.com with ESMTPSA id rh16-20020a17090720f000b0098e0a937a6asm6416288ejb.69.2023.09.12.01.23.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Sep 2023 01:22:00 -0700 (PDT)
-Message-ID: <6b7a229d-54c9-2450-4b37-9acc659cbd12@linaro.org>
-Date:   Tue, 12 Sep 2023 10:21:57 +0200
+        Tue, 12 Sep 2023 01:23:37 -0700 (PDT)
+Message-ID: <c64efa17-704d-0bb0-da91-5658bc0bf34e@linaro.org>
+Date:   Tue, 12 Sep 2023 10:23:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH v5 11/14] media: platform: mtk-mdp3: add mt8195 platform
- configuration
+Subject: Re: [PATCH v5 02/14] arm64: dts: mediatek: mt8195: add MDP3 nodes
 Content-Language: en-US
 To:     Moudy Ho <moudy.ho@mediatek.com>,
         Chun-Kuang Hu <chunkuang.hu@kernel.org>,
@@ -75,41 +74,25 @@ Cc:     AngeloGioacchino Del Regno
         linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
 References: <20230912075805.11432-1-moudy.ho@mediatek.com>
- <20230912075805.11432-12-moudy.ho@mediatek.com>
+ <20230912075805.11432-3-moudy.ho@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230912075805.11432-12-moudy.ho@mediatek.com>
+In-Reply-To: <20230912075805.11432-3-moudy.ho@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2023 09:58, Moudy Ho wrote:
-> Add MT8195 MDP3 basic configuration in file "mdp_cfg_data.c"
-> and corresponding driver data.
+On 12/09/2023 09:57, Moudy Ho wrote:
+> Add device nodes for Media Data Path 3 (MDP3) modules.
 > 
 > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 378 +++++++++++++++++++++++
+>  1 file changed, 378 insertions(+)
 
-...
-
->  	{}
->  };
-> diff --git a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c
-> index 06b7d2b0b814..8b69bd8b91c6 100644
-> --- a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c
-> +++ b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c
-> @@ -21,6 +21,9 @@ static const struct of_device_id mdp_of_ids[] = {
->  	{ .compatible = "mediatek,mt8183-mdp3-rdma",
->  	  .data = &mt8183_mdp_driver_data,
->  	},
-> +	{ .compatible = "mediatek,mt8195-mdp3-rdma",
-
-You keep adding undocumented compatibles. Your way of organizing patches
-does not have any sense. DTS should not be mixed with media subsystem -
-they *CANNOT* go via one subsystem. In the same time bindings are always
-going via subsystem, so why are they missing here?
-
-This does not make any sense and such mess at v5 is confusing.
+Why is this targeting media? No, don't. DTS goes via SoC, not media.
+Don't mix patches.
 
 Best regards,
 Krzysztof
