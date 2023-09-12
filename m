@@ -2,155 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1015D79C49B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 06:19:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F28779C4C5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 06:33:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231160AbjILETa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 00:19:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44316 "EHLO
+        id S229538AbjILEdg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 00:33:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230210AbjILET0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 00:19:26 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7D0891B9;
-        Mon, 11 Sep 2023 21:19:22 -0700 (PDT)
-X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 38C4J5sfC2127449, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-        by rtits2.realtek.com.tw (8.15.2/2.92/5.92) with ESMTPS id 38C4J5sfC2127449
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 12 Sep 2023 12:19:05 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Tue, 12 Sep 2023 12:19:05 +0800
-Received: from RTEXH36505.realtek.com.tw (172.21.6.25) by
- RTEXMBS04.realtek.com.tw (172.21.6.97) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Tue, 12 Sep 2023 12:19:05 +0800
-Received: from localhost.localdomain (172.21.252.101) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server id
- 15.1.2375.32 via Frontend Transport; Tue, 12 Sep 2023 12:19:05 +0800
-From:   Stanley Chang <stanley_chang@realtek.com>
-To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-CC:     Stanley Chang <stanley_chang@realtek.com>,
-        Rob Herring <robh@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 2/2] dt-bindings: usb: dwc3: Add DWC_usb3 TX/RX threshold configurable
-Date:   Tue, 12 Sep 2023 12:19:03 +0800
-Message-ID: <20230912041904.30721-2-stanley_chang@realtek.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230912041904.30721-1-stanley_chang@realtek.com>
-References: <20230912041904.30721-1-stanley_chang@realtek.com>
+        with ESMTP id S229449AbjILEdf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 00:33:35 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A72B28F;
+        Mon, 11 Sep 2023 21:33:31 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38C4XDwA035445;
+        Mon, 11 Sep 2023 23:33:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1694493193;
+        bh=3oxQAynjg9hnrGwjEx1hWVlHQ/8WWGFE6ImW4Q/vUHY=;
+        h=From:To:CC:Subject:Date;
+        b=XMWlELHqEXYj5w4yPqmnq0SEe3pd92ppjsIwVK/wTiAyeUDRPMSskpF2MiylvLTM0
+         AfaXQxoupG/zyij/8VLX7cPSMVRusHEo+7hrTHWb/PNDB5oT/dwcyDoFavaTGcnAI8
+         Aud8onjjiJaxtqcv7OHQkTqBd9ykqdg2Bd6mhuZs=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38C4XDND004542
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 11 Sep 2023 23:33:13 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
+ Sep 2023 23:33:12 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 11 Sep 2023 23:33:12 -0500
+Received: from uda0492258.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38C4X8Jj098938;
+        Mon, 11 Sep 2023 23:33:09 -0500
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <r-gunasekaran@ti.com>,
+        <srk@ti.com>, <s-vadapalli@ti.com>
+Subject: [PATCH v2] arm64: dts: ti: k3-j721s2-evm-gesi: Specify base dtb for overlay file
+Date:   Tue, 12 Sep 2023 10:03:08 +0530
+Message-ID: <20230912043308.20629-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-KSE-ServerInfo: RTEXMBS04.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In Synopsys's dwc3 data book:
-To avoid underrun and overrun during the burst, in a high-latency bus
-system (like USB), threshold and burst size control is provided through
-GTXTHRCFG and GRXTHRCFG registers.
-By default, USB TX and RX threshold are not enabled. To enable
-TX or RX threshold, both packet threshold count and max burst size
-properties must be set to a valid non-zero value.
+Specify the base dtb file k3-j721s2-common-proc-board.dtb on which the
+k3-j721s2-evm-gesi-exp-board.dtbo overlay has to be applied. Name the
+resulting dtb as k3-j721s2-evm.dtb.
 
-In Realtek DHC SoC, DWC3 USB 3.0 uses AHB system bus. When dwc3 is
-connected with USB 2.5G Ethernet, there will be overrun problem.
-Therefore, setting TX/RX thresholds can avoid this issue.
-
-Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Fixes: cac04e27f093 ("arm64: dts: ti: k3-j721s2: Add overlay to enable main CPSW2G with GESI")
+Reported-by: Rob Herring <robh+dt@kernel.org>
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 ---
-v2 to v3 change:
-    No change
-v1 to v2 change:
-    Add the properties for TX/RX threshold setting
----
- .../devicetree/bindings/usb/snps,dwc3.yaml    | 56 +++++++++++++++++++
- 1 file changed, 56 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-index a696f23730d3..ee5af4b381b1 100644
---- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-@@ -310,6 +310,62 @@ properties:
-     maximum: 62
-     deprecated: true
+NOTE: This patch is based on linux-next tagged next-20230911.
+
+v1:
+https://lore.kernel.org/r/20230911052158.89185-1-s-vadapalli@ti.com/
+
+Changes since v1:
+- Addressed Rob's feedback, moving the line "k3-j721s2-evm-dtbs..."
+  just above the line "dtb-${CONFIG_ARCH_K3) += k3-j721s2-evm.dtb".
+- Restored the following lines which were deleted in v1 patch:
+  "dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb"
+  "dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-gesi-exp-board.dtbo"
+  based on Rob's feedback, to ensure that they are installed as a part
+  of make dtbs_install.
+
+Regards,
+Siddharth.
+
+ arch/arm64/boot/dts/ti/Makefile | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+index e7b8e2e7f083..51dab9499cd0 100644
+--- a/arch/arm64/boot/dts/ti/Makefile
++++ b/arch/arm64/boot/dts/ti/Makefile
+@@ -66,6 +66,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-gesi-exp-board.dtbo
++k3-j721s2-evm-dtbs := k3-j721s2-common-proc-board.dtb k3-j721s2-evm-gesi-exp-board.dtbo
++dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm.dtb
  
-+  snps,rx-thr-num-pkt:
-+    description:
-+      USB RX packet threshold count. In host mode, this field specifies
-+      the space that must be available in the RX FIFO before the core can
-+      start the corresponding USB RX transaction (burst).
-+      In device mode, this field specifies the space that must be
-+      available in the RX FIFO before the core can send ERDY for a
-+      flow-controlled endpoint. It is only used for SuperSpeed.
-+      The valid values for this field are from 1 to 15. (DWC3 SuperSpeed
-+      USB 3.0 Controller Databook)
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    minimum: 1
-+    maximum: 15
-+
-+  snps,rx-max-burst:
-+    description:
-+      Max USB RX burst size. In host mode, this field specifies the
-+      Maximum Bulk IN burst the DWC_usb3 core can perform. When the system
-+      bus is slower than the USB, RX FIFO can overrun during a long burst.
-+      You can program a smaller value to this field to limit the RX burst
-+      size that the core can perform. It only applies to SS Bulk,
-+      Isochronous, and Interrupt IN endpoints in the host mode.
-+      In device mode, this field specifies the NUMP value that is sent in
-+      ERDY for an OUT endpoint.
-+      The valid values for this field are from 1 to 16. (DWC3 SuperSpeed
-+      USB 3.0 Controller Databook)
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    minimum: 1
-+    maximum: 16
-+
-+  snps,tx-thr-num-pkt:
-+    description:
-+      USB TX packet threshold count. This field specifies the number of
-+      packets that must be in the TXFIFO before the core can start
-+      transmission for the corresponding USB transaction (burst).
-+      This count is valid in both host and device modes. It is only used
-+      for SuperSpeed operation.
-+      Valid values are from 1 to 15. (DWC3 SuperSpeed USB 3.0 Controller
-+      Databook)
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    minimum: 1
-+    maximum: 15
-+
-+  snps,tx-max-burst:
-+    description:
-+      Max USB TX burst size. When the system bus is slower than the USB,
-+      TX FIFO can underrun during a long burst. Program a smaller value
-+      to this field to limit the TX burst size that the core can execute.
-+      In Host mode, it only applies to SS Bulk, Isochronous, and Interrupt
-+      OUT endpoints. This value is not used in device mode.
-+      Valid values are from 1 to 16. (DWC3 SuperSpeed USB 3.0 Controller
-+      Databook)
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    minimum: 1
-+    maximum: 16
-+
-   snps,rx-thr-num-pkt-prd:
-     description:
-       Periodic ESS RX packet threshold count (host mode only). Set this and
+ # Boards with J784s4 SoC
+ dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
 -- 
 2.34.1
 
