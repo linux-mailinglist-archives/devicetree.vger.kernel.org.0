@@ -2,77 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4484279D6AE
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 18:47:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 319B079D6BB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 18:50:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234829AbjILQrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 12:47:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51770 "EHLO
+        id S237058AbjILQuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 12:50:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232131AbjILQrL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 12:47:11 -0400
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 125B5115
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 09:47:08 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-68fc94307bfso489898b3a.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 09:47:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694537227; x=1695142027; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8AjEUnMqb9T3eAGZeBOyL4dJaeqhy87pa7WJr/fbvIo=;
-        b=XymAF06vQ2Ui/LOejCS8WedHC22e2fSpdr3EbTpN+rp8JALDa93O3HY83vI3kTR9Io
-         zP3A7qacsT243e0QFMR7R0HOaYJIg9ZTmSQ7rJ6S6xYizcWEDYQnI2jQPDQQyiV9mPN0
-         wJTKdImp7C6qy5L4w6183TYDh6+JY0gHsudMjHK2UuV3ZlfVSN/4x8N6AKCL6cHnHKRf
-         jLj/8/0Lm0Lc5IXoI/sVBh2nMxNguIFaQXMugpUZtlfp7y0rdJzZlBojzKgI66eHkMkm
-         EWc7V/Wtw5byQpM0Zdes2h8IS+TK9LAOesBoFGU0i1tTuMpED3LHvjBak5PnSFdDj6LO
-         AZ8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694537227; x=1695142027;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8AjEUnMqb9T3eAGZeBOyL4dJaeqhy87pa7WJr/fbvIo=;
-        b=cCkuWXyyedcLAFW9JQEYChYVKfL5Tc/QJSsi1JtR1iRRjgOxKQ/hSi8q3ryBEA2/a1
-         8KLZdAhftH9wne9ZMpyxvLLKb+uvas3SdC0/qAgxbMODx7RnJnjeMmCj49KtZ796puFM
-         fUDVzKakbaXlHsJ8IZe30V+DLwzJm58eu+WgnsrzrXx55VKW6p2CgjIgAT2j8dSPWCzF
-         wcyFtvPYq9m4yYru1rbg4gAfuMIa7gZBicBtG7ejv6nsVPV0NOQVao+ZU9NFe58F5lSv
-         RGXjxHFjoqJcPK/kEXSwo3vDcnRupMF4coXOV7vLdWeEToZNaZl169xzvyVsdhGgDXDj
-         /cKQ==
-X-Gm-Message-State: AOJu0YzOmoj8PnHriUiKEiB/+TBi2QGLf722eNYtas0RY2L7tCONAFIh
-        snE6boazWweVvOPnscTcF/Xm5YbUkQL6D8g9yl0=
-X-Google-Smtp-Source: AGHT+IGYSD9D36mf2qCBLoTalbKI1/aE/yMUluDoaukdnp913qAN6xpbRnnqqVuzsgFM1PqDIeXMeXfHqamV70kTtpY=
-X-Received: by 2002:a05:6a21:9983:b0:136:f3ef:4d2 with SMTP id
- ve3-20020a056a21998300b00136f3ef04d2mr17022744pzb.3.1694537227104; Tue, 12
- Sep 2023 09:47:07 -0700 (PDT)
+        with ESMTP id S236985AbjILQuV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 12:50:21 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C5A8115;
+        Tue, 12 Sep 2023 09:50:17 -0700 (PDT)
+Received: from [192.168.0.106] (unknown [186.235.7.101])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: koike)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 61A08660716C;
+        Tue, 12 Sep 2023 17:50:08 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1694537415;
+        bh=b3Pjb5sxufyfJz4YTfjIpaTwu6GqQK/gK7r+UI5k7ik=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=IC9XweikCd8wdErjDdbQJM9Njzz31wFTIAhGgOAzdnnoYQbU1AUs+Pa5veanwx2A0
+         gLLM2cy4TlTjTQk7gPqHVr6yclTb2wKyv/uos04WCaDGVZDGRIkGwx5wseNTvXb5ta
+         bvOUi9N3zM8Pn0T66BaMTWLsVvPk3gqqS5hoRlbWBnRoIJ4B4UHtVFQ2S8TUqo5NWC
+         3gwc4F9mg1yp5NZ1QSLgG0WpgL7XqH0+4f2AWkODos/y7qgBvM/L51HdqtIydeqjP7
+         r8Y/i0H2Ups3oRZm3knp/sGrKMJEf/RoyLdD4Ct38HA6vceS+yqCVNzuerEg0an/Db
+         Dz8ha0wHIjCjg==
+Message-ID: <113c0ae6-d7f1-b4d5-dc1a-2264cc815644@collabora.com>
+Date:   Tue, 12 Sep 2023 13:50:02 -0300
 MIME-Version: 1.0
-References: <20230912163810.1750488-1-festevam@gmail.com> <20230912163810.1750488-2-festevam@gmail.com>
-In-Reply-To: <20230912163810.1750488-2-festevam@gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 12 Sep 2023 13:46:55 -0300
-Message-ID: <CAOMZO5B8fmWDXDWoCiPzxZx2zshoEPXqNL468_TvOGMqiFpHHA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] arm64: dts: Remove JPEG clock-names
-To:     shawnguo@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, mirela.rabulea@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        alexander.stein@ew.tq-group.com, Fabio Estevam <festevam@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v3 1/9] drm: ci: igt_runner: Remove todo
+To:     Vignesh Raman <vignesh.raman@collabora.com>,
+        dri-devel@lists.freedesktop.org
+Cc:     guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
+        david.heidelberg@collabora.com, daniels@collabora.com,
+        gustavo.padovan@collabora.com,
+        angelogioacchino.delregno@collabora.com, emma@anholt.net,
+        robclark@freedesktop.org, robdclark@google.com, anholt@google.com,
+        robdclark@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
+        jani.nikula@linux.intel.com, mripard@kernel.org,
+        dmitry.baryshkov@linaro.org, matthias.bgg@gmail.com,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        virtualization@lists.linux-foundation.org,
+        linux-arm-msm@vger.kernel.org
+References: <20230908152225.432139-1-vignesh.raman@collabora.com>
+ <20230908152225.432139-2-vignesh.raman@collabora.com>
+Content-Language: en-US
+From:   Helen Koike <helen.koike@collabora.com>
+In-Reply-To: <20230908152225.432139-2-vignesh.raman@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 12, 2023 at 1:38=E2=80=AFPM Fabio Estevam <festevam@gmail.com> =
-wrote:
->
-> From: Fabio Estevam <festevam@denx.de>
->
-> Per nxp,imx8-jpeg.yaml, the clock-names entry is not valid.
->
-> Remove them.
->
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
-Sorry, I missed adding imx8-ss-img in the Subject line.
+
+On 08/09/2023 12:22, Vignesh Raman wrote:
+> /sys/kernel/debug/dri/*/state exist for every atomic KMS driver.
+> We do not test non-atomic drivers, so remove the todo.
+> 
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+
+Acked-by: Helen Koike <helen.koike@collabora.com>
+
+> ---
+> 
+> v2:
+>    - No changes
+> 
+> v3:
+>    - No changes
+>    
+> ---
+>   drivers/gpu/drm/ci/igt_runner.sh | 1 -
+>   1 file changed, 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/ci/igt_runner.sh b/drivers/gpu/drm/ci/igt_runner.sh
+> index 2bb759165063..5bf130ac57c9 100755
+> --- a/drivers/gpu/drm/ci/igt_runner.sh
+> +++ b/drivers/gpu/drm/ci/igt_runner.sh
+> @@ -15,7 +15,6 @@ cat /sys/kernel/debug/device_component/*
+>   '
+>   
+>   # Dump drm state to confirm that kernel was able to find a connected display:
+> -# TODO this path might not exist for all drivers.. maybe run modetest instead?
+>   set +e
+>   cat /sys/kernel/debug/dri/*/state
+>   set -e
