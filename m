@@ -2,125 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31EF579D3B2
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 16:31:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9652979D3B8
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 16:32:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235967AbjILObZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 10:31:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56572 "EHLO
+        id S235901AbjILOcF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 10:32:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236007AbjILObO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 10:31:14 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 810E5E7F
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 07:31:04 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-31768ce2e81so5787318f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 07:31:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694529063; x=1695133863; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Vv/75kEeRc6C4365WMEK2alu3JAPt7L7OwFhBAHlLpE=;
-        b=LnbBjgqFIcUEIj/bO9MGb2NBe2a1Tkv7bIZtWEhWsdXJUe6JPdJYsWYLQ0VX6ErCx8
-         v5z1S0WXPSFeLYaRAQkCSWwyx80cW9MzkwJn5kjj0+FNVrj+gEk/90VL0oM0blydrATK
-         r2Zc7fASf+8kd9n5E5jpZRzRPMYm7z/8dIqxzamqiiUYlZ0L0mn2jdvnsw2r3ZsYHc+o
-         coKP0y6j4jtCFB91Ky7yDnNLXHVYWrbsCOd1AcQ/FQ9zICIFU/poG4PB2ZEUZrhixLHG
-         kzpIgeDBMoQfWKaYGCbfyQ+6cItMgP6PUOXRPL8RRPsQOgO/hwGHM3myOe1XkkFgX3Cw
-         X7og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694529063; x=1695133863;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vv/75kEeRc6C4365WMEK2alu3JAPt7L7OwFhBAHlLpE=;
-        b=d5iZ6imnbJOW6jwRxpTMKkPNK2958gnkmcz9OobBmvCXpAxgX8IbczD/TVBIoRF/qb
-         vcXDewrrIgeCcrBVPeXmuorXCWvJW3APUvqQmTUZBpteICcnuYXtu7+EeuAafcaMVvzF
-         jJvi1ZZZ0r134we9TqXk72XWoSUywFPUHix4o/T/QcmU1DqGtMm+xZZjrlpDPMedJOmy
-         O5bm+SB9G3SSVCgaRp6+h4spQh/ySxMCwnPCx0f1HxvHT6PzPEtVHPz+etrhW13fD8e8
-         SRizxaEvtKNeW0Xk+J5LAX7TsvgSH3/mdZD/2KKl+oqeC8CwSQleLAjl0Igj/2OmZpel
-         sFMw==
-X-Gm-Message-State: AOJu0Yzp8GBB29lZSnG+Kxhk+KhfMSjyR1bRFjNQzsFTaCTLth+M/a6f
-        /kYtXuhTAZakdu2uAYxj1u7gMg==
-X-Google-Smtp-Source: AGHT+IGE7Z3u/8T793GKchkW1xN+y/cWqm86V7IOqnn7C832w8YiIwv3OoyWdiXIu0ouE9rBXGP+kg==
-X-Received: by 2002:adf:f48e:0:b0:31a:e73f:3fe7 with SMTP id l14-20020adff48e000000b0031ae73f3fe7mr11464586wro.3.1694529062899;
-        Tue, 12 Sep 2023 07:31:02 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id o14-20020adfeace000000b003197869bcd7sm12954388wrn.13.2023.09.12.07.31.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Sep 2023 07:31:02 -0700 (PDT)
-Message-ID: <d147a163-3696-8fdf-4c76-ec8375243d2c@linaro.org>
-Date:   Tue, 12 Sep 2023 16:31:00 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm64: dts: mediatek: add mt8390-evk
- board
-Content-Language: en-US
-To:     Macpaul Lin <macpaul.lin@mediatek.com>,
+        with ESMTP id S235949AbjILOb6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 10:31:58 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EAA0118;
+        Tue, 12 Sep 2023 07:31:54 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C545DC433C7;
+        Tue, 12 Sep 2023 14:31:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694529113;
+        bh=nCDXCDraqsGo2IZGYAIOuK+jrylfUNs1NltItNEvSsQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IzfFF5eS0jKjFYDvO5isyKITSFx9Gnoou/xv7WTkxJg7qowQ87WM6A8bDeU4fZUs1
+         v+AU3kBJHoO/qvhkLBzY1LHIpY+mFTnKXIPiUxYl/w3RS3wkGKbFB69UBKlSVcpHoO
+         R9UMiesRBocyKoVCX9r61gVBb0m6a5HpXfKUD+oA6NSEynLpVPIsfvefLOWbcbq1lx
+         JGxEqnf0JXnj8shzNl1oXaeaaONd/2cX0VDR3d3YkhmkxsgAFwQcbMbGIsdIR/eV5I
+         SgC7qCUyKhiuK2IY0LWMINLlX//w2erE1Q9rltkmWhDbYoOgH/htDJbxJx4vH1fshy
+         XtHNCvawzd3Vg==
+Date:   Tue, 12 Sep 2023 15:31:44 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Herve Codina <herve.codina@bootlin.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Cc:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>
-References: <20230912140613.6528-1-macpaul.lin@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230912140613.6528-1-macpaul.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+        Simon Horman <horms@kernel.org>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 28/31] pinctrl: Add support for the Lantic PEF2256
+ pinmux
+Message-ID: <71761f94-14ea-4e2a-a079-c74dfa32387a@sirena.org.uk>
+References: <20230912081527.208499-1-herve.codina@bootlin.com>
+ <20230912101505.225899-1-herve.codina@bootlin.com>
+ <CACRpkdbxdMZt4E1SF1v9as-jw=TpvS1mk2TQqAgywMBLbKaNoA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="rHoxlvq7D/pkDAXf"
+Content-Disposition: inline
+In-Reply-To: <CACRpkdbxdMZt4E1SF1v9as-jw=TpvS1mk2TQqAgywMBLbKaNoA@mail.gmail.com>
+X-Cookie: Mickey Mouse wears a Spiro Agnew watch.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2023 16:06, Macpaul Lin wrote:
-> 1. Add compatible for MT8390.
-> 2. Add bindings for the MediaTek mt8390-evk board, also known
-> as the "Genio 700-EVK".
-> 
-> The MT8390 and MT8188 belong to the same SoC family,
-> with only minor differences in their physical characteristics.
-> They utilize unique efuse values for differentiation.
-> 
-> The booting process and configurations are managed by boot
-> loaders, firmware, and TF-A. Consequently, the part numbers
-> and procurement channels vary.
-> 
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/arm/mediatek.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> dependencies for v1:
->  - This patch should be applied after the following patch set
->   - mt8365's bindings
->    - https://lore.kernel.org/linux-arm-kernel/20230912092444.31635-1-macpaul.lin@mediatek.com/T/
->   - mt8395's bindings
->    - https://lore.kernel.org/lkml/20230911115717.26184-1-macpaul.lin@mediatek.com/T/
->   - mt8188's bindings
->    - https://lore.kernel.org/lkml/a4e1a80ebd19896410f50b0297e05dce06fb47cc.camel@mediatek.com/T/
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> index d8e449c6a7d7..047204a4aff5 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> @@ -251,6 +251,12 @@ properties:
->        - items:
->            - const: mediatek,mt8365-evk
->            - const: mediatek,mt8365
-> +      - description: MediaTek Genio 700 Boards (Genio 700 EVK)
 
-We had a long discussion, so again: drop description.
+--rHoxlvq7D/pkDAXf
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Sep 12, 2023 at 01:04:56PM +0200, Linus Walleij wrote:
+> On Tue, Sep 12, 2023 at 12:15=E2=80=AFPM Herve Codina <herve.codina@bootl=
+in.com> wrote:
 
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +/*
 
-Best regards,
-Krzysztof
+> I think SPDX mandates that you start the tag with C99 comments
 
+> // SPDX-License-Identifier: GPL-2.0-only
+
+Not for headers, they should use C style since they might be included in
+contexts where C++ isn't supported.
+
+--rHoxlvq7D/pkDAXf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmUAdlAACgkQJNaLcl1U
+h9AGMQf/fLsnOOVZlCeXkVRLWX87qtu4s7nr7P5jfwyYxnA4Bhl8MwftHW5rxDOf
+TJcMOnHaQLx46ThWnYrWFopJsLO9g5x+NTP78wZTRCXJaJp4usJtpbNzUm4JAgfr
+wJ7T2LLNlVFW5eJfODg+A+sL23DKqJ0B6MwZDixKhNM0tRYibE5ULV+DGzqxyvgz
+yBkeRf5GWl9c4qVLP9Qg2VGx/9jbeOjiYGTd3LWeqJ6HxR8EItWZvKS72fGhOw+t
+dp3VMrMnK9/HtTllRrE+m9GWdtkjG+FjaBGfp8LhzJ1IvYZb+Hyic+EVrTIQ+aC3
+xmRd5GYPdrIG1w50Eci2Fa5Zqd4N4A==
+=vkfj
+-----END PGP SIGNATURE-----
+
+--rHoxlvq7D/pkDAXf--
