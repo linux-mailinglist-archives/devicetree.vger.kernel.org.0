@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F50C79D7F5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 19:51:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4DE479D813
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 19:53:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236933AbjILRvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 13:51:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51264 "EHLO
+        id S237378AbjILRx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 13:53:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236886AbjILRvA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 13:51:00 -0400
+        with ESMTP id S237228AbjILRxS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 13:53:18 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 727D810D3;
-        Tue, 12 Sep 2023 10:50:56 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4417C433C8;
-        Tue, 12 Sep 2023 17:50:53 +0000 (UTC)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C136B1702;
+        Tue, 12 Sep 2023 10:52:48 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00DC4C433C8;
+        Tue, 12 Sep 2023 17:52:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694541056;
-        bh=RMkwY8/Jmn0reBNJqxSzXAz0X4xlHTx/4N3xlZ/F8mw=;
+        s=k20201202; t=1694541168;
+        bh=HPcDqNLUFypCc5Q7NZiB8Hj54QddwKqz4SmQVlGbckE=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ob0bq6N++LzLd3a3B8YX+FxFaukN+zywJ+VP2Qj2OIsVyJqNWeNy5YCUw6cv9cPt5
-         IzokpDNJjx4IH1ezTBCzawMksutA93LUs/Vlc9WPdovMNMXCAgktwTyGqUM1V3uwQg
-         C61MB3roaoXN7I51XEieYl1r9aqEYw3/7Sta32AvISxJrH9Geb8MRoaLqe5q+GvW87
-         LUAxIrJkrrTy7lyDxFw0NrWgtTt/udL+xFqunJDPP/e+74gVOcll3yNm82jFtIEYIq
-         bqn7NLxETj4Z7mNWeNnAh/YnDo8L7gKpIV2/6GVxHGLxFcDF2JrGw71fchD1mOZscQ
-         YhU4Xu+boyGMw==
-Received: (nullmailer pid 989278 invoked by uid 1000);
-        Tue, 12 Sep 2023 17:50:52 -0000
-Date:   Tue, 12 Sep 2023 12:50:52 -0500
+        b=fRW2fJkeefahF6Te9zAt7FTdeXUh3go1V8qR2BinfO6dOF1LGMrkEjQGg0sbqFVkN
+         QvEu6mv8rPssooyA/Y6yVGl0cT+2YyuIxMdkw9dhsvamTi2XJNrji8kZCMKCYmB+Px
+         c9F7XkgEqKlsEBKUUR9jp0Ln19fTFW1DmAOOtyncXEEwSU+DttfD+G0y0SLwdJ27YQ
+         fg08fnejG9pKx5cop3vAm5A4PdpxF7Q2QV4QOslqx9vuo79B0ziPMJNZvqC6Joepk5
+         45BUu6gzgGGy0QWnOIFKJGEmtNV/fyngJ1YOXrlAyA+NNxp2eATs9ioaRiEG0b015p
+         K9rCBRDu02qJA==
+Received: (nullmailer pid 991353 invoked by uid 1000);
+        Tue, 12 Sep 2023 17:52:45 -0000
+Date:   Tue, 12 Sep 2023 12:52:45 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     wangweidong.a@awinic.com
-Cc:     fido_max@inbox.ru, shumingf@realtek.com, conor+dt@kernel.org,
-        lgirdwood@gmail.com, harshit.m.mogalapalli@oracle.com,
-        colin.i.king@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        rf@opensource.cirrus.com, sebastian.reichel@collabora.com,
-        perex@perex.cz, devicetree@vger.kernel.org,
-        ckeepax@opensource.cirrus.com, ryans.lee@analog.com,
-        alsa-devel@alsa-project.org, yijiangtao@awinic.com,
-        linus.walleij@linaro.org, povik+lin@cutebit.org,
-        broonie@kernel.org, trix@redhat.com, 13916275206@139.com,
-        robh+dt@kernel.org, arnd@arndb.de, liweilei@awinic.com,
-        tiwai@suse.com, linux-kernel@vger.kernel.org,
-        herve.codina@bootlin.com
-Subject: Re: [PATCH V2 2/5] ASoC: dt-bindings: Add schema for "awinic,aw87390"
-Message-ID: <169454105220.989223.11380919348006070430.robh@kernel.org>
-References: <20230912065852.347000-1-wangweidong.a@awinic.com>
- <20230912065852.347000-3-wangweidong.a@awinic.com>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Robert Marko <robimarko@gmail.com>, linux-arm-msm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Subject: Re: [PATCH 1/6] dt-bindings: regulator: qcom,spmi: Document PM8909
+Message-ID: <169454116542.991294.13436176994146682244.robh@kernel.org>
+References: <20230912-spmi-pm8909-v1-0-ba4b3bfaf87d@gerhold.net>
+ <20230912-spmi-pm8909-v1-1-ba4b3bfaf87d@gerhold.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230912065852.347000-3-wangweidong.a@awinic.com>
+In-Reply-To: <20230912-spmi-pm8909-v1-1-ba4b3bfaf87d@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 12 Sep 2023 14:58:49 +0800, wangweidong.a@awinic.com wrote:
-> From: Weidong Wang <wangweidong.a@awinic.com>
+On Tue, 12 Sep 2023 09:49:49 +0200, Stephan Gerhold wrote:
+> From: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
 > 
-> Add a DT schema for describing awinic aw87390 audio amplifiers.
-> They are controlled using I2C.
+> Document the qcom,pm8909-regulators compatible together with the
+> necessary supply properties to allow interfacing via the hardware
+> regulator registers directly via SPMI. This is mainly intended for
+> debugging since the regulators are typically controlled via the RPM
+> firmware (qcom,rpm-pm8909-regulators compatible).
 > 
-> Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
 > ---
->  .../bindings/sound/awinic,aw87390.yaml        | 58 +++++++++++++++++++
->  1 file changed, 58 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/awinic,aw87390.yaml
+>  .../bindings/regulator/qcom,spmi-regulator.yaml       | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
