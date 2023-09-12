@@ -2,107 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61C6E79C81D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 09:23:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA5CB79C84E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 09:37:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231520AbjILHXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 03:23:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54276 "EHLO
+        id S229675AbjILHhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 03:37:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231316AbjILHXt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 03:23:49 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFCD1AA;
-        Tue, 12 Sep 2023 00:23:45 -0700 (PDT)
-X-UUID: 4d6e9616513d11eea33bb35ae8d461a2-20230912
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=i33NOivwajA5/Gthovwk5wRfD+rGN3vy102PV1CCxig=;
-        b=VB+pINUxk0gW3r7NNobMDEg1Tc6IUndcRxu4olX0UBfKVLpjCWE4WQ938fbz7Xelr4iZDdErq1cZOCofBFPfzE1znr5UNJKuebUI/4pVeeFCFDf9ezu1O1wBWjtuAhIjB4Dk3d4UxMUvCy2F2DAuzA65VqmxlVq1hKs66MhXrCA=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:de6debde-6c38-4f0b-a650-edff7d5d7f61,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:0ad78a4,CLOUDID:f6e198ef-9a6e-4c39-b73e-f2bc08ca3dc5,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-        DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
-X-UUID: 4d6e9616513d11eea33bb35ae8d461a2-20230912
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <macpaul.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 702649863; Tue, 12 Sep 2023 15:23:42 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 12 Sep 2023 15:23:41 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Tue, 12 Sep 2023 15:23:41 +0800
-From:   Macpaul Lin <macpaul.lin@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Macpaul Lin <macpaul.lin@mediatek.com>,
-        =?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-CC:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>
-Subject: [PATCH v3 2/2] arm64: dts: mediatek: rename mt8365-evk to mt8365-genio-350-evk
-Date:   Tue, 12 Sep 2023 15:23:40 +0800
-Message-ID: <20230912072340.22862-2-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230912072340.22862-1-macpaul.lin@mediatek.com>
-References: <20230912072340.22862-1-macpaul.lin@mediatek.com>
+        with ESMTP id S231747AbjILHhf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 03:37:35 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F7DC10CA;
+        Tue, 12 Sep 2023 00:37:31 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38C3LwsM015420;
+        Tue, 12 Sep 2023 09:37:03 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+        message-id:date:mime-version:subject:to:cc:references:from
+        :in-reply-to:content-type:content-transfer-encoding; s=
+        selector1; bh=HqbaF5o1SFYteMShhADVnqO2ykmpSHq+NUsm7vDvMjw=; b=UA
+        VWktBUSVoWOMkewhc/t2KW0oyNHSGb1NjrqChWrmoejwoivtrnMHIGVlEe/3RJdz
+        qXv+2mJj9xYLCALx5shCbNnSZjAULf8Nt7KLgxE0JosCuDfB6auAkHKnLjyhZgdN
+        0W/8pj+1u8Hoh1ga+gVF9nap5TMw1hWlN9Szf93mec8aczvIe5RnX63l3hasyHNi
+        diYZTtKWNh9sS9WePf/3mzUzKlq6UbzB2EXt6CMLePwfMY3LBNxvuz4fI28EUlq1
+        4np1BGVN6x2TVVdJ0SUMKVGlZcSN2MbFi3MOKaZk3Z3khnOjJezAzzB3iEuMq8rn
+        1aOTGFGJqsik3ZTQwNPQ==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3t0fkcmfh9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 12 Sep 2023 09:37:03 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D0472100058;
+        Tue, 12 Sep 2023 09:37:01 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C6C4721ED32;
+        Tue, 12 Sep 2023 09:37:01 +0200 (CEST)
+Received: from [10.201.20.32] (10.201.20.32) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 12 Sep
+ 2023 09:37:01 +0200
+Message-ID: <f8445beb-52a0-bcb8-f4fa-3decdfde09fc@foss.st.com>
+Date:   Tue, 12 Sep 2023 09:36:55 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 05/10] hwrng: stm32 - rework error handling in
+ stm32_rng_read()
+To:     Herbert Xu <herbert@gondor.apana.org.au>
+CC:     Olivia Mackall <olivia@selenic.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Lionel Debieve <lionel.debieve@foss.st.com>,
+        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230908165120.730867-1-gatien.chevallier@foss.st.com>
+ <20230908165120.730867-6-gatien.chevallier@foss.st.com>
+ <ZP/iw6jvHrlBavdK@gondor.apana.org.au>
+Content-Language: en-US
+From:   Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+In-Reply-To: <ZP/iw6jvHrlBavdK@gondor.apana.org.au>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.20.32]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-12_04,2023-09-05_01,2023-05-22_02
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rename mt8365-evk to mt8365-genio-350-evk for following the
-naming rules for MediaTek boards.
+Hello Herbert,
 
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/Makefile                           | 2 +-
- .../dts/mediatek/{mt8365-evk.dts => mt8365-genio-350-evk.dts}   | 0
- 2 files changed, 1 insertion(+), 1 deletion(-)
- rename arch/arm64/boot/dts/mediatek/{mt8365-evk.dts => mt8365-genio-350-evk.dts} (100%)
+On 9/12/23 06:02, Herbert Xu wrote:
+> On Fri, Sep 08, 2023 at 06:51:15PM +0200, Gatien Chevallier wrote:
+>>
+>> +			if (WARN_ON(sr & RNG_SR_CEIS), "RNG clock too slow - %x\n", sr)
+> 
+> Introducing an unconditional WARN_ON is not acceptable.  If you
+> really need it, make it WARN_ON_ONCE.  But why does this need
+> to be a WARN instead of dev_err?
+> 
+> Cheers,
 
-Changes for v1:
-Changes for v2:
- - None.
-Changes for v3:
- - New patch added into this patch set v3.
- - depends on https://lore.kernel.org/lkml/20230911115717.26184-1-macpaul.lin@mediatek.com/T/
+It was my mistake and not my intention to change the WARN_ON_ONCE to a
+WARN_ON. I've already sent a V2 correcting this.
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 10e640c6ae08..b5d529d66393 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -52,6 +52,6 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-cherry-tomato-r2.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-cherry-tomato-r3.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-demo.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-evk.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-genio-350-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-genio-1200-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-genio-350-evk.dts
-similarity index 100%
-rename from arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-rename to arch/arm64/boot/dts/mediatek/mt8365-genio-350-evk.dts
--- 
-2.18.0
+It was already a WARN_ON_ONCE on the first implementation of the driver.
+This is not an unrecoverable error as it doesn't affect the quality of
+the entropy delivered by the RNG. The output is just too slow. It's here
+to warn the developer of an incorrect clock source setting.
 
+Best regards,
+Gatien
