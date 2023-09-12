@@ -2,70 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9616279D81F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 19:54:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7DB979D828
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 19:55:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237049AbjILRyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 13:54:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58578 "EHLO
+        id S237172AbjILRz6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 13:55:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237342AbjILRyD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 13:54:03 -0400
+        with ESMTP id S237196AbjILRzz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 13:55:55 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44A1B1FC0;
-        Tue, 12 Sep 2023 10:53:57 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C540EC433CA;
-        Tue, 12 Sep 2023 17:53:55 +0000 (UTC)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89E511706;
+        Tue, 12 Sep 2023 10:55:50 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C44B9C433C7;
+        Tue, 12 Sep 2023 17:55:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694541236;
-        bh=8Yjaumo8M/BOnRThpF0rGp6gTorTSUirAKyRPAduSJc=;
+        s=k20201202; t=1694541350;
+        bh=NeiCnNPo3KOW64wUUmXZOw3OrKGWSoH40pjr74D8cEg=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nzPUMMcy/mBrungOX+UZrdAUgaO/nyB6DQVxn8Sc6BONUh8BbkqRtbMHgYeXhj1QV
-         3yKi6FyydiO0bxlpIEJQDFpWQX42KaSfS4sWet6HQ0GWSls7OQzqY9RhnAw0Rqf++b
-         I8qeENcitawz9G1y0M/O+VkBaniCjNZ/N4TXxEACaIZ41w/G/H/1V3BMWPFSxQ1kpa
-         dqG+9AsbM0A/X+39T/A0Irtv5hCNpYDzZgXUPcuUzms1FrkdxgTIr9LOdaRh9mTBmE
-         gN2k/ZW9G8CJGMpHTaO4Sn+NKyHcJltlrVjC50W2BTPB4UWR0X8BwBzoKPVwUI1k2d
-         5L4Yeq7jOdTLA==
-Received: (nullmailer pid 992943 invoked by uid 1000);
-        Tue, 12 Sep 2023 17:53:54 -0000
-Date:   Tue, 12 Sep 2023 12:53:54 -0500
+        b=Ez4kU3Bb4kgBzNrxnsI6uBF3Wbe6qBzHTer7W/rvAOtyCbZZXAqCjiNwu4vIcrtHP
+         NVWrkNFGSxlxU4tMObk8yF8Up3APTrZkI0M4U/H0EYSkGrSkp5Y1E6GSaLIZog7qs8
+         i6/o1o4NGc3k5lIE0OTZcQ9HrYnvM5L3goYs3vhAPpM27X9vkCDI0QEu1UkJLp9LQ7
+         VZ/wNuoGJznbyiQXOF2/JzFEvtyPhwPm2LPpRQ8vUyVDSSU8YEl8hrwwwwrw7s/Th2
+         5Xhu6Lxn4Mq9ancHyaWbXTENfHCIkDkjjLHT5MUygJ9ZhFDEjArTscpYMxSm9zeEY1
+         RyQ5Gm/d05jWA==
+Received: (nullmailer pid 995268 invoked by uid 1000);
+        Tue, 12 Sep 2023 17:55:47 -0000
+Date:   Tue, 12 Sep 2023 12:55:47 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     William Qiu <william.qiu@starfivetech.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-mmc@vger.kernel.org,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH 5/6] dt-bindings: regulator: qcom,spmi: Document PMA8084
-Message-ID: <169454123436.992887.15253313371626687800.robh@kernel.org>
-References: <20230912-spmi-pm8909-v1-0-ba4b3bfaf87d@gerhold.net>
- <20230912-spmi-pm8909-v1-5-ba4b3bfaf87d@gerhold.net>
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [PATCH v2 0/3] Change tuning implementation
+Message-ID: <20230912175547.GA993874-robh@kernel.org>
+References: <20230912081402.51477-1-william.qiu@starfivetech.com>
+ <20230912081402.51477-4-william.qiu@starfivetech.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230912-spmi-pm8909-v1-5-ba4b3bfaf87d@gerhold.net>
+In-Reply-To: <20230912081402.51477-4-william.qiu@starfivetech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Tue, 12 Sep 2023 09:49:53 +0200, Stephan Gerhold wrote:
-> Document the qcom,pma8084-regulators compatible together with the
-> necessary supply properties to allow interfacing via the hardware
-> regulator registers directly via SPMI. This is mainly intended for
-> debugging since the regulators are typically controlled via the RPM
-> firmware (qcom,rpm-pma8084-regulators compatible).
+On Tue, Sep 12, 2023 at 04:13:59PM +0800, William Qiu wrote:
+> Hi,
 > 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
->  .../bindings/regulator/qcom,spmi-regulator.yaml    | 29 +++++++++++++++++++++-
->  1 file changed, 28 insertions(+), 1 deletion(-)
+> This series of patches changes the tuning implementation, from the
+> previous way of reading and writing system controller registers to
+> reading and writing UHS_REG_EXT register, thus optimizing the tuning
+> of obtaining delay-chain.
 > 
+> Changes v1->v2:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Please don't send new versions as a reply to the prior version.
 
+> - Rebased to v6.6rc1.
+> - Keeped "starfive,sysreg" in dt-bindings but removed from required.
+> - Changed the function interface name.
+> - Maked the code implementation more concise.
+> 
+> The patch series is based on v6.6rc1.
+> 
+> William Qiu (3):
+>   dt-bindings: mmc: Remove properties from required
+>   mmc: starfive: Change tuning implementation
+>   riscv: dts: starfive: Drop unused properties and limit frquency
+> 
+>  .../bindings/mmc/starfive,jh7110-mmc.yaml     |   2 -
+>  .../jh7110-starfive-visionfive-2.dtsi         |   4 +
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi      |   2 -
+>  drivers/mmc/host/dw_mmc-starfive.c            | 137 +++++-------------
+>  4 files changed, 44 insertions(+), 101 deletions(-)
+> 
+> --
+> 2.34.1
+> 
