@@ -2,87 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7DB979D828
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 19:55:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 406ED79D84C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 20:04:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237172AbjILRz6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 13:55:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39934 "EHLO
+        id S237172AbjILSEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 14:04:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237196AbjILRzz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 13:55:55 -0400
+        with ESMTP id S233127AbjILSEJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 14:04:09 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89E511706;
-        Tue, 12 Sep 2023 10:55:50 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C44B9C433C7;
-        Tue, 12 Sep 2023 17:55:48 +0000 (UTC)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 386A4E59;
+        Tue, 12 Sep 2023 11:04:05 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBB86C433C8;
+        Tue, 12 Sep 2023 18:04:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694541350;
-        bh=NeiCnNPo3KOW64wUUmXZOw3OrKGWSoH40pjr74D8cEg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Ez4kU3Bb4kgBzNrxnsI6uBF3Wbe6qBzHTer7W/rvAOtyCbZZXAqCjiNwu4vIcrtHP
-         NVWrkNFGSxlxU4tMObk8yF8Up3APTrZkI0M4U/H0EYSkGrSkp5Y1E6GSaLIZog7qs8
-         i6/o1o4NGc3k5lIE0OTZcQ9HrYnvM5L3goYs3vhAPpM27X9vkCDI0QEu1UkJLp9LQ7
-         VZ/wNuoGJznbyiQXOF2/JzFEvtyPhwPm2LPpRQ8vUyVDSSU8YEl8hrwwwwrw7s/Th2
-         5Xhu6Lxn4Mq9ancHyaWbXTENfHCIkDkjjLHT5MUygJ9ZhFDEjArTscpYMxSm9zeEY1
-         RyQ5Gm/d05jWA==
-Received: (nullmailer pid 995268 invoked by uid 1000);
-        Tue, 12 Sep 2023 17:55:47 -0000
-Date:   Tue, 12 Sep 2023 12:55:47 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-mmc@vger.kernel.org,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Subject: Re: [PATCH v2 0/3] Change tuning implementation
-Message-ID: <20230912175547.GA993874-robh@kernel.org>
-References: <20230912081402.51477-1-william.qiu@starfivetech.com>
- <20230912081402.51477-4-william.qiu@starfivetech.com>
+        s=k20201202; t=1694541844;
+        bh=C413WTTl+XcEFmSRmh21k8Ec3xNKfPk06vrSk2SqD9k=;
+        h=In-Reply-To:References:Subject:From:To:Date:From;
+        b=MzlPWkKkjcVGHwy1XBAtpP7d58dXjyJJW1mVltmpZmndjsuiKQ0533gUJwbpBesiS
+         Z5BkDrEk/2i4RrWuaAFtZQ9YGxRlkK0rPIoBaLjo6M/ZXbSE7cZWAHokkkJe29iiL0
+         a+3xSTpIe0i/Pfq/lSVK3dN3KbGdgE09bO9phIrQ28F+CO3nHg3JdVxqgYPAfXNP5Q
+         3vzWh0z6zaqOpgcT86Jy8myvBQXIUzc/JzMz4MfvvMylkDpuE/vDUfV63cPer1248D
+         l58hxDlB08f8zhLaWLQ3xdtcW+jKTO6kUO0N4VIWd+VdWq5XvU6QFJDEPIb56e/tZq
+         UoA8j/ft69Zyw==
+Message-ID: <9a8476b92ab656387fa7dcf54a0713a3.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230912081402.51477-4-william.qiu@starfivetech.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230911221346.1484543-5-andreas@kemnade.info>
+References: <20230911221346.1484543-1-andreas@kemnade.info> <20230911221346.1484543-5-andreas@kemnade.info>
+Subject: Re: [PATCH v3 4/5] clk: twl: add clock driver for TWL6032
+From:   Stephen Boyd <sboyd@kernel.org>
+To:     andreas@kemnade.info, bcousson@baylibre.com, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        linux-clk@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        mturquette@baylibre.com, robh+dt@kernel.org, tony@atomide.com
+Date:   Tue, 12 Sep 2023 11:04:02 -0700
+User-Agent: alot/0.10
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 12, 2023 at 04:13:59PM +0800, William Qiu wrote:
-> Hi,
-> 
-> This series of patches changes the tuning implementation, from the
-> previous way of reading and writing system controller registers to
-> reading and writing UHS_REG_EXT register, thus optimizing the tuning
-> of obtaining delay-chain.
-> 
-> Changes v1->v2:
+Quoting Andreas Kemnade (2023-09-11 15:13:45)
+> diff --git a/drivers/clk/clk-twl.c b/drivers/clk/clk-twl.c
+> new file mode 100644
+> index 0000000000000..09006e53a32ec
+> --- /dev/null
+> +++ b/drivers/clk/clk-twl.c
+> @@ -0,0 +1,197 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Clock driver for twl device.
+> + *
+> + * inspired by the driver for the Palmas device
+> + */
+> +
+> +#include <linux/clk.h>
 
-Please don't send new versions as a reply to the prior version.
+Please drop this include unless it is used.
 
-> - Rebased to v6.6rc1.
-> - Keeped "starfive,sysreg" in dt-bindings but removed from required.
-> - Changed the function interface name.
-> - Maked the code implementation more concise.
-> 
-> The patch series is based on v6.6rc1.
-> 
-> William Qiu (3):
->   dt-bindings: mmc: Remove properties from required
->   mmc: starfive: Change tuning implementation
->   riscv: dts: starfive: Drop unused properties and limit frquency
-> 
->  .../bindings/mmc/starfive,jh7110-mmc.yaml     |   2 -
->  .../jh7110-starfive-visionfive-2.dtsi         |   4 +
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      |   2 -
->  drivers/mmc/host/dw_mmc-starfive.c            | 137 +++++-------------
->  4 files changed, 44 insertions(+), 101 deletions(-)
-> 
-> --
-> 2.34.1
-> 
+> +#include <linux/clk-provider.h>
+> +#include <linux/mfd/twl.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +
+> +#define VREG_STATE              2
+> +#define TWL6030_CFG_STATE_OFF   0x00
+> +#define TWL6030_CFG_STATE_ON    0x01
+> +#define TWL6030_CFG_STATE_MASK  0x03
+> +
+> +struct twl_clock_info {
+> +       struct device *dev;
+> +       u8 base;
+> +       struct clk_hw hw;
+> +};
+[...]
+> +
+> +static int twl_clks_probe(struct platform_device *pdev)
+> +{
+> +       struct clk_hw_onecell_data *clk_data;
+> +       const struct twl_clks_data *hw_data;
+> +
+> +       struct twl_clock_info *cinfo;
+> +       int ret;
+> +       int i;
+> +       int count;
+> +
+> +       hw_data =3D twl6032_clks;
+> +       for (count =3D 0; hw_data[count].init.name; count++)
+> +               ;
+> +
+> +       clk_data =3D devm_kzalloc(&pdev->dev,
+> +                               struct_size(clk_data, hws, count),
+> +                               GFP_KERNEL);
+> +       if (!clk_data)
+> +               return -ENOMEM;
+> +
+> +       clk_data->num =3D count;
+> +       cinfo =3D devm_kcalloc(&pdev->dev, count, sizeof(*cinfo), GFP_KER=
+NEL);
+> +       if (!cinfo)
+> +               return -ENOMEM;
+> +
+> +       for (i =3D 0; i < count; i++) {
+> +               cinfo[i].base =3D hw_data[i].base;
+> +               cinfo[i].dev =3D &pdev->dev;
+> +               cinfo[i].hw.init =3D &hw_data[i].init;
+> +               ret =3D devm_clk_hw_register(&pdev->dev, &cinfo[i].hw);
+> +               if (ret) {
+> +                       dev_err(&pdev->dev, "Fail to register clock %s, %=
+d\n",
+
+Use dev_err_probe()
+
+> +                               hw_data[i].init.name, ret);
+> +                       return ret;
+> +               }
+> +               clk_data->hws[i] =3D &cinfo[i].hw;
+> +       }
+> +
+> +       ret =3D devm_of_clk_add_hw_provider(&pdev->dev,
+> +                                         of_clk_hw_onecell_get, clk_data=
+);
+> +       if (ret < 0)
+> +               dev_err(&pdev->dev, "Fail to add clock driver, %d\n", ret=
+);
+
+Use dev_err_probe()
+
+> +
+> +       return ret;
