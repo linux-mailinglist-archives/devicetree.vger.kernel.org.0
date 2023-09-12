@@ -2,108 +2,319 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74A4C79CAD4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 11:00:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7788279CB03
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 11:03:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233363AbjILJAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 05:00:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47680 "EHLO
+        id S233182AbjILJD0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 05:03:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233201AbjILJAe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 05:00:34 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE80610CA;
-        Tue, 12 Sep 2023 02:00:26 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id D30AA6607313;
-        Tue, 12 Sep 2023 10:00:24 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1694509225;
-        bh=avYmThuAnAF/piLJ44vGRkqbJa24UHiezDwuFxlVjrM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=NqUFhfSeFQSLwIxe+WM0YRbbSqYpvBa6CW0SdV7ZYbi7RSdvtw6CfnaZToAEEhGqc
-         yCLfI4eM0IO5pVsvfnWGFP/kPdzgSEomGIFAO8mdK/hu29bTpZBM4+DsfVM2VwL2P2
-         H9ziTYMYex9mKmtCV+I5XweDjLuF2J+zYselsoRjCdkM/aOAaZptiCV2oUcx2nEwmC
-         qxdXkyvaZjfiFOl7nv7Y+lDlvaYRRzuoIOpfaT3+1YfMTSqH9aDZ0FvBYrwARe3wa2
-         160Yo2al/WCfMzmLfr5YhKvlW0pPsSWKW6zK884OsIOv7v23tDUDQn9Cyh64cJPRS/
-         J8kT6snBjaxvA==
-Message-ID: <c0bd7428-1330-58c5-64d2-78af479dfcf4@collabora.com>
-Date:   Tue, 12 Sep 2023 11:00:23 +0200
+        with ESMTP id S233542AbjILJCx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 05:02:53 -0400
+Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com [IPv6:2607:f8b0:4864:20::932])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35C5E199E
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 02:02:15 -0700 (PDT)
+Received: by mail-ua1-x932.google.com with SMTP id a1e0cc1a2514c-791b8525b59so2143508241.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 02:02:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1694509334; x=1695114134; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j7KVxkN+wFW5ag2l+y+JF3MWG+d5IfgJLJxlIyvtbLs=;
+        b=w5beJWF94HjM5NHDCEl3hhtH5SKr+bzU4M4nvtCvLE2+HdyHwoDHJ5FxyTJg7A3+Jz
+         TInaM3nISzMRsTdaiiaPYvA8ROr03Qr6/yfjlY64ueJh8n5U1g2zVhtJOsU0PgU5UZed
+         fNBuGY0ZBBCIkCYNv1I/UtQ1q0UFQJ9EvxKwelCossBKIoXDI6vfiiYw7M5BeIgSLJ0g
+         N+5OyiDv14cvri8gT7zKdw2FALCD9S8gMXiN7wlj3twseEq4IKjQsHAm0B7jXRv3U59P
+         fxyUP6KGbUy/oVpF/bW52QIGxJ2zPPOYq+w6TghThHD08790OwiSYVwc+s+T/6E6aAEx
+         fmAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694509334; x=1695114134;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=j7KVxkN+wFW5ag2l+y+JF3MWG+d5IfgJLJxlIyvtbLs=;
+        b=DxWBvwgjlkyP85PfeTXCQYaPhOsG2hR8qwXxJ+/SA3P0icla2Gd0/OBTBfHCmoM11O
+         oL5hQWiB+8bDgQjJC290Ra+YhBbsbtsWGYEWn7EH33sYeK8fBmMViWrEds7vndm5WJ4Y
+         X70PdyJiYbEFZoXbnabWAFdGYi7lX/2caAixb3vSAo4yVvLAUIYSpOPuLXhLXYVM4fk1
+         YeWCJ8oTohRPeR1MGcz7BJdwkBlnV/gOn3nEIzTaV+GtlWbV+PgHiRxq5DckPZ0np/7Q
+         wi/Z9IC39cn3UN1Bd4MJollk2N7U4XTxqGzUkk+wUjaBPrwia4Whia8Y7PPslkL1Q4DM
+         7kWQ==
+X-Gm-Message-State: AOJu0Yw9Oh54TIjgsG3AhvMbk7CUjwvQY+V+yUU725MmMAJs92b0Tw+b
+        1QJiivpFay2UDShoE+gUMTf0EUJl6C2e2TUoCVVNn58vXnAHOoGb
+X-Google-Smtp-Source: AGHT+IHkpFkb0Yj6bALXgKHWxrwXR38GD7tyi+XhyBH5dw/3Ap6StZroSfHVUOLeHDyS0bJSnQssrvvCtBY5Eo+qI8k=
+X-Received: by 2002:a05:6102:24d:b0:44d:547d:4607 with SMTP id
+ a13-20020a056102024d00b0044d547d4607mr9039765vsq.35.1694509334207; Tue, 12
+ Sep 2023 02:02:14 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v5 00/14] add support MDP3 on MT8195 platform
-Content-Language: en-US
-To:     Moudy Ho <moudy.ho@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+References: <20230829123524.17291-1-zhuyinbo@loongson.cn> <20230829123524.17291-3-zhuyinbo@loongson.cn>
+In-Reply-To: <20230829123524.17291-3-zhuyinbo@loongson.cn>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Tue, 12 Sep 2023 11:02:03 +0200
+Message-ID: <CAMRc=Md6c+z09PuHT+DsXPBwrmDDF8gmLNUAbikgA8fbJHGWFg@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] gpio: loongson: add more gpio chip support
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230912075805.11432-1-moudy.ho@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230912075805.11432-1-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 12/09/23 09:57, Moudy Ho ha scritto:
-> Changes since v4:
-> - Rebase on v6.6-rc1
-> - Remove any unnecessary DTS settings.
-> - Adjust the usage of MOD and clock in blending components.
-> 
-> Changes since v3:
-> - Depend on :
->    [1] https://patchwork.kernel.org/project/linux-media/list/?series=719841
-> - Suggested by Krzysztof, integrating all newly added bindings for
->    the mt8195 MDP3 into the file "mediatek,mt8195-mdp3.yaml".
-> - Revise MDP3 nodes with generic names.
-> 
-> Changes since v2:
-> - Depend on :
->    [1] MMSYS/MUTEX: https://patchwork.kernel.org/project/linux-mediatek/list/?series=711592
->    [2] MDP3: https://patchwork.kernel.org/project/linux-mediatek/list/?series=711618
-> - Suggested by Rob to revise MDP3 bindings to pass dtbs check
-> - Add parallel paths feature.
-> - Add blended components settings.
-> 
-> Changes since v1:
-> - Depend on :
->    [1] MDP3 : https://patchwork.kernel.org/project/linux-mediatek/list/?series=698872
->    [2] MMSYS/MUTEX: https://patchwork.kernel.org/project/linux-mediatek/list/?series=684959
-> - Fix compilation failure due to use of undeclared identifier in file "mtk-mdp3-cmdq.c"
-> 
-> Hello,
-> 
-> This patch is used to add support for MDP3 on the MT8195 platform that
-> contains more picture quality components, and can arrange more pipelines
-> through two sets of MMSYS and MUTEX respectively.
-> 
-> Moudy Ho (14):
->    arm64: dts: mediatek: mt8183: correct MDP3 DMA-related nodes
->    arm64: dts: mediatek: mt8195: add MDP3 nodes
+On Tue, Aug 29, 2023 at 2:35=E2=80=AFPM Yinbo Zhu <zhuyinbo@loongson.cn> wr=
+ote:
+>
+> This patch was to add loongson 2k0500, 2k2000 and 3a5000 gpio chip
+> driver support.
+>
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> ---
+>  drivers/gpio/gpio-loongson-64bit.c | 125 ++++++++++++++++++++++++++---
+>  1 file changed, 113 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/gpio/gpio-loongson-64bit.c b/drivers/gpio/gpio-loong=
+son-64bit.c
+> index 06213bbfabdd..2608f7eeba3b 100644
+> --- a/drivers/gpio/gpio-loongson-64bit.c
+> +++ b/drivers/gpio/gpio-loongson-64bit.c
+> @@ -23,9 +23,10 @@ enum loongson_gpio_mode {
+>  struct loongson_gpio_chip_data {
+>         const char              *label;
+>         enum loongson_gpio_mode mode;
+> -       unsigned int            conf_offset;
+> -       unsigned int            out_offset;
+> -       unsigned int            in_offset;
+> +       u32                     conf_offset;
+> +       u32                     out_offset;
+> +       u32                     in_offset;
+> +       u32                     inten_offset;
 
-Please send the DTS patches separately, those go through a different maintainer.
+Why are you doing this? If this change is needed, it warrants at least
+a mention in the commit message.
 
-P.S.: The dt-bindings patch can be sent inside of this series, please do that.
+Bart
 
-Thanks!
-Angelo
-
+>  };
+>
+>  struct loongson_gpio_chip {
+> @@ -117,19 +118,29 @@ static void loongson_gpio_set(struct gpio_chip *chi=
+p, unsigned int pin, int valu
+>
+>  static int loongson_gpio_to_irq(struct gpio_chip *chip, unsigned int off=
+set)
+>  {
+> +       unsigned int u;
+>         struct platform_device *pdev =3D to_platform_device(chip->parent)=
+;
+> +       struct loongson_gpio_chip *lgpio =3D to_loongson_gpio_chip(chip);
+> +
+> +       if (lgpio->chip_data->mode =3D=3D BIT_CTRL_MODE) {
+> +               /* Get the register index from offset then multiply by by=
+tes per register */
+> +               u =3D readl(lgpio->reg_base + lgpio->chip_data->inten_off=
+set + (offset / 32) * 4);
+> +               u |=3D BIT(offset % 32);
+> +               writel(u, lgpio->reg_base + lgpio->chip_data->inten_offse=
+t + (offset / 32) * 4);
+> +       } else {
+> +               writeb(1, lgpio->reg_base + lgpio->chip_data->inten_offse=
+t + offset);
+> +       }
+>
+>         return platform_get_irq(pdev, offset);
+>  }
+>
+>  static int loongson_gpio_init(struct device *dev, struct loongson_gpio_c=
+hip *lgpio,
+> -                             struct device_node *np, void __iomem *reg_b=
+ase)
+> +                             void __iomem *reg_base)
+>  {
+>         int ret;
+>         u32 ngpios;
+>
+>         lgpio->reg_base =3D reg_base;
+> -
+>         if (lgpio->chip_data->mode =3D=3D BIT_CTRL_MODE) {
+>                 ret =3D bgpio_init(&lgpio->chip, dev, 8,
+>                                 lgpio->reg_base + lgpio->chip_data->in_of=
+fset,
+> @@ -148,15 +159,15 @@ static int loongson_gpio_init(struct device *dev, s=
+truct loongson_gpio_chip *lgp
+>                 lgpio->chip.direction_output =3D loongson_gpio_direction_=
+output;
+>                 lgpio->chip.set =3D loongson_gpio_set;
+>                 lgpio->chip.parent =3D dev;
+> +               device_property_read_u32(dev, "ngpios", &ngpios);
+> +               lgpio->chip.ngpio =3D ngpios;
+>                 spin_lock_init(&lgpio->lock);
+>         }
+>
+> -       device_property_read_u32(dev, "ngpios", &ngpios);
+> -
+> -       lgpio->chip.can_sleep =3D 0;
+> -       lgpio->chip.ngpio =3D ngpios;
+>         lgpio->chip.label =3D lgpio->chip_data->label;
+> -       lgpio->chip.to_irq =3D loongson_gpio_to_irq;
+> +       lgpio->chip.can_sleep =3D false;
+> +       if (lgpio->chip_data->inten_offset)
+> +               lgpio->chip.to_irq =3D loongson_gpio_to_irq;
+>
+>         return devm_gpiochip_add_data(dev, &lgpio->chip, lgpio);
+>  }
+> @@ -165,7 +176,6 @@ static int loongson_gpio_probe(struct platform_device=
+ *pdev)
+>  {
+>         void __iomem *reg_base;
+>         struct loongson_gpio_chip *lgpio;
+> -       struct device_node *np =3D pdev->dev.of_node;
+>         struct device *dev =3D &pdev->dev;
+>
+>         lgpio =3D devm_kzalloc(dev, sizeof(*lgpio), GFP_KERNEL);
+> @@ -178,7 +188,7 @@ static int loongson_gpio_probe(struct platform_device=
+ *pdev)
+>         if (IS_ERR(reg_base))
+>                 return PTR_ERR(reg_base);
+>
+> -       return loongson_gpio_init(dev, lgpio, np, reg_base);
+> +       return loongson_gpio_init(dev, lgpio, reg_base);
+>  }
+>
+>  static const struct loongson_gpio_chip_data loongson_gpio_ls2k_data =3D =
+{
+> @@ -187,6 +197,57 @@ static const struct loongson_gpio_chip_data loongson=
+_gpio_ls2k_data =3D {
+>         .conf_offset =3D 0x0,
+>         .in_offset =3D 0x20,
+>         .out_offset =3D 0x10,
+> +       .inten_offset =3D 0x30,
+> +};
+> +
+> +static const struct loongson_gpio_chip_data loongson_gpio_ls2k0500_data0=
+ =3D {
+> +       .label =3D "ls2k0500_gpio",
+> +       .mode =3D BIT_CTRL_MODE,
+> +       .conf_offset =3D 0x0,
+> +       .in_offset =3D 0x8,
+> +       .out_offset =3D 0x10,
+> +       .inten_offset =3D 0xb0,
+> +};
+> +
+> +static const struct loongson_gpio_chip_data loongson_gpio_ls2k0500_data1=
+ =3D {
+> +       .label =3D "ls2k0500_gpio",
+> +       .mode =3D BIT_CTRL_MODE,
+> +       .conf_offset =3D 0x0,
+> +       .in_offset =3D 0x8,
+> +       .out_offset =3D 0x10,
+> +       .inten_offset =3D 0x98,
+> +};
+> +
+> +static const struct loongson_gpio_chip_data loongson_gpio_ls2k2000_data0=
+ =3D {
+> +       .label =3D "ls2k2000_gpio",
+> +       .mode =3D BIT_CTRL_MODE,
+> +       .conf_offset =3D 0x0,
+> +       .in_offset =3D 0xc,
+> +       .out_offset =3D 0x8,
+> +};
+> +
+> +static const struct loongson_gpio_chip_data loongson_gpio_ls2k2000_data1=
+ =3D {
+> +       .label =3D "ls2k2000_gpio",
+> +       .mode =3D BIT_CTRL_MODE,
+> +       .conf_offset =3D 0x0,
+> +       .in_offset =3D 0x20,
+> +       .out_offset =3D 0x10,
+> +};
+> +
+> +static const struct loongson_gpio_chip_data loongson_gpio_ls2k2000_data2=
+ =3D {
+> +       .label =3D "ls2k2000_gpio",
+> +       .mode =3D BIT_CTRL_MODE,
+> +       .conf_offset =3D 0x84,
+> +       .in_offset =3D 0x88,
+> +       .out_offset =3D 0x80,
+> +};
+> +
+> +static const struct loongson_gpio_chip_data loongson_gpio_ls3a5000_data =
+=3D {
+> +       .label =3D "ls3a5000_gpio",
+> +       .mode =3D BIT_CTRL_MODE,
+> +       .conf_offset =3D 0x0,
+> +       .in_offset =3D 0xc,
+> +       .out_offset =3D 0x8,
+>  };
+>
+>  static const struct loongson_gpio_chip_data loongson_gpio_ls7a_data =3D =
+{
+> @@ -202,6 +263,30 @@ static const struct of_device_id loongson_gpio_of_ma=
+tch[] =3D {
+>                 .compatible =3D "loongson,ls2k-gpio",
+>                 .data =3D &loongson_gpio_ls2k_data,
+>         },
+> +       {
+> +               .compatible =3D "loongson,ls2k0500-gpio0",
+> +               .data =3D &loongson_gpio_ls2k0500_data0,
+> +       },
+> +       {
+> +               .compatible =3D "loongson,ls2k0500-gpio1",
+> +               .data =3D &loongson_gpio_ls2k0500_data1,
+> +       },
+> +       {
+> +               .compatible =3D "loongson,ls2k2000-gpio0",
+> +               .data =3D &loongson_gpio_ls2k2000_data0,
+> +       },
+> +       {
+> +               .compatible =3D "loongson,ls2k2000-gpio1",
+> +               .data =3D &loongson_gpio_ls2k2000_data1,
+> +       },
+> +       {
+> +               .compatible =3D "loongson,ls2k2000-gpio2",
+> +               .data =3D &loongson_gpio_ls2k2000_data2,
+> +       },
+> +       {
+> +               .compatible =3D "loongson,ls3a5000-gpio",
+> +               .data =3D &loongson_gpio_ls3a5000_data,
+> +       },
+>         {
+>                 .compatible =3D "loongson,ls7a-gpio",
+>                 .data =3D &loongson_gpio_ls7a_data,
+> @@ -215,6 +300,22 @@ static const struct acpi_device_id loongson_gpio_acp=
+i_match[] =3D {
+>                 .id =3D "LOON0002",
+>                 .driver_data =3D (kernel_ulong_t)&loongson_gpio_ls7a_data=
+,
+>         },
+> +       {
+> +               .id =3D "LOON0007",
+> +               .driver_data =3D (kernel_ulong_t)&loongson_gpio_ls3a5000_=
+data,
+> +       },
+> +       {
+> +               .id =3D "LOON000A",
+> +               .driver_data =3D (kernel_ulong_t)&loongson_gpio_ls2k2000_=
+data0,
+> +       },
+> +       {
+> +               .id =3D "LOON000B",
+> +               .driver_data =3D (kernel_ulong_t)&loongson_gpio_ls2k2000_=
+data1,
+> +       },
+> +       {
+> +               .id =3D "LOON000C",
+> +               .driver_data =3D (kernel_ulong_t)&loongson_gpio_ls2k2000_=
+data2,
+> +       },
+>         {}
+>  };
+>  MODULE_DEVICE_TABLE(acpi, loongson_gpio_acpi_match);
+> --
+> 2.20.1
+>
