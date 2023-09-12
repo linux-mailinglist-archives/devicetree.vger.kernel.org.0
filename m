@@ -2,124 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31A3079CD1A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 12:05:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 770F079CD2C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 12:07:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233800AbjILKFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 06:05:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56374 "EHLO
+        id S234059AbjILKHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 06:07:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233872AbjILKF3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 06:05:29 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 760D71720
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 03:05:07 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9a9d6b98845so1281357966b.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 03:05:07 -0700 (PDT)
+        with ESMTP id S234011AbjILKHA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 06:07:00 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72ED9173D
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 03:06:38 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-501bd164fbfso8827291e87.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 03:06:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694513106; x=1695117906; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WML/yephaQhDmSkYaQilPoOdlfPN/mMwj3HRzRGa9sQ=;
-        b=aeLsSJ54nAQtZ6i7jhcKe+hJ70xkO8JqMGDxdL9hHeNkwDiZQ8N4J6IZ21R5wXuOkw
-         WK359rrrMAo4rM+Sy1RNMXa2UQpll1AwMG6D8HKB+BzSOhCU/YFuXFNw4CwFxCO9T5Os
-         3titcMNDy6Pi8NHGGhV7n7ulNH1p9UpapHWIfWoNXsLFkibkVBHFWmufxKo5bdNBDoHF
-         SaeaIGzLYmB9Iy6f/DxzYXL/2amLtUpLFRsjWI+KvxcdpjM10sKPF49cDP4lqYeMJyDV
-         DIoHO0J3hLXKo5HrtHbECFyoXuFSnM2QoorZxn28KXMVegz+dWl54xb/85VD8+NNlRD4
-         O6vA==
+        d=linaro.org; s=google; t=1694513197; x=1695117997; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B/cidZMzbR/pkG1JbPBqCELwIDk3zAzE05nHJDn/4Dc=;
+        b=amOtGY5d69yajfgJQ1iZ8A+cQRLpIl6XOJqfLJMqJHSU08FUQ5RPGZEl6hVxak2G64
+         A0sE6IZ0tVYvEGjFMfFArOzS16UBZWAPE+nbeglaBJiNwDP2UW/42DFSVNZCmCQ7xlpG
+         5PlCgreq5M/q57D5E2n54P9teOpq86T3+r5JxDOFZeWNyrw3oY6wDjs/NPxlglDaR9VK
+         NBsbBbzy7eYcGibbaEfSzg2vAcBfxLoMtF3XW8iiAF/RY4qhWf12oIxidqRE9r75kRyT
+         LkEdwkaBGANFSTdLI6pp0Do7iW57n0K3i03Q5dXBl7hJt8lOJsH/HnklsRR31wAqyahC
+         Idzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694513106; x=1695117906;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WML/yephaQhDmSkYaQilPoOdlfPN/mMwj3HRzRGa9sQ=;
-        b=V0BJ4MIYwTTzk1J3eJO2opOlquXcynCe6uFrVAmpEbfgUUL4IeuJMVHRscAchUtEGP
-         kDjm65aSayBML9q1ko7W+YDWSHSrmgSO2HVl3HcfQgab4y7tx2Za5JhkGJ254TgUU1XB
-         sw1yIompxHqurxvhvlwOtriW7JhcWGfVu3SzNyj8OZNIQX3p8TjLuUNqQYZsiy5PqRVP
-         UB99bmIrtzyqFODE7RqG2mxjH6HEh0wPB1xvpEabb3f+4CEK2tg3pRGGBW+HWd1Ugg8P
-         W0ghC3M58VkhLP/FNa6DixlzekZFUip5yA8ZQ3ofEhkdbvUkkj97z66TtgYaZJrn3mkx
-         gKrA==
-X-Gm-Message-State: AOJu0YxLMqknFsUVbIHoHd8v6tPlKvj8OzUn7YfjLcXfryh8jSve4AhH
-        fNSU2QY+Q+oGTvwhYCW2ocx+dg==
-X-Google-Smtp-Source: AGHT+IHkfJuO6isT9rl4lZ0FctzAxFjvF1AMWHxfRJgf36Cn1Rv+YzPFam2bRtfeAbVUShYgfbc88A==
-X-Received: by 2002:a17:906:519b:b0:9a5:9305:83fb with SMTP id y27-20020a170906519b00b009a5930583fbmr3059758ejk.34.1694513106013;
-        Tue, 12 Sep 2023 03:05:06 -0700 (PDT)
-Received: from [10.167.154.1] (178235177248.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.248])
-        by smtp.gmail.com with ESMTPSA id s3-20020a170906060300b0099ce188be7fsm6592053ejb.3.2023.09.12.03.05.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Sep 2023 03:05:05 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 12 Sep 2023 12:04:52 +0200
-Subject: [PATCH v4 10/10] drm/msm/a6xx: Poll for GBIF unhalt status in
- hw_init
+        d=1e100.net; s=20230601; t=1694513197; x=1695117997;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=B/cidZMzbR/pkG1JbPBqCELwIDk3zAzE05nHJDn/4Dc=;
+        b=JTolNyeyo9Hl2dHNHMPDRV1T/80sKSjky8lYluciGHzHCTIn1GeUR8oq9z4qy77CTd
+         J4S6n1vy9ybZw7FXe1fkFWd5RrBz5bE2M76E6GnHl6cmJEq2AR/XeC4Ilxhb3RsMFp//
+         h40rg8n+ZOex/JAhs9iT+dpIWwKWxhqxKZBd1lI/IdQ2b3e9GSJgozEeOC11pnpyVwys
+         pLJS8FUL+U4zkR+OPA89bdos9tYTiPsn5ESpPJsHB3GZAn2W9fM14DnmQ1zz0iUyTrkM
+         /wSaoZQvbeGSLHvyGGtsZqYoilIWhZj6loA+TBqZ4cHoa9GcDJhuYUStMUUWBR6llcVg
+         0ywA==
+X-Gm-Message-State: AOJu0Yyfefg0+UzSLyvoIHrChFTIbX1jLLXe7AEJ07r6KmNX7j+loXZH
+        MMhQDlbTZv3kK4bVsKT+kMnRMQ==
+X-Google-Smtp-Source: AGHT+IE1KkINg82xgXtgfFsAN+elTSLLEuf3n41go6FZvb5dTn5/GUITT7qn3k10AZmV41ZP5ezK6w==
+X-Received: by 2002:a05:6512:20ca:b0:500:9619:d9c9 with SMTP id u10-20020a05651220ca00b005009619d9c9mr8100102lfr.61.1694513196688;
+        Tue, 12 Sep 2023 03:06:36 -0700 (PDT)
+Received: from [192.168.37.85] (178235177248.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.248])
+        by smtp.gmail.com with ESMTPSA id x16-20020a056402415000b0052f3051f7d2sm4056670eda.80.2023.09.12.03.06.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Sep 2023 03:06:36 -0700 (PDT)
+Message-ID: <b49fe557-a601-4219-a365-afb50dddd64e@linaro.org>
+Date:   Tue, 12 Sep 2023 12:06:34 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] interconnect: qcom: Add SDX75 interconnect
+ provider driver
+Content-Language: en-US
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, djakov@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@quicinc.com
+References: <1694513046-24064-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1694513046-24064-3-git-send-email-quic_rohiagar@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <1694513046-24064-3-git-send-email-quic_rohiagar@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230628-topic-a7xx_drmmsm-v4-10-8b3e402795c1@linaro.org>
-References: <20230628-topic-a7xx_drmmsm-v4-0-8b3e402795c1@linaro.org>
-In-Reply-To: <20230628-topic-a7xx_drmmsm-v4-0-8b3e402795c1@linaro.org>
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1694513085; l=1394;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=S69YtysEIHJMxY5KNnuCyMTYR/1rqHR9OdffW35mR5k=;
- b=iz2SkMr9ivtUPof6eNrA8ldOUANAA2M2VE6AlIFMAwGynQBl14qCQbnTlojPGPQaoB+iWzvS7
- RFzrmVkMeH9DZRIMeKqHdJ2eGx1kdg/fDffXssujc8ZmhMA+cj6YNkM
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some GPUs - particularly A7xx ones - are really really stubborn and
-sometimes take a longer-than-expected time to finish unhalting GBIF.
+On 12.09.2023 12:04, Rohit Agarwal wrote:
+> Add driver for the Qualcomm interconnect buses found in SDX75.
+> 
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> ---
+[...]
 
-Note that this is not caused by the request a few lines above.
+> +
+> +static struct qcom_icc_bcm * const dc_noc_bcms[] = {
+> +};
+Surely this shouldn't be necessary?
 
-Poll for the unhalt ack to make sure we're not trying to write bits to
-an essentially dead GPU that can't receive data on its end of the bus.
-Failing to do this will result in inexplicable GMU timeouts or worse.
-
-This is a rather ugly hack which introduces a whole lot of latency.
-
-Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8550-QRD
-Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # sm8450
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-index 2313620084b6..11cb410e0ac7 100644
---- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-@@ -1629,6 +1629,10 @@ static int hw_init(struct msm_gpu *gpu)
- 		mb();
- 	}
- 
-+	/* Some GPUs are stubborn and take their sweet time to unhalt GBIF! */
-+	if (adreno_is_a7xx(adreno_gpu) && a6xx_has_gbif(adreno_gpu))
-+		spin_until(!gpu_read(gpu, REG_A6XX_GBIF_HALT_ACK));
-+
- 	gpu_write(gpu, REG_A6XX_RBBM_SECVID_TSB_CNTL, 0);
- 
- 	if (adreno_is_a619_holi(adreno_gpu))
-
--- 
-2.42.0
-
+Konrad
