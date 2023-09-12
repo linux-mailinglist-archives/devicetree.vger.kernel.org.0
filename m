@@ -2,139 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 021DF79D4CD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 17:29:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E032C79D4D2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 17:30:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234853AbjILP3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 11:29:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40402 "EHLO
+        id S236185AbjILPa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 11:30:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229661AbjILP3d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 11:29:33 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC28110D9;
-        Tue, 12 Sep 2023 08:29:29 -0700 (PDT)
-Received: from mercury (dyndsl-091-248-213-163.ewe-ip-backbone.de [91.248.213.163])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id A62E9660731E;
-        Tue, 12 Sep 2023 16:29:28 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1694532568;
-        bh=XnEP1BKlT634AYUIHBVJe7zvi+g5YyTPJw+SRc2rQ60=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QsVT3fVygJEh1XLiLx7FCYcw6VuzGwcgfbwykyz56B17Uy6+ApDw3lXPdm0trGKGy
-         xDjz9bVWBO+XzonQPD+O9bXHFi+pggcTDEKcBeQPb7wrg6qI46aDSdNKT+fFi4ANsM
-         TxGvxBu/IyOm6am0EXSxMqIOli0/89xM6wHjxGg4zMVY65GaOmAbipmgvcltJEtQxX
-         2aaQKdVL0+p5PETxa0VYHAVearA8KfboAe5s8dc1edKgWVgswj+WDrH9ksi3aiv4l2
-         So2URHmmtHU/glIp5hG8Lcu/Tv6adCL1XzKbofzOQZYcUpIPw11adczblOeAcF2s+3
-         kR9hEIBfN+xJA==
-Received: by mercury (Postfix, from userid 1000)
-        id 7AB331060929; Tue, 12 Sep 2023 17:29:26 +0200 (CEST)
-Date:   Tue, 12 Sep 2023 17:29:26 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     linux-omap@vger.kernel.org,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org,
-        Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
-        Carl Philipp Klemm <philipp@uvos.xyz>,
-        Merlijn Wajer <merlijn@wizzup.org>, Pavel Machek <pavel@ucw.cz>
-Subject: Re: [PATCH 2/4] ARM: dts: ti: omap: motorola-mapphone: Fix
- abe_clkctrl warning on boot
-Message-ID: <20230912152926.m24zo6lgxkwl37ct@mercury.elektranox.org>
-References: <20230911040828.39386-1-tony@atomide.com>
- <20230911040828.39386-2-tony@atomide.com>
+        with ESMTP id S229661AbjILPa5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 11:30:57 -0400
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2084.outbound.protection.outlook.com [40.107.7.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C54FC10D9;
+        Tue, 12 Sep 2023 08:30:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PHsoFI4vKAQVwlYiefDCTA0yjbvx6eyL2q3+RnEjxgg3xvx0eaFO5keRXKFSknjPwGIibzeO4VqmjdIe/3XZdr7ikGUBEAupFw84Dh0MvtmtIW8Boe41F9vNWf0DQFTnuxdVWUCsp9hsxcqTWYAUdoWrNHnQkxqrDazcZfg+uApk5uanVpmzuMXWAPhI1Pzt3wKvRQHt5mQ2P7H41UfVfwNf8q99S/XlifWorZkwbFn/xwMYm9mk0X6/+Z0SPq/yO23fMJNJALsXGQkscPejybA2/lbb5R72SEj7PkcNwRtoGmYboYSsBuKjzbrCyarX2+tat8YodQZjXjURxMwuYg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=u1Kshpw2EwCBA4uYF8ahVWTreIWLjRHnrOX5Sjjpj9c=;
+ b=PxbyDpOXXM5tUG44vWxg9rSz4eTVlaFs5e7ytBYFz8Nqr97MhHMSX/f6AFSCLP4dI5G7VS64WZQUfsLvhLJdhoEovZ7jIwXKcpsZaRwK79+c6X1SL7Rxgh3dhhYkjIrxiqpzF5CclNSdqo7hZ9rStULXA6HWBlgLiG3DqN8YTqC9TvWd9dwe1Eo2fcWTN2HMvbFfbAYHckz8YoNzDYLnRrOxRZsf59/Tbara2/rS4inkoxGunfYi3OXlE5hr8h0eyAojYeFNk481pbcLJVIrNwvgYOPEM8p8FwJQ1A7usOiF3GceLhJZaIQC3ZcYQq7E/QCSFDhnwZarChpuhHePlg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=u1Kshpw2EwCBA4uYF8ahVWTreIWLjRHnrOX5Sjjpj9c=;
+ b=Yk+3xV8rmKF+8dTMYzX/NoPd3gaEGPnvpm7jCTyf4caYiHoFKJEc5aJE3xp6ZAcZiuoDPrB6ZkDtCBCtD0ldIOJuJeIRHIQGOdF8sok7JQ/sodsdic6t6MxFEUK29XBfh6JdkmY4uzqBRjCZms68aJ4nn5st1mJhJhjXnnzIL3g=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU2PR04MB8774.eurprd04.prod.outlook.com (2603:10a6:10:2e1::21)
+ by PA4PR04MB9415.eurprd04.prod.outlook.com (2603:10a6:102:2aa::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.34; Tue, 12 Sep
+ 2023 15:30:48 +0000
+Received: from DU2PR04MB8774.eurprd04.prod.outlook.com
+ ([fe80::ad2:49f8:14b:25c7]) by DU2PR04MB8774.eurprd04.prod.outlook.com
+ ([fe80::ad2:49f8:14b:25c7%7]) with mapi id 15.20.6768.036; Tue, 12 Sep 2023
+ 15:30:48 +0000
+From:   "Iuliana Prodan (OSS)" <iuliana.prodan@oss.nxp.com>
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        "S.J. Wang" <shengjiu.wang@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Mpuaudiosw <Mpuaudiosw@nxp.com>,
+        Iuliana Prodan <iuliana.prodan@nxp.com>
+Cc:     linux-imx <linux-imx@nxp.com>, linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        LnxRevLi <LnxRevLi@nxp.com>
+Subject: [PATCH v2 0/2] Rpmsg support for i.MX DSP with resource table
+Date:   Tue, 12 Sep 2023 18:30:19 +0300
+Message-Id: <20230912153021.21786-1-iuliana.prodan@oss.nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: AS4P195CA0006.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5e2::11) To DU2PR04MB8774.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e1::21)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="muwlkieyvxcofpaq"
-Content-Disposition: inline
-In-Reply-To: <20230911040828.39386-2-tony@atomide.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8774:EE_|PA4PR04MB9415:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8808aa3e-b01d-44b0-df04-08dbb3a53d78
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: wFM8wCuvKs125MKSa8FOm7ct7uPZNXuuFV0JZ40rCOCg2qdxBJjUhi332cDSHZKt/YJgHKLAg+wf8XffkDnHmelEHkdtCzne7P4lyMfae677b3jxPMzGCXmGt13SCzQZiC7VeQDnj5SXnket33SzaOYPYTaKyIWQr75DqtwX2ZBlOV+Re2jLZ8wAYMspSDLQpUDYPka/aOGD1NPACKL5LdS+gTyymnTy2raaHkRO23C8BbLVa7jmZo8/tZx7x6UmsFE/e8c5zATcdHsAoWkcy+pzesM59i0W+tWMn4mt5QkmrYp3cgbsj6J/1rfMo/H6n65cfvo4iDL7M1P1N+olRK+Wh4qg26H9bT78iT2oiUHPRrTuCpEWnGILXd8JnKZqaNFCti+t43T99FfqZPx5yxX84Jn/W2hm7aFuv+VjYa3sdEKQQywqtuYG1YcWMALkUBudcyVSvxhhLnqZ7gWWvxT1waPfdGasiSjV9c0VZNk6nJxW88PxePPB8mkh8nwjUxaDNiJ8lbTHYb2BehNuIMBzsgFb1zRgb2eX6yPK10qaPygxw08cvSYDUv54cS5x5ui6j8xT+9TIstNpBKTMHeI2GgfLVf0+WwtsX2psLO3du9yWi0V/MR99QWGMxsIoFiL0AkZrXat+ekmCe6tnxQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8774.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(396003)(136003)(366004)(376002)(39860400002)(451199024)(1800799009)(186009)(6512007)(38100700002)(921005)(38350700002)(86362001)(6666004)(7416002)(66556008)(6506007)(5660300002)(66946007)(316002)(4744005)(110136005)(8676002)(2906002)(54906003)(478600001)(66476007)(8936002)(52116002)(83380400001)(41300700001)(6486002)(4326008)(2616005)(26005)(1076003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?c7z4XTw0H3WN0FWu2SGVZcJQQ1C1LZIauYBsS+GnztxVALzhXl3YqkTJHiOA?=
+ =?us-ascii?Q?JtJht9j0bb0e6tqldHEntCowvmPOEncWVqtMtM1DoxkLR3YHb+cpXgNhreHS?=
+ =?us-ascii?Q?NI+syxXUE3nRNzY4SOZXXHXrr7KUsEZf6qL3v08ACHu82sg2nnJB5cYvb2Wr?=
+ =?us-ascii?Q?GxB9v1GZIjZpcwFP9KdhYib/C9wM8LpnNsSQSxCpevVvoaCFCRrins1HMv0P?=
+ =?us-ascii?Q?tI2qTO/AEe3chdfpT2FlyEzi82nwGKOYVqvSNW6YqvKT970XDTgp/eIFgwWX?=
+ =?us-ascii?Q?JJaNFm5qQ8Klah3RS7VcSon0JePCRMEbYt0LjReP+YxOZDoQO2DEXicUK42S?=
+ =?us-ascii?Q?nadWHcz2XG4YAAew0kTZ//N6MhqGKIPybKOqeNZ1Irtwj80tyjYVD660ZzE2?=
+ =?us-ascii?Q?1yEkCwMvP9GQVraQkN0VLBo2q6KPUeRZEvotwJpzJQkgwQkBAs+diBTsAI6D?=
+ =?us-ascii?Q?wjT+ckvtx0kx/62Z8lW3AiYx6eM2I1wcO0dMLOuP8cX1Mc/OhhzdQiemSSqa?=
+ =?us-ascii?Q?tCF7Qr2TPXbFVsMcZXO41KbuWEKt09eXceXnF7Ia//hZwyz2bA/w0fw2RvP6?=
+ =?us-ascii?Q?rpQmH4na1SlrdoOPmOYvmRLJhPhcKnavSNhbWa9tUudfQuylXQWCejR7d6mm?=
+ =?us-ascii?Q?4kGozQLClACed0pB9rY3Dbl+llyqLZShWG69wOJ2QW9n2FYRr/w9BGTYClFl?=
+ =?us-ascii?Q?r1yGuPehIHmxz4T3lF/YobKNRHOV39UsxH9tzAoUJHXWHAuu/z1qEhd8qMmW?=
+ =?us-ascii?Q?mh/km2eZnwtCEw3OcSY5fVHq8sEcThe8QKHqZ+/upUM6FiNTt2DPc1N2qS+9?=
+ =?us-ascii?Q?+Wif0Puq9UF/03cCyMlsguJd7mayHpLmqlgbwh3wXAedz1a75TR2Sz/pZVOh?=
+ =?us-ascii?Q?WsjV3SsPcJ7krDitXjq/R3WdSWAebUlrNpzDNccBA18SPmAClfan2XNAaNRq?=
+ =?us-ascii?Q?+DvZp/VDMl3bf1Hk0mVeXTzB1Aq8jXYgDHWQvCHQFiZsIfbcrbhzVbsqN0AV?=
+ =?us-ascii?Q?5S8mn7u0wqyCROxoSU6vzAEZQz9LhjFDl53EIIvAH14HYdTbE++tf0j4u8SS?=
+ =?us-ascii?Q?TU3Jg84cy1yhK9LJIywea4aD0ikmM5pJ5xOPWPekSVc36qvlQgswirt/7oc6?=
+ =?us-ascii?Q?Szj4O4DyEp41qckbbmWXhMfBGxOKLl/c5b1/eIlXHaPEun/THQMZNA5IO5ef?=
+ =?us-ascii?Q?nTes0hPH8PQ6EuGYpo3WnYOh8T6xY8pFnCFi3XZe1UDXDWDMpLdQivwIYYWs?=
+ =?us-ascii?Q?GbA6Nq/A15vuYqzP1nrK5QB4fb8+vRUWgdzcYRpq8NOWHzpDQxBH0fd3Ah+I?=
+ =?us-ascii?Q?9teEc1NSl4SAJ8CmyJ6hhmmI1Ygi88Mapwzcje12ApBTLkp6c24IcTJ9yaws?=
+ =?us-ascii?Q?9G3F28D0/IbbKgbH5VdDI/ZsXFFjjtCtWW2tRlYb5BtEcFHmtZAmuCYRvdaX?=
+ =?us-ascii?Q?0FLPPwxibwjUX7+fJ/TLbk6morXvCY2GiFlwTmOfvV4tCjM7Ooh96kfGFZ0K?=
+ =?us-ascii?Q?25j8jGumNW9KIAe06LtgkfGdNhwmCkebvFw2/KykSBVW5Adw/Ln37x0A1pIN?=
+ =?us-ascii?Q?7cd+wPONRZW8FxNKd0XFYMxS7z8L7Y9hLVNveE04PLwUJX0uQz+O359ZvdTB?=
+ =?us-ascii?Q?Ow=3D=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8808aa3e-b01d-44b0-df04-08dbb3a53d78
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8774.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2023 15:30:48.7404
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mXVwpipV9IV4jHZr9KA2UE+4wSLLlsdUbvmsp5SHuuFbbvct+RO3pvsRgjUdPNZJUKroY8PlRl7/ESAiNOGUAQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9415
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Iuliana Prodan <iuliana.prodan@nxp.com>
 
---muwlkieyvxcofpaq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+These patches are needed in order to support rpmsg on DSP when a
+resource table is available.
 
-Hi,
+Changes since v1:
+ - add missing bracket in dtsi (patch 2/2)
 
-On Mon, Sep 11, 2023 at 07:08:25AM +0300, Tony Lindgren wrote:
-> Commit 0840242e8875 ("ARM: dts: Configure clock parent for pwm vibra")
-> attempted to fix the PWM settings but ended up causin an additional clock
-> reparenting error:
->=20
-> clk: failed to reparent abe-clkctrl:0060:24 to sys_clkin_ck: -22
->=20
-> Only timer9 is in the PER domain and can use the sys_clkin_ck clock sourc=
-e.
-> For timer8, the there is no sys_clkin_ck available as it's in the ABE
-> domain, instead it should use syc_clk_div_ck. However, for power
-> management, we want to use the always on sys_32k_ck instead.
->=20
-> Cc: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
-> Cc: Carl Philipp Klemm <philipp@uvos.xyz>
-> Cc: Merlijn Wajer <merlijn@wizzup.org>
-> Cc: Pavel Machek <pavel@ucw.cz>
-> Cc: Sebastian Reichel <sre@kernel.org>
-> Fixes: 0840242e8875 ("ARM: dts: Configure clock parent for pwm vibra")
-> Depends-on: 61978617e905 ("ARM: dts: Add minimal support for Droid Bionic=
- xt875")
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
+Iuliana Prodan (2):
+  remoteproc: imx_dsp_rproc: add mandatory find_loaded_rsc_table op
+  arm64: dts: imx8mp: add reserve-memory nodes for DSP
 
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi | 13 +++++++++++++
+ drivers/remoteproc/imx_dsp_rproc.c        |  1 +
+ 2 files changed, 14 insertions(+)
 
--- Sebastian
+-- 
+2.17.1
 
->  arch/arm/boot/dts/ti/omap/motorola-mapphone-common.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/arch/arm/boot/dts/ti/omap/motorola-mapphone-common.dtsi b/ar=
-ch/arm/boot/dts/ti/omap/motorola-mapphone-common.dtsi
-> --- a/arch/arm/boot/dts/ti/omap/motorola-mapphone-common.dtsi
-> +++ b/arch/arm/boot/dts/ti/omap/motorola-mapphone-common.dtsi
-> @@ -614,12 +614,12 @@ &rng_target {
->  /* Configure pwm clock source for timers 8 & 9 */
->  &timer8 {
->  	assigned-clocks =3D <&abe_clkctrl OMAP4_TIMER8_CLKCTRL 24>;
-> -	assigned-clock-parents =3D <&sys_clkin_ck>;
-> +	assigned-clock-parents =3D <&sys_32k_ck>;
->  };
-> =20
->  &timer9 {
->  	assigned-clocks =3D <&l4_per_clkctrl OMAP4_TIMER9_CLKCTRL 24>;
-> -	assigned-clock-parents =3D <&sys_clkin_ck>;
-> +	assigned-clock-parents =3D <&sys_32k_ck>;
->  };
-> =20
->  /*
-> --=20
-> 2.42.0
-
---muwlkieyvxcofpaq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmUAg9YACgkQ2O7X88g7
-+poOyw//aihh5hROGPQqRgM+hGV/Vm569Zh/1gJxLYV8caN7xaoWdzUhjXdjZo/+
-qwbiAVvwUji5zCKhBDt6bRoSunUdJPRWXKERZSNtWfWTN5ynFAV+Y+247uHg5uJk
-85jUGT4m6YGaGJ5E0OHlwMG0heMdo7B0qCspAzuaYXNZE5d6RI47qBMNw+ATVwdh
-8M7UfQkI1ktvCiYSqqFJeLiBYVqjAyCE56eei8aN9JFsVAwFf/uylcHtNiwjmQfJ
-kr6Q/8YuDpcdbAWqWnNna3ZDIrCgz0BI8aG3MMYvYRQln0e291NVpQ1WCwdlAI+C
-JTMBF6UdvbaUaDHDpSXvBRcXVKZtG9Zjs6Izy24owdV4OxPmG5o66FU+udhd3iRe
-15CZHnHGSYYlfpuFp5Ys887vig1kUcO1YRL79GPJhYSkwGZV8Ag6ZvReJJXH1IxL
-BnBZL7FUiYILEwmfNkqXPju6LxUzNSIoCxFV3RweKVcXOSIpxf0w3gbgmSE19noC
-9vrMcZ8DYPVzfD+p8mkZaoY74hstuz9cpE55CVEqDe13Pu0g+Tb8X3aIx2HqtwjM
-vZXQvBNNFI7ta5v1OEn3VEF+Xv18QYcIafDhq5sQY35SBknB3fhDFnHpdpyYxCXE
-Dpi2CfcF/1evEN22Q5r15lrpWSU/hc8NNuqEU8hnsOh3xI3A64o=
-=iuVW
------END PGP SIGNATURE-----
-
---muwlkieyvxcofpaq--
