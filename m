@@ -2,104 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D74379DBE4
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 00:32:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E481D79DBED
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 00:36:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235041AbjILWcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 18:32:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47856 "EHLO
+        id S237759AbjILWgz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 18:36:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234813AbjILWcV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 18:32:21 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18B5D10C8;
-        Tue, 12 Sep 2023 15:32:17 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-991c786369cso818214866b.1;
-        Tue, 12 Sep 2023 15:32:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694557935; x=1695162735; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=oHGhnV3TjdN0FnFldEVPz9KrEFKfvPykYPDqTHVGIBs=;
-        b=Trr1Il/48N2AqFH7HSNkZXISlg/q0dXCkK8hscNnv2XEnDQYx9w3kFAdKWPFr642jr
-         BTl78G87AdIDFdH7LesPfoN9YviNjzOJYO4Iz9NPG3j8G23GW1dQazQesJqeGnsymbr6
-         mHbt0V64m2Pw58gRvB0OG7r91ZuSW/2aixJqXst9TiMAAW1skJsSekSCVSUvh2/qe9Oo
-         Ji+L43q+kYrueX2rHCR1XANaK+sSpZmzpORhO40MCBym7IDM4MhPDHaBOBbVWWLFRiBL
-         oSrOMI99dpIe/RcPEYxz24F38rUuNFkmciUjITx7WAfE29tIHGWDqjQAiWvt8Au8ixmz
-         DIxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694557935; x=1695162735;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oHGhnV3TjdN0FnFldEVPz9KrEFKfvPykYPDqTHVGIBs=;
-        b=lL6TKoBXmX6YBRgw8fovimVZPs9E7KnzgtnzlP0kwxNB/RmExxo6512v5CJ79pFMPj
-         91I7Xeb+QVunkKJ0r0ElJqr+JFWoICt5qaLy/PqnSgQ9uZqyOVjtu1UyORdkFv5gQq8l
-         j/KGfZ9fA8s/z8/mp/XNqLunz7SjSt1W2eUZpDWmGdvAx8azUY91uVaVtFtrLZ8s8gsS
-         gOZ7G+y2tkKEisz4QLl0Hw1q1jn5Vz6+bo8xZ87gZy6bGtIMAiZgjn3oUEIpJ6ubnzkn
-         b+Bur8Lhd4vRSphTumagnOLUFOAm5mQWVprgjVFH0UNJbgdAE+rN3k1d9DWTC6XILlrw
-         dOZw==
-X-Gm-Message-State: AOJu0YyGY1/F5SyIhZR/FPNQsV6GIK9pS75/LFWZI1NXCUPlvvO0OROv
-        9TA1qhEQ7znXDbzp0bpKQ4Q=
-X-Google-Smtp-Source: AGHT+IFoFjvI5+2n0TYglHgn435yeXiMScCnLmeQ+gvlW6z4mDjsLd0Mij4yOQbqByz17gmPvANBNA==
-X-Received: by 2002:a17:907:763c:b0:9a9:e5bb:eddc with SMTP id jy28-20020a170907763c00b009a9e5bbeddcmr472712ejc.16.1694557935294;
-        Tue, 12 Sep 2023 15:32:15 -0700 (PDT)
-Received: from skbuf ([188.25.254.186])
-        by smtp.gmail.com with ESMTPSA id n12-20020a17090695cc00b00993928e4d1bsm7405814ejy.24.2023.09.12.15.32.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Sep 2023 15:32:15 -0700 (PDT)
-Date:   Wed, 13 Sep 2023 01:32:12 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Eric Dumazet <edumazet@google.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Arun Ramadoss <arun.ramadoss@microchip.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        UNGLinuxDriver@microchip.com,
-        "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v4 2/2] net: dsa: microchip: Add drive strength
- configuration
-Message-ID: <20230912223212.5allvc62okewwcym@skbuf>
-References: <20230912045459.1864085-1-o.rempel@pengutronix.de>
- <20230912045459.1864085-1-o.rempel@pengutronix.de>
- <20230912045459.1864085-3-o.rempel@pengutronix.de>
- <20230912045459.1864085-3-o.rempel@pengutronix.de>
- <20230912113553.fselyj2v5ynddme2@skbuf>
- <35c1c9ee-357f-4ba5-dd47-95d4c064e69b@wanadoo.fr>
+        with ESMTP id S231491AbjILWgz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 18:36:55 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96CB410E6;
+        Tue, 12 Sep 2023 15:36:51 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38CMU7iL030289;
+        Tue, 12 Sep 2023 22:36:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : from : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=UaTnHeO1N17XMeP3R8HyybsrVR9D1k53M3M4sUTm4Cs=;
+ b=NyRI8BCeCIIu/1F0zV7YlHJjyGAQivkH0NXxeTdnSLwBe38zBn5fzOjqiGAUlpkc/vL1
+ weq8UN9VWiGUyGFZNNukANOgR8o2Rqpe/Pg2FkqQToMtENMrsoxCEh6tvnmcf8wpXKZW
+ lZ8sGmYK2x5IzcrauB35UW9zIm7I6O+9X8GX51kwSp/87mRQR0rNEGY06+C9+uaWB4RN
+ VlSlubUe10/XgdEh/FSVKdtbzQm/PDVUOrsuNzarR3/HtI/aHYbt17/rqdjtT/ecOlP6
+ AEn+ekyZcWb53ChfJQidBV3PYh38OlFQaOxkdqaTqq8qXlKDMPWpFUumqp51sZx3qMKe dQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t2y7q85t2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 12 Sep 2023 22:36:09 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38CMa83Y032531
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 12 Sep 2023 22:36:08 GMT
+Received: from [10.110.43.192] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 12 Sep
+ 2023 15:36:08 -0700
+Message-ID: <59d28227-d37f-7131-6d1c-ec55e67d65b7@quicinc.com>
+Date:   Tue, 12 Sep 2023 15:36:07 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v5 11/32] sound: usb: card: Introduce USB SND platform op
+ callbacks
+Content-Language: en-US
+From:   Wesley Cheng <quic_wcheng@quicinc.com>
+To:     Takashi Iwai <tiwai@suse.de>
+CC:     <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <lgirdwood@gmail.com>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
+        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
+        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <agross@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <quic_jackp@quicinc.com>, <quic_plai@quicinc.com>
+References: <20230829210657.9904-1-quic_wcheng@quicinc.com>
+ <20230829210657.9904-12-quic_wcheng@quicinc.com>
+ <875y4matbc.wl-tiwai@suse.de>
+ <c32e6983-4641-1849-cb25-d29da27bff15@quicinc.com>
+In-Reply-To: <c32e6983-4641-1849-cb25-d29da27bff15@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <35c1c9ee-357f-4ba5-dd47-95d4c064e69b@wanadoo.fr>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: pwjM0j_5nv6oOWpimdf5CMUCILqAYhjI
+X-Proofpoint-ORIG-GUID: pwjM0j_5nv6oOWpimdf5CMUCILqAYhjI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-12_22,2023-09-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
+ malwarescore=0 clxscore=1015 spamscore=0 priorityscore=1501
+ mlxlogscore=999 phishscore=0 bulkscore=0 suspectscore=0 adultscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309120192
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 12, 2023 at 08:38:05PM +0200, Christophe JAILLET wrote:
-> Le 12/09/2023 � 13:35, Vladimir Oltean a �crit�:
-> > > +	if (!found)
-> > > +		return 0;
-> > 
-> > Maybe "have_any_prop" would be a better name to avoid Christophe's confusion?
-> 
-> Not sure it worth it.
-> 
-> Christophe should learn to read code or avoid some quick feed-back before
-> morning coffee :)
-> 
-> 'found' looks good enough.
+Hi Takashi,
 
-Maybe I should have said "Christophe's (expressed) and my (unexpressed) confusion"?
-Actually I had no time to be confused because I saw your comment first,
-but I would have likely made the same suggestion regardless.
+On 9/11/2023 10:57 AM, Wesley Cheng wrote:
+> Hi Takashi,
+> 
+> On 9/7/2023 8:36 AM, Takashi Iwai wrote:
+>> On Tue, 29 Aug 2023 23:06:36 +0200,
+>> Wesley Cheng wrote:
+>>>
+>>> Allow for different platforms to be notified on USB SND 
+>>> connect/disconnect
+>>> seqeunces.  This allows for platform USB SND modules to properly 
+>>> initialize
+>>> and populate internal structures with references to the USB SND chip
+>>> device.
+>>>
+>>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>>> ---
+>>>   sound/usb/card.c | 45 +++++++++++++++++++++++++++++++++++++++++++++
+>>>   sound/usb/card.h |  9 +++++++++
+>>>   2 files changed, 54 insertions(+)
+>>>
+>>> diff --git a/sound/usb/card.c b/sound/usb/card.c
+>>> index 1b2edc0fd2e9..067a1e82f4bf 100644
+>>> --- a/sound/usb/card.c
+>>> +++ b/sound/usb/card.c
+>>> @@ -118,6 +118,34 @@ MODULE_PARM_DESC(skip_validation, "Skip unit 
+>>> descriptor validation (default: no)
+>>>   static DEFINE_MUTEX(register_mutex);
+>>>   static struct snd_usb_audio *usb_chip[SNDRV_CARDS];
+>>>   static struct usb_driver usb_audio_driver;
+>>> +static struct snd_usb_platform_ops *platform_ops;
+>>> +
+>>> +int snd_usb_register_platform_ops(struct snd_usb_platform_ops *ops)
+>>> +{
+>>> +    int ret;
+>>> +
+>>> +    mutex_lock(&register_mutex);
+>>> +    if (platform_ops) {
+>>> +        ret = -EEXIST;
+>>> +        goto out;
+>>> +    }
+>>> +
+>>> +    platform_ops = ops;
+>>> +out:
+>>> +    mutex_unlock(&register_mutex);
+>>> +    return 0;
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(snd_usb_register_platform_ops);
+>>
+>> For adding this kind of API, please give the proper comment.
+>> Especially this API is special and need a caution, to mention that it
+>> can be used only for a single instance.
+>>
+>> Also, it should be mentioned that all callbacks are exclusive under
+>> the global register_mutex.
+>>
+> 
+> Thanks for taking the time to review.  Sure, I'll add some comments in 
+> these new APIs to document what they are used for and how they are 
+> protected and limited.
+> 
+>>> @@ -910,7 +938,11 @@ static int usb_audio_probe(struct usb_interface 
+>>> *intf,
+>>>       chip->num_interfaces++;
+>>>       usb_set_intfdata(intf, chip);
+>>>       atomic_dec(&chip->active);
+>>> +
+>>> +    if (platform_ops && platform_ops->connect_cb)
+>>> +        platform_ops->connect_cb(chip);
+>>>       mutex_unlock(&register_mutex);
+>>
+>> One uncertain thing is the argument for connect_cb and disconnect_cb.
+>> Those take snd_usb_audio object, but the callback gets called per
+>> interface at each probe and disconnect.  How does the callee handle
+>> multiple calls?
+> 
+> I guess it should depend on how the platform driver wants to handle it? 
+>   I haven't run into a device with multiple UAC interfaces before, so 
+> I'll need to mimic this configuration on a device, so I can see how it 
+> exposes itself.
+> 
+> Will investigate this a bit more on my end and come back with my findings.
+> 
+
+So looks like if there is a device that has multiple UAC interfaces, 
+then it just results in one USB sound card with multiple USB streams. 
+As of now, we do expose a ksndcontrol that allows for userspace to 
+specify which card and PCM device to issue the audio playback on.  Then 
+based on the audio profile received by the audio DSP, it will narrow it 
+down to see if that substream supports the requested profile.
+
+This selection is done in the DPCM backend driver (q6usb), since the 
+overall QMI USB stream request stems from the audio dsp, and will carry 
+this information about which PCM device and card the USB offload driver 
+should use.  This may differ based on the implementation of the offload 
+path, hence why I mentioned that it might be platform specific.
+
+There is one improvement I need to make in our QC offload driver to 
+accommodate for this scenario, and that is to avoid having to 
+re-register for the XHCI sideband if there is already a USB SND card 
+allocated, which I will fix and submit in the next revision.
+
+Thanks
+Wesley Cheng
