@@ -2,76 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 477C179CDEC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 12:17:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D266B79CE4E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 12:32:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234254AbjILKRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 06:17:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36076 "EHLO
+        id S234175AbjILKcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 06:32:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234260AbjILKRO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 06:17:14 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E29E272E;
-        Tue, 12 Sep 2023 03:16:50 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A395C433C8;
-        Tue, 12 Sep 2023 10:16:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694513809;
-        bh=WSr9qSl2S1ubmYIrZpcXmHxSn6EHq34MSINK8cbXato=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=DjpOBF8QYlMldwfuCfivS8FDAipLd8nz0g0k8U617/n0FwUiYh76S4/JyMVDC+rxM
-         pD+JOX+mpH/G4vU6ZDawXaCgtiqlWlkWJWY47vX6cS/ZM43M53ZtMz/OQ5uRVUI1aS
-         83O7dFEyD+VZ60uSh+Tphkx1fxJ+G5kBP33y8CQAXAyvKyPl5IPd69JvzxjztXG62h
-         Tf/+28qObCekHDgZ88E5aNaHzBCYrLwf41vhXBO17ufRCOyUyQt4YJbzAsg15/Qn0C
-         1cNvt2p0FuNr2TYL5lgU2+F2jm/ts56CDdAWUa87JZaOucBMUXMYZchy/Ciz4+Gqrh
-         Af2FCuEdmf02g==
-Message-ID: <351927e6-2ddf-186c-78ae-1b0d639b9ea7@kernel.org>
-Date:   Tue, 12 Sep 2023 12:16:43 +0200
+        with ESMTP id S234294AbjILKag (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 06:30:36 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B32B310CE
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 03:28:45 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-500c37d479aso8826655e87.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 03:28:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1694514524; x=1695119324; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PqZA61AZZwHHDn1nGNrzumQDR9UPMkG/AB0OITt853E=;
+        b=MG5+4lTSKNmnbxXmsTexctBRfz3GfXrDVAmzS7RzkcsonGXAcpw50MlhuW7M8gkRHF
+         3dspgnOtRoK9VJX6Vv94QEZy9ZqLVHve06v/lgXBpQZUt36dhEcmI5L39ImEWCn1TLvf
+         Si3S+g/seOQ+EHXwXiQGWJ1M3orwH6enew5bo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694514524; x=1695119324;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PqZA61AZZwHHDn1nGNrzumQDR9UPMkG/AB0OITt853E=;
+        b=bbzq97T2LvYoPzFZ4d57cDGhBG7p1OwAgTgsDn1sj9uglGoMmHAnd3GQjKMMh2wA20
+         9cxCooFCWWsJ2QghE2Vfge4Q0OTiGzV7/0kyER/8gpQoCjEdXkKtqCf0E6WwxDGQjd6j
+         TOXdTmz6Df6lhpD9D5F/6JrpHTuYWt1oZ9Urj0isPdRvd1jVTVvCsydX3UhCFJW6Kofl
+         708Rfrfvf054F7UO3YiOoG/19CJwwIBldh8wQ6U0QYu9Ovj4JGSlE36xxQxz44lvNxnD
+         CLX6s2aOHm0kx5ekwHBQOColKMqJskHR/mlW4BWNFuJ7A9L1w8FBKeph0Hz7FGqOon5v
+         2uZw==
+X-Gm-Message-State: AOJu0YyuPFRRexKmdMnQ4V5ndC3Nd4G38C9iXR77iakljhrRI5d0BxLC
+        vN4sxlIkwQoNGGmUixZ78n2bD59G7SE8En4sPIlC1Q==
+X-Google-Smtp-Source: AGHT+IGnsct1TtXsCOP9NVgGwPzYUd7tgDEeTfBIGRUc5NUgd7ZgNlHQ3BbdTYL88E8XR22jOxrW/3zQp9aoCA0z7sA=
+X-Received: by 2002:a05:6512:2016:b0:500:a368:a962 with SMTP id
+ a22-20020a056512201600b00500a368a962mr7798675lfb.43.1694514523798; Tue, 12
+ Sep 2023 03:28:43 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Describe changes to the device
- tree
-Content-Language: en-US
-To:     Daniel Matyas <daniel.matyas@analog.com>
-Cc:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
+References: <20230912075805.11432-1-moudy.ho@mediatek.com> <c0bd7428-1330-58c5-64d2-78af479dfcf4@collabora.com>
+ <CAGXv+5FhsKVGwoJxLP=-gV+rSHbQ8DUX0YACy0mPxYw+MC85=g@mail.gmail.com> <d8bfbb5f-07a7-4beb-ac1c-049825caf934@collabora.com>
+In-Reply-To: <d8bfbb5f-07a7-4beb-ac1c-049825caf934@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Tue, 12 Sep 2023 18:28:32 +0800
+Message-ID: <CAGXv+5EJ6W6XCJR3busZ0HVQjLytZvzMMjUhhpR5g6Jc8sJQ+A@mail.gmail.com>
+Subject: Re: [PATCH v5 00/14] add support MDP3 on MT8195 platform
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Moudy Ho <moudy.ho@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org
-References: <20230911083735.11795-1-daniel.matyas@analog.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20230911083735.11795-1-daniel.matyas@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/09/2023 10:37, Daniel Matyas wrote:
-> Added new attributes to the device tree:
+On Tue, Sep 12, 2023 at 5:43=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 12/09/23 11:37, Chen-Yu Tsai ha scritto:
+> > On Tue, Sep 12, 2023 at 5:00=E2=80=AFPM AngeloGioacchino Del Regno
+> > <angelogioacchino.delregno@collabora.com> wrote:
+> >>
+> >> Il 12/09/23 09:57, Moudy Ho ha scritto:
+> >>> Changes since v4:
+> >>> - Rebase on v6.6-rc1
+> >>> - Remove any unnecessary DTS settings.
+> >>> - Adjust the usage of MOD and clock in blending components.
+> >>>
+> >>> Changes since v3:
+> >>> - Depend on :
+> >>>     [1] https://patchwork.kernel.org/project/linux-media/list/?series=
+=3D719841
+> >>> - Suggested by Krzysztof, integrating all newly added bindings for
+> >>>     the mt8195 MDP3 into the file "mediatek,mt8195-mdp3.yaml".
+> >>> - Revise MDP3 nodes with generic names.
+> >>>
+> >>> Changes since v2:
+> >>> - Depend on :
+> >>>     [1] MMSYS/MUTEX: https://patchwork.kernel.org/project/linux-media=
+tek/list/?series=3D711592
+> >>>     [2] MDP3: https://patchwork.kernel.org/project/linux-mediatek/lis=
+t/?series=3D711618
+> >>> - Suggested by Rob to revise MDP3 bindings to pass dtbs check
+> >>> - Add parallel paths feature.
+> >>> - Add blended components settings.
+> >>>
+> >>> Changes since v1:
+> >>> - Depend on :
+> >>>     [1] MDP3 : https://patchwork.kernel.org/project/linux-mediatek/li=
+st/?series=3D698872
+> >>>     [2] MMSYS/MUTEX: https://patchwork.kernel.org/project/linux-media=
+tek/list/?series=3D684959
+> >>> - Fix compilation failure due to use of undeclared identifier in file=
+ "mtk-mdp3-cmdq.c"
+> >>>
+> >>> Hello,
+> >>>
+> >>> This patch is used to add support for MDP3 on the MT8195 platform tha=
+t
+> >>> contains more picture quality components, and can arrange more pipeli=
+nes
+> >>> through two sets of MMSYS and MUTEX respectively.
+> >>>
+> >>> Moudy Ho (14):
+> >>>     arm64: dts: mediatek: mt8183: correct MDP3 DMA-related nodes
+> >>>     arm64: dts: mediatek: mt8195: add MDP3 nodes
+> >>
+> >> Please send the DTS patches separately, those go through a different m=
+aintainer.
+> >
+> > I thought most people prefer the _full_ view in a patchset?
+> >
+>
+> Yeah but those going through a different maintainer makes it more straigh=
+tforward
+> to pick; besides, essentially, you can also get a full view with dt-bindi=
+ngs
+> patches instead of devicetrees, as the latter are "constructed from" bind=
+ings
+> anyway.
 
-Subject: it's meaningless. You said there absolutely nothing. Instead
-saying "Describe changes to the device tree" please describe the changes
-you are making.
+Sure, but testing, especially by people not in the recipients or CC list,
+is a bit painful when the full set of patches isn't bundled together.
+Having them bundled together shows what the submitter tested and makes
+it easier for others to reproduce.
 
-> 	- adi,comp-int
-> 	- adi,alrm-pol
-> 	- adi,flt-q
-> 
-> These modify the corresponding bits in the configuration register.
-> 
-> Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
-> ---
->  .../bindings/hwmon/adi,max31827.yaml          | 21 +++++++++++++++++++
+AFAIK other ARM platforms have been sending patches all grouped together.
+It's MediaTek that has been different, as they normally have (for Chromeboo=
+ks)
+a system integration engineer handling the device tree stuff, while compone=
+nt
+driver owners just handle the drivers, and by extension, the DT bindings.
 
-Please work on latest upstream, not some old vendor code. This means
-that you should checkout latest mainline tree (or linux-next or
-maintainer's tree) and make your edits there. Once you do it, you use
-get_maintainers.pl on that tree, not on that ancient vendor's stuff.
+> Moreover, it would be definitely nice to add a link to the devicetree ser=
+ies
+> in the cover letter of this series, so that people *do* get a full overvi=
+ew
+> by checking both series :-)
 
-Best regards,
-Krzysztof
+Most maintainers seem to know what to do: apply the subset destined for
+their tree. At least the subsystems that frequently deal with DT-based
+platforms anyway.
 
+
+ChenYu
+
+> Cheers!
+>
+> >> P.S.: The dt-bindings patch can be sent inside of this series, please =
+do that.
+> >>
+> >> Thanks!
+> >> Angelo
+> >>
+> >>
+>
