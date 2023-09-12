@@ -2,138 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2F8379D164
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 14:52:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CD3279D171
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 14:54:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235273AbjILMwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 08:52:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46854 "EHLO
+        id S235273AbjILMzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 08:55:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232646AbjILMwt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 08:52:49 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D56910D3
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 05:52:45 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-522bd411679so7217145a12.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 05:52:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694523164; x=1695127964; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=u9jJ5YX4xBOqwnaDAA68a0z5gq1OlAA8KPc5IjRYAL0=;
-        b=pIn7SJUnOXtSQvWuIbCHKj39pey4hNMXzHIyzPYNEowM61PRXyaKrSXpv1uGWth42X
-         UNFzO5zlBEoLMIfAPI1IaTbDCH7MthYd05IFGnzo4obOWYgMzsnwsslq/OTrkjnghvN8
-         Eju1n+UCr2y10b4MrZ7ISdLwxdJtMRuCofitmlqS+XGtzz0v0a2nhis8KRDvE8wi1wNg
-         kL/e3AsdvLt2mcDwMoqzp2t/GVk+mhEfN+Wf16WxuHvPO+ScKW5QVSA0pXzWVgbnvH5i
-         x756ahFYuNxwK/inUKMdTyRNuau5LcgOrLelX5JH0rlR9WDzZkZUBxiAIVUOe4G+Y34S
-         2HgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694523164; x=1695127964;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=u9jJ5YX4xBOqwnaDAA68a0z5gq1OlAA8KPc5IjRYAL0=;
-        b=XNSDKKS5okzV4BOSGaZtoLHR5WkcsygmuswkfA5Lfzai6hUChC1I+dcxnKhHhRcy8I
-         Ik87X3f7vPDiCXzbQF2X4PJ7Nvdv09IDlRMjgl+NVUs08j8NOqcPEugyX3fNWje9i/8f
-         YXkKBIrrmZOAptxzwZoRikpI6p9dPCz/JhMF35zB2NrD8en5/3RAApzU2/wU5HPHhpWF
-         Pb0hMY/BMUO+AtQbwvzIXHTJoQ1sz/44F1YlPPZYODx468TzY47JtbTDz6yyi72sRjVZ
-         q7BZD+rceGfg8iVlKvtr7bd0CRQ3vT9MUEF4yKM9i3Oe7WzynVQ+aHabervFwkW1lPGr
-         FhdA==
-X-Gm-Message-State: AOJu0YxM//erkbML95gkv4EQ3aCdnZsag97HCmetkNW0+cdo10A3nqTj
-        Q2pZ6RaPIEMSWx3giV2OW6+vUQ==
-X-Google-Smtp-Source: AGHT+IH7nhx4jfbGgITc9GdSYQHAbQFjAg2RV99LbZV7dHCx51LUIjf5t0mtTdLSyctO699x7bk/HA==
-X-Received: by 2002:a05:6402:1bc1:b0:52f:bd62:2219 with SMTP id ch1-20020a0564021bc100b0052fbd622219mr25440edb.37.1694523164009;
-        Tue, 12 Sep 2023 05:52:44 -0700 (PDT)
-Received: from [192.168.37.232] (178235177248.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.248])
-        by smtp.gmail.com with ESMTPSA id r18-20020aa7cfd2000000b00527e7087d5dsm5807381edy.15.2023.09.12.05.52.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Sep 2023 05:52:43 -0700 (PDT)
-Message-ID: <50d7a478-5d4e-40fc-9c1b-e4f99b17a11d@linaro.org>
-Date:   Tue, 12 Sep 2023 14:52:41 +0200
+        with ESMTP id S235184AbjILMy7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 08:54:59 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BE91C4;
+        Tue, 12 Sep 2023 05:54:55 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id DBE3F6607326;
+        Tue, 12 Sep 2023 13:54:52 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1694523293;
+        bh=2ZOrTSWdVG6ed/ekxU88dRAtYT7IEpOy67CbW6Jz6Ro=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=U9mrSOCl8o5oUy/F290nNkDTNRLRibjObsvv5WIGzt3R+/gClOcFXuc/Z8jjEm1Wo
+         +uXk9WYouTSWzSbtioFmklaV7i+IJIMa8nWoO41eGKPRW18YbqJ5A6/WHz5xHy6Vnd
+         OoCGg/f22W/PCOE3BfoQR1E3hZcyk6eulP5yLaeq0lKA8BQ3BVi7DqldOa6YiVv5br
+         S/Suhf7K2+jzt826DXYK6NmpKJnBs7h4iuLpnmzGRl3lxGlHUa0kDvLMChrihG/4ax
+         IPcQP+VSmaaL7wSwI6lwK+5vYL4aDL4nW9BCddZVQY85kjcMH0Ge93uejT5ln4kJmY
+         +qzD3SVHjNXTQ==
+Message-ID: <f8759d51-f808-8082-ceaf-6c6dcaebe2d9@collabora.com>
+Date:   Tue, 12 Sep 2023 14:54:50 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 09/10] drm/msm/a6xx: Add A740 support
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [RESEND PATCH] arm64: dts: mediatek: Fix "status" values
 Content-Language: en-US
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh@kernel.org>, soc@kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-References: <20230628-topic-a7xx_drmmsm-v3-0-4ee67ccbaf9d@linaro.org>
- <20230628-topic-a7xx_drmmsm-v3-9-4ee67ccbaf9d@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230628-topic-a7xx_drmmsm-v3-9-4ee67ccbaf9d@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Alexandre Mergnat <amergnat@baylibre.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+References: <20230804225813.12493-1-robh@kernel.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230804225813.12493-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23.08.2023 14:56, Konrad Dybcio wrote:
-> A740 builds upon the A730 IP, shuffling some values and registers
-> around. More differences will appear when things like BCL are
-> implemented.
+Il 05/08/23 00:58, Rob Herring ha scritto:
+> The defined value for "status" is "disabled", not "disable".
 > 
-> adreno_is_a740_family is added in preparation for more A7xx GPUs,
-> the logic checks will be valid resulting in smaller diffs.
-> 
-> Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8550-QRD
-> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # sm8450
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
-[...]
+> Arnd, Please take this directly I guess. I think Mediatek maintainership
+> needs some help. Maybe AngeloGioacchino should be co-maintainer as
+> that's the only response I seem to be getting.
 
->  		.gmem = SZ_2M,
->  		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
-> +		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT |
-> +			  ADRENO_QUIRK_HAS_HW_APRIV,
-That's a funny conflict resolution (should have been in the previous
-commit..). If there are no other comments, could you fix this up while
-applying, Rob?
+Sorry but I've seen this message just now as I've been on holiday in August.
 
-Konrad
+Thing is, the MediaTek scene is starting to see more and more code, bringing
+an obvious increase in the amount of reviews to be done and in the required
+efforts to maintain the MTK bits - and we will possibly (hopefully) see even
+more of that.
+
+If Matthias needs/wants a co-maintainer for MediaTek I'm here and I will be
+proud to become one.
+
+Cheers,
+Angelo
+
+> 
+> I think for future .dts patches I will not bother splitting them up by
+> sub-arch because it's a pain to chase down the maintainers to apply
+> stuff in a timely manner. /rant
+> 
+>   arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+> index e4605d23fdc8..86cedb0bf1a9 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+> @@ -585,11 +585,11 @@ &pwrap {
+>   };
+>   
+>   &sata {
+> -	status = "disable";
+> +	status = "disabled";
+>   };
+>   
+>   &sata_phy {
+> -	status = "disable";
+> +	status = "disabled";
+>   };
+>   
+>   &spi0 {
+
+
