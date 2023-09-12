@@ -2,133 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E385279CBFA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 11:37:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86B3C79CCA3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 12:00:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232487AbjILJhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 05:37:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47134 "EHLO
+        id S233349AbjILKAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 06:00:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232473AbjILJhe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 05:37:34 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D13112A
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 02:37:30 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-502a7e1bdc7so5061824e87.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 02:37:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1694511449; x=1695116249; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rzOy9+i/I3/0IAop11I8QZ9KuzjqNEblUBdj8hE/TNs=;
-        b=Nm7qZQfVf5AWdNieynLmPeauzFxFDRSwv8fpI16YYB1ro732yfRwT4lx45H+6hzTZB
-         4cddXMmRi99xqbfZKL//EEEeZeC8GrW48UkECqSz5PKTN6zWCCAE6RQ4CX6HD68v9LQQ
-         HyMvSBq9liGWlszeTX/oHB9zsxPa5P6dW6IY8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694511449; x=1695116249;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rzOy9+i/I3/0IAop11I8QZ9KuzjqNEblUBdj8hE/TNs=;
-        b=XGXLP4pC2mFxYMQh7bDEpsGjQjtjUCbJ8rC9lsVpnV4uZnDqPoJaeQl8dRf5FD4fkV
-         /twXu+nwU/sMVY0Mhw2IBm9zuEkusKyuNrmb1W9nFhEu5CfYL3Ybq1KiFK80PU8ko6lk
-         aCHKUmT0k6lQFesQZIiszhMtLqJ9oBzuJfaIhTNkijViv6T+VisBgNYrpjxhZV0w9A9Q
-         zHJW5yqoU1vU+EBpPbsi3Wm6a8m1LTGrOqjHTuk0A4n9wCNeHV6WZi/3rPvK5j7aqal4
-         aqvpnokFYP5kSpzqKck7sBrLRRR6hkLV1UI9OCrWEsEyy5H/AcqbiOJN5OADqfwCWjeL
-         IQ/A==
-X-Gm-Message-State: AOJu0YwiM7nkuqKBfoedOMML2S340hGNEEHnB0eToBTJYBSbgKybkCJt
-        otgpyc16RvzveUJKCv0nUZkOcyxA7yoydr2MWw7PhQ==
-X-Google-Smtp-Source: AGHT+IE5nYxQfZ/p5JEjeqA28AdkacyPuXzw3SozYcbXSTHvYQRz83ev3q6BCV7+1dnYJ4QqMVA8anjAE8x57wQR11Q=
-X-Received: by 2002:a05:6512:2829:b0:4fd:fecf:5d57 with SMTP id
- cf41-20020a056512282900b004fdfecf5d57mr10819604lfb.39.1694511448719; Tue, 12
- Sep 2023 02:37:28 -0700 (PDT)
+        with ESMTP id S233316AbjILKAG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 06:00:06 -0400
+X-Greylist: delayed 1167 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 12 Sep 2023 03:00:02 PDT
+Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1ECCE6C;
+        Tue, 12 Sep 2023 03:00:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kernkonzept.com; s=mx1; h=Cc:To:Content-Transfer-Encoding:Content-Type:
+        MIME-Version:Message-Id:Date:Subject:From:References:In-Reply-To:Reply-To:
+        Content-ID:Content-Description;
+        bh=a+mMID1sDPcfh9ozAJ1YUGCRnHkjo3zaDLTz6xqF7LI=; b=e9ebnOlO6+tNLENF78E4Fqn2kN
+        Cx5xxcl/iiiB6ta+U98RdY9usHt7Yaf2JzdvlLGWlRnuopGi1b+EoI1O78TM1ueCqyApmTdN3fYM5
+        H2HNnRyfmmU8e3KGmBbaU0yDX54cR/V5AEozU0M7X0UdSWGidq7xmrkbG2IFxGdL/J5TUkzx5Ad7c
+        pfPpAw+dVo/MJgSmFPJZze9wjU6mF5IWtEovTn1XSTXbO8vhnsE1j2xWbk/s3cxgh8Ku9DWtn6FuO
+        JpRlEl02BoZsQDc8Uz53TCYYLuio6Oa3zk3wkDs0Usexm+PC8WPZz3sX5CdmhVhDBAkCs9C8rRYmq
+        p9J2yh+A==;
+Received: from [10.22.3.24] (helo=serv1.dd1.int.kernkonzept.com)
+        by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.96)
+        id 1qfzsj-0030Ws-03;
+        Tue, 12 Sep 2023 11:40:29 +0200
+From:   Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Subject: [PATCH 0/4] cpufreq: Add basic cpufreq scaling for Qualcomm
+ MSM8909
+Date:   Tue, 12 Sep 2023 11:40:14 +0200
+Message-Id: <20230912-msm8909-cpufreq-v1-0-767ce66b544b@kernkonzept.com>
 MIME-Version: 1.0
-References: <20230912075805.11432-1-moudy.ho@mediatek.com> <c0bd7428-1330-58c5-64d2-78af479dfcf4@collabora.com>
-In-Reply-To: <c0bd7428-1330-58c5-64d2-78af479dfcf4@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Tue, 12 Sep 2023 17:37:17 +0800
-Message-ID: <CAGXv+5FhsKVGwoJxLP=-gV+rSHbQ8DUX0YACy0mPxYw+MC85=g@mail.gmail.com>
-Subject: Re: [PATCH v5 00/14] add support MDP3 on MT8195 platform
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Moudy Ho <moudy.ho@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAP4xAGUC/x3MQQqAIBBA0avIrBNMIbSrRIvImZqFZkoRSHdPW
+ r7F/xUKZsYCo6iQ8ebCR2zoOwHrvsQNJftm0Eob5dQgQwnWKSfXdFHGU3oibaxHR2SgVSkj8fM
+ fp/l9P5O3FpRhAAAA
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+        Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        stable@vger.kernel.org
+X-Mailer: b4 0.12.3
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 12, 2023 at 5:00=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 12/09/23 09:57, Moudy Ho ha scritto:
-> > Changes since v4:
-> > - Rebase on v6.6-rc1
-> > - Remove any unnecessary DTS settings.
-> > - Adjust the usage of MOD and clock in blending components.
-> >
-> > Changes since v3:
-> > - Depend on :
-> >    [1] https://patchwork.kernel.org/project/linux-media/list/?series=3D=
-719841
-> > - Suggested by Krzysztof, integrating all newly added bindings for
-> >    the mt8195 MDP3 into the file "mediatek,mt8195-mdp3.yaml".
-> > - Revise MDP3 nodes with generic names.
-> >
-> > Changes since v2:
-> > - Depend on :
-> >    [1] MMSYS/MUTEX: https://patchwork.kernel.org/project/linux-mediatek=
-/list/?series=3D711592
-> >    [2] MDP3: https://patchwork.kernel.org/project/linux-mediatek/list/?=
-series=3D711618
-> > - Suggested by Rob to revise MDP3 bindings to pass dtbs check
-> > - Add parallel paths feature.
-> > - Add blended components settings.
-> >
-> > Changes since v1:
-> > - Depend on :
-> >    [1] MDP3 : https://patchwork.kernel.org/project/linux-mediatek/list/=
-?series=3D698872
-> >    [2] MMSYS/MUTEX: https://patchwork.kernel.org/project/linux-mediatek=
-/list/?series=3D684959
-> > - Fix compilation failure due to use of undeclared identifier in file "=
-mtk-mdp3-cmdq.c"
-> >
-> > Hello,
-> >
-> > This patch is used to add support for MDP3 on the MT8195 platform that
-> > contains more picture quality components, and can arrange more pipeline=
-s
-> > through two sets of MMSYS and MUTEX respectively.
-> >
-> > Moudy Ho (14):
-> >    arm64: dts: mediatek: mt8183: correct MDP3 DMA-related nodes
-> >    arm64: dts: mediatek: mt8195: add MDP3 nodes
->
-> Please send the DTS patches separately, those go through a different main=
-tainer.
+Add the necessary definitions to the qcom-cpufreq-nvmem driver to
+support basic cpufreq scaling on the Qualcomm MSM8909 SoC. In practice
+the necessary power domains vary depending on the actual PMIC the SoC
+was combined with. With PM8909 the VDD_APC power domain is shared with
+VDD_CX so the RPM firmware handles all voltage adjustments, while with
+PM8916 and PM660 Linux is responsible to do adaptive voltage scaling
+of a dedicated CPU regulator using CPR.
 
-I thought most people prefer the _full_ view in a patchset?
+Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+---
+Stephan Gerhold (4):
+      cpufreq: qcom-nvmem: Enable virtual power domain devices
+      cpufreq: dt: platdev: Add MSM8909 to blocklist
+      dt-bindings: cpufreq: qcom-nvmem: Document MSM8909
+      cpufreq: qcom-nvmem: Add MSM8909
 
-> P.S.: The dt-bindings patch can be sent inside of this series, please do =
-that.
->
-> Thanks!
-> Angelo
->
->
+ .../bindings/cpufreq/qcom-cpufreq-nvmem.yaml       |  1 +
+ drivers/cpufreq/cpufreq-dt-platdev.c               |  1 +
+ drivers/cpufreq/qcom-cpufreq-nvmem.c               | 47 +++++++++++++++++++++-
+ 3 files changed, 48 insertions(+), 1 deletion(-)
+---
+base-commit: 0bb80ecc33a8fb5a682236443c1e740d5c917d1d
+change-id: 20230906-msm8909-cpufreq-dff238de9ff3
+
+Best regards,
+-- 
+Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Kernkonzept GmbH at Dresden, Germany, HRB 31129, CEO Dr.-Ing. Michael Hohmuth
+
