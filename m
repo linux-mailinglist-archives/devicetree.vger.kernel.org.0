@@ -2,124 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E8E879D52F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 17:42:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D300E79D55B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 17:54:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230510AbjILPms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 11:42:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38368 "EHLO
+        id S233212AbjILPyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 11:54:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229661AbjILPmr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 11:42:47 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA50710DE;
-        Tue, 12 Sep 2023 08:42:43 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 134D2C433C7;
-        Tue, 12 Sep 2023 15:42:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694533363;
-        bh=A9IHpP6N316XfcpL5X56A92IaXw42P2If+Z8SUyUWI4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=k3BrWE/7RbfM1QWdm8ZFo2E/rhhf/ftEQCSvzgrUU15e4Ly0NWaWQRogxrkeiGicS
-         CqhUOYHptTl+2V28epsDtyRwDLuLQ3I5bIxofPXOh376f6lWenJmazIEHdwZn2XRoq
-         C+614udDKn5KhmW96reganCO7bT++uvdkjKU/no24EUNsfc8yX+juJCFZ1RigXQOuy
-         ieSZ/PfKWmkMt/39ne26y7JonMfxcv+oJDemareMcSugualICdMOf4f/6S45dfdKFZ
-         qN9hHMTx78zki2XczUY8Zj4deB6p8rC13WBXGDVGCmK54nbCQT8M49vQ+01FMZxfJY
-         wFk5Q499efOng==
-Received: (nullmailer pid 842293 invoked by uid 1000);
-        Tue, 12 Sep 2023 15:42:39 -0000
-Date:   Tue, 12 Sep 2023 10:42:39 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     ilia.lin@kernel.org, vireshk@kernel.org, nm@ti.com,
-        sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, rafael@kernel.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        dmitry.baryshkov@linaro.org,
-        Christian Marangi <ansuelsmth@gmail.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: opp: opp-v2-kryo-cpu: Document named
- opp-microvolt property
-Message-ID: <20230912154239.GA833216-robh@kernel.org>
-References: <20230909165739.1036263-1-robimarko@gmail.com>
- <20230909165739.1036263-2-robimarko@gmail.com>
+        with ESMTP id S229661AbjILPyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 11:54:10 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1813C10DE;
+        Tue, 12 Sep 2023 08:54:06 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-52c9be5e6f0so7009067a12.1;
+        Tue, 12 Sep 2023 08:54:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694534044; x=1695138844; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nMxqjxINpBKmoDA3h46D0q6wWk2nU0MFsPl5bWg4Cmg=;
+        b=K+ea89xVeHGV+O70oWKW0jd7pGv8cM+iZRn+5JxxNqoBesQqEczyGQK8VwKnRhPNp8
+         pctOvzA4xSWD7YS20zjv4GZCVJm6BYSqdiui5sLEUT6UaCcB5xvieqstjb63mvbEoHVE
+         wKcVN0Fa52LaKEhi2AJ+T3hx7HzROXOXX0J2sm09l5JpZHEe0Kv9MojWxT+16SntWqrC
+         17RQtiLQESXdOaIiKfG14F1tnZO5jLQAXJvwllpgXDynRQVbGy3W++j9JMDenr41SJrz
+         vA5wUdFfQ1JnFUgG/dAJyxPLw75YthLW+Ja2rS7xa1S+Cb9Ro+7X2FcuX7bw1/jMWtZi
+         PaVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694534044; x=1695138844;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nMxqjxINpBKmoDA3h46D0q6wWk2nU0MFsPl5bWg4Cmg=;
+        b=hSMFPpZSAIKGifJMe74wWEUABmbn/FepME484PNzLEfUs3wXP+6/dcC935BLBT4u+y
+         grc4INDJBK4gpTDWUGMyTff7XSSCgMO/XYAj2jt7vhbkAV9G0TxBCv9v/prhuQfWY9YY
+         JEGIZGI2BtAE//040EJl5y7XV2/KwnVf2cbpKRelfnVDdiQBgTINFeaR6vDM9MNWKlAR
+         vjKwqXAN62aXyJgRM2/U7FCrR8DTTi/cIVqFSRieB56qONdfgZ50hWUickkugaNdhvim
+         +POieY/KL08VHCo5mOtTv8AtCBjtYGRHDZkVgP2nk3hxGKRUXQo6HpPlhinIjaF60w62
+         pRrQ==
+X-Gm-Message-State: AOJu0Yy4s99xogHUfQUi9QqaNrZSiQzyAeZ8uqFCfgepA2Bm+zJXicKd
+        8dDt3WV32aj1+/R1AeVt4Spe+O+358UvbrqC
+X-Google-Smtp-Source: AGHT+IFtlqJFjepBWnpt2aVpFMTJpzCouDuA9rqIlouy2f2Zvq4jrDKJs5qfWVg5IApWZhEf7i0+5g==
+X-Received: by 2002:a05:6402:14c7:b0:52f:c073:9c37 with SMTP id f7-20020a05640214c700b0052fc0739c37mr55181edx.3.1694534044308;
+        Tue, 12 Sep 2023 08:54:04 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
+        by smtp.gmail.com with ESMTPSA id d4-20020aa7d684000000b0051dfa2e30b2sm6142713edr.9.2023.09.12.08.54.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Sep 2023 08:54:03 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Martin Botka <martin.botka@somainline.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Andre Przywara <andre.przywara@arm.com>,
+        Alan Ma <tech@biqu3d.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: nvmem: SID: Add binding for H616 SID
+ controller
+Date:   Tue, 12 Sep 2023 17:54:02 +0200
+Message-ID: <3517711.iIbC2pHGDl@jernej-laptop>
+In-Reply-To: <20230912-sid-h616-v3-1-ee18e1c5bbb5@somainline.org>
+References: <20230912-sid-h616-v3-0-ee18e1c5bbb5@somainline.org>
+ <20230912-sid-h616-v3-1-ee18e1c5bbb5@somainline.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230909165739.1036263-2-robimarko@gmail.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 09, 2023 at 06:56:01PM +0200, Robert Marko wrote:
-> From: Christian Marangi <ansuelsmth@gmail.com>
+Dne torek, 12. september 2023 ob 14:25:12 CEST je Martin Botka napisal(a):
+> Add binding for the SID controller found in H616 SoC
 > 
-> Document named opp-microvolt property for opp-v2-kryo-cpu schema.
-> This property is used to declare multiple voltage ranges selected on the
-> different values read from efuses. The selection is done based on the
-> speed pvs values and the named opp-microvolt property is selected by the
-> qcom-cpufreq-nvmem driver.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+
+Best regards,
+Jernej
+
 > ---
->  .../bindings/opp/opp-v2-kryo-cpu.yaml         | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
+>  Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml | 4
+> +++- 1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml b/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
-> index bbbad31ae4ca..6f216306a7eb 100644
-> --- a/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
-> +++ b/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
-> @@ -63,6 +63,12 @@ patternProperties:
->            5:  MSM8996SG, speedbin 1
->            6:  MSM8996SG, speedbin 2
->            7-31:  unused
-> +
-> +          Bitmap for IPQ806X SoC:
-> +          0:  IPQ8062
-> +          1:  IPQ8064/IPQ8066/IPQ8068
-> +          2:  IPQ8065/IPQ8069
-> +          3-31:  unused
->          enum: [0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7,
->                 0x9, 0xd, 0xe, 0xf,
->                 0x10, 0x20, 0x30, 0x70]
-> @@ -71,6 +77,24 @@ patternProperties:
->  
->        required-opps: true
->  
-> +    patternProperties:
-> +      '^opp-microvolt-speed[0-9]+-pvs[0-9]+$':
-> +        description: |
-> +          Named opp-microvolt property following the same generic
-> +          binding for named opp-microvolt.
-> +
-> +          The correct voltage range is selected based on the values
-> +          in the efuse for the speed and the pvs.
+> diff --git
+> a/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
+> b/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
+> index 296001e7f498..0928ec408170 100644
+> --- a/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
+> @@ -23,7 +23,9 @@ properties:
+>        - const: allwinner,sun20i-d1-sid
+>        - const: allwinner,sun50i-a64-sid
+>        - items:
+> -          - const: allwinner,sun50i-a100-sid
+> +          - enum:
+> +              - allwinner,sun50i-a100-sid
+> +              - allwinner,sun50i-h616-sid
+>            - const: allwinner,sun50i-a64-sid
+>        - const: allwinner,sun50i-h5-sid
+>        - const: allwinner,sun50i-h6-sid
 
-What is "pvs"?
 
-> +
-> +          The qcom-cpufreq-nvmem driver will read all these values
-> +          and assign the correct named property.
 
-Specific driver details don't belong in binding. If there's some detail 
-or requirement of all consumers, then that is fine here.
 
-> +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
-
-The common binding already defines the type. Drop.
-
-> +        minItems: 1
-> +        maxItems: 8   # Should be enough regulators
-
-Does this really vary from 1 to 8 entries? Looks like copy-n-paste.
-
-> +        items:
-> +          minItems: 1
-> +          maxItems: 3
-
-Do you really need to support both single voltage and <nom min max> 
-forms?
-
-Rob
