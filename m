@@ -2,92 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2002579D92C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 20:53:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0E1179D94D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 21:08:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230154AbjILSxI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 14:53:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36540 "EHLO
+        id S231891AbjILTIW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 15:08:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229536AbjILSxI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 14:53:08 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E92B106;
-        Tue, 12 Sep 2023 11:53:04 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C397C433C7;
-        Tue, 12 Sep 2023 18:53:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694544784;
-        bh=42xcdlbrjyVky2/tm5xi0r/vdFecT+EUTCaruqGYrrg=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=tnBXOzns3TRJQ3v2DIWxovHmqpLyVkrdcfa60aU16eqotefX6AAO9ny+VhyOzVTwa
-         vMVlIV1+6hNvf1rt+deYVUX7gXM9V9QdeaZOgSX9LLWJ84wCPMzwus4JETKqLHDFie
-         tNpBDpsy59MWbR3IhREh716peEmbR1aCuxc7C1wfvSsRx7qe3ReSzhUFhI9KWrnQcp
-         vhq3FBdz78lg7Sj/1q4JyfcVMiyyQqFfkbDnkIETWv8F1/V1yLvzVcL9nkwoSAgdfP
-         Z2sb/yqMAUcJnQZSl6mp/qwECmAcbPMIC3tcTyLmmNv/UdA30S0hVPhkz0BS7PcLom
-         g6rQL+BgRt33g==
-From:   Mark Brown <broonie@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        with ESMTP id S230204AbjILTIV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 15:08:21 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7A06E6;
+        Tue, 12 Sep 2023 12:08:17 -0700 (PDT)
+Received: from mercury (unknown [185.254.75.45])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5DE6A66072FA;
+        Tue, 12 Sep 2023 20:08:16 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1694545696;
+        bh=pA8KJDFOnD+DhYU8UQ5GUmUPJFV61o5LBqc3PMJvmlg=;
+        h=From:To:In-Reply-To:References:Subject:Date:From;
+        b=SvIO6AKPM2sN3Dor/LCJQ/uVBi2MEdl6p1zssSt4HkqiOblKRNlYv0I1L17ugY9/0
+         KVcwLrAGCWS/WhS0asObuxNlq89+0kLKId17xk4xfsAU/6akMOnSb0dPaUf4JkaQmI
+         DgiuyNQvU2r2Y3RqjXTbfuGw2vscaliIetotWvEvugMbeTzC9K0RGotjWRddRCGxY8
+         Yms/YxwEnzMMLim+cLB7adhpBPnhUcepUyf0bZDmdaAKj9b/QqpHQlHn85wMtcKDZO
+         mihR09+Ckgq/AX/cIQYOpKISmYzhSeEmr5IDldzpFWQlNb/pTAU75OXhHAI0kq8sS0
+         XzPqCgSsWNt/Q==
+Received: by mercury (Postfix, from userid 1000)
+        id 62E04106098C; Tue, 12 Sep 2023 21:08:13 +0200 (CEST)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230825-topic-6115tx-v1-0-ebed201ad54b@linaro.org>
-References: <20230825-topic-6115tx-v1-0-ebed201ad54b@linaro.org>
-Subject: Re: [PATCH 0/2] SM6115 TX Macro
-Message-Id: <169454477946.2415953.15150744982318349138.b4-ty@kernel.org>
-Date:   Tue, 12 Sep 2023 19:52:59 +0100
+        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230901120057.47018-1-krzysztof.kozlowski@linaro.org>
+References: <20230901120057.47018-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 1/3] dt-bindings: power: syscon-poweroff: get regmap
+ from parent node
+Message-Id: <169454569339.510054.7177949356094614103.b4-ty@collabora.com>
+Date:   Tue, 12 Sep 2023 21:08:13 +0200
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-099c9
+X-Mailer: b4 0.12.3
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Aug 2023 19:23:11 +0200, Konrad Dybcio wrote:
-> Like most Qualcomm SoCs, SM6115 has a TX Macro.
+
+On Fri, 01 Sep 2023 14:00:55 +0200, Krzysztof Kozlowski wrote:
+> Just like syscon-reboot device, the syscon-poweroff is supposed to be a
+> child of syscon node, thus we can take the same approach as
+> syscon-poweroff: deprecate the 'regmap' field in favor of taking it from
+> the parent's node.
 > 
-> Only some minor changes were required.
-> 
 > 
 
-Applied to
+Applied, thanks!
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+[1/3] dt-bindings: power: syscon-poweroff: get regmap from parent node
+      commit: 716293381a0f9a400d0010628a9ba4354c2bea40
+[2/3] power: reset: syscon-poweroff: simplify pdev->dev usage
+      commit: 6f9c8a1338d90d150767331d4fab051fb8abdba5
+[3/3] power: reset: syscon-poweroff: get regmap from parent node
+      commit: 92bbb93aaaefe14c01eac18df46f8260ee4c2825
 
-Thanks!
-
-[1/2] ASoC: dt-bindings: qcom,lpass-tx-macro: Add SM6115
-      commit: 9ff143aaabba989f275612de0d83cf9d39274828
-[2/2] ASoC: codecs: lpass-tx-macro: Add SM6115 support
-      commit: 510c46884299cf8da8e9d7db27572eafa9a0c567
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Best regards,
+-- 
+Sebastian Reichel <sebastian.reichel@collabora.com>
 
