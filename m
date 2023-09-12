@@ -2,71 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF81079D56E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 17:58:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 300EB79D57E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 18:00:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233980AbjILP6H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 11:58:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47916 "EHLO
+        id S236449AbjILQAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 12:00:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229661AbjILP6H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 11:58:07 -0400
+        with ESMTP id S230292AbjILQAy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 12:00:54 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9646D10DE;
-        Tue, 12 Sep 2023 08:58:03 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A35FEC433C7;
-        Tue, 12 Sep 2023 15:58:01 +0000 (UTC)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A3610EA;
+        Tue, 12 Sep 2023 09:00:50 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35662C433C8;
+        Tue, 12 Sep 2023 16:00:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694534283;
-        bh=W25BEEGerwOTf/J7Thrt0eHJlBpjW1DTVZWcJFBtBFM=;
+        s=k20201202; t=1694534450;
+        bh=bxv0fBANA2mqdoQ6AccAVVP77okB+6dX9LpeEKV17mw=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QI91A9yQeV7B2QdHq2e+5HwP5jS+fD7SJz20BmvT2TQXUhYYGFyEf9gA0HRaZ+1UE
-         d+OejMSWvCw9WQxsre/kZzndiDUZg8n9C1puLqWC5CNSYMy5RNPFR8XGUGRuJtv2Kz
-         pQLxbXtEIrecy6uPgkAooT2BQLI1AZ7Awz1+Dr3WCyJiyJx8DcY6NrYT1qu3MM8762
-         EoSUVWaroRUWW+hI72+DhPk17sl8cxuzv9EQzV9Xr7PNfLT+wDNQ0kh4r2G5Ccwa1X
-         JMQ6HpVTEJ/UluKi1tRS5sXOEvDa89oi8uPjUJEflCSjA9yLj8g7eFH9dmIwCJARWA
-         C63xoSk9EiTEQ==
-Received: (nullmailer pid 859269 invoked by uid 1000);
-        Tue, 12 Sep 2023 15:58:00 -0000
-Date:   Tue, 12 Sep 2023 10:58:00 -0500
+        b=W7ylpWLwmuGHO5sqkzLEIUJ+5Mv4uZPzfayVn70exPBnqgG3SJTsQIr35EKUmF2iP
+         J4xgwcHl2JlJ2kUkclfL8yrkZWq6hjWpr2FeVxTwW+LQaEz5eQLkCFbrvkk9mMdxT0
+         nwnKDhHMn/XcpyWp9KeKQm2B20QEs6gh38q8T1jHIugt+Q5PtfHJWZ6tjBL5bp4xap
+         eoY8pMwE32rJIJpM7a9RuSvfu1UcWxsvfunmPnGugx8T24PXwBrQ+VYoaFuXPJ7YjR
+         QlalUI5H5nbkGecgJ95+Fe5omjkKxIJHFkq+7VLn3O9XjYy4RCae5j0nXfnil9ylE8
+         rjkTLiSs75pDA==
+Received: (nullmailer pid 862469 invoked by uid 1000);
+        Tue, 12 Sep 2023 16:00:46 -0000
+Date:   Tue, 12 Sep 2023 11:00:46 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Frank Wunderlich <linux@fw-web.de>
-Cc:     Daniel Golle <daniel@makrotopia.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: Re: [RFC v1 1/3] dt-bindings: thermal: mediatek: add mt7988
- compatible
-Message-ID: <169453428010.859206.8089094622420685827.robh@kernel.org>
-References: <20230911183354.11487-1-linux@fw-web.de>
- <20230911183354.11487-2-linux@fw-web.de>
+To:     Claudiu <claudiu.beznea@tuxon.dev>
+Cc:     gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, mturquette@baylibre.com,
+        nfraprado@collabora.com, linux-clk@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
+        neil.armstrong@linaro.org, rafal@milecki.pl, sboyd@kernel.org,
+        linux-mmc@vger.kernel.org, ulf.hansson@linaro.org,
+        devicetree@vger.kernel.org, arnd@arndb.de,
+        wsa+renesas@sang-engineering.com, konrad.dybcio@linaro.org,
+        geert+renesas@glider.be, magnus.damm@gmail.com,
+        biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com,
+        linux-gpio@vger.kernel.org,
+        prabhakar.mahadev-lad.rj@bp.renesas.com,
+        linux-serial@vger.kernel.org, catalin.marinas@arm.com,
+        conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        will@kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+        jirislaby@kernel.org
+Subject: Re: [PATCH 01/37] dt-bindings: serial: renesas,scif: document
+ r9a08g045 support
+Message-ID: <169453444566.862414.5516209615917856191.robh@kernel.org>
+References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
+ <20230912045157.177966-2-claudiu.beznea.uj@bp.renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230911183354.11487-2-linux@fw-web.de>
+In-Reply-To: <20230912045157.177966-2-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 11 Sep 2023 20:33:52 +0200, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On Tue, 12 Sep 2023 07:51:21 +0300, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > 
-> Add compatible string for mt7988.
+> Document support for the Serial Communication Interface with FIFO (SCIF)
+> available in the Renesas RZ/G3S (R9A08G045) SoC. SCIF interface in
+> Renesas RZ/G3S is similar to the one available in RZ/G2L.
 > 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > ---
->  .../devicetree/bindings/thermal/mediatek,lvts-thermal.yaml       | 1 +
+>  Documentation/devicetree/bindings/serial/renesas,scif.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 > 
 
