@@ -2,122 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 814E679CB40
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 11:12:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7ED8E79CB5A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 11:16:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233131AbjILJMw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 05:12:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36126 "EHLO
+        id S233311AbjILJQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 05:16:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbjILJMv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 05:12:51 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8A8C170E
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 02:12:47 -0700 (PDT)
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 7C3663F659
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 09:12:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1694509966;
-        bh=XqCmz97wiINzvOoT4WgJ0jIs9/XOEFkVGg6FT5TVn8s=;
-        h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=AfP5do/6J5GIGAwXM5VWuPUlh1EAWHOhJdVtno3OjG1ctcBXJiQZatDq7avxUPtqc
-         2lwZsaguzKfck41ndLSI+4HTawnb00sAKqFBUERkuZXcjCWUB4dPF10dulYGE95gMP
-         8ymATo9/kgFeC5c9aD2/VGUFEXA76xfLUQlDNtRIeFuyPb9U3Zksy6yV6Cwvj8CJ3a
-         qU6IBKt6cYWDnPFk693yUHf1D7W9ltKxNJ0bREg5Vi/ZXZPowZkl59OWjLP6EnIokN
-         pNOPG38WgUVRro62gfOyFu7L6Cb+CxNMBv38r8n3xh5eyq9STldtYAzaqmPuHT2yLc
-         SdvZWNjDZcZDA==
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-414f842870dso61420881cf.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 02:12:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694509965; x=1695114765;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XqCmz97wiINzvOoT4WgJ0jIs9/XOEFkVGg6FT5TVn8s=;
-        b=lMcJfVaudJv/IVXo7ogr0/pM6+lKf+RY67J5Jnc4vEPKdGVzLOQmznEc3q+nERDbZy
-         QOpkpPKtIqJnPRPTcbsw4ieXYj273/g/WzgHMYzcqHrHOpr6jtFc8KDhtR8KhcKYPpkJ
-         3cSNNyQRPkMsTRop1Qq8Rk9ADe+iEhQAcD19cV0iZCUimzY71d/YM3jcqfha3yRJk1/i
-         QvFxrUmq53Pw1PxW1sn8QB8upwlQFdHeH1OZc7FIBLVkSYFNwkJ/+2ujnQ77wrlO4AlT
-         qrouL7OACKjGnChYd64RingoOsaYUdRG+stxxioiD85RCOs829HIjyUqwnxrCzXnzYW/
-         tqAg==
-X-Gm-Message-State: AOJu0YxISyAwo0Orgc/t8awgRVFzgnpZUgdx6Ajr+t6uyV3YSA+8/sen
-        xbOz3ij+IsAyn6IAR6w529lrg/aTnWRo5vr8YPWBBGjNHG6Ad7u+r2amRIqzNTTYGItghhDtOim
-        Rkjc57LvhZWUuowZx5bKwR2r+Dd6wGylwsFcoJC8/Nq6ft7vmUgaU8Uc=
-X-Received: by 2002:ac8:5a89:0:b0:412:1c5f:4783 with SMTP id c9-20020ac85a89000000b004121c5f4783mr15578481qtc.10.1694509965372;
-        Tue, 12 Sep 2023 02:12:45 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFQQlGlQgk/r9shaDmrB/tSYmyaL8Wp5LDCM9Gtr+QkolQC9uKaGfomkgojXdkeuMHTeIyAFpf8bRY5ZqnJUC4=
-X-Received: by 2002:ac8:5a89:0:b0:412:1c5f:4783 with SMTP id
- c9-20020ac85a89000000b004121c5f4783mr15578458qtc.10.1694509965100; Tue, 12
- Sep 2023 02:12:45 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 12 Sep 2023 02:12:44 -0700
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20230912081402.51477-1-william.qiu@starfivetech.com>
-References: <20230912081402.51477-1-william.qiu@starfivetech.com>
-Mime-Version: 1.0
-Date:   Tue, 12 Sep 2023 02:12:44 -0700
-Message-ID: <CAJM55Z_NjSVwCcS0MfHw3mAwsBuScAU0OXX1Ga1+TfQNHKB7Vw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: mmc: Remove properties from required
-To:     William Qiu <william.qiu@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-mmc@vger.kernel.org
-Cc:     Emil Renner Berthing <kernel@esmil.dk>,
+        with ESMTP id S233380AbjILJQu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 05:16:50 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DA8B10D8;
+        Tue, 12 Sep 2023 02:16:47 -0700 (PDT)
+Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.226])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4RlHy70wYbz6FGbr;
+        Tue, 12 Sep 2023 17:16:15 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Tue, 12 Sep
+ 2023 10:16:44 +0100
+Date:   Tue, 12 Sep 2023 10:16:43 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+        Conor Dooley <conor@kernel.org>,
+        "Cusco, Ana-Maria" <Ana-Maria.Cusco@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Content-Type: text/plain; charset="UTF-8"
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: iio: hmc425a: add entry for HMC540S
+Message-ID: <20230912101643.00005cc8@Huawei.com>
+In-Reply-To: <06a007ad-ab6b-2ed0-8f70-6837680c8684@linaro.org>
+References: <20230816110906.144540-1-ana-maria.cusco@analog.com>
+        <20230816110906.144540-2-ana-maria.cusco@analog.com>
+        <20230816-stoop-exonerate-148c7bdc01c2@spud>
+        <SN7PR03MB7132732C9DB517378897DADA8EF1A@SN7PR03MB7132.namprd03.prod.outlook.com>
+        <06a007ad-ab6b-2ed0-8f70-6837680c8684@linaro.org>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.227.76]
+X-ClientProxiedBy: lhrpeml100003.china.huawei.com (7.191.160.210) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-William Qiu wrote:
-> Due to the change of tuning implementation, it's no longer necessary to
-> use the "starfive,sysreg" property in dts, so remove it from required.
+On Tue, 12 Sep 2023 08:56:56 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-nit: again the device tree should be a description of the hardware, so the
-justification here shouldn't be that the Linux driver doesn't use the field,
-but that it turns out the registers aren't required for the peripheral to work
-properly. Don't respin the series just for this though.
+> On 12/09/2023 08:36, Hennerich, Michael wrote:
+> > 
+> >   
+> >> -----Original Message-----
+> >> From: Conor Dooley <conor@kernel.org>
+> >> Sent: Mittwoch, 16. August 2023 16:37
+> >> To: Cusco, Ana-Maria <Ana-Maria.Cusco@analog.com>
+> >> Cc: Lars-Peter Clausen <lars@metafoo.de>; Hennerich, Michael
+> >> <Michael.Hennerich@analog.com>; Jonathan Cameron <jic23@kernel.org>;
+> >> Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+> >> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
+> >> <conor+dt@kernel.org>; linux-iio@vger.kernel.org;
+> >> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+> >> Subject: Re: [PATCH 2/2] dt-bindings: iio: hmc425a: add entry for HMC540S
+> >>
+> >> [External]
+> >>
+> >> On Wed, Aug 16, 2023 at 02:09:06PM +0300, Ana-Maria Cusco wrote:  
+> >>> Added support for HMC540SLP3E broadband 4-bit Silicon IC digital
+> >>> attenuator with a 15 dB control range and wide frequency coverage
+> >>> (0.1 to 8 GHz).
+> >>>
+> >>> Signed-off-by: Ana-Maria Cusco <ana-maria.cusco@analog.com>  
+> >>
+> >> Acked-by: Conor Dooley <conor.dooley@microchip.com>  
+> > 
+> > Adding missing Signed-off-by tag
+> > 
+> > Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>  
+> 
+> Why it is missing? What is the purpose of this adding?
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
 
-Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Wrong patch.  This is supposed to be on patch 1 where
+Michael was the author (he confirmed intent in response to a
+linux-next missing sign-off mail). I've added it there, but
+if you can reply to that email Michael, it will make things nice
+and clear.
 
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> ---
->  Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml | 2 --
->  1 file changed, 2 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml b/Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
-> index 51e1b04e799f..553a75195c2e 100644
-> --- a/Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
-> @@ -55,7 +55,6 @@ required:
->    - clocks
->    - clock-names
->    - interrupts
-> -  - starfive,sysreg
->
->  unevaluatedProperties: false
->
-> @@ -73,5 +72,4 @@ examples:
->          fifo-depth = <32>;
->          fifo-watermark-aligned;
->          data-addr = <0>;
-> -        starfive,sysreg = <&sys_syscon 0x14 0x1a 0x7c000000>;
->      };
-> --
-> 2.34.1
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Jonathan
