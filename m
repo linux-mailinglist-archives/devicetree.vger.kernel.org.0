@@ -2,121 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B9B879D621
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 18:21:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E345879D63F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 18:27:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232338AbjILQVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 12:21:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53726 "EHLO
+        id S235439AbjILQ1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 12:27:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236753AbjILQV3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 12:21:29 -0400
+        with ESMTP id S234460AbjILQ1k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 12:27:40 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F076310D;
-        Tue, 12 Sep 2023 09:21:25 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CC4AC433C8;
-        Tue, 12 Sep 2023 16:21:23 +0000 (UTC)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74EAF115;
+        Tue, 12 Sep 2023 09:27:36 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B92E2C433C7;
+        Tue, 12 Sep 2023 16:27:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694535685;
-        bh=4hOm+2OJehvueAvzDQRvNaUQyTECGiJcEkEuYx0W5Yw=;
+        s=k20201202; t=1694536056;
+        bh=bv7Iv5VgHVPJ6lM+M2Zxb2Yans87pWgfeZ8AlEiNrz8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jQkFWGdpQipDRXUX/TXqCdZCefG/lNErl9W+iLkCzCkCQatTcSH5PH/xEEtwyYk4m
-         0t5P4ERwzAczSVRzz5T04qokwZCI2pFmBZmPY5gOSUTQ+CQrfp1KnzAEWowaW8XVk8
-         t13ClcE3LCMA0qSWwD9DqI1gcS4+FdOUGLUvnDVpvG4P8SHkUosEFbH7gstyV5bY/2
-         5dHPsfG1sbLW312Xcy4aAepu3fVjMaxELKvsa4EWGTgdMaQr2dkNt1EU+rMYpDkfVB
-         RPFh6TIbIJCpWa0etojhH0vL941RKx1+UAKX8O3iK+1cvt35pRHtUVxPSpAXa1YHya
-         hVQqCHjtT0zaw==
-Received: (nullmailer pid 885111 invoked by uid 1000);
-        Tue, 12 Sep 2023 16:21:22 -0000
-Date:   Tue, 12 Sep 2023 11:21:22 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     wangweidong.a@awinic.com
-Cc:     lgirdwood@gmail.com, broonie@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        perex@perex.cz, tiwai@suse.com, rf@opensource.cirrus.com,
-        shumingf@realtek.com, ckeepax@opensource.cirrus.com,
-        herve.codina@bootlin.com, 13916275206@139.com,
-        ryans.lee@analog.com, linus.walleij@linaro.org,
-        sebastian.reichel@collabora.com, fido_max@inbox.ru,
-        povik+lin@cutebit.org, arnd@arndb.de,
-        harshit.m.mogalapalli@oracle.com, liweilei@awinic.com,
-        yijiangtao@awinic.com, colin.i.king@gmail.com, trix@redhat.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2 1/5] ASoC: dt-bindings: Adds properties to
- "awinic,aw88395"
-Message-ID: <20230912162122.GA880119-robh@kernel.org>
-References: <20230912065852.347000-1-wangweidong.a@awinic.com>
- <20230912065852.347000-2-wangweidong.a@awinic.com>
+        b=lILXc5E4FhEYv8fuvDsGkuvHJ2DnFl+NMUfeMJafGAz3mfJzrp4uvSRpEoiO63GdW
+         2uKvPxhP3JKXVy9o54F/+cL0MDEFZYXlzA0HnIFPdG1VhnfuJSCN0OyLFxM63p7ZvG
+         F/OrOHGc+pLF9KC8CdALvdswKGB+GR1EAZjiLxkn7+kuV815G0Vf8vS55ryVWws5CI
+         YmSLe2gG+kzn8lrfigUTdPFXa8mwDw5JT/c1RuWftTfsYSj0ssHcK+z0zUeyaVSE3Z
+         biGdhtjaNY/miUV+o5UNPLiRwO5O+NSn3xP3EFR2VUiko3t3UuJyqJzOMZauTSKem4
+         FEsuuB/lEq5Iw==
+Date:   Tue, 12 Sep 2023 17:27:31 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Drew Fustini <dfustini@baylibre.com>
+Subject: Re: [PATCH v2] riscv: dts: thead: set dma-noncoherent to soc bus
+Message-ID: <20230912-trailing-pampered-52738ec6f009@spud>
+References: <20230912072232.2455-1-jszhang@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="DcZx3Ial+vgjWY0d"
 Content-Disposition: inline
-In-Reply-To: <20230912065852.347000-2-wangweidong.a@awinic.com>
+In-Reply-To: <20230912072232.2455-1-jszhang@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 12, 2023 at 02:58:48PM +0800, wangweidong.a@awinic.com wrote:
-> From: Weidong Wang <wangweidong.a@awinic.com>
 
-The subject is still pretty generic. Ideally, we'd never have the same 
-subject twice. I'd do something like this:
+--DcZx3Ial+vgjWY0d
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-ASoC: dt-bindings: awinic,aw88395: Add properties for multiple PA support
-
-> 
-> Adds properties to "awinic,aw88395" to make files more complete
-
-Complete in what way? multiple PAs, right. It's not really clear 
-to me though how these properties enable support for multiple PAs.
-
-> 
-> Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
+On Tue, Sep 12, 2023 at 03:22:32PM +0800, Jisheng Zhang wrote:
+> riscv select ARCH_DMA_DEFAULT_COHERENT by default, and th1520 isn't
+> dma coherent, so set dma-noncoherent to reflect this fact.
+>=20
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> Tested-by: Drew Fustini <dfustini@baylibre.com>
 > ---
->  .../bindings/sound/awinic,aw88395.yaml        | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
-> index 4051c2538caf..4965aa4a5370 100644
-> --- a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
-> +++ b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
-> @@ -32,11 +32,28 @@ properties:
->    reset-gpios:
->      maxItems: 1
->  
-> +  awinic,audio-channel:
-> +    description:
-> +      It is used to distinguish multiple PA devices, so that different
-> +      configurations can be loaded to different PA devices
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 7
-> +
-> +  awinic,sync-flag:
-> +    description:
-> +      Flag bit used to keep the phase synchronized in the case of multiple PA
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 1
-> +
->  required:
->    - compatible
->    - reg
->    - '#sound-dai-cells'
->    - reset-gpios
-> +  - awinic,audio-channel
-> +  - awinic,sync-flag
->  
->  unevaluatedProperties: false
->  
-> @@ -51,5 +68,7 @@ examples:
->              reg = <0x34>;
->              #sound-dai-cells = <0>;
->              reset-gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
-> +            awinic,audio-channel = <0>;
-> +            awinic,sync-flag = <0>;
->          };
->      };
-> -- 
-> 2.41.0
-> 
+>=20
+> Since v1:
+>  - rebase on v6.6-rc1
+>  - collect Tested-by tag
+
+Does this mean you're expecting me to take this?
+
+>=20
+>  arch/riscv/boot/dts/thead/th1520.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/=
+thead/th1520.dtsi
+> index ce708183b6f6..ff364709a6df 100644
+> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> @@ -139,6 +139,7 @@ soc {
+>  		interrupt-parent =3D <&plic>;
+>  		#address-cells =3D <2>;
+>  		#size-cells =3D <2>;
+> +		dma-noncoherent;
+>  		ranges;
+> =20
+>  		plic: interrupt-controller@ffd8000000 {
+> --=20
+> 2.40.1
+>=20
+
+--DcZx3Ial+vgjWY0d
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQCRcwAKCRB4tDGHoIJi
+0uF4AQCC0yGFWykN5lVA7ttKf7xI/KAt2zqKey5loUVcTCKeewEA/Qu3oqmy+WyO
+C5iFFtyyupU0IxGU5PkxjcPqACgjOAI=
+=jBrY
+-----END PGP SIGNATURE-----
+
+--DcZx3Ial+vgjWY0d--
