@@ -2,155 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4154879D51B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 17:38:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E8E879D52F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 17:42:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236360AbjILPig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 11:38:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52922 "EHLO
+        id S230510AbjILPms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 11:42:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233996AbjILPie (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 11:38:34 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C58A10E5
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 08:38:30 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38CFcMi9095136;
-        Tue, 12 Sep 2023 10:38:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1694533102;
-        bh=/5BT8Z5/OoWNAwaIqctDEy8oR1iFfe/mH7Lq1oun+Dk=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=bTsxn/2+zZw1ubdhoa33zubKAnVAr9v/M6+n5b/tkUX6ZTTShOLIRBK2zd/pty1pi
-         lcOVASs2I1GEMXMqv+i/CuMj1duVPMn/XE0iyiSOA1gLMSJ9aeSWcY6g+4WrSLp8dj
-         3cf/ELp7X8ivO4CoytCx947c3Q5iVGUuYHalk4pY=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38CFcMcu020187
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 12 Sep 2023 10:38:22 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 12
- Sep 2023 10:38:21 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 12 Sep 2023 10:38:21 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38CFcKh2027023;
-        Tue, 12 Sep 2023 10:38:20 -0500
-Date:   Tue, 12 Sep 2023 21:08:19 +0530
-From:   Dhruva Gole <d-gole@ti.com>
-To:     Tony Lindgren <tony@atomide.com>
-CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62-wakeup: Configure ti-sysc for
- wkup_uart0
-Message-ID: <20230912153819.fzp6feqkspczci45@dhruva>
-References: <20230912111215.18415-1-tony@atomide.com>
+        with ESMTP id S229661AbjILPmr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 11:42:47 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA50710DE;
+        Tue, 12 Sep 2023 08:42:43 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 134D2C433C7;
+        Tue, 12 Sep 2023 15:42:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694533363;
+        bh=A9IHpP6N316XfcpL5X56A92IaXw42P2If+Z8SUyUWI4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=k3BrWE/7RbfM1QWdm8ZFo2E/rhhf/ftEQCSvzgrUU15e4Ly0NWaWQRogxrkeiGicS
+         CqhUOYHptTl+2V28epsDtyRwDLuLQ3I5bIxofPXOh376f6lWenJmazIEHdwZn2XRoq
+         C+614udDKn5KhmW96reganCO7bT++uvdkjKU/no24EUNsfc8yX+juJCFZ1RigXQOuy
+         ieSZ/PfKWmkMt/39ne26y7JonMfxcv+oJDemareMcSugualICdMOf4f/6S45dfdKFZ
+         qN9hHMTx78zki2XczUY8Zj4deB6p8rC13WBXGDVGCmK54nbCQT8M49vQ+01FMZxfJY
+         wFk5Q499efOng==
+Received: (nullmailer pid 842293 invoked by uid 1000);
+        Tue, 12 Sep 2023 15:42:39 -0000
+Date:   Tue, 12 Sep 2023 10:42:39 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Robert Marko <robimarko@gmail.com>
+Cc:     ilia.lin@kernel.org, vireshk@kernel.org, nm@ti.com,
+        sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, rafael@kernel.org, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        dmitry.baryshkov@linaro.org,
+        Christian Marangi <ansuelsmth@gmail.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: opp: opp-v2-kryo-cpu: Document named
+ opp-microvolt property
+Message-ID: <20230912154239.GA833216-robh@kernel.org>
+References: <20230909165739.1036263-1-robimarko@gmail.com>
+ <20230909165739.1036263-2-robimarko@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230912111215.18415-1-tony@atomide.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20230909165739.1036263-2-robimarko@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sep 12, 2023 at 14:12:15 +0300, Tony Lindgren wrote:
-> The devices in the wkup domain are capable of waking up the system from
-> suspend. We can configure the wkup domain devices in a generic way using
-> the ti-sysc interconnect target module driver like we have done with the
-> earlier TI SoCs.
+On Sat, Sep 09, 2023 at 06:56:01PM +0200, Robert Marko wrote:
+> From: Christian Marangi <ansuelsmth@gmail.com>
 > 
-> As ti-sysc manages the SYSCONFIG related registers independent of the
-> child hardware device, the wake-up configuration is also set even if
-> wkup_uart0 is reserved by sysfw.
+> Document named opp-microvolt property for opp-v2-kryo-cpu schema.
+> This property is used to declare multiple voltage ranges selected on the
+> different values read from efuses. The selection is done based on the
+> speed pvs values and the named opp-microvolt property is selected by the
+> qcom-cpufreq-nvmem driver.
 > 
-> The wkup_uart0 device has interconnect target module register mapping like
-> dra7 wkup uart. There is a 1 MB interconnect target range with one uart IP
-> block in the target module. The power domain and clock affects the whole
-> interconnect target module.
-> 
-> Note we change the functional clock name to follow the ti-sysc binding
-> and use "fck" instead of "fclk".
-> 
-> Cc: Dhruva Gole <d-gole@ti.com>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
 > ---
-
-Have tested wakeup using wake_uart as I have pointed out in a previous patch for
-ti-sysc, please find required patches here:
-
-https://github.com/DhruvaG2000/v-linux/commits/v6.5-rc7_wkuart
-
-Hence,
-
-Tested-by: Dhruva Gole <d-gole@ti.com>
-
->  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 33 ++++++++++++++++++----
->  1 file changed, 27 insertions(+), 6 deletions(-)
+>  .../bindings/opp/opp-v2-kryo-cpu.yaml         | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> --- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> @@ -5,6 +5,8 @@
->   * Copyright (C) 2020-2022 Texas Instruments Incorporated - https://www.ti.com/
->   */
->  
-> +#include <dt-bindings/bus/ti-sysc.h>
+> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml b/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
+> index bbbad31ae4ca..6f216306a7eb 100644
+> --- a/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
+> +++ b/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
+> @@ -63,6 +63,12 @@ patternProperties:
+>            5:  MSM8996SG, speedbin 1
+>            6:  MSM8996SG, speedbin 2
+>            7-31:  unused
 > +
->  &cbass_wakeup {
->  	wkup_conf: syscon@43000000 {
->  		compatible = "syscon", "simple-mfd";
-> @@ -19,14 +21,33 @@ chipid: chipid@14 {
->  		};
->  	};
+> +          Bitmap for IPQ806X SoC:
+> +          0:  IPQ8062
+> +          1:  IPQ8064/IPQ8066/IPQ8068
+> +          2:  IPQ8065/IPQ8069
+> +          3-31:  unused
+>          enum: [0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7,
+>                 0x9, 0xd, 0xe, 0xf,
+>                 0x10, 0x20, 0x30, 0x70]
+> @@ -71,6 +77,24 @@ patternProperties:
 >  
-> -	wkup_uart0: serial@2b300000 {
-> -		compatible = "ti,am64-uart", "ti,am654-uart";
-> -		reg = <0x00 0x2b300000 0x00 0x100>;
-> -		interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-> +	target-module@2b300000 {
-> +		compatible = "ti,sysc-omap2", "ti,sysc";
-> +		reg = <0 0x2b300050 0 0x4>,
-> +		      <0 0x2b300054 0 0x4>,
-> +		      <0 0x2b300058 0 0x4>;
-> +		reg-names = "rev", "sysc", "syss";
-> +		ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
-> +				 SYSC_OMAP2_SOFTRESET |
-> +				 SYSC_OMAP2_AUTOIDLE)>;
-> +		ti,sysc-sidle = <SYSC_IDLE_FORCE>,
-> +				<SYSC_IDLE_NO>,
-> +				<SYSC_IDLE_SMART>,
-> +				<SYSC_IDLE_SMART_WKUP>;
-> +		ti,syss-mask = <1>;
->  		power-domains = <&k3_pds 114 TI_SCI_PD_EXCLUSIVE>;
->  		clocks = <&k3_clks 114 0>;
-> -		clock-names = "fclk";
-> -		status = "disabled";
-> +		clock-names = "fck";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0 0 0x2b300000 0x100000>;
+>        required-opps: true
+>  
+> +    patternProperties:
+> +      '^opp-microvolt-speed[0-9]+-pvs[0-9]+$':
+> +        description: |
+> +          Named opp-microvolt property following the same generic
+> +          binding for named opp-microvolt.
 > +
-> +		wkup_uart0: serial@2b300000 {
-> +			compatible = "ti,am64-uart", "ti,am654-uart";
-> +			reg = <0 0x100>;
-> +			interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-> +			status = "disabled";
+> +          The correct voltage range is selected based on the values
+> +          in the efuse for the speed and the pvs.
 
-wondering if "reserved" makes more sense as it's currently being used by
-SYSFW? I am okay with this disabled as well.
+What is "pvs"?
 
-> +		};
->  	};
->  
->  	wkup_i2c0: i2c@2b200000 {
-> -- 
-> 2.42.0
+> +
+> +          The qcom-cpufreq-nvmem driver will read all these values
+> +          and assign the correct named property.
 
--- 
-Best regards,
-Dhruva Gole <d-gole@ti.com>
+Specific driver details don't belong in binding. If there's some detail 
+or requirement of all consumers, then that is fine here.
+
+> +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
+
+The common binding already defines the type. Drop.
+
+> +        minItems: 1
+> +        maxItems: 8   # Should be enough regulators
+
+Does this really vary from 1 to 8 entries? Looks like copy-n-paste.
+
+> +        items:
+> +          minItems: 1
+> +          maxItems: 3
+
+Do you really need to support both single voltage and <nom min max> 
+forms?
+
+Rob
