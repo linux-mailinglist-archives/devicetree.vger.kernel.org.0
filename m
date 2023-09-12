@@ -2,145 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A86279D1CA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 15:10:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C13C479D1E9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 15:17:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235141AbjILNKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 09:10:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44282 "EHLO
+        id S235447AbjILNRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 09:17:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232646AbjILNKX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 09:10:23 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1F5C10CA
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 06:10:19 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-5280ef23593so6752789a12.3
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 06:10:19 -0700 (PDT)
+        with ESMTP id S232331AbjILNRg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 09:17:36 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98E4810CB
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 06:17:32 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-31c3df710bdso5116945f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 06:17:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1694524218; x=1695129018; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694524651; x=1695129451; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bkg4dOxircu0CypR4iVJaC4UA5MgleI1a7GPOXfeFc0=;
-        b=e8xVoYnNoPWWEOhgclw8Xn+E5HMqVmPzPy+iT/2nOtMUw9RO+kHFoxe5FAejyWFyuJ
-         wZHcgUnu2/XqrvpfKhuRpMT+q/ZMtTdOCa8fBVkKvrTSLK/jEn1RhvHNRv5zuRPkRI+K
-         0lFbkihY37FtgN34IHa09l395N2w3mfmVc0J3P16nz2jnLqwvMNUMUdhrgL3rfwZJejy
-         M/qY8ywu0DzNHTMfnKvBs8G6eCIGyy6Mv7LRfC3CoYUZA098euFUs2cqwSddvtyQZ9be
-         l8aCK2vaf4ii1HUrEwHR4r97MBPQwVrwTOf4uo544pYHQ6P8J+H38lilCS8QbpxgVdqt
-         VnIA==
+        bh=eVCcTaSbY9rwe8V8Di2XAdZ+iClnwLVfIq169SCBZEA=;
+        b=PR7iuU0BYQQmEucjMMPUMWOjrTO6TWwQLH5Xt0cD7Qk7fICKPMQsV5DbG7c5cqiMSg
+         CFTiWb+KWBWULdvTgZ7Wwxr2Zx0Ya0RvIaZrjry+2oHHmWf94k3kPeiFWld29V9j89+r
+         rjdAfuMDuOvn6irhywEYX4gHzgEkkDCj/9jC2/06hVMGgtCf+ZK7r1HqZM7stPaAgvqT
+         /MFt3AMZn8XeFH9Oc2IY0qyJdtH9z1U4FEYTtagImaZKBtwFI4DQWkIm1lo1q3JIkiWd
+         sJuLZiAnYgwwwwaYfZnEw8jAwxlYeqakp0Ky5qVUbLUHTtmN7kTKIPC6Hct3RRlzSwO3
+         u5MA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694524218; x=1695129018;
+        d=1e100.net; s=20230601; t=1694524651; x=1695129451;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bkg4dOxircu0CypR4iVJaC4UA5MgleI1a7GPOXfeFc0=;
-        b=LLvTipvHuh32kVqjYfHJY9LdWjswdjP2c9/PRmvUAamjP0b+wBOcgi4BAtAMMW/ND3
-         GrtZ/0fwqTi1QOsgVgGm6+APzfJeF8Rso75s/6OKiSPUIJXxMoW5My2DwrlGtjpfK26S
-         QCPDna7mp4/sTB2ZMTUPmFHU+LmlzEAATA4eyNvq1wPOp/iiIWszN+3s7ezbVAQb70A0
-         v0FSX2mLBhu1ekAKCo18+qP+VTehw5npIXGkCONRsk1PiFw3Bp0VafJiQcbOeiDrbIKo
-         XMO7TKi1cK5pv4gNz94bt4f4oYEuFZEfWF7T1SIu3rxAsHoBXOzy+78FOMcePCaq9hHv
-         joMA==
-X-Gm-Message-State: AOJu0YypfQaRn0VdBTuy+rnSiiG1unrntxqRYpAAs3DDhe7Rh5NlN/W+
-        X7rwZuVED2adighWMn1XUOELzg==
-X-Google-Smtp-Source: AGHT+IF9FtG/P/CA2bdUyaN9tNAyaXDTWKcSZgO8Knq6251cqFC3kMveGTT42yqBJk4qwEUbkIX6tg==
-X-Received: by 2002:a17:907:2cc9:b0:994:577:f9dd with SMTP id hg9-20020a1709072cc900b009940577f9ddmr9981438ejc.9.1694524218002;
-        Tue, 12 Sep 2023 06:10:18 -0700 (PDT)
-Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id v14-20020a170906338e00b00992b1c93279sm6758341eja.110.2023.09.12.06.10.16
+        bh=eVCcTaSbY9rwe8V8Di2XAdZ+iClnwLVfIq169SCBZEA=;
+        b=STAZ68Yl+QqQfDnmwLRE2vgHUylyhLmBeP7du7hybFg8P3YcuRAKiFmRYWir1Af970
+         vCXiM3fhLq1MLGNlwHsPll+ESdaIYKTzWRI8ZgxMWQyTDGvqgRokQCsv7LlDcLjkdNHa
+         jfqZZZWLpv+tEmeEzZoXaueJPzPIZ/Xe+twc/HCpaYt5y0nzXWjx68ppsbmdCxZ3VufU
+         g9FtuIqvJhUc2JrPj5cJEHHafS6KXa0obHUkkmxEPDDvsu3+BfrRYnwXZC1+WjDrXriU
+         gkPMcGQPtVw/oMGI62zkZEoQPNvxaPVYQwG7lnPBNcM29RP8uee4HiVUxyUST+Rr7+7V
+         9eEA==
+X-Gm-Message-State: AOJu0YznHPpQLpyV0VghJ0LHBW79MGsaT3fqk0vwFGAQj7BibMiX933j
+        HWfpaBVm8LjH8dVspyBX1b3S0g==
+X-Google-Smtp-Source: AGHT+IFHrdYQ+Sq9vpHXLwlvE6jWB4jziFsIr4mUbMR721FEezxCHK3S5u+XI12b+yFvlUmuc3bs1Q==
+X-Received: by 2002:a5d:69c3:0:b0:319:74b5:b67d with SMTP id s3-20020a5d69c3000000b0031974b5b67dmr9932380wrw.66.1694524650901;
+        Tue, 12 Sep 2023 06:17:30 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id z2-20020a5d4c82000000b0031aca6cc69csm12859647wrs.2.2023.09.12.06.17.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Sep 2023 06:10:17 -0700 (PDT)
-Message-ID: <4c99c180-3b79-6aef-6ff2-d430e575957d@baylibre.com>
-Date:   Tue, 12 Sep 2023 15:10:16 +0200
+        Tue, 12 Sep 2023 06:17:30 -0700 (PDT)
+Message-ID: <439bf5eb-c146-2f67-1d64-4efa100ee85a@linaro.org>
+Date:   Tue, 12 Sep 2023 15:17:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [RESEND PATCH] arm64: dts: mediatek: Fix "status" values
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh@kernel.org>, soc@kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-References: <20230804225813.12493-1-robh@kernel.org>
- <f8759d51-f808-8082-ceaf-6c6dcaebe2d9@collabora.com>
+Subject: Re: [RFC PATCH net-next 6/6] microchip: lan865x: add device-tree
+ support for Microchip's LAN865X MACPHY
+To:     Parthiban.Veerasooran@microchip.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        Horatiu.Vultur@microchip.com, Woojung.Huh@microchip.com,
+        Nicolas.Ferre@microchip.com, UNGLinuxDriver@microchip.com,
+        Thorsten.Kummermehr@microchip.com, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, corbet@lwn.net, Steen.Hegelund@microchip.com,
+        rdunlap@infradead.org, horms@kernel.org, casper.casan@gmail.com,
+        andrew@lunn.ch
+References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
+ <20230908142919.14849-7-Parthiban.Veerasooran@microchip.com>
+ <feb8eaeb-954c-416d-6e30-acb4b92764e0@linaro.org>
+ <f429ea93-9cb2-8869-a98d-fb55161cf880@microchip.com>
 Content-Language: en-US
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <f8759d51-f808-8082-ceaf-6c6dcaebe2d9@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <f429ea93-9cb2-8869-a98d-fb55161cf880@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 12/09/2023 14:54, AngeloGioacchino Del Regno wrote:
-> Il 05/08/23 00:58, Rob Herring ha scritto:
->> The defined value for "status" is "disabled", not "disable".
+On 12/09/2023 14:15, Parthiban.Veerasooran@microchip.com wrote:
+> Hi Krzysztof,
+> 
+> Thank you for reviewing the patch.
+> 
+> On 10/09/23 4:25 pm, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
 >>
->> Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
->> Reviewed-by: AngeloGioacchino Del Regno 
->> <angelogioacchino.delregno@collabora.com>
->> Signed-off-by: Rob Herring <robh@kernel.org>
->> ---
->> Arnd, Please take this directly I guess. I think Mediatek maintainership
->> needs some help. Maybe AngeloGioacchino should be co-maintainer as
->> that's the only response I seem to be getting.
+>> On 08/09/2023 16:29, Parthiban Veerasooran wrote:
+>>> Add device-tree support for Microchip's LAN865X MACPHY for configuring
+>>> the OPEN Alliance 10BASE-T1x MACPHY Serial Interface parameters.
+>>
+>> Please use subject prefixes matching the subsystem. You can get them for
+>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+>> your patch is touching.
+> Ok sure, so it will become like,
 > 
-> Sorry but I've seen this message just now as I've been on holiday in 
-> August.
+> dt-bindings: net: add device-tree support for Microchip's LAN865X MACPHY
 > 
-> Thing is, the MediaTek scene is starting to see more and more code, 
-> bringing
-> an obvious increase in the amount of reviews to be done and in the required
-> efforts to maintain the MTK bits - and we will possibly (hopefully) see 
-> even
-> more of that.
-> 
-> If Matthias needs/wants a co-maintainer for MediaTek I'm here and I will be
-> proud to become one.
-> 
-> Cheers,
-> Angelo
-> 
+> I will correct it in the next revision.
 
-I started reviewing MediaTek patches for some months now, so I'm still 
-new. From my PoV, I'm agree with Angelo when he say the amount of patch 
-is increasing. I support Angelo if he wants to become a co-maintainer 
-and continue to do my best to review patches. ;)
+"device-tree support for " is redundant, drop
 
 >>
->> I think for future .dts patches I will not bother splitting them up by
->> sub-arch because it's a pain to chase down the maintainers to apply
->> stuff in a timely manner. /rant
+>>>
+>>> Signed-off-by: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
+>>> ---
+>>>   .../bindings/net/microchip,lan865x.yaml       | 54 +++++++++++++++++++
+>>>   MAINTAINERS                                   |  1 +
+>>>   2 files changed, 55 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/net/microchip,lan865x.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/microchip,lan865x.yaml b/Documentation/devicetree/bindings/net/microchip,lan865x.yaml
+>>> new file mode 100644
+>>> index 000000000000..3465b2c97690
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/net/microchip,lan865x.yaml
+>>> @@ -0,0 +1,54 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/net/microchip,lan865x.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Microchip LAN8650/1 10BASE-T1S MACPHY Ethernet Controllers
+>>> +
+>>> +maintainers:
+>>> +  - Parthiban Veerasooran <parthiban.veerasooran@microchip.com>
+>>> +
+>>> +description: |
+>>> +  Device tree properties for LAN8650/1 10BASE-T1S MACPHY Ethernet
 >>
->>   arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
+>> Drop "Device tree properties for" and instead describe the hardware.
+> sure, will do it.
 >>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts 
->> b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
->> index e4605d23fdc8..86cedb0bf1a9 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
->> +++ b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
->> @@ -585,11 +585,11 @@ &pwrap {
->>   };
->>   &sata {
->> -    status = "disable";
->> +    status = "disabled";
->>   };
->>   &sata_phy {
->> -    status = "disable";
->> +    status = "disabled";
->>   };
->>   &spi0 {
-> 
-> 
+>>> +  controller.
+>>> +
+>>> +allOf:
+>>> +  - $ref: ethernet-controller.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>
+>> No need for items. Just enum.
+> Ok noted.
+>>
+>>
+>>> +      - enum:
+>>> +          - microchip,lan865x
+>>
+>> No wildcards in compatibles.
+> Yes then we don't need enum also isn't it?
 
--- 
-Regards,
-Alexandre
+I don't see correlation between these two. Please read the writing
+bindings guidelines.
+
+
+>>
+>> Missing blank line.
+> Ok will add it.
+>>
+>>
+>>
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  local-mac-address: true
+>>> +  oa-chunk-size: true
+>>> +  oa-tx-cut-through: true
+>>> +  oa-rx-cut-through: true
+>>> +  oa-protected: true
+>>
+>> What are all these? Where are they defined that you skip description,
+>> type and vendor prefix?
+> Ok missed it. Will do it in the next revision.
+
+No, drop them or explain why they are hardware properties.
+
+>>
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    spi {
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +
+>>> +        ethernet@1{
+>>
+>> Missing space
+> Ok will add it.
+>>
+>>> +            compatible = "microchip,lan865x";
+>>> +            reg = <1>; /* CE0 */
+>>
+>> CE0? chip-select? What does this comment mean in this context?
+> Yes it is chip-select. Will add proper comment.
+
+Why? isn't reg obvious?
+
+Best regards,
+Krzysztof
+
