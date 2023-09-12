@@ -2,96 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AAD679C73C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 08:55:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBEDC79C743
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 08:57:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230378AbjILGzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 02:55:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53704 "EHLO
+        id S230441AbjILG5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 02:57:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230296AbjILGzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 02:55:39 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6487E76
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 23:55:35 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-99c3c8adb27so665065066b.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 23:55:35 -0700 (PDT)
+        with ESMTP id S230296AbjILG5D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 02:57:03 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E314EE76
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 23:56:59 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-52a4737a08fso6588501a12.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 23:56:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694501734; x=1695106534; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694501818; x=1695106618; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3UdEjw89xtRW8XyxN513r2SYC0QheMnj/7RDlqM7y9k=;
-        b=mwjOOI1Qf3DtBYG8/oMWgdQfTU2PgD8sUuYAeMrdUF7bX+t3OZl4Q0kGqSbJLwMUGu
-         jILVc6UVYOFkyRn8vS7xDQEwKnWs4vo2gZzWrDyk9zvET65PKP+OxfOYS2L9Ouw1UB/T
-         aBlPgVrxTVViVjYhSdod17q5EuF5ilWp35AJEuXTW4tVJA+qwSLmwKeeg2CiPR0Sbg1X
-         H0DcGy5qMQSmA7hmzmvZRzcukzxnJR+8Z5imAR0gJysfL/CVpp/9muOuW+xSZdNVQoVR
-         wkqxSSHizLFHF/Sv70FbnFV3MZ/aoKfHOl6Mr+q+2YCYAc4VSd817lOMFGNglMq4eCv3
-         fRLA==
+        bh=JdwS3Dp8UxVxbTR5dihAC6rDZGiq3O8yNGuM15TcGAE=;
+        b=TRsf19W8ST8jv1aX6A5srf5WvAlS+N5vgvMr9x8jTIgK5kZ7TsZDjuSf5kMZ9xDRv7
+         mnZLqMtZm699jBcwjGMo/S6BjegIVDxKxYzjgG/NZr3RYtOBxdauuG5ycmPmxxwseIAO
+         TTuWV3pJ8KpQTN9nkdQCS/CHPQrFHvwGVxWS7Uk+wNDuybbkAA9nJ/jEYOqBFNbdqc+G
+         bRTYI5lYwE0ejozBs/OSWhHJ4rWdxHKeGUvAqXOqQe7shjIMA3+yLOQL+gq+MTxQFQsf
+         QtzS+EPEx9II+ZYgWol91MvwCC4VLfZu4iqU6MBdEdZ0WCnzOhzDbTjuYMYweeCDpn5P
+         FLYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694501734; x=1695106534;
+        d=1e100.net; s=20230601; t=1694501818; x=1695106618;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3UdEjw89xtRW8XyxN513r2SYC0QheMnj/7RDlqM7y9k=;
-        b=mXW/etaxA/OWib9D0J799x6II5ALYwe8nRav2bpTP+fBC9+mJOd/6aRRo4bWUTGkk2
-         UxFSwO0bhv9Rv+C/yA0IOFTnJ9qHMNvyQC/UnS1VtvvtnKs/Su9vPFV4j7/z+So+nL5r
-         706iNsK9EuBh0vxigmvXfPZ0JT4e1UIgUU7S7o6MjWKL+rhelG9Da5pY2cuve+xtoGNc
-         rcCDV1L2du2PybkFoJZbCNV+B3ZKMwpm0HeeTt1N8/9wwp/q3Gb9Ln5xPTMsdu4w9IFu
-         SFi594cIVRIOVy/XAMufHNoZTzXPenudh03VwKGJYZ8+txzgvUnwrFCJ3aCOE9+S0nuH
-         w3zA==
-X-Gm-Message-State: AOJu0Yydr/mi38CFfzldQI2vI5VoNwXaFmRgM7TTCHsXjavRMfolc6TC
-        y1ObCYbKELNdaFYygrLAxx067w==
-X-Google-Smtp-Source: AGHT+IFcuy18lLCYg37sLw9dN4gufAkL/iLkcLMRlzH6Im91UhNina1XwBw8LssvrESeml35trGiUg==
-X-Received: by 2002:a17:906:8a54:b0:9a1:e8c0:7e2e with SMTP id gx20-20020a1709068a5400b009a1e8c07e2emr9747485ejc.14.1694501734263;
-        Mon, 11 Sep 2023 23:55:34 -0700 (PDT)
+        bh=JdwS3Dp8UxVxbTR5dihAC6rDZGiq3O8yNGuM15TcGAE=;
+        b=KzW+lZC2PniPmmddVFBWUCgy2f3YqH9ybbFXleZQKesfJQUpzBBtB0L00bDLOzl7PF
+         fu7R04udM0m1jFqhIWeC1yX5O4e24w3AJLYaYOAs6tNBPyvaCXW8vzwgzAqExoCEccnT
+         kLBacjtGXkykNPUVKCKxXdT8H51f7i8PhKio9keykejAeXJt8h9k2CQ9sdb6ovZs9oIX
+         8nAfx5/rXBJcXv1p1SbqyupDMkpxbqA/m80fEoqXQGd1SIFpS7ay2xAWotnh3bnAd3cW
+         wCFUwL8jJAboBq9/v4YhAaVcj1xcBLJOuwzWtywEq1lhubJV/De5nvEpNEjTEi8X6j+4
+         H+BQ==
+X-Gm-Message-State: AOJu0Yz8WE+StFllswToiZ25nOdMJ7UQDu2IKeE4irGPZ1Rc3ijPkr5j
+        tC+DOCRNUrgfNSifZs82sHQZHw==
+X-Google-Smtp-Source: AGHT+IGsHcqBRbU4/A48OeTmm+oTiQrJ8KjLOOUBjhyErBnz1SVJiC4AbVuxvSYGLFoOD64uPIvzbg==
+X-Received: by 2002:a17:906:2246:b0:9a1:f3a6:b906 with SMTP id 6-20020a170906224600b009a1f3a6b906mr10980386ejr.36.1694501818448;
+        Mon, 11 Sep 2023 23:56:58 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id a22-20020a1709064a5600b00992ca779f42sm6377184ejv.97.2023.09.11.23.55.32
+        by smtp.gmail.com with ESMTPSA id n11-20020a170906118b00b009930042510csm6310504eja.222.2023.09.11.23.56.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Sep 2023 23:55:33 -0700 (PDT)
-Message-ID: <42d4878a-4574-377e-e307-0dbef2354aa9@linaro.org>
-Date:   Tue, 12 Sep 2023 08:55:31 +0200
+        Mon, 11 Sep 2023 23:56:57 -0700 (PDT)
+Message-ID: <06a007ad-ab6b-2ed0-8f70-6837680c8684@linaro.org>
+Date:   Tue, 12 Sep 2023 08:56:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [RFC PATCH 8/8] dt-bindings: display: panel: add Fascontek
- FS035VG158 panel
+Subject: Re: [PATCH 2/2] dt-bindings: iio: hmc425a: add entry for HMC540S
 Content-Language: en-US
-To:     John Watts <contact@jookia.org>
-Cc:     dri-devel@lists.freedesktop.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+        Conor Dooley <conor@kernel.org>,
+        "Cusco, Ana-Maria" <Ana-Maria.Cusco@analog.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jagan Teki <jagan@edgeble.ai>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230911090206.3121440-1-contact@jookia.org>
- <20230911090206.3121440-9-contact@jookia.org>
- <e22e61e7-02b1-8127-888d-e470838f4a18@linaro.org> <ZP7il27e9cExVWaL@titan>
- <c4d89d97-f8d4-da2e-dea9-6c054cf07eb3@linaro.org> <ZP9Eoh06Sirl_97l@titan>
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230816110906.144540-1-ana-maria.cusco@analog.com>
+ <20230816110906.144540-2-ana-maria.cusco@analog.com>
+ <20230816-stoop-exonerate-148c7bdc01c2@spud>
+ <SN7PR03MB7132732C9DB517378897DADA8EF1A@SN7PR03MB7132.namprd03.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZP9Eoh06Sirl_97l@titan>
+In-Reply-To: <SN7PR03MB7132732C9DB517378897DADA8EF1A@SN7PR03MB7132.namprd03.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/09/2023 18:47, John Watts wrote:
-> On Mon, Sep 11, 2023 at 01:49:39PM +0200, Krzysztof Kozlowski wrote:
->> If the other panel has exactly the same case, then yes, you can do like
->> this. But it depends on the bindings - to which ones do you refer as
->> your tmeplate?
+On 12/09/2023 08:36, Hennerich, Michael wrote:
 > 
-> Documentation/devicetree/bindings/display/panel/leadtek,ltk035c5444t.yaml
+> 
+>> -----Original Message-----
+>> From: Conor Dooley <conor@kernel.org>
+>> Sent: Mittwoch, 16. August 2023 16:37
+>> To: Cusco, Ana-Maria <Ana-Maria.Cusco@analog.com>
+>> Cc: Lars-Peter Clausen <lars@metafoo.de>; Hennerich, Michael
+>> <Michael.Hennerich@analog.com>; Jonathan Cameron <jic23@kernel.org>;
+>> Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+>> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
+>> <conor+dt@kernel.org>; linux-iio@vger.kernel.org;
+>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+>> Subject: Re: [PATCH 2/2] dt-bindings: iio: hmc425a: add entry for HMC540S
+>>
+>> [External]
+>>
+>> On Wed, Aug 16, 2023 at 02:09:06PM +0300, Ana-Maria Cusco wrote:
+>>> Added support for HMC540SLP3E broadband 4-bit Silicon IC digital
+>>> attenuator with a 15 dB control range and wide frequency coverage
+>>> (0.1 to 8 GHz).
+>>>
+>>> Signed-off-by: Ana-Maria Cusco <ana-maria.cusco@analog.com>
+>>
+>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Adding missing Signed-off-by tag
+> 
+> Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
 
-The file is indeed serving as poor example.
+Why it is missing? What is the purpose of this adding?
 
 Best regards,
 Krzysztof
