@@ -2,104 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1CD279C5FD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 06:57:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60A6C79C602
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 06:58:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230411AbjILE5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 00:57:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60136 "EHLO
+        id S230242AbjILE6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 00:58:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229697AbjILE4c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 00:56:32 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B10130CB
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 21:53:34 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-52f31fb26e2so3131859a12.3
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 21:53:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1694494413; x=1695099213; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+n7YThP1Pltmyq4edaZuVaHz4mWlqiOuma7OTx2zERo=;
-        b=Y96+ykaxR8m3gCEC7kcxEqChkPv3yYAPmLvRy7jjV2dF0bWyq1KEGs/s2IgQeH4NA1
-         RszZPisosN/9k/i428LBXFlVkQMYsbt5xEB76FNb3PW02aI2xNDiJocO0EwU2meH+Vtp
-         BFV2zR6AY7UDWqW6jtIT4LpEBRrzUsyDWGT2J4EFMpPzEe5AMjH/nn7h/vRH218XVRVB
-         qLrxtp21DY9KJuOxHC08iLmznq8ZehMtQ/P2A/1KO3D5yjGUZgTKMR/ZyYAjEX3eUzMe
-         5lKrkd51rR9NghxCTnZdzr8DTBce1siprfYQmwUDgh8gDlnzQZP0hi0cfdoyw6b72X8l
-         uogg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694494413; x=1695099213;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+n7YThP1Pltmyq4edaZuVaHz4mWlqiOuma7OTx2zERo=;
-        b=jIcyAbnAXnEZvT8N1YIIHGJguQ8TL+nGvZrWdqTBKBaXDXDSVIvTZ5HB0GSrLtTMOG
-         PcBgrkPSBWnzGJDs2uVEI2OpZKTh7ibXHf/ImNC9sv4jCoD9apslH3C/fH5GuqkyFDiy
-         scdo8ilc3hC45enI6p7lvUQqPn1UYPz0G4lwnTGOOF4UtiykEMhBDiPiLvLjcPdgLNLT
-         OD41nwbLDAelEd1ZC31hxH0pziqwoVV5+rxCbhVPL5aA2svfOxo5HGLxoSjGRkjn8+rE
-         k3IA9yLA/cpKGD8YnqNiSCY8GC4etJZWv4FWBmvfTlHRZMD+X9ODzK/PPvjY+gihGuOj
-         jf/w==
-X-Gm-Message-State: AOJu0YwN5rWydWYdPRdZSpciSZod2cSWDwN8Qla/g45asLAaPDHsHn6t
-        8aExCc0AssefA0UsYsaDHhkb1g==
-X-Google-Smtp-Source: AGHT+IE4+aHEa9EXViBj8JUa5dT/DvO7i/hmQPzgNykizZhWvsOZn8AdTIStjI7MBIzcpfdOo5ENgg==
-X-Received: by 2002:a05:6402:759:b0:52e:24fd:50f4 with SMTP id p25-20020a056402075900b0052e24fd50f4mr9040084edy.18.1694494413001;
-        Mon, 11 Sep 2023 21:53:33 -0700 (PDT)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.145])
-        by smtp.gmail.com with ESMTPSA id f21-20020a05640214d500b0051e22660835sm5422415edx.46.2023.09.11.21.53.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Sep 2023 21:53:32 -0700 (PDT)
-From:   Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To:     geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, ulf.hansson@linaro.org,
-        linus.walleij@linaro.org, gregkh@linuxfoundation.org,
-        jirislaby@kernel.org, magnus.damm@gmail.com,
-        catalin.marinas@arm.com, will@kernel.org,
-        prabhakar.mahadev-lad.rj@bp.renesas.com,
-        biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com,
-        arnd@arndb.de, konrad.dybcio@linaro.org, neil.armstrong@linaro.org,
-        nfraprado@collabora.com, rafal@milecki.pl,
-        wsa+renesas@sang-engineering.com
-Cc:     linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH 37/37] arm64: defconfig: enable RZ/G3S (R9A08G045) SoC
-Date:   Tue, 12 Sep 2023 07:51:57 +0300
-Message-Id: <20230912045157.177966-38-claudiu.beznea.uj@bp.renesas.com>
+        with ESMTP id S230304AbjILE6h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 00:58:37 -0400
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78C1F6186
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 21:55:26 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1qfvQV-00040l-B9; Tue, 12 Sep 2023 06:55:03 +0200
+Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ore@pengutronix.de>)
+        id 1qfvQT-005hVm-JP; Tue, 12 Sep 2023 06:55:01 +0200
+Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.96)
+        (envelope-from <ore@pengutronix.de>)
+        id 1qfvQS-007owG-2z;
+        Tue, 12 Sep 2023 06:55:00 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Eric Dumazet <edumazet@google.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Arun Ramadoss <arun.ramadoss@microchip.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        UNGLinuxDriver@microchip.com,
+        "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        devicetree@vger.kernel.org
+Subject: [PATCH net-next v4 0/2] net: dsa: microchip: add drive strength support 
+Date:   Tue, 12 Sep 2023 06:54:57 +0200
+Message-Id: <20230912045459.1864085-1-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+changes v4:
+- integrate microchip feedback to the ksz9477_drive_strengths comment.
+- add Reviewed-by: Rob Herring <robh@kernel.org>
 
-Enable config flag for Renesas RZ/G3S (R9A08G045) SoC.
+changes v3:
+- yaml: use enum instead of min/max
+- do not use snprintf() on overlapping buffer.
+- unify ksz_drive_strength_to_reg() and ksz_drive_strength_error(). Make
+  it usable for KSZ9477 and KSZ8830 variants.
+- use ksz_rmw8() in ksz9477_drive_strength_write()
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+changes v2:
+- make it work on all know KSZ* variants except of undocumented LAN*
+  switches
+- add io-drive-strength compatible for ksz88xx chips
+- test exact drive strength instead of nearest closest.
+- add comment and refactor the code
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 5315789f4868..f597ae20959c 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1335,6 +1335,7 @@ CONFIG_ARCH_R8A774B1=y
- CONFIG_ARCH_R9A07G043=y
- CONFIG_ARCH_R9A07G044=y
- CONFIG_ARCH_R9A07G054=y
-+CONFIG_ARCH_R9A08G045=y
- CONFIG_ARCH_R9A09G011=y
- CONFIG_ROCKCHIP_IODOMAIN=y
- CONFIG_ROCKCHIP_PM_DOMAINS=y
+Oleksij Rempel (2):
+  dt-bindings: net: dsa: microchip: Update ksz device tree bindings for
+    drive strength
+  net: dsa: microchip: Add drive strength configuration
+
+ .../bindings/net/dsa/microchip,ksz.yaml       |  20 ++
+ drivers/net/dsa/microchip/ksz8795_reg.h       |  14 -
+ drivers/net/dsa/microchip/ksz9477_reg.h       |  13 -
+ drivers/net/dsa/microchip/ksz_common.c        | 309 ++++++++++++++++++
+ drivers/net/dsa/microchip/ksz_common.h        |  20 ++
+ 5 files changed, 349 insertions(+), 27 deletions(-)
+
 -- 
 2.39.2
 
