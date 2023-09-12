@@ -2,121 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36BE079C7B0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 09:07:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0211279C7C8
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 09:12:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231407AbjILHHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 03:07:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44696 "EHLO
+        id S231316AbjILHMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 03:12:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231313AbjILHHL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 03:07:11 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C701E79
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 00:07:07 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3ff7d73a6feso55681485e9.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 00:07:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694502426; x=1695107226; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vBDJ7vsvnt66EwbjvTvsZHvz9TIcCrUT8XO9mcHsanE=;
-        b=HuHJgkW3LgASLygXjE9BCfnP1gxEnUAv0Wq8guHbNHPcs3Jz0mnAvO1s5Ex1Fz6nRZ
-         6twt9tIwide38DK2Fk5YPx157RQll4wRIpRP9lGGJKGCYjgDyi+AKky71TYpSqdIGcvi
-         ukiTuwqchyu2W8HoPry+15kCOoPArpCfJz2nTqI//ZGIZw/ZlQcVDvEkAmBJBXR4zKap
-         qgSktvKIyLBP7tHp+5Xk/++jROgCQzFFsE921GsYvSLymD4Iq2q3qG0URJhjtDW/sUNd
-         aSg5JYX6dL8SPiG1wnUUEVENbpYKNi82fn0Nmb9VHWc1i3yqfeAahdloTLyi3sJ7pCHg
-         0rMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694502426; x=1695107226;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vBDJ7vsvnt66EwbjvTvsZHvz9TIcCrUT8XO9mcHsanE=;
-        b=OgF46wTyBFyRONe+shw1v3pe6nXhS/lK30VDN3FcQyZ1RSNwqDNSsKFM8p1dGSY23i
-         hD4OHvFDEmkwl4lTehx416KElf2aJlAOAcKelUCU77yd5R9LjoI1Ctj5Nim4N413wmWb
-         OeaO1m9DpUyWTrLYvwruCMU3D0fxFT/8fRh/sqlwooQWxkpt8JpbJL9+nZVyL45vDMSp
-         3hmEF3SsWBfvUmUPbEvCr7bht2HdWaDPjOWiIpbX4n6kYofIzMAJMW+oraMnPt0mRkfZ
-         zecSXpJ1F1TQwiF9hTmlZs5aU+w66+/qxTYH3vW1aOlInU73m60ShBswDYvZyuc5spB8
-         cbdg==
-X-Gm-Message-State: AOJu0Yzyd4cW3y7RwDLvllMAHhqaPtyxQvcTJYUu4iD5dw0swwB7P4by
-        DbAcf1plK80NMIqamFnbaeW74A==
-X-Google-Smtp-Source: AGHT+IF32sHUwvxUn8ZMrRy0ut1goEP0q421iwFV0dTEcbzgZriGn/rEZodx0dHeXvz3gW6POJtf+A==
-X-Received: by 2002:a05:600c:3b06:b0:403:8fb9:8d69 with SMTP id m6-20020a05600c3b0600b004038fb98d69mr3388514wms.25.1694502425774;
-        Tue, 12 Sep 2023 00:07:05 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id a2-20020a05600c224200b003fe0a0e03fcsm15150292wmm.12.2023.09.12.00.07.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Sep 2023 00:07:05 -0700 (PDT)
-Message-ID: <67de5706-d966-dd71-85c3-c95bc1b72733@linaro.org>
-Date:   Tue, 12 Sep 2023 09:07:02 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mp: add reserve-memory nodes for DSP
-Content-Language: en-US
-To:     "Iuliana Prodan (OSS)" <iuliana.prodan@oss.nxp.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        with ESMTP id S230182AbjILHMe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 03:12:34 -0400
+Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A973BB9;
+        Tue, 12 Sep 2023 00:12:30 -0700 (PDT)
+Received: from localhost.localdomain (unknown [115.110.84.132])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 696BF160123;
+        Tue, 12 Sep 2023 09:12:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1694502747;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=n08BMQhWoXfOcyX10Kl8b5WelZqQa14Kklhs1S69gIM=;
+        b=LCxncamfNjW/SPgCD7CD7kaEjC4ZBo4CTU0VVGhOQ5GMztlQxaK7DMBmybzAT8XjIvze/i
+        0dXiBy+ehr540xrqxMceSKpdMvaZqNufR6WJgHpk+Y+KnYxZkMTJqGCWq+6d/0TXX6q4QH
+        sy0eRTmeE9u7+IOHiLoGSCGt8a4HQuA=
+From:   David Heidelberg <david@ixit.cz>
+To:     cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        "S.J. Wang" <shengjiu.wang@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Mpuaudiosw <Mpuaudiosw@nxp.com>,
-        Iuliana Prodan <iuliana.prodan@nxp.com>
-Cc:     linux-imx <linux-imx@nxp.com>, linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        LnxRevLi <LnxRevLi@nxp.com>
-References: <20230911224452.15739-1-iuliana.prodan@oss.nxp.com>
- <20230911224452.15739-3-iuliana.prodan@oss.nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230911224452.15739-3-iuliana.prodan@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Abel Vesa <abel.vesa@linaro.org>
+Cc:     David Heidelberg <david@ixit.cz>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] arm64: dts: qcom: sdm845: Fix PSCI power domain names
+Date:   Tue, 12 Sep 2023 12:42:03 +0530
+Message-Id: <20230912071205.11502-1-david@ixit.cz>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2023 00:44, Iuliana Prodan (OSS) wrote:
-> From: Iuliana Prodan <iuliana.prodan@nxp.com>
-> 
-> Add the reserve-memory nodes used by DSP when the rpmsg
-> feature is enabled.
-> These can be later used in a dsp node, like:
-> dsp: dsp@3b6e8000 {
-> 	compatible = "fsl,imx8mp-dsp";
-> 	reg = <0x3b6e8000 0x88000>;
-> 	mbox-names = "tx0", "rx0", "rxdb0";
-> 	mboxes = <&mu2 2 0>, <&mu2 2 1>,
-> 		<&mu2 3 0>, <&mu2 3 1>;
-> 	memory-region = <&dsp_vdev0buffer>, <&dsp_vdev0vring0>,
-> 		<&dsp_vdev0vring1>, <&dsp_reserved>;
-> 	status = "okay";
+The original commit hasn't been updated according to
+refactoring done in sdm845.dtsi.
 
-Drop this example from commit msg, useless and not really correct.
+Fixes: a1ade6cac5a2 ("arm64: dts: qcom: sdm845: Switch PSCI cpu idle states from PC to OSI")
+Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+v2:
+ - removed power-domains from apps_rsc
 
-> };
-> 
-> Signed-off-by: Iuliana Prodan <iuliana.prodan@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index cc406bb338fe..eedc1921af62 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -210,6 +210,18 @@
->  		dsp_reserved: dsp@92400000 {
->  			reg = <0 0x92400000 0 0x2000000>;
->  			no-map;
+ arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi | 20 +++++++++++---------
+ 1 file changed, 11 insertions(+), 9 deletions(-)
 
-Please test the patches before sending. This does not build.
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+index 50934d4ab3bc..e0ee91225eec 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+@@ -144,15 +144,15 @@ panel_in_edp: endpoint {
+ };
+ 
+ &psci {
+-	/delete-node/ cpu0;
+-	/delete-node/ cpu1;
+-	/delete-node/ cpu2;
+-	/delete-node/ cpu3;
+-	/delete-node/ cpu4;
+-	/delete-node/ cpu5;
+-	/delete-node/ cpu6;
+-	/delete-node/ cpu7;
+-	/delete-node/ cpu-cluster0;
++	/delete-node/ power-domain-cpu0;
++	/delete-node/ power-domain-cpu1;
++	/delete-node/ power-domain-cpu2;
++	/delete-node/ power-domain-cpu3;
++	/delete-node/ power-domain-cpu4;
++	/delete-node/ power-domain-cpu5;
++	/delete-node/ power-domain-cpu6;
++	/delete-node/ power-domain-cpu7;
++	/delete-node/ power-domain-cluster;
+ };
+ 
+ &cpus {
+@@ -338,6 +338,8 @@ flash@0 {
+ 
+ 
+ &apps_rsc {
++	/delete-property/ power-domains;
++
+ 	regulators-0 {
+ 		compatible = "qcom,pm8998-rpmh-regulators";
+ 		qcom,pmic-id = "a";
+-- 
+2.40.1
 
