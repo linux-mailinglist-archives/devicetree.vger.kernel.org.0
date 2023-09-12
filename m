@@ -2,115 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEA5C79D29C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 15:46:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BC4D79D224
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 15:31:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232965AbjILNqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 09:46:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51046 "EHLO
+        id S235538AbjILNbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 09:31:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235673AbjILNqL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 09:46:11 -0400
-X-Greylist: delayed 916 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 12 Sep 2023 06:46:07 PDT
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30EA910CE
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 06:46:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1694525447; x=1697117447;
-        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=iWF0rOOB3I/RljayAkXK/61YLtNmFVr/fJJqw6FhMuI=;
-        b=FBSnPaojgN9AvOii/36wVFNUjc8Jg4VFqitZlSVx3sAUa5XVUpEXMmXOypkGPIwX
-        ig2ANQoT/Pat5ObGZcsCgEFdFk/3PGnm1UUDo23urciQEd5J9WoXHKyamU1Kf+Ub
-        a5xrbM+vjDynenTeGb2O0bJ9X2uslfKbpQ/eRZ4L9BM=;
-X-AuditID: ac14000a-6d65670000001e37-e1-650068079156
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (Client did not present a certificate)
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id D6.40.07735.70860056; Tue, 12 Sep 2023 15:30:47 +0200 (CEST)
-Received: from augenblix2.phytec.de (172.25.0.11) by Berlix.phytec.de
- (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Tue, 12 Sep
- 2023 15:31:07 +0200
-From:   Wadim Egorov <w.egorov@phytec.de>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <upstream@lists.phytec.de>
-Subject: [PATCH] arm64: dts: ti: k3-am64: Fix indentation in watchdog nodes
-Date:   Tue, 12 Sep 2023 15:30:36 +0200
-Message-ID: <20230912133036.257277-1-w.egorov@phytec.de>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S235543AbjILNbu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 09:31:50 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3741E10DE
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 06:31:46 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-52f33659d09so3731420a12.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 06:31:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694525504; x=1695130304; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pf7Q0JvYFIlne7PDYjwGZfU3lmXNj3gLNrHRp1Eh2cc=;
+        b=xio4OpqoETQzdxJCXm7wN0Snnu5/5J/4vQykM2uIA52jQtugvlj1ydkG95tgTMwple
+         5eN0B+ZAVXNLgbfrG1Hn0613Ho36gqCXoLabk0wg5n67DMp8bk18KNxv5tnQCX4gmnNv
+         rrDZDQ2T2a6ENPpKvj9g7BvcLLqQfi6XGF23jLeyluTPgsx6CVJgHOl/0qCQtxsUlfqh
+         75/6M5ddCahh4K0htcs3RpOm43WPvtqUZN+K8W9vQvLI2sdRJHQ5iRsm6iANEokQd9qI
+         uzdgQRrPQtYvnDjKcrLGLJZh5XNrHtmU0CWwbLo4JplfmyKyjXLNnygipuzjivRcoWr+
+         +fCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694525504; x=1695130304;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pf7Q0JvYFIlne7PDYjwGZfU3lmXNj3gLNrHRp1Eh2cc=;
+        b=mWSsuy+yvkgDY7xgxwr4bBQ9zpga8aBuX9h7NnBYsA+g3h5zCxHUlc0iT4eGekWkPu
+         /AZiWAg95a5l0mOrWweNHM7BRQ7rL64Zmw9AoW1H2qpP30IpTI6uCKl0t81DfBQ6Srix
+         O7KLC4gsEzauEEGRNhlWzZcQhEwvaHPC+l/Gf9NyydmVDPz6Yvk1nsW+svkzCkWfLpCt
+         6Zerz7WzE/rIuv2Ykt/zkDr9tY8tTjh9/jCCCELyYzX48tvRmtbkhJNg1QLdm+EF7bRO
+         SlA34JFHVRmTe3t4rOqenAzz32Fl5jlwNoFqVdL1elGGKYqRaOY0mEsYSs/APzfG5TM9
+         ZtcQ==
+X-Gm-Message-State: AOJu0YyvJQYVY4ypAYVqbQ+kpf5aBx9mXf8K3UFVkqLjSgvQO10kcEw/
+        ifx+mrAsmpQCdFRqteKI0zP9Aw==
+X-Google-Smtp-Source: AGHT+IHs3WNmvXll913Vtl7VEMAeUTqwDBcvXIxvRE7XHalmFOO8Jj4DA8k5vfr1c5fYL8bYrgKVGg==
+X-Received: by 2002:aa7:cb52:0:b0:52a:46a7:4597 with SMTP id w18-20020aa7cb52000000b0052a46a74597mr11050775edt.33.1694525504563;
+        Tue, 12 Sep 2023 06:31:44 -0700 (PDT)
+Received: from [10.167.154.1] (178235177248.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.248])
+        by smtp.gmail.com with ESMTPSA id j2-20020aa7ca42000000b0052a401d8ef6sm5983830edt.71.2023.09.12.06.31.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Sep 2023 06:31:44 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v2 00/14] Clean up RPM bus clocks remnants
+Date:   Tue, 12 Sep 2023 15:31:38 +0200
+Message-Id: <20230721-topic-rpm_clk_cleanup-v2-0-1e506593b1bd@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [172.25.0.11]
-X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrHLMWRmVeSWpSXmKPExsWyRpKBR5c9gyHVYFO7ssWaveeYLOYfOcdq
-        sfzzbHaLvhcPmS02Pb7GanF51xw2izc/zjJZtO49wm7R/U7d4v/ZD+wOXB6bVnWyedy5tofN
-        Y/OSeo/+7hZWj+M3tjN5fN4kF8AWxWWTkpqTWZZapG+XwJXx/+YntoKHPBU7P9k0MG7m6mLk
-        5JAQMJF43vyLtYuRi0NIYAmTxLnJh5khnCeMEjfPTWcFqWITUJe4s+EbWJWIQDejxMkDy8Cq
-        mAXaGCWePDzADFIlLOAtcez7F3YQm0VAVeLcu8dMIDavgIXEzsOdzBD75CVmXvrODhEXlDg5
-        8wkLiM0MFG/eOpsZwpaQOPjiBZgtBBR/cWk5C0zvtHOvoeaESmz9sp1pAqPALCSjZiEZNQvJ
-        qAWMzKsYhXIzk7NTizKz9QoyKktSk/VSUjcxguJAhIFrB2PfHI9DjEwcjIcYJTiYlUR4Sw79
-        TRHiTUmsrEotyo8vKs1JLT7EKM3BoiTOe7+HKVFIID2xJDU7NbUgtQgmy8TBKdXAaJQju947
-        wN5DXeCYefjs08L238xk+z2Fhb4vuv98yho9g0d/FHKY+1K+HV5wNuzKg/B3+/ZNvCCm/b9r
-        ob9YyOQ51j86A2d3bezfckCJUySkqOpcr9sP1jX2ryvvnbb2V7/HdVOx9dlLq23JW74ZuG3t
-        vLJozf6AiDnTc5IKT+995XXlkaDXPSWW4oxEQy3mouJEAMTaqEdxAgAA
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADpoAGUC/4WNQQrCMBBFr1KyNpJEW8GV95Ai6SRtB2MSJm1RS
+ u/u2Au4+Iv34fFWUTyhL+JarYL8ggVTZDCHSsBo4+AlOmZhlDmpi9FyShlBUn49IDx53sY5S92
+ Z/my1Bae0YLezxcuObISR7TiHwGcm3+N7j91b5hHLlOiztxf9e/9lFi2VhL4BV0NjtKtvAaOld
+ Ew0iHbbti+Y0PxF0AAAAA==
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Alexey Minnekhanov <alexeymin@postmarketos.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        linux-usb@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1694525501; l=2936;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=CvKjOth/TKTTVZAvkrUVTofGQmTgRncGfe147qHke1o=;
+ b=Tci9qXx/tjv8ZOMsqCVXiSQ42Qi3ElBi6aWcjDlQOIk1Sg0zL92juBFDyp074pEuEfUZxjsZE
+ p76V4XQ0yCRAKl1Pb5rneYNsCvWvfQ9Kz0tD4RA1w9DPdhHpBTn6P6q
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use single instead of double tab.
+After the recent cleanups ([1], [2]) some in-tree abusers that directly
+accessed the RPM bus clocks, effectively circumventing and working
+against the efforts of the interconnect framework, were found.
 
-Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+Patches 1-5 drop deprecated references and the rest attempt to stop
+direct bus clock abuses.
+
+Depends on [2].
+
+8996 and 8998 remoteproc changes were not tested, they never worked on
+my Sony phones.
+
+[1] https://lore.kernel.org/linux-arm-msm/20230526-topic-smd_icc-v7-0-09c78c175546@linaro.org/
+[2] https://lore.kernel.org/linux-arm-msm/20230721-topic-icc_bindings-v1-0-93e2bc728fb7@linaro.org/
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 24 ++++++++++++------------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+Changes in v2:
+- Incorporate [3] into the sdm630 patch, add required bindings fixes
+- dt-bindings: remoteproc: qcom,adsp: Remove AGGRE2 clock: Merge entries (krzk)
+- Pick up a-b (krzk)
+- Add "sdm630: Fix USB2 clock-names order"
+- Link to v1: https://lore.kernel.org/r/20230721-topic-rpm_clk_cleanup-v1-0-cf6cd5c621d5@linaro.org
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-index 0df54a741824..ae1e7e064a63 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-@@ -1158,21 +1158,21 @@ ecap2: pwm@23120000 {
- 	};
- 
- 	main_rti0: watchdog@e000000 {
--			compatible = "ti,j7-rti-wdt";
--			reg = <0x00 0xe000000 0x00 0x100>;
--			clocks = <&k3_clks 125 0>;
--			power-domains = <&k3_pds 125 TI_SCI_PD_EXCLUSIVE>;
--			assigned-clocks = <&k3_clks 125 0>;
--			assigned-clock-parents = <&k3_clks 125 2>;
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0xe000000 0x00 0x100>;
-+		clocks = <&k3_clks 125 0>;
-+		power-domains = <&k3_pds 125 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 125 0>;
-+		assigned-clock-parents = <&k3_clks 125 2>;
- 	};
- 
- 	main_rti1: watchdog@e010000 {
--			compatible = "ti,j7-rti-wdt";
--			reg = <0x00 0xe010000 0x00 0x100>;
--			clocks = <&k3_clks 126 0>;
--			power-domains = <&k3_pds 126 TI_SCI_PD_EXCLUSIVE>;
--			assigned-clocks = <&k3_clks 126 0>;
--			assigned-clock-parents = <&k3_clks 126 2>;
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0xe010000 0x00 0x100>;
-+		clocks = <&k3_clks 126 0>;
-+		power-domains = <&k3_pds 126 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 126 0>;
-+		assigned-clock-parents = <&k3_clks 126 2>;
- 	};
- 
- 	icssg0: icssg@30000000 {
+[3] https://lore.kernel.org/linux-arm-msm/20230719073520.2644966-1-alexeymin@postmarketos.org/#t
+
+---
+Konrad Dybcio (14):
+      arm64: dts: qcom: msm8916: Drop RPM bus clocks
+      arm64: dts: qcom: msm8996: Drop RPM bus clocks
+      arm64: dts: qcom: qcs404: Drop RPM bus clocks
+      dt-bindings: arm-smmu: Fix SDM630 clocks description
+      dt-bindings: usb: qcom,dwc3: Fix SDM660 clock description
+      arm64: dts: qcom: sdm630: Drop RPM bus clocks
+      arm64: dts: qcom: msm8939: Drop RPM bus clocks
+      dt-bindings: remoteproc: qcom,adsp: Remove AGGRE2 clock
+      dt-bindings: remoteproc: qcom,msm8996-mss-pil: Remove PNoC clock
+      remoteproc: qcom: q6v5-mss: Remove PNoC clock from 8996 MSS
+      arm64: dts: qcom: msm8998: Remove AGGRE2 clock from SLPI
+      arm64: dts: qcom: msm8996: Remove AGGRE2 clock from SLPI
+      arm64: dts: qcom: msm8996: Remove PNoC clock from MSS
+      arm64: dts: qcom: sdm630: Fix USB2 clock-names order
+
+ .../devicetree/bindings/iommu/arm,smmu.yaml        |  2 +-
+ .../devicetree/bindings/remoteproc/qcom,adsp.yaml  | 20 +-------
+ .../bindings/remoteproc/qcom,msm8996-mss-pil.yaml  |  2 -
+ .../devicetree/bindings/usb/qcom,dwc3.yaml         |  6 +--
+ arch/arm64/boot/dts/qcom/msm8916.dtsi              |  9 ----
+ arch/arm64/boot/dts/qcom/msm8939.dtsi              | 12 -----
+ arch/arm64/boot/dts/qcom/msm8996.dtsi              | 43 ++++++-----------
+ arch/arm64/boot/dts/qcom/msm8998.dtsi              |  5 +-
+ arch/arm64/boot/dts/qcom/qcs404.dtsi               |  9 ----
+ arch/arm64/boot/dts/qcom/sdm630.dtsi               | 55 +++++-----------------
+ drivers/remoteproc/qcom_q6v5_mss.c                 |  1 -
+ 11 files changed, 34 insertions(+), 130 deletions(-)
+---
+base-commit: 66d9573193967138cd12e232d4b5bc2b57e0d1ac
+change-id: 20230721-topic-rpm_clk_cleanup-1b2f4a1acd01
+
+Best regards,
 -- 
-2.25.1
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
