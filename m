@@ -2,120 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00C9F79D158
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 14:45:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2F8379D164
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 14:52:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235364AbjILMp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 08:45:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34896 "EHLO
+        id S235273AbjILMwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 08:52:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235369AbjILMps (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 08:45:48 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC6899F;
-        Tue, 12 Sep 2023 05:45:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1694522740; x=1726058740;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JORVoShSUssYanYhIK2ak04tDR05aXZaMKTmOofr+wI=;
-  b=MAdOONp60NzrnvWf/V1Nj2g1LJHREXPKt4HiVu7cP/vIfsUlF3mBjcpB
-   IvFu4/MSyphL8aztnZ1lFPoIhZcHt4YTGWi1WiNKuCb6lZ2mlLzq7sBS3
-   no957EIYv/Bu82lMNSZaLIFAXWBSM4HRz8ZT5ngyQyPrggm7u97+uTmaO
-   EJmyknjIRurhXgSQu24TbIK1mJzaNLiXeG+7HkbTBn0i00c+i70Zne3uB
-   pTaq7Q2xf1ypXTPiWWBPNslDAzirVOG3H7fZ+s3ROTYAI+5ers1/Rs0Z7
-   nCcqGvwjARNsWmJJbQGiGgxQkf9O6WLettnrsJJdJ0xEH/e5TH069unBa
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="378274607"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; 
-   d="scan'208";a="378274607"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Sep 2023 05:45:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="858797210"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; 
-   d="scan'208";a="858797210"
-Received: from lkp-server02.sh.intel.com (HELO 1e56c5165d33) ([10.239.97.151])
-  by fmsmga002.fm.intel.com with ESMTP; 12 Sep 2023 05:45:37 -0700
-Received: from kbuild by 1e56c5165d33 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qg2lr-0000Nl-0H;
-        Tue, 12 Sep 2023 12:45:35 +0000
-Date:   Tue, 12 Sep 2023 20:45:31 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Gatien Chevallier <gatien.chevallier@foss.st.com>,
-        Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        Lionel Debieve <lionel.debieve@foss.st.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Gatien Chevallier <gatien.chevallier@foss.st.com>
-Subject: Re: [PATCH v2 09/10] hwrng: stm32 - rework power management sequences
-Message-ID: <202309122017.GsJspucF-lkp@intel.com>
-References: <20230911120203.774632-10-gatien.chevallier@foss.st.com>
+        with ESMTP id S232646AbjILMwt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 08:52:49 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D56910D3
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 05:52:45 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-522bd411679so7217145a12.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 05:52:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694523164; x=1695127964; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=u9jJ5YX4xBOqwnaDAA68a0z5gq1OlAA8KPc5IjRYAL0=;
+        b=pIn7SJUnOXtSQvWuIbCHKj39pey4hNMXzHIyzPYNEowM61PRXyaKrSXpv1uGWth42X
+         UNFzO5zlBEoLMIfAPI1IaTbDCH7MthYd05IFGnzo4obOWYgMzsnwsslq/OTrkjnghvN8
+         Eju1n+UCr2y10b4MrZ7ISdLwxdJtMRuCofitmlqS+XGtzz0v0a2nhis8KRDvE8wi1wNg
+         kL/e3AsdvLt2mcDwMoqzp2t/GVk+mhEfN+Wf16WxuHvPO+ScKW5QVSA0pXzWVgbnvH5i
+         x756ahFYuNxwK/inUKMdTyRNuau5LcgOrLelX5JH0rlR9WDzZkZUBxiAIVUOe4G+Y34S
+         2HgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694523164; x=1695127964;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=u9jJ5YX4xBOqwnaDAA68a0z5gq1OlAA8KPc5IjRYAL0=;
+        b=XNSDKKS5okzV4BOSGaZtoLHR5WkcsygmuswkfA5Lfzai6hUChC1I+dcxnKhHhRcy8I
+         Ik87X3f7vPDiCXzbQF2X4PJ7Nvdv09IDlRMjgl+NVUs08j8NOqcPEugyX3fNWje9i/8f
+         YXkKBIrrmZOAptxzwZoRikpI6p9dPCz/JhMF35zB2NrD8en5/3RAApzU2/wU5HPHhpWF
+         Pb0hMY/BMUO+AtQbwvzIXHTJoQ1sz/44F1YlPPZYODx468TzY47JtbTDz6yyi72sRjVZ
+         q7BZD+rceGfg8iVlKvtr7bd0CRQ3vT9MUEF4yKM9i3Oe7WzynVQ+aHabervFwkW1lPGr
+         FhdA==
+X-Gm-Message-State: AOJu0YxM//erkbML95gkv4EQ3aCdnZsag97HCmetkNW0+cdo10A3nqTj
+        Q2pZ6RaPIEMSWx3giV2OW6+vUQ==
+X-Google-Smtp-Source: AGHT+IH7nhx4jfbGgITc9GdSYQHAbQFjAg2RV99LbZV7dHCx51LUIjf5t0mtTdLSyctO699x7bk/HA==
+X-Received: by 2002:a05:6402:1bc1:b0:52f:bd62:2219 with SMTP id ch1-20020a0564021bc100b0052fbd622219mr25440edb.37.1694523164009;
+        Tue, 12 Sep 2023 05:52:44 -0700 (PDT)
+Received: from [192.168.37.232] (178235177248.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.248])
+        by smtp.gmail.com with ESMTPSA id r18-20020aa7cfd2000000b00527e7087d5dsm5807381edy.15.2023.09.12.05.52.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Sep 2023 05:52:43 -0700 (PDT)
+Message-ID: <50d7a478-5d4e-40fc-9c1b-e4f99b17a11d@linaro.org>
+Date:   Tue, 12 Sep 2023 14:52:41 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230911120203.774632-10-gatien.chevallier@foss.st.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 09/10] drm/msm/a6xx: Add A740 support
+Content-Language: en-US
+To:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+References: <20230628-topic-a7xx_drmmsm-v3-0-4ee67ccbaf9d@linaro.org>
+ <20230628-topic-a7xx_drmmsm-v3-9-4ee67ccbaf9d@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
+ BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
+ HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
+ TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
+ zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
+ MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
+ t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
+ UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
+ aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
+ kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
+ Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
+ R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
+ BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
+ yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
+ xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
+ 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
+ GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
+ mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
+ x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
+ BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
+ mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
+ Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
+ xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
+ AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
+ 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
+ jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
+ cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
+ jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
+ cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
+ bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
+ YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
+ bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
+ nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
+ izWDgYvmBE8=
+In-Reply-To: <20230628-topic-a7xx_drmmsm-v3-9-4ee67ccbaf9d@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Gatien,
+On 23.08.2023 14:56, Konrad Dybcio wrote:
+> A740 builds upon the A730 IP, shuffling some values and registers
+> around. More differences will appear when things like BCL are
+> implemented.
+> 
+> adreno_is_a740_family is added in preparation for more A7xx GPUs,
+> the logic checks will be valid resulting in smaller diffs.
+> 
+> Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8550-QRD
+> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # sm8450
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+[...]
 
-kernel test robot noticed the following build warnings:
+>  		.gmem = SZ_2M,
+>  		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+> +		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT |
+> +			  ADRENO_QUIRK_HAS_HW_APRIV,
+That's a funny conflict resolution (should have been in the previous
+commit..). If there are no other comments, could you fix this up while
+applying, Rob?
 
-[auto build test WARNING on atorgue-stm32/stm32-next]
-[also build test WARNING on robh/for-next herbert-crypto-2.6/master herbert-cryptodev-2.6/master linus/master v6.6-rc1 next-20230912]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Gatien-Chevallier/dt-bindings-rng-introduce-new-compatible-for-STM32MP13x/20230912-051851
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/atorgue/stm32.git stm32-next
-patch link:    https://lore.kernel.org/r/20230911120203.774632-10-gatien.chevallier%40foss.st.com
-patch subject: [PATCH v2 09/10] hwrng: stm32 - rework power management sequences
-config: arm64-randconfig-r003-20230912 (https://download.01.org/0day-ci/archive/20230912/202309122017.GsJspucF-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230912/202309122017.GsJspucF-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202309122017.GsJspucF-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/char/hw_random/stm32-rng.c:472:21: warning: attribute declaration must precede definition [-Wignored-attributes]
-     472 | static const struct __maybe_unused dev_pm_ops stm32_rng_pm_ops = {
-         |                     ^
-   include/linux/compiler_attributes.h:344:56: note: expanded from macro '__maybe_unused'
-     344 | #define __maybe_unused                  __attribute__((__unused__))
-         |                                                        ^
-   include/linux/pm.h:286:8: note: previous definition is here
-     286 | struct dev_pm_ops {
-         |        ^
-   1 warning generated.
-
-
-vim +472 drivers/char/hw_random/stm32-rng.c
-
-   471	
- > 472	static const struct __maybe_unused dev_pm_ops stm32_rng_pm_ops = {
-   473		SET_RUNTIME_PM_OPS(stm32_rng_runtime_suspend,
-   474				   stm32_rng_runtime_resume, NULL)
-   475		SET_SYSTEM_SLEEP_PM_OPS(stm32_rng_suspend,
-   476					stm32_rng_resume)
-   477	};
-   478	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Konrad
