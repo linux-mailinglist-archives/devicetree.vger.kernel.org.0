@@ -2,105 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9420279D682
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 18:38:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BC6B79D683
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 18:39:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236981AbjILQix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 12:38:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58498 "EHLO
+        id S235267AbjILQjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 12:39:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236997AbjILQiw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 12:38:52 -0400
-Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6901CF
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 09:38:48 -0700 (PDT)
-Received: by mail-oo1-xc36.google.com with SMTP id 006d021491bc7-57328758a72so1357090eaf.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 09:38:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694536728; x=1695141528; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SjDlRrjusxUUcs454HKD0+tVuSKKZVW9rE0qHM9bc8Q=;
-        b=K3uvntSvL6aswhxWGSYutszDRVTbzZ6XKJHpnb+qkHWTiQ8miQoM/xkTv6bC49TA1W
-         v7JVLmiibVhHVbdka/pg4P/GU+C1nV3OZ/rAROyabm0tOdbEk03OhBJrqJl2J/88Kdn0
-         ezrjBGn/Ezk0mp2bAwfIavNE0x44u0rRkYGLGU+BQpTqFM7DKDwYlXk6aEKih2xoUW4g
-         ud8O1wJWPmh3OBIRJm0MRudsxcAia+l73ZYI30/lAW25jGFPeVxYsmlgDEViD5OnhPLk
-         sI5Al+6vKE8pX89dG4UxdeKKnc3ykN7zglxQ0ViCQtKzDb4z0qZbOdzYkWJkr41I1fjH
-         ES7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694536728; x=1695141528;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SjDlRrjusxUUcs454HKD0+tVuSKKZVW9rE0qHM9bc8Q=;
-        b=nmXeWjGms2k5wAqrL3I1IrBJZW4Qo7ZUBWmj5OqxEhxP+sbpaMOqs2vznnMjTcNxsm
-         ONDIX6HNaTdaGDxj3lEs9f5gZJudcUwbytXqEQ1eXHNi/w5e++LpYW2Y+2JlXMmjkMCy
-         NPj14LwQxezIsEZ2x7Vuj5He9mpiL/Lsun0pMz5PQo7IIZMuFrqFw6aUQZeuhc4xgK0o
-         UALwwYvtEdApNssFaJztcSBrtxlY/Cx5D+/Ph19dsiviWNQIN6/9KgNrnXbR2ZKuS+9w
-         PxxzyMchrjA8nEdWqXW5+Mw2uUXWCHL+UTZucP7mc6yN/oJ/6o8x/vLZosFg1I2S/7P9
-         Qpzg==
-X-Gm-Message-State: AOJu0YzP2yKU/q8NVluvnJubZuqc8q2ceWrDU4oS5IJwqq3pihxUc2PZ
-        1x6y2ECDdT6uQ9yZaf6xmMs=
-X-Google-Smtp-Source: AGHT+IHsnNmBGUTTVsGDxBuTITVmkJ+ICU2N/g0CJYOtM5+FwE3qa8OaSW1RcLO3eHBsIUOnOxXjsA==
-X-Received: by 2002:a05:6820:616:b0:578:a06a:5d8f with SMTP id e22-20020a056820061600b00578a06a5d8fmr169373oow.1.1694536727899;
-        Tue, 12 Sep 2023 09:38:47 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:676a:5a77:75a8:efc8])
-        by smtp.gmail.com with ESMTPSA id v4-20020a4aad84000000b00565fbd0d4c0sm4012426oom.28.2023.09.12.09.38.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Sep 2023 09:38:47 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     shawnguo@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, mirela.rabulea@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        alexander.stein@ew.tq-group.com, Fabio Estevam <festevam@denx.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 3/3] arm64: imx8qm-ss-img: Fix jpegenc compatible entry
-Date:   Tue, 12 Sep 2023 13:38:10 -0300
-Message-Id: <20230912163810.1750488-3-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230912163810.1750488-1-festevam@gmail.com>
-References: <20230912163810.1750488-1-festevam@gmail.com>
+        with ESMTP id S233132AbjILQjr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 12:39:47 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51398115;
+        Tue, 12 Sep 2023 09:39:43 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8D81C433C7;
+        Tue, 12 Sep 2023 16:39:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694536782;
+        bh=iIgQaIkZ2NodE34d4bE3iprG8w+h+eA+RXmUuBgooEo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ixhx0siWJ6pbfZX21c4X9mWnfIur+kAOFoUXfDX25ZgloNQjFfipyLjGIKYpP1gB+
+         6IH1O2IslQPT556dIODXA2/ow2G4ACMYV8IFSZHxciJlTR7Hrlp7xl+xLZ7f62FPP5
+         BbL9OUL21yNn1Qf3rRoO19NxLVqQixGg3GD7vizsmAur7sdd/xlRIvBgWGx70WyDSj
+         IogMpY5QToypoN3aH/AnGnkk8b6K/MSCt8vJHJlTJPLHmvo2imMaPYkSrHNKU7npGn
+         vVjKL8nY2Md/Z5bu+ZLj2mVJ/3krGcldaHdnqKF/okEGfW3pBOVccU3ga1SZnccBvf
+         FiqVkjM7LDLkA==
+Date:   Tue, 12 Sep 2023 17:39:37 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     William Qiu <william.qiu@starfivetech.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-mmc@vger.kernel.org,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [PATCH v2 1/3] dt-bindings: mmc: Remove properties from required
+Message-ID: <20230912-jailer-whole-41875e57a298@spud>
+References: <20230912081402.51477-1-william.qiu@starfivetech.com>
+ <20230912081402.51477-5-william.qiu@starfivetech.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="h9UcmCWcT6OWVQ3V"
+Content-Disposition: inline
+In-Reply-To: <20230912081402.51477-5-william.qiu@starfivetech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
 
-The first compatible entry for the jpegenc should be 'nxp,imx8qm-jpgenc'.
+--h9UcmCWcT6OWVQ3V
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Change it accordingly to fix the following schema warning:
+On Tue, Sep 12, 2023 at 04:14:00PM +0800, William Qiu wrote:
+> Due to the change of tuning implementation, it's no longer necessary to
+> use the "starfive,sysreg" property in dts, so remove it from required.
+>=20
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
 
-imx8qm-apalis-eval.dtb: jpegenc@58450000: compatible: 'oneOf' conditional failed, one must be fixed:
-	'nxp,imx8qm-jpgdec' is not one of ['nxp,imx8qxp-jpgdec', 'nxp,imx8qxp-jpgenc']
-	'nxp,imx8qm-jpgenc' was expected
-	'nxp,imx8qxp-jpgdec' was expected
+$subject probably should be more specific about what binding is being
+modified.
+Otherwise,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Fixes: 5bb279171afc ("arm64: dts: imx8: Add jpeg encoder/decoder nodes")
-Signed-off-by: Fabio Estevam <festevam@denx.de>
-Reviewed-by: Mirela Rabulea <mirela.rabulea@nxp.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-Changes since v2:
-- Collected Reviewed-by tags.
+Thanks,
+Conor.
 
- arch/arm64/boot/dts/freescale/imx8qm-ss-img.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> ---
+>  Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml | 2 --
+>  1 file changed, 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.ya=
+ml b/Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
+> index 51e1b04e799f..553a75195c2e 100644
+> --- a/Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
+> @@ -55,7 +55,6 @@ required:
+>    - clocks
+>    - clock-names
+>    - interrupts
+> -  - starfive,sysreg
+> =20
+>  unevaluatedProperties: false
+> =20
+> @@ -73,5 +72,4 @@ examples:
+>          fifo-depth =3D <32>;
+>          fifo-watermark-aligned;
+>          data-addr =3D <0>;
+> -        starfive,sysreg =3D <&sys_syscon 0x14 0x1a 0x7c000000>;
+>      };
+> --=20
+> 2.34.1
+>=20
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-img.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-ss-img.dtsi
-index 7764b4146e0a..2bbdacb1313f 100644
---- a/arch/arm64/boot/dts/freescale/imx8qm-ss-img.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-img.dtsi
-@@ -8,5 +8,5 @@ &jpegdec {
- };
- 
- &jpegenc {
--	compatible = "nxp,imx8qm-jpgdec", "nxp,imx8qxp-jpgenc";
-+	compatible = "nxp,imx8qm-jpgenc", "nxp,imx8qxp-jpgenc";
- };
--- 
-2.34.1
+--h9UcmCWcT6OWVQ3V
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQCUSQAKCRB4tDGHoIJi
+0l5dAQDG9Uyg44/spYOTktXTqx5C02wOIIDlOOSA0mMIykDLtAEAgYHAdwhbEfP7
+4MOV5k39/w6IRjAqcD3Hl10cLYsAZQY=
+=TfmZ
+-----END PGP SIGNATURE-----
+
+--h9UcmCWcT6OWVQ3V--
