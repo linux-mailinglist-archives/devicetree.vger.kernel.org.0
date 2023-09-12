@@ -2,172 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5422D79D5C3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 18:06:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FD5579D5E6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 18:13:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232199AbjILQGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 12:06:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45840 "EHLO
+        id S234672AbjILQNo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 12:13:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231652AbjILQGN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 12:06:13 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BDDA010DE;
-        Tue, 12 Sep 2023 09:06:09 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6143AC15;
-        Tue, 12 Sep 2023 09:06:46 -0700 (PDT)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 517A53F738;
-        Tue, 12 Sep 2023 09:06:06 -0700 (PDT)
-Message-ID: <e6f236aa-4a16-baf0-6567-1714248e2fc0@arm.com>
-Date:   Tue, 12 Sep 2023 17:05:56 +0100
+        with ESMTP id S229698AbjILQNn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 12:13:43 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CC0C10E5;
+        Tue, 12 Sep 2023 09:13:39 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 291C0C433C7;
+        Tue, 12 Sep 2023 16:13:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694535218;
+        bh=tw7bZjPuERTtpnVWWfpcJwoid3z5iuiOaPViE4RtTF4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WNepentB0mkvKzqJsiNeBPY4kYIJY231j6uaWCBerhUB7wBpn/9X78+sdrcAwcV4O
+         l0yKnXQ1zXFSiw7lXNSzTxQTzQXfNlnj+9gs9vJZBw24zOpbc5oH5dXBE7f0oGorVY
+         DYNKQ1cx71OC1cO15fjH0QOAKUgPaOpWnmJ3caSG3XDzAOP7ayi42MuXtSwyAXxedP
+         J2yO4M1NwFHnP75JvWVKfh3j6ZT97CWrH3lvHQLKoq3IWYsxBf+YWDrpNADxh0fFFT
+         Q8W50hVj59uA6PesHilofMSr+2764nbn4niaQ1nIpkSzwcITvHJOP26jSN0wx3rgHY
+         EECFSLWAHpxAg==
+Received: (nullmailer pid 876590 invoked by uid 1000);
+        Tue, 12 Sep 2023 16:13:35 -0000
+Date:   Tue, 12 Sep 2023 11:13:35 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Claudiu <claudiu.beznea@tuxon.dev>
+Cc:     geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        ulf.hansson@linaro.org, linus.walleij@linaro.org,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        magnus.damm@gmail.com, catalin.marinas@arm.com, will@kernel.org,
+        prabhakar.mahadev-lad.rj@bp.renesas.com,
+        biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com,
+        arnd@arndb.de, konrad.dybcio@linaro.org, neil.armstrong@linaro.org,
+        nfraprado@collabora.com, rafal@milecki.pl,
+        wsa+renesas@sang-engineering.com,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH 29/37] dt-bindings: pinctrl: renesas: document RZ/G3S SoC
+Message-ID: <20230912161335.GA866121-robh@kernel.org>
+References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
+ <20230912045157.177966-30-claudiu.beznea.uj@bp.renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 8/9] dt-bindings: reserved-memory: MediaTek: Add reserved
- memory for SVP
-Content-Language: en-GB
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
-        "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "jstultz@google.com" <jstultz@google.com>,
-        "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
-        "christian.koenig@amd.com" <christian.koenig@amd.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?B?SmlhbmppYW8gWmVuZyAo5pu+5YGl5aejKQ==?= 
-        <Jianjiao.Zeng@mediatek.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        =?UTF-8?B?S3VvaG9uZyBXYW5nICjnjovlnIvptLsp?= 
-        <kuohong.wang@mediatek.com>,
-        "Brian.Starkey@arm.com" <Brian.Starkey@arm.com>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
-        "tjmercier@google.com" <tjmercier@google.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>
-References: <20230911023038.30649-1-yong.wu@mediatek.com>
- <20230911023038.30649-9-yong.wu@mediatek.com>
- <20230911154448.GA1279317-robh@kernel.org>
- <c2f1df12cc2dc25b342029e49c6d3f120d380b47.camel@mediatek.com>
- <c62a7ed8-d80a-3a82-040a-d4c74a71285a@linaro.org>
- <95f9dd3b-1f33-4af5-8757-a97e8b9bb216@arm.com>
- <20230912155338.GA842444-robh@kernel.org>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20230912155338.GA842444-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230912045157.177966-30-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2023 4:53 pm, Rob Herring wrote:
-> On Tue, Sep 12, 2023 at 11:13:50AM +0100, Robin Murphy wrote:
->> On 12/09/2023 9:28 am, Krzysztof Kozlowski wrote:
->>> On 12/09/2023 08:16, Yong Wu (吴勇) wrote:
->>>> Hi Rob,
->>>>
->>>> Thanks for your review.
->>>>
->>>> On Mon, 2023-09-11 at 10:44 -0500, Rob Herring wrote:
->>>>>    	
->>>>> External email : Please do not click links or open attachments until
->>>>> you have verified the sender or the content.
->>>>>    On Mon, Sep 11, 2023 at 10:30:37AM +0800, Yong Wu wrote:
->>>>>> This adds the binding for describing a CMA memory for MediaTek
->>>>> SVP(Secure
->>>>>> Video Path).
->>>>>
->>>>> CMA is a Linux thing. How is this related to CMA?
->>>>
->>>>>>
->>>>>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
->>>>>> ---
->>>>>>    .../mediatek,secure_cma_chunkmem.yaml         | 42
->>>>> +++++++++++++++++++
->>>>>>    1 file changed, 42 insertions(+)
->>>>>>    create mode 100644 Documentation/devicetree/bindings/reserved-
->>>>> memory/mediatek,secure_cma_chunkmem.yaml
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/reserved-
->>>>> memory/mediatek,secure_cma_chunkmem.yaml
->>>>> b/Documentation/devicetree/bindings/reserved-
->>>>> memory/mediatek,secure_cma_chunkmem.yaml
->>>>>> new file mode 100644
->>>>>> index 000000000000..cc10e00d35c4
->>>>>> --- /dev/null
->>>>>> +++ b/Documentation/devicetree/bindings/reserved-
->>>>> memory/mediatek,secure_cma_chunkmem.yaml
->>>>>> @@ -0,0 +1,42 @@
->>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>>> +%YAML 1.2
->>>>>> +---
->>>>>> +$id:
->>>>> http://devicetree.org/schemas/reserved-memory/mediatek,secure_cma_chunkmem.yaml#
->>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>> +
->>>>>> +title: MediaTek Secure Video Path Reserved Memory
->>>>>
->>>>> What makes this specific to Mediatek? Secure video path is fairly
->>>>> common, right?
->>>>
->>>> Here we just reserve a buffer and would like to create a dma-buf secure
->>>> heap for SVP, then the secure engines(Vcodec and DRM) could prepare
->>>> secure buffer through it.
->>>> But the heap driver is pure SW driver, it is not platform device and
->>>
->>> All drivers are pure SW.
->>>
->>>> we don't have a corresponding HW unit for it. Thus I don't think I
->>>> could create a platform dtsi node and use "memory-region" pointer to
->>>> the region. I used RESERVEDMEM_OF_DECLARE currently(The code is in
->>>> [9/9]). Sorry if this is not right.
->>>
->>> If this is not for any hardware and you already understand this (since
->>> you cannot use other bindings) then you cannot have custom bindings for
->>> it either.
->>>
->>>>
->>>> Then in our usage case, is there some similar method to do this? or
->>>> any other suggestion?
->>>
->>> Don't stuff software into DTS.
->>
->> Aren't most reserved-memory bindings just software policy if you look at it
->> that way, though? IIUC this is a pool of memory that is visible and
->> available to the Non-Secure OS, but is fundamentally owned by the Secure
->> TEE, and pages that the TEE allocates from it will become physically
->> inaccessible to the OS. Thus the platform does impose constraints on how the
->> Non-Secure OS may use it, and per the rest of the reserved-memory bindings,
->> describing it as a "reusable" reservation seems entirely appropriate. If
->> anything that's *more* platform-related and so DT-relevant than typical
->> arbitrary reservations which just represent "save some memory to dedicate to
->> a particular driver" and don't actually bear any relationship to firmware or
->> hardware at all.
+On Tue, Sep 12, 2023 at 07:51:49AM +0300, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > 
-> Yes, a memory range defined by hardware or firmware is within scope of
-> DT. (CMA at aribitrary address was questionable.)
+> Add documentation for pin controller found on RZ/G3S (R9A08G045) SoC.
+> Compared with RZ/G2{L,UL} RZ/G3S has 82 general-purpose IOs, no slew
+> rate and output impedance support and more values for drive strength
+> which needs to be expressed in microamp.
 > 
-> My issue here is more that 'secure video memory' is not any way Mediatek
-> specific. AIUI, it's a requirement from certain content providers for
-> video playback to work. So why the Mediatek specific binding?
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>  .../pinctrl/renesas,rzg2l-pinctrl.yaml        | 26 +++++++++++++++----
+>  1 file changed, 21 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+> index 145c5442f268..079e5be69330 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+> @@ -25,6 +25,7 @@ properties:
+>            - enum:
+>                - renesas,r9a07g043-pinctrl # RZ/G2UL{Type-1,Type-2} and RZ/Five
+>                - renesas,r9a07g044-pinctrl # RZ/G2{L,LC}
+> +              - renesas,r9a08g045-pinctrl # RZ/G3S
+>  
+>        - items:
+>            - enum:
+> @@ -77,6 +78,26 @@ additionalProperties:
+>          - $ref: pincfg-node.yaml#
+>          - $ref: pinmux-node.yaml#
+>  
+> +        - if:
+> +            properties:
+> +              compatible:
+> +                contains:
+> +                  enum:
+> +                    - renesas,r9a08g045-pinctrl
+> +          then:
+> +            properties:
+> +              drive-strength-microamp:
+> +                enum: [ 1900, 2200, 4000, 4400, 4500, 4700, 5200, 5300, 5700,
+> +                        5800, 6000, 6050, 6100, 6550, 6800, 7000, 8000, 9000,
+> +                        10000 ]
+> +          else:
+> +            properties:
+> +              drive-strength:
+> +                enum: [ 2, 4, 8, 12 ]
+> +              output-impedance-ohms:
+> +                enum: [ 33, 50, 66, 100 ]
+> +              slew-rate: true
+> +
+>        description:
+>          Pin controller client devices use pin configuration subnodes (children
+>          and grandchildren) for desired pin configuration.
+> @@ -89,14 +110,9 @@ additionalProperties:
+>              alternate function configuration number using the RZG2L_PORT_PINMUX()
+>              helper macro in <dt-bindings/pinctrl/rzg2l-pinctrl.h>.
+>          pins: true
+> -        drive-strength:
+> -          enum: [ 2, 4, 8, 12 ]
+> -        output-impedance-ohms:
+> -          enum: [ 33, 50, 66, 100 ]
 
-Based on the implementation, I'd ask the question the other way round - 
-the way it works looks to be at least somewhat dependent on Mediatek's 
-TEE, in ways where other vendors' equivalent implementations may be 
-functionally incompatible, however nothing suggests it's actually 
-specific to video (beyond that presumably being the primary use-case 
-they had in mind).
+Removing these entries will break things. Except that this binding is 
+missing 'additionalProperties: false' at this level. That should be 
+fixed first.
 
-Thanks,
-Robin.
+I would suggest you keep these here and make the if/then schema just not 
+allow properties (e.g. "drive-strength-microamp: false").
+
+>          power-source:
+>            description: I/O voltage in millivolt.
+>            enum: [ 1800, 2500, 3300 ]
+> -        slew-rate: true
+>          gpio-hog: true
+>          gpios: true
+>          input-enable: true
+> -- 
+> 2.39.2
+> 
