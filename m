@@ -2,164 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A28EB79CA24
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 10:36:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C75579CA67
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 10:44:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232755AbjILIgt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 04:36:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54700 "EHLO
+        id S232862AbjILIoS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 04:44:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232733AbjILIgs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 04:36:48 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F271BF
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 01:36:44 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-401c90ed2ecso57556275e9.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 01:36:43 -0700 (PDT)
+        with ESMTP id S232716AbjILIoS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 04:44:18 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00ED7E7F
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 01:44:13 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-401bbfc05fcso58830475e9.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 01:44:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694507802; x=1695112602; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YDYOCa6xctYXF6LIcPiJ4hYpbG9p0QfDxLuxAJn4eSc=;
-        b=dFH3rOEnTvW4hE+7mn+iYALQTnvQjZoRvb6LqpBqG/AgQCoyLW5EdfCLdzIPoUiT4A
-         kdBLnL1wiDN7HE0tyL9uEWalAl1Rt8NisnSvQfADT61Q8fGHh/sbLZRc633mFeNO8caE
-         fZSMbrAYJH/xmZ5kvbeaU1LjckFLIQDknbG9a6dlX+UspoUVlwYh4dUWG0GpPubfymwm
-         d/skBcg2u032Bf4Qk7LgDzJBUqua9TDMX/iXA4sEjtp5/MjiMz3+q0+SSIRwK6lxkjDM
-         O16N2Yc7A7Nb06E9q3LN/GcSNGUlOKUt+gfwcq0Nvv7ObZ+diht/6iJspu4vgR8UPt9a
-         lSdg==
+        d=linaro.org; s=google; t=1694508252; x=1695113052; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2e/x2gLpMdeQRhTiKGWz3mptC+8fCI7XlwMOw0yH/5Y=;
+        b=nGoylnZ7aDpwzYmqAtLENcCHg994CkmW2SWflTnogC61kJ4csKvEazNz83frazVzDW
+         yQmasLw5I3pHfTKSmqhnj1Qm2Qkg7Dz1EqxAWsp7hm2TFv6lGXdj9WWW3Adttl3wSIGV
+         uXVSytvdDT9uNMbRFxcTnnJ04BWpxj2Ixp8TQHX2Y1a2pHifubaJgHsKadb49neMRRt+
+         gaN7tejaw0173qXrycwC2lfrjJ0fm+QwJ61qF4Obfk4idsX1pnnkMkm1WbWIWVRPCXsY
+         OWujENaaUMSMTwh9H9fS+UsRNy8K2HSw9JJYuhfXwQhKwnO01r5o5TIL24D49/H+pxLR
+         DXbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694507802; x=1695112602;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=YDYOCa6xctYXF6LIcPiJ4hYpbG9p0QfDxLuxAJn4eSc=;
-        b=gzA96r4jXNRjIloWfi1wJ2GtRJXeU6m+NSWapdt0J4ikFijs0wDHi7bLIbOxKGBskf
-         OB2nGOeHxyJJ7vEHJXhrq7Dwc21CNoGqqourtI+bkQM04s+pucliMp18wCWTML5IT5Fe
-         ueBE30alWXOpEQXfmb/mKp1+HfE84R+Cykhaj7NMs+wVb/ZezK/DmE1XYnl54Mi4Q0EK
-         gwJsjFV4jlKMuM5Ab5fdiuO5+L2rT2mYqmr6myhAS4PJ0StDLZ3jvtLNoW9x5oKvJgM5
-         76Bcq5hmpvjPwG7/zTtN0/Jm1rGxKuyM66BrbmvpWxEt/0/gD3pH/ubY/iNcdyL62YlW
-         5xig==
-X-Gm-Message-State: AOJu0Yztj+0uMNplVg9pCgyyR7t9k3JjIXptjM4u1VQjdjuxC0ZQYzJy
-        hWd870juayqaqL1vP1gm/33iQ+0Qcqg0wcYAj4IHrBxy
-X-Google-Smtp-Source: AGHT+IHFuzosoThYKD/AZNkdK3+DmtTy0iulfjfbmAF8jtEnRCTfTfP3MynNUGectudSMe3tSUQfmQ==
-X-Received: by 2002:a05:600c:4a11:b0:402:bcac:5773 with SMTP id c17-20020a05600c4a1100b00402bcac5773mr10099570wmp.38.1694507802214;
-        Tue, 12 Sep 2023 01:36:42 -0700 (PDT)
-Received: from [192.168.7.189] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id n10-20020a05600c294a00b003fefaf299b6sm12171135wmd.38.2023.09.12.01.36.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Sep 2023 01:36:41 -0700 (PDT)
-Message-ID: <5bb7dc93-66dd-4b7b-8c2f-89a9b249daae@linaro.org>
-Date:   Tue, 12 Sep 2023 10:36:40 +0200
+        d=1e100.net; s=20230601; t=1694508252; x=1695113052;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2e/x2gLpMdeQRhTiKGWz3mptC+8fCI7XlwMOw0yH/5Y=;
+        b=TMOzWn207ypJys0behvK5e2c7MtPTuuzyOrhci3j5znHf8iJToyZsEPm9HX7bZAjLc
+         79FeTIbStZNpN5WppJYegr2ppmre/X9DjY0HlFPjCA9vnYH1UI37dNlmi4+boul+qIlD
+         ENcrcAy2vNCoz+oUJbCuIKDWIkpoYExYCdeb7xxonzm6ifgPvZ+IPue7qErWcM00uFPZ
+         Ws4Yj6y1SRM1z3zqjKX4iPDlGi4gzO4Zt0wgDzXaHV3G4B8JIl28d9D4zc23V7Ovl8FR
+         uK88scNZ/QBgknPMd+tXwIwlnjCSrp2PYo97qfmPGa906kJxxtMJCExwf6hH09OS57+O
+         Osiw==
+X-Gm-Message-State: AOJu0Ywb8MMIwHHW0N0JTXIe175EXcra+hG6+F5uR37Zmv5GJz08VJEF
+        l4d0+Ra0MXMx4SKsU0DrQf80nA==
+X-Google-Smtp-Source: AGHT+IE+dU/F3WnFMx0sfgCBWU84TUB0AWE5qYLX9vaoDmM3ChahOIjqEeQUQVJnC1Ekal77bkvRAA==
+X-Received: by 2002:a05:600c:28c:b0:402:cd60:8aa9 with SMTP id 12-20020a05600c028c00b00402cd608aa9mr9641044wmk.20.1694508252130;
+        Tue, 12 Sep 2023 01:44:12 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id c7-20020a7bc847000000b003fe2bea77ccsm12301348wml.5.2023.09.12.01.44.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Sep 2023 01:44:11 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v6 0/4] Input: add initial support for Goodix Berlin
+ touchscreen IC
+Date:   Tue, 12 Sep 2023 10:44:06 +0200
+Message-Id: <20230912-topic-goodix-berlin-upstream-initial-v6-0-b4ecfa49fb9d@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: reset: Add compatible and DT bindings
- for Amlogic C3 Reset Controller
-Content-Language: en-US, fr
-To:     Zelong Dong <Zelong.Dong@amlogic.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>
-Cc:     linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANYkAGUC/53PwW6EIBAG4FfZcC4NIAjsqe/R9AA46iQWDLhmm
+ 43vXtxL03hpPf6TyffPPEiBjFDI9fIgGVYsmGIN7cuFhNHFASh2NRPBRMNa1tIlzRjokFKHd+o
+ hTxjpbS5LBvdJMeKCbqLeWQ0GgullIJXyrgD12cUwVizepqkO5ww93p/d7x81j1iWlL+ep6x8n
+ /6zdeWUUemYltwbB333VtdcTq8pD2RvWMUZVVRVtL4+Axwsg4PanFGbqvZMaR3AdZrZgyrPqLK
+ qzEodpLEeuD6o6kc1jP9RVbuqrVDCNkrZ5pe6bds3veES60YCAAA=
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, kelvin.zhang@amlogic.com
-References: <20230719060954.14864-1-zelong.dong@amlogic.com>
- <20230719060954.14864-2-zelong.dong@amlogic.com>
- <f7b72ee90009f6749700a7bd79a3a63786a82a32.camel@pengutronix.de>
- <55cbdbba-39c6-7415-37db-97d2c35412cb@linaro.org>
- <076b59c0-7585-ea98-014c-cd70f92df002@amlogic.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <076b59c0-7585-ea98-014c-cd70f92df002@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        Conor Dooley <conor+dt@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh@kernel.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4403;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=ZwsPOIUjuxLpDRo0z6hswc7hSp9m6aWP/mpgABoH2fE=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlACTY5ce/FzKKxuEz14nHG0aoyB+Ujv8rkNE5Gdi2
+ 6gr2Qw2JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZQAk2AAKCRB33NvayMhJ0RITD/
+ wNC9jJBwouOtS7wZ+hRV5bGq7ORUF0Rg9h2H2qQH/9dcbbPNMI1NJdlnjSVHnTR6S5Kn6y5RUPequD
+ GS4+Os/t6zrTc0q4r23IdKWT88ry82gKdv234+qpnUMXWa6oEDVjnNjzkE3IBT7aVmP0fjXqDuPQIi
+ 9JeDY1UAiazsaBAxvyUPOIEGDCtbSPKSQ9Tmo32rERK9s+TVWAcu/xQjaQo+S3JQqLyX+EBtrUeVXp
+ 2hv24pcVL//mT6BGr/2Hji+nST7E4LJSp7ZgJ6wE3vguGX38BVU35hM+G18VmfROUHYEiUL/C9qcZp
+ Twzi9oo1/qyI8xXOeMo9MZrqxRmTAc6zkE+YD5KfUMib4FRNUvHvUZ70G0/vz0w5hEEKT5nYIo67E9
+ H1No5y7xY7Kze5PuHb9LoNUtH5Tz1vbC3kXTtbdkVABKeXJrK71/+xkhojBIwkEjqAD/3A4D48Q/G/
+ /HyRv3ENnbxGzmHLrFixFz79nyg759bnD7ytFl7sDQQ/GB4uePPQFW6HGR6wYgto+jysAdM7yQ4TxC
+ rNeYN5nxa3W4UXYdC52CLI2qOEE5C10HQOSLQ1ObVRAyqa6fl+3ndH1iEeD+WwKZGdd7lM4vMwK2Ew
+ gVjLH/Tk7RDZTuWMH9L7p7akcQAvO57RyHe7nGFqSpEWdzIY0CTMuwZK1nFg==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+These touchscreen ICs support SPI, I2C and I3C interface, up to
+10 finger touch, stylus and gestures events.
 
-On 12/09/2023 08:37, Zelong Dong wrote:
-> 在 2023/7/31 17:17, Neil Armstrong 写道:
->> On 28/07/2023 17:49, Philipp Zabel wrote:
->>> On Mi, 2023-07-19 at 14:09 +0800, zelong dong wrote:
->>>> From: Zelong Dong <zelong.dong@amlogic.com>
->>>>
->>>> Add new compatible and DT bindings for Amlogic C3 Reset Controller
->>>>
->>>> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
->>>> ---
->>>>   .../bindings/reset/amlogic,meson-reset.yaml   |   1 +
->>>>   include/dt-bindings/reset/amlogic,c3-reset.h  | 119 ++++++++++++++++++
->>>>   2 files changed, 120 insertions(+)
->>>>   create mode 100644 include/dt-bindings/reset/amlogic,c3-reset.h
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->>>> index d3fdee89d4f8..f0c6c0df0ce3 100644
->>>> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->>>> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
->>>> @@ -18,6 +18,7 @@ properties:
->>>>         - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
->>>>         - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
->>>>         - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
->>>> +      - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
->>>>
->>>>     reg:
->>>>       maxItems: 1
->>>> diff --git a/include/dt-bindings/reset/amlogic,c3-reset.h b/include/dt-bindings/reset/amlogic,c3-reset.h
->>>> new file mode 100644
->>>> index 000000000000..d9127863f603
->>>> --- /dev/null
->>>> +++ b/include/dt-bindings/reset/amlogic,c3-reset.h
->>>
->>> Given that this is only included by
->>> arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi, should this header be
->>> moved to arch/arm64/boot/dts/amlogic ?
->>
->> Maybe I missed something, but since when should we move bindings headers to arch/xxx/boot/dts/vendor ?
->>
->> Neil
->>
->>>
->>> regards
->>> Philipp
->>
-> Hi,
-> It's been a while, how will we deal with this patch ?
-> Should we let this patch apply first? If Amlogic reset bindings headers need to be moved to arch/xxx/boot/dts/vendor, could we apply it in a separate change?
+This initial driver is derived from the Goodix goodix_ts_berlin
+available at [1] and [2] and only supports the GT9916 IC
+present on the Qualcomm SM8550 MTP & QRD touch panel.
 
-Please rebase on v6.6-rc1 and resend with all review/ack tags collected.
+The current implementation only supports BerlinD, aka GT9916.
 
-I still don't understand why the bindings header should go into arch/xxx/boot/dts/vendor.
+Support for advanced features like:
+- Firmware & config update
+- Stylus events
+- Gestures events
+- Previous revisions support (BerlinA or BerlinB)
+is not included in current version.
 
-Neil
+The current support will work with currently flashed firmware
+and config, and bail out if firmware or config aren't flashed yet.
+
+[1] https://github.com/goodix/goodix_ts_berlin
+[2] https://git.codelinaro.org/clo/la/platform/vendor/opensource/touch-drivers
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v6:
+- rebased on v6.6-rc1
+- changed commit message prefix to match the other Input commits
+- Link to v5: https://lore.kernel.org/r/20230801-topic-goodix-berlin-upstream-initial-v5-0-079252935593@linaro.org
+
+Changes in v5:
+- rebased on next-20230801
+- Link to v4: https://lore.kernel.org/r/20230606-topic-goodix-berlin-upstream-initial-v4-0-0947c489be17@linaro.org
+
+Changes in v4:
+- Core updates:
+ - drop kconfig depends, deps will be handled by _SPI and _I2C
+ - change power_on() error labels
+ - print errors on all dev_err() prints
+ - remove useless default variable initialization
+ - switch irq touch checksum error to dev_err()
+ - add Jeff's review tag
+- I2C changes
+ - change REGMAP_I2C Kconfig from depends to select
+ - add Jeff's review tag
+- SPI changes
+ - add select REGMAP to Kconfig
+ - added GOODIX_BERLIN_ prefix to defines
+ - switched from ret to error
+ - add Jeff's review tag
+- Link to v3: https://lore.kernel.org/r/20230606-topic-goodix-berlin-upstream-initial-v3-0-f0577cead709@linaro.org
+
+Changes in v3:
+- Another guge cleanups after Jeff's review:
+ - appended goodix_berlin_ before all defines
+ - removed some unused defines
+ - removed retries on most of read functions, can be added back later
+ - added __le to ic_info structures
+ - reworked and simplified irq handling, dropped enum and ts_event structs
+ - added struct for touch data
+ - simplified and cleaned goodix_berlin_check_checksum & goodix_berlin_is_dummy_data
+ - moved touch_data_addr to the end of the main code_data
+ - reworked probe to get_irq last and right before setip input device
+ - cleaned probe by removing the "cd->dev"
+ - added short paragraph to justify new driver for berlin devices
+ - defined all offsets & masks
+- Added bindings review tag
+- Link to v2: https://lore.kernel.org/r/20230606-topic-goodix-berlin-upstream-initial-v2-0-26bc8fe1e90e@linaro.org
+
+Changes in v2:
+- Huge cleanups after Jeff's review:
+ - switch to error instead of ret
+ - drop dummy vendor/product ids
+ - drop unused defined/enums
+ - drop unused ic_info and only keep needes values
+ - cleanup namings and use goodix_berlin_ everywhere
+ - fix regulator setup
+ - fix default variables value when assigned afterwars
+ - removed indirections
+ - dropped debugfs
+ - cleaned input_dev setup
+ - dropped _remove()
+ - sync'ed i2c and spi drivers
+- fixed yaml bindings
+- Link to v1: https://lore.kernel.org/r/20230606-topic-goodix-berlin-upstream-initial-v1-0-4a0741b8aefd@linaro.org
+
+---
+Neil Armstrong (4):
+      dt-bindings: input: document Goodix Berlin Touchscreen IC
+      Input: add core support for Goodix Berlin Touchscreen IC
+      Input: goodix-berlin - add I2C support for Goodix Berlin Touchscreen IC
+      Input: goodix-berlin - add SPI support for Goodix Berlin Touchscreen IC
+
+ .../bindings/input/touchscreen/goodix,gt9916.yaml  |  95 ++++
+ drivers/input/touchscreen/Kconfig                  |  31 ++
+ drivers/input/touchscreen/Makefile                 |   3 +
+ drivers/input/touchscreen/goodix_berlin.h          | 159 ++++++
+ drivers/input/touchscreen/goodix_berlin_core.c     | 581 +++++++++++++++++++++
+ drivers/input/touchscreen/goodix_berlin_i2c.c      |  69 +++
+ drivers/input/touchscreen/goodix_berlin_spi.c      | 173 ++++++
+ 7 files changed, 1111 insertions(+)
+---
+base-commit: 0bb80ecc33a8fb5a682236443c1e740d5c917d1d
+change-id: 20230606-topic-goodix-berlin-upstream-initial-ba97e8ec8f4c
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
