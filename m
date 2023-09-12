@@ -2,125 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B2FD79D744
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 19:09:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F1A379D74D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 19:11:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232577AbjILRJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 13:09:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39916 "EHLO
+        id S236658AbjILRLm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 13:11:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236653AbjILRJp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 13:09:45 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4190810F9;
-        Tue, 12 Sep 2023 10:09:39 -0700 (PDT)
-Received: from [192.168.0.106] (unknown [186.235.7.101])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: koike)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C963E66072FA;
-        Tue, 12 Sep 2023 18:09:33 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1694538578;
-        bh=xAT9JbuYW6emcmFF+W5rqg4ZaSjjD8QM385HOKSfF2s=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=kRYt/gRI/hdUZHPqKZKwpqOHmREs13rcuDFHe3fIGcMlQADqID0BeykBLS8uI3Bfq
-         BIAyglyc8E9xhISn4AqH6nEDEdhdN9YHyocqq/VIqm7JP8lwmw9TGYi7R2ixMAuYAP
-         9hU+h4SMOU2GR5Q8FVKi4Ug0kkOGn7jUhDD0cENC9Oz9SFnolEYjUC6+sN8sKa05Uc
-         DFOGdK8InK2Q0fQDqaTLN1ecZYwnMy8DW+fmAVGlgp/55C1fX2bBZd2Mcf+mT8ybqJ
-         4K/KEIH58DKXabT/rRRDvE4965O/PqfBaaCSvnFD0ZTHTI12txGCIWngvLX8afao0X
-         RaojSupULYKWA==
-Message-ID: <a411b3fe-6222-4c86-8d71-afa992ea2f93@collabora.com>
-Date:   Tue, 12 Sep 2023 14:09:29 -0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH] arm64: dts: qcom: apq8016-sbc: Add overlay for usb host
- mode
-Content-Language: en-US
-To:     Vignesh Raman <vignesh.raman@collabora.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S236653AbjILRLm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 13:11:42 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A1C210D9;
+        Tue, 12 Sep 2023 10:11:38 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71AF0C433C8;
+        Tue, 12 Sep 2023 17:11:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694538697;
+        bh=K6ujrGAxc6bLs1J/Thn8Dd/Rjofr6FM6gvQYymz/WYo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lRGa/mdd4iQg/yWCh58/qb7FKBECU7PHMviCpZYG2k7ZVqdqUWXnI5OsRtSZY1D9C
+         mEQBFnUI+3mWCLlKn2M+Y5Fn9SBWP2yChfBc+iEDrJUTW5vBVyRi1/sGnNd7CM81u2
+         pZnkd8LMEBsuWeeyxrXn+Gzbxdlf2cI3DH4/QL8aLuqrCX/m5jDv8+30liiohICNOs
+         WWEPRHVxMtQMKeMGbm+pgvyJCeqpHpbEkioYtoPLz049YvfAOUMz7wDuWnTXx3ctFF
+         kpq4w9AaV6nLRfqoxgy6VNLubwOwYpel54C8dTLlG0h+5aWhOqV4lEKdPHWzjthxd3
+         WeZToxgbHEwtQ==
+Date:   Tue, 12 Sep 2023 18:11:33 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Jan =?iso-8859-1?Q?Kundr=E1t?= <jan.kundrat@cesnet.cz>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
-        daniels@collabora.com, emma@anholt.net, robdclark@gmail.com,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        David Heidelberg <david.heidelberg@collabora.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230911161518.650726-1-vignesh.raman@collabora.com>
-From:   Helen Koike <helen.koike@collabora.com>
-In-Reply-To: <20230911161518.650726-1-vignesh.raman@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH 1/2] dt-bindings: leds: Mention GPIO triggers
+Message-ID: <20230912-squeamish-legal-424d4f8a3453@spud>
+References: <20230912-gpio-led-trigger-dt-v1-0-1b50e3756dda@linaro.org>
+ <20230912-gpio-led-trigger-dt-v1-1-1b50e3756dda@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="dtprEHGdUyw2Qv/N"
+Content-Disposition: inline
+In-Reply-To: <20230912-gpio-led-trigger-dt-v1-1-1b50e3756dda@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--dtprEHGdUyw2Qv/N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 11/09/2023 13:15, Vignesh Raman wrote:
-> Due to the presence of the fastboot micro cable in the CI farm,
-> it causes the hardware to remain in gadget mode instead of host mode.
-> So it doesn't find the network, which results in failure to mount root
-> fs via NFS.
-
-Just a context for others, this was part of this patch series 
-https://lore.kernel.org/r/20230908152225.432139-1-vignesh.raman@collabora.com
-
-> 
-> Add an overlay dtso file that sets the dr_mode to host, allowing the
-> USB controllers to work in host mode. With commit 15d16d6dadf6
-> ("kbuild: Add generic rule to apply fdtoverlay"), overlay target can
-> be used to simplify the build of DTB overlays. It uses fdtoverlay to
-> merge base device tree with the overlay dtso. apq8016-sbc-usb-host.dtb
-> file can be used by drm-ci, mesa-ci.
-> 
-> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Suggested-by: Maxime Ripard <mripard@kernel.org>
-> Signed-off-by: Helen Koike <helen.koike@collabora.com>
-> Signed-off-by: David Heidelberg <david.heidelberg@collabora.com>
-> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-
-Acked-by: Helen Koike <helen.koike@collabora.com>
-
-
+On Tue, Sep 12, 2023 at 03:44:30PM +0200, Linus Walleij wrote:
+> We reuse the trigger-sources phandle to just point to
+> GPIOs we may want to use as LED triggers.
+>=20
+> Example:
+>=20
+> gpio: gpio@0 {
+>     compatible "my-gpio";
+>     gpio-controller;
+>     #gpio-cells =3D <2>;
+>     interrupt-controller;
+>     #interrupt-cells =3D <2>;
+>     #trigger-source-cells =3D <2>;
+> };
+>=20
+> leds {
+>     compatible =3D "gpio-leds";
+>     led-my-gpio {
+>         label =3D "device:blue:myled";
+>         gpios =3D <&gpio 0 GPIO_ACTIVE_HIGH>;
+>         default-state =3D "off";
+>         linux,default-trigger =3D "gpio";
+>         trigger-sources =3D <&gpio 1 GPIO_ACTIVE_HIGH>;
+>     };
+> };
+>=20
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->   arch/arm64/boot/dts/qcom/Makefile                  | 4 ++++
->   arch/arm64/boot/dts/qcom/apq8016-sbc-usb-host.dtso | 8 ++++++++
->   2 files changed, 12 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/apq8016-sbc-usb-host.dtso
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 2cca20563a1d..99190a6ba6ff 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -1,5 +1,9 @@
->   # SPDX-License-Identifier: GPL-2.0
->   dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc.dtb
-> +
-> +apq8016-sbc-usb-host-dtbs	:= apq8016-sbc.dtb apq8016-sbc-usb-host.dtbo
-> +
-> +dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc-usb-host.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc-d3-camera-mezzanine.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= apq8039-t2.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc-usb-host.dtso b/arch/arm64/boot/dts/qcom/apq8016-sbc-usb-host.dtso
-> new file mode 100644
-> index 000000000000..a82c26b7eae8
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc-usb-host.dtso
-> @@ -0,0 +1,8 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +&usb {
-> +         dr_mode = "host";
-> +};
+>  Documentation/devicetree/bindings/leds/common.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documen=
+tation/devicetree/bindings/leds/common.yaml
+> index 5fb7007f3618..b42950643b9d 100644
+> --- a/Documentation/devicetree/bindings/leds/common.yaml
+> +++ b/Documentation/devicetree/bindings/leds/common.yaml
+> @@ -191,6 +191,8 @@ properties:
+>        each of them having its own LED assigned (assuming they are not
+>        hardwired). In such cases this property should contain phandle(s) =
+of
+>        related source device(s).
+> +      Another example is a GPIO line that will be monitored and mirror t=
+he
+> +      state of the line (with or without inversion flags) to the LED.
+>        In many cases LED can be related to more than one device (e.g. one=
+ USB LED
+>        vs. multiple USB ports). Each source should be represented by a no=
+de in
+>        the device tree and be referenced by a phandle and a set of phandle
+>=20
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+--dtprEHGdUyw2Qv/N
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQCbxAAKCRB4tDGHoIJi
+0jR+AP4+jmFjuVM/kMEexCYC/xCeNWS4H6kBNsQozxT46NucvQEAzVuZw7tsRPe1
+DS1rf3XkxHkfNv9BeZiDam9yoVAieQY=
+=2ggV
+-----END PGP SIGNATURE-----
+
+--dtprEHGdUyw2Qv/N--
