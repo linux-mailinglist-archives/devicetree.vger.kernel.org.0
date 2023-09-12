@@ -2,211 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7162979CBDF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 11:32:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 007CB79CBF3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 11:36:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232306AbjILJcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 05:32:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52296 "EHLO
+        id S232327AbjILJgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 05:36:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231574AbjILJcb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 05:32:31 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBE6CCD;
-        Tue, 12 Sep 2023 02:32:27 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id B76C566072F2;
-        Tue, 12 Sep 2023 10:32:25 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1694511146;
-        bh=nboqvOkj/fOk7wG5yLQU5h6H3bj8HNMHs3m8cZuPp8g=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=leOPTMb+UgyVQ7uNRBIbc4bummxwqu0liVI46DPr3hA0ZMaSkS1CjLtz/mqVft49Z
-         xFjyoG767NLmgk7EBBdlhCvsO3Te6WxU7aeBJuYEPJfvmXBPzhVmf0BzY9sGPYGJxL
-         5RJTGwtBTYBNd98Ovs9eDiZRp5+fdCSF3shUiUH3eRJC+DAQDfbV0qnzMeWvlAlD54
-         1M/ycX4PoO5ZP+QtowvQgTv5u2NktAquPZCBeJDafxev3n8eNkbQuSci0wkphL+en4
-         lo9PKMFdN0ZAuIQs+tFZnn3yahQ/wGOOoIblTuDuIQTkM4pWBpJBtG8Bi4FwWsRYRB
-         NnAZEo8JCQtcQ==
-Message-ID: <d798b15b-6f35-96db-e3f7-5c0bcc5d46a2@collabora.com>
-Date:   Tue, 12 Sep 2023 11:32:23 +0200
+        with ESMTP id S231234AbjILJgi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 05:36:38 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95BD512E;
+        Tue, 12 Sep 2023 02:36:33 -0700 (PDT)
+X-UUID: d864aa1e514f11ee8051498923ad61e6-20230912
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=gFgOTY+WyM3Sel5YzAdYiKNG5JFSyMH2ZYWa9kVlC/Y=;
+        b=lH1/7POOlR828hKTVT3UB5PK5odJwmefLVO9zbS4/e6Lk1GRtMx34CxK1E24gmFyfxoKV3Z6hE4qRnweXU5iZZbORf2WUX50fTMlaLgmqVpsXfZPj+aSQL75xKnPdoNd4+sVekwi+3cPtI4jL8/blqvSCzg5ykqX0+5TJ5STDDs=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:d2681e8f-0078-4cd6-aa16-90464760e671,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:0ad78a4,CLOUDID:1e2dbebe-14cc-44ca-b657-2d2783296e72,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+        DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_ULS,TF_CID_SPAM_SNR
+X-UUID: d864aa1e514f11ee8051498923ad61e6-20230912
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1511495150; Tue, 12 Sep 2023 17:36:26 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.194) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Tue, 12 Sep 2023 17:36:26 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Tue, 12 Sep 2023 17:36:24 +0800
+Message-ID: <6f67c0f6-7a4d-46a9-4090-b4966ad9eb9e@mediatek.com>
+Date:   Tue, 12 Sep 2023 17:36:23 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 5/9] dma-buf: heaps: mtk_sec_heap: Initialise tee session
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm64: dts: mediatek: mt8365-evk:
+ update compatible
 Content-Language: en-US
-To:     =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "christian.koenig@amd.com" <christian.koenig@amd.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "jstultz@google.com" <jstultz@google.com>,
-        "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?B?SmlhbmppYW8gWmVuZyAo5pu+5YGl5aejKQ==?= 
-        <Jianjiao.Zeng@mediatek.com>,
-        =?UTF-8?B?S3VvaG9uZyBXYW5nICjnjovlnIvptLsp?= 
-        <kuohong.wang@mediatek.com>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "Brian.Starkey@arm.com" <Brian.Starkey@arm.com>,
-        "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
-        "tjmercier@google.com" <tjmercier@google.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230911023038.30649-1-yong.wu@mediatek.com>
- <20230911023038.30649-6-yong.wu@mediatek.com>
- <d0373c02-9b22-661f-9930-ca720053c2a0@collabora.com>
- <a115a2a5d3ac218e6db65ccdb0a1876f9cfca02b.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <a115a2a5d3ac218e6db65ccdb0a1876f9cfca02b.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+CC:     Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>
+References: <20230912072340.22862-1-macpaul.lin@mediatek.com>
+ <22805138-e42a-cdd0-bc96-5281f0e2c586@linaro.org>
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <22805138-e42a-cdd0-bc96-5281f0e2c586@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--16.987500-8.000000
+X-TMASE-MatchedRID: HXSqh3WYKfsOwH4pD14DsPHkpkyUphL9meN8m2FdGic3xO2R3boBWFbu
+        qIY+/skQkABPgKBt/0r+hz2wcuk4da+E45fdyyZXA9lly13c/gEW40XiUkbrG5gEXULQnZA+UpN
+        5b4Xd/F0F3HJtKgmToNt9i45mMISqupptyy2mu+6L+98BLtDce4B84MMvKleanQqircTOm4dvlt
+        Sm4q5U290mpA1Khc2MPbozLN3Sos0iXL+V+zm5ieYAh37ZsBDCfS0Ip2eEHny+qryzYw2E8LLn+
+        0Vm71Lcq7rFUcuGp/EgBwKKRHe+r0k4tYvooJZyctm6a6Al36gvAINoF1zxWn7Jax9xsZ7RfNpH
+        DESlTro=
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--16.987500-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP: 2EC6181C9494BFFA8AEFEE02C3C52A803EFDBBD3FD0115827944A2EC921DBBEE2000:8
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 12/09/23 08:17, Yong Wu (吴勇) ha scritto:
-> On Mon, 2023-09-11 at 11:29 +0200, AngeloGioacchino Del Regno wrote:
->> Il 11/09/23 04:30, Yong Wu ha scritto:
->>> The TEE probe later than dma-buf heap, and PROBE_DEDER doesn't work
->>> here since this is not a platform driver, therefore initialise the
->>> TEE
->>> context/session while we allocate the first secure buffer.
->>>
->>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
->>> ---
->>>    drivers/dma-buf/heaps/mtk_secure_heap.c | 61
->>> +++++++++++++++++++++++++
->>>    1 file changed, 61 insertions(+)
->>>
->>> diff --git a/drivers/dma-buf/heaps/mtk_secure_heap.c b/drivers/dma-
->>> buf/heaps/mtk_secure_heap.c
->>> index bbf1c8dce23e..e3da33a3d083 100644
->>> --- a/drivers/dma-buf/heaps/mtk_secure_heap.c
->>> +++ b/drivers/dma-buf/heaps/mtk_secure_heap.c
->>> @@ -10,6 +10,12 @@
->>>    #include <linux/err.h>
->>>    #include <linux/module.h>
->>>    #include <linux/slab.h>
->>> +#include <linux/tee_drv.h>
->>> +#include <linux/uuid.h>
->>> +
->>> +#define TZ_TA_MEM_UUID		"4477588a-8476-11e2-ad15-
->>> e41f1390d676"
->>> +
->>
->> Is this UUID the same for all SoCs and all TZ versions?
+On 9/12/23 16:08, Krzysztof Kozlowski wrote:
+> 	
 > 
-> Yes. It is the same for all SoCs and all TZ versions currently.
+> External email : Please do not click links or open attachments until you 
+> have verified the sender or the content.
+> 
+> On 12/09/2023 09:23, Macpaul Lin wrote:
+>> Fix compatible of 'mediatek,mt8365-evk' from 'enum' to 'const'.
+> 
+> What is there to fix? There is no bug... please describe why you are
+> doing changes.
+> 
+>> 
+>> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+>> ---
+>>  Documentation/devicetree/bindings/arm/mediatek.yaml | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>> 
+>> change for v2:
+>>  - rebase this patch to follow the v5 patch set of mt8395.
+>>   - depends on https://lore.kernel.org/lkml/20230909132819.21626-2-macpaul.lin@mediatek.com/T/
+>>  - Fix description as a single board.
+>> 
+>> changes for v3:
+>>  - rebase this patch to follow the v6 patch set of mt8395.
+>>   - depends on https://lore.kernel.org/lkml/20230911115717.26184-1-macpaul.lin@mediatek.com/T/
+>>  - drop "Fixes:" tag in commit message.
+>>  - drop platform description update for mt8365-evk (Genio 350-EVK).
+>> 
+>> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+>> index 2e8ad49c3479..bab4fa0e8199 100644
+>> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+>> @@ -245,7 +245,7 @@ properties:
+>>                - mediatek,mt8183-pumpkin
+>>            - const: mediatek,mt8183
+>>        - items:
+>> -          - enum:
+>> +          - const:
+> 
+> Obviously this was not tested... Please test before sending.
+> 
+> Best regards,
+> Krzysztof
 > 
 
-That's good news!
+I'm sorry, will be fixed in v4 with dtbs_check test.
 
-Is this UUID used in any userspace component? (example: Android HALs?)
-If it is (and I somehow expect that it is), then this definition should go
-to a UAPI header, as suggested by Christian.
-
-Cheers!
-
->>
->> Thanks,
->> Angelo
->>
->>
->>> +#define MTK_TEE_PARAM_NUM		4
->>>    
->>>    /*
->>>     * MediaTek secure (chunk) memory type
->>> @@ -28,17 +34,72 @@ struct mtk_secure_heap_buffer {
->>>    struct mtk_secure_heap {
->>>    	const char		*name;
->>>    	const enum kree_mem_type mem_type;
->>> +	u32			 mem_session;
->>> +	struct tee_context	*tee_ctx;
->>>    };
->>>    
->>> +static int mtk_optee_ctx_match(struct tee_ioctl_version_data *ver,
->>> const void *data)
->>> +{
->>> +	return ver->impl_id == TEE_IMPL_ID_OPTEE;
->>> +}
->>> +
->>> +static int mtk_kree_secure_session_init(struct mtk_secure_heap
->>> *sec_heap)
->>> +{
->>> +	struct tee_param t_param[MTK_TEE_PARAM_NUM] = {0};
->>> +	struct tee_ioctl_open_session_arg arg = {0};
->>> +	uuid_t ta_mem_uuid;
->>> +	int ret;
->>> +
->>> +	sec_heap->tee_ctx = tee_client_open_context(NULL,
->>> mtk_optee_ctx_match,
->>> +						    NULL, NULL);
->>> +	if (IS_ERR(sec_heap->tee_ctx)) {
->>> +		pr_err("%s: open context failed, ret=%ld\n", sec_heap-
->>>> name,
->>> +		       PTR_ERR(sec_heap->tee_ctx));
->>> +		return -ENODEV;
->>> +	}
->>> +
->>> +	arg.num_params = MTK_TEE_PARAM_NUM;
->>> +	arg.clnt_login = TEE_IOCTL_LOGIN_PUBLIC;
->>> +	ret = uuid_parse(TZ_TA_MEM_UUID, &ta_mem_uuid);
->>> +	if (ret)
->>> +		goto close_context;
->>> +	memcpy(&arg.uuid, &ta_mem_uuid.b, sizeof(ta_mem_uuid));
->>> +
->>> +	ret = tee_client_open_session(sec_heap->tee_ctx, &arg,
->>> t_param);
->>> +	if (ret < 0 || arg.ret) {
->>> +		pr_err("%s: open session failed, ret=%d:%d\n",
->>> +		       sec_heap->name, ret, arg.ret);
->>> +		ret = -EINVAL;
->>> +		goto close_context;
->>> +	}
->>> +	sec_heap->mem_session = arg.session;
->>> +	return 0;
->>> +
->>> +close_context:
->>> +	tee_client_close_context(sec_heap->tee_ctx);
->>> +	return ret;
->>> +}
->>> +
->>>    static struct dma_buf *
->>>    mtk_sec_heap_allocate(struct dma_heap *heap, size_t size,
->>>    		      unsigned long fd_flags, unsigned long heap_flags)
->>>    {
->>> +	struct mtk_secure_heap *sec_heap = dma_heap_get_drvdata(heap);
->>>    	struct mtk_secure_heap_buffer *sec_buf;
->>>    	DEFINE_DMA_BUF_EXPORT_INFO(exp_info);
->>>    	struct dma_buf *dmabuf;
->>>    	int ret;
->>>    
->>> +	/*
->>> +	 * TEE probe may be late. Initialise the secure session in the
->>> first
->>> +	 * allocating secure buffer.
->>> +	 */
->>> +	if (!sec_heap->mem_session) {
->>> +		ret = mtk_kree_secure_session_init(sec_heap);
->>> +		if (ret)
->>> +			return ERR_PTR(ret);
->>> +	}
->>> +
->>>    	sec_buf = kzalloc(sizeof(*sec_buf), GFP_KERNEL);
->>>    	if (!sec_buf)
->>>    		return ERR_PTR(-ENOMEM);
->>
->>
-
+Thanks
+Macpaul Lin
