@@ -2,62 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C95279C8AD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 09:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F19779C86A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 09:43:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232036AbjILHvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 03:51:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57578 "EHLO
+        id S231730AbjILHnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 03:43:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232323AbjILHv0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 03:51:26 -0400
-X-Greylist: delayed 557 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 12 Sep 2023 00:50:59 PDT
-Received: from mail.tryweryn.pl (mail.tryweryn.pl [5.196.29.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3E5010C3
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 00:50:59 -0700 (PDT)
-Received: by mail.tryweryn.pl (Postfix, from userid 1002)
-        id D685224B71; Tue, 12 Sep 2023 07:41:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tryweryn.pl; s=mail;
-        t=1694504469; bh=Bo+/jg3TCpOeS79PpZREuOWEeqJV//jojylD9dSrSik=;
-        h=Date:From:To:Subject:From;
-        b=wfR9KQoImvZ57CbuRQDMJirdDo5wiSALknw9NQHLDv1igVfgItzyPlAL0MQ05TKs4
-         cJIUgrHpcOT7spFSyI9F6j/3oGUf6BxSW9OepKkzLjG1NCZHb/dqmgLa1v2QgxZYSQ
-         N2R4olSj6fEGe9f2wzRp1dOJJDdjtRfucWpszvTBdwYvPr/eX/YLZlLNyUjtYHG2pQ
-         yJfncwMl2gwFmDwRcNmJdyRf9D7FPsR/Dp6CMfasMX2mL6QGj6UK5msAY2C+ZX2+Nd
-         4pQaQMGapEadS60+p0Wgfmeq1ct+3Npq1gSFrr8PK/gykAYDRVPsEZ8z6B/+XvO48o
-         YH/4MH5i1MIKA==
-Received: by mail.tryweryn.pl for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 07:40:56 GMT
-Message-ID: <20230912064501-0.1.1l.jswc.0.6k7um37qtg@tryweryn.pl>
-Date:   Tue, 12 Sep 2023 07:40:56 GMT
-From:   "Karol Michun" <karol.michun@tryweryn.pl>
-To:     <devicetree@vger.kernel.org>
-Subject: Prezentacja
-X-Mailer: mail.tryweryn.pl
+        with ESMTP id S231724AbjILHnE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 03:43:04 -0400
+X-Greylist: delayed 50446 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 12 Sep 2023 00:42:59 PDT
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3464010C7;
+        Tue, 12 Sep 2023 00:42:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1694504577; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=fjWlBWJFmqMV8lH9XejSDLefzNl9T7CIz29FZCK6TxM+4y2SYzBk8oTMoClIG2tjbk
+    j+ujE3Cbta82mXZTEuvy9tMC8CXft/0YFp+bB6p9riYdXucqvsMoUXM0QFXCpsZ/NVuT
+    DlsHnEQHFYiOzOHxhCvTFQWBHE7Yg91L8KfL27YYtV+DEzY3HyDWB4kfLYwqymnn9BN3
+    KmkOowB1fcnxiv1IMwbbjPj90hXyjO4q4kFGHkD38J2ALtY9iy3LdACtacBWWDH0bCW7
+    YoR0Q07dKy0rA7QWLp2LqlRFKd8hT3bsjPGskRLJzkAHI5IMyzSxZ+W5Eymc9LBegU7u
+    etKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1694504577;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=Jerwlqu1OdkPEzyr0Hjo2diQ+WDDPo13il2Fhs+ym5E=;
+    b=b7E2qdedm/5K/JatTDWMPjrCYyZcGBFHW+V8qhjaLkyhW8LPpBWQF+5bz0inv6Aons
+    R8A52ZeP6cEAytIK38AjrTNV4VtslTWTWO0bCfKNafQsF4/ollF1l0+X2YC5BL4FxaPi
+    uKKQl8jJBHyhD6SiEfN7fgtgSuAGJ9yN6ir/7lcZxJO6RS2KgWHeLn2NowYUqLc28wNI
+    CWH6jttgjiI5W/cJj09xejBRN9osYjqgPlTJApk/Ai7nRRRV6DUbEzbl+j+q+/9grMna
+    uvdG441sgaLqxCOSH8OQIDX0/ALcmmR2WMSKy28Cw8DmjX98uFMIUFiTrL/CIJoN/Yr0
+    BOKA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1694504577;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=Jerwlqu1OdkPEzyr0Hjo2diQ+WDDPo13il2Fhs+ym5E=;
+    b=KxNIYQCt01jsiwUgYxWMIkm376zV4eOgXHlDOrKqUWnNrPJhHTPF+gXYQjrqGlPEAg
+    blR5DLYLhasS7EVnjXZCQ8flbJ/lZ3f4GqDfbAfM7eP6nl4Vl0duNezp8kv58EbQmd15
+    Pjy2/xWpQx6wTN17DCwOBx0DAud3C5rt7G3WvMzgU38FTqqcqZtW72NL7d9vOXF//0MF
+    ADqLiXQj7tB2sByq7Qr3lJQ6OkWyY4IMRpC1HAKgV7FyeluLDpd7quZoXYrwi3oGheJI
+    V/zhcX4QX4RieRv+06JLmu/fxMBrrY25MdFnVKuRzxoY9tZlImcdCyV9VFmHXL5K4pDC
+    +M3g==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1694504577;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=Jerwlqu1OdkPEzyr0Hjo2diQ+WDDPo13il2Fhs+ym5E=;
+    b=5QVw6WNbkOQ1YBOh0deXtyIItppONq1zYvEz3wAhlGAQ0Z+IiyTVYSMh2YvxhhVVsi
+    RwCiD57XFFazaq9VVxCA==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA8Z2L1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.8.2 DYNA|AUTH)
+    with ESMTPSA id 60372az8C7gucHu
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Tue, 12 Sep 2023 09:42:56 +0200 (CEST)
+Date:   Tue, 12 Sep 2023 09:42:50 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/9] arm64: dts: qcom: msm8916-ufi: Drop gps_mem for now
+Message-ID: <ZQAWesjhnLzhnK5h@gerhold.net>
+References: <20230911-msm8916-rmem-v1-0-b7089ec3e3a1@gerhold.net>
+ <20230911-msm8916-rmem-v1-3-b7089ec3e3a1@gerhold.net>
+ <d8a17496-d2b4-4ed5-8a25-e61fe38bd377@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d8a17496-d2b4-4ed5-8a25-e61fe38bd377@linaro.org>
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dzie=C5=84 dobry!
+On Tue, Sep 12, 2023 at 07:36:43AM +0100, Bryan O'Donoghue wrote:
+> On 11/09/2023 18:41, Stephan Gerhold wrote:
+> > gps_mem is needed by the modem firmware for GPS to work. However, it is
+> > accessed via QMI memshare [1] which is not available upstream yet.
+> > Until it lands upstream reserving this does not provide any advantage.
+> > 
+> > [1]: https://lore.kernel.org/linux-arm-msm/20210319172321.22248-1-nikitos.tr@gmail.com/
+> > 
+> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> > ---
+> >   arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi | 5 -----
+> >   1 file changed, 5 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi b/arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi
+> > index c759c0544dd9..69f268db4df9 100644
+> > --- a/arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi
+> > @@ -22,11 +22,6 @@ mpss_mem: mpss@86800000 {
+> >   			reg = <0x0 0x86800000 0x0 0x5500000>;
+> >   			no-map;
+> >   		};
+> > -
+> > -		gps_mem: gps@8bd00000 {
+> > -			reg = <0x0 0x8bd00000 0x0 0x200000>;
+> > -			no-map;
+> > -		};
+> >   	};
+> >   	gpio-keys {
+> > 
+> 
+> Should this have a Fixes tag, should probably be applied to stable.
+> 
 
-Czy m=C3=B3g=C5=82bym przedstawi=C4=87 rozwi=C4=85zanie, kt=C3=B3re umo=C5=
-=BCliwia monitoring ka=C5=BCdego auta w czasie rzeczywistym w tym jego po=
-zycj=C4=99, zu=C5=BCycie paliwa i przebieg?
+I'm probably a bit "overcautious" when it comes to stable backporting,
+but I think this is not strictly a fix but more like cleanup. It doesn't
+cause any trouble to reserve the extra memory, it just wastes some RAM.
 
-Dodatkowo nasze narz=C4=99dzie minimalizuje koszty utrzymania samochod=C3=
-=B3w, skraca czas przejazd=C3=B3w, a tak=C5=BCe tworzenie planu tras czy =
-dostaw.
-
-Z naszej wiedzy i do=C5=9Bwiadczenia korzysta ju=C5=BC ponad 49 tys. Klie=
-nt=C3=B3w. Monitorujemy 809 000 pojazd=C3=B3w na ca=C5=82ym =C5=9Bwiecie,=
- co jest nasz=C4=85 najlepsz=C4=85 wizyt=C3=B3wk=C4=85.
-
-Bardzo prosz=C4=99 o e-maila zwrotnego, je=C5=9Bli mogliby=C5=9Bmy wsp=C3=
-=B3lnie om=C3=B3wi=C4=87 potencja=C5=82 wykorzystania takiego rozwi=C4=85=
-zania w Pa=C5=84stwa firmie.
-
-
-Pozdrawiam
-Karol Michun
+Thanks,
+Stephan
