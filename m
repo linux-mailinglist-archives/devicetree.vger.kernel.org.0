@@ -2,123 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AC7A79DD8D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 03:30:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCDD279DD97
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 03:33:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234247AbjIMBaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 21:30:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51768 "EHLO
+        id S233643AbjIMBdE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 21:33:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229805AbjIMBaL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 21:30:11 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB29810E6;
-        Tue, 12 Sep 2023 18:30:07 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38D0t6Bq007935;
-        Wed, 13 Sep 2023 01:29:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=uRBI9opgeNWKU7JkoyaAlhvxGF4XiO7Ki7rjehaRTZU=;
- b=pjOOSuAU9aTnVEgfUTdMRgnBQrFewmT2g+zv+800iSsgB8C7JSoMZYfcTk/Wc3uiIXGg
- c8Hn2mQMibDAvgElDSBgQd4xuFq2YrWqoWoJZ2qxEbDqNip5tCyQV1bZv4y7PYIW557y
- 1ttOAdQbO1wQPVAsAa6/zIvUE6vDy8UcrYYnkZ1Y5Eos23i8DhLzYEv6xcqb35Qgv6uI
- i5fkyZ5ep0v3EockGXX6C6Z95EPh/lRMVGGSInx17Cu8X93A4L3wb1uWxCvlex22tCwT
- USi6/2iXDbpFXkZlkOqGUsjHUTYZom8cH0U8o3/xRu4OkiYdpszV4hhP643etWACyuAR oA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t2ygr8dd6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 13 Sep 2023 01:29:53 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38D1Tr1i027648
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 13 Sep 2023 01:29:53 GMT
-Received: from hu-mdtipton-lv.qualcomm.com (10.49.16.6) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Tue, 12 Sep 2023 18:29:52 -0700
-Date:   Tue, 12 Sep 2023 18:29:51 -0700
-From:   Mike Tipton <quic_mdtipton@quicinc.com>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-CC:     Georgi Djakov <djakov@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 00/53] icc-rpmh multi-RSC voting groundwork
-Message-ID: <20230913012951.GA19284@hu-mdtipton-lv.qualcomm.com>
-References: <20230708-topic-rpmh_icc_rsc-v1-0-b223bd2ac8dd@linaro.org>
- <c067a45f-9629-d516-9e56-36538e4ff6db@kernel.org>
- <20230807215739.GA9621@hu-mdtipton-lv.qualcomm.com>
- <10520827-dc01-475c-b09a-35cefc9e0a62@linaro.org>
+        with ESMTP id S230113AbjIMBdD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 21:33:03 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9D7A10E6;
+        Tue, 12 Sep 2023 18:32:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=qJBQpBNYYlkyqxjelwZuKANH81OCTF0GID3/9TLiuoA=; b=c+vvtVlalT0CtfoSTtdGkB/6UX
+        0vaEIh3WXqfy+MkjaZaczVeqG94U2ZqHfGvwJQdGjY4SMFi+mg/+zn7SaEWJrQ0bbpR+zvSIoq+Cb
+        l+Ik+/TZWS07EvaM6iOsaD9eS0dW7FtF8D/wqURwPHbK0STlMYosg5AJttfo8hlls9OM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qgEkK-006Grg-3h; Wed, 13 Sep 2023 03:32:48 +0200
+Date:   Wed, 13 Sep 2023 03:32:48 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Parthiban.Veerasooran@microchip.com
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        corbet@lwn.net, Steen.Hegelund@microchip.com,
+        rdunlap@infradead.org, horms@kernel.org, casper.casan@gmail.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        Horatiu.Vultur@microchip.com, Woojung.Huh@microchip.com,
+        Nicolas.Ferre@microchip.com, UNGLinuxDriver@microchip.com,
+        Thorsten.Kummermehr@microchip.com
+Subject: Re: [RFC PATCH net-next 1/6] net: ethernet: implement OPEN Alliance
+ control transaction interface
+Message-ID: <2021acc6-bcf6-4dba-b7ce-ca1b3ca86088@lunn.ch>
+References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
+ <20230908142919.14849-2-Parthiban.Veerasooran@microchip.com>
+ <74a6cd9c-fb30-46eb-a50f-861d9ff5bf37@lunn.ch>
+ <6ecc8364-2bd7-a134-f334-2aff31f44498@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <10520827-dc01-475c-b09a-35cefc9e0a62@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Jx15JH6gwGlVH_vgYd4PLRPyD2M4TQi1
-X-Proofpoint-ORIG-GUID: Jx15JH6gwGlVH_vgYd4PLRPyD2M4TQi1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-12_24,2023-09-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- clxscore=1011 impostorscore=0 bulkscore=0 phishscore=0 mlxscore=0
- adultscore=0 mlxlogscore=999 malwarescore=0 lowpriorityscore=0 spamscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309130011
+In-Reply-To: <6ecc8364-2bd7-a134-f334-2aff31f44498@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 06, 2023 at 02:14:14PM +0200, Konrad Dybcio wrote:
-> > The general idea is that we could use tags for this. So, instead of...
-> > 
-> >   path = icc_get(dev, MASTER_MDP_DISP, SLAVE_EBI1_DISP);
-> > 
-> > it would be...
-> > 
-> >   path = icc_get(dev, MASTER_MDP, SLAVE_EBI1);
-> >   icc_set_tag(path, QCOM_ICC_TAG_VOTER_DISP);
-> > 
-> > I have an early prototype with basic testing already. I can hopefully
-> > clean it up and post for review in the next couple of weeks.
-> I was initially not very happy with this approach (overloading tags
-> with additional information), but it grew on me over time.
+> If I understand you correctly, this framework has to include the module 
+> initialization as well using the below APIs and has to be compiled as a 
+> loadable module so that other vendors module can make use of this, isn't it?
 > 
-> My only concern is that if we reserve say bits 16-31 for path tags
-> (remember, dt-bindings are ABI), we may eventually run out of them.
+> module_init(oa_tc6_init);
+> module_exit(oa_tc6_exit);
 
-The voter tags wouldn't require bitmasks like the bucket tags do. We'd
-just need an integer for each voter shifted into the proper position in
-the tag value. Thus, reserving N bits for the voters would give us 2**N
-voters, which should be plenty. For example:
+You should not need these, unless there is actions which need to be
+taken when the module is loaded. If there are no actions, it is purely
+a library, don't have them. The module dependency tracking code will
+see that the MAC driver modules has dependencies on symbols in this
+library module, and will load it first. The MAC driver is then loaded,
+and the kernel linker will resolve the missing symbols in the MAC
+driver to those in the library. It also means that there is only ever
+one copy of the library in the kernel, even if there is multiple MAC
+drivers using it.
 
-  #define QCOM_ICC_VOTERS_START           16
-  #define QCOM_ICC_VOTERS_END             23
-
-  #define QCOM_ICC_TAG_VOTER_HLOS         (0 << QCOM_ICC_VOTERS_START)
-  #define QCOM_ICC_TAG_VOTER_DISP         (1 << QCOM_ICC_VOTERS_START)
-  #define QCOM_ICC_TAG_VOTER_CAM_IFE_0    (2 << QCOM_ICC_VOTERS_START)
-  #define QCOM_ICC_TAG_VOTER_CAM_IFE_1    (3 << QCOM_ICC_VOTERS_START)
-  #define QCOM_ICC_TAG_VOTER_CAM_IFE_2    (4 << QCOM_ICC_VOTERS_START)
-
-The applicable voters should likely be defined in the target-specific
-headers, rather than the common qcom,icc.h. The bit range used for them
-could be common, but each target may only support a small subset of the
-total set of possible voters across all targets.
-
-Clients requiring multiple voters for the same logical path should be
-rare. On the off-chance they require that, they could just request the
-same path multiple times with different voter tags applied and call
-icc_set_bw() for each of them separately.
-
-I'm back from travel and vacation and plan to pick this up again soon.
+       Andrew
