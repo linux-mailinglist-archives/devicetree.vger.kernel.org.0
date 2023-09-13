@@ -2,134 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBC4579EC89
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 17:22:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEDDA79EC90
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 17:22:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235136AbjIMPW2 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 13 Sep 2023 11:22:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49060 "EHLO
+        id S230188AbjIMPWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 11:22:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230188AbjIMPW1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 11:22:27 -0400
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDED7CE;
-        Wed, 13 Sep 2023 08:22:23 -0700 (PDT)
-Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-770ef353b8fso326351585a.0;
-        Wed, 13 Sep 2023 08:22:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694618543; x=1695223343;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7YO1tPkDOEwQyc/Dv+HaOfcjogh4Es5EpVUGisTZOW4=;
-        b=sHTB26XNZ8teze6yZ9Ixw9kqdAyYVWnLlDSTGSBflM3o/T8d/XnR0ltTMjN15mwhMe
-         vAch7EnHtODeg9nb4fnZvSlCSxj0nMzfH0NA6iQn2K/AKhZHCUpd1uu4/cBDRMt4/Hx2
-         zw4Rp7dEaHm5T8mKrygsErZOCXUBcHeq0m/IHBMUuapBhjadQoptgQYqi3Se4dpyxn1D
-         ZkN7TiLaUjfZCH9dJUpSCuT0K33qCgrcPNjE1suEoU2X6PpWnp0VAUfraAy9RcfsQL/h
-         5eHFyugAlBv5blCIvJp9geqtNvPX5Usbjh8YdTWKlDqYvTqCfqS6Yc0aP3DE74SNi0u1
-         JIpQ==
-X-Gm-Message-State: AOJu0YwYWS6hYq5QxE0zM8N8KayeOi75z2kpba2NetgULvXQ8O36SDxe
-        QUiFn5RQiBCW5EYYAhW9sPfNcX2Pe5D5KQ==
-X-Google-Smtp-Source: AGHT+IEWLMHZWuUElViNkfPsqVJNkVnRs/obn/xLwb7A1rORq0QfqkXdEdSkStvIeU9CQexjOYe1kg==
-X-Received: by 2002:a0c:e147:0:b0:64a:131f:b214 with SMTP id c7-20020a0ce147000000b0064a131fb214mr2907571qvl.12.1694618542767;
-        Wed, 13 Sep 2023 08:22:22 -0700 (PDT)
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com. [209.85.222.171])
-        by smtp.gmail.com with ESMTPSA id a17-20020a05620a125100b0076f039d87c6sm3966650qkl.82.2023.09.13.08.22.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 08:22:22 -0700 (PDT)
-Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-76dc77fd01fso436119885a.3;
-        Wed, 13 Sep 2023 08:22:22 -0700 (PDT)
-X-Received: by 2002:a25:ad08:0:b0:d7f:8e1e:a95f with SMTP id
- y8-20020a25ad08000000b00d7f8e1ea95fmr2686664ybi.6.1694618224901; Wed, 13 Sep
- 2023 08:17:04 -0700 (PDT)
+        with ESMTP id S235494AbjIMPWg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 11:22:36 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42CFF19BF;
+        Wed, 13 Sep 2023 08:22:32 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38DDZWgc016921;
+        Wed, 13 Sep 2023 11:22:06 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3t2y8jw39b-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 13 Sep 2023 11:22:06 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 38DFM5b2004928
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 13 Sep 2023 11:22:05 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Wed, 13 Sep 2023 11:22:04 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Wed, 13 Sep 2023 11:22:04 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Wed, 13 Sep 2023 11:22:04 -0400
+Received: from daniel-Precision-5530.ad.analog.com ([10.48.65.230])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 38DFLmjA007886;
+        Wed, 13 Sep 2023 11:21:50 -0400
+From:   Daniel Matyas <daniel.matyas@analog.com>
+CC:     Daniel Matyas <daniel.matyas@analog.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+Subject: [PATCH 0/4] Why no v2?
+Date:   Wed, 13 Sep 2023 18:21:30 +0300
+Message-ID: <20230913152135.457892-1-daniel.matyas@analog.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
- <20230912045157.177966-36-claudiu.beznea.uj@bp.renesas.com>
- <20230912161635.GA877089-robh@kernel.org> <56cf08f2-5d8e-6098-6218-081d8f620abe@tuxon.dev>
-In-Reply-To: <56cf08f2-5d8e-6098-6218-081d8f620abe@tuxon.dev>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 13 Sep 2023 17:16:52 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWntLTk9ZmAF1voE-tdB+4vVzE804h=qsfaoN-8_6RN_Q@mail.gmail.com>
-Message-ID: <CAMuHMdWntLTk9ZmAF1voE-tdB+4vVzE804h=qsfaoN-8_6RN_Q@mail.gmail.com>
-Subject: Re: [PATCH 35/37] dt-bindings: arm: renesas: document SMARC
- Carrier-II EVK
-To:     claudiu beznea <claudiu.beznea@tuxon.dev>
-Cc:     Rob Herring <robh@kernel.org>, mturquette@baylibre.com,
-        sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, ulf.hansson@linaro.org,
-        linus.walleij@linaro.org, gregkh@linuxfoundation.org,
-        jirislaby@kernel.org, magnus.damm@gmail.com,
-        catalin.marinas@arm.com, will@kernel.org,
-        prabhakar.mahadev-lad.rj@bp.renesas.com,
-        biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com,
-        arnd@arndb.de, konrad.dybcio@linaro.org, neil.armstrong@linaro.org,
-        nfraprado@collabora.com, rafal@milecki.pl,
-        wsa+renesas@sang-engineering.com,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: lyN_nD1JFY0hxkig53mru5IM-zYNQDvh
+X-Proofpoint-GUID: lyN_nD1JFY0hxkig53mru5IM-zYNQDvh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-13_09,2023-09-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
+ clxscore=1011 lowpriorityscore=0 bulkscore=0 adultscore=0 mlxlogscore=707
+ suspectscore=0 priorityscore=1501 impostorscore=0 mlxscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2308100000
+ definitions=main-2309130125
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Claudiu,
+This is kind of v2, but not exactly. Major changes were applied and
+commits were separated. The latter is the main reason why I did not call
+this v2.
 
-On Wed, Sep 13, 2023 at 7:32 AM claudiu beznea <claudiu.beznea@tuxon.dev> wrote:
-> On 12.09.2023 19:16, Rob Herring wrote:
-> > On Tue, Sep 12, 2023 at 07:51:55AM +0300, Claudiu wrote:
-> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >>
-> >> Document Renesas SMARC Carrier-II EVK board which is based on RZ/G3S
-> >> (R9A08G045) SoC. The SMARC Carrier-II EVK consists of RZ/G3S SoM module and
-> >> SMARC Carrier-II carrier board, the SoM module sits on top of carrier
-> >> board.
-> >>
-> >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Briefly, this is what changed compared to the previoius patch:
+ - separate commit for: cleanup, dts doc, new dts props in driver,
+   resolution attribute
+ - timeout can be enabled now from the devicetree; no timeout attribute
+ - support for max31828 and max31829
 
-Thanks for your patch!
+Daniel Matyas (4):
+  hwmon: max31827: Make code cleaner
+  dt-bindings: hwmon: Added new properties to the devicetree
+  hwmon: max31827: Handle new properties from the devicetree
+  hwmon: max31827: Add custom attribute for resolution
 
-> >> --- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> >> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> >> @@ -476,6 +476,8 @@ properties:
-> >>
-> >>        - description: RZ/G3S (R9A08G045)
-> >>          items:
-> >> +          - enum:
-> >> +              - renesas,smarc2-evk # SMARC Carrier-II EVK
-> >
-> > You just changed the existing binding...
-> >
-> >>            - enum:
-> >>                - renesas,r9a08g045s33 # PCIe support
-> >
-> > This is the SoM module?
->
-> No, this is a SoC variant which supports PCIe.
-
-Ideally, we need a compatible value for the SoM as well, as the SoM
-can be used stand-alone, or plugged in a different carrier board.
-
-For iWave Systems RZ/G1E SODIMM, we have that.
-For the existing RZ/G2L variants, we forgot, but it can still be added...
-
->
-> > You either need to squash this change or add
-> > another case with 3 entries and maintain the 2 entry case. (there's no
-> > way to express any entry at the beginning or middle can be optional)
-> >
-> >>            - const: renesas,r9a08g045
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../bindings/hwmon/adi,max31827.yaml          |  35 ++
+ Documentation/hwmon/max31827.rst              |  73 +++-
+ drivers/hwmon/max31827.c                      | 397 +++++++++++++-----
+ 3 files changed, 395 insertions(+), 110 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.34.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
