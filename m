@@ -2,152 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E735479E3D0
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 11:33:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A03E779E3F7
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 11:41:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237229AbjIMJdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 05:33:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46082 "EHLO
+        id S229712AbjIMJmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 05:42:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234521AbjIMJdo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 05:33:44 -0400
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D7421726
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 02:33:40 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <j.zink@pengutronix.de>)
-        id 1qgMFW-00005k-SA; Wed, 13 Sep 2023 11:33:30 +0200
-Message-ID: <c54d19b8-eb5c-9977-b7e4-d2806054b5ae@pengutronix.de>
-Date:   Wed, 13 Sep 2023 11:33:15 +0200
+        with ESMTP id S229644AbjIMJl7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 05:41:59 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8256C196;
+        Wed, 13 Sep 2023 02:41:55 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38D8bv22011985;
+        Wed, 13 Sep 2023 09:41:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=xMH6E0ikw8twCxXEjJyg8wBsNxtxpjn+yh/+pLjt1PY=;
+ b=hv/1H/LIsoDrEzMe2ctyrm0r1icNdgMZxrnPRV0s4BG6FkNOQ5zTLVgQ+OZjLWQoAcNO
+ oYYpLj3VQTjWAVq6rUqH8ShuUgf59fcg8UylgiYJkFvkYbMipZMllTmFqfP3shRIPxfu
+ 7eIr5gglUBabSuyoOCt0ro6eF74l6DlLpkRM5L0UY1g3ZwaDO6Ex7YG2RZvJrQ+n7i7t
+ 4/f5OYZvFtfDwWAeu9wPrMnf5SmowUrZ8rs+zYyFr/ml8PQjGTUecG2f98z+ihFEBp8K
+ 3QFBBuycgdQCqu2MZ2oqMdMv2bIQgPp3BjWl+PR9/OCyhxHLeLqN62GqkW4BFesKM78e fw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t2y8e184q-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 13 Sep 2023 09:41:45 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38D9fhnT031598
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 13 Sep 2023 09:41:44 GMT
+Received: from hu-shazhuss-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Wed, 13 Sep 2023 02:41:37 -0700
+From:   Shazad Hussain <quic_shazhuss@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC:     <bartosz.golaszewski@linaro.org>, <kernel@quicinc.com>,
+        <quic_anantg@quicinc.com>,
+        Shazad Hussain <quic_shazhuss@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1] arm64: dts: qcom: sa8775p: pmic: rectify phandle for gpio-ranges used by pmm8654au_1_gpios
+Date:   Wed, 13 Sep 2023 15:11:11 +0530
+Message-ID: <20230913094111.14744-1-quic_shazhuss@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v4 0/3] Support non-default LVDS data mapping for simple
- panel
-Content-Language: en-US, de-DE
-To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     devicetree@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Dan Carpenter <error27@gmail.com>,
-        kernel test robot <lkp@intel.com>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kernel@pengutronix.de, patchwork-jzi@pengutronix.de
-References: <20230523-simplepanel_support_nondefault_datamapping-v4-0-e6e7011f34b5@pengutronix.de>
-From:   Johannes Zink <j.zink@pengutronix.de>
-In-Reply-To: <20230523-simplepanel_support_nondefault_datamapping-v4-0-e6e7011f34b5@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: j.zink@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: uuzfjskoafhHds5RHBb8Nb-6hupyw2mh
+X-Proofpoint-GUID: uuzfjskoafhHds5RHBb8Nb-6hupyw2mh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-13_02,2023-09-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ mlxlogscore=385 phishscore=0 impostorscore=0 lowpriorityscore=0 mlxscore=0
+ clxscore=1011 adultscore=0 suspectscore=0 priorityscore=1501 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
+ definitions=main-2309130075
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi everyone,
+Use correct phandle pmm8654au_1_gpios referred by gpio-ranges for
+pmic pmm8654au_1.
 
-gentle ping - is there any feedback you can give me for moving this series forward?
+Fixes: e5a893a7cec5 ("arm64: dts: qcom: sa8775p: add PMIC GPIO controller nodes")
+Reported-by: Anant Goel <quic_anantg@quicinc.com>
+Signed-off-by: Shazad Hussain <quic_shazhuss@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Best regards
-Johannes
-
-On 7/28/23 16:16, Johannes Zink wrote:
-> Some LVDS panels, such as the innolux,g101ice-l01 support multiple LVDS
-> data mapping modes, which can be configured by strapping a dataformat
-> pin on the display to a specific voltage.
-> 
-> This can be particularly useful for using the jeida-18 format, which
-> requires only 3 instead of 4 LVDS lanes.
-> 
-> This series moves the data-mapping property for LVDS panels in a
-> separate file and optionally adds it to simple-panel when matching to
-> the innolux,g101ice-l01 compatible. This property allows to override
-> the default data mapping set in the panel description in simple-panel.
-> 
-> The last patch in this series actually adds the driver support for
-> parsing the data format override device tree property and modifying the
-> corresponding values for bit per color and media bus format in the panel
-> descriptor.
-> 
-> Best regards
-> Johannes
-> 
-> ---
-> 
-> Changelog:
-> 
-> v3 -> v4:  - driver: worked in Dan's Feedback:
->               - return with proper error in case the call into
-> 	       panel_simple_override_nondefault_lvds_datamapping()
-> 	       failed
-> 	     - drop the unneeded and ambiguous ret local value
-> 
-> - Link to v3: https://lore.kernel.org/r/20230523-simplepanel_support_nondefault_datamapping-v3-0-78ede374d3d9@pengutronix.de
-> v2 -> v3:  - dt bindings: Worked in Conor's and Laurent's Feedback
-> 	     (thanks for your review): Drop the chomping indicator
-> 	   - dt bindings: Worked in Laurent's Feedback: fix typos
-> 	   - driver: worked in Laurent's review findings:
-> 	     - extract function for fixing up the bus format
-> 	     - only call this function on LVDS panels
-> 	     - fix typo
->             - Link to v2: https://lore.kernel.org/r/20230523-simplepanel_support_nondefault_datamapping-v2-0-87196f0d0b64@pengutronix.de
-> 
-> v1 -> v2:  - dt bindings: Worked in Rob's review findings (thanks for your
->               review), refactored to use common include instead of duplication
->             - driver: added missing error unwinding goto, as found by Dan
->               Carpenter's test robot:
->               Reported-by: kernel test robot <lkp@intel.com>
->               Reported-by: Dan Carpenter <error27@gmail.com>
->               Link: https://lore.kernel.org/r/202304160359.4LHmFOlU-lkp@intel.com/
-> 
-> To: David Airlie <airlied@gmail.com>
-> To: Daniel Vetter <daniel@ffwll.ch>
-> To: Rob Herring <robh+dt@kernel.org>
-> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> To: Thierry Reding <thierry.reding@gmail.com>
-> To: Neil Armstrong <neil.armstrong@linaro.org>
-> To: Sam Ravnborg <sam@ravnborg.org>
-> Cc: patchwork-jzi@pengutronix.de
-> Cc: kernel@pengutronix.de
-> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
-> 
-> ---
-> 
-> ---
-> Johannes Zink (3):
->        dt-bindings: display: move LVDS data-mapping definition to separate file
->        dt-bindings: display: simple: support non-default data-mapping
->        drm/panel-simple: allow LVDS format override
-> 
->   .../bindings/display/lvds-data-mapping.yaml        | 84 ++++++++++++++++++++++
->   .../devicetree/bindings/display/lvds.yaml          | 77 +++-----------------
->   .../bindings/display/panel/panel-simple.yaml       | 26 ++++++-
->   drivers/gpu/drm/panel/panel-simple.c               | 53 ++++++++++++++
->   4 files changed, 171 insertions(+), 69 deletions(-)
-> ---
-> base-commit: 52920704df878050123dfeb469aa6ab8022547c1
-> change-id: 20230523-simplepanel_support_nondefault_datamapping-13c3f2ea28f8
-> 
-> Best regards,
-
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
+index 3c3b6287cd27..eaa43f022a65 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
++++ b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
+@@ -173,7 +173,7 @@
+ 			compatible = "qcom,pmm8654au-gpio", "qcom,spmi-gpio";
+ 			reg = <0x8800>;
+ 			gpio-controller;
+-			gpio-ranges = <&pmm8654au_2_gpios 0 0 12>;
++			gpio-ranges = <&pmm8654au_1_gpios 0 0 12>;
+ 			#gpio-cells = <2>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
 -- 
-Pengutronix e.K.                | Johannes Zink                  |
-Steuerwalder Str. 21            | https://www.pengutronix.de/    |
-31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+2.17.1
 
