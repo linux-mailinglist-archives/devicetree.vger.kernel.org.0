@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4B3479EF02
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 18:42:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AA1E79EF03
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 18:42:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231420AbjIMQmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 12:42:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58392 "EHLO
+        id S231390AbjIMQm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 12:42:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230433AbjIMQm2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 12:42:28 -0400
+        with ESMTP id S230359AbjIMQms (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 12:42:48 -0400
 Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 997E1358A
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 09:40:12 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id d2e1a72fcca58-68fbd31d9deso3288688b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 09:40:12 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37F3435B5
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 09:40:21 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id d2e1a72fcca58-68fb6fd2836so3911785b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 09:40:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1694623212; x=1695228012; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1694623221; x=1695228021; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qenuytjXSLiGJ5kC+qcQ9TcZYC4A59ZzfaqAy8GW1hM=;
-        b=H4XWYjc2MD+KG0vjLWnsrzrg2b4+n08AoGCg9pQMzznVWmfe1mMIiUk3+IkRd6Hz/N
-         sd5cAlWmtD+391/EBsYuRKccgj5JVpHL00NEsCNtApTX28nbr3gvY23WNbvJhGGjnLI6
-         m+gvztalCbm1bbbtZ9GEx+w5L9d96J3N8wfoXNkq5BF5lszu5/AwmUF+ss2UuufewNnq
-         xMHu2mo+MFsrg/90/ZzDN1o5OJeb4/rD0zmfEhZ8YxhY1E79JM7VdpjLdEtJNbFIY5rp
-         WINErL+mA8QDvMg/soGiHVpCQi0vD9mmLJzbxu1hBiBAD5qVePyZcKdEglC3dcfoTtGL
-         DzWQ==
+        bh=xKfsPDBJ+P6p6dpX9yaIv3eC3Lcn8RGZt71DTNDJy4Y=;
+        b=VoYFXh/2QZ//+ZQYZnY0NonUIM5lHqoTFeBX/VHzxjBEEYoKFbMZBXdXzb4Gf+YNCv
+         J7psJk8R0Zko4qyWRvVGt9RZlHoKDAuQuMDLgvwD5peS8APgOCB6yiHEZF0rTkbj60oh
+         DPNGHNCZUrP3ZvoB/QK2owobsVJOJLKNvMPNRqP5LR/RkPPy804ULJfwrwtyK25I7ysG
+         8HCVWeI5I5EkMRO5dW8EVdKAOT/XbHG60FjoOmx66/GjzQAUiAeg4/B2JLC4Z4N2MFVg
+         vc9m2xj1MsXbt8JbIggGsoKIoesL+kdoSduVe257+Mo00u+AGJYu3BAJy0+ymo9CgE6m
+         J+gQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694623212; x=1695228012;
+        d=1e100.net; s=20230601; t=1694623221; x=1695228021;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qenuytjXSLiGJ5kC+qcQ9TcZYC4A59ZzfaqAy8GW1hM=;
-        b=DNVk0s0T3hfbkG0d9BKFSI3+DD4iTtXTMKKJvABa7Q/qPUnYF3G/5EReOC4g/+Mh1h
-         wAOHAxyeYcv5Nskdjf05bcv6uAOt4nZmsO2DqZn2OxSLEE1yVlHY1HUgLaEta7eOIjPr
-         n1wr27HfVrMueYkUhK1uU5f2Wt7NSsy1LBUpxJA0CNAdkqhxXgAtPmEx5mSnyLLNpWTY
-         mN9Sa4U5qYRS66bLpc6Moyj8HoZoSM8VLwSMJgYzC0Ui2oOtIgCC+lSHerHxRTm0iwMT
-         W5cpmSZKcU7ODDgzli6nZFAobc9m3LF4OYRF0ukA8i3Hz4POhEyEjjnFVuIisP9v3lbG
-         b3BA==
-X-Gm-Message-State: AOJu0YzufdDYLkH7m491UoonucXyriJqaQM2KNRbZjE3yHgP1mWz00GU
-        ZfBRwkiempfwlZuh4GsErBDa9A==
-X-Google-Smtp-Source: AGHT+IEdFy3Ow6J8ZnhgA5RICyAg1M67g+2y3qpcX9JXSprca6USli5lcOy8CCm03zHegv6l3xiriQ==
-X-Received: by 2002:a05:6a20:d426:b0:14c:6cd9:bf9d with SMTP id il38-20020a056a20d42600b0014c6cd9bf9dmr2589416pzb.35.1694623212048;
-        Wed, 13 Sep 2023 09:40:12 -0700 (PDT)
+        bh=xKfsPDBJ+P6p6dpX9yaIv3eC3Lcn8RGZt71DTNDJy4Y=;
+        b=KgRu4fYby2DkJkLwgotqSPtkTermAUHJ0ReisHKrX/K2S3regcmnzZJtEdKQMQoLMR
+         2589ZNueuUkL8GbF2riVfp0JX/huQ5zhi64rdxrrOxUDyxaHvDHStCgjy+YfugKT2C77
+         YVjCGXqNa8VZFDbpZK4YrYWlrp9fnFEHnKWoOhQ79/gacTRBusT/HTUTGeJ0Xt5N2BOI
+         do1L5GAoYi4xt6bQFT07Jknwn6e+umkima1fpbTEVDkknh1ezqjtI7UI2J7xaYOHoCv1
+         3lACtNBYPIx5wA3HZChU8uJxXNgzVc/MM2cS/J9mmzhzQXS5AMTK5De0RPo2MkJtD+dM
+         wa1g==
+X-Gm-Message-State: AOJu0YzcMk118DXpwxwsqTYGH9LMNGdyawMc5MXyK3dmtUcgaKlKMaRr
+        LP420jsw64a6heUNADKra56JnA==
+X-Google-Smtp-Source: AGHT+IFbRLr8FeGoVpOkQd6cH+MTeBdpCgPRQ+afGMzk5aWno4AtTRmGLxs8CgXWZ9XkExaV6rGwbg==
+X-Received: by 2002:a05:6a20:734e:b0:14c:d494:77c5 with SMTP id v14-20020a056a20734e00b0014cd49477c5mr3041141pzc.13.1694623220693;
+        Wed, 13 Sep 2023 09:40:20 -0700 (PDT)
 Received: from mchitale-vm.. ([103.97.165.210])
-        by smtp.googlemail.com with ESMTPSA id je15-20020a170903264f00b001b243a20f26sm10577756plb.273.2023.09.13.09.40.04
+        by smtp.googlemail.com with ESMTPSA id je15-20020a170903264f00b001b243a20f26sm10577756plb.273.2023.09.13.09.40.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Sep 2023 09:40:11 -0700 (PDT)
+        Wed, 13 Sep 2023 09:40:20 -0700 (PDT)
 From:   Mayuresh Chitale <mchitale@ventanamicro.com>
 To:     Palmer Dabbelt <palmer@dabbelt.com>,
         Anup Patel <anup@brainfault.org>
@@ -61,9 +61,9 @@ Cc:     Mayuresh Chitale <mchitale@ventanamicro.com>,
         Conor Dooley <conor@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v5 6/7] RISCV: KVM: Add sstateen0 context save/restore
-Date:   Wed, 13 Sep 2023 22:09:04 +0530
-Message-Id: <20230913163905.480819-7-mchitale@ventanamicro.com>
+Subject: [PATCH v5 7/7] RISCV: KVM: Add sstateen0 to ONE_REG
+Date:   Wed, 13 Sep 2023 22:09:05 +0530
+Message-Id: <20230913163905.480819-8-mchitale@ventanamicro.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230913163905.480819-1-mchitale@ventanamicro.com>
 References: <20230913163905.480819-1-mchitale@ventanamicro.com>
@@ -73,94 +73,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Define sstateen0 and add sstateen0 save/restore for guest VCPUs.
+Add support for sstateen0 CSR to the ONE_REG interface to allow its
+access from user space.
 
 Signed-off-by: Mayuresh Chitale <mchitale@ventanamicro.com>
 Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
 ---
- arch/riscv/include/asm/csr.h      |  1 +
- arch/riscv/include/asm/kvm_host.h |  8 ++++++++
- arch/riscv/kvm/vcpu.c             | 12 ++++++++++++
- 3 files changed, 21 insertions(+)
+ arch/riscv/include/uapi/asm/kvm.h |  8 +++++++
+ arch/riscv/kvm/vcpu_onereg.c      | 40 +++++++++++++++++++++++++++++++
+ 2 files changed, 48 insertions(+)
 
-diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
-index 65b871dbf7e8..306a19a5509c 100644
---- a/arch/riscv/include/asm/csr.h
-+++ b/arch/riscv/include/asm/csr.h
-@@ -288,6 +288,7 @@
- #define CSR_STVEC		0x105
- #define CSR_SCOUNTEREN		0x106
- #define CSR_SENVCFG		0x10a
-+#define CSR_SSTATEEN0		0x10c
- #define CSR_SSCRATCH		0x140
- #define CSR_SEPC		0x141
- #define CSR_SCAUSE		0x142
-diff --git a/arch/riscv/include/asm/kvm_host.h b/arch/riscv/include/asm/kvm_host.h
-index 1980be6a3e79..0eefd9c991ae 100644
---- a/arch/riscv/include/asm/kvm_host.h
-+++ b/arch/riscv/include/asm/kvm_host.h
-@@ -170,6 +170,10 @@ struct kvm_vcpu_config {
- 	u64 hstateen0;
+diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
+index c161791f55cb..b9448f9384b9 100644
+--- a/arch/riscv/include/uapi/asm/kvm.h
++++ b/arch/riscv/include/uapi/asm/kvm.h
+@@ -94,6 +94,11 @@ struct kvm_riscv_aia_csr {
+ 	unsigned long iprio2h;
  };
  
-+struct kvm_vcpu_smstateen_csr {
++/* Smstateen CSR for KVM_GET_ONE_REG and KVM_SET_ONE_REG */
++struct kvm_riscv_smstateen_csr {
 +	unsigned long sstateen0;
 +};
 +
- struct kvm_vcpu_arch {
- 	/* VCPU ran at least once */
- 	bool ran_atleast_once;
-@@ -190,6 +194,7 @@ struct kvm_vcpu_arch {
- 	unsigned long host_stvec;
- 	unsigned long host_scounteren;
- 	unsigned long host_senvcfg;
-+	unsigned long host_sstateen0;
+ /* TIMER registers for KVM_GET_ONE_REG and KVM_SET_ONE_REG */
+ struct kvm_riscv_timer {
+ 	__u64 frequency;
+@@ -180,10 +185,13 @@ enum KVM_RISCV_SBI_EXT_ID {
+ #define KVM_REG_RISCV_CSR		(0x03 << KVM_REG_RISCV_TYPE_SHIFT)
+ #define KVM_REG_RISCV_CSR_GENERAL	(0x0 << KVM_REG_RISCV_SUBTYPE_SHIFT)
+ #define KVM_REG_RISCV_CSR_AIA		(0x1 << KVM_REG_RISCV_SUBTYPE_SHIFT)
++#define KVM_REG_RISCV_CSR_SMSTATEEN    (0x2 << KVM_REG_RISCV_SUBTYPE_SHIFT)
+ #define KVM_REG_RISCV_CSR_REG(name)	\
+ 		(offsetof(struct kvm_riscv_csr, name) / sizeof(unsigned long))
+ #define KVM_REG_RISCV_CSR_AIA_REG(name)	\
+ 	(offsetof(struct kvm_riscv_aia_csr, name) / sizeof(unsigned long))
++#define KVM_REG_RISCV_CSR_SMSTATEEN_REG(name)  \
++	(offsetof(struct kvm_riscv_smstateen_csr, name) / sizeof(unsigned long))
  
- 	/* CPU context of Host */
- 	struct kvm_cpu_context host_context;
-@@ -200,6 +205,9 @@ struct kvm_vcpu_arch {
- 	/* CPU CSR context of Guest VCPU */
- 	struct kvm_vcpu_csr guest_csr;
+ /* Timer registers are mapped as type 4 */
+ #define KVM_REG_RISCV_TIMER		(0x04 << KVM_REG_RISCV_TYPE_SHIFT)
+diff --git a/arch/riscv/kvm/vcpu_onereg.c b/arch/riscv/kvm/vcpu_onereg.c
+index cfd4890612e1..72bcb5ae2489 100644
+--- a/arch/riscv/kvm/vcpu_onereg.c
++++ b/arch/riscv/kvm/vcpu_onereg.c
+@@ -379,6 +379,34 @@ static int kvm_riscv_vcpu_general_set_csr(struct kvm_vcpu *vcpu,
+ 	return 0;
+ }
  
-+	/* CPU Smstateen CSR context of Guest VCPU */
-+	struct kvm_vcpu_smstateen_csr smstateen_csr;
++static inline int kvm_riscv_vcpu_smstateen_set_csr(struct kvm_vcpu *vcpu,
++						   unsigned long reg_num,
++						   unsigned long reg_val)
++{
++	struct kvm_vcpu_smstateen_csr *csr = &vcpu->arch.smstateen_csr;
 +
- 	/* CPU context upon Guest VCPU reset */
- 	struct kvm_cpu_context guest_reset_context;
- 
-diff --git a/arch/riscv/kvm/vcpu.c b/arch/riscv/kvm/vcpu.c
-index 3013ae30c3af..c061a1c5fe98 100644
---- a/arch/riscv/kvm/vcpu.c
-+++ b/arch/riscv/kvm/vcpu.c
-@@ -621,16 +621,28 @@ static void kvm_riscv_update_hvip(struct kvm_vcpu *vcpu)
- 
- static __always_inline void kvm_riscv_vcpu_swap_in_guest_state(struct kvm_vcpu *vcpu)
++	if (reg_num >= sizeof(struct kvm_riscv_smstateen_csr) /
++		sizeof(unsigned long))
++		return -EINVAL;
++
++	((unsigned long *)csr)[reg_num] = reg_val;
++	return 0;
++}
++
++static int kvm_riscv_vcpu_smstateen_get_csr(struct kvm_vcpu *vcpu,
++					    unsigned long reg_num,
++					    unsigned long *out_val)
++{
++	struct kvm_vcpu_smstateen_csr *csr = &vcpu->arch.smstateen_csr;
++
++	if (reg_num >= sizeof(struct kvm_riscv_smstateen_csr) /
++		sizeof(unsigned long))
++		return -EINVAL;
++
++	*out_val = ((unsigned long *)csr)[reg_num];
++	return 0;
++}
++
+ static int kvm_riscv_vcpu_get_reg_csr(struct kvm_vcpu *vcpu,
+ 				      const struct kvm_one_reg *reg)
  {
-+	struct kvm_vcpu_smstateen_csr *smcsr = &vcpu->arch.smstateen_csr;
- 	struct kvm_vcpu_csr *csr = &vcpu->arch.guest_csr;
-+	struct kvm_vcpu_config *cfg = &vcpu->arch.cfg;
- 
- 	vcpu->arch.host_senvcfg = csr_swap(CSR_SENVCFG, csr->senvcfg);
-+	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SMSTATEEN) &&
-+	    (cfg->hstateen0 & SMSTATEEN0_SSTATEEN0))
-+		vcpu->arch.host_sstateen0 = csr_swap(CSR_SSTATEEN0,
-+						     smcsr->sstateen0);
- }
- 
- static __always_inline void kvm_riscv_vcpu_swap_in_host_state(struct kvm_vcpu *vcpu)
- {
-+	struct kvm_vcpu_smstateen_csr *smcsr = &vcpu->arch.smstateen_csr;
- 	struct kvm_vcpu_csr *csr = &vcpu->arch.guest_csr;
-+	struct kvm_vcpu_config *cfg = &vcpu->arch.cfg;
- 
- 	csr->senvcfg = csr_swap(CSR_SENVCFG, vcpu->arch.host_senvcfg);
-+	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SMSTATEEN) &&
-+	    (cfg->hstateen0 & SMSTATEEN0_SSTATEEN0))
-+		smcsr->sstateen0 = csr_swap(CSR_SSTATEEN0,
-+					    vcpu->arch.host_sstateen0);
- }
- 
- /*
+@@ -402,6 +430,12 @@ static int kvm_riscv_vcpu_get_reg_csr(struct kvm_vcpu *vcpu,
+ 	case KVM_REG_RISCV_CSR_AIA:
+ 		rc = kvm_riscv_vcpu_aia_get_csr(vcpu, reg_num, &reg_val);
+ 		break;
++	case KVM_REG_RISCV_CSR_SMSTATEEN:
++		rc = -EINVAL;
++		if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SMSTATEEN))
++			rc = kvm_riscv_vcpu_smstateen_get_csr(vcpu, reg_num,
++							      &reg_val);
++		break;
+ 	default:
+ 		rc = -ENOENT;
+ 		break;
+@@ -441,6 +475,12 @@ static int kvm_riscv_vcpu_set_reg_csr(struct kvm_vcpu *vcpu,
+ 	case KVM_REG_RISCV_CSR_AIA:
+ 		rc = kvm_riscv_vcpu_aia_set_csr(vcpu, reg_num, reg_val);
+ 		break;
++	case KVM_REG_RISCV_CSR_SMSTATEEN:
++		rc = -EINVAL;
++		if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SMSTATEEN))
++			rc = kvm_riscv_vcpu_smstateen_set_csr(vcpu, reg_num,
++							      reg_val);
++break;
+ 	default:
+ 		rc = -ENOENT;
+ 		break;
 -- 
 2.34.1
 
