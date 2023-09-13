@@ -2,60 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3EAF79E039
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 08:50:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E71B979E034
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 08:45:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238121AbjIMGuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 02:50:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37826 "EHLO
+        id S231575AbjIMGpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 02:45:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237746AbjIMGuH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 02:50:07 -0400
-Received: from smtp3.hiworks.co.kr (smtp3.hiworks.co.kr [121.254.168.205])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 803D7173F
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 23:50:01 -0700 (PDT)
-Received: (qmail 96806 invoked from network); 13 Sep 2023 15:49:58 +0900
-Received: from unknown (HELO hiworks.co.kr) (192.168.10.37)
-        by 0 (qmail 1.03 + ejcp v14) with SMTP;
-        13 Sep 2023 15:49:58 +0900
-Received: (qmail 192671 invoked from network); 13 Sep 2023 15:49:57 +0900
-Received: from unknown (HELO saram-MINIPC-PN53..) (mwkim@gaonchips.com@220.88.49.178)
-        by 0 (qmail 1.03 + ejcp v14) with SMTP;
-        13 Sep 2023 15:49:57 +0900
-X-Authinfo: HIWORKS SMTP authenticated <mwkim@gaonchips.com|220.88.49.178|mwkim@gaonchips.com|230913154957_8612192425>
-X-MailFrom-INFO: Info <country_code:KR|rbl_level:0>
-From:   Myunguk Kim <mwkim@gaonchips.com>
-To:     krzysztof.kozlowski@linaro.org
-Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org, fido_max@inbox.ru,
-        joabreu@synopsys.com, krzysztof.kozlowski+dt@linaro.org,
-        kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, mwkim@gaonchips.com, perex@perex.cz,
-        robh+dt@kernel.org, tiwai@suse.com, u.kleine-koenig@pengutronix.de,
-        xingyu.wu@starfivetech.com
-Subject: Re: [PATCH] ASoC: dwc: Add Single DMA mode support
-Date:   Wed, 13 Sep 2023 15:43:07 +0900
-Message-Id: <20230913064306.1862804-1-mwkim@gaonchips.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <644e3564-994d-0b51-7d58-dac6afc1e0ec@linaro.org>
-References: <644e3564-994d-0b51-7d58-dac6afc1e0ec@linaro.org>
+        with ESMTP id S238468AbjIMGpa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 02:45:30 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E8E81980;
+        Tue, 12 Sep 2023 23:45:25 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 7EAB824E3D6;
+        Wed, 13 Sep 2023 14:45:23 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 13 Sep
+ 2023 14:45:21 +0800
+Received: from [192.168.125.55] (113.72.145.181) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 13 Sep
+ 2023 14:45:20 +0800
+Message-ID: <f31b97b1-ce81-c259-cd19-6978d9fcec55@starfivetech.com>
+Date:   Wed, 13 Sep 2023 14:45:19 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [-next v2 1/2] riscv: dts: starfive: visionfive 2: Enable usb0
+To:     Conor Dooley <conor.dooley@microchip.com>
+CC:     Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230829020511.26844-1-hal.feng@starfivetech.com>
+ <c417d55d-d886-f66d-15a9-73b297d28d59@starfivetech.com>
+ <20230913-mockup-liable-9dcf94ed4568@wendy>
+Content-Language: en-US
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <20230913-mockup-liable-9dcf94ed4568@wendy>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.145.181]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->> This is not dependent on a specific vendor, 
->> but is intended to describe 
->> the properties of the signal(single/burst request) connection 
->> relationship between i2s and dma.
->
-> How does this relationship depend on hardware?
+On Wed, 13 Sep 2023 07:20:54 +0100, Conor Dooley wrote:
+> On Wed, Sep 13, 2023 at 11:47:22AM +0800, Hal Feng wrote:
+>> On Tue, 29 Aug 2023 10:05:10 +0800, Hal Feng wrote:
+>> > usb0 was disabled by mistake when merging, so enable it.
+>> > 
+>> > Fixes: e7c304c0346d ("riscv: dts: starfive: jh7110: add the node and pins configuration for tdm")
+>> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+>> > ---
+>> >  arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi | 1 +
+>> >  1 file changed, 1 insertion(+)
+>> > 
+>> > diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+>> > index d79f94432b27..85f40df93f25 100644
+>> > --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+>> > +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+>> > @@ -513,6 +513,7 @@ &uart0 {
+>> >  
+>> >  &usb0 {
+>> >  	dr_mode = "peripheral";
+>> > +	status = "okay";
+>> >  };
+>> 
+>> Hi, Conor,
+>> 
+>> As v6.6-rc1 is already released, would you apply this series
+>> in rc2 or the later rc versions?
+> 
+> Yes, I was planning on doing a sweep for potential fixes today. There's
+> 3 or 4 I think.
 
-When designing a SoC, it depends on the RTL and Bus connection.
-My company has two types of configuration SoC: single and burst 
-to meet ASIC customer's requirements.
+I see. Thanks a lot.
 
-Thanks,
-myunguk
-
+Best regards,
+Hal
