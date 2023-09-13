@@ -2,373 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BD5679EF37
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 18:47:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07BEF79EFB4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 19:01:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231241AbjIMQro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 12:47:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40812 "EHLO
+        id S230381AbjIMRBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 13:01:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231285AbjIMQr2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 12:47:28 -0400
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72F46272E;
-        Wed, 13 Sep 2023 09:44:54 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1bf7a6509deso49690715ad.3;
-        Wed, 13 Sep 2023 09:44:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694623494; x=1695228294; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=LJE7+qXCJmoTi/omoFna3Xr7ZtHmLFPfam+faJSi/V8=;
-        b=VWQVpyAKd+Zq4iKhgRbEpWXhKK6jXpFDLqqiy6gwbvayDlPKoaqbBoFxi/MzzXoLuA
-         xHEGsWdARLWkfEwqYAYz+V9QgGzxl0XLe2IfRc/iuYlo6gHs7woFzjxilKIYpuc9LnBj
-         THe5dLqRo3VDX/+jMfr6oBSUENFzqLYhh2PCfKFAwxV+qrSHV41n5fPF+sKZ3TJYHU9k
-         ONR0lY9QMTx/ZlE+39yU9vfTQmlNPX4clfwNA6OZ/xDjrSlixBcFuReZYwSPbIGUZbRC
-         EXtGPKUYghdVCqxwDH3pqbE0smpF7XmmhBA8X/DWgkOlrnKxgCb3eo5+1N5E0Ah5kjTy
-         wJoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694623494; x=1695228294;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LJE7+qXCJmoTi/omoFna3Xr7ZtHmLFPfam+faJSi/V8=;
-        b=aeYaGkqViaOX3O/nn0nzkNT4lWsrUgHrlXCv+q/zrcli046fepMUNeKn2u0gi8ERdF
-         l5dk1zP2m68yTDYPhvbyf2AcHjkuTTpOZ4Ju41cXkyLBhu+4M1srPttIwhrpmFdRfPXd
-         Afo2xS4Qs29sg70h0B/siuvydqrSHpbSm2DC441qBDEotGJX/yzne7YUMSxtzqgB1rGm
-         KNKCEEEGcyvqpFtsHEZ5KjWdzHes34PDa/P03bY/Hv1mixvl6dcWJHCkOaLxz+0RTSpn
-         9X8q/r//aun/V40SksCoOGxQnzUUPUGT6MdvsQnYRcVAW4P1md4gOyURXh7Kuivuj3BU
-         +zLA==
-X-Gm-Message-State: AOJu0YyaTxkj6vo1drciDj3Clo0XY5U4v2cq7UiQlTL/iieLGle+ewdZ
-        2m2VpYc9r/ZzTEmDlhQjpTI=
-X-Google-Smtp-Source: AGHT+IEAz9RhM/emxZRTy2Gcteoqak54PMBtzTJhoyzg9o0xek1stFp6NFGUDnCjF7p30mICUIT/AQ==
-X-Received: by 2002:a17:902:c081:b0:1c0:c3cc:d12a with SMTP id j1-20020a170902c08100b001c0c3ccd12amr3415022pld.20.1694623493710;
-        Wed, 13 Sep 2023 09:44:53 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id t11-20020a170902a5cb00b001c20c608373sm10672178plq.296.2023.09.13.09.44.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 09:44:53 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <b01ee87b-2a17-f556-c24b-3b07dbb97e97@roeck-us.net>
-Date:   Wed, 13 Sep 2023 09:44:52 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 3/4] hwmon: max31827: Handle new properties from the
- devicetree
-Content-Language: en-US
-To:     Daniel Matyas <daniel.matyas@analog.com>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231422AbjIMRAr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 13:00:47 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0239719B1;
+        Wed, 13 Sep 2023 09:59:58 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89ACFC433C8;
+        Wed, 13 Sep 2023 16:59:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694624397;
+        bh=BnteqCpF/CAUK7DK9U9Ghtfp5dt4d9MfOz2/eAS/u7s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cPc5I0ZLysgdFaSm9d3iPjGsHib6No1WDfTfDNmZ8EJftw2ukgPJqbdTvFwfII6h5
+         XsjFCfQwy0hAhvcNI/zC1jAxOZx+xj3WkJy3PnXdFgBaTdKUmzEXfr8r119FUpA9ws
+         uEyzFAjE2f/LP5rj9F/N4Be4pbP/BK9uPoheaZ2R88lgsiTu9NUbtgyaz2XOX1oPZT
+         eklyhY3ZUUL2hQtxVd/re7fFxkttitCrig5ohr9Pm1WOgM5lChR8UOojrbVvjicS9G
+         gipMxf05N4nYGfN5v5g6bWOTb7T8iOMYlMWHXGVTPRzp+C5LHyalJK3Qgj/yIop80d
+         GuvQxVLkJ3wdg==
+Date:   Wed, 13 Sep 2023 17:59:48 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org
-References: <20230913152135.457892-1-daniel.matyas@analog.com>
- <20230913152135.457892-4-daniel.matyas@analog.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <20230913152135.457892-4-daniel.matyas@analog.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+        Simon Horman <horms@kernel.org>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 24/31] net: wan: Add framer framework support
+Message-ID: <e3245053-1d4c-4ee3-9e03-8a6ca54e26d1@sirena.org.uk>
+References: <20230912081527.208499-1-herve.codina@bootlin.com>
+ <20230912101436.225781-1-herve.codina@bootlin.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="3d4xnD0OBUXwj5Mp"
+Content-Disposition: inline
+In-Reply-To: <20230912101436.225781-1-herve.codina@bootlin.com>
+X-Cookie: Use extra care when cleaning on stairs.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/13/23 08:21, Daniel Matyas wrote:
-> Used fwnode to retrieve data from the devicetree in the init_client
-> function.
-> 
-> Added support for devices max31828 and max31829. For these devices, when
-> adi,flt-q and/or adi,alrm-pol are not mentioned, the default
-> configuration is loaded.
-> 
 
-Still more than one logical change in a single patch.
+--3d4xnD0OBUXwj5Mp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
-> ---
->   Documentation/hwmon/max31827.rst |  47 ++++++++--
->   drivers/hwmon/max31827.c         | 142 +++++++++++++++++++++++++++----
->   2 files changed, 165 insertions(+), 24 deletions(-)
-> 
-> diff --git a/Documentation/hwmon/max31827.rst b/Documentation/hwmon/max31827.rst
-> index 9a1055a007cf..e0eca1eb5c06 100644
-> --- a/Documentation/hwmon/max31827.rst
-> +++ b/Documentation/hwmon/max31827.rst
-> @@ -52,13 +52,21 @@ MAX31827 has low and over temperature alarms with an effective value and a
->   hysteresis value: -40 and -30 degrees for under temperature alarm and +100 and
->   +90 degrees for over temperature alarm.
->   
-> -The alarm can be configured in comparator and interrupt mode. Currently only
-> -comparator mode is implemented. In Comparator mode, the OT/UT status bits have a
-> -value of 1 when the temperature rises above the TH value or falls below TL,
-> -which is also subject to the Fault Queue selection. OT status returns to 0 when
-> -the temperature drops below the TH_HYST value or when shutdown mode is entered.
-> -Similarly, UT status returns to 0 when the temperature rises above TL_HYST value
-> -or when shutdown mode is entered.
-> +The alarm can be configured in comparator and interrupt mode from the
-> +devicetree. In Comparator mode, the OT/UT status bits have a value of 1 when the
-> +temperature rises above the TH value or falls below TL, which is also subject to
-> +the Fault Queue selection. OT status returns to 0 when the temperature drops
-> +below the TH_HYST value or when shutdown mode is entered. Similarly, UT status
-> +returns to 0 when the temperature rises above TL_HYST value or when shutdown
-> +mode is entered.
-> +
-> +In interrupt mode exceeding TH also sets OT status to 1, which remains set until
-> +a read operation is performed on the configuration/status register (max or min
-> +attribute); at this point, it returns to 0. Once OT status is set to 1 from
-> +exceeding TH and reset, it is set to 1 again only when the temperature drops
-> +below TH_HYST. The output remains asserted until it is reset by a read. It is
-> +set again if the temperature rises above TH, and so on. The same logic applies
-> +to the operation of the UT status bit.
->   
->   Putting the MAX31827 into shutdown mode also resets the OT/UT status bits. Note
->   that if the mode is changed while OT/UT status bits are set, an OT/UT status
-> @@ -68,6 +76,17 @@ clear the status bits before changing the operating mode.
->   
->   The conversions can be manual with the one-shot functionality and automatic with
->   a set frequency. When powered on, the chip measures temperatures with 1 conv/s.
-> +The conversion rate can be modified with update_interval attribute of the chip.
-> +Conversion/second = 1/update_interval. Thus, the available options according to
-> +the data sheet are:
-> +	- 64000 (ms) = 1 conv/64 sec
-> +	- 32000 (ms) = 1 conv/32 sec
-> +	- 16000 (ms) = 1 conv/16 sec
-> +	- 4000 (ms) = 1 conv/4 sec
-> +	- 1000 (ms) = 1 conv/sec (default)
-> +	- 250 (ms) = 4 conv/sec
-> +	- 125 (ms) = 8 conv/sec
-> +
->   Enabling the device when it is already enabled has the side effect of setting
->   the conversion frequency to 1 conv/s. The conversion time varies depending on
->   the resolution. The conversion time doubles with every bit of increased
-> @@ -83,8 +102,18 @@ in the writing of alarm values too. For positive numbers the user-input value
->   will always be rounded down to the nearest possible value, for negative numbers
->   the user-input will always be rounded up to the nearest possible value.
->   
-> +Bus timeout resets the I2C-compatible interface when SCL is low for more than
-> +30ms (nominal).
-> +
-> +Alarm polarity determines if the active state of the alarm is low or high. The
-> +behavior for both settings is dependent on the Fault Queue setting. The ALARM
-> +pin is an open-drain output and requires a pullup resistor to operate.
-> +
-> +The Fault Queue bits select how many consecutive temperature faults must occur
-> +before overtemperature or undertemperature faults are indicated in the
-> +corresponding status bits.
-> +
->   Notes
->   -----
->   
-> -Currently fault queue, alarm polarity and resolution cannot be modified.
-> -PEC is not implemented either.
-> +PEC and resolution are not implemented.
-> diff --git a/drivers/hwmon/max31827.c b/drivers/hwmon/max31827.c
-> index f05762219995..4dc14642775a 100644
-> --- a/drivers/hwmon/max31827.c
-> +++ b/drivers/hwmon/max31827.c
-> @@ -12,6 +12,19 @@
->   #include <linux/i2c.h>
->   #include <linux/mutex.h>
->   #include <linux/regmap.h>
-> +#include <linux/hwmon-sysfs.h>
-> +#include <linux/of_device.h>
-> +
-> +/*
-> + * gcc turns __builtin_ffsll() into a call to __ffsdi2(), which is not provided
-> + * by every architecture. __ffs64() is available on all architectures, but the
-> + * result is not defined if no bits are set.
-> + */
-> +#define max31827__bf_shf(x)			 \
-> +	({					 \
-> +		typeof(x) x_ = (x);		 \
-> +		((x_) != 0) ? __ffs64(x_) : 0x0; \
-> +	})
->   
->   #define MAX31827_T_REG			0x0
->   #define MAX31827_CONFIGURATION_REG	0x2
-> @@ -22,15 +35,25 @@
->   
->   #define MAX31827_CONFIGURATION_1SHOT_MASK	BIT(0)
->   #define MAX31827_CONFIGURATION_CNV_RATE_MASK	GENMASK(3, 1)
-> -#define MAX31827_CONFIGURATION_U_TEMP_STAT_MASK	BIT(14)
-> -#define MAX31827_CONFIGURATION_O_TEMP_STAT_MASK	BIT(15)
-> +#define MAX31827_CONFIGURATION_TIMEOUT_MASK	BIT(5)
-> +#define MAX31827_CONFIGURATION_RESOLUTION_MASK	GENMASK(7, 6)
-> +#define MAX31827_CONFIGURATION_ALRM_POL_MASK	BIT(8)
-> +#define MAX31827_CONFIGURATION_COMP_INT_MASK	BIT(9)
-> +#define MAX31827_CONFIGURATION_FLT_Q_MASK	GENMASK(11, 10)
-> +#define MAX31827_CONFIGURATION_U_TEMP_STAT_MASK BIT(14)
-> +#define MAX31827_CONFIGURATION_O_TEMP_STAT_MASK BIT(15)
->   
->   #define MAX31827_12_BIT_CNV_TIME	140
->   
-> +#define MAX31827_FLT_Q_1	0x0
-> +#define MAX31827_FLT_Q_4	0x2
-> +
->   #define MAX31827_16_BIT_TO_M_DGR(x)	(sign_extend32(x, 15) * 1000 / 16)
->   #define MAX31827_M_DGR_TO_16_BIT(x)	(((x) << 4) / 1000)
->   #define MAX31827_DEVICE_ENABLE(x)	((x) ? 0xA : 0x0)
->   
-> +enum chips { max31827, max31828, max31829 };
-> +
->   enum max31827_cnv {
->   	MAX31827_CNV_1_DIV_64_HZ = 1,
->   	MAX31827_CNV_1_DIV_32_HZ,
-> @@ -58,6 +81,7 @@ struct max31827_state {
->   	struct mutex lock;
->   	struct regmap *regmap;
->   	bool enable;
-> +	struct i2c_client *client;
->   };
->   
->   static const struct regmap_config max31827_regmap = {
-> @@ -361,14 +385,93 @@ static int max31827_write(struct device *dev, enum hwmon_sensor_types type,
->   	return -EOPNOTSUPP;
->   }
->   
-> -static int max31827_init_client(struct max31827_state *st)
-> +static const struct i2c_device_id max31827_i2c_ids[] = {
-> +       { "max31827", max31827 },
-> +       { "max31828", max31828 },
-> +       { "max31829", max31829 },
-> +       { }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, max31827_i2c_ids);
-> +
-> +static int max31827_init_client(struct max31827_state *st,
-> +				struct fwnode_handle *fwnode)
->   {
-> +	bool prop;
-> +	u32 data, lsb_idx;
-> +	unsigned int res = 0;
-> +	enum chips type;
-> +	int ret;
-> +
->   	st->enable = true;
-> +	res |= MAX31827_DEVICE_ENABLE(1);
-> +
-> +	res |= MAX31827_CONFIGURATION_RESOLUTION_MASK;
->   
-> -	return regmap_update_bits(st->regmap, MAX31827_CONFIGURATION_REG,
-> -				  MAX31827_CONFIGURATION_1SHOT_MASK |
-> -					  MAX31827_CONFIGURATION_CNV_RATE_MASK,
-> -				  MAX31827_DEVICE_ENABLE(1));
-> +	prop = fwnode_property_read_bool(fwnode, "adi,comp-int");
-> +	res |= FIELD_PREP(MAX31827_CONFIGURATION_COMP_INT_MASK, prop);
-> +
-> +	prop = fwnode_property_read_bool(fwnode, "adi,timeout-enable");
-> +	res |= FIELD_PREP(MAX31827_CONFIGURATION_TIMEOUT_MASK, !prop);
-> +
-> +	if (st->client->dev.of_node)
-> +		type = (enum chips)of_device_get_match_data(&st->client->dev);
-> +	else
-> +		type = i2c_match_id(max31827_i2c_ids, st->client)->driver_data;
-> +
-> +	if (fwnode_property_present(fwnode, "adi,alrm-pol")) {
-> +		ret = fwnode_property_read_u32(fwnode, "adi,alrm-pol", &data);
-> +		if (ret)
-> +			return ret;
-> +
-> +		res |= FIELD_PREP(MAX31827_CONFIGURATION_ALRM_POL_MASK, !!data);
-> +	} else {
-> +		switch (type) {
-> +		case max31827:
-> +		case max31828:
-> +			res |= FIELD_PREP(MAX31827_CONFIGURATION_ALRM_POL_MASK,
-> +					  0x0);
-> +			break;
-> +		case max31829:
-> +			res |= FIELD_PREP(MAX31827_CONFIGURATION_ALRM_POL_MASK,
-> +					  0x1);
-> +			break;
-> +		default:
-> +			return -EOPNOTSUPP;
-> +		}
-> +	}
-> +
-> +	if (fwnode_property_present(fwnode, "adi,flt-q")) {
-> +		ret = fwnode_property_read_u32(fwnode, "adi,flt-q", &data);
-> +		if (ret)
-> +			return ret;
-> +
-> +		/*
-> +		 * Convert the desired fault queue into register bits.
-> +		 */
-> +		lsb_idx = max31827__bf_shf(data);
-> +		if (lsb_idx > 3 || data != BIT(lsb_idx)) {
-> +			dev_err(&st->client->dev, "Invalid data in fault queue\n");
-> +			return -EOPNOTSUPP;
-> +		}
-> +
-> +		res |= FIELD_PREP(MAX31827_CONFIGURATION_FLT_Q_MASK, lsb_idx);
-> +	} else {
-> +		switch (type) {
-> +		case max31827:
-> +			res |= FIELD_PREP(MAX31827_CONFIGURATION_FLT_Q_MASK,
-> +					  MAX31827_FLT_Q_1);
-> +			break;
-> +		case max31828:
-> +		case max31829:
-> +			res |= FIELD_PREP(MAX31827_CONFIGURATION_FLT_Q_MASK,
-> +					  MAX31827_FLT_Q_4);
-> +			break;
-> +		default:
-> +			return -EOPNOTSUPP;
-> +		}
-> +	}
-> +
-> +	return regmap_write(st->regmap, MAX31827_CONFIGURATION_REG, res);
->   }
->   
->   static const struct hwmon_channel_info *max31827_info[] = {
-> @@ -396,6 +499,7 @@ static int max31827_probe(struct i2c_client *client)
->   	struct device *dev = &client->dev;
->   	struct device *hwmon_dev;
->   	struct max31827_state *st;
-> +	struct fwnode_handle *fwnode;
->   	int err;
->   
->   	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_WORD_DATA))
-> @@ -412,7 +516,10 @@ static int max31827_probe(struct i2c_client *client)
->   		return dev_err_probe(dev, PTR_ERR(st->regmap),
->   				     "Failed to allocate regmap.\n");
->   
-> -	err = max31827_init_client(st);
-> +	st->client = client;
-> +	fwnode = dev_fwnode(dev);
-> +
-> +	err = max31827_init_client(st, fwnode);
->   	if (err)
->   		return err;
->   
-> @@ -423,14 +530,19 @@ static int max31827_probe(struct i2c_client *client)
->   	return PTR_ERR_OR_ZERO(hwmon_dev);
->   }
->   
-> -static const struct i2c_device_id max31827_i2c_ids[] = {
-> -	{ "max31827", 0 },
-> -	{ }
-> -};
-> -MODULE_DEVICE_TABLE(i2c, max31827_i2c_ids);
-> -
->   static const struct of_device_id max31827_of_match[] = {
-> -	{ .compatible = "adi,max31827" },
-> +	{
-> +		.compatible = "adi,max31827",
-> +		.data = (void *)max31827
-> +	},
-> +	{
-> +		.compatible = "adi,max31828",
-> +		.data = (void *)max31828
-> +	},
-> +	{
-> +		.compatible = "adi,max31829",
-> +		.data = (void *)max31829
-> +	},
->   	{ }
->   };
->   MODULE_DEVICE_TABLE(of, max31827_of_match);
+On Tue, Sep 12, 2023 at 12:14:36PM +0200, Herve Codina wrote:
+> A framer is a component in charge of an E1/T1 line interface.
+> Connected usually to a TDM bus, it converts TDM frames to/from E1/T1
+> frames. It also provides information related to the E1/T1 line.
+>=20
+> The framer framework provides a set of APIs for the framer drivers
+> (framer provider) to create/destroy a framer and APIs for the framer
+> users (framer consumer) to obtain a reference to the framer, and
+> use the framer.
 
+If people are fine with this could we perhaps get it applied on a branch
+with a tag?  That way we could cut down the size of the series a little
+and I could apply the generic ASoC bit too, neither of the two patches
+have any dependency on the actual hardware.
+
+--3d4xnD0OBUXwj5Mp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmUB6oMACgkQJNaLcl1U
+h9C6Xgf/eVzH2ZK88zsRlmvtdc+p6XZjgKPJFkUlIhE9Ma70SkaA+GvjpzFrSISC
+0oFzEllaNXg3QA5Dql2eFFYQgtr5ubist5gEg7ySisIk/3GFEx1+bOqfE8Hd0wxS
+EOmSRrnORoEywUsp1tI/CIh6s+FkPAwH0ZLtXwvWiKeWjQc8q9wKDnqqahC84N6Q
+NESewhcaX2cQNfQXdyKGrnV9RVVSaVml3mQ4OvcjG21+FFq8IFvmn1HuLyhzj7ka
+ACjNRWS9xgBsIqVyOOaYB2Ji62cf+WK4/DJig11BI34n9N7Tnbi80+kb0JX/WVno
+ncpqIK4/jpD4JNn+BxeAIiICNG0cQw==
+=nBcU
+-----END PGP SIGNATURE-----
+
+--3d4xnD0OBUXwj5Mp--
