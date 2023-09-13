@@ -2,129 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9662479EDBB
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 17:54:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63ECC79EDBD
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 17:56:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230024AbjIMPyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 11:54:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40658 "EHLO
+        id S230090AbjIMP4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 11:56:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229655AbjIMPyp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 11:54:45 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 971E092
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 08:54:41 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2bd0d135ca3so121380941fa.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 08:54:41 -0700 (PDT)
+        with ESMTP id S229872AbjIMP4F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 11:56:05 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5D9CE6D
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 08:56:00 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-52bcd4db4cbso8786071a12.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 08:56:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694620480; x=1695225280; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694620559; x=1695225359; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PV6H7MY3pYafdYjha+YwxubfEbezxXEhfC2aB0o7/80=;
-        b=x+wVeK8BS+ldm/+KS+qKJto6DGwzL2e53/54rVSwwo9gDmZZRvTncASFcyNgM8eGVG
-         Gt0wPz32OGJFUNYOrx2N/NZM1gBYuqhNJ53+XPe1t6tngy2jm36mist/mRLAEkkHF2bL
-         viLi1I/TtSOwBjhqA3HRawaTaDR4QuJhVe+bLOvOH3bKXRGnDhmIVdmVEPoqu0+2LYjH
-         GJb+NetrN69y6ha7bXj5sWEEArDf7Ls8csvM1HPj9tcxrVW+JVpPPUdw9EM85rWjJP5u
-         8jKRhI6c8DAboT+o8vHsj796ewHkqOwz4u0LMRwAcJGbg91GFC7cst4SOnUOhlKH2Ssp
-         8xKQ==
+        bh=tv7XJDdl6834GzjvqOGD358bBmTKqyHRIi14XwGDvOI=;
+        b=J2ZjKir7vSkCqej4qUKm9JqDXFoT3PvKmsv/mv6U/czvSP7bf8ftGLzee73NxJP+gk
+         muLEKF7m7KNI9Wl3TpPNyJDuj5qZOXESe4jSSvqmC0dDtmLD1QEvu7j66M+8VIYtlQ0j
+         dR45cjAK0vNDU8gNLOzk6nJ/NDneEnoH3nRwWL/TX1hrVpolaWE6XFhuPQj6uffCvGJ8
+         uH6eSAio+IAKamfGng+FrJ3AzOwZ1kviURh2oMu6xO9qLZPWyorsKXW7fEs88BQq95f1
+         FZaErb1KZSIxGD/C5QtttikCfdUbyEmBfICeKi9FR9ECMkVcgWQWxwFHIJgzvWn18h2h
+         vX8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694620480; x=1695225280;
+        d=1e100.net; s=20230601; t=1694620559; x=1695225359;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PV6H7MY3pYafdYjha+YwxubfEbezxXEhfC2aB0o7/80=;
-        b=qxHbfwaNqMENYqLQ+wwbn5BbAVDU2DXeO0IZhJaJD32WUCE8tQ2M7z5bLlcNsUPWUA
-         /Bjx1yuRidzwjVVWeEKyzKXecnZ9fjaoyhRyngDYCOX20hVDSIrDy8pOYPHZYjXNCWE7
-         Mw27nGQHLO4JYe5XC45Xa/3RTD5pVcAuUjXm2VBXWtzgdzjGHXeOawVRv8l/dNeF3tQ6
-         W8czxDI5qMqhQcbOAlY/pGXTtO1IRP1jmJGGaiAAor9Qq3hiXIMVr2acz9eQaxjmz3uR
-         06QZU4bFDjrlNNpLzNf3cJyq3utnuY+ebUz85wm3UqGbB1fqH9qoIcuy02roVqPi9Kto
-         aSiw==
-X-Gm-Message-State: AOJu0YxVtYPSfsyoLZw9eRqSz4znyWZLUDgGRniZAQrh1OfCzty3RLOh
-        BxXo0p+Ml79I/0m3+C+Fe+7q6g==
-X-Google-Smtp-Source: AGHT+IFl0lyG4rkyAxRanpYoJepUFaViYKTHOyxflLutR7Tdl2sNNCM60S1AVZ3ZIYtlzyC2KV29Uw==
-X-Received: by 2002:a2e:a282:0:b0:2bd:16e6:e34e with SMTP id k2-20020a2ea282000000b002bd16e6e34emr2403844lja.1.1694620479822;
-        Wed, 13 Sep 2023 08:54:39 -0700 (PDT)
+        bh=tv7XJDdl6834GzjvqOGD358bBmTKqyHRIi14XwGDvOI=;
+        b=INuSh28zNnW60+5n76oIsxp2Tc0Pgybxt6Uz/Fg0kXkit6i/+cP9295ug2HX6J/KYe
+         38ImIZfBbVV3uG8SNze/FBUPlQfYHHFPoO5kwOfzNmO+ZxJyaHM/5Z65rhwa7VpE0qfA
+         Acv4kjT85/zvGv1zGERQ5M6GvhxJmItwk8Gun1FPf+iH8SJaZHJ2eCEnwsUAFvZ9KnHv
+         rOZ2EEW0xx5tP5roQEFljLFUX9o3X6p9Akd8r5fGQ04F6d4K6yttjlOC7GRMA+P7amEU
+         879dLWHKDcdXchW9/b52wpJVkA9Bo1sWYSQAgSs5QRpRK99kOjqYYEHQ7MpG3A9zNlXU
+         RnvA==
+X-Gm-Message-State: AOJu0YwjprXjgC3loNlxqn+JTKH0zA9CxmeOLkfqBpWdHDQYcM/naOWn
+        +Ej5KIxRJ6QFuyxZJKLXK4BYGA==
+X-Google-Smtp-Source: AGHT+IHBr64ssqYpCba2U1MbEZa4hifW1e1oF7df36c+VnVjR01KmwawFQH8SGOjBmUtG5VCp8p4kw==
+X-Received: by 2002:aa7:c90c:0:b0:523:1ce9:1f41 with SMTP id b12-20020aa7c90c000000b005231ce91f41mr2521929edt.18.1694620559143;
+        Wed, 13 Sep 2023 08:55:59 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id lh26-20020a170906f8da00b0099cd1c0cb21sm8594101ejb.129.2023.09.13.08.54.38
+        by smtp.gmail.com with ESMTPSA id m16-20020aa7c490000000b005236410a16bsm7565230edq.35.2023.09.13.08.55.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 08:54:39 -0700 (PDT)
-Message-ID: <48ff2a69-6eaf-78dc-0382-f0b6a6d8cddd@linaro.org>
-Date:   Wed, 13 Sep 2023 17:54:37 +0200
+        Wed, 13 Sep 2023 08:55:58 -0700 (PDT)
+Message-ID: <c574c47e-9ceb-ef83-cc92-cdc6cd4982e5@linaro.org>
+Date:   Wed, 13 Sep 2023 17:55:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH v6 1/4] dt-bindings: remoteproc: k3-m4f: Add K3 AM64x SoCs
+Subject: Re: [PATCH 1/2] dt-bindings: crypto: ice: document the sa8775p inline
+ crypto engine
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Hari Nagalla <hnagalla@ti.com>
-Cc:     linux-kernel@vger.kernel.org, martyn.welch@collabora.com,
-        devicetree@vger.kernel.org, andersson@kernel.org,
-        linux-remoteproc@vger.kernel.org, robh+dt@kernel.org,
-        conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        mathieu.poirier@linaro.org, p.zabel@pengutronix.de,
-        krzysztof.kozlowski+dt@linaro.org
-References: <20230913111644.29889-1-hnagalla@ti.com>
- <20230913111644.29889-2-hnagalla@ti.com>
- <169460861100.2790015.8526656812110915165.robh@kernel.org>
+To:     Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230913153529.32777-1-bartosz.golaszewski@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <169460861100.2790015.8526656812110915165.robh@kernel.org>
+In-Reply-To: <20230913153529.32777-1-bartosz.golaszewski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/09/2023 14:36, Rob Herring wrote:
+On 13/09/2023 17:35, Bartosz Golaszewski wrote:
+> Add the compatible string for QCom ICE on sa8775p SoCs.
 > 
-> On Wed, 13 Sep 2023 06:16:41 -0500, Hari Nagalla wrote:
->> K3 AM64x SoC has a Cortex M4F subsystem in the MCU voltage domain.
->> The remote processor's life cycle management and IPC mechanisms are
->> similar across the R5F and M4F cores from remote processor driver
->> point of view. However, there are subtle differences in image loading
->> and starting the M4F subsystems.
->>
->> The YAML binding document provides the various node properties to be
->> configured by the consumers of the M4F subsystem.
->>
->> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
->> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
->> ---
->> Changes since v1:
->>  - Spelling corrections
->>  - Corrected to pass DT checks
->>
->> Changes since v2:
->>  - Missed spelling correction to commit message
->>
->> Changes since v3:
->>  - Removed unnecessary descriptions and used generic memory region names
->>  - Made mboxes and memory-region optional
->>  - Removed unrelated items from examples
->>
->> Changes since v4:
->>  - Rebased to the latest kernel-next tree
->>  - Added optional sram memory region for m4f device node
->>
->> Changes since v5:
->>  - None
->>
->>  .../bindings/remoteproc/ti,k3-m4f-rproc.yaml  | 136 ++++++++++++++++++
->>  1 file changed, 136 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/stericsson,dma40.example.dtb: dma-controller@801c0000: sram:0: [4294967295, 4294967295] is too long
-> 	from schema $id: http://devicetree.org/schemas/dma/stericsson,dma40.yaml#
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
 
-This looks unrelated but it is caused by this patch. Probably by
-conflicting type for 'sram'. It seems we need to make exception for
-'sram' in dtschema.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
