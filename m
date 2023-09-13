@@ -2,130 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EB2C79EA6E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 16:06:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EAE479EADA
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 16:19:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241095AbjIMOHA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 10:07:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33130 "EHLO
+        id S241287AbjIMOTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 10:19:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234305AbjIMOG7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 10:06:59 -0400
-Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AE2719B1;
-        Wed, 13 Sep 2023 07:06:55 -0700 (PDT)
-Received: by mail-qv1-xf33.google.com with SMTP id 6a1803df08f44-6543d62e9a4so4404686d6.1;
-        Wed, 13 Sep 2023 07:06:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694614014; x=1695218814; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4SVzpvJyQ79cqOeCOnbam7O9cjKj9BttoysEnsRs/uM=;
-        b=MbQ63YRi3YCQsGz/kJKQpXlDUkFoDOKZYRKiaZEw3S5KfrgoGgbCWSitkPqf671Fep
-         IO+s+Stv36zmB6wNYeQFL4sf3mTLeJ/Qlet8GhiRJEiDk/qcjHQkQh/WsSid/AXYfjqA
-         EjzgoRXrm6ZATz2rY9EM9K4LllZzcJ8PxFIIgktNKqxoVggQeADa3Kppq3r9Ry1nCzbK
-         s4DKm4Fz5YSebPt2XVSof7tcN1YsfypZ7g5tVJK59KAyCCV6MTI7xwEWgC8cCXVLrOD7
-         KM/Lh2acTehla5yDV5Nj/6lN4T+i4WbKDoF4m0CexXoNiltmMX4BwmdjeZdMg6r7BPu6
-         oQVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694614014; x=1695218814;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4SVzpvJyQ79cqOeCOnbam7O9cjKj9BttoysEnsRs/uM=;
-        b=Jzif9CaYog1bQiCN8vrIlIKEQS29uPpV7OmnmMyKL2zOF1ZgKpNjnbEYsnabYeNZhA
-         2m/ktAIrHwEj9XiUe3sHUX+kYbpRBKdrp+D5aiwyOhYESXLh8ah90xxpQ1oq4DNbhkQz
-         wWKWbPDA6WaBJtrVvOov+VfbK8w2NOQGBb8tWT1cDXfNLJJLgj89S5i4J13GgGRRTq5q
-         2Ytug968HBRGkBg+L+r8GTmnNPRbwWxeGynsHqebeySGmy7sWZRIuJm6pD4BuGXcXkcu
-         JjhQojlSjOZplBPi3lwf/OWqEchqKdOJ1FYZr142H8pZEvpaqUPPVHY386PHfJHrGXt2
-         DtHw==
-X-Gm-Message-State: AOJu0YyybHolDBjYWjGR/qe+oCGMryN8VeVDQ8TTuvngv+bmtYMhtuj/
-        +4xzMjhWp4mg52rsn1suN79hmeoLjAxHvWW4ILg=
-X-Google-Smtp-Source: AGHT+IGUBofx2QUGO40aHH0tMK0OQB083JOU4Kl31Ibbf/55KPiYWU6g3VDRmXNrjg+zyMkEylga1UnXSckBBe6qmmA=
-X-Received: by 2002:a05:6214:2cc6:b0:656:12e4:cb87 with SMTP id
- lf6-20020a0562142cc600b0065612e4cb87mr847046qvb.25.1694614014483; Wed, 13 Sep
- 2023 07:06:54 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230912140532.3797736-1-yangchen.openbmc@gmail.com>
- <20230912140532.3797736-3-yangchen.openbmc@gmail.com> <1bfdc230-e358-6aa4-7d60-03b5477a6be9@linaro.org>
-In-Reply-To: <1bfdc230-e358-6aa4-7d60-03b5477a6be9@linaro.org>
-From:   Yang Chen <yangchen.openbmc@gmail.com>
-Date:   Wed, 13 Sep 2023 22:06:43 +0800
-Message-ID: <CALFa7M_bAvpm50Mvi738ZcY_oQUgJftZO56Eht7Kw9n80H2oow@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Minerva: Add Facebook Minerva CMC board
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        joel@jms.id.au, andrew@aj.id.au, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        patrick@stwcx.xyz, Jerry.Lin@quantatw.com, Eddie.Chen@quantatw.com,
-        EasonChen1@quantatw.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S241297AbjIMOTJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 10:19:09 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACF4E5BA3;
+        Wed, 13 Sep 2023 07:11:07 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38DBe3Cl017669;
+        Wed, 13 Sep 2023 14:11:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=2Vvyz3kaBR5K9Mp05wf4x59Bwusl+MEdOtqRu7dB39g=;
+ b=ovFsknzEC/G1nM8AGwgRFO3ZzNkt7GFbTG+o1w1sV6XX0BOMTYddjDI0/L7Y8mtLasp4
+ Jflpq4rwnN67+M0cqkagWqQjcYwc0Pxf1BjetgE2bMVXf/Rdo5Gmq4PoV7nqnY0yvMhA
+ o5xbNENw4j47UioVeIwD6i3zB+yA3GvoHuYsXZ405AltrTJxYuQejsA/zaafGHqmGY40
+ wPiWq8UW5Re7WHgEogqkpu8zPc/C0QafJR0lTqktWOyJLzqbRDDgWbAQCIDjXdEMhL2L
+ cO8eCbBm7k+TR52PKrj95L4RSpMTJOnzBd9mETzwCRjukXHJjDpxMQFKxobdU4H1VXgO /A== 
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t314chhh6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 13 Sep 2023 14:11:02 +0000
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 38DEAwSN007638;
+        Wed, 13 Sep 2023 14:10:58 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3t0hskt7mn-1;
+        Wed, 13 Sep 2023 14:10:58 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 38DEAwR4007624;
+        Wed, 13 Sep 2023 14:10:58 GMT
+Received: from hu-sgudaval-hyd.qualcomm.com (hu-rohiagar-hyd.qualcomm.com [10.213.106.138])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 38DEAwFb007620;
+        Wed, 13 Sep 2023 14:10:58 +0000
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
+        id 71BED1D52; Wed, 13 Sep 2023 19:40:57 +0530 (+0530)
+From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        djakov@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@quicinc.com, Rohit Agarwal <quic_rohiagar@quicinc.com>
+Subject: [PATCH v3 0/2] Add interconnect driver for SDX75
+Date:   Wed, 13 Sep 2023 19:40:54 +0530
+Message-Id: <1694614256-24109-1-git-send-email-quic_rohiagar@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: KDkr9WnQBeOnhZtwmHZfYZk9z3KoZ3Pm
+X-Proofpoint-ORIG-GUID: KDkr9WnQBeOnhZtwmHZfYZk9z3KoZ3Pm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-13_07,2023-09-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ clxscore=1015 phishscore=0 spamscore=0 mlxscore=0 bulkscore=0
+ lowpriorityscore=0 priorityscore=1501 mlxlogscore=727 impostorscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309130115
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2023=E5=B9=
-=B49=E6=9C=8813=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=886:04=E5=AF=AB=
-=E9=81=93=EF=BC=9A
->
-> On 12/09/2023 16:05, yangchen.openbmc@gmail.com wrote:
-> > From: Yang Chen <yangchen.openbmc@gmail.com>
-> >
-> > Add linux device tree entry related to the Minerva Chassis Management
-> > Controller (CMC) specific devices connected to the Aspeed SoC (AST2600)=
-.
-> >
-> > Signed-off-by: Yang Chen <yangchen.openbmc@gmail.com>
-> > ---
-> >  arch/arm/boot/dts/aspeed/Makefile             |   1 +
-> >  .../aspeed-bmc-facebook-minerva-cmc.dts       | 265 ++++++++++++++++++
-> >  2 files changed, 266 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerv=
-a-cmc.dts
-> >
-> > diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/
->
->
-> > +
-> > +&i2c15 {
-> > +     status =3D "okay";
-> > +
-> > +     eeprom@50 {
-> > +             compatible =3D "atmel,24c128";
-> > +             reg =3D <0x50>;
-> > +     };
-> > +};
-> > +
-> > +&adc0 {
-> > +     ref_voltage =3D <2500>;
->
-> There is no such property in the bindings.
-Thanks for your advice, I will change this property to
-"aspeed,int-vref-microvolt" which is defined in the binding in the v2
-patch.
+Hi,
 
->
-> > +     status =3D "okay";
-> > +     pinctrl-0 =3D <&pinctrl_adc0_default &pinctrl_adc1_default
-> > +             &pinctrl_adc2_default &pinctrl_adc3_default
-> > +             &pinctrl_adc4_default &pinctrl_adc5_default
-> > +             &pinctrl_adc6_default &pinctrl_adc7_default>;
-> > +};
-> > +
-> > +&adc1 {
-> > +     ref_voltage =3D <2500>;
->
-> NAK, there is no such property.
-Thanks for your advice, I will change this property to
-"aspeed,int-vref-microvolt" which is defined in the binding in the v2
-patch.
+Changes in v3:
+ - Removed the unnecessary declaration of a struct from patch 2/2
+ - Collected the reviewed by tag
 
->
->
->
-> Best regards,
-> Krzysztof
->
+Changes in v2:
+ - Updated the bindings to merge the if clauses and updated the maintainer.
+ - Updated the drivers file to a latest template to add the missing const
+   keyword.
+ - Rebased on v6.6-rc1
+
+This series adds interconnect driver support for SDX75 platform.
+
+Thanks,
+Rohit.
+
+Rohit Agarwal (2):
+  dt-bindings: interconnect: Add compatibles for SDX75
+  interconnect: qcom: Add SDX75 interconnect provider driver
+
+ .../bindings/interconnect/qcom,sdx75-rpmh.yaml     |   92 ++
+ drivers/interconnect/qcom/Kconfig                  |    9 +
+ drivers/interconnect/qcom/Makefile                 |    2 +
+ drivers/interconnect/qcom/sdx75.c                  | 1107 ++++++++++++++++++++
+ drivers/interconnect/qcom/sdx75.h                  |   97 ++
+ include/dt-bindings/interconnect/qcom,sdx75.h      |  102 ++
+ 6 files changed, 1409 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sdx75-rpmh.yaml
+ create mode 100644 drivers/interconnect/qcom/sdx75.c
+ create mode 100644 drivers/interconnect/qcom/sdx75.h
+ create mode 100644 include/dt-bindings/interconnect/qcom,sdx75.h
+
+-- 
+2.7.4
+
