@@ -2,92 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2330E79E02A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 08:42:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3EAF79E039
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 08:50:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232571AbjIMGmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 02:42:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43498 "EHLO
+        id S238121AbjIMGuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 02:50:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231575AbjIMGmv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 02:42:51 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C66C91735
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 23:42:46 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-401b393df02so75149525e9.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 23:42:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694587365; x=1695192165; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=luACkZMQYaAff8AQJIHA/Ls5QqC1rb9Wh8NKaWNzkDk=;
-        b=Ol0I1DXPnlOE3venSKf8Si2jBXMLs2NLYHCfSj2hf/3lXETMHay8RXNBPfwiR5ncdl
-         lREIwZZTzLUA8XzNR2qOUQ/tBUONayG/vlugCIQOka8sVdd53m1ibeLsRG6mV9WfRYpl
-         Ed/EvvStpFfOhfYn6YrUy6hKSlJCd7Lke5KDrRExSx9mBEhpsUprsxMMvV8IAQGT1eyr
-         JFcVru+YERJBzkQhincouf5Hv2mj4na1P1g+yB5YLb6w1K6xqyAav3TOenIqMLkM6EHp
-         x2ON/xi+Ux5uMaXa5wiUUR+toT0Hl0u/WvWEXO/nbUvImofzSO7E6/A4TDfsIRYqSbVo
-         mUiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694587365; x=1695192165;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=luACkZMQYaAff8AQJIHA/Ls5QqC1rb9Wh8NKaWNzkDk=;
-        b=hGDNqYYTVdhDvx8KWoufRBN1otYc2OBgw6VCZtA8D3YkRuKqg4UmfLh9v2U/lp0McU
-         lIlMz+CdR7BAnGz636TsWzZS2HBygfZKM8aZp/seTRDWRl19b9mApF30TrRSUt47OeHr
-         iUPDS4ZvRFUrNwlGuwgjACEF8AQTSwMDCysxEAdR50UhZH+sURNEvpOlRGA7mxDTLefh
-         f9EhI3IakBNn+4e09375O2Xsbfbo2w5wptnsl3CsW1Pqbm3OnqZ35+doQBFhvETt7ews
-         pMrUEx0HOKdcLFJhGxphAQWYw+4RxzPC1tGQhHsyhTxvcR5cDNz1Evsx+gWPP1hJCmC+
-         iQQA==
-X-Gm-Message-State: AOJu0YwYktc0OmCJ7caqk/+IPgQDSBVfLxF0FUOjiGg7H13lqa9HDojW
-        nDBwMfBFCJsgmscjtdhOSgTfow==
-X-Google-Smtp-Source: AGHT+IEAIxQH5qvSmuuETYLt+QKKyHAu3o6+POI2RoUl/25iI03HCsIv5WiySXLmuGaNLQvvl6o5UQ==
-X-Received: by 2002:a1c:7210:0:b0:401:cbf6:e5cc with SMTP id n16-20020a1c7210000000b00401cbf6e5ccmr1291026wmc.22.1694587365204;
-        Tue, 12 Sep 2023 23:42:45 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id l17-20020a7bc451000000b003fe29dc0ff2sm1043821wmi.21.2023.09.12.23.42.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Sep 2023 23:42:44 -0700 (PDT)
-Message-ID: <be7d9ab7-9559-3f22-cc07-6fc3e018ef37@linaro.org>
-Date:   Wed, 13 Sep 2023 08:42:42 +0200
+        with ESMTP id S237746AbjIMGuH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 02:50:07 -0400
+Received: from smtp3.hiworks.co.kr (smtp3.hiworks.co.kr [121.254.168.205])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 803D7173F
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 23:50:01 -0700 (PDT)
+Received: (qmail 96806 invoked from network); 13 Sep 2023 15:49:58 +0900
+Received: from unknown (HELO hiworks.co.kr) (192.168.10.37)
+        by 0 (qmail 1.03 + ejcp v14) with SMTP;
+        13 Sep 2023 15:49:58 +0900
+Received: (qmail 192671 invoked from network); 13 Sep 2023 15:49:57 +0900
+Received: from unknown (HELO saram-MINIPC-PN53..) (mwkim@gaonchips.com@220.88.49.178)
+        by 0 (qmail 1.03 + ejcp v14) with SMTP;
+        13 Sep 2023 15:49:57 +0900
+X-Authinfo: HIWORKS SMTP authenticated <mwkim@gaonchips.com|220.88.49.178|mwkim@gaonchips.com|230913154957_8612192425>
+X-MailFrom-INFO: Info <country_code:KR|rbl_level:0>
+From:   Myunguk Kim <mwkim@gaonchips.com>
+To:     krzysztof.kozlowski@linaro.org
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org, fido_max@inbox.ru,
+        joabreu@synopsys.com, krzysztof.kozlowski+dt@linaro.org,
+        kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, mwkim@gaonchips.com, perex@perex.cz,
+        robh+dt@kernel.org, tiwai@suse.com, u.kleine-koenig@pengutronix.de,
+        xingyu.wu@starfivetech.com
+Subject: Re: [PATCH] ASoC: dwc: Add Single DMA mode support
+Date:   Wed, 13 Sep 2023 15:43:07 +0900
+Message-Id: <20230913064306.1862804-1-mwkim@gaonchips.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <644e3564-994d-0b51-7d58-dac6afc1e0ec@linaro.org>
+References: <644e3564-994d-0b51-7d58-dac6afc1e0ec@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm64: dts: mediatek: add mt8390-evk
- board
-Content-Language: en-US
-To:     Macpaul Lin <macpaul.lin@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Cc:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>
-References: <20230913040449.29560-1-macpaul.lin@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230913040449.29560-1-macpaul.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/09/2023 06:04, Macpaul Lin wrote:
-> 1. Add compatible for MT8390.
-> 2. Add bindings for the MediaTek mt8390-evk board, also known
-> as the "Genio 700-EVK".
-> 
+>> This is not dependent on a specific vendor, 
+>> but is intended to describe 
+>> the properties of the signal(single/burst request) connection 
+>> relationship between i2s and dma.
+>
+> How does this relationship depend on hardware?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+When designing a SoC, it depends on the RTL and Bus connection.
+My company has two types of configuration SoC: single and burst 
+to meet ASIC customer's requirements.
 
-Best regards,
-Krzysztof
+Thanks,
+myunguk
 
