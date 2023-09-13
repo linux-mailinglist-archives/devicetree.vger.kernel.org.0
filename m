@@ -2,154 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22E1579EBF4
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 17:02:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C586E79EC21
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 17:07:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240971AbjIMPCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 11:02:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48552 "EHLO
+        id S234029AbjIMPHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 11:07:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239071AbjIMPCt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 11:02:49 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05900AF;
-        Wed, 13 Sep 2023 08:02:44 -0700 (PDT)
-Received: from mercury (dyndsl-091-248-208-175.ewe-ip-backbone.de [91.248.208.175])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 27A936607326;
-        Wed, 13 Sep 2023 16:02:43 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1694617363;
-        bh=Mr987lQ7RX7Mpx8E4S7W1u4g24PmSRwWpxK8RTK2Ldw=;
+        with ESMTP id S230471AbjIMPHj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 11:07:39 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E61B7B7;
+        Wed, 13 Sep 2023 08:07:35 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D54C1C433C8;
+        Wed, 13 Sep 2023 15:07:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694617655;
+        bh=SYzUOpvEWA+yyqFFVtA92rfi3iMtgTA3kqi44w7DWsk=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=B0/gHKlDXsv6JA/cl1vKUowyUnEHiXQYLoPM1Zeg+Y/1UP1z1mEmqi8gGzhcLP6q6
-         cROzXAHzDteJ7zeFQMmMa+GlNgDtcnJKp3k9nbP61b2clzEa/Nny/g5CTgMydEuyre
-         ogzmP6jaTjLv1Gmf0NcX3XrdJ7rJFgxqQo5R2eay/mPUNAkVVp8y/hu/vuubA5pJFh
-         78tMZ+Kf5aqNHn089ep6MyDcndysI0GGZ+dxcpXjRb1GO7VSsz5Ckc4vtENIBgowXA
-         fyqzO+otZb31msahdIS/nRhsR5pMDF4T8tJUIN8Hp1QpOF0pXnzuBgTlCIrrD2DQPX
-         U1o/0Du3WSOxg==
-Received: by mercury (Postfix, from userid 1000)
-        id BC530106098A; Wed, 13 Sep 2023 17:02:40 +0200 (CEST)
-Date:   Wed, 13 Sep 2023 17:02:40 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH RESEND v2 2/3] dt-bindings: power: supply: Document
- Mitsumi MM8013 fuel gauge
-Message-ID: <20230913150240.4nzkxu6pnxv65tv2@mercury.elektranox.org>
-References: <20230621-topic-mm8013-v2-0-9f1b41f4bc06@linaro.org>
- <20230621-topic-mm8013-v2-2-9f1b41f4bc06@linaro.org>
+        b=sK8vGcMPpRNYhDpRYfwH/9KknVNkBCBwMjnCJ+uPuDQYPqN/G2Vu75ziBRwFhUaQ4
+         dpDON6WakckbrSsU+lv+faFmsX14Gz3ML2PXVwK+vWOHp4bWsqv2RPkjsg/ohAb4bH
+         glRlXqtvF67qTtbsubSMOq9Y79ZPgcICMMAr4nsAXhrPrrrODwmnzVOjWKt4ySzkYu
+         hCi9Ig06KgXS0ZjOMbA6Dys4acf6rYdK8xhQGOu4wjDiYjUlXVL5Pv8YgqsJgDiqAn
+         6JA1SBbPJ49x+pvBHSw6C08enJ35TR+2KFlwreS2b5HR3EVDJU6i8VG7yRXbGXgewS
+         buDvy7lYjZ8lA==
+Date:   Wed, 13 Sep 2023 16:07:27 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Myunguk Kim <mwkim@gaonchips.com>
+Cc:     alsa-devel@alsa-project.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, fido_max@inbox.ru,
+        joabreu@synopsys.com, krzysztof.kozlowski+dt@linaro.org,
+        kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, perex@perex.cz, robh+dt@kernel.org,
+        tiwai@suse.com, u.kleine-koenig@pengutronix.de,
+        xingyu.wu@starfivetech.com
+Subject: Re: [PATCH] ASoC: dwc: Add Single DMA mode support
+Message-ID: <71628b39-fd59-45ee-bad9-3e6bd42cb97d@sirena.org.uk>
+References: <ZP8Irf6g+sG6Ax9j@finisterre.sirena.org.uk>
+ <20230913040902.1496711-1-mwkim@gaonchips.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fxffqrwxy4s7q74c"
+        protocol="application/pgp-signature"; boundary="JskZn6gM/rV4+uuO"
 Content-Disposition: inline
-In-Reply-To: <20230621-topic-mm8013-v2-2-9f1b41f4bc06@linaro.org>
+In-Reply-To: <20230913040902.1496711-1-mwkim@gaonchips.com>
+X-Cookie: Use extra care when cleaning on stairs.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---fxffqrwxy4s7q74c
+--JskZn6gM/rV4+uuO
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Wed, Sep 13, 2023 at 01:09:03PM +0900, Myunguk Kim wrote:
 
-On Wed, Aug 23, 2023 at 04:36:14PM +0200, Konrad Dybcio wrote:
-> The Mitsumi MM8013 is an I2C fuel gauge for Li-Ion cells. The partial
-> datasheet is available at [1]. Add bindings for this chip.
->=20
-> [1] https://www.mitsumi.co.jp/latest-M/Catalog/pdf/battery_mm_8013_e.pdf
->=20
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  .../bindings/power/supply/mitsumi,mm8013.yaml      | 35 ++++++++++++++++=
-++++++
->  1 file changed, 35 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/power/supply/mitsumi,mm801=
-3.yaml b/Documentation/devicetree/bindings/power/supply/mitsumi,mm8013.yaml
-> new file mode 100644
-> index 000000000000..080fd44083ac
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/supply/mitsumi,mm8013.yaml
-> @@ -0,0 +1,35 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/supply/mitsumi,mm8013.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mitsumi MM8013 fuel gauge
-> +
-> +maintainers:
-> +  - Konrad Dybcio <konradybcio@kernel.org>
-> +
+> In this case, it is not used through the DMA API.=20
+> The connection relationship is as follows.
+>   i2s --- pcm_dmaengine ---  DMA IP (ie. pl330)
+> So, control was possible only by directly setting the maxburst property.
 
-allOf:
-  - $ref: power-supply.yaml#
+pcm_dmaengine is a wrapper binding the DMA API into ASoC...
 
--- Sebastian
-
-> +properties:
-> +  compatible:
-> +    const: mitsumi,mm8013
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +
-> +      fuel-gauge@55 {
-> +        compatible =3D "mitsumi,mm8013";
-> +        reg =3D <0x55>;
-> +      };
-> +    };
->=20
-> --=20
-> 2.42.0
->=20
-
---fxffqrwxy4s7q74c
+--JskZn6gM/rV4+uuO
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmUBzwcACgkQ2O7X88g7
-+poQfg//aEug4AGvhTIulK7IlBjIM2qSfT76xGJwCsud4znJvqzvvYdOfWs8lBFm
-WZLb8rkqwlA+jYk/rKKPwnZmDQmkhCcc4gEA526AFS6D2siRukHLccfjAnfPuPhG
-CjWUoQG2/JWeIpOiA9n3YJFhnASLyq6pfpM7Y8BzzH3V7cLQwUcjy8hQNWM2r2Vp
-tWJrYikFb3dHd0N2AXQSqaHt5qNAUItiWv2ogcNPfWlGhAUjsodpBIBSz9SDPPn6
-y/UIpWB3pObYWidXOgvZBnwd5X5ZsfGvqZoV9xpE165PbJ9kCNlQzLnTSCoO6g8L
-CIwhqppQbJ+yh5NcqVXcYzmAO3WfPZ8rS5PMS7WVV0dcDg4sqZhxRCqhgiZrIfAo
-3+HPhbq70mtu7hvxEF+wl/03DpEEUCsQRLQl49ypMm25UQB2GpkLH5Ps0EMq80PI
-MSHCMr90IccREB1O5Jkf4dtfWZ7gfD9k+uZN/LRTFwRwHSBms8rlrZmQbBO1/tDY
-sfh1HNRXjDrSdKbM41BC2mRxc/NSFGJ1uO0M3qZ4vfk7t/5r7jU55vV3+kXJqLoJ
-w3Fq5IHHKSgc25tSLwKFN/jghurPNBaDamvQ7OQgXpmz6r5xaB3m/bTaUo18bIW+
-4m/1ZgP/+uYYnCgqsRYoEGD3CdJTFiUq8pgU5nxqZv24/dFqTx0=
-=QHk4
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmUB0C4ACgkQJNaLcl1U
+h9CYPwf/eIOjdsbfVUtd+7nrcZMXcCeLgXOgT8xemnVvr78ESGnp7aH/Ke/IloW/
+5cFGLOAQJfUeknUFd/X5Cp0UJpqgBwvQYheCaRU8wLr7vV6B7KBkIaOB7ZEfurT3
+kupI6QMqDaey8qlwKeO0YC6nMGVlDE+1Fef86159QscpyReQJcGOa/f9zbiS+ohl
+WkDgQbWBZCao8OUtgyE1uwJnPy6K2HxrJTpb4OwP1Bx40W3d4Hj1arAPpKUL+lv+
+x/iUSv+fA/4JY0Rtem4HKlFIOhVxer9u1WAvBMTMM6wWhTOS5biVXGXb2kjm5/O4
++g414PVgdcpHlHA3iBf2v21S9zGLnQ==
+=5GdS
 -----END PGP SIGNATURE-----
 
---fxffqrwxy4s7q74c--
+--JskZn6gM/rV4+uuO--
