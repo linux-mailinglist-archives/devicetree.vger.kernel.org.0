@@ -2,90 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4166F79E8B5
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 15:10:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FC1679E92C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 15:25:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237448AbjIMNK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 09:10:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36590 "EHLO
+        id S240727AbjIMNZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 09:25:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231326AbjIMNK2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 09:10:28 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEF5A19B4
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 06:10:23 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-401f68602a8so73790375e9.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 06:10:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694610622; x=1695215422; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lhylJXVHu1y/JGAQAiQbLZVjvUVFnXfhI4SjrH0o0KY=;
-        b=bOPVLz2/iYEgxXqilRq5ckSvGAs2EuwzWzcYdolBx5i1zK6WPtbc7yptYilZOg3URf
-         13RrwClMyHvliMUFHLBbx3aAR8hr4EU/n3NguP6jjyIkVqmszfpscO4Ah9QGSSIvIzS1
-         f7K7FV7t+ugYooV9pGkNxesgX4a93Ko+SuvObEdHGNqWELFRZ0yuSYehmunui/g5hH0i
-         YaFPu8l/2wXCyEmBXweYAUIuuTIzWjsFk2Ujt/KvS3FR0NVCOqCIMcPOG8B5NcdEXZKx
-         iTAuGrxMFoJMB8v1EvGW8mKsngUmP34rZcWjhM6qSOv4jnFt6WrUu8xwAidrDq0MQl57
-         +BBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694610622; x=1695215422;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lhylJXVHu1y/JGAQAiQbLZVjvUVFnXfhI4SjrH0o0KY=;
-        b=UhlVZBqJ3GNQyLn6WJmlZnXPB3lA0Rh8GyY6KQG6cBm3iox/RCKRE3VU8jQ/rYsrVO
-         jEgg0CDlZExAeOV8Z+hT2x/OBZG7QZXsy0BRU2prkG6SBARQSCInLnYrZB8KbmBpIFZP
-         J/ZmZfQ6IUUI42PUVNiKyxeGD4vIzfSuUJvzRTD1lLlhds9MRh3EuT5GksSuo7HBS7gI
-         0BhrMJCuEC8CCzpZ5BKKnX6878j7ge4zU8faCpX9+PxEGG12Nle5r/AODLAFQLVK4eek
-         9POyZ3/Qp4ZdQsTSAPQSzt+vK5fXiwBHrPCXyB0JfZucvrfoZQqtHIrPiCs9ftDe/cj0
-         4UhQ==
-X-Gm-Message-State: AOJu0YxNszrZpIC3NnI/mkPIcOUzmHk6NZdG7HFnfvgMSjfG0UtNDg2u
-        KSHDU31xcc+F9Esw90sll3fcZw==
-X-Google-Smtp-Source: AGHT+IHiJzJhe1Xrs12iA0t2UFcejF5aY0fuGShabimjAwKWm+vmmwmawqlnxHfAfdo7W9D+0o04pg==
-X-Received: by 2002:a1c:4c1a:0:b0:400:57d1:4915 with SMTP id z26-20020a1c4c1a000000b0040057d14915mr2173211wmf.37.1694610622229;
-        Wed, 13 Sep 2023 06:10:22 -0700 (PDT)
-Received: from [192.168.2.107] ([79.115.63.137])
-        by smtp.gmail.com with ESMTPSA id z12-20020a1c4c0c000000b003fee6e170f9sm1972778wmf.45.2023.09.13.06.10.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 06:10:21 -0700 (PDT)
-Message-ID: <9486b1f0-9c5f-4c2e-9032-18efc4a63b24@linaro.org>
-Date:   Wed, 13 Sep 2023 14:10:20 +0100
+        with ESMTP id S234046AbjIMNZz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 09:25:55 -0400
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.83])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2D5519B1;
+        Wed, 13 Sep 2023 06:25:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1694611535; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=LeX5saRTr+At6MzyVh7+sXPc0NqRVuiaP1Ch1Jk+WoDev33+xd982ReLjqPSK7am8m
+    pjDqrs5KZy/tc6wIIzHX5isdZ3siv3337Tr+8AbHkDBJa9FwHrNbrai83ytiavkztzhb
+    gvfYeczSNBUZExMnypVd+CMxaHzPLUuNmPO9BokvrfDQvdJGjDD1GQ5+wUvwY3dDsDoo
+    9wwYsCrxx8BYBPZW0mvejy4zqRmWsYxKH88LvSSLijks2N3uKgwg1qv+DWr9zHoTVcH2
+    yNZjwPjZK1Oe2fzaDHWvZxElE0t+bEduY86s5SwAyqjvplTqyijvh1cvKnCF5UhDUgNq
+    X/wg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1694611535;
+    s=strato-dkim-0002; d=strato.com;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=2yYfFfmY5L7Akn5oP+M8fMk+qOUch7gWpcmspCBJC10=;
+    b=XOkFFIzthoqY6IcoWQhZQUa44uIYcgK/7UUdkygpp62uwdVEiANwgGMuhIIDoWjLBv
+    eZ9GktJRynxGIuWxVd8NJYl9fzSZ991/k9upSzAA6hT9xxby16yqWXtmEaLkAFubrTOj
+    IqhgWXQPDVd580aubLJjr4QeltO6UluZeGJPqILmtv4QGsQeXBSh5p8BH9tilj6LEXiO
+    BCpVkOA4gcka26j3KnoHThAWnfahY6J2APwcWtOpw+4JaXNg/ncdpIgtYPToQwzquKOQ
+    bycJRHJ+NkR+aokCeYOnkx1JcjTuKEYIeSeBPYEvDPwoX9CvFqmdqqb9UpabC7/hIN1S
+    M+Qw==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo02
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1694611535;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=2yYfFfmY5L7Akn5oP+M8fMk+qOUch7gWpcmspCBJC10=;
+    b=H1JEV+mcJatiM9wpsTmlPXO49b82lMTKd8ZsFpB0Co/TEdRQ/Fp4f2Y8sHu04oVdSP
+    cTxuBnCwoNO0GbGTezT9WQIzO4dbATa07j3RyhD4vd3gXb3/a05bkagHHCyuGxh2aMcM
+    XZZgcBVIJQ/cmLrTNh46m3avuqI5F3r6m/IzpephZJLJI8T5K8o+VjgnwS9u6DyL1K4R
+    v/acdK5RjGLVIrc82Z9OuHH8vCF92qZ08RRXj872TuShzBDHBEsYy7LSTeJi3UZ+4vOa
+    2DDARiRQoJBA+vDbovvFtadfyHdxoIvV6w9VZ7acJmhpJ0NfZV3zEmYIWpykUNuRM6CG
+    /oJA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1694611535;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=2yYfFfmY5L7Akn5oP+M8fMk+qOUch7gWpcmspCBJC10=;
+    b=v0wJetINySkyDEtRwAQQDmmWmmRAybXLk/t315YJBqvhYfdaIDTAbwc7kzM6N9FjEW
+    Sq/tQ8SVyNJxtMWTb1AQ==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQjVd4CteZ/7jYgS+mLFY+H0JAn8u4p3mw=="
+Received: from [192.168.244.3]
+    by smtp.strato.de (RZmta 49.8.2 DYNA|AUTH)
+    with ESMTPSA id xb560bz8DDPZuEG
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Wed, 13 Sep 2023 15:25:35 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH 0/2] Input: add Himax HX852x(ES) touchscreen driver
+Date:   Wed, 13 Sep 2023 15:25:28 +0200
+Message-Id: <20230913-hx852x-v1-0-9c1ebff536eb@gerhold.net>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/8] dt-bindings: mtd: add basic bindings for UBI
-Content-Language: en-US
-To:     Daniel Golle <daniel@makrotopia.org>, linux-mtd@lists.infradead.org
-Cc:     Zhihao Cheng <chengzhihao1@huawei.com>,
-        Rob Herring <robh@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        devicetree@vger.kernel.org,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEi4AWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2MDC0Mz3YwKC1OjCl1jE0uDFCNzc2NjIyMloOKCotS0zAqwQdGxtbUAYgG
+ x7VgAAAA=
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-References: <cover.1691717480.git.daniel@makrotopia.org>
- <a640bb10e6fbaeef96efdb9e8b666ca39e993589.1691717480.git.daniel@makrotopia.org>
- <169263908218.2000617.16931192155432403196.robh@kernel.org>
- <ZP9kJYHMFwZ8GFnA@makrotopia.org>
-From:   Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <ZP9kJYHMFwZ8GFnA@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Henrik Rydberg <rydberg@bitmath.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jeff LaBundy <jeff@labundy.com>,
+        Jonathan Albrieux <jonathan.albrieux@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>
+X-Mailer: b4 0.12.3
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+Add DT schema and driver for the Himax HX852x(ES) touch panel 
+controller, with support for multi-touch and capacitive touch keys.
 
-On 9/11/23 20:01, Daniel Golle wrote:
-> Is there anything I can do from my end to have this series moving forward?
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+---
+Jonathan Albrieux (1):
+      Input: add Himax HX852x(ES) touchscreen driver
 
-You could review other UBI submissions to reduce the review load on
-Richard. I guess the queue of UBI pending patches is at:
-https://patchwork.ozlabs.org/project/linux-mtd/list/?series=&submitter=&state=&q=ubi&archive=&delegate=
+Stephan Gerhold (1):
+      dt-bindings: input: touchscreen: document Himax HX852x(ES)
 
-Cheers,
-ta
+ .../bindings/input/touchscreen/himax,hx852es.yaml  |  81 ++++
+ MAINTAINERS                                        |   7 +
+ drivers/input/touchscreen/Kconfig                  |  10 +
+ drivers/input/touchscreen/Makefile                 |   1 +
+ drivers/input/touchscreen/himax_hx852x.c           | 491 +++++++++++++++++++++
+ 5 files changed, 590 insertions(+)
+---
+base-commit: 0bb80ecc33a8fb5a682236443c1e740d5c917d1d
+change-id: 20230816-hx852x-3490d2773322
+
+Best regards,
+-- 
+Stephan Gerhold <stephan@gerhold.net>
+
