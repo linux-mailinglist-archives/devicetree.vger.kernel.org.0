@@ -2,97 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5925B79E6A0
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 13:25:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C26579E6CD
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 13:32:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230242AbjIMLZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 07:25:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33014 "EHLO
+        id S240233AbjIMLcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 07:32:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234090AbjIMLZX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 07:25:23 -0400
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82AE4173E
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 04:25:19 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <j.zink@pengutronix.de>)
-        id 1qgNzW-00048k-NV; Wed, 13 Sep 2023 13:25:06 +0200
-Message-ID: <089e6ed7-4d87-9469-b547-1f14d975ed62@pengutronix.de>
-Date:   Wed, 13 Sep 2023 13:24:51 +0200
+        with ESMTP id S240194AbjIMLcU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 07:32:20 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A89AB1726
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 04:32:16 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9a9d82d73f9so837465966b.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 04:32:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694604735; x=1695209535; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5j+vOlqz3f4oxafJPXTsw7TQpxVIHCk4693pzx0c94w=;
+        b=j5zsfOwwFvT0XBAEEnzwdg3+Juy6FufuPTuUSRSZUxFkHpsyIVxRow7RFRXmJMhvwy
+         mXNffXJ3s+xyyTChSgiVQQNL7WK/FZfkFY9fEb7Gwo+NfFadVmTgqzqk6ZGWSk/y4iSd
+         JKmYrnSg8w0ntigiOoHzf2fVugEBs8I1TTYH0QLc76pv0K6ELcRxIMdZ98Ic90dNaHVS
+         StqAWt8DhIW42BabvecYxiTkRYfXOK5hHEUi/wPyhb6K9cOdBDW+Cor0EArGuH1wXRB9
+         XdhXAgtzqOs5c5ndl0tCgVZqp30HlmBw5exnZdW6OjfhbSu0cVydFQW2+xf5AB47nS+P
+         lCWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694604735; x=1695209535;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5j+vOlqz3f4oxafJPXTsw7TQpxVIHCk4693pzx0c94w=;
+        b=Q0stJ6AXz+vwloFA6Zc8JZiy/alK9aZTbgCzDWe2c1MD1N+5MIjphFkOtRQI3Qqqam
+         RVqKLUCfPdgAyWupfqSlg2UcUlFLxxrsdfeGqFs0AI1CUK6SK2zIoId8ngcjBGMTIy9s
+         IGTcV2ghslhxR/4+JU5t5AL7If0PTUVjfkv3Uym1Qmq6z9YIP0TRbx6nRvPxk0EOEMkR
+         /+RjxehyTIW69OTmiz+6DjLZYxAMQ9Ww7QP9uSWSbrMf3BVjNKA9ipSiMO4Set3whQbR
+         8b0rws7mQsWL5JRB599tK28G3evQowdX098tajloEHnvbpWk9Uj30fCTnjVcb3CbDaGV
+         mH4g==
+X-Gm-Message-State: AOJu0Yzwl2yMmN+X+l/gQuWRF/jthFs8GNetW5/dQnzPcparV2A30XP/
+        5onXcN2wd6pnRXsDMLqeWxIwRg==
+X-Google-Smtp-Source: AGHT+IFXgY8RifaZBzIgEcrovRfTJIFYuVf95XlpZfa3lhurVCngM06VSVipO+09NlPwOMdF7/xX9A==
+X-Received: by 2002:a17:906:2cf:b0:9a1:aa7b:482e with SMTP id 15-20020a17090602cf00b009a1aa7b482emr1622499ejk.26.1694604735038;
+        Wed, 13 Sep 2023 04:32:15 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id c22-20020a17090603d600b0099ce025f8ccsm8289621eja.186.2023.09.13.04.32.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Sep 2023 04:32:13 -0700 (PDT)
+Message-ID: <052be57d-4081-43ca-6c9f-9afedb030a58@linaro.org>
+Date:   Wed, 13 Sep 2023 13:32:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH v4 3/3] drm/panel-simple: allow LVDS format override
-Content-Language: en-US, de-DE
-To:     Dan Carpenter <dan.carpenter@linaro.org>
-Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        kernel test robot <lkp@intel.com>,
-        Dan Carpenter <error27@gmail.com>,
-        patchwork-jzi@pengutronix.de, kernel@pengutronix.de,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230523-simplepanel_support_nondefault_datamapping-v4-0-e6e7011f34b5@pengutronix.de>
- <20230523-simplepanel_support_nondefault_datamapping-v4-3-e6e7011f34b5@pengutronix.de>
- <96898dbb-3fdf-7a74-ae80-f18ae2244f50@pengutronix.de>
- <e6a2df72-46cb-4f22-b983-ac5ad2995da8@kadam.mountain>
-From:   Johannes Zink <j.zink@pengutronix.de>
-In-Reply-To: <e6a2df72-46cb-4f22-b983-ac5ad2995da8@kadam.mountain>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v6 1/4] dt-bindings: remoteproc: k3-m4f: Add K3 AM64x SoCs
+Content-Language: en-US
+To:     Hari Nagalla <hnagalla@ti.com>, andersson@kernel.org,
+        mathieu.poirier@linaro.org, p.zabel@pengutronix.de,
+        martyn.welch@collabora.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20230913111644.29889-1-hnagalla@ti.com>
+ <20230913111644.29889-2-hnagalla@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230913111644.29889-2-hnagalla@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: j.zink@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dan,
-
-On 9/13/23 13:14, Dan Carpenter wrote:
-> On Fri, Aug 18, 2023 at 09:04:34AM +0200, Johannes Zink wrote:
->> Hi Dan,
->>
->> do you have any input on this for me?
->>
+On 13/09/2023 13:16, Hari Nagalla wrote:
+> K3 AM64x SoC has a Cortex M4F subsystem in the MCU voltage domain.
+> The remote processor's life cycle management and IPC mechanisms are
+> similar across the R5F and M4F cores from remote processor driver
+> point of view. However, there are subtle differences in image loading
+> and starting the M4F subsystems.
 > 
-> Sorry, I was out of office and the truth is that I'm never going to
-> catch up on all the email I missed.  :/
+> The YAML binding document provides the various node properties to be
+> configured by the consumers of the M4F subsystem.
 > 
+> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> ---
+> Changes since v1:
+>  - Spelling corrections
+>  - Corrected to pass DT checks
+> 
+> Changes since v2:
+>  - Missed spelling correction to commit message
+> 
+> Changes since v3:
+>  - Removed unnecessary descriptions and used generic memory region names
+>  - Made mboxes and memory-region optional
+>  - Removed unrelated items from examples
+> 
+> Changes since v4:
+>  - Rebased to the latest kernel-next tree
+>  - Added optional sram memory region for m4f device node
+> 
+> Changes since v5:
+>  - None
 
-nevermind, that's why I sent ping...
-
-> Looks okay to me.  I can't remember what I said about this code in v3
-> but it looks good now.  I'm not a DRM dev so I'm not sure my review
-> counts for much.  
-
-IIRC it was a mistake I made with a return value that I have fixed in v4.
-
-You should always just assume that if I'm quiet
-> then I'm happy.  :)
-
-That's good to know ;-) Thanks for your review!
-
-Johannes
+Hm, why none? There were errors in the binding to which you did not
+respond. Did you just ignore them?
 
 > 
-> regards,
-> dan carpenter
+>  .../bindings/remoteproc/ti,k3-m4f-rproc.yaml  | 136 ++++++++++++++++++
+>  1 file changed, 136 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
 > 
-> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
+> new file mode 100644
+> index 000000000000..21b7f14d9dc4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
+> @@ -0,0 +1,136 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/ti,k3-m4f-rproc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI K3 M4F processor subsystems
+> +
+> +maintainers:
+> +  - Hari Nagalla <hnagalla@ti.com>
+> +  - Mathieu Poirier <mathieu.poirier@linaro.org>
 
--- 
-Pengutronix e.K.                | Johannes Zink                  |
-Steuerwalder Str. 21            | https://www.pengutronix.de/    |
-31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+Are you sure Mathieu has this device and is a maintainer of this device?
+
+> +
+> +description: |
+> +  Some K3 family SoCs have Arm Cortex M4F cores. AM64x is a SoC in K3
+> +  family with a M4F core. Typically safety oriented applications may use
+> +  the M4F core in isolation without an IPC. Where as some industrial and
+> +  home automation applications, may use the M4F core as a remote processor
+> +  with IPC communications.
+> +
+> +$ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
+> +
+> +properties:
+> +
+
+Drop blank line.
+
+> +  compatible:
+> +    enum:
+> +      - ti,am64-m4fss
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 2
+> +
+> +  "#size-cells":
+> +    const: 2
+> +
+> +  reg:
+> +    items:
+> +      - description: IRAM internal memory region
+> +      - description: DRAM internal memory region
+> +
+> +  reg-names:
+> +    items:
+> +      - const: iram
+> +      - const: dram
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  firmware-name:
+> +    $ref: /schemas/types.yaml#/definitions/string
+
+Wrong type. This is an array. You need maxItems instead.
+
+> +    description: Name of firmware to load for the M4F core
+> +
+> +  mboxes:
+> +    description: |
+> +      Mailbox specifier denoting the sub-mailbox, to be used for communication
+> +      with the remote processor. This property should match with the
+> +      sub-mailbox node used in the firmware image.
+> +    maxItems: 2
+
+You need to describe the items instead.
+
+> +
+> +  memory-region:
+> +    description: |
+> +      phandle to the reserved memory nodes to be associated with the
+> +      remoteproc device. The reserved memory nodes should be carveout nodes,
+> +      and should be defined with a "no-map" property as per the bindings in
+> +      Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+> +      Optional memory regions available for firmware specific purposes.
+> +    maxItems: 8
+> +    items:
+> +      - description: regions used for DMA allocations like vrings, vring buffers
+> +                     and memory dedicated to firmware's specific purposes.
+> +    additionalItems: true
+
+
+Best regards,
+Krzysztof
 
