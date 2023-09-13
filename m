@@ -2,116 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F28C79E820
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 14:36:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EDB979E826
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 14:36:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240552AbjIMMgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 08:36:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43886 "EHLO
+        id S240638AbjIMMg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 08:36:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232519AbjIMMgm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 08:36:42 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EF2B19A6;
-        Wed, 13 Sep 2023 05:36:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=Znl3NLuXYp7P/vugDRSybZxt9vQVGXDZ3zZmS+2t90I=; b=2AHv4vQxAGFpG5nS4mY2BzHTk7
-        o3x8sq4nCEV5EOqXykpo5L1ynfZ9ecym/SZxjOnxroFNUm7p1DhUndMhl87gAXr4UhTMjGc5EI52Y
-        Au3VeWaYFT0LItEi9zyxD50rWvs+2x+Y/qgILlDEqEvKvZBiLjCxA9gTzADMdLDhpEts=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qgP6Y-006Iyp-G8; Wed, 13 Sep 2023 14:36:26 +0200
-Date:   Wed, 13 Sep 2023 14:36:26 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Lukasz Majewski <lukma@denx.de>
-Cc:     Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        corbet@lwn.net, steen.hegelund@microchip.com,
-        rdunlap@infradead.org, horms@kernel.org, casper.casan@gmail.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        horatiu.vultur@microchip.com, Woojung.Huh@microchip.com,
-        Nicolas.Ferre@microchip.com, UNGLinuxDriver@microchip.com,
-        Thorsten.Kummermehr@microchip.com
-Subject: Re: [RFC PATCH net-next 2/6] net: ethernet: add mac-phy interrupt
- support with reset complete handling
-Message-ID: <61a58960-f2f3-4772-8f12-0d1f9cfec2c5@lunn.ch>
-References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
- <20230908142919.14849-3-Parthiban.Veerasooran@microchip.com>
- <20230913104458.1d4cdd51@wsk>
+        with ESMTP id S240641AbjIMMg5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 08:36:57 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3E7719B4;
+        Wed, 13 Sep 2023 05:36:53 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25713C433C8;
+        Wed, 13 Sep 2023 12:36:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694608613;
+        bh=9elooBvdUre19hw6hhl5TUjtNpfBJuWPJGdA3PSQOPk=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=agk5wuvYe4eXdvQP2/ZI92WDyKAW1ArMiActdlzr0IZA/ohh3j3AVRiiJ5E2+FgWs
+         cCm27CBwuBysFObzN8Dw98uvJTI/JswJziqobQaI5dd4N46lmaNNGw/4S3M2iYs43l
+         txeo0KTT18iqwnMQdRcO8jv0F7IOuk+yuhulmz+1k2fEpgX6frZtWzbc4G3Ap6fn47
+         8CCNniKF3Zgr80FbAyzrnrqAxWnbEXhFwVvQzYD10m63vQANkRJVz5YaygaLQlsoO2
+         qxosIo3SOJ1iN0BXgWu7UFo7Bjp2NyDWKTu0oFEHZqGrM6yet4akd/sThGxz9YMcas
+         ObjMBTd/XLAYw==
+Received: (nullmailer pid 2790031 invoked by uid 1000);
+        Wed, 13 Sep 2023 12:36:51 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230913104458.1d4cdd51@wsk>
+From:   Rob Herring <robh@kernel.org>
+To:     Hari Nagalla <hnagalla@ti.com>
+Cc:     linux-kernel@vger.kernel.org, martyn.welch@collabora.com,
+        devicetree@vger.kernel.org, andersson@kernel.org,
+        linux-remoteproc@vger.kernel.org, robh+dt@kernel.org,
+        conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        mathieu.poirier@linaro.org, p.zabel@pengutronix.de,
+        krzysztof.kozlowski+dt@linaro.org
+In-Reply-To: <20230913111644.29889-2-hnagalla@ti.com>
+References: <20230913111644.29889-1-hnagalla@ti.com>
+ <20230913111644.29889-2-hnagalla@ti.com>
+Message-Id: <169460861100.2790015.8526656812110915165.robh@kernel.org>
+Subject: Re: [PATCH v6 1/4] dt-bindings: remoteproc: k3-m4f: Add K3 AM64x
+ SoCs
+Date:   Wed, 13 Sep 2023 07:36:51 -0500
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Just maybe mine small remark. IMHO the reset shall not pollute the IRQ
-> hander. The RESETC is just set on the initialization phase and only
-> then shall be served. Please correct me if I'm wrong, but it will not
-> be handled during "normal" operation.
 
-This is something i also wondered. Maybe if the firmware in the
-MAC-PHY crashes, burns, and a watchdog reset it, could it assert
-RESETC? I think maybe a WARN_ON_ONCE() for RESETC in the interrupt
-handler would be useful, but otherwise ignore it. Probe can then poll
-during its reset.
-
-> > +				regval = RESETC;
-> > +				/* SPI host should write RESETC bit
-> > with one to
-> > +				 * clear the reset interrupt status.
-> > +				 */
-> > +				ret = oa_tc6_perform_ctrl(tc6,
-> > OA_TC6_STS0,
-> > +							  &regval,
-> > 1, true,
-> > +							  false);
+On Wed, 13 Sep 2023 06:16:41 -0500, Hari Nagalla wrote:
+> K3 AM64x SoC has a Cortex M4F subsystem in the MCU voltage domain.
+> The remote processor's life cycle management and IPC mechanisms are
+> similar across the R5F and M4F cores from remote processor driver
+> point of view. However, there are subtle differences in image loading
+> and starting the M4F subsystems.
 > 
-> Is this enough to have the IRQ_N deasserted (i.e. pulled HIGH)?
+> The YAML binding document provides the various node properties to be
+> configured by the consumers of the M4F subsystem.
 > 
-> The documentation states it clearly that one also needs to set SYNC bit
-> (BIT(15)) in the OA_CONFIG0 register (which would have the 0x8006 value).
+> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> ---
+> Changes since v1:
+>  - Spelling corrections
+>  - Corrected to pass DT checks
 > 
-> Mine problem is that even after writing 0x40 to OA_STATUS0 and 0x8006
-> to OA_CONFIG0 the IRQ_N is still LOW (it is pulled up via 10K resistor).
+> Changes since v2:
+>  - Missed spelling correction to commit message
 > 
-> (I'm able to read those registers and those show expected values)
-
-What does STATUS0 and STATUS1 contain? That might be a dumb question,
-i've not read the details for interrupt handling yet, but maybe there
-is another interrupt pending? Or the interrupt mask needs writing?
-
-> Was it on purpose to not use the RST_N pin to perform GPIO based reset?
+> Changes since v3:
+>  - Removed unnecessary descriptions and used generic memory region names
+>  - Made mboxes and memory-region optional
+>  - Removed unrelated items from examples
 > 
-> When I generate reset pulse (and keep it for low for > 5us) the IRQ_N
-> gets high. After some time it gets low (as expected). But then it
-> doesn't get high any more.
-
-Does the standard say RST_N is mandatory to be controlled by software?
-I could imagine RST_N is tied to the board global reset when the power
-supply is stable. Software reset is then used at probe time.
-
-So this could be a board design decision. I can see this code getting
-extended in the future, an optional gpiod passed to the core for it to
-use.
-
-> > msecs_to_jiffies(1));
+> Changes since v4:
+>  - Rebased to the latest kernel-next tree
+>  - Added optional sram memory region for m4f device node
 > 
-> Please also clarify - does the LAN8651 require up to 1ms "settle down"
-> (after reset) time before it gets operational again?
+> Changes since v5:
+>  - None
+> 
+>  .../bindings/remoteproc/ti,k3-m4f-rproc.yaml  | 136 ++++++++++++++++++
+>  1 file changed, 136 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
+> 
 
-If this is not part of the standard, it really should be in the MAC
-driver, or configurable, since different devices might need different
-delays. But ideally, if the status bit says it is good to go, i would
-really expect it to be good to go. So this probably should be a
-LAN8651 quirk.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-	Andrew
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/stericsson,dma40.example.dtb: dma-controller@801c0000: sram:0: [4294967295, 4294967295] is too long
+	from schema $id: http://devicetree.org/schemas/dma/stericsson,dma40.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230913111644.29889-2-hnagalla@ti.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
