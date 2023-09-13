@@ -2,115 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84B5579E392
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 11:26:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E735479E3D0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 11:33:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231828AbjIMJ02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 05:26:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48222 "EHLO
+        id S237229AbjIMJdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 05:33:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229897AbjIMJ02 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 05:26:28 -0400
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0935B1999;
-        Wed, 13 Sep 2023 02:26:22 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1694597180; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=jh7vTyw05MY3zs1yjcJ7pQj1CQ+ha8bZo1IOR5kK6OuUcV1N3H7AmaMnAoRG+n0pyL
-    aN4CsHlampUTHKLKXmjvXLdK7wKALf2NeINRTBVfyh5l8qJrCUoDy/oBA54omuhNjzHM
-    Re352kNT1/fR7+EPLUT+sEb/7/d+rMok+0kakMzaJ12EQnaORvO0PSWFJG4EIAF/nwJH
-    U/f+Gpay5o8PzDa9W1KguC7ryvnwIWwb6MeVOfcARUsdRU13hgTixtGYaXcUUioJMyGB
-    +qxbTfkJRs0nNeHIew/za2JQaRRm80DjnwMqVAWk1kKZ94hZ9vHx7VFMOg+59FH5gQs6
-    bY6A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1694597180;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=5CTXZnt4j2zCunCFXLIFwLCfjyTQk4HWDhbePahSWMo=;
-    b=m+SEcaRbLb3aeHI3A8S1TxnxXahRpvT9usblEcgfbiSb8cXez+zxn2W3OdT1jzdcxV
-    7GcD8ZBQ4t0dOgcmWRxYUwm4XRefV09pRu3pYWwl4gwOb/SvwBXjMJ+Oe9J1ttjx8oMa
-    0xmkV8XxOx5J/O74UErrLmmabDOZiJWLQRY49h5JoD6gMIefDtEAjB+l+IZekyetwh2Y
-    Q7YaU18XxWW3/nX8KFTtG2g3wgLdwmSeMiutnzgGiOiVGFB94agzpOiGZUKJujmCVjPI
-    E5o/JbAKgYXir5peewd2hctyCXhN8vPt8G/9DFe7dw6d6TKfbSlISLSNlig+G26IHASd
-    OpEQ==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1694597180;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=5CTXZnt4j2zCunCFXLIFwLCfjyTQk4HWDhbePahSWMo=;
-    b=lpWL5oJWRMe707OfzSm3HnsRmfuMrrl3zKQPhdGaXlETRhIeLEL+MZ88cx2bfvXEUu
-    BB6oRV4JJLlDig+QBnw6k/2uLlojFuO47FfNaSOWpgeCXJVpB1Vc/MCTNSwG7fXf5pmt
-    Brmj1ujU5swIXrb+jQ5ZwvHzB9PuPmu6sSQPPp/7918VovTEUatJC9fKeshYReFmVDwv
-    63oXmIM48baCoJ2fAEKWuEJ0DkCjoaSLLzsA8YeVW+8Z2GGJtp5My9yEEhJqlE/3f7dB
-    5kdkxZx5GU7biXExwlc0kYKO8roXedbNMXo9B/exOa32NeWuHVX83o5p6+RWEnxm7j+D
-    VA5w==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1694597180;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=5CTXZnt4j2zCunCFXLIFwLCfjyTQk4HWDhbePahSWMo=;
-    b=Wvj+Z/LffVVSMzHsH2wr1O4pVcD0LB48YLwdXRgRNAEldlw1OiJkJQiuOi+XruZ6Ur
-    EgWFW+JOmT0zkUnkeRBg==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8Z/h"
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.8.2 DYNA|AUTH)
-    with ESMTPSA id 60372az8D9QJgbQ
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Wed, 13 Sep 2023 11:26:19 +0200 (CEST)
-Date:   Wed, 13 Sep 2023 11:26:12 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-Cc:     Mark Brown <broonie@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S234521AbjIMJdo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 05:33:44 -0400
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D7421726
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 02:33:40 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <j.zink@pengutronix.de>)
+        id 1qgMFW-00005k-SA; Wed, 13 Sep 2023 11:33:30 +0200
+Message-ID: <c54d19b8-eb5c-9977-b7e4-d2806054b5ae@pengutronix.de>
+Date:   Wed, 13 Sep 2023 11:33:15 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v4 0/3] Support non-default LVDS data mapping for simple
+ panel
+Content-Language: en-US, de-DE
+To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/4] spi: qup: Vote for interconnect bandwidth to DRAM
-Message-ID: <ZQGANOwy97w0RIHV@gerhold.net>
-References: <20230912-spi-qup-dvfs-v1-0-3e38aa09c2bd@kernkonzept.com>
- <20230912-spi-qup-dvfs-v1-4-3e38aa09c2bd@kernkonzept.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230912-spi-qup-dvfs-v1-4-3e38aa09c2bd@kernkonzept.com>
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     devicetree@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Dan Carpenter <error27@gmail.com>,
+        kernel test robot <lkp@intel.com>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kernel@pengutronix.de, patchwork-jzi@pengutronix.de
+References: <20230523-simplepanel_support_nondefault_datamapping-v4-0-e6e7011f34b5@pengutronix.de>
+From:   Johannes Zink <j.zink@pengutronix.de>
+In-Reply-To: <20230523-simplepanel_support_nondefault_datamapping-v4-0-e6e7011f34b5@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: j.zink@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 12, 2023 at 04:30:39PM +0200, Stephan Gerhold wrote:
-> When the SPI QUP controller is used together with a DMA engine it needs
-> to vote for the interconnect path to the DRAM. Otherwise it may be
-> unable to access the memory quickly enough.
+Hi everyone,
 
-I realized that I argue here that the interconnect vote is for DMA to
-DRAM...
+gentle ping - is there any feedback you can give me for moving this series forward?
 
-> [...]
-> @@ -675,6 +698,12 @@ static int spi_qup_io_prep(struct spi_device *spi, struct spi_transfer *xfer)
->  		return -EIO;
->  	}
->  
-> +	ret = spi_qup_vote_bw(controller, xfer->speed_hz);
-> +	if (ret) {
-> +		dev_err(controller->dev, "fail to vote for ICC bandwidth: %d\n", ret);
-> +		return -EIO;
-> +	}
-> +
+Best regards
+Johannes
 
-... but here I vote for the bandwidth even if PIO is used instead of DMA.
+On 7/28/23 16:16, Johannes Zink wrote:
+> Some LVDS panels, such as the innolux,g101ice-l01 support multiple LVDS
+> data mapping modes, which can be configured by strapping a dataformat
+> pin on the display to a specific voltage.
+> 
+> This can be particularly useful for using the jeida-18 format, which
+> requires only 3 instead of 4 LVDS lanes.
+> 
+> This series moves the data-mapping property for LVDS panels in a
+> separate file and optionally adds it to simple-panel when matching to
+> the innolux,g101ice-l01 compatible. This property allows to override
+> the default data mapping set in the panel description in simple-panel.
+> 
+> The last patch in this series actually adds the driver support for
+> parsing the data format override device tree property and modifying the
+> corresponding values for bit per color and media bus format in the panel
+> descriptor.
+> 
+> Best regards
+> Johannes
+> 
+> ---
+> 
+> Changelog:
+> 
+> v3 -> v4:  - driver: worked in Dan's Feedback:
+>               - return with proper error in case the call into
+> 	       panel_simple_override_nondefault_lvds_datamapping()
+> 	       failed
+> 	     - drop the unneeded and ambiguous ret local value
+> 
+> - Link to v3: https://lore.kernel.org/r/20230523-simplepanel_support_nondefault_datamapping-v3-0-78ede374d3d9@pengutronix.de
+> v2 -> v3:  - dt bindings: Worked in Conor's and Laurent's Feedback
+> 	     (thanks for your review): Drop the chomping indicator
+> 	   - dt bindings: Worked in Laurent's Feedback: fix typos
+> 	   - driver: worked in Laurent's review findings:
+> 	     - extract function for fixing up the bus format
+> 	     - only call this function on LVDS panels
+> 	     - fix typo
+>             - Link to v2: https://lore.kernel.org/r/20230523-simplepanel_support_nondefault_datamapping-v2-0-87196f0d0b64@pengutronix.de
+> 
+> v1 -> v2:  - dt bindings: Worked in Rob's review findings (thanks for your
+>               review), refactored to use common include instead of duplication
+>             - driver: added missing error unwinding goto, as found by Dan
+>               Carpenter's test robot:
+>               Reported-by: kernel test robot <lkp@intel.com>
+>               Reported-by: Dan Carpenter <error27@gmail.com>
+>               Link: https://lore.kernel.org/r/202304160359.4LHmFOlU-lkp@intel.com/
+> 
+> To: David Airlie <airlied@gmail.com>
+> To: Daniel Vetter <daniel@ffwll.ch>
+> To: Rob Herring <robh+dt@kernel.org>
+> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> To: Thierry Reding <thierry.reding@gmail.com>
+> To: Neil Armstrong <neil.armstrong@linaro.org>
+> To: Sam Ravnborg <sam@ravnborg.org>
+> Cc: patchwork-jzi@pengutronix.de
+> Cc: kernel@pengutronix.de
+> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
+> 
+> ---
+> 
+> ---
+> Johannes Zink (3):
+>        dt-bindings: display: move LVDS data-mapping definition to separate file
+>        dt-bindings: display: simple: support non-default data-mapping
+>        drm/panel-simple: allow LVDS format override
+> 
+>   .../bindings/display/lvds-data-mapping.yaml        | 84 ++++++++++++++++++++++
+>   .../devicetree/bindings/display/lvds.yaml          | 77 +++-----------------
+>   .../bindings/display/panel/panel-simple.yaml       | 26 ++++++-
+>   drivers/gpu/drm/panel/panel-simple.c               | 53 ++++++++++++++
+>   4 files changed, 171 insertions(+), 69 deletions(-)
+> ---
+> base-commit: 52920704df878050123dfeb469aa6ab8022547c1
+> change-id: 20230523-simplepanel_support_nondefault_datamapping-13c3f2ea28f8
+> 
+> Best regards,
 
-I think it would be more logical to only do the bandwidth vote in the
-DMA setup path. I'll fix this in v2.
+-- 
+Pengutronix e.K.                | Johannes Zink                  |
+Steuerwalder Str. 21            | https://www.pengutronix.de/    |
+31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
 
-Thanks,
-Stephan
