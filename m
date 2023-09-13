@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C839679E070
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 09:07:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EEA379E08B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 09:13:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238432AbjIMHHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 03:07:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44234 "EHLO
+        id S238498AbjIMHNt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 03:13:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238362AbjIMHHv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 03:07:51 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 581541980
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:07:47 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-986d8332f50so862147566b.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:07:47 -0700 (PDT)
+        with ESMTP id S238431AbjIMHNt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 03:13:49 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF86D1984
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:13:44 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b9338e4695so106164471fa.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:13:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694588866; x=1695193666; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694589223; x=1695194023; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aQ2nEJFL1xkjEyk0YmCbI44Cb7r640D/NpFhcEOFdXM=;
-        b=rfJWOudOsHoTrFcRlxv2qkeUB4Bg3qM8JS2/V8KUjYls6/fD4I80f/4HgAHdLvXXKH
-         /nOGnSNT14SD9EZfjC/cGsSP0D6cmhAC11nHqqXbR0XL4FjjpOAqI4ft5TU22qm0/jSs
-         MvQYlf4+NAWNk9vlu73FQKJe5QO69t0i8uenBlOVD1B0F2Zw9j8vsFPG6s7vx9RLPNd5
-         krrw0S4XTOuQRFlLn1txQbWB4Fsy4W2qCZXKnaurKUz525DUxwPO0SG3KJ9o5S6E3hTp
-         vJulbzuP6ul1MW5WchMidEwooYpuoMYkrfFJ+0juR0mYSOl0P0jpbuTl/x3VtWJETXFw
-         nboQ==
+        bh=PMH3vpvCAYv9pjz0vyXayvBqBPROq5/ItNXcUQV0q9E=;
+        b=mtjeEZowdbXhHjnFyZDRa349Gd6rAnOStuNBT20PxRHTuh/QVzMEnVvuFva9SkRkZ/
+         voNirn4chncepx1TazqcqeIBPDxPUr2nJW4FGQUj9mFdb+rc0E8KKeoH6UDcxL0Gj/zM
+         jOVquaE6UseM6m7UkaRYSQo9j3BPFWPGeUs26IyE7ihd31nLIjeuW04u41AJIRrUCyuz
+         Sx8wxwE9Uj3exUfW/pEuEEocenN3l01DlhRcyLAZ1JuHIR1z43NHRp09bBYPLN3CX6Fg
+         CtnEjky/m3EGiIMzoH6OH2Araua70u7ZN0PBYZTk02T+pb20beFIc3ca/pjEi/8uusgy
+         DdEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694588866; x=1695193666;
+        d=1e100.net; s=20230601; t=1694589223; x=1695194023;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aQ2nEJFL1xkjEyk0YmCbI44Cb7r640D/NpFhcEOFdXM=;
-        b=OS++lQXuAapS2zEvch/xnOlbOscTZAFFDXoeIoo0KwY0W2Rymq7Rsg4ZgiiuNg0xW2
-         RyHrdT7CVyGGjkEehrAAb/hulgsXSB/zV9XYm9KiGrEDVub5IzjUrPTXcFHF8di2EukZ
-         mo3or//mFASFZ8IxXEl7mTuYp1+rPvo+rJxGzt6e6tDJKfHPatzPLVLV9yPINILy/nDL
-         /cWhI7dc9s/mEBZqflEBEXqqp6DUPevyKHucVK3m6PkehETvTyk6oUvq9EVqxgI0Z0fh
-         S1prvrXkmbEaKYj0f0votP0V7R5GEUAtQMK8xoiKNwaoAvJ43YGtjeAmQda1IADMMPUe
-         RCjw==
-X-Gm-Message-State: AOJu0YzDwczF1LRjmVJhXLMQJXvZEdK9nS3MgjtddwTisvISXU1cwTGl
-        AmvbUjjUWJ8Hu4sGpEuqvVa2ww==
-X-Google-Smtp-Source: AGHT+IEDdTdAYJBvC/NTElwaroM1jCmLl9Ptm9/vSLtcb32A5skuiBvr0hCVl70ozremDvSEn4TN4w==
-X-Received: by 2002:a17:906:32c9:b0:9a1:bd82:de1c with SMTP id k9-20020a17090632c900b009a1bd82de1cmr1165437ejk.41.1694588865733;
-        Wed, 13 Sep 2023 00:07:45 -0700 (PDT)
+        bh=PMH3vpvCAYv9pjz0vyXayvBqBPROq5/ItNXcUQV0q9E=;
+        b=LwDNXHYxF0McQuS/lOBFrnDN5CwLgmeJ80ZiHftUK9FNIpPVo6uIL/+VQbERdjHYf2
+         6xcPTEwwxGhsmdoJTmbH/VUEWjmwNoLTHPCqbUW6gacY2yx/lz0evUaKPQCdxWvH5Tcw
+         6qLa4AVm3WBZX+OF9YuJQOj1CYRkFqzue0w+k4BQvMtwc+6PXKgMzMq6sXU1LZuHLYnL
+         uXbCijF3faKZi91umZ2N8u2VdSq4xXuN3sGyO8Gqax8OZ/SIsjBLRMa2j87UiUUzh2C5
+         CyXThBHu1TrVFddN3cQHZ03sG1JP8cBOYvyHmMEa5F8hXZ95SNeC/vzmZQ0HXVBWZHTB
+         OdDg==
+X-Gm-Message-State: AOJu0YzKIfDCR0IlnwPy3bx04NoYfm6pPmlRgR90ocBW+G+Yso0RiQvo
+        a81veYnNVAGSUmJwDYzDZS0X2A==
+X-Google-Smtp-Source: AGHT+IEaX2HHUaLs3S63J80qFOSmj6sWOrftUpS+R5qC7Xs/FsBZ7EPgP0pGvUeL/9pDbnFuXmPFwA==
+X-Received: by 2002:a2e:9e14:0:b0:2bd:1f83:8d4 with SMTP id e20-20020a2e9e14000000b002bd1f8308d4mr1400872ljk.22.1694589223002;
+        Wed, 13 Sep 2023 00:13:43 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id b9-20020a170906490900b00992f2befcbcsm7892650ejq.180.2023.09.13.00.07.43
+        by smtp.gmail.com with ESMTPSA id ce7-20020a170906b24700b0098f99048053sm8015685ejb.148.2023.09.13.00.13.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 00:07:45 -0700 (PDT)
-Message-ID: <bd11d1b1-efe5-4f96-43e7-163fca5d3278@linaro.org>
-Date:   Wed, 13 Sep 2023 09:07:42 +0200
+        Wed, 13 Sep 2023 00:13:42 -0700 (PDT)
+Message-ID: <70b2a9d7-1a3e-25da-3d78-7bfa5d3a1e05@linaro.org>
+Date:   Wed, 13 Sep 2023 09:13:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH v2 01/14] arm64: dts: qcom: msm8916: Drop RPM bus clocks
+Subject: Re: [PATCH v2 06/14] arm64: dts: qcom: sdm630: Drop RPM bus clocks
 Content-Language: en-US
 To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -77,9 +77,9 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
         linux-usb@vger.kernel.org
 References: <20230721-topic-rpm_clk_cleanup-v2-0-1e506593b1bd@linaro.org>
- <20230721-topic-rpm_clk_cleanup-v2-1-1e506593b1bd@linaro.org>
+ <20230721-topic-rpm_clk_cleanup-v2-6-1e506593b1bd@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230721-topic-rpm_clk_cleanup-v2-1-1e506593b1bd@linaro.org>
+In-Reply-To: <20230721-topic-rpm_clk_cleanup-v2-6-1e506593b1bd@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
@@ -88,15 +88,74 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On 12/09/2023 15:31, Konrad Dybcio wrote:
 > These clocks are now handled from within the icc framework and are
-
-That's a driver behavior, not hardware.
-
 > no longer registered from within the CCF. Remove them.
 > 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm630.dtsi | 49 +++++++-----------------------------
+>  1 file changed, 9 insertions(+), 40 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> index ec6003212c4d..f11d2a07508c 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> @@ -605,9 +605,6 @@ bimc: interconnect@1008000 {
+>  			compatible = "qcom,sdm660-bimc";
+>  			reg = <0x01008000 0x78000>;
+>  			#interconnect-cells = <1>;
+> -			clock-names = "bus", "bus_a";
+> -			clocks = <&rpmcc RPM_SMD_BIMC_CLK>,
+> -				 <&rpmcc RPM_SMD_BIMC_A_CLK>;
 
-Changes in Linux clock drivers should not cause some clocks to disappear
-from DTS...
+Bindings expect here two clocks, so you miss some bindings patches.
 
+>  		};
+>  
+>  		restart@10ac000 {
+> @@ -619,28 +616,17 @@ cnoc: interconnect@1500000 {
+>  			compatible = "qcom,sdm660-cnoc";
+>  			reg = <0x01500000 0x10000>;
+>  			#interconnect-cells = <1>;
+> -			clock-names = "bus", "bus_a";
+> -			clocks = <&rpmcc RPM_SMD_CNOC_CLK>,
+> -				 <&rpmcc RPM_SMD_CNOC_A_CLK>;
+>  		};
+>  
+>  		snoc: interconnect@1626000 {
+>  			compatible = "qcom,sdm660-snoc";
+>  			reg = <0x01626000 0x7090>;
+>  			#interconnect-cells = <1>;
+> -			clock-names = "bus", "bus_a";
+> -			clocks = <&rpmcc RPM_SMD_SNOC_CLK>,
+> -				 <&rpmcc RPM_SMD_SNOC_A_CLK>;
+>  		};
+>  
+>  		anoc2_smmu: iommu@16c0000 {
+>  			compatible = "qcom,sdm630-smmu-v2", "qcom,smmu-v2";
+>  			reg = <0x016c0000 0x40000>;
+> -
+> -			assigned-clocks = <&rpmcc RPM_SMD_AGGR2_NOC_CLK>;
+> -			assigned-clock-rates = <1000>;
+> -			clocks = <&rpmcc RPM_SMD_AGGR2_NOC_CLK>;
+> -			clock-names = "bus";
+
+This is also against bindings. After your patch #4, such bus clock (or
+other combinations) is still required.
+
+
+>  			#global-interrupts = <2>;
+>  			#iommu-cells = <1>;
+>  
+> @@ -685,16 +671,12 @@ a2noc: interconnect@1704000 {
+>  			compatible = "qcom,sdm660-a2noc";
+>  			reg = <0x01704000 0xc100>;
+>  			#interconnect-cells = <1>;
+> -			clock-names = "bus",
+> -				      "bus_a",
+> -				      "ipa",
+> +			clock-names = "ipa",
+
+And which bindings does this match?
 
 Best regards,
 Krzysztof
