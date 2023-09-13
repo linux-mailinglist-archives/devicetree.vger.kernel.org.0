@@ -2,110 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0927A79E883
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 15:00:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4166F79E8B5
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 15:10:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233238AbjIMNA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 09:00:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51992 "EHLO
+        id S237448AbjIMNK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 09:10:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233534AbjIMNA6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 09:00:58 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29F631989;
-        Wed, 13 Sep 2023 06:00:54 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-52a40cf952dso8999985a12.2;
-        Wed, 13 Sep 2023 06:00:54 -0700 (PDT)
+        with ESMTP id S231326AbjIMNK2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 09:10:28 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEF5A19B4
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 06:10:23 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-401f68602a8so73790375e9.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 06:10:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694610052; x=1695214852; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=YrbAZ7p+q0hOYwba3y8YZqHpfIOsVvTzknQ/Q/Cixt4=;
-        b=h0yD0aAnv4+XqR7pucMoFGVVlvtqY7MRd1/KWFLgAV5vNJyqzVo6LvjTCyjF4VQ1BD
-         fmvucMUgGfxazxI6xob9M8E/N0OQ5bPpwFWnjEyjMrxcEhSSUQr/LeGXTE4paAIQt+gw
-         X4BRdAnPaZ0+HGgwAwQpKYituheU+gOBIWD5ZEolpFsVk0ZvS5s65h0NM6O2I4ShzzIZ
-         sa42Z591XrhF+7/+b0yecp4mP0teoZ+BqzA/ANIeRrHvrQcr14jmS0EHKnqHowPndOHf
-         eYrXXoI8pWezOXPQl3Nnkfg5Jr7TpAcFzoGmP1QMDsCokkEM6qdagnbL2t8Nb9Jber99
-         5dVg==
+        d=linaro.org; s=google; t=1694610622; x=1695215422; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lhylJXVHu1y/JGAQAiQbLZVjvUVFnXfhI4SjrH0o0KY=;
+        b=bOPVLz2/iYEgxXqilRq5ckSvGAs2EuwzWzcYdolBx5i1zK6WPtbc7yptYilZOg3URf
+         13RrwClMyHvliMUFHLBbx3aAR8hr4EU/n3NguP6jjyIkVqmszfpscO4Ah9QGSSIvIzS1
+         f7K7FV7t+ugYooV9pGkNxesgX4a93Ko+SuvObEdHGNqWELFRZ0yuSYehmunui/g5hH0i
+         YaFPu8l/2wXCyEmBXweYAUIuuTIzWjsFk2Ujt/KvS3FR0NVCOqCIMcPOG8B5NcdEXZKx
+         iTAuGrxMFoJMB8v1EvGW8mKsngUmP34rZcWjhM6qSOv4jnFt6WrUu8xwAidrDq0MQl57
+         +BBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694610052; x=1695214852;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1694610622; x=1695215422;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YrbAZ7p+q0hOYwba3y8YZqHpfIOsVvTzknQ/Q/Cixt4=;
-        b=b4bLdaUqPbCOPBNYxzmCLPgaLcm6yQf1HvEdvNSpZYuPYSelH2pKgSc6GoiSGLgY0t
-         NXlCJUoj83/LUBlX1H9iwRkEPY1Sf8qIyI0Jiv3uo35omAOPY9mT+hf0UGgQUfhGvQwJ
-         Ck5b/6bA4bz4dO+8BdStwaWzF3SGCJzHcOWgqqVPOPM1AP82oFGTd5ENku21Gw3aBgb+
-         2kMNEkmQu0hZsIkr2vehTIy3x8m59tu1JlitKapgRY9gIMGngzgpet8dmOQm/IJyxd2A
-         NVsWRROX6MGis13C30dR5K0BIPS/oUO8SJEPb+z16pxbflXyR7YuT1zUrbpLfct7B9Wt
-         SUSg==
-X-Gm-Message-State: AOJu0YyzKm2T1j1AkuZGdHVyUGHPymgYm3qvOrknaZbOgAfgCYWbooHG
-        JHonphimhisMKNDMahwEMkY=
-X-Google-Smtp-Source: AGHT+IFZY1lZRYIGtnHSSLJ5Dv9nUSo3FSHlEpmP7yJBNk19dcocL3jmULDt3kHQBRqk+jZdLrELeg==
-X-Received: by 2002:a05:6402:743:b0:52f:b405:4f21 with SMTP id p3-20020a056402074300b0052fb4054f21mr2383088edy.7.1694610052353;
-        Wed, 13 Sep 2023 06:00:52 -0700 (PDT)
-Received: from skbuf ([188.26.184.93])
-        by smtp.gmail.com with ESMTPSA id j18-20020a50ed12000000b0052996528b81sm7285107eds.45.2023.09.13.06.00.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Sep 2023 06:00:52 -0700 (PDT)
-Date:   Wed, 13 Sep 2023 16:00:49 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        bh=lhylJXVHu1y/JGAQAiQbLZVjvUVFnXfhI4SjrH0o0KY=;
+        b=UhlVZBqJ3GNQyLn6WJmlZnXPB3lA0Rh8GyY6KQG6cBm3iox/RCKRE3VU8jQ/rYsrVO
+         jEgg0CDlZExAeOV8Z+hT2x/OBZG7QZXsy0BRU2prkG6SBARQSCInLnYrZB8KbmBpIFZP
+         J/ZmZfQ6IUUI42PUVNiKyxeGD4vIzfSuUJvzRTD1lLlhds9MRh3EuT5GksSuo7HBS7gI
+         0BhrMJCuEC8CCzpZ5BKKnX6878j7ge4zU8faCpX9+PxEGG12Nle5r/AODLAFQLVK4eek
+         9POyZ3/Qp4ZdQsTSAPQSzt+vK5fXiwBHrPCXyB0JfZucvrfoZQqtHIrPiCs9ftDe/cj0
+         4UhQ==
+X-Gm-Message-State: AOJu0YxNszrZpIC3NnI/mkPIcOUzmHk6NZdG7HFnfvgMSjfG0UtNDg2u
+        KSHDU31xcc+F9Esw90sll3fcZw==
+X-Google-Smtp-Source: AGHT+IHiJzJhe1Xrs12iA0t2UFcejF5aY0fuGShabimjAwKWm+vmmwmawqlnxHfAfdo7W9D+0o04pg==
+X-Received: by 2002:a1c:4c1a:0:b0:400:57d1:4915 with SMTP id z26-20020a1c4c1a000000b0040057d14915mr2173211wmf.37.1694610622229;
+        Wed, 13 Sep 2023 06:10:22 -0700 (PDT)
+Received: from [192.168.2.107] ([79.115.63.137])
+        by smtp.gmail.com with ESMTPSA id z12-20020a1c4c0c000000b003fee6e170f9sm1972778wmf.45.2023.09.13.06.10.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Sep 2023 06:10:21 -0700 (PDT)
+Message-ID: <9486b1f0-9c5f-4c2e-9032-18efc4a63b24@linaro.org>
+Date:   Wed, 13 Sep 2023 14:10:20 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/8] dt-bindings: mtd: add basic bindings for UBI
+Content-Language: en-US
+To:     Daniel Golle <daniel@makrotopia.org>, linux-mtd@lists.infradead.org
+Cc:     Zhihao Cheng <chengzhihao1@huawei.com>,
+        Rob Herring <robh@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        UNGLinuxDriver@microchip.com,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, mithat.guner@xeront.com,
-        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
-Message-ID: <20230913130049.ivvl4vzjcfedsddr@skbuf>
-References: <676d1a2b-6ffa-4aff-8bed-a749c373f5b3@arinc9.com>
- <87325ce9-595a-4dda-a6a1-b5927d25719b@arinc9.com>
- <20230911225126.rk23g3u3bzo3agby@skbuf>
- <036c0763-f1b2-49ff-bc82-1ff16eec27ab@arinc9.com>
- <20230912193450.h5s6miubag46z623@skbuf>
- <6cec079e-991e-4222-a76d-d6156de0daca@arinc9.com>
- <20230913074231.5azwxqjuv2wp5nik@skbuf>
- <89c9b84c-574c-4071-9524-9207597a3f0a@arinc9.com>
- <20230913110404.co7earmnbzf6hhoe@skbuf>
- <137fd54d-7d2d-4d0b-a50b-cca69875a814@arinc9.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <137fd54d-7d2d-4d0b-a50b-cca69875a814@arinc9.com>
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+References: <cover.1691717480.git.daniel@makrotopia.org>
+ <a640bb10e6fbaeef96efdb9e8b666ca39e993589.1691717480.git.daniel@makrotopia.org>
+ <169263908218.2000617.16931192155432403196.robh@kernel.org>
+ <ZP9kJYHMFwZ8GFnA@makrotopia.org>
+From:   Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <ZP9kJYHMFwZ8GFnA@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 13, 2023 at 02:35:11PM +0300, Arınç ÜNAL wrote:
-> On 13.09.2023 14:04, Vladimir Oltean wrote:
-> > I don't think they're for switch ports only. Any driver which uses
-> > phylink_fwnode_phy_connect() or its derivatives gets subject to the same
-> > bindings. But putting the sub-schema in ethernet-controller.yaml makes
-> > sense, just maybe not naming it "phylink-switch".
-> 
-> Got it. Should we disallow managed altogether when fixed-link is also
-> defined, or just with in-band-status value?
+Hi!
 
-Just with the "in-band-status" value - just like phylink_parse_mode()
-implies. If not possible, just leave that condition out.
+On 9/11/23 20:01, Daniel Golle wrote:
+> Is there anything I can do from my end to have this series moving forward?
+
+You could review other UBI submissions to reduce the review load on
+Richard. I guess the queue of UBI pending patches is at:
+https://patchwork.ozlabs.org/project/linux-mtd/list/?series=&submitter=&state=&q=ubi&archive=&delegate=
+
+Cheers,
+ta
