@@ -2,92 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B5A079E98A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 15:43:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C544C79EA47
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 15:59:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240962AbjIMNnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 09:43:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60908 "EHLO
+        id S233574AbjIMN7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 09:59:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241002AbjIMNnI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 09:43:08 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1812F19BF;
-        Wed, 13 Sep 2023 06:43:05 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38425C433C9;
-        Wed, 13 Sep 2023 13:43:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694612584;
-        bh=a6eJFMD7UYNieE8ipLLApaS7mzhbB7aFjI27sQ41vYk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=IJi+xGH0yrj+npciZCHvuvASWqtk4I+kILeKP67P3Q9Di+vGZr3SGaZB12YH6aj0f
-         unXLzNF8vC11jYZncTri1Peu5A48lOmWd02PkhinYT56fObW6hnOLKwVO775t3ycVR
-         dqsmV/XSDlpYDaxBFngOszwFk5974F05Po7xOgaMMI8GfFMq4cUZ/ORh24wT7SyY9T
-         4rrNUMTLayZrnqbMyj3j0F4zjoIEn7o1QuT/KEIZ0zirf2GpnzOllxb+i8DBttOXQt
-         RTGKQXTCXoG8Gdeqxnj4RdDFiAzm+NItzHDwbqnkUeeE26oPkOockb77oUwKOl2FTQ
-         i86CCqZx/Cxbw==
-From:   Conor Dooley <conor@kernel.org>
-To:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Xingyu Wu <xingyu.wu@starfivetech.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        Claudiu Beznea <Claudiu.Beznea@microchip.com>,
-        Maxim Kochetkov <fido_max@inbox.ru>
-Cc:     conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Jose Abreu <joabreu@synopsys.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Subject: Re: (subset) [PATCH v2 0/5] Add I2S support for the StarFive JH7110 SoC
-Date:   Wed, 13 Sep 2023 14:42:51 +0100
-Message-Id: <20230913-duly-ecosystem-523099962151@spud>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230821144151.207339-1-xingyu.wu@starfivetech.com>
-References: <20230821144151.207339-1-xingyu.wu@starfivetech.com>
+        with ESMTP id S230063AbjIMN7y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 09:59:54 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 130DE19BF;
+        Wed, 13 Sep 2023 06:59:49 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38DDxRTY073550;
+        Wed, 13 Sep 2023 08:59:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1694613567;
+        bh=+cicwCaXuC7mIR3p0+RFuO35Kt1qPJV+S2mwgjtFGCY=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=inPIakf6vYw/ioSQ/ELGXLBN/pbefNNh0EHMNTOYyUOGK6luCezQcI7kebZfIJNjy
+         kMdaQSQnzbMp7D+Ts+NbAAPqNJ3j8KGhrNQXWs4LIalL5dfxqPiDX15qxPTTwacSPq
+         RzeKnBEn/gGkXF7VQ2pKsgWMgs9jrl/U4p1hGwkM=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38DDxRNn041432
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 13 Sep 2023 08:59:27 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 13
+ Sep 2023 08:59:26 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 13 Sep 2023 08:59:26 -0500
+Received: from [10.249.48.175] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38DDxQgs077390;
+        Wed, 13 Sep 2023 08:59:26 -0500
+Message-ID: <b8305681-9fa5-e506-b8c7-03338b5ed4d8@ti.com>
+Date:   Wed, 13 Sep 2023 08:59:26 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1006; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=gTDwtdWsXuWMdJzLCtxk+GWpTOa8FGy41bK8MQux3T0=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDKmMe6Jmt63vkdN3PNruwzAj8ueZByc8bA+Wdn9RK5tZK M7ylLuxo5SFQYyDQVZMkSXxdl+L1Po/Ljuce97CzGFlAhnCwMUpABNRXsTIsMCPa/OK6Jt/p4Qe UbzmUH11/Z5dzG3aHBWLfqqvTzdR9WJkOPNyR9Dk6/cqJpcFJi/7+mPy4x7VL2sb9x7ecLGLTTO hnwUA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v6 1/4] dt-bindings: remoteproc: k3-m4f: Add K3 AM64x SoCs
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <andersson@kernel.org>, <mathieu.poirier@linaro.org>,
+        <p.zabel@pengutronix.de>, <martyn.welch@collabora.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC:     <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+References: <20230913111644.29889-1-hnagalla@ti.com>
+ <20230913111644.29889-2-hnagalla@ti.com>
+ <052be57d-4081-43ca-6c9f-9afedb030a58@linaro.org>
+Content-Language: en-US
+From:   Hari Nagalla <hnagalla@ti.com>
+In-Reply-To: <052be57d-4081-43ca-6c9f-9afedb030a58@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
-
-On Mon, 21 Aug 2023 22:41:46 +0800, Xingyu Wu wrote:
-> This patch series adds I2S support for the StarFive JH7110 RISC-V
-> SoC based on Designware I2S controller. There has three I2S channels
-> (RX/TX0/TX1) on the JH7110 SoC, one of which is for record(RX) and
-> two for playback(TX).
+On 9/13/23 06:32, Krzysztof Kozlowski wrote:
+>>   - Removed unrelated items from examples
+>>
+>> Changes since v4:
+>>   - Rebased to the latest kernel-next tree
+>>   - Added optional sram memory region for m4f device node
+>>
+>> Changes since v5:
+>>   - None
+> Hm, why none? There were errors in the binding to which you did not
+> respond. Did you just ignore them?
 > 
-> The first patch adds support for the StarFive JH7110 SoC in the
-> Designware I2S bindings.
-> The second patch adds the ops to get data from platform bus in the
-> I2S driver.
-> The third patch adds support for the StarFive JH7110 SoC in
-> the Designware I2S driver.
-> The fourth patch fixes the name of I2STX1 pinmux.
-> The last patch adds device node of I2S RX/TX0/TX1 in JH7110 dts.
-> 
-> [...]
+I do not see any errors in my builds. Am i missing something? Please 
+excuse my lack of knowledge here. Thought the bot errors were outside of 
+the patch submitted 
+(Documentation/devicetree/bindings/dma/stericsson,dma40.yaml). 
+Appreciate your kind inputs..
 
-Applied to riscv-dt-for-next, thanks!
+$ make -j`nproc` ARCH=arm64 V=1 CROSS_COMPILE=aarch64-none-linux-gnu- 
+DT_CHEKCER_FLAGS=-m dt_binding_check 
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
+make --no-print-directory -C /home/a0868345/temp/linux-next \
+-f /home/a0868345/temp/linux-next/Makefile dt_binding_check
+make -f ./scripts/Makefile.build obj=scripts/basic
+make -f ./scripts/Makefile.build obj=scripts/dtc
+make -f ./scripts/Makefile.build obj=Documentation/devicetree/bindings
+# LINT    Documentation/devicetree/bindings
+   (find ./Documentation/devicetree/bindings \( -name '*.yaml' ! -name 
+'processed-schema*' \) | grep -F -e 
+"Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml" | 
+xargs -n200 -P$(nproc) /home/a0868345/.local/bin/yamllint -f parsable -c 
+./Documentation/devicetree/bindings/.yamllint >&2) || true
+# DTEX 
+Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.example.dts
+   dt-extract-example 
+Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml > 
+Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.example.dts
+# CHKDT   Documentation/devicetree/bindings/processed-schema.json
+   (find ./Documentation/devicetree/bindings \( -name '*.yaml' ! -name 
+'processed-schema*' \) | grep -F -e 
+"Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml" | 
+xargs -n200 -P$(nproc) dt-doc-validate -u 
+./Documentation/devicetree/bindings) || true
+# SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+   f=$(mktemp) ; find ./Documentation/devicetree/bindings \( -name 
+'*.yaml' ! -name 'processed-schema*' \) > $f ; dt-mk-schema -j  @$f > 
+Documentation/devicetree/bindings/processed-schema.json ; rm -f $f
+# DTC_CHK 
+Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.example.dtb
+   gcc -E 
+-Wp,-MMD,Documentation/devicetree/bindings/remoteproc/.ti_k3-m4f-rproc.example.dtb.d.pre.tmp 
+-nostdinc -I./scripts/dtc/include-prefixes -undef -D__DTS__ -x 
+assembler-with-cpp -o 
+Documentation/devicetree/bindings/remoteproc/.ti_k3-m4f-rproc.example.dtb.dts.tmp 
+Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.example.dts 
+; ./scripts/dtc/dtc -o 
+Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.example.dtb 
+-b 0 -iDocumentation/devicetree/bindings/remoteproc/ 
+-i./scripts/dtc/include-prefixes -Wno-avoid_unnecessary_addr_size 
+-Wno-graph_child_address -Wno-interrupt_provider 
+-Wno-unique_unit_address -Wunique_unit_address_if_enabled -d 
+Documentation/devicetree/bindings/remoteproc/.ti_k3-m4f-rproc.example.dtb.d.dtc.tmp 
+Documentation/devicetree/bindings/remoteproc/.ti_k3-m4f-rproc.example.dtb.dts.tmp 
+; cat 
+Documentation/devicetree/bindings/remoteproc/.ti_k3-m4f-rproc.example.dtb.d.pre.tmp 
+Documentation/devicetree/bindings/remoteproc/.ti_k3-m4f-rproc.example.dtb.d.dtc.tmp 
+ > 
+Documentation/devicetree/bindings/remoteproc/.ti_k3-m4f-rproc.example.dtb.d 
+; dt-validate  -u ./Documentation/devicetree/bindings -p 
+./Documentation/devicetree/bindings/processed-schema.json 
+Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.example.dtb 
+|| true
 
-[4/5] riscv: dts: starfive: pinfunc: Fix the pins name of I2STX1
-      https://git.kernel.org/conor/c/4e1abae5688a
-[5/5] riscv: dts: starfive: Add the nodes and pins of I2Srx/I2Stx0/I2Stx1
-      https://git.kernel.org/conor/c/92cfc35838b2
 
-Thanks,
-Conor.
+ >> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+ >> +%YAML 1.2
+ >> +---
+ >> +$id:http://devicetree.org/schemas/remoteproc/ti,k3-m4f-rproc.yaml#
+ >> +$schema:http://devicetree.org/meta-schemas/core.yaml#
+ >> +
+ >> +title: TI K3 M4F processor subsystems
+ >> +
+ >> +maintainers:
+ >> +  - Hari Nagalla<hnagalla@ti.com>
+ >> +  - Mathieu Poirier<mathieu.poirier@linaro.org>
+ > Are you sure Mathieu has this device and is a maintainer of this device?
+ >
+Earlier, Mathieu suggested he can be the maintainer. Beagle play is 
+based on AM625 device.
+
+I will look into the other comments for the 'ti,k3-m4f-rproc.yaml' 
+binding doc.
+
+Thanks
