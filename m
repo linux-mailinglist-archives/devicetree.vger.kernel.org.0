@@ -2,161 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 768F779E7AC
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 14:11:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC3D879E7CC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 14:21:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236976AbjIMMLt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 08:11:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36732 "EHLO
+        id S240361AbjIMMVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 08:21:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233296AbjIMMLs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 08:11:48 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D29019AD
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 05:11:44 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2b703a0453fso115985531fa.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 05:11:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694607102; x=1695211902; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=q3K1Nls0KcoT9xh2kC7N040+hi/MqUqF+7oTGY6x81w=;
-        b=PiaVrrfj6i59VIzWhRs7SjvHhgMVGNlY0mMrZ0XAF7ub2OQwQEywqxYaxaSsHGI2TP
-         6iWobdXJzqdRtwrMjBlH5qLKzDsA+Y6eu6yR/2FJT6NWm+LfhrX+GdpopAe6d5kEHLWC
-         9howduRmaxx1afcOkSUtWEsQU/tFyEZJ/fWCQEGBk8zoz8KqxKuUUAGQ/dxepVdcx+fr
-         iQi8XyICpy8KHLCvdxxDb3vZSUwZxpt+JZ4MbZGRv/64QcHWDG8Pw79iIb0uh2UvZDe4
-         OwF5mAT74FdGwLhn7fCtn87ysDoCdYHpXOlyfr/3GUToyKj4dz98LjVQ/EwDoSJdf1L1
-         IfzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694607102; x=1695211902;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q3K1Nls0KcoT9xh2kC7N040+hi/MqUqF+7oTGY6x81w=;
-        b=WnHt/NsuX2F6l8lyFq7earvo3tVeNY8G72jzXkrJtqLbBnBxn7ILQe5n6agdRD0rJi
-         sGUqNr3T9oK9kWOMRpHiotYBcmvcpKTH9aAWG9Aw+vObsUkW+ZOJA3ujzFIx46obmGOD
-         XdQW6fZESFr6lRCRyrSBG7SvtQreVKNQlzPNctybiLF1TPrhmpVF2/LZ9YDt9srraYGY
-         qnflPNkKnTFToypgL7ET5FkRWwV1twe1zgP5Dhztp3jnUNDkICPEfA2FNXGtesZg1f8c
-         ldhvrBSDapzSMlXbKRXG3d4mfBt/hA+Y/htrXy0jzyQG0OdBti5utYl2h1fxHu117q17
-         oyPQ==
-X-Gm-Message-State: AOJu0YydM8cVFgtMhT5vkTLA8lczl6/4FXk5ChJZ71llESFmIA39XPop
-        g0GBRtKWERMt+Qq04J2+2ogpAQ==
-X-Google-Smtp-Source: AGHT+IFFBA+lO2mQ5FKWt/u4QbpvfYOfKnkOobimjUCGx0UV4Y49uf8jyKCC92z4ssRQPa8l7BzBjw==
-X-Received: by 2002:a2e:8903:0:b0:2b9:f1ad:9503 with SMTP id d3-20020a2e8903000000b002b9f1ad9503mr2211220lji.35.1694607102448;
-        Wed, 13 Sep 2023 05:11:42 -0700 (PDT)
-Received: from [192.168.37.232] (178235177106.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.106])
-        by smtp.gmail.com with ESMTPSA id p21-20020a170906229500b00992b8d56f3asm8319579eja.105.2023.09.13.05.11.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 05:11:41 -0700 (PDT)
-Message-ID: <f57229ea-69be-4df4-871e-65dfb0d56f5f@linaro.org>
-Date:   Wed, 13 Sep 2023 14:11:39 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 12/13] arm64: dts: qcom: sa8295p: Enable tertiary
- controller and its 4 USB ports
-Content-Language: en-US
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S240320AbjIMMVa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 08:21:30 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F84419A8;
+        Wed, 13 Sep 2023 05:21:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=C88EaPpz1JUt7qhf5O9Mf2RtZDNF9WHaoaKYScXNd6U=; b=k5bTlDIryh2JT4ws18Mt2N4Tyy
+        A6wAUMQit8x9l+GsHEZ9y5E6ApaEBEBggE3HPgE8LHSSiVsMYQAjsYjWkXyhCE4IXDuvybplf4sDv
+        nh8p2f3m+EFOFd92AaN72C08gGaFZOa3xA2eEr5seRXHxJXaPV6ddNKr65Lcv9PIlabE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qgOry-006Ivv-8q; Wed, 13 Sep 2023 14:21:22 +0200
+Date:   Wed, 13 Sep 2023 14:21:22 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     MD Danish Anwar <danishanwar@ti.com>
+Cc:     Roger Quadros <rogerq@ti.com>, Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Johan Hovold <johan@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>
-Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
-        quic_jackp@quicinc.com, ahalaney@redhat.com,
-        quic_shazhuss@quicinc.com
-References: <20230828133033.11988-1-quic_kriskura@quicinc.com>
- <20230828133033.11988-13-quic_kriskura@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230828133033.11988-13-quic_kriskura@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Simon Horman <horms@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org, srk@ti.com,
+        r-gunasekaran@ti.com, Roger Quadros <rogerq@kernel.org>
+Subject: Re: [PATCH net-next v3 1/2] dt-bindings: net: Add documentation for
+ Half duplex support.
+Message-ID: <80505eac-2d81-4047-973f-f8a208ac773c@lunn.ch>
+References: <20230913091011.2808202-1-danishanwar@ti.com>
+ <20230913091011.2808202-2-danishanwar@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230913091011.2808202-2-danishanwar@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28.08.2023 15:30, Krishna Kurapati wrote:
-> Enable tertiary controller for SA8295P (based on SC8280XP).
-> Add pinctrl support for usb ports to provide VBUS to connected peripherals.
+On Wed, Sep 13, 2023 at 02:40:10PM +0530, MD Danish Anwar wrote:
+> In order to support half-duplex operation at 10M and 100M link speeds, the
+> PHY collision detection signal (COL) should be routed to ICSSG
+> GPIO pin (PRGx_PRU0/1_GPI10) so that firmware can detect collision signal
+> and apply the CSMA/CD algorithm applicable for half duplex operation. A DT
+> property, "ti,half-duplex-capable" is introduced for this purpose. If
+> board has PHY COL pin conencted to PRGx_PRU1_GPIO10, this DT property can
+> be added to eth node of ICSSG, MII port to support half duplex operation at
+> that port.
 > 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 53 ++++++++++++++++++++++++
->  1 file changed, 53 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> index fd253942e5e5..473fe858fbed 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> @@ -9,6 +9,7 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->  #include <dt-bindings/spmi/spmi.h>
-> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
->  
->  #include "sa8540p.dtsi"
->  #include "sa8540p-pmics.dtsi"
-> @@ -584,6 +585,20 @@ &usb_1_qmpphy {
->  	status = "okay";
->  };
->  
-> +&usb_2 {
-> +	pinctrl-0 = <&usb2_en_state>,
-> +		    <&usb3_en_state>,
-> +		    <&usb4_en_state>,
-> +		    <&usb5_en_state>;
-> +	pinctrl-names = "default";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_2_dwc3 {
-> +	dr_mode = "host";
-I believe you mentioned that the MP controller is host-only
-by design. If that's true, move this property to the SoC dtsi
-and leave an appropriate comment.
+> Reviewed-by: Roger Quadros <rogerq@kernel.org>
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
 
-Konrad
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
+    Andrew
