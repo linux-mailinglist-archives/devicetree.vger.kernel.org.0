@@ -2,68 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 571C779F1D3
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 21:18:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A651E79F1ED
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 21:23:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232216AbjIMTSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 15:18:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57304 "EHLO
+        id S230039AbjIMTXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 15:23:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232207AbjIMTSD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 15:18:03 -0400
+        with ESMTP id S232192AbjIMTXX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 15:23:23 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65E821BCA;
-        Wed, 13 Sep 2023 12:17:59 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D40DBC433C7;
-        Wed, 13 Sep 2023 19:17:57 +0000 (UTC)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B3791999;
+        Wed, 13 Sep 2023 12:23:20 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6068C433C9;
+        Wed, 13 Sep 2023 19:23:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694632679;
-        bh=YToAVNBw2DIfFt1Oan+3W5bAlg/qiUGu6fbt4xZmi88=;
+        s=k20201202; t=1694632999;
+        bh=xHPajjcaSgUxOp3lOz5ae0i7Jgb7LDtoA5lxJzyLkK0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kwHJY478emMOre5uOWR961/0ASq0SFj8ofITT170PxJl5h5fyCf0Bkq1dYISsfHLj
-         tZj3fTgvEID6BmZGxZHVqSmO051t/csm2ChwhMmlHE3Yo8ZKX/ZttA/w9+hmMseYFu
-         Vi4YHfT4rApZuTpdXjjthxDx26VnBb1b4FNUo7991tt84TIc3W+qoHcrpkSsFEiAcM
-         xFzwfe+pFbORsq5TTGwi5se27Q4hVgXqF2hpavHj6Bulzftgi87TuBCpu3z8eX/fLO
-         Zj+dKXnk9A4X5jEU2anGiOqeKBJ3goGaStlT+qMLMm2vJs0kKyAOf1Imp/al3DXjBM
-         1fp49TtxbC4/w==
-Date:   Wed, 13 Sep 2023 12:22:03 -0700
+        b=mANMcwjV8QHwsSyVqiTrJGwP8QFXffhV48htFsUaqv7J9WPh7JhjKHYFMNOlTLRkx
+         fKS0mjrpLcXyh7ju9iRJjE/2vmInTrfRdG0DQ28RQrI9ziDQNwOqVnFiVDQKZlie5F
+         wB2OkIrtludGtehX+1oRpV19iBx5py8EQncT9DEqDQP5Wmvpx6z+F7IigXPH7nJ+68
+         km3rxvjKI/SydyLsKCpPFwwet7jdTFYwerfCSps3TQuKgf3Zd8u/Mu9nELHfRwposc
+         TufqJTqpibNw8AZhZUqJGfoX93OdDsduFP6/omlKK8pFXOgj+jUJrTixSm96b58/2k
+         YsFsO1cWoq2hA==
+Date:   Wed, 13 Sep 2023 12:27:24 -0700
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Alex Elder <elder@linaro.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 01/11] firmware: qcom-scm: drop unneeded 'extern'
- specifiers
-Message-ID: <uqcxyz7wd5s2mm5hlkm3i62e4za5lkc3pj63zd4yfsgm23o5ma@5sabtewisqj4>
-References: <20230828192507.117334-1-bartosz.golaszewski@linaro.org>
- <20230828192507.117334-2-bartosz.golaszewski@linaro.org>
+To:     srinivas.kandagatla@linaro.org,
+        Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc:     agross@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        bryan.odonoghue@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 3/6] nvmem: core: Add stub for nvmem_cell_read_u8
+Message-ID: <pvif5decuie62pid3zjpsb2tp5hzndxvww7v3jdhl6jkymbpcn@bjhud2hevjm6>
+References: <20230830105654.28057-1-quic_kbajaj@quicinc.com>
+ <20230830105654.28057-4-quic_kbajaj@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230828192507.117334-2-bartosz.golaszewski@linaro.org>
+In-Reply-To: <20230830105654.28057-4-quic_kbajaj@quicinc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 28, 2023 at 09:24:57PM +0200, Bartosz Golaszewski wrote:
-> The 'extern' specifier in front of a function declaration has no effect.
-> Remove all of them from the qcom-scm header.
+On Wed, Aug 30, 2023 at 04:26:51PM +0530, Komal Bajaj wrote:
+> Add the stub nvmem_cell_read_u8() function for drivers running with
+> CONFIG_NVMEM disabled.
 > 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
 
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-
-I wanted to pick the first two patches of the series, but they
-unfortunately doesn't apply. Feel free to resubmit them on their own.
+Srini, do you have any concerns with me taking this together with the
+remaining patches through my tree?
 
 Regards,
 Bjorn
+
+> ---
+>  include/linux/nvmem-consumer.h | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/include/linux/nvmem-consumer.h b/include/linux/nvmem-consumer.h
+> index 4523e4e83319..6ec4b9743e25 100644
+> --- a/include/linux/nvmem-consumer.h
+> +++ b/include/linux/nvmem-consumer.h
+> @@ -127,6 +127,12 @@ static inline int nvmem_cell_write(struct nvmem_cell *cell,
+>  	return -EOPNOTSUPP;
+>  }
+> 
+> +static inline int nvmem_cell_read_u8(struct device *dev,
+> +				     const char *cell_id, u8 *val)
+> +{
+> +	return -EOPNOTSUPP;
+> +}
+> +
+>  static inline int nvmem_cell_read_u16(struct device *dev,
+>  				      const char *cell_id, u16 *val)
+>  {
+> --
+> 2.41.0
+> 
