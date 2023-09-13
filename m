@@ -2,89 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63ECC79EDBD
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 17:56:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8BA879EDC2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 17:56:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230090AbjIMP4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 11:56:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32996 "EHLO
+        id S230158AbjIMP4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 11:56:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229872AbjIMP4F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 11:56:05 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5D9CE6D
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 08:56:00 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-52bcd4db4cbso8786071a12.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 08:56:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694620559; x=1695225359; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tv7XJDdl6834GzjvqOGD358bBmTKqyHRIi14XwGDvOI=;
-        b=J2ZjKir7vSkCqej4qUKm9JqDXFoT3PvKmsv/mv6U/czvSP7bf8ftGLzee73NxJP+gk
-         muLEKF7m7KNI9Wl3TpPNyJDuj5qZOXESe4jSSvqmC0dDtmLD1QEvu7j66M+8VIYtlQ0j
-         dR45cjAK0vNDU8gNLOzk6nJ/NDneEnoH3nRwWL/TX1hrVpolaWE6XFhuPQj6uffCvGJ8
-         uH6eSAio+IAKamfGng+FrJ3AzOwZ1kviURh2oMu6xO9qLZPWyorsKXW7fEs88BQq95f1
-         FZaErb1KZSIxGD/C5QtttikCfdUbyEmBfICeKi9FR9ECMkVcgWQWxwFHIJgzvWn18h2h
-         vX8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694620559; x=1695225359;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tv7XJDdl6834GzjvqOGD358bBmTKqyHRIi14XwGDvOI=;
-        b=INuSh28zNnW60+5n76oIsxp2Tc0Pgybxt6Uz/Fg0kXkit6i/+cP9295ug2HX6J/KYe
-         38ImIZfBbVV3uG8SNze/FBUPlQfYHHFPoO5kwOfzNmO+ZxJyaHM/5Z65rhwa7VpE0qfA
-         Acv4kjT85/zvGv1zGERQ5M6GvhxJmItwk8Gun1FPf+iH8SJaZHJ2eCEnwsUAFvZ9KnHv
-         rOZ2EEW0xx5tP5roQEFljLFUX9o3X6p9Akd8r5fGQ04F6d4K6yttjlOC7GRMA+P7amEU
-         879dLWHKDcdXchW9/b52wpJVkA9Bo1sWYSQAgSs5QRpRK99kOjqYYEHQ7MpG3A9zNlXU
-         RnvA==
-X-Gm-Message-State: AOJu0YwjprXjgC3loNlxqn+JTKH0zA9CxmeOLkfqBpWdHDQYcM/naOWn
-        +Ej5KIxRJ6QFuyxZJKLXK4BYGA==
-X-Google-Smtp-Source: AGHT+IHBr64ssqYpCba2U1MbEZa4hifW1e1oF7df36c+VnVjR01KmwawFQH8SGOjBmUtG5VCp8p4kw==
-X-Received: by 2002:aa7:c90c:0:b0:523:1ce9:1f41 with SMTP id b12-20020aa7c90c000000b005231ce91f41mr2521929edt.18.1694620559143;
-        Wed, 13 Sep 2023 08:55:59 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id m16-20020aa7c490000000b005236410a16bsm7565230edq.35.2023.09.13.08.55.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 08:55:58 -0700 (PDT)
-Message-ID: <c574c47e-9ceb-ef83-cc92-cdc6cd4982e5@linaro.org>
-Date:   Wed, 13 Sep 2023 17:55:56 +0200
+        with ESMTP id S230292AbjIMP4T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 11:56:19 -0400
+Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48E3FCCD;
+        Wed, 13 Sep 2023 08:56:15 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (82-181-192-243.bb.dnainternet.fi [82.181.192.243])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sailus)
+        by meesny.iki.fi (Postfix) with ESMTPSA id 4Rm4n85GpnzyQw;
+        Wed, 13 Sep 2023 18:56:12 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+        t=1694620573;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=/R7N3Fz0UaV151uGoY+FD3BuhhnuRg1huSPbvoh8eGA=;
+        b=CjlPu01cyxe2rEcmLY4yhvWxSfd++0EeiAbLwR5W2flMcHNu8ntEOJTzUrcY5nUB3HWk+6
+        ofzB+eikXq4C0mx12HmGAONhgda/c86VcbpvuPxDgQMbMBqy/v7ks9A+TvNH/4tBciy5UA
+        I6M1mZBefKkUzRFO534f7jwkpX2oM38=
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1694620573; a=rsa-sha256; cv=none;
+        b=iX7abkyEIZT4a3r7yNTjGvRNJBQdyti1BJW05XRYa9a132OnhEqv8GEnj+qOAJj8hq11UQ
+        Q86qHrlG5oH7BDnkVE5zqymCW8fBSWQYFqC57h7rHubFzb5xHP1tA9jIIKFH9xiJVEBzuS
+        O6PeUznq29k2j2g75BZhnFh3H0beUuA=
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=meesny; t=1694620573;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=/R7N3Fz0UaV151uGoY+FD3BuhhnuRg1huSPbvoh8eGA=;
+        b=LPfJ748FgSkqOh8IIhb1mYx4RN5r6MqeUhfLi8wl+YWkwq5zDKai3HR9TtltAFw9Q8QV93
+        7Wg1/af+bcSeQ/E52YWo6UIL5PkxT8+2kYZ04QtkICPhzeue1SP/6m1QMy+PFXn4cj4sVY
+        wIBOZ6OpeQBGUcilghaOq4QJGANPENg=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 0B043634C93;
+        Wed, 13 Sep 2023 18:56:12 +0300 (EEST)
+Date:   Wed, 13 Sep 2023 15:56:11 +0000
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Fabio Estevam <festevam@denx.de>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mchehab@kernel.org,
+        linux-media@vger.kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3] dt-bindings: media: Add OV5642
+Message-ID: <ZQHbm4K6tDs6ILo+@valkosipuli.retiisi.eu>
+References: <20230802160326.293420-1-festevam@denx.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 1/2] dt-bindings: crypto: ice: document the sa8775p inline
- crypto engine
-Content-Language: en-US
-To:     Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230913153529.32777-1-bartosz.golaszewski@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230913153529.32777-1-bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230802160326.293420-1-festevam@denx.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/09/2023 17:35, Bartosz Golaszewski wrote:
-> Add the compatible string for QCom ICE on sa8775p SoCs.
+Hi Fabio,
+
+On Wed, Aug 02, 2023 at 01:03:26PM -0300, Fabio Estevam wrote:
+> As explained in the description text from trivial-devices.yaml:
 > 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
+> "This is a list of trivial I2C and SPI devices that have simple device tree
+> bindings, consisting only of a compatible field, an address and possibly an
+> interrupt line."
+> 
+> A camera device does not fall into this category as it needs other
+> properties such as regulators, reset and powerdown GPIOs, clocks,
+> media endpoint.
+> 
+> Remove the OV5642 entry from trivial-devices.yaml and add its own
+> ovti,ov5642.yaml.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+One more little thing. Do you have a driver for this device? In upstream
+there doesn't seem to be any.
 
-Best regards,
-Krzysztof
+-- 
+Regards,
 
+Sakari Ailus
