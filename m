@@ -2,107 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F35279E05D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 09:03:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8ED779E069
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 09:04:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238398AbjIMHDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 03:03:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39538 "EHLO
+        id S237726AbjIMHEm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 03:04:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230228AbjIMHDS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 03:03:18 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08A57173E
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:03:14 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9a9cd066db5so827180466b.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:03:13 -0700 (PDT)
+        with ESMTP id S230228AbjIMHEm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 03:04:42 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F4B6173F
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:04:38 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9a9f139cd94so740637666b.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:04:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694588592; x=1695193392; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1694588676; x=1695193476; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KZ3zQjFWjU6aUGv1M6ufEZQD2GEy4rVqeEvdZE7HUcU=;
-        b=jq0kW61GkgjrwMMrGaZpebWkJDASoHyDsSDQmYI1EDZueOPZIzRRHhU5dGS1laGoqJ
-         sPqXtMGhxy1ZhqkyXVbpoCsFe69O5ryxI6TNJRL4LZ6VnrLTIzN2etslAin6Uu7t++Fx
-         6+xJw13xwCv5cZAIILyB03AtkaUbONyBeip5jcZLVy5jJlQsxDeocN32J8yDNm8YgQCy
-         mykspDmxLwknDtnuuHGR6JiG/s3g2ArS/J7xEo18KDUFbnTJJZ+Foh5qtRmIlMIX2SuZ
-         SxfPUkY5yBZ9iTLQalWaOg/Vbm5bF0+yLl5wNC6Ks3+Ld9Rw4XQPXjhyNIhjhJRY6VPC
-         YYLg==
+        bh=nImpRlO70d6lS1tP3DSvKb+JC4JD8eSWrGAjYbRNXmY=;
+        b=Q7Cbu/XA+bBwKk0l0WKccIq+Og+BClhxGiAH2ejFqC1WuOPadLSzm/eBiYPcOO/eqq
+         E2DxMgGyHduvDvZ9+f4zo0GanzFOR3f5N+t49M11n2LCe804ZgAus87yJnNxYkE8L5+u
+         hu0BpKVc3aGAVAMJ/hC6SiBD/ovxOvnTN6Bw5dYDc4nbW1Gkn5OH9Y9H9vaHquKePNvT
+         Z2iVUoyu7ohhZuljvfHwLRm4WkqGrwH0eHfrZ9DcvzJKGXn3hInDktLMWxpPLzFswcsd
+         LBRfM4n9Szi1T/NxYtER7LB8kYxoo0djNHFyFfQ42R6hjfuD3NQ8iy4K1fuOgTni8//U
+         Q1FA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694588592; x=1695193392;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20230601; t=1694588676; x=1695193476;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KZ3zQjFWjU6aUGv1M6ufEZQD2GEy4rVqeEvdZE7HUcU=;
-        b=Td/8xSLvskN9GfyxZHgfzLrcdUQnETzPOYZw16apfoSZ1kZLq3r2/2BPTaVeagD5X/
-         pPNrPS1d/YJed3OuDQeuV6clj54CVsZVeOJvnU4+TzT4jkbEVL7ou93m5HIwtOhrbG+m
-         gVAXHAegYa6+4L0UULlcsejIQMATEDNC3QiYTaI6RYXr9EDywxfQl0faLFkYm3+muLUv
-         tTyb/ZqqJ1Wphcrot0m7HiJY5n9/ntYpGlIi6hGpDy+VIWJinwynzhg3d21ghvN1pbJ2
-         0jieF+zpWDGeOaNufFcL5H0hBwFb1Ry6G03gCBlKLtsw2FKUL3tIadcJZCjsllcKd9Jh
-         l6vQ==
-X-Gm-Message-State: AOJu0YxaJjrEc5ddWXZytKqVsJBjEHqQIWOTwum0HR9ErSoJ+F2hWQFV
-        MZtHu5SZ/nkUsDxcnDj//CGILQ==
-X-Google-Smtp-Source: AGHT+IEKAbAXa/5JMpdnKFLiyNtux5WP3j+5CeFfg9ME2oCoQ6zAJhpVu5+Wt7iMqVe/JefU7iiaAA==
-X-Received: by 2002:a17:906:cc4d:b0:9a2:26e4:a5e8 with SMTP id mm13-20020a170906cc4d00b009a226e4a5e8mr1144760ejb.3.1694588592272;
-        Wed, 13 Sep 2023 00:03:12 -0700 (PDT)
+        bh=nImpRlO70d6lS1tP3DSvKb+JC4JD8eSWrGAjYbRNXmY=;
+        b=Km2WI9Q0S8URNmyppWw4td55CbQTRSnM8sQbAgv/44si2wNtoy8oXuouUZ6N/CW6qs
+         Mye/t0vEyoJD+B3nMro9eKGlN404h17RvigtDQsano5RRtoacpACQudzW5b7c7Gkj2I6
+         aYJqO5ZNh0e+dtKjcsmx+0i8/qI2gVGNVsMdejVGPSif4XIpdgX3u0omKmW9scm+nE43
+         ayhcbtwATuwAUWqOlYoD0S22IqgWHR0L/aMNsJfuS9N0Ghb2o1g/h+kaaVbL2auhlmxJ
+         JQARH58LK/LmNCP+x8SrUqUCfWkRfEIHPHCCA9InaVU98XDMO6j3A4JFohEsFq3xJWK9
+         ZmNw==
+X-Gm-Message-State: AOJu0Yzc7j482jJTmdLQ7He5rPuJnMidktOC6O5S1+qwRwlopIGh+54K
+        apQ+O3LpX8OWXHAf4JtSMkNG/g==
+X-Google-Smtp-Source: AGHT+IF565resJCpDt3or1Kh2ykpR8bU7JYjXvfGsLnqplIgDfGyvysZZ9DK9Slai776ekxwSjgG6Q==
+X-Received: by 2002:a17:907:763c:b0:9a9:e5bb:eddc with SMTP id jy28-20020a170907763c00b009a9e5bbeddcmr1166380ejc.16.1694588676405;
+        Wed, 13 Sep 2023 00:04:36 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id op5-20020a170906bce500b00992ea405a79sm7968662ejb.166.2023.09.13.00.03.09
+        by smtp.gmail.com with ESMTPSA id ga17-20020a170906b85100b009a1e0349c4csm7891716ejb.23.2023.09.13.00.04.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 00:03:11 -0700 (PDT)
-Message-ID: <3ee11823-a441-b646-bdd7-aedd3a3a55e5@linaro.org>
-Date:   Wed, 13 Sep 2023 09:03:08 +0200
+        Wed, 13 Sep 2023 00:04:35 -0700 (PDT)
+Message-ID: <7887328f-5811-3bee-b57e-eb3e2975ae1c@linaro.org>
+Date:   Wed, 13 Sep 2023 09:04:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH V2 4/5] ASoC: codecs: Change the aw88261 variable name and
- i2c driver name
+Subject: Re: [PATCH v3 1/3] dt-bindings: imx8-jpeg: Add clocks entries
 Content-Language: en-US
-To:     wangweidong.a@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
-        rf@opensource.cirrus.com, shumingf@realtek.com,
-        ckeepax@opensource.cirrus.com, herve.codina@bootlin.com,
-        13916275206@139.com, ryans.lee@analog.com,
-        linus.walleij@linaro.org, sebastian.reichel@collabora.com,
-        fido_max@inbox.ru, povik+lin@cutebit.org, arnd@arndb.de,
-        harshit.m.mogalapalli@oracle.com, liweilei@awinic.com,
-        yijiangtao@awinic.com, colin.i.king@gmail.com, trix@redhat.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230912065852.347000-1-wangweidong.a@awinic.com>
- <20230912065852.347000-5-wangweidong.a@awinic.com>
+To:     Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, mirela.rabulea@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        alexander.stein@ew.tq-group.com, Fabio Estevam <festevam@denx.de>
+References: <20230912163810.1750488-1-festevam@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230912065852.347000-5-wangweidong.a@awinic.com>
+In-Reply-To: <20230912163810.1750488-1-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2023 08:58, wangweidong.a@awinic.com wrote:
-> From: Weidong Wang <wangweidong.a@awinic.com>
+On 12/09/2023 18:38, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Change "sound-channel" to "awinic,audio-channel"
-> Change "aw88261_smartpa" to "aw88261"
-
-
-
-> -	prof_name = aw88261_dev_get_prof_name(aw88261->aw_pa, count);
-> -	if (!prof_name) {
-> +	ret = aw88261_dev_get_prof_name(aw88261->aw_pa, count, &prof_name);
-> +	if (ret) {
->  		strscpy(uinfo->value.enumerated.name, "null",
->  						strlen("null") + 1);
->  		return 0;
-> @@ -1189,7 +1190,7 @@ static void aw88261_parse_channel_dt(struct aw88261 *aw88261)
->  	u32 channel_value = AW88261_DEV_DEFAULT_CH;
->  	u32 sync_enable = false;
+> The JPEG decoder/encoder present in iMX8QXP and iMX8QM SoCs need
+> the PER and IPG clocks to be functional, so add the clock entries.
+> 
+> This also fixes the following schema warning: 
+> 
+> imx8qm-apalis-eval.dtb: jpegdec@58400000: 'assigned-clock-rates', 'assigned-clocks', 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/media/nxp,imx8-jpeg.yaml#
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+> Changes since v2:
+> - Remove clock-names. (Mirela)
+> 
+>  .../devicetree/bindings/media/nxp,imx8-jpeg.yaml         | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+> index 3d9d1db37040..3383a275c94a 100644
+> --- a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+> @@ -31,6 +31,9 @@ properties:
+>    reg:
+>      maxItems: 1
 >  
-> -	of_property_read_u32(np, "sound-channel", &channel_value);
-> +	of_property_read_u32(np, "awinic,audio-channel", &channel_value);
->  	of_property_read_u32(np, "sync-flag", &sync_enable);
+> +  clocks:
+> +    maxItems: 2
 
-What about this?
+You need to describe the clocks, so "items" with descriptions instead of
+maxItems.
 
 Best regards,
 Krzysztof
