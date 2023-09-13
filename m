@@ -2,125 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D3CE79F0D6
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 20:05:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66D8F79F0FC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 20:17:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231626AbjIMSFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 14:05:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50830 "EHLO
+        id S231715AbjIMSRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 14:17:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbjIMSFY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 14:05:24 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7A4619AE
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 11:05:20 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so2688260a12.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 11:05:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694628319; x=1695233119; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EA+rhaOJb0CMGu7EIM3OJMimctfMG2s/Yf58LoBvEr8=;
-        b=Rx3I9RFDGCbyFKvsxLe5lY3inC6G/UVb1Tp5pwGyEL9MXZHNfdpR6BxUTgpah0uK/Q
-         81Opbq+50gMgXDGhj8LYF9cjjZlZbCm/9nEBWX8LCfY/LfdI1kQPLpESnO8tVnOvLUTt
-         T5HO6kf0qUIxvboaJlzd6ZmP73ho5Fvt7zFQjrPQ0MtALPF4VYRWNLEgnw2dMMXfUU57
-         frnnG+5CrfO6X2uDHp7IgqdREKAr462gqrBDh4LMQ7qCk6RBPWMbVB6wD0dzoURosAFZ
-         QC8o4EbP8xYpH1Vlo3k7aDv1v2WY6HL5n+vv/Bd9vQC99aquxCxXTAeIrLA98kJz0Et9
-         QrMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694628319; x=1695233119;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EA+rhaOJb0CMGu7EIM3OJMimctfMG2s/Yf58LoBvEr8=;
-        b=FwhJmfZ7jVOxBTxj0FE5XG7TcW6Q6XHq9SfPITYNgkSg6UsPD4ZEAVlHX3VEztMVuR
-         gxGXFiw3xiDnhzm4DA8hXygSoZC5s92Ts3O1mlNzrka5L0wKysZfCBLwmm08A2lkKD2M
-         IG0KKdc1wrXldMdt2yxgyefQLoLaso6tWqRtgl5l5HU0sTEEk8SHGXE0QNZjH6KO/oQw
-         B34DB+CdY3WwIa27Dw3CvzYIFAIhRwM2kimwaAIwGbA+22afmXID+owPKT+p5Ojmz/Ej
-         4Z2h0zuI7dguGjJ5JYX/Bl7KpDTopLajnGhW6BNIOmL5kAwjZsYzcUKRpaWo1mhoWDNY
-         oOzA==
-X-Gm-Message-State: AOJu0YwEZW7cQ4D0qSuyzY/Am/x+OXjaY9LxTe+XwHJTEISQOl/ukY7L
-        a8F3QV/CkdLX5D80Eb1yt9Ey9g==
-X-Google-Smtp-Source: AGHT+IE6LRy4QiQj7s2KglzqfydLIrqvv+25l+GZ5+5U6g45Mb5TaSZqKrfnEizhaQ4ROgtQfM8BmA==
-X-Received: by 2002:aa7:d782:0:b0:522:3149:159b with SMTP id s2-20020aa7d782000000b005223149159bmr4704053edq.2.1694628319116;
-        Wed, 13 Sep 2023 11:05:19 -0700 (PDT)
-Received: from [192.168.37.232] (178235177172.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.172])
-        by smtp.gmail.com with ESMTPSA id cn27-20020a0564020cbb00b0052718577668sm1453733edb.11.2023.09.13.11.05.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 11:05:18 -0700 (PDT)
-Message-ID: <e4a40052-8e16-449a-92c0-f7c822aa49ad@linaro.org>
-Date:   Wed, 13 Sep 2023 20:05:16 +0200
+        with ESMTP id S231856AbjIMSRq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 14:17:46 -0400
+Received: from fallback2.i.mail.ru (fallback2.i.mail.ru [79.137.243.68])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D00F819BF
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 11:17:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com; s=mailru;
+        h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=W9JGMoPFPXMkSf4UYnYVsPP/a6ZBsBJHVJVEnoIzgoM=;
+        t=1694629062;x=1694719062; 
+        b=ctdhtLW+W8RWl91UCpA7VBt4RAQZhXjSN4J2UVG6+zN1Y4H3xDrquYD6VviGujfjjYlzOBvuBJI9bifeuE6o35OJUw1PnVGIIjVZ8kPWc/lm6V9IZk8VTfOWJ8O87N/EEWuogyPDLrLGm7FCLv8myunQtvH0nRHS4U+0riGL+zc=;
+Received: from [10.12.4.21] (port=55120 helo=smtp42.i.mail.ru)
+        by fallback2.i.mail.ru with esmtp (envelope-from <danila@jiaxyga.com>)
+        id 1qgUQm-002dmQ-Gl
+        for devicetree@vger.kernel.org; Wed, 13 Sep 2023 21:17:40 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com
+        ; s=mailru; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+        Cc:To:From:From:Sender:Reply-To:To:Cc:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive:
+        X-Cloud-Ids:Disposition-Notification-To;
+        bh=W9JGMoPFPXMkSf4UYnYVsPP/a6ZBsBJHVJVEnoIzgoM=; t=1694629060; x=1694719060; 
+        b=yOMhaPA3KROovQTwRb3SSJGOv4OPvpit9g3n6deydRY7J2s77mobtKEPh5XQmDa7Um/Db1DCGvt
+        TetHByUqjzqQbQKjtcw1te81I5kLmg2ERK8jNOda20CGIAz6Na2jJEjsgpq1pFuqlymj4csN/Wtsx
+        qJES7F7cHbdh61EVsvY=;
+Received: by smtp42.i.mail.ru with esmtpa (envelope-from <danila@jiaxyga.com>)
+        id 1qgUQW-002CNz-2y; Wed, 13 Sep 2023 21:17:25 +0300
+From:   Danila Tikhonov <danila@jiaxyga.com>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Danila Tikhonov <danila@jiaxyga.com>
+Subject: [PATCH 0/2]  soc: qcom: socinfo: Add SM7150P ID
+Date:   Wed, 13 Sep 2023 21:17:20 +0300
+Message-ID: <20230913181722.13917-1-danila@jiaxyga.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sa8775p: enable the inline crypto
- engine
-Content-Language: en-US
-To:     Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230913153529.32777-1-bartosz.golaszewski@linaro.org>
- <20230913153529.32777-2-bartosz.golaszewski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230913153529.32777-2-bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Mailru-Src: smtp
+X-7564579A: 646B95376F6C166E
+X-77F55803: 4F1203BC0FB41BD927CFE6CA1630A10CC7C637228D9AC5849E3361C131A0BCD300894C459B0CD1B9EA37E3C1DEA3CDF812E2907643693695E810CAF9E72F1A4271C70EC916F3F42B
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE727FD6E7FC3A8F857EA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F79006377CC130305260E47D8638F802B75D45FF36EB9D2243A4F8B5A6FCA7DBDB1FC311F39EFFDF887939037866D6147AF826D8D83AD9A91DF818CDB60591FB868C59A0117882F4460429724CE54428C33FAD305F5C1EE8F4F765FC55D5BE2F85BDEC5FA471835C12D1D9774AD6D5ED66289B52BA9C0B312567BB23117882F44604297287769387670735201E561CDFBCA1751F2CC0D3CB04F14752D2E47CDBA5A96583BA9C0B312567BB2376E601842F6C81A19E625A9149C048EE4B6963042765DA4B28F6BDBBAB179F4ED8FC6C240DEA76429C9F4D5AE37F343AA9539A8B242431040A6AB1C7CE11FEE368E4D7E803FA7AD5C0837EA9F3D19764C4224003CC836476E2F48590F00D11D6E2021AF6380DFAD1A18204E546F3947CB11811A4A51E3B096D1867E19FE1407959CC434672EE6371089D37D7C0E48F6C8AA50765F7900637A33AF67571422614731C566533BA786AA5CC5B56E945C8DA
+X-C1DE0DAB: 0D63561A33F958A5AE340BF9E998A78642B845A496872F882E5E8D42E22D1635F87CCE6106E1FC07E67D4AC08A07B9B08ED1AC82D843A2BB9C5DF10A05D560A950611B66E3DA6D700B0A020F03D25A0997E3FB2386030E77
+X-C8649E89: 1C3962B70DF3F0ADE00A9FD3E00BEEDF77DD89D51EBB7742D3581295AF09D3DF87807E0823442EA2ED31085941D9CD0AF7F820E7B07EA4CFD9413153F9493B6132B4CEC344CA3ABB17CF3CBB77DADEF3A1964E96C1933445ACCA692FBCDC96C2C4B8F2E8CFB8F5713A23E06EBA107BE72E4EEC99511919C66E346BF9FA413E554C41F94D744909CE4BCAC77546666B612CC0CD5AA9A1B9887EE09F5AAA95A50543082AE146A756F3
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojoMTWofjSWSQGtLx7gbZW0Q==
+X-Mailru-Sender: 9EB879F2C80682A09F26F806C7394981796B0F5A6336A7084CF0F33EB09DA5F02FE1B90895D89C7D643683D8C0F3ED1CA3C71A376745D86BBE86167304C7680C3980CE5AAA35C7CD60F22E8815EDE5EAEAB4BC95F72C04283CDA0F3B3F5B9367
+X-Mras: Ok
+X-7564579A: B8F34718100C35BD
+X-77F55803: 6242723A09DB00B4CCFDD92D2340B86DAE84E8624EAA1CB8F259D654BEC39661049FFFDB7839CE9EA21101AE4D7A6B824990F66D00F1378ABCF28A3584887077A288C16E146E6DC5
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5xhPKz0ZEsZ5k6NOOPWz5QAiZSCXKGQRq3/7KxbCLSB2ESzQkaOXqCBFZPLWFrEGlV1shfWe2EVcxl5toh0c/aCGOghz/frdRhzMe95NxDFdaloFI76w+pIlneSDd+mHMQ==
+X-Mailru-MI: C000000000000800
+X-Mras: Ok
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13.09.2023 17:35, Bartosz Golaszewski wrote:
-> Add an ICE node to sa8775p SoC description and enable it by adding a
-> phandle to the UFS node.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
-I don't have any sources backing this up, but 8350 seems to
-have the exact same register ranges for this block, so I'm
-inclined to believe it's ok
+This series adds ID for Qualcomm SM7150P SoC.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+The SM7150P does not have Qualcomm IP Accelerator (IPA), unlike the SM7150.
+And also has a different SoC id. SM7150P is used in
+Lenovo Tab P11 Pro (lenovo-j706f) for example.
 
-Konrad
+Danila Tikhonov (2):
+  dt-bindings: arm: qcom,ids: Add Soc ID for SM7150P
+  soc: qcom: socinfo: Add Soc ID for SM7150P
+
+ drivers/soc/qcom/socinfo.c         | 1 +
+ include/dt-bindings/arm/qcom,ids.h | 1 +
+ 2 files changed, 2 insertions(+)
+
+-- 
+2.41.0
+
