@@ -2,111 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98FC979E06A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 09:05:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C839679E070
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 09:07:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230228AbjIMHF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 03:05:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44194 "EHLO
+        id S238432AbjIMHHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 03:07:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238362AbjIMHF1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 03:05:27 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 544AA1738
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:05:23 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99de884ad25so844195566b.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:05:23 -0700 (PDT)
+        with ESMTP id S238362AbjIMHHv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 03:07:51 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 581541980
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:07:47 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-986d8332f50so862147566b.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:07:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694588722; x=1695193522; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=linaro.org; s=google; t=1694588866; x=1695193666; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7I2nnvWk4UH8FAFaSV9SlMIVcqk0TgFWDoT+NTTsGbA=;
-        b=u6oZRa0BF1ppZheho3TEnbyX0qgnWEh5CFkkpu7kKYLYm9BEh1Mlhx3+cdARkNcLFe
-         soAzXILwhLcM9+s7K84eRfQhouWHT5QWFhz8PpR6ifc4+AhIVOH0dCtrdXcLK95BNBAX
-         C2mGSYcKqV/FsFGnMGsYL9j0jpj4k1mgMe9LlHX0JL7eFX+pjseZCtPQvuQu5psCLSTL
-         jM4kCkKAys74MWKS9MFV558FGEy3h2AYwFccUguLBpzOXuqLh97Yt9u5mLgGa4GlpIED
-         UuW4m3N3Lan2Rpse55o0eMUnkHlo0ANSP3cYehCUUFYTkCFTBwDfZ8qjlyqUr+if3DNy
-         SU9g==
+        bh=aQ2nEJFL1xkjEyk0YmCbI44Cb7r640D/NpFhcEOFdXM=;
+        b=rfJWOudOsHoTrFcRlxv2qkeUB4Bg3qM8JS2/V8KUjYls6/fD4I80f/4HgAHdLvXXKH
+         /nOGnSNT14SD9EZfjC/cGsSP0D6cmhAC11nHqqXbR0XL4FjjpOAqI4ft5TU22qm0/jSs
+         MvQYlf4+NAWNk9vlu73FQKJe5QO69t0i8uenBlOVD1B0F2Zw9j8vsFPG6s7vx9RLPNd5
+         krrw0S4XTOuQRFlLn1txQbWB4Fsy4W2qCZXKnaurKUz525DUxwPO0SG3KJ9o5S6E3hTp
+         vJulbzuP6ul1MW5WchMidEwooYpuoMYkrfFJ+0juR0mYSOl0P0jpbuTl/x3VtWJETXFw
+         nboQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694588722; x=1695193522;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=1e100.net; s=20230601; t=1694588866; x=1695193666;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7I2nnvWk4UH8FAFaSV9SlMIVcqk0TgFWDoT+NTTsGbA=;
-        b=l5Vwjq//tJSn6DN/c8SMcOddcLlGa2Ngdd4wG4oovk19YYLsS2H22cPIw5k76kAysf
-         dqkbWOzZi4RXEyAQtnByN9NtFVxdvk80CjLO6GPGozewTkG0vy4GiFNHdPMsi9wItpkn
-         tF9uyzhwmUbXnzZKVQp4xkOZd/Uj0CHykjY+WfWTbYzi3yILkW1e8+gNvWQKOcxMv6Ii
-         HDmkiq1cz5JZez158EZ+kZWngdUepj4xhBOGidClyqtWdj9gFOSqm/JWscMHSiUZTlCn
-         Kc5yZ1VLKcMXYMRO5I4jbqNwSSmaEfh1vRzttI2P4BQ1cVkNphDSGrl0LZFChNZ9X0iq
-         wD5w==
-X-Gm-Message-State: AOJu0Yxq1jisMY5STdTtLAvVyHV/wqnil9RT5eC7Za3HmEsUzRtRgtXa
-        rrq12/vTdoj4ia5JlyBMkpAyaA==
-X-Google-Smtp-Source: AGHT+IFkiJOca9fmo7CStj5P4ra5oKyMt/7g7vX1wqvRn5QyhOanHEKXJ2uJEoquIheWBgOajDRXHg==
-X-Received: by 2002:a17:906:8464:b0:9a1:b967:aca7 with SMTP id hx4-20020a170906846400b009a1b967aca7mr1083806ejc.42.1694588721747;
-        Wed, 13 Sep 2023 00:05:21 -0700 (PDT)
+        bh=aQ2nEJFL1xkjEyk0YmCbI44Cb7r640D/NpFhcEOFdXM=;
+        b=OS++lQXuAapS2zEvch/xnOlbOscTZAFFDXoeIoo0KwY0W2Rymq7Rsg4ZgiiuNg0xW2
+         RyHrdT7CVyGGjkEehrAAb/hulgsXSB/zV9XYm9KiGrEDVub5IzjUrPTXcFHF8di2EukZ
+         mo3or//mFASFZ8IxXEl7mTuYp1+rPvo+rJxGzt6e6tDJKfHPatzPLVLV9yPINILy/nDL
+         /cWhI7dc9s/mEBZqflEBEXqqp6DUPevyKHucVK3m6PkehETvTyk6oUvq9EVqxgI0Z0fh
+         S1prvrXkmbEaKYj0f0votP0V7R5GEUAtQMK8xoiKNwaoAvJ43YGtjeAmQda1IADMMPUe
+         RCjw==
+X-Gm-Message-State: AOJu0YzDwczF1LRjmVJhXLMQJXvZEdK9nS3MgjtddwTisvISXU1cwTGl
+        AmvbUjjUWJ8Hu4sGpEuqvVa2ww==
+X-Google-Smtp-Source: AGHT+IEDdTdAYJBvC/NTElwaroM1jCmLl9Ptm9/vSLtcb32A5skuiBvr0hCVl70ozremDvSEn4TN4w==
+X-Received: by 2002:a17:906:32c9:b0:9a1:bd82:de1c with SMTP id k9-20020a17090632c900b009a1bd82de1cmr1165437ejk.41.1694588865733;
+        Wed, 13 Sep 2023 00:07:45 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id z19-20020a170906715300b009a2202bfce5sm7847278ejj.118.2023.09.13.00.05.20
+        by smtp.gmail.com with ESMTPSA id b9-20020a170906490900b00992f2befcbcsm7892650ejq.180.2023.09.13.00.07.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 00:05:21 -0700 (PDT)
-Message-ID: <35867958-2da2-a1d5-b8a5-035c45cb9075@linaro.org>
-Date:   Wed, 13 Sep 2023 09:05:19 +0200
+        Wed, 13 Sep 2023 00:07:45 -0700 (PDT)
+Message-ID: <bd11d1b1-efe5-4f96-43e7-163fca5d3278@linaro.org>
+Date:   Wed, 13 Sep 2023 09:07:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH v3 1/3] dt-bindings: imx8-jpeg: Add clocks entries
+Subject: Re: [PATCH v2 01/14] arm64: dts: qcom: msm8916: Drop RPM bus clocks
 Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Alexey Minnekhanov <alexeymin@postmarketos.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        linux-usb@vger.kernel.org
+References: <20230721-topic-rpm_clk_cleanup-v2-0-1e506593b1bd@linaro.org>
+ <20230721-topic-rpm_clk_cleanup-v2-1-1e506593b1bd@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, mirela.rabulea@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        alexander.stein@ew.tq-group.com, Fabio Estevam <festevam@denx.de>
-References: <20230912163810.1750488-1-festevam@gmail.com>
- <7887328f-5811-3bee-b57e-eb3e2975ae1c@linaro.org>
-In-Reply-To: <7887328f-5811-3bee-b57e-eb3e2975ae1c@linaro.org>
+In-Reply-To: <20230721-topic-rpm_clk_cleanup-v2-1-1e506593b1bd@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/09/2023 09:04, Krzysztof Kozlowski wrote:
-> On 12/09/2023 18:38, Fabio Estevam wrote:
->> From: Fabio Estevam <festevam@denx.de>
->>
->> The JPEG decoder/encoder present in iMX8QXP and iMX8QM SoCs need
->> the PER and IPG clocks to be functional, so add the clock entries.
->>
->> This also fixes the following schema warning: 
->>
->> imx8qm-apalis-eval.dtb: jpegdec@58400000: 'assigned-clock-rates', 'assigned-clocks', 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
->> 	from schema $id: http://devicetree.org/schemas/media/nxp,imx8-jpeg.yaml#
->>
->> Signed-off-by: Fabio Estevam <festevam@denx.de>
->> ---
->> Changes since v2:
->> - Remove clock-names. (Mirela)
->>
->>  .../devicetree/bindings/media/nxp,imx8-jpeg.yaml         | 9 +++++++++
->>  1 file changed, 9 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
->> index 3d9d1db37040..3383a275c94a 100644
->> --- a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
->> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
->> @@ -31,6 +31,9 @@ properties:
->>    reg:
->>      maxItems: 1
->>  
->> +  clocks:
->> +    maxItems: 2
-> 
-> You need to describe the clocks, so "items" with descriptions instead of
-> maxItems.
+On 12/09/2023 15:31, Konrad Dybcio wrote:
+> These clocks are now handled from within the icc framework and are
 
-And to be clear: such description was in your previous version, so it's
-the problem introduced now in v3...
+That's a driver behavior, not hardware.
+
+> no longer registered from within the CCF. Remove them.
+> 
+
+Changes in Linux clock drivers should not cause some clocks to disappear
+from DTS...
+
 
 Best regards,
 Krzysztof
