@@ -2,107 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D88F779E6F3
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 13:37:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4614179E70C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 13:44:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231971AbjIMLhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 07:37:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40882 "EHLO
+        id S240421AbjIMLoC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 07:44:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240268AbjIMLhR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 07:37:17 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7C8319AD
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 04:37:13 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-403012f276dso45795715e9.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 04:37:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694605032; x=1695209832; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Nme/JcCZy+21A8LZUmcpQ/snwqu0c1CGtPKLSeADIRc=;
-        b=j7gXvpyobUDiLzNyNTZ9Hw0Gug6li/qnT+W/tTKq296h9ORbbw2Dm43yl7dX3onYmx
-         XKd1B5DAwdvQsAzyG2fSX0m44n6E4SJxmKaGr2lwcq+fwKoJOcHkPmKk/i73ICDOKxWz
-         5dD0hJQQRjYE+lXxQfngpNv/f00gVgir6LKKNHPtFkR8RV3O3tqv97Tw7IncWux/tPgW
-         MWhJKQcM8RTR7tg5SOw+mWQXz6q/ZzwD+P9vLS3ImKxhnOgFYwkCHfBzcgR7wk7gt5gx
-         6FzpEka6NIQF5EUBQKditkH5w2OHLSS65lbrV5REXeApuUo/tf7ksHsyM2yd1O7BosPv
-         h2zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694605032; x=1695209832;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nme/JcCZy+21A8LZUmcpQ/snwqu0c1CGtPKLSeADIRc=;
-        b=KjKoqFcyONvgbsSi/Jo5yBp7qufU/e10kjyjYW5BjzX10YCT/p8OSol6sebvKhYjrf
-         m9fLOaSRpKZ6QIISeDksWoa1bUTg3ruObpxU/ZKcZBXGiTDCHAbbyOInxYNBPTugV8GF
-         6bUyWjMQkqfkLgokQRkXdRgcZDNpoN4R+VDetIMw7YXYqVKnoI2GnVG7A0H9z/IEkVmk
-         xLwQTfjtQoBkysq1GeSEV678h2KfN245s4BNgoI9lMPwaZKB8ZxVY17rvqf8WBwxYs4f
-         WHiTg82x7EhOgTtlvR9qyeKETcB+wbHV5h2/8hY12UUtQn86ZJq90AZ/EfA+3MaCvrYO
-         31BQ==
-X-Gm-Message-State: AOJu0Yw+FO5XEUEUaYdIwWmW9QRDUM2spP+GwoRCtTTW3OzGzxRuYjkD
-        Uc5jY58kEug/xTmXqpcZzdfjVw==
-X-Google-Smtp-Source: AGHT+IH2nVE8W7SFZFZN8wVN3nLWifI8J4zzhexkxNYGhAChtyZIJ5HHNdGp2o6YOXlYp4DS/nsyCw==
-X-Received: by 2002:a05:600c:2346:b0:402:a464:1a20 with SMTP id 6-20020a05600c234600b00402a4641a20mr1713557wmq.33.1694605032176;
-        Wed, 13 Sep 2023 04:37:12 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id l12-20020a1ced0c000000b003fed4fa0c19sm1803441wmh.5.2023.09.13.04.37.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 04:37:11 -0700 (PDT)
-Message-ID: <75fbb3fa-8696-c2fe-0a41-a3e588241b79@linaro.org>
-Date:   Wed, 13 Sep 2023 13:37:10 +0200
+        with ESMTP id S233040AbjIMLoB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 07:44:01 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC15710E6;
+        Wed, 13 Sep 2023 04:43:57 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id AE873660733E;
+        Wed, 13 Sep 2023 12:43:55 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1694605436;
+        bh=rJbG4m613P7qZGZ7uqt8izGJD3tSdXSLnNutOtXNuWs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ORMUwgS2B3hoimYVbdUOKJqBVEH4GpvH6354MjoGlyb1nIxiwdh76Z1bHMBHCZHhE
+         gJM0wLw4mvf80N0ATzZoRb063pKYtM5V+SisHSjZ6/lh8W/98BBT2QGinDJXG4iddQ
+         +kP9Y5O9EFlBqKEaaw3kmPPzO8vcDqhu5vLjIx3Zc/YyApq8xIdiH1gAv59MW6DfQz
+         7f37oC1Zo+nh4PH0WJ6OyJJ40ejgySOTwx75PCxf2AsF3O5xkoU0Xyvw+Fams+27Y+
+         d49E3yiEG0ad1jlmikDFuPZhSYHfFcF6P7hhg8oW/eWeFjRr1PEOC6yyuT/q2furYO
+         fZAQGZkalpOOg==
+Message-ID: <f13a6648-cd21-a166-6e56-431ac7ee5dec@collabora.com>
+Date:   Wed, 13 Sep 2023 13:43:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH v6 3/4] remoteproc: k3: Split out functions common with M4
- driver
+Subject: Re: [RFC v1 3/3] thermal/drivers/mediatek/lvts_thermal: add mt7988
+ support
 Content-Language: en-US
-To:     Hari Nagalla <hnagalla@ti.com>, andersson@kernel.org,
-        mathieu.poirier@linaro.org, p.zabel@pengutronix.de,
-        martyn.welch@collabora.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20230913111644.29889-1-hnagalla@ti.com>
- <20230913111644.29889-4-hnagalla@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230913111644.29889-4-hnagalla@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     frank-w@public-files.de, Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Daniel Golle <daniel@makrotopia.org>
+References: <20230911183354.11487-1-linux@fw-web.de>
+ <20230911183354.11487-4-linux@fw-web.de>
+ <8949cbfa-acae-d6ac-e5fb-f238a29630bc@collabora.com>
+ <465DDC1C-D687-47A7-966C-73FB42CFC5DD@public-files.de>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <465DDC1C-D687-47A7-966C-73FB42CFC5DD@public-files.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/09/2023 13:16, Hari Nagalla wrote:
-> From: Martyn Welch <martyn.welch@collabora.com>
+Il 13/09/23 12:52, Frank Wunderlich ha scritto:
+> Am 13. September 2023 10:16:51 MESZ schrieb AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>:
+> Hi angelo,
 > 
-> In the next commit we will be adding the M4F driver which shares a lot of
-> commonality with the DSP driver. Split this shared functionality out so
-> that it can be used by both drivers.
+> thanks for first look
 > 
-> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> ---
-> Changes since v2:
->  - New patch (reordered refactored from v2)
+>> Il 11/09/23 20:33, Frank Wunderlich ha scritto:
+>>> From: Frank Wunderlich <frank-w@public-files.de>
+>>>
+>>> Add Support for mediatek fologic 880/MT7988.
+>>>
+>>> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+>>> ---
+>>>    drivers/thermal/mediatek/lvts_thermal.c | 73 +++++++++++++++++++++++++
+>>>    1 file changed, 73 insertions(+)
+>>>
+>>> diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
+>>> index c1004b4da3b6..48b257a3c80e 100644
+>>> --- a/drivers/thermal/mediatek/lvts_thermal.c
+>>> +++ b/drivers/thermal/mediatek/lvts_thermal.c
+>>> @@ -82,6 +82,8 @@
+>>>    #define LVTS_GOLDEN_TEMP_DEFAULT	50
+>>>    #define LVTS_COEFF_A_MT8195			-250460
+>>>    #define LVTS_COEFF_B_MT8195			250460
+>>> +#define LVTS_COEFF_A_MT7988			-204650
+>>> +#define LVTS_COEFF_B_MT7988			204650
+>>>      #define LVTS_MSR_IMMEDIATE_MODE		0
+>>>    #define LVTS_MSR_FILTERED_MODE		1
+>>> @@ -1272,6 +1274,67 @@ static int lvts_remove(struct platform_device *pdev)
+>>>    	return 0;
+>>>    }
+>>>    +/*
+>>> + * LVTS MT7988
+>>> + */
+>>> +#define LVTS_HW_SHUTDOWN_MT7988	117000
+>>
+>> Are you sure that this chip's Tj is >117°C ?!
+>>
+>> Looks a bit high... if it is exactly 117°C, I would suggest cutting earlier,
+>> either at 110 (safe side) or 115: after all, this is a life-saver feature and
+>> the chip is actually never meant to *constantly* work at 110°C (as it would
+>> degrade fast and say goodbye earlier than "planned").
 > 
-> Changes since v3:
->  - Removed "ipc_only" element from k3_rproc structure
->  - Refactored to bring 3 more common functions
+> I took values from SDK
 > 
-> Changes since v4:
->  - None
+> https://git01.mediatek.com/plugins/gitiles/openwrt/feeds/mtk-openwrt-feeds/+/refs/heads/master/target/linux/mediatek/files-5.4/drivers/thermal/mediatek/soc_temp_lvts.c#1483
 > 
-> Changes since v5:
->  - Rearranged the functions order to match with the functions in
->    ti_k3_dsp_remoteproc.c to ease review.
-> 
->  drivers/remoteproc/Makefile               |   2 +-
->  drivers/remoteproc/ti_k3_common.c         | 513 +++++++++++++++++++
->  drivers/remoteproc/ti_k3_dsp_remoteproc.c | 598 ++--------------------
 
-Generate your patch correctly with -M/-B/-C so the move will be detected.
+That kernel also defines 117°C for MT8195, which leaves me a bit dubious.
 
-Best regards,
-Krzysztof
+For safety, I would recommend using the same 105°C hw shutdown temperature
+for 7988 as well: after all if you think about it, reaching that kind of
+temperature means that there's a real problem (fan stopped working and/or
+heatsink detached) that needs attention.
+
+This is because you'll have trip points in devicetree that should throttle
+the CPU in case it reaches at least a dangerously high temperature (read:
+a temperature outside the recommended continuous operation range), bringing
+the temperatures down because of the throttling action; I would imagine
+throttling the CPU a bit down at 80°C, then a bit more at 90°C - but then,
+if the temps won't drop like that, there's clearly a HW-related issue that
+must be addressed (like the fan/heatsink scenario that I just described).
+
+Though, take this as an advice; I'll respect whichever decision you'll take.
+
+>>> +//enum mt7988_lvts_domain { MT7988_AP_DOMAIN, MT7988_NUM_DOMAIN };
+>>> +
+>>> +enum mt7988_lvts_sensor_enum {
+>>> +	MT7988_TS3_0,
+>>> +	MT7988_TS3_1,
+>>> +	MT7988_TS3_2,
+>>> +	MT7988_TS3_3,
+>>> +	MT7988_TS4_0,
+>>> +	MT7988_TS4_1,
+>>> +	MT7988_TS4_2,
+>>> +	MT7988_TS4_3,
+>>> +	MT7988_NUM_TS
+>>> +};
+> 
+>> This enumeration should be definitions in bindings (mediatek,lvts-thermal.h).
+>>
+>> Besides, the LVTS is about internal temperatures, so those TS3_x and 4_x can
+>> be renamed like what was done for MT8192 and MT8195: this is because you will
+>> never see TS3_2 being CPU2 on a board and CPU4 on another, being those - again -
+>> internal to the SoC, hence unchangeable.
+> 
+> Right these sensors are internally only and i took naming from sdk to avoid confusion. And i have not more information about these internal sensors (special meaning),but their values are packed together to get the resulting (average) temperature.
+> 
+>> Another reason is that you'll anyway have to refer to those sensors in the
+>> devicetree to configure thermal trips and such, so... :-)
+> 
+> In device tree it will look like this:
+> 
+> https://github.com/frank-w/BPI-Router-Linux/blob/6.5-lvts/arch/arm64/boot/dts/mediatek/mt7988a.dtsi#L771
+> 
+> Daniel has also defined thermal trips there,but these are untested atm. I only verified temperature itself i get from sysfs as far as i can (start at ~40°C and reaching ~70 while running).
+> 
+
+Check how it's done in mt8192.dtsi and mt8195.dtsi: we're using the definitions
+from the bindings for thermal zones.
+At least for consistency (apart from other even more valid considerations), that's
+how it should be done: please do it like that.
+
+Besides, I think that you can definitely guess what `TS` is CPU related: checking
+the driver and devicetree from the downstream kernel that you provided, what I
+understand is:
+
+1. Your naming TS3,4 corresponds to TS2,3 downstream (so it's wrong?)
+2. Downstream TS2 is related to the CPU cores, so it should be
+    - TS2_0 - CPU0
+    - TS2_1 - CPU1
+    - TS2_2 - CPU2
+    - TS2_3 - CPU3
+
+The other set of thermal sensors seem to be completely unused, so we cannot guess
+just by looking at the code. Since you have the hardware, you may be able to take
+a position about what they are by checking what sensor heats up for each "action"
+(could be ethernet controller or infra or whatever else); if in doubt, just leave
+them out, but add a comment saying that there are more sensors and say where, so
+that if anyone finds what they're for, it'll be easy to add them.
+
+In any case, adding thermal sensors that you don't know about is meaningless, as
+the sense of all this is:
+  - Monitoring temperatures of the hardware
+  - Taking action to prevent temperature overrun
+but if you don't know what you're reading, you can't interpret temperatures for
+something unknown, hence you can't as well take action to prevent overruns, as
+you won't know what's the maximum temperature for "unknown thing" :-)
+
+Regards,
+Angelo
 
