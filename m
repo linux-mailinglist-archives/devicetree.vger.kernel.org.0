@@ -2,255 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7C9379F203
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 21:28:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C215779F20F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 21:31:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232388AbjIMT21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 15:28:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37232 "EHLO
+        id S232331AbjIMTbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 15:31:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232387AbjIMT20 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 15:28:26 -0400
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53A81B7;
-        Wed, 13 Sep 2023 12:28:22 -0700 (PDT)
-Received: by mail-oi1-x230.google.com with SMTP id 5614622812f47-3a9e49495ddso1797b6e.1;
-        Wed, 13 Sep 2023 12:28:22 -0700 (PDT)
+        with ESMTP id S232330AbjIMTbc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 15:31:32 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 587F619AE
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 12:31:28 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9a9cd066db5so30128666b.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 12:31:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694633301; x=1695238101; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2WidjAhyzzR914yrMrQA4wjCbGJH0b1DcL9K+jqRrhM=;
-        b=RUp2ytGWv9dp+pir04wEXORIGle/uNVVeLD4qvJpyBeUVi2TzpClNVyFGSZvrj/sUJ
-         qE+n4bPikY/JzxBxCJjoJwVYu4f4ae6dPHCpM4zg0KHsdqPrdlf+clf9oHF74VWoQcmL
-         1rFsy0zaBzny+1MQsUNcCuTMbJJSor/GppemHtG/G+uS0AJpYziyJD8gklLwPY6Tvvyn
-         EWE6cO0vAbj35H0l+0i11kUKfAu/1e3TtcUBZXLQPEncwsvR/zCyZJpkZTyoX0nSKMI5
-         O7bctJ30s9AJ8wOmjux652dIInf69BXf3jp1zIxMHnrWB2a4dvk5/EUZSKJrzvAc+qLg
-         j7FQ==
+        d=linaro.org; s=google; t=1694633487; x=1695238287; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6t/segHl62cG0tgDfHwNZNVnZ9A89vMExRnBSpVNx4M=;
+        b=mb8f6xPQYyBy+KDbOpKDNuR0cj5OuclmA5Xmhe7TDw3kzy40vhxxpdNf7tAzhtk2t0
+         vtG4lUxJRPrxDfkOriYQObaVjqDtlpjgxpopxdN3XBK4ujZS9ELDm9fo2KGeBFwBYxz9
+         jJ4+afTPeVm+rnuq+oGK/PKZTbaeDRyR6QyRtQFkOx+hNFOifimiau2t5VyRM2poNQUm
+         XBetFwfpbOZjOqT0z8OEIB3DZo9rXLvH4atutSw+pRaKpU7fibq4uDxxCDY7ghjVzk/H
+         eC7/qM3Reum3/7jmjgANGHVAeuDtLcfgqPE82/x3J/HFkVOQU5VgchC9Hq5BiZ2oMyOM
+         ocWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694633301; x=1695238101;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2WidjAhyzzR914yrMrQA4wjCbGJH0b1DcL9K+jqRrhM=;
-        b=i7GRWNwoSToxdQYoa0Xp3vCRnfplHXBcsb0Z+apDAbaTFvGipgyCQK5Xr/Y4uUkCFs
-         LuuHXr6fARduwR7UzQ/0SSRt7qKXg8/onylpIOMntNP78LAlzOLeVJxr5sBl6DGmM0fT
-         RpPCNO8nh0byxBzFKcNp5B2JAu5bOA1iL/CMUKG9i5eUuJEJqn7JQwtt1jQQ/5mdWwDn
-         15Jm1XhENLhIqkdo63PdaGa5WOwt4tXlCEjPwSCjxFNLJOY7Q2ZS13HvYWAGmtzJm1Ef
-         xDW/12qa3L/ovVHB46nMpNOH1eorIVzteiN2+vbvtUPCxDt1rWK/d5coc582MTjtXGIj
-         OBdA==
-X-Gm-Message-State: AOJu0YyUp5mlcsnFdi9I7Y0A/+hYYf3jQh5hVBRQjeVMuHq1+zxQQvwO
-        SCZ73XENEm7s4AXGJERG54XUVkVCMns=
-X-Google-Smtp-Source: AGHT+IFwuw2AHf3U9dQGwgRAjJ6iGmvB0H3u2uvXpeAufRd0mmf0kzaoTVpzqkcCSkRKNZOb/MCoLg==
-X-Received: by 2002:a05:6808:308c:b0:3a7:72e2:3262 with SMTP id bl12-20020a056808308c00b003a772e23262mr4197780oib.5.1694633301499;
-        Wed, 13 Sep 2023 12:28:21 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:1764:d532:27a2:10a0])
-        by smtp.gmail.com with ESMTPSA id b14-20020a056808010e00b003a1ec14d8c6sm5476622oie.23.2023.09.13.12.28.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Sep 2023 12:28:21 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     sakari.ailus@iki.fi
-Cc:     mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v4] media: dt-bindings: Add OV5642
-Date:   Wed, 13 Sep 2023 16:28:11 -0300
-Message-Id: <20230913192811.1946423-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1694633487; x=1695238287;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6t/segHl62cG0tgDfHwNZNVnZ9A89vMExRnBSpVNx4M=;
+        b=paCfBrM1UXuGa70fELiIpsvhE5AVZiLPQ3cdOr1bY7UNFdUVQ8N2+pbzQFX/AbPxGi
+         OX7pr6XYXoiHHP2kXGg/Yv8JkqoqL4TracLwanTxAIm7xJgPJMEzjb52KyaaDG/Cp7ax
+         akyAGcNG8Kn6n5BU6MedMnGLXAvCS4l7tkopJj5qDblaDxvSBof8px5TSSK7xKeOpkrQ
+         iRDCcYJow1XqoGkxALS7x6P29teTOFRXsBd/Z2m1kJgS1NT+beo63jkZifdn5VRsDlur
+         ISzTw7ypfOCenjm+23blyd+qsjkVPmqtFGh9Ve2Lbyb8GUnjJsNKGLPpfslnh4t1S8Mf
+         toNA==
+X-Gm-Message-State: AOJu0Ywp2elq5EVOhMpxTViA1t6Gsztf7bhpw700BUAcpGYuAXkkglFg
+        ernNoAlQPlPdqiLvakehoTaEOw==
+X-Google-Smtp-Source: AGHT+IHEROrTYoS6x/KY+dvBnwl/TmbwAYJz+XmpnGflks2i5L/tczqqyom6qBDab3VbsAyc9juI/w==
+X-Received: by 2002:a17:906:4c1:b0:9aa:1020:8c36 with SMTP id g1-20020a17090604c100b009aa10208c36mr2982793eja.27.1694633486721;
+        Wed, 13 Sep 2023 12:31:26 -0700 (PDT)
+Received: from [192.168.37.232] (178235177172.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.172])
+        by smtp.gmail.com with ESMTPSA id v14-20020a17090690ce00b0099c53c44083sm8840393ejw.79.2023.09.13.12.31.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Sep 2023 12:31:25 -0700 (PDT)
+Message-ID: <750065d1-dc87-4b1b-8540-059526623bdd@linaro.org>
+Date:   Wed, 13 Sep 2023 21:31:24 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: pm8150l: Add wled node
+Content-Language: en-US
+To:     Danila Tikhonov <danila@jiaxyga.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230913185514.21840-1-danila@jiaxyga.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230913185514.21840-1-danila@jiaxyga.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+On 13.09.2023 20:55, Danila Tikhonov wrote:
+> WLED is used for controlling the backlight on some boards, add the node
+> for it.
+> 
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> ---
+>  arch/arm64/boot/dts/qcom/pm8150l.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pm8150l.dtsi b/arch/arm64/boot/dts/qcom/pm8150l.dtsi
+> index b1686e5777b8..ac08a09c64c2 100644
+> --- a/arch/arm64/boot/dts/qcom/pm8150l.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm8150l.dtsi
+> @@ -132,5 +132,15 @@ pm8150l_lpg: pwm {
+>  			status = "disabled";
+>  		};
+>  
+> +		pm8150l_wled: leds@d800 {
+> +			compatible = "qcom,pm8150l-wled";
+> +			reg = <0xd800>, <0xd900>;
+> +			interrupts = <0x5 0xd8 0x1 IRQ_TYPE_EDGE_RISING>,
+> +				     <0x5 0xd8 0x2 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "ovp", "short";
+Could somebody confirm the second irq? It looks sane when
+checking out similar blocks on older gens, but I have no
+reference to confirm it's there on this one.
 
-As explained in the description text from trivial-devices.yaml:
-
-"This is a list of trivial I2C and SPI devices that have simple device tree
-bindings, consisting only of a compatible field, an address and possibly an
-interrupt line."
-
-A camera device does not fall into this category as it needs other
-properties such as regulators, reset and powerdown GPIOs, clocks,
-media endpoint.
-
-Remove the OV5642 entry from trivial-devices.yaml and add its own
-ovti,ov5642.yaml.
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Changes since v3:
-- Make propeties conditional on parallel verus MIPI CSI-2. (Sakari)
-- Remove clock-names as there is a single clock.
-- Pass bus-type.
-
- .../bindings/media/i2c/ovti,ov5642.yaml       | 141 ++++++++++++++++++
- .../devicetree/bindings/trivial-devices.yaml  |   2 -
- 2 files changed, 141 insertions(+), 2 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5642.yaml
-
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5642.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5642.yaml
-new file mode 100644
-index 000000000000..01f8b2b3fd17
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5642.yaml
-@@ -0,0 +1,141 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/ovti,ov5642.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OmniVision OV5642 Image Sensor
-+
-+maintainers:
-+  - Fabio Estevam <festevam@gmail.com>
-+
-+allOf:
-+  - $ref: /schemas/media/video-interface-devices.yaml#
-+
-+properties:
-+  compatible:
-+    const: ovti,ov5642
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    description: XCLK Input Clock
-+
-+  AVDD-supply:
-+    description: Analog voltage supply, 2.8V.
-+
-+  DVDD-supply:
-+    description: Digital core voltage supply, 1.5V.
-+
-+  DOVDD-supply:
-+    description: Digital I/O voltage supply, 1.8V.
-+
-+  powerdown-gpios:
-+    maxItems: 1
-+    description: Reference to the GPIO connected to the powerdown pin, if any.
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: Reference to the GPIO connected to the reset pin, if any.
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    description: |
-+      Video output port.
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          bus-type:
-+            enum: [5, 6]
-+
-+          bus-width:
-+            enum: [8, 10]
-+            default: 10
-+
-+          data-shift:
-+            enum: [0, 2]
-+            default: 0
-+
-+          hsync-active:
-+            enum: [0, 1]
-+            default: 1
-+
-+          vsync-active:
-+            enum: [0, 1]
-+            default: 1
-+
-+          pclk-sample:
-+            enum: [0, 1]
-+            default: 1
-+
-+        allOf:
-+          - if:
-+              properties:
-+                bus-type:
-+                  const: 6
-+            then:
-+              properties:
-+                hsync-active: false
-+                vsync-active: false
-+
-+          - if:
-+              properties:
-+                bus-width:
-+                  const: 10
-+            then:
-+              properties:
-+                data-shift:
-+                  const: 0
-+
-+        required:
-+          - bus-type
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+      #include <dt-bindings/gpio/gpio.h>
-+      #include <dt-bindings/media/video-interfaces.h>
-+
-+      i2c {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          camera@3c {
-+              compatible = "ovti,ov5642";
-+              reg = <0x3c>;
-+              pinctrl-names = "default";
-+              pinctrl-0 = <&pinctrl_ov5642>;
-+              clocks = <&clk_ext_camera>;
-+              DOVDD-supply = <&vgen4_reg>;
-+              AVDD-supply = <&vgen3_reg>;
-+              DVDD-supply = <&vgen2_reg>;
-+              powerdown-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
-+              reset-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
-+
-+              port {
-+                  ov5642_to_parallel: endpoint {
-+                      bus-type = <MEDIA_BUS_TYPE_PARALLEL>;
-+                      remote-endpoint = <&parallel_from_ov5642>;
-+                      bus-width = <8>;
-+                      data-shift = <2>; /* lines 9:2 are used */
-+                      hsync-active = <0>;
-+                      vsync-active = <0>;
-+                      pclk-sample = <1>;
-+                  };
-+              };
-+          };
-+      };
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index cd58179ae337..c665018f55b9 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -311,8 +311,6 @@ properties:
-           - nuvoton,w83773g
-             # OKI ML86V7667 video decoder
-           - oki,ml86v7667
--            # OV5642: Color CMOS QSXGA (5-megapixel) Image Sensor with OmniBSI and Embedded TrueFocus
--          - ovti,ov5642
-             # 48-Lane, 12-Port PCI Express Gen 2 (5.0 GT/s) Switch
-           - plx,pex8648
-             # Pulsedlight LIDAR range-finding sensor
--- 
-2.34.1
-
+Konrad
