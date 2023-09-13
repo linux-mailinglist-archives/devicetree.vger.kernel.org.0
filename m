@@ -1,417 +1,83 @@
-Return-Path: <devicetree+bounces-11-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351AD79F3F2
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 23:44:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4A4579F3FC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 23:47:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35D211C20805
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 21:44:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 21868B207AE
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 21:47:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C509522F02;
-	Wed, 13 Sep 2023 21:44:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E7E222F12;
+	Wed, 13 Sep 2023 21:46:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3ABB22EFC
-	for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 21:44:10 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CDFB1724;
-	Wed, 13 Sep 2023 14:44:10 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38DL8kqB006229;
-	Wed, 13 Sep 2023 21:43:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=3ktUZzx4skK+EYkllRdew50DeWD6jEQFGMxfbmu3he4=;
- b=pveGPapC4PuUieN1USsCBtqXyrIhMt1iEr8jN9EEEzPCxVxpjRJfGBVuV5oiOnVzendk
- +nQWLz/bA6pPW1a1DQFRe4KUL+R2Zt2Laz4YGJuT1PipjssHAkQ+IvBhFvA2itd0F5+1
- +0uVK5mPWI0DGA1w/JnlwIX15Ohs+IG3ZG+MLW+Oi6D1ztIphA/LVO5IQ8e34PvC0Wxj
- 087RILH5cOBvTnahtqrhx65xAoBaQInXF16098X+XoYUUCTWHbMAlBK+gwgEho9ySo+5
- YE5qsq40/98TRf/ZQ8fmDHhiCiSgeLxWA/Bew4fys/CDqKaWasYXsFrV36i+WIUTgI65 UQ== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t2y7w2wnr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Sep 2023 21:43:45 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38DLhiil013917
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Sep 2023 21:43:44 GMT
-Received: from [10.71.110.254] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 13 Sep
- 2023 14:43:44 -0700
-Message-ID: <977a8de9-26ec-1789-4c72-fd36f34480c3@quicinc.com>
-Date: Wed, 13 Sep 2023 14:43:43 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0BBDB667;
+	Wed, 13 Sep 2023 21:46:38 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D977198B;
+	Wed, 13 Sep 2023 14:46:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=pxR15M8m/2jQvnaKDy+BPuzL4T3YF99oD14Zf47np38=; b=Mr6D63mKVH8NczbhL9tkCUyxux
+	A+b1D8qAjfSU317ZnsjIXoMj+spxJyMBltkXRZsMxzlVcNQ4B2+Xrr6yKuTh/b2xrQS7BBfluObbZ
+	NeNKhNS/+8SfYcadZngjmQW59heY0uAE6odYTVRriO6r/6zTGzy9O4UkAfzx9LwZQ4hA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qgXgm-006LM2-K6; Wed, 13 Sep 2023 23:46:24 +0200
+Date: Wed, 13 Sep 2023 23:46:24 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Arun Ramadoss <arun.ramadoss@microchip.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, UNGLinuxDriver@microchip.com,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v4 1/2] dt-bindings: net: dsa: microchip: Update
+ ksz device tree bindings for drive strength
+Message-ID: <daa063e8-d245-4b67-be2c-c67c16ddb36b@lunn.ch>
+References: <20230912045459.1864085-1-o.rempel@pengutronix.de>
+ <20230912045459.1864085-2-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 1/8] drm/panel: nv3052c: Document known register names
-Content-Language: en-US
-To: John Watts <contact@jookia.org>, <dri-devel@lists.freedesktop.org>
-CC: Neil Armstrong <neil.armstrong@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        Sam Ravnborg
-	<sam@ravnborg.org>,
-        Chris Morgan <macromorgan@hotmail.com>, <linux-kernel@vger.kernel.org>,
-        Jagan Teki <jagan@edgeble.ai>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>
-References: <20230911090206.3121440-1-contact@jookia.org>
- <20230911090206.3121440-2-contact@jookia.org>
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <20230911090206.3121440-2-contact@jookia.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 9n7pJaxv6ZzJzK1Yi8Sa6ZJRyfgg2cUS
-X-Proofpoint-GUID: 9n7pJaxv6ZzJzK1Yi8Sa6ZJRyfgg2cUS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-13_16,2023-09-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
- malwarescore=0 mlxlogscore=999 adultscore=0 lowpriorityscore=0 spamscore=0
- priorityscore=1501 mlxscore=0 suspectscore=0 bulkscore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
- definitions=main-2309130178
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230912045459.1864085-2-o.rempel@pengutronix.de>
 
-
-
-On 9/11/2023 2:01 AM, John Watts wrote:
-> Many of these registers have a known name in the public datasheet.
-> Document them as comments for reference.
+On Tue, Sep 12, 2023 at 06:54:58AM +0200, Oleksij Rempel wrote:
+> Extend device tree bindings to support drive strength configuration for the
+> ksz* switches. Introduced properties:
+> - microchip,hi-drive-strength-microamp: Controls the drive strength for
+>   high-speed interfaces like GMII/RGMII and more.
+> - microchip,lo-drive-strength-microamp: Governs the drive strength for
+>   low-speed interfaces such as LEDs, PME_N, and others.
+> - microchip,io-drive-strength-microamp: Controls the drive strength for
+>   for undocumented Pads on KSZ88xx variants.
 > 
-> Signed-off-by: John Watts <contact@jookia.org>
-> ---
->   .../gpu/drm/panel/panel-newvision-nv3052c.c   | 261 +++++++++---------
->   1 file changed, 132 insertions(+), 129 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-newvision-nv3052c.c b/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
-> index 71e57de6d8b2..589431523ce7 100644
-> --- a/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
-> +++ b/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
-> @@ -42,9 +42,9 @@ struct nv3052c_reg {
->   };
->   
->   static const struct nv3052c_reg nv3052c_panel_regs[] = {
-> -	{ 0xff, 0x30 },
-> -	{ 0xff, 0x52 },
-> -	{ 0xff, 0x01 },
-> +	// EXTC Command set enable, select page 1
-> +	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x01 },
-> +	// Mostly unknown registers
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Hi John,
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Just curious, what do you mean by these registers being mostly unknown?
-
-I do see them specified in the online specs -- some even seem to map to 
-existing MIPI_DCS_* enums (ex. 0x01 to MIPI_DCS_SOFT_RESET, and 0x04 to 
-MIPI_DCS_GET_DISPLAY_ID).
-
-Thanks,
-
-Jessica Zhang
-
->   	{ 0xe3, 0x00 },
->   	{ 0x40, 0x00 },
->   	{ 0x03, 0x40 },
-> @@ -62,15 +62,15 @@ static const struct nv3052c_reg nv3052c_panel_regs[] = {
->   	{ 0x25, 0x06 },
->   	{ 0x26, 0x14 },
->   	{ 0x27, 0x14 },
-> -	{ 0x38, 0xcc },
-> -	{ 0x39, 0xd7 },
-> -	{ 0x3a, 0x4a },
-> +	{ 0x38, 0xcc }, // VCOM_ADJ1
-> +	{ 0x39, 0xd7 }, // VCOM_ADJ2
-> +	{ 0x3a, 0x4a }, // VCOM_ADJ3
->   	{ 0x28, 0x40 },
->   	{ 0x29, 0x01 },
->   	{ 0x2a, 0xdf },
->   	{ 0x49, 0x3c },
-> -	{ 0x91, 0x77 },
-> -	{ 0x92, 0x77 },
-> +	{ 0x91, 0x77 }, // EXTPW_CTRL2
-> +	{ 0x92, 0x77 }, // EXTPW_CTRL3
->   	{ 0xa0, 0x55 },
->   	{ 0xa1, 0x50 },
->   	{ 0xa4, 0x9c },
-> @@ -94,123 +94,126 @@ static const struct nv3052c_reg nv3052c_panel_regs[] = {
->   	{ 0xb8, 0x26 },
->   	{ 0xf0, 0x00 },
->   	{ 0xf6, 0xc0 },
-> -	{ 0xff, 0x30 },
-> -	{ 0xff, 0x52 },
-> -	{ 0xff, 0x02 },
-> -	{ 0xb0, 0x0b },
-> -	{ 0xb1, 0x16 },
-> -	{ 0xb2, 0x17 },
-> -	{ 0xb3, 0x2c },
-> -	{ 0xb4, 0x32 },
-> -	{ 0xb5, 0x3b },
-> -	{ 0xb6, 0x29 },
-> -	{ 0xb7, 0x40 },
-> -	{ 0xb8, 0x0d },
-> -	{ 0xb9, 0x05 },
-> -	{ 0xba, 0x12 },
-> -	{ 0xbb, 0x10 },
-> -	{ 0xbc, 0x12 },
-> -	{ 0xbd, 0x15 },
-> -	{ 0xbe, 0x19 },
-> -	{ 0xbf, 0x0e },
-> -	{ 0xc0, 0x16 },
-> -	{ 0xc1, 0x0a },
-> -	{ 0xd0, 0x0c },
-> -	{ 0xd1, 0x17 },
-> -	{ 0xd2, 0x14 },
-> -	{ 0xd3, 0x2e },
-> -	{ 0xd4, 0x32 },
-> -	{ 0xd5, 0x3c },
-> -	{ 0xd6, 0x22 },
-> -	{ 0xd7, 0x3d },
-> -	{ 0xd8, 0x0d },
-> -	{ 0xd9, 0x07 },
-> -	{ 0xda, 0x13 },
-> -	{ 0xdb, 0x13 },
-> -	{ 0xdc, 0x11 },
-> -	{ 0xdd, 0x15 },
-> -	{ 0xde, 0x19 },
-> -	{ 0xdf, 0x10 },
-> -	{ 0xe0, 0x17 },
-> -	{ 0xe1, 0x0a },
-> -	{ 0xff, 0x30 },
-> -	{ 0xff, 0x52 },
-> -	{ 0xff, 0x03 },
-> -	{ 0x00, 0x2a },
-> -	{ 0x01, 0x2a },
-> -	{ 0x02, 0x2a },
-> -	{ 0x03, 0x2a },
-> -	{ 0x04, 0x61 },
-> -	{ 0x05, 0x80 },
-> -	{ 0x06, 0xc7 },
-> -	{ 0x07, 0x01 },
-> -	{ 0x08, 0x03 },
-> -	{ 0x09, 0x04 },
-> -	{ 0x70, 0x22 },
-> -	{ 0x71, 0x80 },
-> -	{ 0x30, 0x2a },
-> -	{ 0x31, 0x2a },
-> -	{ 0x32, 0x2a },
-> -	{ 0x33, 0x2a },
-> -	{ 0x34, 0x61 },
-> -	{ 0x35, 0xc5 },
-> -	{ 0x36, 0x80 },
-> -	{ 0x37, 0x23 },
-> -	{ 0x40, 0x03 },
-> -	{ 0x41, 0x04 },
-> -	{ 0x42, 0x05 },
-> -	{ 0x43, 0x06 },
-> -	{ 0x44, 0x11 },
-> -	{ 0x45, 0xe8 },
-> -	{ 0x46, 0xe9 },
-> -	{ 0x47, 0x11 },
-> -	{ 0x48, 0xea },
-> -	{ 0x49, 0xeb },
-> -	{ 0x50, 0x07 },
-> -	{ 0x51, 0x08 },
-> -	{ 0x52, 0x09 },
-> -	{ 0x53, 0x0a },
-> -	{ 0x54, 0x11 },
-> -	{ 0x55, 0xec },
-> -	{ 0x56, 0xed },
-> -	{ 0x57, 0x11 },
-> -	{ 0x58, 0xef },
-> -	{ 0x59, 0xf0 },
-> -	{ 0xb1, 0x01 },
-> -	{ 0xb4, 0x15 },
-> -	{ 0xb5, 0x16 },
-> -	{ 0xb6, 0x09 },
-> -	{ 0xb7, 0x0f },
-> -	{ 0xb8, 0x0d },
-> -	{ 0xb9, 0x0b },
-> -	{ 0xba, 0x00 },
-> -	{ 0xc7, 0x02 },
-> -	{ 0xca, 0x17 },
-> -	{ 0xcb, 0x18 },
-> -	{ 0xcc, 0x0a },
-> -	{ 0xcd, 0x10 },
-> -	{ 0xce, 0x0e },
-> -	{ 0xcf, 0x0c },
-> -	{ 0xd0, 0x00 },
-> -	{ 0x81, 0x00 },
-> -	{ 0x84, 0x15 },
-> -	{ 0x85, 0x16 },
-> -	{ 0x86, 0x10 },
-> -	{ 0x87, 0x0a },
-> -	{ 0x88, 0x0c },
-> -	{ 0x89, 0x0e },
-> -	{ 0x8a, 0x02 },
-> -	{ 0x97, 0x00 },
-> -	{ 0x9a, 0x17 },
-> -	{ 0x9b, 0x18 },
-> -	{ 0x9c, 0x0f },
-> -	{ 0x9d, 0x09 },
-> -	{ 0x9e, 0x0b },
-> -	{ 0x9f, 0x0d },
-> -	{ 0xa0, 0x01 },
-> -	{ 0xff, 0x30 },
-> -	{ 0xff, 0x52 },
-> -	{ 0xff, 0x02 },
-> +	// EXTC Command set enable, select page 2
-> +	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x02 },
-> +	// Set gray scale voltage to adjust gamma
-> +	{ 0xb0, 0x0b }, // PGAMVR0
-> +	{ 0xb1, 0x16 }, // PGAMVR1
-> +	{ 0xb2, 0x17 }, // PGAMVR2
-> +	{ 0xb3, 0x2c }, // PGAMVR3
-> +	{ 0xb4, 0x32 }, // PGAMVR4
-> +	{ 0xb5, 0x3b }, // PGAMVR5
-> +	{ 0xb6, 0x29 }, // PGAMPR0
-> +	{ 0xb7, 0x40 }, // PGAMPR1
-> +	{ 0xb8, 0x0d }, // PGAMPK0
-> +	{ 0xb9, 0x05 }, // PGAMPK1
-> +	{ 0xba, 0x12 }, // PGAMPK2
-> +	{ 0xbb, 0x10 }, // PGAMPK3
-> +	{ 0xbc, 0x12 }, // PGAMPK4
-> +	{ 0xbd, 0x15 }, // PGAMPK5
-> +	{ 0xbe, 0x19 }, // PGAMPK6
-> +	{ 0xbf, 0x0e }, // PGAMPK7
-> +	{ 0xc0, 0x16 }, // PGAMPK8
-> +	{ 0xc1, 0x0a }, // PGAMPK9
-> +	// Set gray scale voltage to adjust gamma
-> +	{ 0xd0, 0x0c }, // NGAMVR0
-> +	{ 0xd1, 0x17 }, // NGAMVR0
-> +	{ 0xd2, 0x14 }, // NGAMVR1
-> +	{ 0xd3, 0x2e }, // NGAMVR2
-> +	{ 0xd4, 0x32 }, // NGAMVR3
-> +	{ 0xd5, 0x3c }, // NGAMVR4
-> +	{ 0xd6, 0x22 }, // NGAMPR0
-> +	{ 0xd7, 0x3d }, // NGAMPR1
-> +	{ 0xd8, 0x0d }, // NGAMPK0
-> +	{ 0xd9, 0x07 }, // NGAMPK1
-> +	{ 0xda, 0x13 }, // NGAMPK2
-> +	{ 0xdb, 0x13 }, // NGAMPK3
-> +	{ 0xdc, 0x11 }, // NGAMPK4
-> +	{ 0xdd, 0x15 }, // NGAMPK5
-> +	{ 0xde, 0x19 }, // NGAMPK6
-> +	{ 0xdf, 0x10 }, // NGAMPK7
-> +	{ 0xe0, 0x17 }, // NGAMPK8
-> +	{ 0xe1, 0x0a }, // NGAMPK9
-> +	// EXTC Command set enable, select page 3
-> +	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x03 },
-> +	// Set various timing settings
-> +	{ 0x00, 0x2a }, // GIP_VST_1
-> +	{ 0x01, 0x2a }, // GIP_VST_2
-> +	{ 0x02, 0x2a }, // GIP_VST_3
-> +	{ 0x03, 0x2a }, // GIP_VST_4
-> +	{ 0x04, 0x61 }, // GIP_VST_5
-> +	{ 0x05, 0x80 }, // GIP_VST_6
-> +	{ 0x06, 0xc7 }, // GIP_VST_7
-> +	{ 0x07, 0x01 }, // GIP_VST_8
-> +	{ 0x08, 0x03 }, // GIP_VST_9
-> +	{ 0x09, 0x04 }, // GIP_VST_10
-> +	{ 0x70, 0x22 }, // GIP_ECLK1
-> +	{ 0x71, 0x80 }, // GIP_ECLK2
-> +	{ 0x30, 0x2a }, // GIP_CLK_1
-> +	{ 0x31, 0x2a }, // GIP_CLK_2
-> +	{ 0x32, 0x2a }, // GIP_CLK_3
-> +	{ 0x33, 0x2a }, // GIP_CLK_4
-> +	{ 0x34, 0x61 }, // GIP_CLK_5
-> +	{ 0x35, 0xc5 }, // GIP_CLK_6
-> +	{ 0x36, 0x80 }, // GIP_CLK_7
-> +	{ 0x37, 0x23 }, // GIP_CLK_8
-> +	{ 0x40, 0x03 }, // GIP_CLKA_1
-> +	{ 0x41, 0x04 }, // GIP_CLKA_2
-> +	{ 0x42, 0x05 }, // GIP_CLKA_3
-> +	{ 0x43, 0x06 }, // GIP_CLKA_4
-> +	{ 0x44, 0x11 }, // GIP_CLKA_5
-> +	{ 0x45, 0xe8 }, // GIP_CLKA_6
-> +	{ 0x46, 0xe9 }, // GIP_CLKA_7
-> +	{ 0x47, 0x11 }, // GIP_CLKA_8
-> +	{ 0x48, 0xea }, // GIP_CLKA_9
-> +	{ 0x49, 0xeb }, // GIP_CLKA_10
-> +	{ 0x50, 0x07 }, // GIP_CLKB_1
-> +	{ 0x51, 0x08 }, // GIP_CLKB_2
-> +	{ 0x52, 0x09 }, // GIP_CLKB_3
-> +	{ 0x53, 0x0a }, // GIP_CLKB_4
-> +	{ 0x54, 0x11 }, // GIP_CLKB_5
-> +	{ 0x55, 0xec }, // GIP_CLKB_6
-> +	{ 0x56, 0xed }, // GIP_CLKB_7
-> +	{ 0x57, 0x11 }, // GIP_CLKB_8
-> +	{ 0x58, 0xef }, // GIP_CLKB_9
-> +	{ 0x59, 0xf0 }, // GIP_CLKB_10
-> +	// Map internal GOA signals to GOA output pad
-> +	{ 0xb1, 0x01 }, // PANELD2U2
-> +	{ 0xb4, 0x15 }, // PANELD2U5
-> +	{ 0xb5, 0x16 }, // PANELD2U6
-> +	{ 0xb6, 0x09 }, // PANELD2U7
-> +	{ 0xb7, 0x0f }, // PANELD2U8
-> +	{ 0xb8, 0x0d }, // PANELD2U9
-> +	{ 0xb9, 0x0b }, // PANELD2U10
-> +	{ 0xba, 0x00 }, // PANELD2U11
-> +	{ 0xc7, 0x02 }, // PANELD2U24
-> +	{ 0xca, 0x17 }, // PANELD2U27
-> +	{ 0xcb, 0x18 }, // PANELD2U28
-> +	{ 0xcc, 0x0a }, // PANELD2U29
-> +	{ 0xcd, 0x10 }, // PANELD2U30
-> +	{ 0xce, 0x0e }, // PANELD2U31
-> +	{ 0xcf, 0x0c }, // PANELD2U32
-> +	{ 0xd0, 0x00 }, // PANELD2U33
-> +	// Map internal GOA signals to GOA output pad
-> +	{ 0x81, 0x00 }, // PANELU2D2
-> +	{ 0x84, 0x15 }, // PANELU2D5
-> +	{ 0x85, 0x16 }, // PANELU2D6
-> +	{ 0x86, 0x10 }, // PANELU2D7
-> +	{ 0x87, 0x0a }, // PANELU2D8
-> +	{ 0x88, 0x0c }, // PANELU2D9
-> +	{ 0x89, 0x0e }, // PANELU2D10
-> +	{ 0x8a, 0x02 }, // PANELU2D11
-> +	{ 0x97, 0x00 }, // PANELU2D24
-> +	{ 0x9a, 0x17 }, // PANELU2D27
-> +	{ 0x9b, 0x18 }, // PANELU2D28
-> +	{ 0x9c, 0x0f }, // PANELU2D29
-> +	{ 0x9d, 0x09 }, // PANELU2D30
-> +	{ 0x9e, 0x0b }, // PANELU2D31
-> +	{ 0x9f, 0x0d }, // PANELU2D32
-> +	{ 0xa0, 0x01 }, // PANELU2D33
-> +	// EXTC Command set enable, select page 2
-> +	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x02 },
-> +	// Unknown registers
->   	{ 0x01, 0x01 },
->   	{ 0x02, 0xda },
->   	{ 0x03, 0xba },
-> @@ -227,10 +230,10 @@ static const struct nv3052c_reg nv3052c_panel_regs[] = {
->   	{ 0x0e, 0x48 },
->   	{ 0x0f, 0x38 },
->   	{ 0x10, 0x2b },
-> -	{ 0xff, 0x30 },
-> -	{ 0xff, 0x52 },
-> -	{ 0xff, 0x00 },
-> -	{ 0x36, 0x0a },
-> +	// EXTC Command set enable, select page 0
-> +	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x00 },
-> +	// Display Access Control
-> +	{ 0x36, 0x0a }, // bgr = 1, ss = 1, gs = 0
->   };
->   
->   static inline struct nv3052c *to_nv3052c(struct drm_panel *panel)
-> -- 
-> 2.42.0
-> 
+    Andrew
 
