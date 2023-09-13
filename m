@@ -2,150 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DC8D79E28F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 10:49:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF19C79E2A7
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 10:54:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237278AbjIMItw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 04:49:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59090 "EHLO
+        id S239103AbjIMIyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 04:54:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235107AbjIMItw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 04:49:52 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 196AFE73
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 01:49:48 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-5009d4a4897so11154176e87.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 01:49:48 -0700 (PDT)
+        with ESMTP id S235107AbjIMIyD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 04:54:03 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1AAB1998
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 01:53:59 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-401d10e3e54so71031385e9.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 01:53:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1694594986; x=1695199786; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=M6OWBjAU1cxgbQTAWQU05/QpiwZ7u1WWxVUcWDMnlOc=;
-        b=Y/GjTeBzhUUXf6ng/8VdFF6+XjCkqWeWjWk4/sQoR7RbMAre9aSgwXRei1dD26wBNK
-         oZcobKWGD0dPwRSPBw4LWSyGVtcoSCqVn1ORQhkZ65mk0BUr8HndosUbIiyuJh7b7mqm
-         QnWXqAMyGZAbokgLZBH2BtVYVaUY9BUePpJ+M=
+        d=linaro.org; s=google; t=1694595238; x=1695200038; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GhHrKGkwknmn53kTVek0J706okQHEDAGQ9NnXjohhwc=;
+        b=GWk6iuSEuCFhD9ZoTd4XeA4MjqL1LK7EgPPji+7OEk/t9odzZH2F/Em8IVwJQqbaUT
+         +ahBRgAigrkRmH2FVAbGdW2mpbrF5O0C2a5B4AomxE3RMZeSFGbHGf5Q4ZGUsXrdizWq
+         wkuVOKPke9doXDRoX2CbQZtEjai5MWKz0uhgm2Ul4QXqqIQWMrRy9fZrg/5Q0iuOfcPK
+         97Fz8O+OzeJejuIitDR6PBMZW0a1+AwwVeChGGqbqnC6FjiJ6ZrJaBbDnKMQ7xcYDhCD
+         gsEEZeEbx21wMCl/e+ZzadVH43TiEgm3WSexaLwqlVG2LfOoATiFdTtw2f+EpZqmtorJ
+         Qjcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694594986; x=1695199786;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=M6OWBjAU1cxgbQTAWQU05/QpiwZ7u1WWxVUcWDMnlOc=;
-        b=HONlDzVf8gkC0NARMKExHWd7h7KIet4l7eDfjiWHU3w9Ghny4ClD/vQoE33ZUtqpXG
-         fnHr+kSKXCELBOnPY6kyIq4elRoBZE4IUIpmw30iFeQQpwWqzPePBBDspoIzT0D2anSe
-         H29UuDd2rFWsADEeLaCTVYfp6dIhJOXGi/vZXPE/xKWnz5co5dYzWNc/K6eJ1EHQe9mM
-         Owu+V5u0XgYP8CVbbVE9/FpwgbnF8aDVHl5jgeEmG2a45t8ZzEQSpr1py0M+0IhvAiJQ
-         dst69LmK/Qga1vKNGlt0L5Rsb7TuO2ZI3vpER/pXbrQWSDYRjvauxts5gPEJwE3Q1Xj/
-         pKbQ==
-X-Gm-Message-State: AOJu0YwZCQlkcaXP47esiaCYlf8aSU2Fl7dROGwiMwZl8Vs6MtGje75E
-        iuLaOOW+dNZnJ83b2XQOhSCDqH1Ni9a0tSxyMkHKhA==
-X-Google-Smtp-Source: AGHT+IF326eu3RL07fH01eFNOizyYWT0naK68BbkFy0V0EwYECudUIkcOek+Rh5jKTj4V8DX9iBXAl4EHd5E1HbBXZE=
-X-Received: by 2002:a05:6512:32aa:b0:500:94c3:8e3b with SMTP id
- q10-20020a05651232aa00b0050094c38e3bmr1304740lfe.57.1694594986120; Wed, 13
- Sep 2023 01:49:46 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1694595238; x=1695200038;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GhHrKGkwknmn53kTVek0J706okQHEDAGQ9NnXjohhwc=;
+        b=PVdJCMGKAK8DzXOZOw6vjj4BOxSwG7LBxgyQAGfCTgv8YzphlatndPxoRosZN8Np+Q
+         ZzBWqUY+IgHydKGaM/E7TRmNEbH+ogRTJfgW7LzhEDeA2hU6aaRyKfCHkjLv0BN1vpn3
+         A6EqaBuqHWAk6inK2c8Msw45+iUBlji8NLKIqznOv5TlDCZng/vhn1/2czllEGw/gMoS
+         rBd7YD6Dqr8kb9UC+jiVCkOOpmYqaPXK7UKGHhgftOrxnrMKRRVgx3Z/49eI2jHUswlp
+         /EQ5dyhB7b2pWecf8YXR8WL1u74ZkVbM32GKLXZKKr9uuuGWdvwHY2BCai0wcuMIHWMC
+         mZ+A==
+X-Gm-Message-State: AOJu0YzwjfQruXOdOXRDGoDZnw5Qi9F3yxa/dsACK4uo0bQrv6M9ZSMB
+        7I0KduuhCM95ga2/6x8kdRDekw==
+X-Google-Smtp-Source: AGHT+IHlx1wBmhFt+Xhr2HaUbSAyTT3NDErkIFWBlr4Be2MBvo6kfY/pyhgj249iwl6Zy5PgBzaFXg==
+X-Received: by 2002:a7b:cbc8:0:b0:3fe:111a:d1d9 with SMTP id n8-20020a7bcbc8000000b003fe111ad1d9mr1571454wmi.25.1694595238135;
+        Wed, 13 Sep 2023 01:53:58 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id k23-20020a05600c0b5700b00402fa98abe3sm1369905wmr.46.2023.09.13.01.53.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Sep 2023 01:53:57 -0700 (PDT)
+Message-ID: <7b500bba-3091-f425-a60d-e58a3d9e4c1a@linaro.org>
+Date:   Wed, 13 Sep 2023 10:53:54 +0200
 MIME-Version: 1.0
-References: <20230804225813.12493-1-robh@kernel.org> <f8759d51-f808-8082-ceaf-6c6dcaebe2d9@collabora.com>
- <4c99c180-3b79-6aef-6ff2-d430e575957d@baylibre.com>
-In-Reply-To: <4c99c180-3b79-6aef-6ff2-d430e575957d@baylibre.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Wed, 13 Sep 2023 16:49:34 +0800
-Message-ID: <CAGXv+5FWhEab_wHs9+Q3begEBXCVrE4fK1S3sntDuRRE9iGFpg@mail.gmail.com>
-Subject: Re: [RESEND PATCH] arm64: dts: mediatek: Fix "status" values
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh@kernel.org>, soc@kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v2 01/14] arm64: dts: qcom: msm8916: Drop RPM bus clocks
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Alexey Minnekhanov <alexeymin@postmarketos.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        linux-usb@vger.kernel.org
+References: <20230721-topic-rpm_clk_cleanup-v2-0-1e506593b1bd@linaro.org>
+ <20230721-topic-rpm_clk_cleanup-v2-1-1e506593b1bd@linaro.org>
+ <bd11d1b1-efe5-4f96-43e7-163fca5d3278@linaro.org>
+ <ac501bcc-80a1-4b65-ba24-272152d1c95c@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ac501bcc-80a1-4b65-ba24-272152d1c95c@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 12, 2023 at 9:10=E2=80=AFPM Alexandre Mergnat <amergnat@baylibr=
-e.com> wrote:
->
->
->
-> On 12/09/2023 14:54, AngeloGioacchino Del Regno wrote:
-> > Il 05/08/23 00:58, Rob Herring ha scritto:
-> >> The defined value for "status" is "disabled", not "disable".
-> >>
-> >> Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
-> >> Reviewed-by: AngeloGioacchino Del Regno
-> >> <angelogioacchino.delregno@collabora.com>
-> >> Signed-off-by: Rob Herring <robh@kernel.org>
-> >> ---
-> >> Arnd, Please take this directly I guess. I think Mediatek maintainersh=
-ip
-> >> needs some help. Maybe AngeloGioacchino should be co-maintainer as
-> >> that's the only response I seem to be getting.
-> >
-> > Sorry but I've seen this message just now as I've been on holiday in
-> > August.
-> >
-> > Thing is, the MediaTek scene is starting to see more and more code,
-> > bringing
-> > an obvious increase in the amount of reviews to be done and in the requ=
-ired
-> > efforts to maintain the MTK bits - and we will possibly (hopefully) see
-> > even
-> > more of that.
-> >
-> > If Matthias needs/wants a co-maintainer for MediaTek I'm here and I wil=
-l be
-> > proud to become one.
-> >
-> > Cheers,
-> > Angelo
-> >
->
-> I started reviewing MediaTek patches for some months now, so I'm still
-> new. From my PoV, I'm agree with Angelo when he say the amount of patch
-> is increasing. I support Angelo if he wants to become a co-maintainer
-> and continue to do my best to review patches. ;)
+On 13/09/2023 10:47, Konrad Dybcio wrote:
+> On 13.09.2023 09:07, Krzysztof Kozlowski wrote:
+>> On 12/09/2023 15:31, Konrad Dybcio wrote:
+>>> These clocks are now handled from within the icc framework and are
+>>
+>> That's a driver behavior, not hardware.
+> I believe we've been over this already..
+> 
+> The rationale behind this change is: that hardware, which falls
+> under the "interconnect" class, was previously misrepresented as
+> a bunch of clocks. There are clocks underneath, but accessing them
+> directly would be equivalent to e.g. circumventing the PHY subsystem
+> and initializing your UFS PHY from within the UFS device.
 
-I might not have enough time to do a lot of reviews, but if help is needed
-for administrative tasks like queueing patches and sending pull requests,
-that's something I can do.
+And every time one write such commit msg, how should we remember there
+is some exception and actually it is about clock representation not CCF
+or ICC framework.
 
-ChenYu
+Best regards,
+Krzysztof
 
-> >>
-> >> I think for future .dts patches I will not bother splitting them up by
-> >> sub-arch because it's a pain to chase down the maintainers to apply
-> >> stuff in a timely manner. /rant
-> >>
-> >>   arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts | 4 ++--
-> >>   1 file changed, 2 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
-> >> b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
-> >> index e4605d23fdc8..86cedb0bf1a9 100644
-> >> --- a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
-> >> +++ b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
-> >> @@ -585,11 +585,11 @@ &pwrap {
-> >>   };
-> >>   &sata {
-> >> -    status =3D "disable";
-> >> +    status =3D "disabled";
-> >>   };
-> >>   &sata_phy {
-> >> -    status =3D "disable";
-> >> +    status =3D "disabled";
-> >>   };
-> >>   &spi0 {
-> >
-> >
->
-> --
-> Regards,
-> Alexandre
->
