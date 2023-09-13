@@ -2,90 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15FA579E486
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 12:05:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D18279E497
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 12:09:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229542AbjIMKFX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 06:05:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45004 "EHLO
+        id S239568AbjIMKJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 06:09:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231367AbjIMKFW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 06:05:22 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83A01196
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 03:05:18 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-99bf3f59905so828267166b.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 03:05:18 -0700 (PDT)
+        with ESMTP id S236742AbjIMKJK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 06:09:10 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 902681727
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 03:09:06 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9a65f9147ccso848069866b.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 03:09:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694599517; x=1695204317; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CFmG4mhdY6EhuhcP3xdyYDj0/6QzZEcQDMK3fE4AcJ4=;
-        b=SRcpVv2oFJZa2s9QmBrdLAtfgxWgcIh96+Q7MTXWwMOAMRcm1xTzSajhzTcKqoS5Fe
-         KGHJ0bJEjDVsl+Ok/CB3FyKsf12U5YPRpBy4ZiqND+jpBLUapbBB1xSdvQlBJgNDlPWX
-         /qAweIWTejbyFYWL+djXsgsRIIymwfZlsH8SBAfgryLI2rppuxUbCM9nbMtmKupRjPmK
-         uE/XNsNgZpi5yBe9oKFMgaKBco06brYN6JPDPUoXv1PadOIcczGwGzQetCFdxq7CYn78
-         aOUTO+i7AtSrkRQyETjG1oU7HBzqozcJxt2RupNpe31Sw4UNpAuaO6eM/pUwX/RhHFTS
-         /XSg==
+        d=linaro.org; s=google; t=1694599745; x=1695204545; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RBuDcsIBg3E//Vv/9g5CCU2fgfEAOAgpt5kUuVffHJ0=;
+        b=vBYnAR+NAGQeH9kr41dbTEgv+Sq5ADtvV/zAXfSUzrLqFKmrP9vYuVwBySRwBhEm88
+         sSh5d1z/BHBrxbZocBrd2kUHb88QMXEcjPySGQfdxB0JOwKygOSA26kt3JuZHPaw/5E/
+         jeYDNpPiHDXTGBjOXYQvKX92wDxIS81f2+R7+ZDwCG0d6uB8UcgrkdQVkNm1SlExCO/c
+         O3UaarS25hxnT2x0/zA75NVDsXq8RxfJp3WVZxQOSu/bBm7QDb0NVdlxPzgz+IMd/Xh4
+         KveQddKXEC5kqBoCSwV46Sn31iy0r9PvPqYevNgWgSSkOmNf+s0GYBcdxsiqSmKvyzx3
+         vd5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694599517; x=1695204317;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CFmG4mhdY6EhuhcP3xdyYDj0/6QzZEcQDMK3fE4AcJ4=;
-        b=TFGrB9BY45LE9BtmOj7vIBlHnAUBwn5YYvD2MxKBY6FzLdEGQ62boGo+fuO/hXdsPv
-         XpAJ+W1KSXwfRnf7D0eoh/sxa8Tpi82WIIr3PZwfnRxw8ZcRlhM9kTe9kZU6qfk76+H3
-         wDQX1n4WTg98SO7LGnKDfTQpQm8iSwWDrsBNjCOOE3e5GJGJkyR4mqyQOt/HRf/NY+dd
-         GwCTBA69Mhn/EmiUEc6/9ck3FUUfPIs7+7AOO3lvyh3JGeolOhd+EkFQFE4lG4HdWRIT
-         p5VkF24e77x2J9EurCZpIRd9Xo3FbaTPuaFTFSCZb6qCPfN4Z7lRbkQ0uMTomYKAVvCF
-         0OHg==
-X-Gm-Message-State: AOJu0Yy9vqzJJy08OlvBlobw/niMTEMoSKTi/dcigzUCQNRkO/D16NPx
-        twY9WxC3UcA8QhWRPoEUlOtVow==
-X-Google-Smtp-Source: AGHT+IHaD1pVlw1qOeqEr5SFsK0Z5m2lvLnOxGDIVREaxORKV6nuNZ1rUMAJCAGbtvY455PPl89jCA==
-X-Received: by 2002:a17:907:7604:b0:9ad:9225:cee1 with SMTP id jx4-20020a170907760400b009ad9225cee1mr1520153ejc.62.1694599517002;
-        Wed, 13 Sep 2023 03:05:17 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id lw7-20020a170906bcc700b009a168ab6ee2sm8075192ejb.164.2023.09.13.03.05.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 03:05:16 -0700 (PDT)
-Message-ID: <605e4577-1e01-cd0b-9d42-34401bd7f3a7@linaro.org>
-Date:   Wed, 13 Sep 2023 12:05:13 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm: aspeed: document board compatibles
-Content-Language: en-US
-To:     Yang Chen <yangchen.openbmc@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        joel@jms.id.au, andrew@aj.id.au, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        patrick@stwcx.xyz, Jerry.Lin@quantatw.com, Eddie.Chen@quantatw.com,
-        EasonChen1@quantatw.com
-References: <20230912140532.3797736-1-yangchen.openbmc@gmail.com>
- <20230912140532.3797736-2-yangchen.openbmc@gmail.com>
- <26a53f62-d8d0-9583-e675-a3db99c60c8a@linaro.org>
- <CALFa7M_Gov4jd3wxrXWhxuPKbDr+cp8xmuWJCQH_N=a+q03M1A@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1694599745; x=1695204545;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RBuDcsIBg3E//Vv/9g5CCU2fgfEAOAgpt5kUuVffHJ0=;
+        b=aeaAiXBbMfVZH/mv9RxMkM8wG7T+o1fUn/jHJO3LqN1GjSvL5FBiJPsb4UiSBpkyTB
+         T8b/mgdtUkcDa9jEtyoIgmLuxRrujEPorNvc8qSCBosXmoTHZQ1sENTibQ0ztjeH466g
+         EKdvw4jNqDrIIWlJ+iSAR07OjBel6qMJBbnXv09blx96I4WtsAXlmeXFFmOXuKFuzmMP
+         0Juloxy0RM5zI38EfsXixSiXeJcxVsgZXKoumBkB0xk3koQ7DHySCnZhXJB5Gjy4FGYr
+         t50kMpvPGnemh9hTmNJC2pVXk7kOT3vBVFfEY/ydPQlDMLyQ02UuJwiqbgjfYyXC/+QB
+         eLIQ==
+X-Gm-Message-State: AOJu0YxsER8+1LgWFaKnG8F2W7pcbLYH3M8GlxTgi3hP3TM1hyHnjrkx
+        vhSMc4CXXJnrtTSSedbEUUDh6g==
+X-Google-Smtp-Source: AGHT+IF/yRHvcLucaXStR591Lxu4VFassY8xgrQ/r0PBfb2nok2oOPNsZ7YjEkUux11cIYQqO3UCgw==
+X-Received: by 2002:a17:907:270e:b0:9a1:c00e:60cb with SMTP id w14-20020a170907270e00b009a1c00e60cbmr1779516ejk.10.1694599744967;
+        Wed, 13 Sep 2023 03:09:04 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id c13-20020a170906340d00b00982a352f078sm8119757ejb.124.2023.09.13.03.09.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Sep 2023 03:09:04 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CALFa7M_Gov4jd3wxrXWhxuPKbDr+cp8xmuWJCQH_N=a+q03M1A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: aspeed: drop unused ref_voltage ADC property
+Date:   Wed, 13 Sep 2023 12:09:01 +0200
+Message-Id: <20230913100901.100365-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/09/2023 11:52, Yang Chen wrote:
-> Hi Krzysztof,
-> 
-> Thanks for your reply, Minerva is a project of Facebook server that
-> includes two types of boards. One is the motherboard that includes a BMC
-> and another is the Chassis Management Board that includes a CMC and both
-> use the Aspeed SoC (AST2600). These patches are for the CMC and the link
-> you provided is for the BMC and they need to use different DTS.
+Aspeed ADC "ref_voltage" property is neither documented nor used.
 
-Are they similar? Maybe you should share board DTSI?
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts   | 2 --
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-greatlakes.dts | 2 --
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts  | 2 --
+ 3 files changed, 6 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
+index 0715cb9ab30c..d7baa02e4666 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
+@@ -541,7 +541,6 @@ bmc_ast2600_cpu: temperature-sensor@35 {
+ };
+ 
+ &adc0 {
+-	ref_voltage = <2500>;
+ 	status = "okay";
+ 
+ 	pinctrl-names = "default";
+@@ -552,7 +551,6 @@ &pinctrl_adc4_default &pinctrl_adc5_default
+ };
+ 
+ &adc1 {
+-	ref_voltage = <2500>;
+ 	status = "okay";
+ 
+ 	pinctrl-names = "default";
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-greatlakes.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-greatlakes.dts
+index 7a53f54833a0..a86bc75a9182 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-greatlakes.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-greatlakes.dts
+@@ -211,7 +211,6 @@ &i2c13 {
+ };
+ 
+ &adc0 {
+-	ref_voltage = <2500>;
+ 	status = "okay";
+ 	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
+ 			&pinctrl_adc2_default &pinctrl_adc3_default
+@@ -220,7 +219,6 @@ &pinctrl_adc4_default &pinctrl_adc5_default
+ };
+ 
+ &adc1 {
+-	ref_voltage = <2500>;
+ 	status = "okay";
+ 	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc10_default
+ 			&pinctrl_adc11_default &pinctrl_adc12_default
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+index 64075cc41d92..4097e3d355cb 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+@@ -596,7 +596,6 @@ i2c-mux@72 {
+ };
+ 
+ &adc0 {
+-	ref_voltage = <2500>;
+ 	status = "okay";
+ 	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
+ 			&pinctrl_adc2_default &pinctrl_adc3_default
+@@ -605,7 +604,6 @@ &pinctrl_adc4_default &pinctrl_adc5_default
+ };
+ 
+ &adc1 {
+-	ref_voltage = <2500>;
+ 	status = "okay";
+ 	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc9_default>;
+ };
+-- 
+2.34.1
 
