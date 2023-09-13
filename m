@@ -2,87 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A3D179EADE
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 16:19:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90E0F79EB1A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 16:30:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239467AbjIMOTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 10:19:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36548 "EHLO
+        id S237494AbjIMOaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 10:30:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241236AbjIMOTb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 10:19:31 -0400
-Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E32699E;
-        Wed, 13 Sep 2023 07:19:27 -0700 (PDT)
-Received: by mail-qv1-xf33.google.com with SMTP id 6a1803df08f44-655cee6f752so28400496d6.0;
-        Wed, 13 Sep 2023 07:19:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694614767; x=1695219567; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ccpm8M63tUVRb8cHltFDbsSiHscuT20er3PFEGjsiBE=;
-        b=ZcViTpCrbhEJrmj5DkK7Hozt4KfzX97S3Ldjy2g/abgY1E9H4ra2Dy3PbQTG3yRArZ
-         ZEUsSEVtddGb8MZqEohfLmBYvR+2HKqFslo5BAvEwFgPH6HOrN2hvb8bdDIxN1+osJpZ
-         GN0XP+ohVg1OwREXZScyhL4Omuk+oxkcymxFyCthKMXV6pXCt0Y6VzWZrhN4amXPDtGN
-         gk7r5OBSO70ZZeSIiV/LFtTGOVy0qS6VH58JWv/VoWbuG313eaeUglZH8S+fRYx0vclw
-         nrlmFa2x/XJnak3cT9zo9ZjwEwY9i/AdK/BWFqa/iGWO8GQBEnpej6XEtMztKJWan7X9
-         nACQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694614767; x=1695219567;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ccpm8M63tUVRb8cHltFDbsSiHscuT20er3PFEGjsiBE=;
-        b=kR90jlnm8xFry6LoIhrQ3NFhVZG80n7ABufj749rWfBMv8HIeSppwriv2FmTuTu5BT
-         CKrKMuawGCSJAdNMrPv6P2XF/+/ZlXkTTaQeSE6Dw/2cZ/7L9vYNcY40P3Hz90oQVDw4
-         t1dxHnAtLnXIkY9UjqeG6oAXyhBlLUfBJddOGoUpjgnFBACW3ygADlp1DdGf7swddlqV
-         hsE4w9Wk5NNldO+7cROPdtjpq/nAx5kunwmwgq6SkAWr3pbBFb/EwJAcplmSiqDOdgsF
-         bG2ZpneTL1M1TjCiz2WEHl2/0Fknz3GeZSOF3QAGGDY5UrvCxsVGwRvLXe+B2d1y3sOw
-         XDtg==
-X-Gm-Message-State: AOJu0YxGzUIzUXjdfCI+vfvsY0AmV0GtaIXVEjvNlNcFBgJmuupQdtjL
-        UWzxwPthdIsnF72zu+ciUcC0qbVJbuAwt/bxZ4k=
-X-Google-Smtp-Source: AGHT+IFo1VDju5+RiN1hu/MS6i6AKwAXlvWCwJjHPS8cruvNNP/FSBt27kTgEjJDuN5FKtcGF2oBBFdq/A3wg7SPo8I=
-X-Received: by 2002:a05:6214:5c06:b0:655:dc84:d744 with SMTP id
- ly6-20020a0562145c0600b00655dc84d744mr2477721qvb.25.1694614766962; Wed, 13
- Sep 2023 07:19:26 -0700 (PDT)
+        with ESMTP id S230467AbjIMOaY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 10:30:24 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2A2390;
+        Wed, 13 Sep 2023 07:30:20 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0450DC433C7;
+        Wed, 13 Sep 2023 14:30:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694615420;
+        bh=+DH1aDUKeb2gyoq8PZbX/q8CQn1YPVrrRzxuKGgwWmI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mxslrVoo+v4MpIK6NSRcFfvKIz7MIrFmFqc5SXPWL1myeHnHMNc2qJmpDCi+0Ec/3
+         DcBiABApDix0/1QohXIuvIYdH/F0vf07Q/cq2vh8A7TJYnjGByi3raRl/hfnroQW3o
+         e/whUUh83JKCGv151I8y3k0/jFWAacoXpQO1Rj6IIMaKpw/Sx+7IrOeGSjsniDQTqk
+         I7J0DK/4Mr1dBNemYn8f9tbGN/aJfmUSlJ42SRIvK5Vy+BNNv2kfElhLNUhnKN+4us
+         44vcEowl8F1R2i3+UXlTdPm/dJCTcWFxE0vVtZFF1RMMEKmkvBRqbmm3Fy5EvbdLNj
+         J2LU6LxYql4ow==
+Date:   Wed, 13 Sep 2023 15:30:14 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     MD Danish Anwar <danishanwar@ti.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Roger Quadros <rogerq@ti.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Simon Horman <horms@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org, srk@ti.com,
+        r-gunasekaran@ti.com, Roger Quadros <rogerq@kernel.org>
+Subject: Re: [PATCH net-next v3 1/2] dt-bindings: net: Add documentation for
+ Half duplex support.
+Message-ID: <20230913-frisbee-backlog-17391b962c13@spud>
+References: <20230913091011.2808202-1-danishanwar@ti.com>
+ <20230913091011.2808202-2-danishanwar@ti.com>
 MIME-Version: 1.0
-References: <20230912140532.3797736-1-yangchen.openbmc@gmail.com>
- <20230912140532.3797736-2-yangchen.openbmc@gmail.com> <26a53f62-d8d0-9583-e675-a3db99c60c8a@linaro.org>
- <CALFa7M_Gov4jd3wxrXWhxuPKbDr+cp8xmuWJCQH_N=a+q03M1A@mail.gmail.com> <605e4577-1e01-cd0b-9d42-34401bd7f3a7@linaro.org>
-In-Reply-To: <605e4577-1e01-cd0b-9d42-34401bd7f3a7@linaro.org>
-From:   Yang Chen <yangchen.openbmc@gmail.com>
-Date:   Wed, 13 Sep 2023 22:19:15 +0800
-Message-ID: <CALFa7M9uaFuX4OEy9XdRa7xtKECOvJvg=MH_jkJ+jrfRe4M_SQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: aspeed: document board compatibles
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        joel@jms.id.au, andrew@aj.id.au, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        patrick@stwcx.xyz, Jerry.Lin@quantatw.com, Eddie.Chen@quantatw.com,
-        EasonChen1@quantatw.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="zhD3bkOP9US8+Azu"
+Content-Disposition: inline
+In-Reply-To: <20230913091011.2808202-2-danishanwar@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On 13/09/2023 11:52, Yang Chen wrote:
-> > Hi Krzysztof,
-> >
-> > Thanks for your reply, Minerva is a project of Facebook server that
-> > includes two types of boards. One is the motherboard that includes a BMC
-> > and another is the Chassis Management Board that includes a CMC and both
-> > use the Aspeed SoC (AST2600). These patches are for the CMC and the link
-> > you provided is for the BMC and they need to use different DTS.
->
-> Are they similar? Maybe you should share board DTSI?
->
-> Best regards,
-> Krzysztof
->
 
-No, they are not similar. They just use the same SoC but they are on
-different system boards with different electronic schematic.
+--zhD3bkOP9US8+Azu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Sep 13, 2023 at 02:40:10PM +0530, MD Danish Anwar wrote:
+> In order to support half-duplex operation at 10M and 100M link speeds, the
+> PHY collision detection signal (COL) should be routed to ICSSG
+> GPIO pin (PRGx_PRU0/1_GPI10) so that firmware can detect collision signal
+> and apply the CSMA/CD algorithm applicable for half duplex operation. A DT
+> property, "ti,half-duplex-capable" is introduced for this purpose. If
+> board has PHY COL pin conencted to PRGx_PRU1_GPIO10, this DT property can
+> be added to eth node of ICSSG, MII port to support half duplex operation =
+at
+> that port.
+>=20
+> Reviewed-by: Roger Quadros <rogerq@kernel.org>
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
-Yang Chen
+Conor.
+
+> ---
+>  Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b=
+/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> index 836d2d60e87d..229c8f32019f 100644
+> --- a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> @@ -107,6 +107,13 @@ properties:
+>                phandle to system controller node and register offset
+>                to ICSSG control register for RGMII transmit delay
+> =20
+> +          ti,half-duplex-capable:
+> +            type: boolean
+> +            description:
+> +              Indicates that the PHY output pin COL is routed to ICSSG G=
+PIO pin
+> +              (PRGx_PRU0/1_GPIO10) as input so that the ICSSG MII port is
+> +              capable of half duplex operations.
+> +
+>          required:
+>            - reg
+>      anyOf:
+> --=20
+> 2.34.1
+>=20
+
+--zhD3bkOP9US8+Azu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQHHdgAKCRB4tDGHoIJi
+0mvUAP4qy5TJEF8GK7qnltjQgB5hD3d27b1gsOqjmvxsAzzYPQEAqxYmzjKrQCAs
+8rF1NkKlICXrKxlH016cCoGBjia5CwI=
+=8yEv
+-----END PGP SIGNATURE-----
+
+--zhD3bkOP9US8+Azu--
