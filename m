@@ -2,124 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AA5C79ED7F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 17:42:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2341B79ED87
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 17:43:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230079AbjIMPml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 11:42:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51898 "EHLO
+        id S229982AbjIMPny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 11:43:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230034AbjIMPm1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 11:42:27 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEE461BE3
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 08:42:00 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-52eed139ec2so7290740a12.2
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 08:42:00 -0700 (PDT)
+        with ESMTP id S230161AbjIMPnk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 11:43:40 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0D661BCB
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 08:43:21 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2bf8b9c5ca0so60877161fa.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 08:43:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694619719; x=1695224519; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694619800; x=1695224600; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4tNjhlH206IzUUkrLOTH6KtlKVYXz/q75ZTuPPcqMFk=;
-        b=bW8NusU89EZJsgt42ImLk94G48WYqRmo11u07ePqNgGzHxLbAlDmBMit5T8ErBYZvx
-         ShxPKx449XRRik6ik88s4JXeb0A6p8bJDGDgtyphzPHmLGrCIqxTFZLS6ZDcS1cfo7VS
-         eUjc+XqpnkxjDQfPMkpWtJCoUDQzwVYcNc+auowlwkztLeWEw5EwJPpnBm2XBMdV60e1
-         l5DEH0duMsd1Lfz9b50fJp64Vty9ERU4VUUV072z6njW2G2bm8oN+lOSZg0GXZwWRPDS
-         JdAr+CQueysiZJ8CvTYSnzk3J+Qm700u4VG1mR0d44bUcvqbFf7SQ1RHCACQDaVGNChw
-         xOKQ==
+        bh=/UVGR1vSOq8d04uiGlXr6zXZdncQJrHAcL7z9Oa7q5s=;
+        b=wd4hv87ZYS8V4gXu/8SebigBk1s0bUr+j6ZxDypqWJTXM/xIOV9KcmPOEM1wXhLrEx
+         eLPuLS/3CRprr38ykyId5kpXNkNl2hg0Fz7jhxIrT8BW6CDPn2umirz8NuCez0FRxdHe
+         yAd08i2SIuPvtN4b8H1w+QSRqyd27BzIBL9jFFgbhhVGbhkNsC9DOiWn5A7qR6vLrl87
+         wRiu3DgbdFcN+K79yFi5dUhKjLwCvQgMNt0tkDKhG6qIdefZtHQ1HNmjuVbbhQsu9D3Q
+         9GaB9OnnkMy5YwVEByKqEh4y83PdOADHmjk9Vw8Dpx3tysEZ78QJwDie39Ke8FhXP1yc
+         3KHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694619719; x=1695224519;
+        d=1e100.net; s=20230601; t=1694619800; x=1695224600;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4tNjhlH206IzUUkrLOTH6KtlKVYXz/q75ZTuPPcqMFk=;
-        b=AK80vDUGK2CkuOxQAjhIeqLqFHhKUyFJCmOMwqWSlfw8htXHqeN3fJYaNPIqUq4nUj
-         ALM1AFf1+r5ko4gY0LFuXEk/BaTBy0wtb/6ZqWRdqZn9NZMb836j1BG76l38op4eyndM
-         H8t2Xn1dBQ0HbH9KjmOapnkwppP4vutlFYa4JQ8y+5X6MS49EGdjMkhnSS3pExkQEPq4
-         CxisAQ5EIvOGTXOiaklb3dMFi4hgFS9RUigL/2zuBlTM0QIMd9mTtBHLm2ZCViFAVQFR
-         vsxg+4+03/btKfGtsDqWEffjyevNehmref8GTOU39EPnIYiGPKndOdQosco2n6KWBD/z
-         K4kA==
-X-Gm-Message-State: AOJu0YzUrW8tqwYW02f7F3khmQR6Qn0nqXFdHG28PdRX7vV9mFyIO6iW
-        MPrrGFvFaDuGYGwqBHWzNLK9dg==
-X-Google-Smtp-Source: AGHT+IE/Qamlm4QU08NosxmsDomDBqURds6+LWtMhxScI4jMdvKLNkx5zTwjQJgqvPSmZB1yXEVn4g==
-X-Received: by 2002:a17:906:5181:b0:9ad:7f8b:21b with SMTP id y1-20020a170906518100b009ad7f8b021bmr2468995ejk.13.1694619719145;
-        Wed, 13 Sep 2023 08:41:59 -0700 (PDT)
+        bh=/UVGR1vSOq8d04uiGlXr6zXZdncQJrHAcL7z9Oa7q5s=;
+        b=uxYc70U37GOyIxWxHxKY9oPX6jRI+fDHAUS1eroFTrIhu4oiT1EsXZehIX7IWnMie3
+         +Llb+WKe6ugnAV8eO1ZAmXsmkzkdXYRwzlRXWrtiS9HZ1UVIylJNegBzPAvaFZukIRfE
+         ZGsqCrIbGY+GkByEQz3eOn61aKFhiimLrZYz6h8Z82xwI7aBJwmBfXTMMSt7IgWZjkO+
+         gvk8zKHVHtX8kMyRFlmuBLFu+GSvP4+hbro5LPDPK4r4FaSbGvkC0NSbsQ8vOFfD67k+
+         kUaaWHhBh9IMBQSrYsE0MFcPEECy4nbAa0VTXihRGwGwFF8xUGF/0xNcp82P3KdyKiiT
+         AYXg==
+X-Gm-Message-State: AOJu0YyRUf5G4Z02DSJt33cybO1ICweaoxHBpblLIuGR4DTE5iVjyFJA
+        MyXpysEdMpMzlZJ9DR+Ru5k1uA==
+X-Google-Smtp-Source: AGHT+IH0lbaO0JZ9flMoXDcb0nqt3WSvBbstzIb5rAju6JrWIQIlR0RUZOreeSKTPpCvh8WeZU5TWw==
+X-Received: by 2002:a05:651c:1206:b0:2bc:c466:60e9 with SMTP id i6-20020a05651c120600b002bcc46660e9mr2556951lja.49.1694619800012;
+        Wed, 13 Sep 2023 08:43:20 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id kf4-20020a17090776c400b0099c53c4407dsm8580766ejc.78.2023.09.13.08.41.57
+        by smtp.gmail.com with ESMTPSA id d24-20020a17090648d800b00992e14af9c3sm8686981ejt.143.2023.09.13.08.43.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 08:41:58 -0700 (PDT)
-Message-ID: <11c822f3-96f1-17d6-6c2a-feaa950aeea1@linaro.org>
-Date:   Wed, 13 Sep 2023 17:41:57 +0200
+        Wed, 13 Sep 2023 08:43:19 -0700 (PDT)
+Message-ID: <0f92b568-399e-4bd8-84f7-088abe9dbe84@linaro.org>
+Date:   Wed, 13 Sep 2023 17:43:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Minerva: Add Facebook Minerva CMC
- board
+Subject: Re: [PATCH v6 1/4] dt-bindings: remoteproc: k3-m4f: Add K3 AM64x SoCs
 Content-Language: en-US
-To:     Yang Chen <yangchen.openbmc@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        joel@jms.id.au, andrew@aj.id.au, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        patrick@stwcx.xyz, Jerry.Lin@quantatw.com, Eddie.Chen@quantatw.com,
-        EasonChen1@quantatw.com
-References: <20230912140532.3797736-1-yangchen.openbmc@gmail.com>
- <20230912140532.3797736-3-yangchen.openbmc@gmail.com>
- <1bfdc230-e358-6aa4-7d60-03b5477a6be9@linaro.org>
- <CALFa7M_GvCgmEZxvo_ZSYoCPOe+9-tQt3KHn=_cu3n7psP+PTA@mail.gmail.com>
+To:     Hari Nagalla <hnagalla@ti.com>, andersson@kernel.org,
+        mathieu.poirier@linaro.org, p.zabel@pengutronix.de,
+        martyn.welch@collabora.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20230913111644.29889-1-hnagalla@ti.com>
+ <20230913111644.29889-2-hnagalla@ti.com>
+ <052be57d-4081-43ca-6c9f-9afedb030a58@linaro.org>
+ <b8305681-9fa5-e506-b8c7-03338b5ed4d8@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CALFa7M_GvCgmEZxvo_ZSYoCPOe+9-tQt3KHn=_cu3n7psP+PTA@mail.gmail.com>
+In-Reply-To: <b8305681-9fa5-e506-b8c7-03338b5ed4d8@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/09/2023 15:57, Yang Chen wrote:
-> Hi Krzysztof,
+On 13/09/2023 15:59, Hari Nagalla wrote:
+> On 9/13/23 06:32, Krzysztof Kozlowski wrote:
+>>>   - Removed unrelated items from examples
+>>>
+>>> Changes since v4:
+>>>   - Rebased to the latest kernel-next tree
+>>>   - Added optional sram memory region for m4f device node
+>>>
+>>> Changes since v5:
+>>>   - None
+>> Hm, why none? There were errors in the binding to which you did not
+>> respond. Did you just ignore them?
+>>
+> I do not see any errors in my builds. Am i missing something? Please 
+> excuse my lack of knowledge here. Thought the bot errors were outside of 
+> the patch submitted 
+> (Documentation/devicetree/bindings/dma/stericsson,dma40.yaml). 
+> Appreciate your kind inputs..
+
+I would expect then some confirmation that errors can be ignored.
+Instead report was left just unanswered.
+
 > 
->> +
->> +&i2c15 {
->> +     status = "okay";
->> +
->> +     eeprom@50 {
->> +             compatible = "atmel,24c128";
->> +             reg = <0x50>;
->> +     };
->> +};
->> +
->> +&adc0 {
->> +     ref_voltage = <2500>;
+> $ make -j`nproc` ARCH=arm64 V=1 CROSS_COMPILE=aarch64-none-linux-gnu- 
+> DT_CHEKCER_FLAGS=-m dt_binding_check 
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
+> make --no-print-directory -C /home/a0868345/temp/linux-next \
+> -f /home/a0868345/temp/linux-next/Makefile dt_binding_check
+> make -f ./scripts/Makefile.build obj=scripts/basic
+> make -f ./scripts/Makefile.build obj=scripts/dtc
+> make -f ./scripts/Makefile.build obj=Documentation/devicetree/bindings
+> # LINT    Documentation/devicetree/bindings
+>    (find ./Documentation/devicetree/bindings \( -name '*.yaml' ! -name 
+> 'processed-schema*' \) | grep -F -e 
+> "Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml" | 
+> xargs -n200 -P$(nproc) /home/a0868345/.local/bin/yamllint -f parsable -c 
+> ./Documentation/devicetree/bindings/.yamllint >&2) || true
+> # DTEX 
+> Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.example.dts
+>    dt-extract-example 
+> Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml > 
+> Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.example.dts
+> # CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>    (find ./Documentation/devicetree/bindings \( -name '*.yaml' ! -name 
+> 'processed-schema*' \) | grep -F -e 
+> "Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml" | 
+> xargs -n200 -P$(nproc) dt-doc-validate -u 
+> ./Documentation/devicetree/bindings) || true
+> # SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>    f=$(mktemp) ; find ./Documentation/devicetree/bindings \( -name 
+> '*.yaml' ! -name 'processed-schema*' \) > $f ; dt-mk-schema -j  @$f > 
+> Documentation/devicetree/bindings/processed-schema.json ; rm -f $f
+> # DTC_CHK 
+> Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.example.dtb
+>    gcc -E 
+> -Wp,-MMD,Documentation/devicetree/bindings/remoteproc/.ti_k3-m4f-rproc.example.dtb.d.pre.tmp 
+> -nostdinc -I./scripts/dtc/include-prefixes -undef -D__DTS__ -x 
+> assembler-with-cpp -o 
+> Documentation/devicetree/bindings/remoteproc/.ti_k3-m4f-rproc.example.dtb.dts.tmp 
+> Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.example.dts 
+> ; ./scripts/dtc/dtc -o 
+> Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.example.dtb 
+> -b 0 -iDocumentation/devicetree/bindings/remoteproc/ 
+> -i./scripts/dtc/include-prefixes -Wno-avoid_unnecessary_addr_size 
+> -Wno-graph_child_address -Wno-interrupt_provider 
+> -Wno-unique_unit_address -Wunique_unit_address_if_enabled -d 
+> Documentation/devicetree/bindings/remoteproc/.ti_k3-m4f-rproc.example.dtb.d.dtc.tmp 
+> Documentation/devicetree/bindings/remoteproc/.ti_k3-m4f-rproc.example.dtb.dts.tmp 
+> ; cat 
+> Documentation/devicetree/bindings/remoteproc/.ti_k3-m4f-rproc.example.dtb.d.pre.tmp 
+> Documentation/devicetree/bindings/remoteproc/.ti_k3-m4f-rproc.example.dtb.d.dtc.tmp 
+>  > 
+> Documentation/devicetree/bindings/remoteproc/.ti_k3-m4f-rproc.example.dtb.d 
+> ; dt-validate  -u ./Documentation/devicetree/bindings -p 
+> ./Documentation/devicetree/bindings/processed-schema.json 
+> Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.example.dtb 
+> || true
 > 
-> There is no such property in the bindings.
-
-Fix your email setup. This is my response, not yours.
-
 > 
->> +     status = "okay";
->> +     pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
->> +             &pinctrl_adc2_default &pinctrl_adc3_default
->> +             &pinctrl_adc4_default &pinctrl_adc5_default
->> +             &pinctrl_adc6_default &pinctrl_adc7_default>;
->> +};
->> +
->> +&adc1 {
->> +     ref_voltage = <2500>;
+>  >> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+>  >> +%YAML 1.2
+>  >> +---
+>  >> +$id:http://devicetree.org/schemas/remoteproc/ti,k3-m4f-rproc.yaml#
+>  >> +$schema:http://devicetree.org/meta-schemas/core.yaml#
+>  >> +
+>  >> +title: TI K3 M4F processor subsystems
+>  >> +
+>  >> +maintainers:
+>  >> +  - Hari Nagalla<hnagalla@ti.com>
+>  >> +  - Mathieu Poirier<mathieu.poirier@linaro.org>
+>  > Are you sure Mathieu has this device and is a maintainer of this device?
+>  >
+> Earlier, Mathieu suggested he can be the maintainer. Beagle play is 
+> based on AM625 device.
 > 
-> NAK, there is no such property.
-> 
 
-So who says what?
-
-> Thanks for your advice, I will change this property to
-> "aspeed,int-vref-microvolt" which is defined in the binding in the v2 patch.
-
-No, why? Drop it. There is no user.
-
-Also, do not top post.
-
-
+Sure, no problem, good for me.
 
 Best regards,
 Krzysztof
