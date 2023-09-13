@@ -1,84 +1,107 @@
-Return-Path: <devicetree+bounces-4-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41A6679F347
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 22:51:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74BA579F38E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 23:15:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D2BB1B209EC
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 20:51:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6379A1C208F6
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 21:15:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53F1E22EF4;
-	Wed, 13 Sep 2023 20:48:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64DC322EE8;
+	Wed, 13 Sep 2023 21:15:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49374200D4
-	for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 20:48:52 +0000 (UTC)
-Received: from mail-vk1-xa32.google.com (mail-vk1-xa32.google.com [IPv6:2607:f8b0:4864:20::a32])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C1081BCC
-	for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 13:48:51 -0700 (PDT)
-Received: by mail-vk1-xa32.google.com with SMTP id 71dfb90a1353d-49352207f33so130709e0c.2
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 13:48:51 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 580CC1A29D
+	for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 21:15:11 +0000 (UTC)
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80D8D1724;
+	Wed, 13 Sep 2023 14:15:10 -0700 (PDT)
+Received: by mail-pl1-x630.google.com with SMTP id d9443c01a7336-1c328b53aeaso1848075ad.2;
+        Wed, 13 Sep 2023 14:15:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1694638130; x=1695242930; darn=vger.kernel.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XDzSamUCv1CXBCZhdsJ93ZvAxAyPYPb1roagkjST5FY=;
-        b=Ml+yP67OxMhE+X7Kusc2ilibalivX50YNc77JBjCtPoCEvyjAS0QRlD6vkSZDwcROo
-         DS4DFOWROU2RU9jaIDfM9DX8mc5VE5loFtnAC0QxXpiEoXffkmSE0Iy8HZXgFCrapVhu
-         1zNLLhwLKLAuWRP/chsgPaNohdZiY9jAig06Q=
+        d=gmail.com; s=20221208; t=1694639710; x=1695244510; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gsH9bk643G8YxEeFoePkpJ9hzS+Ib/AEJLLU+UFoGDw=;
+        b=K1LxRNZjIQ01N0iwkNGyXJeoGw5bvBiNEnhjGzNrA83q5THrZFeml2+BkiFN2O7WdJ
+         HS6gZ9P/ySr7nremXIpRZm/4ekJbTohXYCVVawXNe2HiOco43kFp6ERuLoMaG5DBe7XG
+         U35aydFsMgOfvEP+A8qqufBHW38NxuhVl3CkRFRoT7BO6OuMTU5aDV+wcFkncOcmSF6t
+         Vv3fQfkLYM1LVXaiVtjm4Ct4sfURtR+W4dNWZzosXTDXeSFO283ABu/kRyq4+8AXIrgJ
+         jps9EYH9bfcAh8tJltWzTaHLqvCMJaS4nYpMtYSiI+fRvhZP32t0p6TcvtheE6P4N2SM
+         2JsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694638130; x=1695242930;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XDzSamUCv1CXBCZhdsJ93ZvAxAyPYPb1roagkjST5FY=;
-        b=LGtThm/yZ4z5brRVF0Pt5GknHk3HLJViO4yrJrcA2ayoq4vWWKNZvSd+VpM+fqdNL4
-         rbnwBdNd0ATLkqeE4s8rbkf8sUoMkly6Cy1DRrjOPhdwWumMUYQzFqERfsXjqzEWKfrM
-         IpkOTrnvg9Fs+dKlLozp3kWjb/CEYxMG/cxoOs6Dd2/VlzsX5qHvWrgy+8p+O8ZposDW
-         Ny6Lov3TgImoBrlK1gu3jEJYIzIKdO7ugmSEyftwC9r4ZPyQbyqEQB9A56uNTnjAtmYa
-         fEmuLqmRXIPf8ucS51imaINsvFdZGPYsxp1bmQvvtnZJRYTbFenhI5gfDlfPbSJ2+UM8
-         z9Kg==
-X-Gm-Message-State: AOJu0Yypf2RT9wBXR8s81WCwW701DfWLlXa7oVYmiKu6/Ce2SnUujse2
-	sZAGgxJUJj4qX3VsQ3CTsdAlQGqDyXLCCsRaEmnPpn+kcCTJp1DUo6A=
-X-Google-Smtp-Source: AGHT+IFYIQXWNLcsJwIDCrzLjxT2o1GzCYN0IqmobLjAC9kkNDOUIRBu1TE5qljwAGHPKvwnu4wEXnlhCM0k5/x/hyU=
-X-Received: by 2002:a1f:c504:0:b0:495:e530:5155 with SMTP id
- v4-20020a1fc504000000b00495e5305155mr3275795vkf.3.1694638130531; Wed, 13 Sep
- 2023 13:48:50 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1694639710; x=1695244510;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gsH9bk643G8YxEeFoePkpJ9hzS+Ib/AEJLLU+UFoGDw=;
+        b=ipAWHJiK3eBzns8+gAORJKmMCB7S2zOA6uCwVhXFBQI3pxGNsWqpGs1slgXC9QE4jl
+         BQbhCBlDElaJwLJhJhi/r37bMcR13h3EncY7sYXyLXINdZOEtzTJerI14/Vm4Tbvde0k
+         DzxrxLbQF6wQQDrCACOJM1DK+As6e/gz92zex06HAw08XvlNMNrqwM9O+8+iYv/KtnfL
+         QJGJow2n7kPbb6FenQm1EpUc1HBDSJtPG73EeCXMZH3vNaqMQy6ot01gfn0C6MzmYyA1
+         zXeaGXn+Ca/SOIeL47GT3N2tvEXr64+FqYB7qNz8k67UwcsHIpAWututflF4IsC4RSah
+         ekIA==
+X-Gm-Message-State: AOJu0Ywvu5kbjfx3nzKZn2XDfIIVSOJYqnNYjyN9j2otccPoOc+byTw4
+	m1w9pUZnYanomVPgAVolAq/Bfeopln4=
+X-Google-Smtp-Source: AGHT+IEIupr6NAa7G30GxOa8cO59axP5WsOD+kiUhzFjXiNF2v+iCkBxfqLYApAwXFJoDlyUJ+LrwA==
+X-Received: by 2002:a17:902:ecc5:b0:1c3:7628:fcbb with SMTP id a5-20020a170902ecc500b001c37628fcbbmr4876872plh.43.1694639709665;
+        Wed, 13 Sep 2023 14:15:09 -0700 (PDT)
+Received: from octofox.hsd1.ca.comcast.net ([2601:646:a201:19d0:82b1:d7c2:2eaf:61e7])
+        by smtp.gmail.com with ESMTPSA id e18-20020a17090301d200b001b8c689060dsm73707plh.28.2023.09.13.14.15.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Sep 2023 14:15:09 -0700 (PDT)
+From: Max Filippov <jcmvbkbc@gmail.com>
+To: linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Max Filippov <jcmvbkbc@gmail.com>
+Subject: [PATCH 0/4] serial: add drivers for the ESP32xx serial devices
+Date: Wed, 13 Sep 2023 14:14:45 -0700
+Message-Id: <20230913211449.668796-1-jcmvbkbc@gmail.com>
+X-Mailer: git-send-email 2.30.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230913-equal-matrimony-810078@meerkat>
-In-Reply-To: <20230913-equal-matrimony-810078@meerkat>
-From: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
-Date: Wed, 13 Sep 2023 16:48:39 -0400
-Message-ID: <CAMwyc-SfgrR7N-pdtp=sJ3wNf+RkTYO54jdg7oYraqNj30d5kg@mail.gmail.com>
-Subject: Re: This list is being migrated to the new infrastructure
-To: devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Wed, 13 Sept 2023 at 16:27, Konstantin Ryabitsev
-<konstantin@linuxfoundation.org> wrote:
->
-> Hello, all:
->
-> This list is being migrated to the new vger infrastructure. This should be a
-> fully transparent process and you don't need to change anything about how you
-> participate with the list or how you receive mail.
->
-> There will be a brief 20-minute delay with archives on lore.kernel.org. I will
-> follow up once the archive migration has been completed.
+Hello,
 
-This work is now completed. I will monitor the performance to make
-sure that the new infrastructure is still successfully coping with the
-email traffic.
-If you notice any problems, please report them to helpdesk at kernel.org.
+this series adds drivers for the UART and ACM controllers found in the
+Espressif ESP32 and ESP32S3 SoCs.
 
--K
+Max Filippov (4):
+  dt-bindings: serial: document esp32-uart bindings
+  drivers/tty/serial: add driver for the ESP32 UART
+  dt-bindings: serial: document esp32s3-acm bindings
+  drivers/tty/serial: add ESP32S3 ACM device driver
+
+ .../bindings/serial/esp,esp32-acm.yaml        |  40 +
+ .../bindings/serial/esp,esp32-uart.yaml       |  48 ++
+ drivers/tty/serial/Kconfig                    |  27 +
+ drivers/tty/serial/Makefile                   |   2 +
+ drivers/tty/serial/esp32_acm.c                | 473 +++++++++++
+ drivers/tty/serial/esp32_uart.c               | 766 ++++++++++++++++++
+ include/uapi/linux/serial_core.h              |   6 +
+ 7 files changed, 1362 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/serial/esp,esp32-acm.yaml
+ create mode 100644 Documentation/devicetree/bindings/serial/esp,esp32-uart.yaml
+ create mode 100644 drivers/tty/serial/esp32_acm.c
+ create mode 100644 drivers/tty/serial/esp32_uart.c
+
+-- 
+2.30.2
+
 
