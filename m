@@ -2,109 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9C8979DFDD
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 08:18:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB23E79DFF2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 08:21:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232607AbjIMGSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 02:18:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51332 "EHLO
+        id S236553AbjIMGVv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 02:21:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231874AbjIMGSK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 02:18:10 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C05EA172E;
-        Tue, 12 Sep 2023 23:18:06 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38D6HuuB060351;
-        Wed, 13 Sep 2023 01:17:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1694585876;
-        bh=KTEy4fLTR0uFXToGRqCZmDU06j1oqTsEPOhr5SqQt1Y=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=Fh8KV2D3DXUvT7B5UrdWGZ7kNtekZyl4eZoshrfgu3ExQcWGq/AHI1kGQlxTkrTa0
-         FDhh7hvnmWOHEQmtDiseLsA1Q/1hR8EQBnoHdK5NmLfcrf7NzPJFyHoF+wJo+Phy+9
-         G0HGy6LiEwDhCreBw5o8Wy8G6BcAnnGqN+ADrCl0=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38D6HuCc013445
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 13 Sep 2023 01:17:56 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 13
- Sep 2023 01:17:56 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 13 Sep 2023 01:17:56 -0500
-Received: from [10.24.69.199] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38D6Hol5073331;
-        Wed, 13 Sep 2023 01:17:51 -0500
-Message-ID: <73ec102b-94de-e5ca-f425-8228bf5e2511@ti.com>
-Date:   Wed, 13 Sep 2023 11:47:50 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [EXTERNAL] Re: [PATCH net-next v2 1/2] dt-bindings: net: Add
- documentation for Half duplex support.
-Content-Language: en-US
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     Rob Herring <robh@kernel.org>, Roger Quadros <rogerq@ti.com>,
-        Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S234415AbjIMGVv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 02:21:51 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBEF81731;
+        Tue, 12 Sep 2023 23:21:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1694586107; x=1726122107;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=yQ/j7D4OXBoW16GrBTc/hnFxI50i0+gh0HACschoKSA=;
+  b=QeTYj2tcWVEZYAeLhhDR7v0AjMYpnUtJc3U2BmA9myuBLewR+YmkXQlp
+   DObJ2QJlgGshGy8rbDdadXz8/fF5TSlJdvViyc0QtzowwFzDibVrKihLZ
+   YQNFuAv00sbJuWkj89rcjWkgXoQWAL7wGGpKd/Z28DGEWWZuVnFQdGuB7
+   aoZitgL0uhMfzWc2htqlqfSADEDe9K856W8npGJV6qAoGvyU4AB0XzWJV
+   hm4cUhNs3TAGHRzawBLGT8IVMYjhRmAg/9MxfceFeac6sY3R+9qEcKcYn
+   VrhQCkkcFNFxtWOMjK8HpIpSUJQFmfSrzFogksO9YXjDgraOusQB60FE1
+   A==;
+X-CSE-ConnectionGUID: 7XmvrzgjQjiO7en38VZV5Q==
+X-CSE-MsgGUID: Lz0HCdHbTEyKqaPCKhfWKw==
+X-ThreatScanner-Verdict: Negative
+X-IronPort-AV: E=Sophos;i="6.02,142,1688454000"; 
+   d="asc'?scan'208";a="234927951"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Sep 2023 23:21:47 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 12 Sep 2023 23:21:12 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Tue, 12 Sep 2023 23:21:10 -0700
+Date:   Wed, 13 Sep 2023 07:20:54 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Hal Feng <hal.feng@starfivetech.com>
+CC:     Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Simon Horman <horms@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>,
-        Roger Quadros <rogerq@kernel.org>
-References: <20230911060200.2164771-1-danishanwar@ti.com>
- <20230911060200.2164771-2-danishanwar@ti.com>
- <20230911164628.GA1295856-robh@kernel.org>
- <0c23d883-0a79-ee7c-332c-c6580f8691df@ti.com>
- <90b3e6cc-7246-4d02-bd0f-2ce7847bc261@lunn.ch>
-From:   MD Danish Anwar <danishanwar@ti.com>
-In-Reply-To: <90b3e6cc-7246-4d02-bd0f-2ce7847bc261@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [-next v2 1/2] riscv: dts: starfive: visionfive 2: Enable usb0
+Message-ID: <20230913-mockup-liable-9dcf94ed4568@wendy>
+References: <20230829020511.26844-1-hal.feng@starfivetech.com>
+ <c417d55d-d886-f66d-15a9-73b297d28d59@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="6s20so3aHOodvuXr"
+Content-Disposition: inline
+In-Reply-To: <c417d55d-d886-f66d-15a9-73b297d28d59@starfivetech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/23 20:46, Andrew Lunn wrote:
->> Sure Rob, I will change the description to below.
->>
->>     description:
->>       Indicates that the PHY output pin (COL) is routed to ICSSG GPIO
-> 
-> The PHY has multiple output pins, so i would not put COL in brackets,
-> but make it explicit which pin you are referring to.
-> 
+--6s20so3aHOodvuXr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Sure, I will remove the brackets and make it explicit.
+On Wed, Sep 13, 2023 at 11:47:22AM +0800, Hal Feng wrote:
+> On Tue, 29 Aug 2023 10:05:10 +0800, Hal Feng wrote:
+> > usb0 was disabled by mistake when merging, so enable it.
+> >=20
+> > Fixes: e7c304c0346d ("riscv: dts: starfive: jh7110: add the node and pi=
+ns configuration for tdm")
+> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> > ---
+> >  arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi | 1 +
+> >  1 file changed, 1 insertion(+)
+> >=20
+> > diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.=
+dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> > index d79f94432b27..85f40df93f25 100644
+> > --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> > +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> > @@ -513,6 +513,7 @@ &uart0 {
+> > =20
+> >  &usb0 {
+> >  	dr_mode =3D "peripheral";
+> > +	status =3D "okay";
+> >  };
+>=20
+> Hi, Conor,
+>=20
+> As v6.6-rc1 is already released, would you apply this series
+> in rc2 or the later rc versions?
 
->>       pin (PRGx_PRU0/1_GPIO10) as input and ICSSG MII port is capable
->>       of half duplex operations.
-> 
-> "input and so the ICSSG MII port is"
-> 
+Yes, I was planning on doing a sweep for potential fixes today. There's
+3 or 4 I think.
 
-I think "input so that the ICSSG MII port is" will be better.
+--6s20so3aHOodvuXr
+Content-Type: application/pgp-signature; name="signature.asc"
 
-The description would look something like below,
+-----BEGIN PGP SIGNATURE-----
 
-  description:
-    Indicates that the PHY output pin COL is routed to ICSSG GPIO pin
-    (PRGx_PRU0/1_GPIO10) as input so that the ICSSG MII port is
-    capable of half duplex operations.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQFUuAAKCRB4tDGHoIJi
+0nRsAQCTaqgoWUbeumzMTXR5EzAQXSylZNGF84sjQsGXntCqYgD9ErLrcWMRsBL/
+Ez8Q3a7Spg2MhCfTWPzCpJX74CDvhAs=
+=+OgF
+-----END PGP SIGNATURE-----
 
-I will post the next version with this change.
-
->        Andrew
-
--- 
-Thanks and Regards,
-Danish
+--6s20so3aHOodvuXr--
