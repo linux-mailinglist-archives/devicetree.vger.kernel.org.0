@@ -2,125 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 516BE79E0B6
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 09:19:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4165E79E0C8
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 09:26:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238562AbjIMHTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 03:19:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37988 "EHLO
+        id S232320AbjIMH0x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 03:26:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238555AbjIMHTX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 03:19:23 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBB3D1982
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:19:19 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-52a1ce529fdso8541929a12.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:19:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694589558; x=1695194358; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=A3hr2Dkoscy8OKR4lP2RVrqnAFjnoPD9KTW+WVQxYRY=;
-        b=HedRivCyAvpHBOt/GY55mQe0+gM33dbCrhqcCnrF3SFFqKaMqfnk9D9E2E4RlPWSgH
-         KJN76WNvfWGoS+3z3EA6OXncqmvkFOPqXDPxAlNyOOyl29csuz4tQ0L2g8rWvlM4V2rd
-         3Pz0HDknYfOKAJFoaZErcJKjMhdbvMUQy6uRAcYxKvjgbUnNpw/frO4GlKN8OMTOhhhe
-         1QGMfPFJvl3QWLJDRmQ3rRFzQL+KFDAE40WdKnRkTtWTlcKZZqhYHsm94q4YsL8lY7bP
-         CA3dnulhM8fksmMvb/Qp4shpY2dWqJvbmmB8nIr1w/Ll5Mz0qDdaj3CtXBsVjprkAYCF
-         p/mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694589558; x=1695194358;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A3hr2Dkoscy8OKR4lP2RVrqnAFjnoPD9KTW+WVQxYRY=;
-        b=FRa2H1YEvoIoD5cgjo3jfX6l7S2brUMXta8RSi9LlBs3PrnqUNan1mEA9dzRDumHdw
-         4kQ69lROJVm1lwdKdE5E62lf54ooYDjcB1+PEmn2G3a76wHhVnFALZotoErGq4X7PCKw
-         edjBfU8NbPpyweMvFCnMtASVrZ1Hx7bAq2aS4pYEt80SCG+6uHbFINfsYF7RzXwob+R6
-         nvLpP/Q6DS8SK8ta+njJrHHrkzEQJb+eMgW7lU0UVfhsjSw1Kxi3n2S29KJH0fwsZ0WN
-         7U7kmhXBMvWMIkwMjJPIBpNJykQM/IMvRd7w+1RbqbCE6ppf/h8C9GdHhpgwbwVeOzt6
-         km2w==
-X-Gm-Message-State: AOJu0YzM+6v/zr+j6POtQtpScdmSCb0m8R3ln/rCgDOwtY7UWVIMORi3
-        S+lBucKMSbCEsNbWfxB7ZeJczg==
-X-Google-Smtp-Source: AGHT+IE6YcmXnG2kZ7MVJ5DQQSPqKNTw5IPlBCUXbJfyxM9ZFvK7mh0xGHZANganLb81Af/8FOzTiQ==
-X-Received: by 2002:a05:6402:48f:b0:528:90d7:a19 with SMTP id k15-20020a056402048f00b0052890d70a19mr1734134edv.11.1694589558276;
-        Wed, 13 Sep 2023 00:19:18 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id b7-20020aa7c6c7000000b0052328d4268asm6841519eds.81.2023.09.13.00.19.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 00:19:17 -0700 (PDT)
-Message-ID: <43cd38f5-20ce-a97d-0906-55faf228b377@linaro.org>
-Date:   Wed, 13 Sep 2023 09:19:15 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v2 14/14] arm64: dts: qcom: sdm630: Fix USB2 clock-names
- order
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        with ESMTP id S229884AbjIMH0x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 03:26:53 -0400
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70ACA1986;
+        Wed, 13 Sep 2023 00:26:48 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 26012E000C;
+        Wed, 13 Sep 2023 07:26:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1694590007;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=O+j8CLkeQqfE/jh3KUACTiWhEVCfAwwkGv+CICyZc1E=;
+        b=id5wBw+5IoW5nrGIWPBxMOPgujgtR6RcLR+FMdrunmLvgVotlzLE4P7GYyysXkHSpptRua
+        AUfDx7XqGPnc1pFdO+2bGGISGvLbBCzyXlMgzpVW7v7AYC53V4Eaa7Giqyjg+JY6+zA/6X
+        ae1i0V0aWjGLBf6bo0hPvjiAFVEw+x3XTs3VCD8PXidN9bityZlJLHPojdkWvSYwfW1nil
+        jAHS1xzlhg0SXt7dGRnbvV2Qsa4Q1uRXGy564WEw0irLFiw0glEyZRzK5O1GQJ3au0virI
+        6//y6UwVKL0i+itAqUc3X0+fgIxkEkCePNW0m4OkaNXvPS+DkPuU9xPTWVApzw==
+Date:   Wed, 13 Sep 2023 09:26:40 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Alexey Minnekhanov <alexeymin@postmarketos.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        linux-usb@vger.kernel.org
-References: <20230721-topic-rpm_clk_cleanup-v2-0-1e506593b1bd@linaro.org>
- <20230721-topic-rpm_clk_cleanup-v2-14-1e506593b1bd@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230721-topic-rpm_clk_cleanup-v2-14-1e506593b1bd@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+        Simon Horman <horms@kernel.org>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 08/31] dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc:
+ Add support for QMC HDLC
+Message-ID: <20230913092640.76934b31@bootlin.com>
+In-Reply-To: <20230912-capable-stash-c7a3e33078ac@spud>
+References: <20230912081527.208499-1-herve.codina@bootlin.com>
+        <20230912101018.225246-1-herve.codina@bootlin.com>
+        <20230912-capable-stash-c7a3e33078ac@spud>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: herve.codina@bootlin.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2023 15:31, Konrad Dybcio wrote:
-> The last 2 clock-names entries for the USB2 controller were swapped,
-> resulting in schema warnings:
-> 
-> ['cfg_noc', 'core', 'mock_utmi', 'sleep'] is too short
->         'iface' was expected
->         'sleep' was expected
->         'mock_utmi' was expected
-> 
-> Fix it and take the liberty to make the clock-names entries more
-> readable.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sdm630.dtsi | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> index f11d2a07508c..316c8fd224e0 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> @@ -1394,8 +1394,10 @@ usb2: usb@c2f8800 {
->  				 <&gcc GCC_USB20_MASTER_CLK>,
->  				 <&gcc GCC_USB20_MOCK_UTMI_CLK>,
->  				 <&gcc GCC_USB20_SLEEP_CLK>;
-> -			clock-names = "cfg_noc", "core",
-> -				      "mock_utmi", "sleep";
-> +			clock-names = "cfg_noc",
-> +				      "core",
-> +				      "sleep",
-> +				      "mock_utmi";
+Hi Conor,
 
-Plus this is just incorrect... :(
+On Tue, 12 Sep 2023 18:21:58 +0100
+Conor Dooley <conor@kernel.org> wrote:
 
-Best regards,
-Krzysztof
+> On Tue, Sep 12, 2023 at 12:10:18PM +0200, Herve Codina wrote:
+> > The QMC (QUICC mutichannel controller) is a controller present in some
+> > PowerQUICC SoC such as MPC885.
+> > The QMC HDLC uses the QMC controller to transfer HDLC data.
+> >=20
+> > Additionally, a framer can be connected to the QMC HDLC.
+> > If present, this framer is the interface between the TDM bus used by the
+> > QMC HDLC and the E1/T1 line.
+> > The QMC HDLC can use this framer to get information about the E1/T1 line
+> > and configure the E1/T1 line.
+> >=20
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---
+> >  .../bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml   | 13 +++++++++++++
+> >  1 file changed, 13 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-=
+scc-qmc.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-sc=
+c-qmc.yaml
+> > index 82d9beb48e00..b5073531f3f1 100644
+> > --- a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc=
+.yaml
+> > +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc=
+.yaml
+> > @@ -101,6 +101,16 @@ patternProperties:
+> >            Channel assigned Rx time-slots within the Rx time-slots rout=
+ed by the
+> >            TSA to this cell.
+> > =20
+> > +      compatible:
+> > +        const: fsl,qmc-hdlc
+> > +
+> > +      fsl,framer:
+> > +        $ref: /schemas/types.yaml#/definitions/phandle
+> > +        description:
+> > +          phandle to the framer node. The framer is in charge of an E1=
+/T1 line
+> > +          interface connected to the TDM bus. It can be used to get th=
+e E1/T1 line
+> > +          status such as link up/down. =20
+>=20
+> Sounds like this fsl,framer property should depend on the compatible
+> being present, no?
 
+Well from the implementation point of view, only the QMC HDLC driver uses t=
+his
+property.
+
+=46rom the hardware description point of view, this property means that the t=
+ime slots
+handled by this channel are connected to the framer. So I think it makes se=
+nse for
+any channel no matter the compatible (even if compatible is not present).
+
+Should I change and constraint the fsl,framer property to the compatible pr=
+esence ?
+If so, is the following correct for this contraint ?
+   --- 8< ---
+   dependencies:
+     - fsl,framer: [ compatible ];
+   --- 8< ---
+
+Regards,
+Herv=C3=A9
+
+>=20
+> Thanks,
+> Conor.
+>=20
+> > +
+> >      required:
+> >        - reg
+> >        - fsl,tx-ts-mask
+> > @@ -159,5 +169,8 @@ examples:
+> >              fsl,operational-mode =3D "hdlc";
+> >              fsl,tx-ts-mask =3D <0x00000000 0x0000ff00>;
+> >              fsl,rx-ts-mask =3D <0x00000000 0x0000ff00>;
+> > +
+> > +            compatible =3D "fsl,qmc-hdlc";
+> > +            fsl,framer =3D <&framer>;
+> >          };
+> >      };
+> > --=20
+> > 2.41.0
+> >  =20
