@@ -2,111 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A330379ED2D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 17:35:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D77179ED6B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 17:41:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229700AbjIMPfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 11:35:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54704 "EHLO
+        id S229994AbjIMPl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 11:41:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229667AbjIMPfn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 11:35:43 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 259C719AF
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 08:35:39 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-401da71b83cso78576975e9.2
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 08:35:38 -0700 (PDT)
+        with ESMTP id S229871AbjIMPlG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 11:41:06 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49DCE210B
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 08:40:39 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b9c907bc68so120346921fa.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 08:40:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694619337; x=1695224137; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DmUa/uK3zl9ZI3WJsapz8xqeCXA+AubzrG5QzcNVHCg=;
-        b=wlxVSvPLL2Al4Xt3sgtM9pAz0KjRiAenleq4Ow693DM9XyAGoCR5MCsEBSOjoP3nU2
-         BAg/ETWIQjB0NHy46XnFfW0JTdfDwWyvKGHOqQv12/nTuFlJi+fa3o/nCgU0KyxkBctU
-         Bg0ZXZE6u3z8xYa8Jv1F86UJTRJsFrGK8T0ejZ3+Jrz/bX2cGU9zskL3iLa2pZFl+FbV
-         VDpfRPRbD2QEVlomXwnhmrIerIa5rYT1rKhG57rT5xyJAna2+LEKRAp+IVqyAT+L6WdK
-         ryyDQbkfTYT2meCP+t9f2ChaKNAftbKk8Q7R05xAExgW3FNomJ/7iF4LgbGNUCjT4Jv6
-         rETA==
+        d=linaro.org; s=google; t=1694619637; x=1695224437; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6Hbh6ZXKDhz/KGGt8fE9NnsA0nrENPPs+dh7XyDcr6Q=;
+        b=yrem6MrLesXG2KS3JgTkCT2FTmW5jsLargh35ebvQ5PLnpHO1Q8dvUDuiiNFvuN+qx
+         PZWIP2Xp2bFfjK6vV+f38t5KZSI4hzzj9xp5X4ctYTxT0Y5jgS9pzmuKMehpB3BL1ELx
+         9qmNisJKsbRidifYzmhE3LCLX1phf1ylOIi+Kxg9YbBoP9Fs72ohsfZKBSYhzMNNl07f
+         6vTHu8tXMQrg82Cw2hnngCboELcknhxXBOHs8enf8mUTH4x7Z9K8unD86iQ5PMrA5nGi
+         UGBooD8MfMYuXM/cTdWaNzBn7Tm+1dFzXcNSsX4exyNhnoC4qnwh2g+h3+bnqHHhR44m
+         K7DA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694619337; x=1695224137;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DmUa/uK3zl9ZI3WJsapz8xqeCXA+AubzrG5QzcNVHCg=;
-        b=pR2W/u+ElfnPqOWn82uv14qK6uMtJwII5l8Gqce33Dvy8A7Ms4lcrryMuJVCGrsbvP
-         wODUa3bX8tTcUOCJkx59UdxOkNNup/VEeDjtfR8BWjkmbibE4Abhn+yB3r9ahSP76AuS
-         eGbT+4tJodC09lLRC+oyYEGiJvD5sMmtj8So3w5uBDpuBVn+jAZjfGTDJVjUZuLdEnR2
-         ih+JkONS+fYrt50GekOz9lGJg19YD7erlzdeabCDocrfWLQ9RJhjJktNOqyhyPbqz8nk
-         iy4w0FXWN49I7K8Y4AlGfjDG1OTjDYM9moQz1oYBocAxhZ+QBzV238e/nlAnz67s4BIA
-         P6xQ==
-X-Gm-Message-State: AOJu0YwrPDo0wKErm0IkHbA/j3AepCCTI1oOLpY/5u+GF/z8hu+ZnOBE
-        Y6mordt05iAyTfFThJriRcm1Bw==
-X-Google-Smtp-Source: AGHT+IGovylkDo6wyDm6xVXmImMBKxNJpRan8u+7VsotkLE1xj+Aoiq8pqQoC8Lo5nr1Gki/S/RP2A==
-X-Received: by 2002:adf:ee8f:0:b0:314:4db:e0b2 with SMTP id b15-20020adfee8f000000b0031404dbe0b2mr2554098wro.15.1694619337374;
-        Wed, 13 Sep 2023 08:35:37 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:3b50:bca5:a754:7463])
-        by smtp.gmail.com with ESMTPSA id e11-20020adffc4b000000b0031f65cdd271sm15750315wrs.100.2023.09.13.08.35.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Sep 2023 08:35:36 -0700 (PDT)
-From:   Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
+        d=1e100.net; s=20230601; t=1694619637; x=1695224437;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6Hbh6ZXKDhz/KGGt8fE9NnsA0nrENPPs+dh7XyDcr6Q=;
+        b=vVpGfwDkH1AtiWE/klJFCZyUrlpM8WwaM+1hkR2/8MJLtyFFFxmMMnSBzBz8VK/Ogi
+         IyvBRU0uyeez31d3N99z9wKANyqagu8IeLnd66uj3HkiFs8dshePE27cPeblpRc6mm1h
+         jfYYzFxx4Tz62Z14quDvVvyW5vMgnaFv3oYDEgwVi24ySPjsrr7ooNUSUI/kcI7pjVK3
+         Ape+grk5PXOGXisKIQ9nmWIXcHnS9cBRogGpB5ivHnqguHW7iMAyeaHB0y3NoQHKfdcQ
+         0qw8Z8yMYwqDeVrrm2dAS5hN0bfo9GUm8uY48h4tvVdtq1eLddgXWJZ+4ZV4ifw4259s
+         Oagg==
+X-Gm-Message-State: AOJu0Yzt0PiwNAoevufI/n/1MBnxFNqwFWS6jT2/KsSaQuaL9unGJm1W
+        2lSHS6cvIKlZbwgdvmYZ1+8v/g==
+X-Google-Smtp-Source: AGHT+IGIQlJGO3sBAtR5nD8DNpUZLzgzVbqsdyqIkbN1GwHI5WbfyunvrUH8ZxR4K05vPJG5eAuV3Q==
+X-Received: by 2002:a2e:7c19:0:b0:2b6:bb21:8d74 with SMTP id x25-20020a2e7c19000000b002b6bb218d74mr2620372ljc.1.1694619637390;
+        Wed, 13 Sep 2023 08:40:37 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id oz13-20020a170906cd0d00b0098951bb4dc3sm8623318ejb.184.2023.09.13.08.40.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Sep 2023 08:40:36 -0700 (PDT)
+Message-ID: <177ef05b-0cca-be25-afad-ac518d9f6473@linaro.org>
+Date:   Wed, 13 Sep 2023 17:40:35 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 2/4] dt-bindings: hwmon: Added new properties to the
+ devicetree
+To:     Daniel Matyas <daniel.matyas@analog.com>
+Cc:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: sa8775p: enable the inline crypto engine
-Date:   Wed, 13 Sep 2023 17:35:29 +0200
-Message-Id: <20230913153529.32777-2-bartosz.golaszewski@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230913153529.32777-1-bartosz.golaszewski@linaro.org>
-References: <20230913153529.32777-1-bartosz.golaszewski@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        linux-doc@vger.kernel.org
+References: <20230913152135.457892-1-daniel.matyas@analog.com>
+ <20230913152135.457892-3-daniel.matyas@analog.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230913152135.457892-3-daniel.matyas@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add an ICE node to sa8775p SoC description and enable it by adding a
-phandle to the UFS node.
+On 13/09/2023 17:21, Daniel Matyas wrote:
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Subject: not much improved. I am sorry, but you are not adding new
+properties to entire devicetree of entire world. You are actually not
+adding anything to any devicetree, because these are bindings (which is
+obvious, as said by prefix).
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 9f4f58e831a4..b6a93b11cbbd 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -1525,6 +1525,7 @@ ufs_mem_hc: ufs@1d84000 {
- 					<0 0>,
- 					<0 0>,
- 					<0 0>;
-+			qcom,ice = <&ice>;
- 			status = "disabled";
- 		};
- 
-@@ -1546,6 +1547,13 @@ ufs_mem_phy: phy@1d87000 {
- 			status = "disabled";
- 		};
- 
-+		ice: crypto@1d88000 {
-+			compatible = "qcom,sa8775p-inline-crypto-engine",
-+				     "qcom,inline-crypto-engine";
-+			reg = <0x0 0x01d88000 0x0 0x8000>;
-+			clocks = <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
-+		};
-+
- 		usb_0_hsphy: phy@88e4000 {
- 			compatible = "qcom,sa8775p-usb-hs-phy",
- 				     "qcom,usb-snps-hs-5nm-phy";
--- 
-2.39.2
+You got comments on this.
+
+> These attributes are:
+> 	- adi,comp-int - boolean property
+> 	- adi,alrm-pol - can be 0, 1 (if not present, default value)
+> 	- adi,flt-q - can be 1, 2, 4, 8 (if not present, default value)
+> 	- adi,timeout-enable - boolean property
+
+Don't repeat what the code does. Explain why you are adding it, what is
+the purpose.
+
+> 
+> These modify the corresponding bits in the configuration register.
+> 
+> Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
+> ---
+>  .../bindings/hwmon/adi,max31827.yaml          | 35 +++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> index 2dc8b07b4d3b..6bde71bdb8dd 100644
+> --- a/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> @@ -32,6 +32,37 @@ properties:
+>        Must have values in the interval (1.6V; 3.6V) in order for the device to
+>        function correctly.
+>  
+> +  adi,comp-int:
+> +    description:
+> +      If present interrupt mode is used. If not present comparator mode is used
+> +      (default).
+
+Why this is a property of hardware?
+
+> +    type: boolean
+> +
+> +  adi,alrm-pol:
+> +    description:
+> +      Sets the alarms active state.
+> +            - 0 = active low
+> +            - 1 = active high
+> +      For max31827 and max31828 the default alarm polarity is low. For max31829
+> +      it is high.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1]
+> +
+> +  adi,flt-q:
+> +    description:
+> +      Select how many consecutive temperature faults must occur before
+> +      overtemperature or undertemperature faults are indicated in the
+> +      corresponding status bits.
+> +      For max31827 default fault queue is 1. For max31828 and max31829 it is 4.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2, 4, 8]
+> +
+> +  adi,timeout-enable:
+> +    description:
+> +      Enables timeout. Bus timeout resets the I2C-compatible interface when SCL
+> +      is low for more than 30ms (nominal).
+
+Why this is a property of hardware?
+
+
+Best regards,
+Krzysztof
 
