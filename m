@@ -2,122 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55DF179E193
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 10:08:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D37DE79E1A4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 10:11:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238752AbjIMIID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 04:08:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33400 "EHLO
+        id S238824AbjIMILI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 04:11:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232468AbjIMIHG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 04:07:06 -0400
-Received: from out28-75.mail.aliyun.com (out28-75.mail.aliyun.com [115.124.28.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16AEF199F;
-        Wed, 13 Sep 2023 01:07:01 -0700 (PDT)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.09614743|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.110075-0.000808817-0.889117;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047212;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=27;RT=27;SR=0;TI=SMTPD_---.Ue3VeMa_1694592409;
-Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.Ue3VeMa_1694592409)
-          by smtp.aliyun-inc.com;
-          Wed, 13 Sep 2023 16:06:58 +0800
-From:   wangweidong.a@awinic.com
-To:     robh@kernel.org
-Cc:     13916275206@139.com, alsa-devel@alsa-project.org, arnd@arndb.de,
-        broonie@kernel.org, ckeepax@opensource.cirrus.com,
-        colin.i.king@gmail.com, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, fido_max@inbox.ru,
-        harshit.m.mogalapalli@oracle.com, herve.codina@bootlin.com,
-        krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
-        linus.walleij@linaro.org, linux-kernel@vger.kernel.org,
-        liweilei@awinic.com, perex@perex.cz, povik+lin@cutebit.org,
-        rf@opensource.cirrus.com, ryans.lee@analog.com,
-        sebastian.reichel@collabora.com, shumingf@realtek.com,
-        tiwai@suse.com, trix@redhat.com, wangweidong.a@awinic.com,
-        yijiangtao@awinic.com
-Subject: Re: [PATCH V2 1/5] ASoC: dt-bindings: Adds properties to "awinic,aw88395"
-Date:   Wed, 13 Sep 2023 16:06:48 +0800
-Message-ID: <20230913080648.364569-1-wangweidong.a@awinic.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230912162122.GA880119-robh@kernel.org>
-References: <20230912162122.GA880119-robh@kernel.org>
+        with ESMTP id S235808AbjIMIK6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 04:10:58 -0400
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDFF81BD7;
+        Wed, 13 Sep 2023 01:09:55 -0700 (PDT)
+Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 13 Sep 2023
+ 16:09:45 +0800
+From:   Huqiang Qin <huqiang.qin@amlogic.com>
+To:     <tglx@linutronix.de>, <maz@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
+        <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+        <hkallweit1@gmail.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        Huqiang Qin <huqiang.qin@amlogic.com>
+Subject: [PATCH 0/3] Add GPIO interrupt support for Amlogic-T7 SoCs
+Date:   Wed, 13 Sep 2023 16:09:21 +0800
+Message-ID: <20230913080924.3336391-1-huqiang.qin@amlogic.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.28.11.83]
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thank you very much for your advice, and I will modify it in the next patch.
+This patch adds GPIO interrupt support for Amloigc-T7 SoC (A311D2)
 
-On Tue, Sep 12, 2023 at 11:21:22PM -0500, robh@kernel.org wrote:
-> On Tue, Sep 12, 2023 at 02:58:48PM +0800, wangweidong.a@awinic.com wrote:
->> From: Weidong Wang <wangweidong.a@awinic.com>
+Huqiang Qin (3):
+  dt-bindings: interrupt-controller: Add support for Amlogic-T7 SoCs
+  irqchip: Add support for Amlogic-T7 SoCs
+  arm64: dts: Add gpio_intc node for Amlogic-T7 SoCs
 
-> The subject is still pretty generic. Ideally, we'd never have the same 
-> subject twice. I'd do something like this:
+ .../interrupt-controller/amlogic,meson-gpio-intc.yaml  |  1 +
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi            | 10 ++++++++++
+ drivers/irqchip/irq-meson-gpio.c                       |  5 +++++
+ 3 files changed, 16 insertions(+)
 
-> ASoC: dt-bindings: awinic,aw88395: Add properties for multiple PA support
 
-Thank you very much. I will modify according to your suggestion in the next patch
+base-commit: e143016b56ecb0fcda5bb6026b0a25fe55274f56
+-- 
+2.37.1
 
->> 
->> Adds properties to "awinic,aw88395" to make files more complete
-
-> Complete in what way? multiple PAs, right. It's not really clear 
-> to me though how these properties enable support for multiple PAs.
-
-Thank you very much. I will change the following content in the next patch:
-Add two properties, the "awinic,audio-channel" property and the
-"awinic,sync-flag". The "awinic,audio-channel" is used to make 
-different PA load different configurations, the "awinic,sync-flag"
-is used to synchronize the phases of multiple PA. These two properties 
-will be read by the corresponding driver, so that the multi-PA to 
-achieve better playback effect.
-
->> 
->> Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
->> ---
->>  .../bindings/sound/awinic,aw88395.yaml        | 19 +++++++++++++++++++
->>  1 file changed, 19 insertions(+)
->> 
->> diff --git a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
->> index 4051c2538caf..4965aa4a5370 100644
->> --- a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
->> +++ b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
->> @@ -32,11 +32,28 @@ properties:
->>    reset-gpios:
->>      maxItems: 1
->>  
->> +  awinic,audio-channel:
->> +    description:
->> +      It is used to distinguish multiple PA devices, so that different
->> +      configurations can be loaded to different PA devices
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    minimum: 0
->> +    maximum: 7
->> +
->> +  awinic,sync-flag:
->> +    description:
->> +      Flag bit used to keep the phase synchronized in the case of multiple PA
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    minimum: 0
->> +    maximum: 1
->> +
->>  required:
->>    - compatible
->>    - reg
->>    - '#sound-dai-cells'
->>    - reset-gpios
->> +  - awinic,audio-channel
->> +  - awinic,sync-flag
->>  
->>  unevaluatedProperties: false
->>  
->> @@ -51,5 +68,7 @@ examples:
->>              reg = <0x34>;
->>              #sound-dai-cells = <0>;
->>              reset-gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
->> +            awinic,audio-channel = <0>;
->> +            awinic,sync-flag = <0>;
->>          };
->>      };
->> -- 
->> 2.41.0
->>
