@@ -2,87 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C84F379E674
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 13:17:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8F3C79E694
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 13:23:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240057AbjIMLSB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 07:18:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37950 "EHLO
+        id S240086AbjIMLXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 07:23:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239952AbjIMLRr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 07:17:47 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 718BC212F;
-        Wed, 13 Sep 2023 04:17:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1694603856; x=1726139856;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=EINwWwU3qdAxq238HtvPTy5ZZC9fwj5Kb64aFwlmnKA=;
-  b=hCgtB19j3gze5LQduMLa2fAsAlqLqw+L4ENuunch4Tg43U6dpjmNkQX6
-   Gj6ZpKRlvZY1y17F1HS1L/1z1hfWz+m/mlApsK8XL4/TAq6S+uHRElVjV
-   B9xJS2Le3k49L6N0hl2htiUQ+MLiVKEnSVQyIjcNJ4EcfRfrIC0DnTBGj
-   LHRdOzLoeL6okjwjqnf7S20/z778ispEQO/6lr+8LJZzNW1rHTFH6Q6aO
-   da4IHcAA4bj09mdRWcy9Kmztu3UvGcLo+6Sid4/b2WD1HAo2lOu1T92O6
-   +lIigPsBo0ipTNjxvP0bXfKiM9ITXdY9Mccm60McTBQK5nFUQ+Ogu7D6u
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="382435268"
-X-IronPort-AV: E=Sophos;i="6.02,143,1688454000"; 
-   d="scan'208";a="382435268"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2023 04:17:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="867753665"
-X-IronPort-AV: E=Sophos;i="6.02,143,1688454000"; 
-   d="scan'208";a="867753665"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2023 04:17:33 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1qgNsA-008qeM-1X;
-        Wed, 13 Sep 2023 14:17:30 +0300
-Date:   Wed, 13 Sep 2023 14:17:30 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lizhi Hou <lizhi.hou@amd.com>, Andrew Lunn <andrew@lunn.ch>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, max.zhen@amd.com,
-        sonal.santan@amd.com, stefano.stabellini@xilinx.com
-Subject: Re: [PATCH V13 0/5] Generate device tree node for pci devices
-Message-ID: <ZQGaSr+G5qu/8nJZ@smile.fi.intel.com>
-References: <1692120000-46900-1-git-send-email-lizhi.hou@amd.com>
- <ZP96feVs2ev7098Y@smile.fi.intel.com>
- <CAL_JsqKfQJFrd8MOdjW55cYdEb8yyPyR+P3ran9+X3dCwUgdyA@mail.gmail.com>
+        with ESMTP id S240017AbjIMLXt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 07:23:49 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D1361BD1;
+        Wed, 13 Sep 2023 04:23:44 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9D15C660733C;
+        Wed, 13 Sep 2023 12:23:42 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1694604223;
+        bh=9bbmy55p17H7G4i7jka4gKht9RxZ3/YHdBartMPUciQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Lhb4dsm6d9pEPz7v5Uo6JLQbKBWeuoV5tnibypNvmbZDU8IbCAQcYyW0Igfo4n7fJ
+         oGxnqpXd7BuAVmt5NkfJ2wx370twKmDQveLoJK91hulotM9ovn0IhdBxHprEAtfYwv
+         0Ek7hDRrvR8d2YiL3d8ymXTzBsjUx7yuVOdRuLLepjyaIZcV4ZzsHV0hpA9iiZ3WSH
+         2RYaiXYGhAQnkw6cdpZ2uP4ZahIuyDonfv3v6k8nfNYgfxNocbKRfU7XJDFEldRAzN
+         QMuiYqZiMesfiD6gidwb4+RGnVid5/Ecai/Gq5ja+jHYZchVQ3KI2syxQ4IBmqCV++
+         hKnuQxynpoNow==
+Message-ID: <8da6396f-3cd4-9c78-06d1-2d2f60d9be3c@collabora.com>
+Date:   Wed, 13 Sep 2023 13:23:40 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqKfQJFrd8MOdjW55cYdEb8yyPyR+P3ran9+X3dCwUgdyA@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [RFC v1 1/3] dt-bindings: thermal: mediatek: add mt7988
+ compatible
+Content-Language: en-US
+To:     frank-w@public-files.de, Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Daniel Golle <daniel@makrotopia.org>
+References: <20230911183354.11487-1-linux@fw-web.de>
+ <20230911183354.11487-2-linux@fw-web.de>
+ <e93aa8a6-e088-2864-6ffa-050b211be21f@collabora.com>
+ <DEAA91BC-C55C-4AAC-BA35-0060A01D289E@public-files.de>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <DEAA91BC-C55C-4AAC-BA35-0060A01D289E@public-files.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 12, 2023 at 02:12:04PM -0500, Rob Herring wrote:
-> On Mon, Sep 11, 2023 at 3:37 PM Andy Shevchenko
-> <andriy.shevchenko@intel.com> wrote:
-> > On Tue, Aug 15, 2023 at 10:19:55AM -0700, Lizhi Hou wrote:
-
-...
-
-> > Can you point out to the ACPI excerpt(s) of the description of anything related
-> > to the device(s) in question?
+Il 13/09/23 12:57, Frank Wunderlich ha scritto:
+> Am 13. September 2023 09:49:08 MESZ schrieb AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>:
+>> Il 11/09/23 20:33, Frank Wunderlich ha scritto:
+>>> From: Frank Wunderlich <frank-w@public-files.de>
+>>>
+>>> Add compatible string for mt7988.
+>>>
+>>> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+>>> ---
+>>>    .../devicetree/bindings/thermal/mediatek,lvts-thermal.yaml       | 1 +
+>>>    1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+>>> index fe9ae4c425c0..49effe561963 100644
+>>> --- a/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+>>> +++ b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+>>> @@ -18,6 +18,7 @@ description: |
+>>>    properties:
+>>>      compatible:
+>>>        enum:
+>>> +      - mediatek,mt7988-lvts
+>>
+>> Are you sure that MT7988 has only one LVTS controller, and that it is global?
 > 
-> I don't understand what you are asking for.
+> Based on the information i have it is only 1 lvts device (dts node) with 2 internal controllers. Do i need to define it in different way?
+> 
 
-Through the email thread it was mentioned that this series was tested on the
-ACPI enabled platform, Jonathan (IIRC) asked why do we need to have a shadow
-DT for the something that ACPI already describes. That's why I'm trying to
-understand if it's the case. and if so, how can we improve the approach.
+In the MediaTek BSP, I can see that the controller at 0x1100a000 is referenced
+to as `MT7988_AP_DOMAIN`... this means that this controller effectively is the
+LVTS-AP one.
 
--- 
-With Best Regards,
-Andy Shevchenko
+This means that the compatible here should be "mediatek,mt7988-lvts-ap" :-)
+
+Regards,
+Angelo
+
+>>>          - mediatek,mt8192-lvts-ap
+>>>          - mediatek,mt8192-lvts-mcu
+>>>          - mediatek,mt8195-lvts-ap
+>>
+> 
+> 
+> regards Frank
 
 
