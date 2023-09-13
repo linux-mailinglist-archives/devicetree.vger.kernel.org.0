@@ -2,136 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61C0D79E245
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 10:37:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 558E479E20F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 10:28:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238982AbjIMIiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 04:38:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59776 "EHLO
+        id S236788AbjIMI2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 04:28:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238967AbjIMIh6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 04:37:58 -0400
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE72E196;
-        Wed, 13 Sep 2023 01:37:54 -0700 (PDT)
-Received: from kwepemm600013.china.huawei.com (unknown [172.30.72.54])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Rltyd72WwztSQ2;
-        Wed, 13 Sep 2023 16:33:45 +0800 (CST)
-Received: from huawei.com (10.175.112.208) by kwepemm600013.china.huawei.com
- (7.193.23.68) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Wed, 13 Sep
- 2023 16:37:51 +0800
-From:   Guo Mengqi <guomengqi3@huawei.com>
-To:     <vkoul@kernel.org>, <dmaengine@vger.kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>
-CC:     <guomengqi3@huawei.com>, <xuqiang36@huawei.com>,
-        <chenweilong@huawei.com>
-Subject: [PATCH v4 2/2] dt-bindings: dma: HiSilicon: Add bindings for HiSilicon Ascend sdma
-Date:   Wed, 13 Sep 2023 16:28:25 +0800
-Message-ID: <20230913082825.3180-3-guomengqi3@huawei.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230913082825.3180-1-guomengqi3@huawei.com>
-References: <20230913082825.3180-1-guomengqi3@huawei.com>
+        with ESMTP id S233957AbjIMI2j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 04:28:39 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D348010C0
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 01:28:34 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99bcf2de59cso833977766b.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 01:28:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694593713; x=1695198513; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YcjHciOEB4wGjPRxzcQg2KY+X5TWNjgyiN/R9k87O0c=;
+        b=r4c+LgDtyRnIYnVX5kB0Ld6hWveQwM3R7EN91ItGr5ztAj4zFfAYQFsDLL++ZV94+0
+         unqxsKYkryu+33jTQQQlVjo+aCSXoIbsQFMTI8ZO9f+sYo6/UALGkgVx6hJk5Zrxj19X
+         X1AQ5e2hD4KBp7yfwq6lkRFX3lOQ83N1XCb6K2lPQsqgNrnylCpzSZXAj/Z7TyJmIDa3
+         i5XO7G9bn5bfOSVcME51KCIypZ4sanPYi261yvKfSBc9+ffTNM870jed+BA18Lk6wlCF
+         PRVTm/58rYNABMIcYQ5OWrSz6AHiDOenlBUzOPTWPyfGZ8iceW/sIzHSyQ1hw5xf9NXl
+         6u1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694593713; x=1695198513;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YcjHciOEB4wGjPRxzcQg2KY+X5TWNjgyiN/R9k87O0c=;
+        b=MAnz+RR9QHJlkaNYYF14zgPEtSp8He0KITutkSYOemkU51etWxZc6KzYxGrqEuyqTr
+         yZzaRLNiSGb0ehxtz7j6fbuKuMjnMMIy6nE8EBQSsu7RPH4ET6C2CH6rtKNN0ByVjbs2
+         P9jB7BEiCuNCtxpkosyJ1m0/afWMLhY1qXWNGcjR8CPoDj3x/oJqGZejRC1i0tLivNJB
+         PKFO/JD69A9aHcTx7wqU7gyXEFEAFKu6U27stY2VQs6yySiMWvUk/Q0SRw2nU2od6+5j
+         cLENyAfv/DjuKDNRwY56LdPDbd4YpEoBdE6bcON9Yi/BiqLSmYW7sJieK8LJ4ieixxsh
+         H91Q==
+X-Gm-Message-State: AOJu0YxTNhzptxYtCiAAqkGryo5QTk2raiswUgF0nZoGqZjtdY7kK4U5
+        pAKNVQZI9z6EdtFvp9hmKYgghQ==
+X-Google-Smtp-Source: AGHT+IFmMNDnYGHGyTxB2kTvPlHFBu9w/k0OtnoM7DCf7UVubTFyWhLBTkhY65paoCVkLDhe1SCRYw==
+X-Received: by 2002:a17:906:5188:b0:9ad:99a8:7c4e with SMTP id y8-20020a170906518800b009ad99a87c4emr1463772ejk.55.1694593713320;
+        Wed, 13 Sep 2023 01:28:33 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id v14-20020a170906338e00b00992b1c93279sm7936294eja.110.2023.09.13.01.28.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Sep 2023 01:28:32 -0700 (PDT)
+Message-ID: <c6b473a0-3576-9cac-dfec-126f3cc5803a@linaro.org>
+Date:   Wed, 13 Sep 2023 10:28:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.175.112.208]
-X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
- kwepemm600013.china.huawei.com (7.193.23.68)
-X-CFilter-Loop: Reflected
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH V2 4/7] dt-bindings: clock: Add ipq9574 NSSCC clock and
+ reset definitions
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Devi Priya <quic_devipriy@quicinc.com>, andersson@kernel.org,
+        agross@kernel.org, konrad.dybcio@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
+        richardcochran@gmail.com, arnd@arndb.de, geert+renesas@glider.be,
+        nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org
+Cc:     quic_saahtoma@quicinc.com
+References: <20230825091234.32713-1-quic_devipriy@quicinc.com>
+ <20230825091234.32713-5-quic_devipriy@quicinc.com>
+ <29a968e9-9c6f-034d-35fe-71c42b5d7cbb@linaro.org>
+In-Reply-To: <29a968e9-9c6f-034d-35fe-71c42b5d7cbb@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device-tree binding documentation for sdma hardware on
-HiSilicon Ascend SoC families.
+On 25/08/2023 14:30, Krzysztof Kozlowski wrote:
+> On 25/08/2023 11:12, Devi Priya wrote:
+>> Add NSSCC clock and reset definitions for ipq9574.
+>>
+>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+>> ---
+>>  Changes in V2:
+>> 	- Referenced gcc.yaml and dropped the duplicate properties from
+>> 	  the binding
+>> 	- Updated Uniphy clock names
+>> 	- Added nssnoc clocks and clock-names
+> 
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Rob's bot report is a result of patch #2 failing to apply.
 
-Signed-off-by: Guo Mengqi <guomengqi3@huawei.com>
----
- .../bindings/dma/hisilicon,ascend-sdma.yaml   | 74 +++++++++++++++++++
- 1 file changed, 74 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml
+I assume changes will be needed here to drop clock-names.
 
-diff --git a/Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml b/Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml
-new file mode 100644
-index 000000000000..9a3f8b701395
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml
-@@ -0,0 +1,74 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/hisilicon,ascend-sdma.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HiSilicon Ascend System DMA (SDMA) controller
-+
-+description: |
-+  The Ascend SDMA controller is used for transferring data
-+  in system memory.
-+
-+maintainers:
-+  - Guo Mengqi <guomengqi3@huawei.com>
-+
-+allOf:
-+  - $ref: dma-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - hisilicon,ascend310-sdma
-+      - hisilicon,ascend910-sdma
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#dma-cells':
-+    const: 1
-+    description:
-+      Clients specify a single cell with channel number.
-+
-+  dma-channel-mask:
-+    minItems: 1
-+    maxItems: 2
-+
-+  iommus:
-+    maxItems: 1
-+
-+  pasid-num-bits:
-+    description: |
-+      This tells smmu that this device supports iommu-sva feature.
-+      This determines the maximum number of digits in the pasid.
-+    maximum: 0x10
-+
-+  dma-coherent: true
-+
-+  dma-can-stall: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - dma-channel-mask
-+  - '#dma-cells'
-+  - iommus
-+  - pasid-num-bits
-+  - dma-can-stall
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    dma-controller@880e0000 {
-+        compatible = "hisilicon,ascend310-sdma";
-+        reg = <0x880e0000 0x10000>;
-+        dma-channel-mask = <0xff00>;
-+        iommus = <&smmu 0x7f46>;
-+        pasid-num-bits = <0x10>;
-+        dma-coherent;
-+        dma-can-stall;
-+        #dma-cells = <1>;
-+    };
-+
-+...
--- 
-2.17.1
+Best regards,
+Krzysztof
 
