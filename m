@@ -2,170 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F04EA79EB51
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 16:42:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CBEE79EB8F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 16:50:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241178AbjIMOm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 10:42:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56108 "EHLO
+        id S237619AbjIMOuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 10:50:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232390AbjIMOm5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 10:42:57 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00B4791;
-        Wed, 13 Sep 2023 07:42:53 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 904A6C433C8;
-        Wed, 13 Sep 2023 14:42:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694616173;
-        bh=ghmd2vE6l3/YQAYcdHB/Auew4n3efVE8LafRtaXbVHc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YGMCHCaS7LV+IgxR8JwzA2LNP/JAobSO7VFWJqFuLotcrNli1S/nHKVzF//aJ2S6V
-         oyTmUUNwYQcB2nInr2C8Ez39iVMQmhLWasrm56DXWToBj15FazV/Kl6X9Oqd98l7vq
-         xYCSySPKPtfqvA4b/JjwavRqFP6IGhDc7F3DFnWpvbrbrOP/iHL2RUh7HiB9Nfi1ae
-         OAv6grpPZpsAP5EFZJg6+L0GXuBVZ6JskfXUivQah7NoYp1WtIsK8dxArv+axEEnrs
-         p+KoYbQrGGzwtNfTaPkj8pd6Rp9GlH1mROzy40I5zjPv5zmvE+yp4nzsVVzTdwFELZ
-         0zorZ83mPn+fA==
-Date:   Wed, 13 Sep 2023 15:42:45 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        with ESMTP id S236344AbjIMOuM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 10:50:12 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58571AF;
+        Wed, 13 Sep 2023 07:50:08 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38DEnjxJ105094;
+        Wed, 13 Sep 2023 09:49:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1694616585;
+        bh=3kzN+eWiLMMqqT68k/QUtOeybIa03pmbjistamBKdXA=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=k4U5zLAMCAMqoBvJViKMPR4Wyu5+gLl3VSgwdw8ljLtMuIVvznYxA87JzozjaobjX
+         l9VtYEiZ1YlyxTaLuD9HmxzSIjbxXoj5ncifBSZNXwHHUp1nL3H0jNe7pJ2ApEOd0F
+         jkB2BJ1/sgn5DOy+hh8Bfm851OGAlr+lXhYnqm4o=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38DEnjad072702
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 13 Sep 2023 09:49:45 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 13
+ Sep 2023 09:49:45 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 13 Sep 2023 09:49:45 -0500
+Received: from [128.247.81.19] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38DEnj37088462;
+        Wed, 13 Sep 2023 09:49:45 -0500
+Message-ID: <64a4a0a8-7628-ffee-fca0-c7b953769fa6@ti.com>
+Date:   Wed, 13 Sep 2023 09:49:45 -0500
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-am65: Add full compatible to
+ dss-oldi-io-ctrl node
+To:     Andrew Davis <afd@ti.com>, Lee Jones <lee@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Simon Horman <horms@kernel.org>,
-        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 08/31] dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc:
- Add support for QMC HDLC
-Message-ID: <20230913-unruly-recite-7dbbbd7e63e0@spud>
-References: <20230912081527.208499-1-herve.codina@bootlin.com>
- <20230912101018.225246-1-herve.codina@bootlin.com>
- <20230912-capable-stash-c7a3e33078ac@spud>
- <20230913092640.76934b31@bootlin.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="D/KR2KGuouPtsCp2"
-Content-Disposition: inline
-In-Reply-To: <20230913092640.76934b31@bootlin.com>
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230911142556.64108-1-afd@ti.com>
+ <20230911142556.64108-2-afd@ti.com>
+Content-Language: en-US
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+In-Reply-To: <20230911142556.64108-2-afd@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---D/KR2KGuouPtsCp2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 13, 2023 at 09:26:40AM +0200, Herve Codina wrote:
-> Hi Conor,
->=20
-> On Tue, 12 Sep 2023 18:21:58 +0100
-> Conor Dooley <conor@kernel.org> wrote:
->=20
-> > On Tue, Sep 12, 2023 at 12:10:18PM +0200, Herve Codina wrote:
-> > > The QMC (QUICC mutichannel controller) is a controller present in some
-> > > PowerQUICC SoC such as MPC885.
-> > > The QMC HDLC uses the QMC controller to transfer HDLC data.
-> > >=20
-> > > Additionally, a framer can be connected to the QMC HDLC.
-> > > If present, this framer is the interface between the TDM bus used by =
-the
-> > > QMC HDLC and the E1/T1 line.
-> > > The QMC HDLC can use this framer to get information about the E1/T1 l=
-ine
-> > > and configure the E1/T1 line.
-> > >=20
-> > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > > ---
-> > >  .../bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml   | 13 +++++++++++=
-++
-> > >  1 file changed, 13 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm=
-1-scc-qmc.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-=
-scc-qmc.yaml
-> > > index 82d9beb48e00..b5073531f3f1 100644
-> > > --- a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-q=
-mc.yaml
-> > > +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-q=
-mc.yaml
-> > > @@ -101,6 +101,16 @@ patternProperties:
-> > >            Channel assigned Rx time-slots within the Rx time-slots ro=
-uted by the
-> > >            TSA to this cell.
-> > > =20
-> > > +      compatible:
-> > > +        const: fsl,qmc-hdlc
-> > > +
-> > > +      fsl,framer:
-> > > +        $ref: /schemas/types.yaml#/definitions/phandle
-> > > +        description:
-> > > +          phandle to the framer node. The framer is in charge of an =
-E1/T1 line
-> > > +          interface connected to the TDM bus. It can be used to get =
-the E1/T1 line
-> > > +          status such as link up/down. =20
-> >=20
-> > Sounds like this fsl,framer property should depend on the compatible
-> > being present, no?
->=20
-> Well from the implementation point of view, only the QMC HDLC driver uses=
- this
-> property.
->=20
-> From the hardware description point of view, this property means that the=
- time slots
-> handled by this channel are connected to the framer. So I think it makes =
-sense for
-> any channel no matter the compatible (even if compatible is not present).
->=20
-> Should I change and constraint the fsl,framer property to the compatible =
-presence ?
-> If so, is the following correct for this contraint ?
->    --- 8< ---
->    dependencies:
->      - fsl,framer: [ compatible ];
->    --- 8< ---
+On 11/09/23 09:25, Andrew Davis wrote:
+> This matches the binding for this register region which fixes a couple
+> DTS check warnings.
+> 
+> While here trim the leading 0s from the "reg" definition.
+> 
+> Signed-off-by: Andrew Davis <afd@ti.com>
 
-The regular sort of
-if:
-	compatible:
-		contains:
-			const: foo
-then:
-	required:
-		- fsl,framer
-would fit the bill, no?
+For both the patches, 1/2 and 2/2,
 
---D/KR2KGuouPtsCp2
-Content-Type: application/pgp-signature; name="signature.asc"
+Reviewed-by: Aradhya Bhatia <a-bhatia1@ti.com>
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQHKZQAKCRB4tDGHoIJi
-0jE/AP0awmyeu05CVKleLo13y3Fjt4HP0do7dEhQGNt4rxVmsAEAtTdqxGH2EmC6
-3WhT1AVUi21kX6VzpxFlrQiNmHgB/A4=
-=zHjw
------END PGP SIGNATURE-----
-
---D/KR2KGuouPtsCp2--
+> ---
+>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> index bc460033a37a8..d5f217427893d 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> @@ -498,8 +498,8 @@ serdes_mux: mux-controller {
+>  		};
+>  
+>  		dss_oldi_io_ctrl: dss-oldi-io-ctrl@41e0 {
+> -			compatible = "syscon";
+> -			reg = <0x000041e0 0x14>;
+> +			compatible = "ti,am654-dss-oldi-io-ctrl", "syscon";
+> +			reg = <0x41e0 0x14>;
+>  		};
+>  
+>  		ehrpwm_tbclk: clock-controller@4140 {
