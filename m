@@ -2,87 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A90D79E1E3
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 10:21:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98B5D79E1F0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 10:24:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233942AbjIMIV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 04:21:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47812 "EHLO
+        id S238528AbjIMIYJ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 13 Sep 2023 04:24:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231301AbjIMIV1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 04:21:27 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3210CE73
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 01:21:23 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4013454fa93so74014665e9.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 01:21:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694593281; x=1695198081; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6yV/iPlTqbuR7AJsSEy3NRKH56jsiO3itpIr2ZhKOxI=;
-        b=yVfKSei8VNyZkc0L2zghH0JbVEFpkjWBpXkuTkuiMOD3LJUWYCOK1K1qHmHMJ36Jik
-         +GZWHiIQnDbYqBjVPHfz7C7TWazrmiqFj9l59T+cTs3PfY//e5O3CKsYiZaMUBud0w24
-         7gzqlby2ZyHxFseOJQvXti52lwU4UxbCmWuZvAUB/z5m84saQ2fyl092tuI6LkR9P4rw
-         8DPN6KnuG16UqCMa9rQ7FBA0Ckn7EmMDNBpeWlmvuS3R8tfDBBeMJWsQ6XPPNM5zF/GR
-         eQethTSBwtC4/1m1Rf+vXUxh4DDQez+Oqd1Ks7l5KTujiTfJaeEXlJZIt6FCxwmGa8sR
-         Mpjw==
+        with ESMTP id S231301AbjIMIYI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 04:24:08 -0400
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB581E73;
+        Wed, 13 Sep 2023 01:24:04 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-58c92a2c52dso62440907b3.2;
+        Wed, 13 Sep 2023 01:24:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694593281; x=1695198081;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6yV/iPlTqbuR7AJsSEy3NRKH56jsiO3itpIr2ZhKOxI=;
-        b=wKLJmLsvjxQIIF3Du9Jg7OFVsIqlWDMVtU4mkcwuMWOyz6awrUDTJjXesy1w9DLily
-         XjxsdiMcCLmhHv5ysXU3wcVh2hxqtSZoVPQxHekjJmBDUJKF0bshNk2uf4T5BvEaF8YJ
-         57ExqAbCScnyhV5lEk82hgln3gekgFSUQhV8SriEGye7uGcIfMwjyMXL6oXuORxav5jg
-         eem+GX4V7VSjOt3rANTAnSUeJnB1eivMCpyWFJt34z0VFfVqc+DtQvf2SiCQprNOg4X+
-         mmO5sC+xgmL0tkIByIcdSQlzTqtpLDkbjmC9vYqIH5ehoVnmklLcmpsDyO61Qc3X6jih
-         kfVg==
-X-Gm-Message-State: AOJu0YxOPhi7RmW9eNsYm7NJH2vz5JIVZ3yEfC+9Y7Zpe7bmUFfDah4b
-        /Um51xs9+gZ4MHbY9B3OeSkIxg==
-X-Google-Smtp-Source: AGHT+IEdMCGleJenSkST6EFbu5Qz4wEAy04mq+fsiN3qwHV8D/PMO8U98ONfNDNkfas/yiQbKOrXSA==
-X-Received: by 2002:a1c:4c16:0:b0:3fe:dcd0:2e32 with SMTP id z22-20020a1c4c16000000b003fedcd02e32mr1357415wmf.19.1694593281687;
-        Wed, 13 Sep 2023 01:21:21 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id t22-20020a7bc3d6000000b003fe1fe56202sm1286245wmj.33.2023.09.13.01.21.19
+        d=1e100.net; s=20230601; t=1694593444; x=1695198244;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3YpGKJuDtrl+7ORYHXXZK89Axri0zAtMDBhXftL8Qjk=;
+        b=j54TWAR9li5C7xEsZHsgXo6RsgGYG5XzSWx9lNk82ObL8fqqP0NGL/2+iT7FcPZvof
+         a012o0kUvxTF2SDj/qWNW5yXa3HUpdM+JdtEiC6c1lIGZTW33o0Fa4jH2O+4mpZruJcK
+         BoKMp+XgHbIJgSOWndCutmrtNwZkgbhlhPZ0AZ9lVhwKt8v0xX5IxP0+h8Iiq0aLlWHi
+         eVuomBVQgw09aK3gk4ZbWF0FMJ0ERrU5EuffuShU4MCAlUpZ5R8P0DWS3gGroP91jNe6
+         POgEbq+04nqRZ4rHpVUczxujEPypQARlunErJslo0bJoemvqrTyfg0Rl8giVm0t5JN/n
+         hzlA==
+X-Gm-Message-State: AOJu0YwT6srZY6+ATzceF+J+Do3VoNk2kOQ0z2b72yVKHqzD8fU1z8WU
+        MdEwE0i6sU2Y8O+8BCq1VS2AiBH41ASsbg==
+X-Google-Smtp-Source: AGHT+IGVwk+ycTXGeEGKkEi3H5eUGCLRXcodxKTCwu8p7OaPp8DF+PtdafJgwCLuJjD1jBYPpz/qkg==
+X-Received: by 2002:a0d:ea0b:0:b0:59b:4116:cf12 with SMTP id t11-20020a0dea0b000000b0059b4116cf12mr1931803ywe.8.1694593443927;
+        Wed, 13 Sep 2023 01:24:03 -0700 (PDT)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
+        by smtp.gmail.com with ESMTPSA id m4-20020a819c04000000b0059b20231f1dsm2964940ywa.121.2023.09.13.01.24.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 01:21:21 -0700 (PDT)
-Message-ID: <f3100f6c-926a-7fb8-793a-d930e6b720c5@linaro.org>
-Date:   Wed, 13 Sep 2023 10:21:19 +0200
+        Wed, 13 Sep 2023 01:24:02 -0700 (PDT)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-58c92a2c52dso62440617b3.2;
+        Wed, 13 Sep 2023 01:24:02 -0700 (PDT)
+X-Received: by 2002:a25:d045:0:b0:d74:6c9f:e734 with SMTP id
+ h66-20020a25d045000000b00d746c9fe734mr1738982ybg.47.1694593442162; Wed, 13
+ Sep 2023 01:24:02 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Minerva: Add Facebook Minerva CMC
- board
-Content-Language: en-US
-To:     yangchen.openbmc@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Cc:     patrick@stwcx.xyz, Jerry.Lin@quantatw.com, Eddie.Chen@quantatw.com,
-        EasonChen1@quantatw.com
-References: <20230912140532.3797736-1-yangchen.openbmc@gmail.com>
- <20230912140532.3797736-3-yangchen.openbmc@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230912140532.3797736-3-yangchen.openbmc@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20230825091234.32713-1-quic_devipriy@quicinc.com>
+ <20230825091234.32713-7-quic_devipriy@quicinc.com> <CAA8EJpo75zWLXuF-HC-Xz+6mvu_S1ET-9gzW=mOq+FjKspDwhw@mail.gmail.com>
+In-Reply-To: <CAA8EJpo75zWLXuF-HC-Xz+6mvu_S1ET-9gzW=mOq+FjKspDwhw@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 13 Sep 2023 10:23:50 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXx_b-uubonRH5=Tcxo+ddxg2wXvRNQNjhMrfvSFh0Xcw@mail.gmail.com>
+Message-ID: <CAMuHMdXx_b-uubonRH5=Tcxo+ddxg2wXvRNQNjhMrfvSFh0Xcw@mail.gmail.com>
+Subject: Re: [PATCH V2 6/7] arm64: dts: qcom: ipq9574: Add support for nsscc node
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Devi Priya <quic_devipriy@quicinc.com>, andersson@kernel.org,
+        agross@kernel.org, konrad.dybcio@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
+        richardcochran@gmail.com, arnd@arndb.de, geert+renesas@glider.be,
+        nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+        quic_saahtoma@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2023 16:05, yangchen.openbmc@gmail.com wrote:
-> From: Yang Chen <yangchen.openbmc@gmail.com>
-> 
-> Add linux device tree entry related to the Minerva Chassis Management
-> Controller (CMC) specific devices connected to the Aspeed SoC (AST2600).
-> 
-> Signed-off-by: Yang Chen <yangchen.openbmc@gmail.com>
+Hi Dmitry,
 
-Also looks like a duplicate.
+On Fri, Aug 25, 2023 at 1:28 PM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+> On Fri, 25 Aug 2023 at 12:15, Devi Priya <quic_devipriy@quicinc.com> wrote:
+> > Add a node for the nss clock controller found on ipq9574 based devices.
+> >
+> > Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> > ---
+> >  Changes in V2:
+> >         - Dropped the fixed clock node gcc_gpll0_out_aux and added
+> >           support for the same in gcc driver
+> >         - Updated the node name to clock-controller@39b00000
+> >         - Added clock-names to retrieve the nssnoc clocks and add them
+> >           to the list of pm clocks in nss driver
+> >
+> >  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 48 +++++++++++++++++++++++++++
+> >  1 file changed, 48 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> > index 51aba071c1eb..903311547e96 100644
+> > --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> > @@ -722,6 +742,34 @@ frame@b128000 {
+> >                                 status = "disabled";
+> >                         };
+> >                 };
+> > +
+> > +               nsscc: clock-controller@39b00000 {
+> > +                       compatible = "qcom,ipq9574-nsscc";
+> > +                       reg = <0x39b00000 0x80000>;
+> > +                       clocks = <&gcc GCC_NSSNOC_NSSCC_CLK>,
+> > +                                <&gcc GCC_NSSNOC_SNOC_CLK>,
+> > +                                <&gcc GCC_NSSNOC_SNOC_1_CLK>,
+> > +                                <&bias_pll_cc_clk>,
+> > +                                <&bias_pll_nss_noc_clk>,
+> > +                                <&bias_pll_ubi_nc_clk>,
+> > +                                <&gcc GPLL0_OUT_AUX>,
+> > +                                <0>,
+> > +                                <0>,
+> > +                                <0>,
+> > +                                <0>,
+> > +                                <0>,
+> > +                                <0>,
+> > +                                <&xo_board_clk>;
+>
+> If you move xo_board closer to the start of the list, it will be
+> slightly easier to review.
+>
+> > +                       clock-names = "nssnoc_nsscc", "nssnoc_snoc", "nssnoc_snoc_1",
+> > +                                     "bias_pll_cc_clk", "bias_pll_nss_noc_clk",
+> > +                                     "bias_pll_ubi_nc_clk", "gpll0_out_aux", "uniphy0_nss_rx_clk",
+> > +                                     "uniphy0_nss_tx_clk", "uniphy1_nss_rx_clk",
+> > +                                     "uniphy1_nss_tx_clk", "uniphy2_nss_rx_clk",
+> > +                                     "uniphy2_nss_tx_clk", "xo_board_clk";
+>
+> You are using clock indices. Please drop clock-names.
 
-Best regards,
-Krzysztof
+What do you mean by "using clock indices"?
+Note that the "clock-names" property is required according to the DT bindings.
 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
