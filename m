@@ -2,177 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F27F79E5AF
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 13:04:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F71879E65A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 13:15:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231611AbjIMLEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 07:04:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42056 "EHLO
+        id S240063AbjIMLP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 07:15:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231235AbjIMLEN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 07:04:13 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ED511726;
-        Wed, 13 Sep 2023 04:04:09 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-98377c5d53eso835943766b.0;
-        Wed, 13 Sep 2023 04:04:08 -0700 (PDT)
+        with ESMTP id S239927AbjIMLPp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 07:15:45 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 175D33C25
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 04:14:25 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-31ae6bf91a9so6748502f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 04:14:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694603047; x=1695207847; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=XWMdnJsx2d8fiBGvmqe7qu7qVNHb4jJy8Zu53A7Ws4A=;
-        b=SCf0LhkSU0USfus5vVpfJOi54WNnFg+IjBO8vD37nfAIr9B9FAyXYEE4EH+TBw7xw1
-         Q0UK8bqbMPxBxTjfM19Xj4Bs4vYV5+FxqaHV8xICrX2qcNiidfYQEaHhpAnD4XUIU5ED
-         ttIXQk943CWO+OE6z91MSducuzhsTTjlYmWuZMI0ZuCH1/3f2nt4BfiJjPguFhBpbGe8
-         Op9TZy/M+OlXTQM8GufMSJQoridmIGQhxWvEGGQm/YaLYZz99X6/K5x6XiaTJRuyXj1f
-         BbJiwg6HD4S0lnb79kR5EEtBFGY4Bhx4ve7GQpmcCGhnAT6FK2aW3pzNfBabX+VsMZVf
-         MELg==
+        d=linaro.org; s=google; t=1694603663; x=1695208463; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=X4j22lmDBEdz68x3qUhl5gJ0drA+YexofLKRZQjwWfs=;
+        b=MsJTl3hH4aJNrK5tFeLAxICWDzLg91wl3pT/mKCW+Vb19en/I/7/yG0MEMIoEwBxTG
+         7j7n6R1q3u/vNeitp7ccZoqRIUlBvyzPL1Sm3EKawQBtuNKeew02N48cyZo/wYOKCOzu
+         WboobLHLEpW95M5poDU+qbwX39v5xJwzlLwdAj3+7ujFDnrguB6DhcAMXy7OWzIwZUXp
+         v0cPajGP40D1TFXYhNlutjrJF7Siaes0SHtPWicV2i5ott0XXCr5MD+3O9ggspqfh8Ul
+         qXHlbeB2xzpT7xviOxeQ24af1ulbvqpm4lYlYLiMPqhNA1lh/oVrvOVDd5qculDqH48D
+         JDgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694603047; x=1695207847;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1694603663; x=1695208463;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XWMdnJsx2d8fiBGvmqe7qu7qVNHb4jJy8Zu53A7Ws4A=;
-        b=mxYwBQ+CX1TYPGAUHpNN6HHrg4nmnjEClBx2O+tGCR8hP5QRhYW9M1s9+ZIb/5vO//
-         ylxLqHO5OmG8RdbyvVpwlCGh9hehnoSSfCJb3SzLpuhspJqGjtIZUiiSQOZxaCDz4yLx
-         f0kDxrKpiDxrY67VgYvpCfPm4p9QdW04R+lr38m2ubnDOs+BqN2MbM9k+BTmTJAte7Iu
-         CkfPiDx3kX0ldj0r4OoyWJgLmKfkWAwRFpbkg+tTqonNAbYNKbg11eX6fVC536XI8fas
-         vxWinQ8FJCKyU+YCXX3/HqY1/cBczBTy4xHVO+cFP9IbAXkUK55HgLTfS6LAWqwYf+jr
-         DONw==
-X-Gm-Message-State: AOJu0YylWRqlEfAItmyC+4HaVojkU4UcWK+x3vpgQpVme8if3xUyeopC
-        /7RWBtrWDg1f9qy2p5cAaIE=
-X-Google-Smtp-Source: AGHT+IENQYSCb1bqP3F1jbQeEwYGGwYsGuq575to5BfuhYNjZDfJ9D1qKsoXbdaMDic7mOraJMeKMA==
-X-Received: by 2002:a17:906:18a2:b0:99d:f0e8:5623 with SMTP id c2-20020a17090618a200b0099df0e85623mr1572105ejf.54.1694603047218;
-        Wed, 13 Sep 2023 04:04:07 -0700 (PDT)
-Received: from skbuf ([188.26.184.93])
-        by smtp.gmail.com with ESMTPSA id qb1-20020a1709077e8100b009ad89697c86sm2352992ejc.144.2023.09.13.04.04.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Sep 2023 04:04:06 -0700 (PDT)
-Date:   Wed, 13 Sep 2023 14:04:04 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        bh=X4j22lmDBEdz68x3qUhl5gJ0drA+YexofLKRZQjwWfs=;
+        b=JCvcwGVeFnIL4tt9WrAFGUuh7PjeuwjoI7AWfh2bUdhbn4uP10UYqAV6RTrZrL2mB5
+         oFVrHnwjJhrv32YucVU2TBvvznRxMsXxHa8JZQZzjf6QppMq+WgUBPlGLKpHqoq4Fabj
+         Sk1BHCoYZzNVYmsPyhemN2/VNk4UpgEztVJJ+ICoX/9gKECqwVsOpK7pe3UuZl9MAOFi
+         LS95FuPIsBFrIN+cGJIo8HKvJy6Fns11hyy1zXY5E4n2kYXqzfVMWHrqNC67Z40L3oVq
+         uTHrpn5qo7gJZe42XnqhSbGdZ8+n6nxYkJy5j1+lH5apPZ5xVttl9yu/1Xejx17WHQ45
+         2JIA==
+X-Gm-Message-State: AOJu0YwKY9Ck3hKEe96zwzIKu2JnRjgsNlOeFHc7K9+zS84c4OBs7Jix
+        gTLWR6sK2zAHCOeCJmkLsTmHHw==
+X-Google-Smtp-Source: AGHT+IFJlSnmnVty++JAQlMdedVZw+ig39ydIHFfYUarwozinwRjAGGXz3bvVLJ7KKgGWK++b7J6OQ==
+X-Received: by 2002:a5d:4a09:0:b0:317:70da:abdd with SMTP id m9-20020a5d4a09000000b0031770daabddmr1727674wrq.59.1694603663440;
+        Wed, 13 Sep 2023 04:14:23 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id l5-20020adfe585000000b0031759e6b43fsm15246555wrm.39.2023.09.13.04.14.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Sep 2023 04:14:22 -0700 (PDT)
+Message-ID: <30bb6068-6bb8-9a2c-af19-b989960d0be9@linaro.org>
+Date:   Wed, 13 Sep 2023 13:14:20 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v2 01/14] arm64: dts: qcom: msm8916: Drop RPM bus clocks
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        UNGLinuxDriver@microchip.com,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, mithat.guner@xeront.com,
-        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Alexey Minnekhanov <alexeymin@postmarketos.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
-Message-ID: <20230913110404.co7earmnbzf6hhoe@skbuf>
-References: <0cee0928-74c9-4048-8cd8-70bfbfafd9b2@arinc9.com>
- <20230827121235.zog4c3ehu2cyd3jy@skbuf>
- <676d1a2b-6ffa-4aff-8bed-a749c373f5b3@arinc9.com>
- <87325ce9-595a-4dda-a6a1-b5927d25719b@arinc9.com>
- <20230911225126.rk23g3u3bzo3agby@skbuf>
- <036c0763-f1b2-49ff-bc82-1ff16eec27ab@arinc9.com>
- <20230912193450.h5s6miubag46z623@skbuf>
- <6cec079e-991e-4222-a76d-d6156de0daca@arinc9.com>
- <20230913074231.5azwxqjuv2wp5nik@skbuf>
- <89c9b84c-574c-4071-9524-9207597a3f0a@arinc9.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <89c9b84c-574c-4071-9524-9207597a3f0a@arinc9.com>
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        linux-usb@vger.kernel.org
+References: <20230721-topic-rpm_clk_cleanup-v2-0-1e506593b1bd@linaro.org>
+ <20230721-topic-rpm_clk_cleanup-v2-1-1e506593b1bd@linaro.org>
+ <bd11d1b1-efe5-4f96-43e7-163fca5d3278@linaro.org>
+ <ac501bcc-80a1-4b65-ba24-272152d1c95c@linaro.org>
+ <7b500bba-3091-f425-a60d-e58a3d9e4c1a@linaro.org>
+ <9a0ab5a9-d4d8-41b8-94b0-9c62bd686254@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <9a0ab5a9-d4d8-41b8-94b0-9c62bd686254@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 13, 2023 at 01:59:17PM +0300, Arınç ÜNAL wrote:
-> If I understand correctly, these phylink rules are for switch ports. The
-> fixed-link, phy-handle, and managed properties are described on
-> ethernet-controller.yaml so I thought it would make sense to define the
-> rules there and refer to them where they're needed.
-> 
-> Example:
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-> index 480120469953..7279ab31aea7 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-> @@ -65,16 +65,8 @@ if:
->      - required: [ ethernet ]
->      - required: [ link ]
->  then:
-> -  allOf:
-> -    - required:
-> -        - phy-mode
-> -    - oneOf:
-> -        - required:
-> -            - fixed-link
-> -        - required:
-> -            - phy-handle
-> -        - required:
-> -            - managed
-> +  $ref: /schemas/net/ethernet-controller.yaml#/$defs/phylink-switch
-> +  required: [ phy-mode ]
->  additionalProperties: true
-> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> index e532c6b795f4..742aaf1a5ef2 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> @@ -179,6 +179,15 @@ required:
->    - compatible
->    - reg
-> +if:
-> +  required: [ mdio ]
-> +then:
-> +  patternProperties:
-> +    "^(ethernet-)?ports$":
-> +      patternProperties:
-> +        "^(ethernet-)?port@[0-9]+$":
-> +          $ref: /schemas/net/ethernet-controller.yaml#/$defs/phylink-switch
-> +
->  $defs:
->    mt7530-dsa-port:
->      patternProperties:
-> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> index 9f6a5ccbcefe..d7256f33d946 100644
-> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> @@ -284,6 +284,21 @@ allOf:
->              controllers that have configurable TX internal delays. If this
->              property is present then the MAC applies the TX delay.
-> +$defs:
-> +  phylink-switch:
-> +    description: phylink bindings for switch ports
-> +    allOf:
-> +      - anyOf:
-> +          - required: [ fixed-link ]
-> +          - required: [ phy-handle ]
-> +          - required: [ managed ]
-> +
-> +      - if:
-> +          required: [ fixed-link ]
-> +        then:
-> +          not:
-> +            required: [ managed ]
-> +
->  additionalProperties: true
->  ...
-> 
-> Arınç
+On 13/09/2023 12:48, Konrad Dybcio wrote:
+> On 13.09.2023 10:53, Krzysztof Kozlowski wrote:
+>> On 13/09/2023 10:47, Konrad Dybcio wrote:
+>>> On 13.09.2023 09:07, Krzysztof Kozlowski wrote:
+>>>> On 12/09/2023 15:31, Konrad Dybcio wrote:
+>>>>> These clocks are now handled from within the icc framework and are
+>>>>
+>>>> That's a driver behavior, not hardware.
+>>> I believe we've been over this already..
+>>>
+>>> The rationale behind this change is: that hardware, which falls
+>>> under the "interconnect" class, was previously misrepresented as
+>>> a bunch of clocks. There are clocks underneath, but accessing them
+>>> directly would be equivalent to e.g. circumventing the PHY subsystem
+>>> and initializing your UFS PHY from within the UFS device.
+>>
+>> And every time one write such commit msg, how should we remember there
+>> is some exception and actually it is about clock representation not CCF
+>> or ICC framework.
+> So is your reply essentially "fine, but please make it clear in
+> each commit message"?
 
-I don't think they're for switch ports only. Any driver which uses
-phylink_fwnode_phy_connect() or its derivatives gets subject to the same
-bindings. But putting the sub-schema in ethernet-controller.yaml makes
-sense, just maybe not naming it "phylink-switch".
+I am fine with this change. If commit msg had such statement, I would
+not have doubts :/
+
+Best regards,
+Krzysztof
+
