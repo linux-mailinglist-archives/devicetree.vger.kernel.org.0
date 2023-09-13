@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EBA679E059
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 09:02:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F35279E05D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 09:03:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233657AbjIMHC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 03:02:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57194 "EHLO
+        id S238398AbjIMHDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 03:03:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232592AbjIMHC0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 03:02:26 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00D211738
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:02:21 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9a65f9147ccso822019066b.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:02:21 -0700 (PDT)
+        with ESMTP id S230228AbjIMHDS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 03:03:18 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08A57173E
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:03:14 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9a9cd066db5so827180466b.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 00:03:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694588540; x=1695193340; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694588592; x=1695193392; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=z1rc1LzbJvJ0G+OA+LqqEMmtttFt0Qb849U5LVF5BIk=;
-        b=jXV8LyzdTB48lSCITDrh0bhcp3AWZlg4KylufRDHhVIPKwBL1GdfIA6JXQhjm8+CIQ
-         ybsMNVbwPvUw1M3Msa4OkfD+KAnSXEYbLgFV+5coCdfGR4x4yHUHo1aPkJ5sWvy5PJ8B
-         lvbKkg/7cvhf90u1A+xg6sHqg3wo0Ae2fjzfE80IFymw0Pu9wSi87uDE7oZ1v+H06v4Z
-         BT3ksOONBKiGZp3b7EQTSGpG2s9rG3GxtQ75wXf1nNxvo9mGDS70FGXY+nDEmhVxNDjc
-         qW7JHHQUdJ5sTcd2DRsxd+2zTgF1UsYYC220nsP7K00avRYbXAznCzwYju6SkU6k/f1m
-         nnhQ==
+        bh=KZ3zQjFWjU6aUGv1M6ufEZQD2GEy4rVqeEvdZE7HUcU=;
+        b=jq0kW61GkgjrwMMrGaZpebWkJDASoHyDsSDQmYI1EDZueOPZIzRRHhU5dGS1laGoqJ
+         sPqXtMGhxy1ZhqkyXVbpoCsFe69O5ryxI6TNJRL4LZ6VnrLTIzN2etslAin6Uu7t++Fx
+         6+xJw13xwCv5cZAIILyB03AtkaUbONyBeip5jcZLVy5jJlQsxDeocN32J8yDNm8YgQCy
+         mykspDmxLwknDtnuuHGR6JiG/s3g2ArS/J7xEo18KDUFbnTJJZ+Foh5qtRmIlMIX2SuZ
+         SxfPUkY5yBZ9iTLQalWaOg/Vbm5bF0+yLl5wNC6Ks3+Ld9Rw4XQPXjhyNIhjhJRY6VPC
+         YYLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694588540; x=1695193340;
+        d=1e100.net; s=20230601; t=1694588592; x=1695193392;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=z1rc1LzbJvJ0G+OA+LqqEMmtttFt0Qb849U5LVF5BIk=;
-        b=SACD5R01OVDYvGtAO8VAUNpbKmpmskUP9lKX2FaHBv1+cEapVY3WtKmNNsn4jKndV0
-         IvJeWYSmmGKFltoZHn+MrG5+p8L9A3ghfVMWWhkFbvqTMWQR28MxrEdSpaKCf+73d4jy
-         aSs1VOvaoNJAUo3IPS0gdKFVqvRgyheWvyboBKzrVMA7p3MFypiiiBqeH9ylqPkMXgEi
-         4ImruUsUctC5zDa3nnxWIFRRHqt4YPLR2qm0APK9bRMVRX5iS9sXoAErOfontlSohfoe
-         +lVA/QeOqwgcDBr4O0Y/wS9L2cvdl14DsDajKDYklErenkBBJfGvBOin3ixYQCIQ5H8Q
-         o42w==
-X-Gm-Message-State: AOJu0YyctiwS9lmDOGtuzLBreZudYjou7x7z4mFtt4rBT4CGznv9K11n
-        Bxu+pljIoGdZjiexyJNBonMojQ==
-X-Google-Smtp-Source: AGHT+IHnEJGHmwstPMJ15Zy3Rri6suCLCTKqHXLKWj9VzFdV1R44d+EmH96hsTtvp4FgjExxgPAXPg==
-X-Received: by 2002:a17:906:1da9:b0:9a1:d087:e0c0 with SMTP id u9-20020a1709061da900b009a1d087e0c0mr1099470ejh.42.1694588540407;
-        Wed, 13 Sep 2023 00:02:20 -0700 (PDT)
+        bh=KZ3zQjFWjU6aUGv1M6ufEZQD2GEy4rVqeEvdZE7HUcU=;
+        b=Td/8xSLvskN9GfyxZHgfzLrcdUQnETzPOYZw16apfoSZ1kZLq3r2/2BPTaVeagD5X/
+         pPNrPS1d/YJed3OuDQeuV6clj54CVsZVeOJvnU4+TzT4jkbEVL7ou93m5HIwtOhrbG+m
+         gVAXHAegYa6+4L0UULlcsejIQMATEDNC3QiYTaI6RYXr9EDywxfQl0faLFkYm3+muLUv
+         tTyb/ZqqJ1Wphcrot0m7HiJY5n9/ntYpGlIi6hGpDy+VIWJinwynzhg3d21ghvN1pbJ2
+         0jieF+zpWDGeOaNufFcL5H0hBwFb1Ry6G03gCBlKLtsw2FKUL3tIadcJZCjsllcKd9Jh
+         l6vQ==
+X-Gm-Message-State: AOJu0YxaJjrEc5ddWXZytKqVsJBjEHqQIWOTwum0HR9ErSoJ+F2hWQFV
+        MZtHu5SZ/nkUsDxcnDj//CGILQ==
+X-Google-Smtp-Source: AGHT+IEKAbAXa/5JMpdnKFLiyNtux5WP3j+5CeFfg9ME2oCoQ6zAJhpVu5+Wt7iMqVe/JefU7iiaAA==
+X-Received: by 2002:a17:906:cc4d:b0:9a2:26e4:a5e8 with SMTP id mm13-20020a170906cc4d00b009a226e4a5e8mr1144760ejb.3.1694588592272;
+        Wed, 13 Sep 2023 00:03:12 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id q24-20020a170906941800b0098921e1b064sm7871387ejx.181.2023.09.13.00.02.17
+        by smtp.gmail.com with ESMTPSA id op5-20020a170906bce500b00992ea405a79sm7968662ejb.166.2023.09.13.00.03.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 00:02:19 -0700 (PDT)
-Message-ID: <cc6ad994-a3c3-03d6-6095-14e43f105314@linaro.org>
-Date:   Wed, 13 Sep 2023 09:02:16 +0200
+        Wed, 13 Sep 2023 00:03:11 -0700 (PDT)
+Message-ID: <3ee11823-a441-b646-bdd7-aedd3a3a55e5@linaro.org>
+Date:   Wed, 13 Sep 2023 09:03:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH V2 1/5] ASoC: dt-bindings: Adds properties to
- "awinic,aw88395"
+Subject: Re: [PATCH V2 4/5] ASoC: codecs: Change the aw88261 variable name and
+ i2c driver name
 Content-Language: en-US
 To:     wangweidong.a@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -70,9 +70,9 @@ To:     wangweidong.a@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230912065852.347000-1-wangweidong.a@awinic.com>
- <20230912065852.347000-2-wangweidong.a@awinic.com>
+ <20230912065852.347000-5-wangweidong.a@awinic.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230912065852.347000-2-wangweidong.a@awinic.com>
+In-Reply-To: <20230912065852.347000-5-wangweidong.a@awinic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
@@ -82,37 +82,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 12/09/2023 08:58, wangweidong.a@awinic.com wrote:
 > From: Weidong Wang <wangweidong.a@awinic.com>
 > 
-> Adds properties to "awinic,aw88395" to make files more complete
-> 
-> Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
-> ---
->  .../bindings/sound/awinic,aw88395.yaml        | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
-> index 4051c2538caf..4965aa4a5370 100644
-> --- a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
-> +++ b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
-> @@ -32,11 +32,28 @@ properties:
->    reset-gpios:
->      maxItems: 1
->  
-> +  awinic,audio-channel:
-> +    description:
-> +      It is used to distinguish multiple PA devices, so that different
-> +      configurations can be loaded to different PA devices
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 7
-> +
-> +  awinic,sync-flag:
-> +    description:
-> +      Flag bit used to keep the phase synchronized in the case of multiple PA
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+> Change "sound-channel" to "awinic,audio-channel"
+> Change "aw88261_smartpa" to "aw88261"
 
-Looks like bool, not uint32. If you made it uint32 for some future
-purpose, then the name "flag" is misleading and anyway what would be the
-third option here for sync?
+
+
+> -	prof_name = aw88261_dev_get_prof_name(aw88261->aw_pa, count);
+> -	if (!prof_name) {
+> +	ret = aw88261_dev_get_prof_name(aw88261->aw_pa, count, &prof_name);
+> +	if (ret) {
+>  		strscpy(uinfo->value.enumerated.name, "null",
+>  						strlen("null") + 1);
+>  		return 0;
+> @@ -1189,7 +1190,7 @@ static void aw88261_parse_channel_dt(struct aw88261 *aw88261)
+>  	u32 channel_value = AW88261_DEV_DEFAULT_CH;
+>  	u32 sync_enable = false;
+>  
+> -	of_property_read_u32(np, "sound-channel", &channel_value);
+> +	of_property_read_u32(np, "awinic,audio-channel", &channel_value);
+>  	of_property_read_u32(np, "sync-flag", &sync_enable);
+
+What about this?
 
 Best regards,
 Krzysztof
