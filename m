@@ -2,102 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16E9D79E204
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 10:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BE5C79E243
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 10:37:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238736AbjIMI0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 04:26:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55828 "EHLO
+        id S238955AbjIMIh6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 04:37:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238908AbjIMI0T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 04:26:19 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5F63199B
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 01:26:14 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-31f737b8b69so6082176f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 01:26:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694593573; x=1695198373; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MoiLF9qWHetvzCqeRRmjqsm+XzU44/Y+Q1HjHiijaVk=;
-        b=EdhhLngt5a0eQi59anhz1MT+BwGrYGcNs0gH+KUr58WJVAcf5FIwOtAn1lvEbgJGgO
-         dl9/8PIxRHSvpwNBZNYLNCxC8K9NrqDEujmFbJefX2t8mrbu8SdObvMTPn+lfMH7WUCi
-         JgKDWKK03xqGLCwN5bI0GOMKH2C/MqDSTUXHyU22Ogd3Cz7gAaY4BrLSscz2tLmDFp1L
-         pg5h+R9vpw6FVStKsv8XqLfcNrxYlTYaxv+Qy52oCrev2xhWDnVV06kiBDrL4UhAwvZO
-         Lf/RapebciMKoEJ8s00OEtVsUcTJ3VMN9f6D1HgCUXfCD6AByqPR27PoVc5/MoqNED3t
-         d93g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694593573; x=1695198373;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MoiLF9qWHetvzCqeRRmjqsm+XzU44/Y+Q1HjHiijaVk=;
-        b=R38mcxKtv/qN74QAivLiA5CjxoxuRS1wSey1IaSWrNJVjcE4vXSAF8lntVHKZKKZFg
-         rdIqeeO75ckqrPYYEHK+uPdqh0O4gubI/r/z4dbltqe4mqJj3zWpwMzP/25zhZ26BAQB
-         W4xl+jp1LYUdDVrzHvsZ2vAmgK5qxGEN4HYk9Vgyq5oC9ZCGPJQZBcpwA5BWsvy/FbRw
-         JqvAdTr2YKsfypXN66YXJhjbGq+sVPKcDXpGyhtkDqz14jdePzzg9YxoQ469Rz8w4bUN
-         Oi1hz5Y1uzog275OlpKTkjk6aB0AA50M4gI8dMedwIpPSI8/GETFlIF4YiTKQzUSH73L
-         +oQw==
-X-Gm-Message-State: AOJu0Yy22NRQOuZW3WgpeJAfNzP9/xnPD4crBmtWixzn0Y0rIuP5/mbp
-        oDsiJCxSkrtNERlVzO9W/fvwmA==
-X-Google-Smtp-Source: AGHT+IFanqHvpz/OBQqvTsB3/lwBZqctCXSf2n5vpeLr5J1YVLJWmkIRLIDCy8G5mDDR4cSEzLpOzw==
-X-Received: by 2002:adf:ea43:0:b0:317:5c36:913b with SMTP id j3-20020adfea43000000b003175c36913bmr1316763wrn.48.1694593573133;
-        Wed, 13 Sep 2023 01:26:13 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id y18-20020adfd092000000b003179d5aee67sm14921713wrh.94.2023.09.13.01.26.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 01:26:12 -0700 (PDT)
-Message-ID: <daed3270-847e-f4c6-17ad-4d1962ae7d49@linaro.org>
-Date:   Wed, 13 Sep 2023 10:26:09 +0200
+        with ESMTP id S236752AbjIMIh5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 04:37:57 -0400
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C954196;
+        Wed, 13 Sep 2023 01:37:53 -0700 (PDT)
+Received: from kwepemm600013.china.huawei.com (unknown [172.30.72.54])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Rltyc3dCvztSWY;
+        Wed, 13 Sep 2023 16:33:44 +0800 (CST)
+Received: from huawei.com (10.175.112.208) by kwepemm600013.china.huawei.com
+ (7.193.23.68) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Wed, 13 Sep
+ 2023 16:37:50 +0800
+From:   Guo Mengqi <guomengqi3@huawei.com>
+To:     <vkoul@kernel.org>, <dmaengine@vger.kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>
+CC:     <guomengqi3@huawei.com>, <xuqiang36@huawei.com>,
+        <chenweilong@huawei.com>
+Subject: [PATCH v4 0/2] Add dma controller driver for HiSilicon Ascend310/910
+Date:   Wed, 13 Sep 2023 16:28:23 +0800
+Message-ID: <20230913082825.3180-1-guomengqi3@huawei.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH V2 6/7] arm64: dts: qcom: ipq9574: Add support for nsscc
- node
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Devi Priya <quic_devipriy@quicinc.com>, andersson@kernel.org,
-        agross@kernel.org, konrad.dybcio@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        richardcochran@gmail.com, arnd@arndb.de, geert+renesas@glider.be,
-        nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-        quic_saahtoma@quicinc.com
-References: <20230825091234.32713-1-quic_devipriy@quicinc.com>
- <20230825091234.32713-7-quic_devipriy@quicinc.com>
- <CAA8EJpo75zWLXuF-HC-Xz+6mvu_S1ET-9gzW=mOq+FjKspDwhw@mail.gmail.com>
- <CAMuHMdXx_b-uubonRH5=Tcxo+ddxg2wXvRNQNjhMrfvSFh0Xcw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMuHMdXx_b-uubonRH5=Tcxo+ddxg2wXvRNQNjhMrfvSFh0Xcw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-Originating-IP: [10.175.112.208]
+X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
+ kwepemm600013.china.huawei.com (7.193.23.68)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/09/2023 10:23, Geert Uytterhoeven wrote:
->>
->>> +                       clock-names = "nssnoc_nsscc", "nssnoc_snoc", "nssnoc_snoc_1",
->>> +                                     "bias_pll_cc_clk", "bias_pll_nss_noc_clk",
->>> +                                     "bias_pll_ubi_nc_clk", "gpll0_out_aux", "uniphy0_nss_rx_clk",
->>> +                                     "uniphy0_nss_tx_clk", "uniphy1_nss_rx_clk",
->>> +                                     "uniphy1_nss_tx_clk", "uniphy2_nss_rx_clk",
->>> +                                     "uniphy2_nss_tx_clk", "xo_board_clk";
->>
->> You are using clock indices. Please drop clock-names.
-> 
-> What do you mean by "using clock indices"?
-> Note that the "clock-names" property is required according to the DT bindings.
+The patch set add driver and device-tree bindings for a dma controller
+on HiSilicon Ascend310/910 platform.
 
-Indeed, thanks for pointing this out. Probably bindings should be changed.
+Changes v3 to v4:
+	- dts-binding
+		- filename changed to hisilicon,ascend-sdma.yaml
+		- use common property "dma-channel-mask"
+		- make a clearer description of property "pasid-num-bits"
 
-Best regards,
-Krzysztof
+Changes v2 to v3:
+	- Fix dts-binding error:
+		* Use "hisilicon" as a unified vendor prefix.
+
+Changes v1 to v2:
+	- Fix dts-binding error:
+		* change "compatible" to two exact models: ascend310/ascend910.
+		* add vendor prefix for customized channel-map property.
+		* add $ref for customized channel-map property.
+		* remove unnecessary label in example.
+	- Logic change in probe function:
+		* If iommu sva feature is disabled, probe will not lead to failure
+	- Use common driver apis: dev_xxx() devm_xxx()
+
+Guo Mengqi (2):
+  dmaengine: Add HiSilicon Ascend SDMA engine support
+  dt-bindings: dma: HiSilicon: Add bindings for HiSilicon Ascend sdma
+
+ .../bindings/dma/hisilicon,ascend-sdma.yaml   |  74 ++
+ drivers/dma/Kconfig                           |   9 +
+ drivers/dma/Makefile                          |   1 +
+ drivers/dma/hisi-ascend-sdma.c                | 810 ++++++++++++++++++
+ 4 files changed, 894 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/hisilicon,ascend-sdma.yaml
+ create mode 100644 drivers/dma/hisi-ascend-sdma.c
+
+-- 
+2.17.1
 
