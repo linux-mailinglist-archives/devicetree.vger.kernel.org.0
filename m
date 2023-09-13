@@ -2,196 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C504179E304
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 11:10:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6648579E344
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 11:14:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239272AbjIMJKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 05:10:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58182 "EHLO
+        id S239480AbjIMJOM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 05:14:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239261AbjIMJKs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 05:10:48 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9760C19B2;
-        Wed, 13 Sep 2023 02:10:43 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38D9AZcX124653;
-        Wed, 13 Sep 2023 04:10:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1694596235;
-        bh=mnzxB/vqDkn8JB7NY1nMlzoCtH01GWgB/CXlW09LHKs=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Ar7l7ADxzRL8K5IjZRA4TXzCswDpWHk6nEp4QqGUgZ+ACfgnQJDyBimw2OZ4x91F0
-         I0XquZ3KVLdxsKDjhMlvWmS/iT5FE6wvPvGgOSwBdN6bSTmbSD53ksqjSXhaMWCW8Z
-         e3NeGjUxe7cLo/0ZnOxNz2j2KXsSowJBLOk+6cdU=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38D9AYtg029325
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 13 Sep 2023 04:10:35 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 13
- Sep 2023 04:10:34 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 13 Sep 2023 04:10:34 -0500
-Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38D9AYcI034345;
-        Wed, 13 Sep 2023 04:10:34 -0500
-Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.199])
-        by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 38D9AX05021425;
-        Wed, 13 Sep 2023 04:10:34 -0500
-From:   MD Danish Anwar <danishanwar@ti.com>
-To:     Andrew Lunn <andrew@lunn.ch>, Roger Quadros <rogerq@ti.com>,
-        MD Danish Anwar <danishanwar@ti.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Simon Horman <horms@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>,
-        Roger Quadros <rogerq@kernel.org>
-Subject: [PATCH net-next v3 2/2] net: ti: icssg-prueth: Add support for half duplex operation
-Date:   Wed, 13 Sep 2023 14:40:11 +0530
-Message-ID: <20230913091011.2808202-3-danishanwar@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230913091011.2808202-1-danishanwar@ti.com>
-References: <20230913091011.2808202-1-danishanwar@ti.com>
+        with ESMTP id S239320AbjIMJNv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 05:13:51 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A221B30F1
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 02:12:15 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-400a087b0bfso70155655e9.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 02:12:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694596334; x=1695201134; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oIuHe0991pEYFCqtILtCCn/mGmP/0+9co+Yt/WpUeog=;
+        b=rV1ozx4rl8mBt225K3HigmDEy3ZyBvgcZw00s2W18o7O7e/qTxuMkdG46dH2V1fMc0
+         7Uv4LV5MI1QcxQYzJptlBAeqgXlvT83/nEVmGfNA1cfctSGTrRrPHdB8G3FzjUn+4RjR
+         cebFfzpOF+kH0jKODvzTmY2/MpIN/QkUyUd+6b+WceOgllZ/FFKbOpp4Dbs7bezc35sf
+         RgS8tqUWnyLXXBLMRaq1kbW127zS6eZ92r3knn1MqohUkI5LCSQm9mEuof6I6B8UQA+d
+         7IjoOZmGJ6sBkNN5jJriocY3X5QpkaD1bFx5JBERIBRphRwya2I+L3uQBl1VZcJFG65v
+         AXjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694596334; x=1695201134;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oIuHe0991pEYFCqtILtCCn/mGmP/0+9co+Yt/WpUeog=;
+        b=LlffYTemkxAiM5SW2w7Q01jKzubTtxil1UsYoaEf3vnv81HA2Cu4n4mcb5trwqipZO
+         hlguSE7rD5SOaXoGaSJI7r7H4xFoaBI1CTqvEDoSnVsrPKw+NAf3Gx3USvKpR4YwR8Ej
+         HUSWD/wsvpsVMnXvq3EqLphCx8ZHrGGZmoQWYTcA4Zrj2rUHHLcIeR3CrPDL59e5khc5
+         fwvOTU/9Gx3QkBXLC2q8BxJeb+UQcq8h8nIYkIw3pOg75z6CZ75WEziq4DQLEq4p8yVU
+         S9BzmPDPokunblJbKcnQf6HJPeUXB4QnnWJA1M6gD27ozsRj/jP3RlmRhNgyMauwNSRF
+         77GA==
+X-Gm-Message-State: AOJu0YyuFtSBJ+Cx6GK9K1b0/68J227s0stjsvWIh9wd3W0J2l1Wi36X
+        AT4P5O4b4T824dQUUjQISrANGg==
+X-Google-Smtp-Source: AGHT+IF5ts6D40VOTh50cTAVYEkS/+fhvOmKPMdPQ7m6uUW7hhL54FU8A7vHU91Vg6zdBtdzFwZFOw==
+X-Received: by 2002:a05:600c:11c7:b0:402:ee71:29 with SMTP id b7-20020a05600c11c700b00402ee710029mr1412325wmi.10.1694596334087;
+        Wed, 13 Sep 2023 02:12:14 -0700 (PDT)
+Received: from [192.168.0.163] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id q5-20020a7bce85000000b00402bda974ddsm1442506wmj.6.2023.09.13.02.12.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Sep 2023 02:12:13 -0700 (PDT)
+Message-ID: <9b1beb38-9ec2-4bdb-97f5-fccf98d3b0c3@linaro.org>
+Date:   Wed, 13 Sep 2023 10:12:12 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/9] arm64: dts: qcom: msm8916: Reserve firmware memory
+ dynamically
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20230911-msm8916-rmem-v1-0-b7089ec3e3a1@gerhold.net>
+ <20230911-msm8916-rmem-v1-4-b7089ec3e3a1@gerhold.net>
+ <912f90ee-0816-43ae-bc6f-a9a9a3e33d8a@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <912f90ee-0816-43ae-bc6f-a9a9a3e33d8a@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for half duplex operation at 10M and 100M link
-speeds for AM654x/AM64x devices.
-- Driver configures rand_seed, a random number, in DMEM HD_RAND_SEED_OFFSET
-field, which will be used by firmware for Back off time calculation.
-- Driver informs FW about half duplex link operation in DMEM
-PORT_LINK_SPEED_OFFSET field by setting bit 7 for 10/100M HD.
+On 13/09/2023 10:06, Konrad Dybcio wrote:
+> On 11.09.2023 19:41, Stephan Gerhold wrote:
+>> Most of the reserved firmware memory on MSM8916 can be relocated when
+>> respecting the required alignment. To avoid having to precompute the
+>> reserved memory regions in every board DT, describe the actual
+>> requirements (size, alignment, alloc-ranges) using the dynamic reserved
+>> memory allocation.
+>>
+>> This approach has several advantages:
+>>
+>>   1. We can define "templates" for the reserved memory regions in
+>>      msm8916.dtsi and keep only device-specific details in the board DT.
+>>      This is useful for the "mpss" region size for example, which varies
+>>      from device to device. It is no longer necessary to redefine all
+>>      firmware regions to shift their addresses.
+>>
+>>   2. When some of the functionality (e.g. WCNSS, Modem, Venus) is not
+>>      enabled or needed for a device, the reserved memory can stay
+>>      disabled, freeing up the unused reservation for Linux.
+>>
+>>   3. Devices with special requirements for one of the firmware regions
+>>      are handled automatically. For example, msm8916-longcheer-l8150
+>>      has non-relocatable "wcnss" firmware that must be loaded exactly
+>>      at address 0x8b600000. When this is defined as a static region,
+>>      the other dynamic allocations automatically adjust to a different
+>>      place with suitable alignment.
+>>
+>> All in all this approach significantly reduces the boilerplate necessary
+>> to define the different firmware regions, and makes it easier to enable
+>> functionality on the different devices.
+>>
+>> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+>> ---
+> [...]
+> 
+>>   
+>>   		mpss_mem: mpss@86800000 {
+>> +			/*
+>> +			 * The memory region for the mpss firmware is generally
+>> +			 * relocatable and could be allocated dynamically.
+>> +			 * However, many firmware versions tend to fail when
+>> +			 * loaded to some special addresses, so it is hard to
+>> +			 * define reliable alloc-ranges.
+>> +			 *
+>> +			 * alignment = <0x0 0x400000>;
+>> +			 * alloc-ranges = <0x0 0x86800000 0x0 0x8000000>;
+>> +			 */
+> Do we know of any devices that this would actually work on?
+> 
+> Konrad
 
-Hence, the half duplex operation depends on board design the
-"ti,half-duplex-capable" property has to be enabled for ICSS-G ports if HW
-is capable to perform half duplex.
+I have the same question here.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
-Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+How was this tested ?
+
 ---
- drivers/net/ethernet/ti/icssg/icssg_config.c | 14 ++++++++++++++
- drivers/net/ethernet/ti/icssg/icssg_prueth.c | 17 +++++++++++++++--
- drivers/net/ethernet/ti/icssg/icssg_prueth.h |  2 ++
- 3 files changed, 31 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/ethernet/ti/icssg/icssg_config.c b/drivers/net/ethernet/ti/icssg/icssg_config.c
-index 933b84666574..c1da70f247d4 100644
---- a/drivers/net/ethernet/ti/icssg/icssg_config.c
-+++ b/drivers/net/ethernet/ti/icssg/icssg_config.c
-@@ -433,6 +433,17 @@ int emac_set_port_state(struct prueth_emac *emac,
- 	return ret;
- }
- 
-+void icssg_config_half_duplex(struct prueth_emac *emac)
-+{
-+	u32 val;
-+
-+	if (!emac->half_duplex)
-+		return;
-+
-+	val = get_random_u32();
-+	writel(val, emac->dram.va + HD_RAND_SEED_OFFSET);
-+}
-+
- void icssg_config_set_speed(struct prueth_emac *emac)
- {
- 	u8 fw_speed;
-@@ -453,5 +464,8 @@ void icssg_config_set_speed(struct prueth_emac *emac)
- 		return;
- 	}
- 
-+	if (emac->duplex == DUPLEX_HALF)
-+		fw_speed |= FW_LINK_SPEED_HD;
-+
- 	writeb(fw_speed, emac->dram.va + PORT_LINK_SPEED_OFFSET);
- }
-diff --git a/drivers/net/ethernet/ti/icssg/icssg_prueth.c b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
-index 92b13057d4de..6635b28bc672 100644
---- a/drivers/net/ethernet/ti/icssg/icssg_prueth.c
-+++ b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
-@@ -1029,6 +1029,8 @@ static void emac_adjust_link(struct net_device *ndev)
- 		 * values
- 		 */
- 		if (emac->link) {
-+			if (emac->duplex == DUPLEX_HALF)
-+				icssg_config_half_duplex(emac);
- 			/* Set the RGMII cfg for gig en and full duplex */
- 			icssg_update_rgmii_cfg(prueth->miig_rt, emac);
- 
-@@ -1147,9 +1149,13 @@ static int emac_phy_connect(struct prueth_emac *emac)
- 		return -ENODEV;
- 	}
- 
-+	if (!emac->half_duplex) {
-+		dev_dbg(prueth->dev, "half duplex mode is not supported\n");
-+		phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_10baseT_Half_BIT);
-+		phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_100baseT_Half_BIT);
-+	}
-+
- 	/* remove unsupported modes */
--	phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_10baseT_Half_BIT);
--	phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_100baseT_Half_BIT);
- 	phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_1000baseT_Half_BIT);
- 	phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_Pause_BIT);
- 	phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_Asym_Pause_BIT);
-@@ -2113,6 +2119,10 @@ static int prueth_probe(struct platform_device *pdev)
- 				      eth0_node->name);
- 			goto exit_iep;
- 		}
-+
-+		if (of_find_property(eth0_node, "ti,half-duplex-capable", NULL))
-+			prueth->emac[PRUETH_MAC0]->half_duplex = 1;
-+
- 		prueth->emac[PRUETH_MAC0]->iep = prueth->iep0;
- 	}
- 
-@@ -2124,6 +2134,9 @@ static int prueth_probe(struct platform_device *pdev)
- 			goto netdev_exit;
- 		}
- 
-+		if (of_find_property(eth1_node, "ti,half-duplex-capable", NULL))
-+			prueth->emac[PRUETH_MAC1]->half_duplex = 1;
-+
- 		prueth->emac[PRUETH_MAC1]->iep = prueth->iep0;
- 	}
- 
-diff --git a/drivers/net/ethernet/ti/icssg/icssg_prueth.h b/drivers/net/ethernet/ti/icssg/icssg_prueth.h
-index 3fe80a8758d3..8b6d6b497010 100644
---- a/drivers/net/ethernet/ti/icssg/icssg_prueth.h
-+++ b/drivers/net/ethernet/ti/icssg/icssg_prueth.h
-@@ -145,6 +145,7 @@ struct prueth_emac {
- 	struct icss_iep *iep;
- 	unsigned int rx_ts_enabled : 1;
- 	unsigned int tx_ts_enabled : 1;
-+	unsigned int half_duplex : 1;
- 
- 	/* DMA related */
- 	struct prueth_tx_chn tx_chns[PRUETH_MAX_TX_QUEUES];
-@@ -271,6 +272,7 @@ int icssg_config(struct prueth *prueth, struct prueth_emac *emac,
- int emac_set_port_state(struct prueth_emac *emac,
- 			enum icssg_port_state_cmd state);
- void icssg_config_set_speed(struct prueth_emac *emac);
-+void icssg_config_half_duplex(struct prueth_emac *emac);
- 
- /* Buffer queue helpers */
- int icssg_queue_pop(struct prueth *prueth, u8 queue);
--- 
-2.34.1
-
+bod
