@@ -2,199 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 669BF79DEA1
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 05:33:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31D6B79DEB7
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 05:47:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234124AbjIMDdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 23:33:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42912 "EHLO
+        id S232749AbjIMDrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 23:47:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231144AbjIMDdS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 23:33:18 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09F42170F;
-        Tue, 12 Sep 2023 20:33:14 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38D1VVes023409;
-        Wed, 13 Sep 2023 03:32:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=uFJyocmED4hz9zxf654Kw/VEVbsiQNhYNzZor0D7cI4=;
- b=kdcfk6CBHJEirtPrhb+oIGZax1z1OU+em6Eq6ZrV5oFWju/n1e2TF6lP1ZJOXx4wm0Qu
- /F5GPLm7uwz0CWC24AMg4MFRDjHGU7Wr/gFnREG3clJw9ScDnzZKZLu+fSCnCXpvrAuN
- STBJ2ilabS70foGDDalHOojEfyZG1wJDBAehIXYJ2tnHjPejnIraLQypXpRhDWB5EtH/
- WP1/G2/jnCFZRofGWOmK7nIg2sUR6v6fa+AtyvWftyaQ+6O7+xheg365PEIhZ8Mi6amn
- I+h8kkcey+kLzM4h44yj7ztus8uboGNSTRXquxfNO9GDJLoRFBct1LSUJ0XxPGQmQplF eg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t2y7q8mer-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 13 Sep 2023 03:32:30 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38D3WT0f004638
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 13 Sep 2023 03:32:29 GMT
-Received: from [10.216.41.52] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 12 Sep
- 2023 20:32:21 -0700
-Message-ID: <ef61cef0-fd3a-d89c-b73e-b10e63fa7789@quicinc.com>
-Date:   Wed, 13 Sep 2023 09:02:13 +0530
+        with ESMTP id S230302AbjIMDra (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 23:47:30 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C358A1722;
+        Tue, 12 Sep 2023 20:47:25 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 3D3FB8132;
+        Wed, 13 Sep 2023 11:47:24 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 13 Sep
+ 2023 11:47:24 +0800
+Received: from [192.168.125.55] (113.72.145.181) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 13 Sep
+ 2023 11:47:23 +0800
+Message-ID: <c417d55d-d886-f66d-15a9-73b297d28d59@starfivetech.com>
+Date:   Wed, 13 Sep 2023 11:47:22 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH V2 6/7] arm64: dts: qcom: ipq9574: Add support for nsscc
- node
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC:     <andersson@kernel.org>, <agross@kernel.org>,
-        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <p.zabel@pengutronix.de>, <richardcochran@gmail.com>,
-        <arnd@arndb.de>, <geert+renesas@glider.be>,
-        <nfraprado@collabora.com>, <rafal@milecki.pl>, <peng.fan@nxp.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <quic_saahtoma@quicinc.com>
-References: <20230825091234.32713-1-quic_devipriy@quicinc.com>
- <20230825091234.32713-7-quic_devipriy@quicinc.com>
- <CAA8EJpo75zWLXuF-HC-Xz+6mvu_S1ET-9gzW=mOq+FjKspDwhw@mail.gmail.com>
+ Thunderbird/102.3.2
+Subject: Re: [-next v2 1/2] riscv: dts: starfive: visionfive 2: Enable usb0
+To:     Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+CC:     <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230829020511.26844-1-hal.feng@starfivetech.com>
 Content-Language: en-US
-From:   Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <CAA8EJpo75zWLXuF-HC-Xz+6mvu_S1ET-9gzW=mOq+FjKspDwhw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <20230829020511.26844-1-hal.feng@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: gApxFy5Cy_uY5wxT9JTOvWBqjExHH7f3
-X-Proofpoint-ORIG-GUID: gApxFy5Cy_uY5wxT9JTOvWBqjExHH7f3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-12_24,2023-09-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
- malwarescore=0 clxscore=1015 spamscore=0 priorityscore=1501
- mlxlogscore=999 phishscore=0 bulkscore=0 suspectscore=0 adultscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309130027
+X-Originating-IP: [113.72.145.181]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 29 Aug 2023 10:05:10 +0800, Hal Feng wrote:
+> usb0 was disabled by mistake when merging, so enable it.
+> 
+> Fixes: e7c304c0346d ("riscv: dts: starfive: jh7110: add the node and pins configuration for tdm")
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> ---
+>  arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> index d79f94432b27..85f40df93f25 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> @@ -513,6 +513,7 @@ &uart0 {
+>  
+>  &usb0 {
+>  	dr_mode = "peripheral";
+> +	status = "okay";
+>  };
 
+Hi, Conor,
 
-On 8/25/2023 4:58 PM, Dmitry Baryshkov wrote:
-> On Fri, 25 Aug 2023 at 12:15, Devi Priya <quic_devipriy@quicinc.com> wrote:
->>
->> Add a node for the nss clock controller found on ipq9574 based devices.
->>
->> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->> ---
->>   Changes in V2:
->>          - Dropped the fixed clock node gcc_gpll0_out_aux and added
->>            support for the same in gcc driver
->>          - Updated the node name to clock-controller@39b00000
->>          - Added clock-names to retrieve the nssnoc clocks and add them
->>            to the list of pm clocks in nss driver
->>
->>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 48 +++++++++++++++++++++++++++
->>   1 file changed, 48 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> index 51aba071c1eb..903311547e96 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> @@ -10,6 +10,8 @@
->>   #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
->>   #include <dt-bindings/interrupt-controller/arm-gic.h>
->>   #include <dt-bindings/reset/qcom,ipq9574-gcc.h>
->> +#include <dt-bindings/clock/qcom,ipq9574-nsscc.h>
->> +#include <dt-bindings/reset/qcom,ipq9574-nsscc.h>
->>   #include <dt-bindings/thermal/thermal.h>
->>
->>   / {
->> @@ -18,6 +20,24 @@ / {
->>          #size-cells = <2>;
->>
->>          clocks {
->> +               bias_pll_cc_clk: bias-pll-cc-clk {
->> +                       compatible = "fixed-clock";
->> +                       clock-frequency = <1200000000>;
->> +                       #clock-cells = <0>;
->> +               };
->> +
->> +               bias_pll_nss_noc_clk: bias-pll-nss-noc-clk {
->> +                       compatible = "fixed-clock";
->> +                       clock-frequency = <461500000>;
->> +                       #clock-cells = <0>;
->> +               };
->> +
->> +               bias_pll_ubi_nc_clk: bias-pll-ubi-nc-clk {
->> +                       compatible = "fixed-clock";
->> +                       clock-frequency = <353000000>;
->> +                       #clock-cells = <0>;
->> +               };
-> 
-> Which part provides these clocks?
-The Bias PLL generates these clocks based on the reference clock.
-> 
->> +
->>                  sleep_clk: sleep-clk {
->>                          compatible = "fixed-clock";
->>                          #clock-cells = <0>;
->> @@ -722,6 +742,34 @@ frame@b128000 {
->>                                  status = "disabled";
->>                          };
->>                  };
->> +
->> +               nsscc: clock-controller@39b00000 {
->> +                       compatible = "qcom,ipq9574-nsscc";
->> +                       reg = <0x39b00000 0x80000>;
->> +                       clocks = <&gcc GCC_NSSNOC_NSSCC_CLK>,
->> +                                <&gcc GCC_NSSNOC_SNOC_CLK>,
->> +                                <&gcc GCC_NSSNOC_SNOC_1_CLK>,
->> +                                <&bias_pll_cc_clk>,
->> +                                <&bias_pll_nss_noc_clk>,
->> +                                <&bias_pll_ubi_nc_clk>,
->> +                                <&gcc GPLL0_OUT_AUX>,
->> +                                <0>,
->> +                                <0>,
->> +                                <0>,
->> +                                <0>,
->> +                                <0>,
->> +                                <0>,
->> +                                <&xo_board_clk>;
-> 
-> If you move xo_board closer to the start of the list, it will be
-> slightly easier to review.
-Sure okay
-> 
->> +                       clock-names = "nssnoc_nsscc", "nssnoc_snoc", "nssnoc_snoc_1",
->> +                                     "bias_pll_cc_clk", "bias_pll_nss_noc_clk",
->> +                                     "bias_pll_ubi_nc_clk", "gpll0_out_aux", "uniphy0_nss_rx_clk",
->> +                                     "uniphy0_nss_tx_clk", "uniphy1_nss_rx_clk",
->> +                                     "uniphy1_nss_tx_clk", "uniphy2_nss_rx_clk",
->> +                                     "uniphy2_nss_tx_clk", "xo_board_clk";
-> 
-> You are using clock indices. Please drop clock-names.
-Sure okay
+As v6.6-rc1 is already released, would you apply this series
+in rc2 or the later rc versions?
 
-Thanks,
-Devi Priya
-> 
->> +                       #clock-cells = <1>;
->> +                       #reset-cells = <1>;
->> +                       #power-domain-cells = <1>;
->> +               };
->>          };
->>
->>          thermal-zones {
->> --
->> 2.34.1
->>
-> 
-> 
+Best regards,
+Hal
