@@ -2,82 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C586E79EC21
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 17:07:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 245D779ECCA
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 17:27:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234029AbjIMPHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 11:07:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41100 "EHLO
+        id S229452AbjIMP2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 11:28:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230471AbjIMPHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 11:07:39 -0400
+        with ESMTP id S229486AbjIMP2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 11:28:01 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E61B7B7;
-        Wed, 13 Sep 2023 08:07:35 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D54C1C433C8;
-        Wed, 13 Sep 2023 15:07:31 +0000 (UTC)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D673E54;
+        Wed, 13 Sep 2023 08:27:57 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCE31C433C8;
+        Wed, 13 Sep 2023 15:27:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694617655;
-        bh=SYzUOpvEWA+yyqFFVtA92rfi3iMtgTA3kqi44w7DWsk=;
+        s=k20201202; t=1694618876;
+        bh=2y+HoufOHHUVUfMzbkjqlYospySETxzf4s/h/0ToUik=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sK8vGcMPpRNYhDpRYfwH/9KknVNkBCBwMjnCJ+uPuDQYPqN/G2Vu75ziBRwFhUaQ4
-         dpDON6WakckbrSsU+lv+faFmsX14Gz3ML2PXVwK+vWOHp4bWsqv2RPkjsg/ohAb4bH
-         glRlXqtvF67qTtbsubSMOq9Y79ZPgcICMMAr4nsAXhrPrrrODwmnzVOjWKt4ySzkYu
-         hCi9Ig06KgXS0ZjOMbA6Dys4acf6rYdK8xhQGOu4wjDiYjUlXVL5Pv8YgqsJgDiqAn
-         6JA1SBbPJ49x+pvBHSw6C08enJ35TR+2KFlwreS2b5HR3EVDJU6i8VG7yRXbGXgewS
-         buDvy7lYjZ8lA==
-Date:   Wed, 13 Sep 2023 16:07:27 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Myunguk Kim <mwkim@gaonchips.com>
-Cc:     alsa-devel@alsa-project.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, fido_max@inbox.ru,
-        joabreu@synopsys.com, krzysztof.kozlowski+dt@linaro.org,
-        kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, perex@perex.cz, robh+dt@kernel.org,
-        tiwai@suse.com, u.kleine-koenig@pengutronix.de,
-        xingyu.wu@starfivetech.com
-Subject: Re: [PATCH] ASoC: dwc: Add Single DMA mode support
-Message-ID: <71628b39-fd59-45ee-bad9-3e6bd42cb97d@sirena.org.uk>
-References: <ZP8Irf6g+sG6Ax9j@finisterre.sirena.org.uk>
- <20230913040902.1496711-1-mwkim@gaonchips.com>
+        b=mwhYSI/NopuKBkart4AAsJuHdwYJgbyn/73+4F5K8xdZle0iVLbgMRjqlMFlyqrhC
+         h9Hrs8dGe2NFfPkiEvg08LeRLvjU6ea2l6Cu4KBjlIT+FpUPSwhcuKB11KVFxuqILl
+         OOczz6ZeIWsx33bUT74kJVbk6TowG3CFVaAw3oeVm2f+9gWQnh3NVISAKJAFnjSu4Y
+         D3pNU6PYDiqB8Arc87uaE5sznBFgjdvJE8svk/MU6UUTozDDdaqyGBWlh4mPZQmQMC
+         BjUY0rXv6GcRQ7APLBvUArlBQ+Qs25AFdXnNWegiWC68ofqVAidFyh1MpOX8+6Wfve
+         B2T/5GzAM4c6g==
+Date:   Wed, 13 Sep 2023 23:15:57 +0800
+From:   Jisheng Zhang <jszhang@kernel.org>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Drew Fustini <dfustini@baylibre.com>
+Subject: Re: [PATCH v2] riscv: dts: thead: set dma-noncoherent to soc bus
+Message-ID: <ZQHSLdPufI6CXApg@xhacker>
+References: <20230912072232.2455-1-jszhang@kernel.org>
+ <20230912-trailing-pampered-52738ec6f009@spud>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="JskZn6gM/rV4+uuO"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230913040902.1496711-1-mwkim@gaonchips.com>
-X-Cookie: Use extra care when cleaning on stairs.
+In-Reply-To: <20230912-trailing-pampered-52738ec6f009@spud>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Sep 12, 2023 at 05:27:31PM +0100, Conor Dooley wrote:
+> On Tue, Sep 12, 2023 at 03:22:32PM +0800, Jisheng Zhang wrote:
+> > riscv select ARCH_DMA_DEFAULT_COHERENT by default, and th1520 isn't
+> > dma coherent, so set dma-noncoherent to reflect this fact.
+> > 
+> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > Tested-by: Drew Fustini <dfustini@baylibre.com>
+> > ---
+> > 
+> > Since v1:
+> >  - rebase on v6.6-rc1
+> >  - collect Tested-by tag
+> 
+> Does this mean you're expecting me to take this?
 
---JskZn6gM/rV4+uuO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Conor,
 
-On Wed, Sep 13, 2023 at 01:09:03PM +0900, Myunguk Kim wrote:
+I think I will take this and send PR to soc people. The reason
+I send v2 is the rebasing on new rc1 and v1 wasn't in linux-riscv
+mailist due to typo;
 
-> In this case, it is not used through the DMA API.=20
-> The connection relationship is as follows.
->   i2s --- pcm_dmaengine ---  DMA IP (ie. pl330)
-> So, control was possible only by directly setting the maxburst property.
+Thank you so much
+> 
+> > 
+> >  arch/riscv/boot/dts/thead/th1520.dtsi | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+> > index ce708183b6f6..ff364709a6df 100644
+> > --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> > +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> > @@ -139,6 +139,7 @@ soc {
+> >  		interrupt-parent = <&plic>;
+> >  		#address-cells = <2>;
+> >  		#size-cells = <2>;
+> > +		dma-noncoherent;
+> >  		ranges;
+> >  
+> >  		plic: interrupt-controller@ffd8000000 {
+> > -- 
+> > 2.40.1
+> > 
 
-pcm_dmaengine is a wrapper binding the DMA API into ASoC...
 
---JskZn6gM/rV4+uuO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmUB0C4ACgkQJNaLcl1U
-h9CYPwf/eIOjdsbfVUtd+7nrcZMXcCeLgXOgT8xemnVvr78ESGnp7aH/Ke/IloW/
-5cFGLOAQJfUeknUFd/X5Cp0UJpqgBwvQYheCaRU8wLr7vV6B7KBkIaOB7ZEfurT3
-kupI6QMqDaey8qlwKeO0YC6nMGVlDE+1Fef86159QscpyReQJcGOa/f9zbiS+ohl
-WkDgQbWBZCao8OUtgyE1uwJnPy6K2HxrJTpb4OwP1Bx40W3d4Hj1arAPpKUL+lv+
-x/iUSv+fA/4JY0Rtem4HKlFIOhVxer9u1WAvBMTMM6wWhTOS5biVXGXb2kjm5/O4
-+g414PVgdcpHlHA3iBf2v21S9zGLnQ==
-=5GdS
------END PGP SIGNATURE-----
-
---JskZn6gM/rV4+uuO--
