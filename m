@@ -2,93 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C630779E82B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 14:39:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADBBF79E839
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 14:44:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229633AbjIMMjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 08:39:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41566 "EHLO
+        id S231719AbjIMMoW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 08:44:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231132AbjIMMjJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 08:39:09 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7EC7419B4
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 05:38:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1694608702;
+        with ESMTP id S230425AbjIMMoW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 08:44:22 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CD2D19B1;
+        Wed, 13 Sep 2023 05:44:17 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7668420008;
+        Wed, 13 Sep 2023 12:44:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+        t=1694609055;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=a99oLOwjNNMyzFFsHd0MXUMcklXas63C6jeF9Gj5oJI=;
-        b=Bqk8amhDhtaPdwJhf0cIsXk4ee9IIQsbuwJDbHm1nx2EYm0v9MwML2LfJ9BcJoyp2DKgZe
-        DVdUx+34LX+JVLns95tn8i6uIp7acPMYsBUmz3IGyBIL/9QEcjPC0tYjeOFkLOw9bMLShO
-        hIqqWUd2kyu9Ntdi8GLAriA+WGzh8Ak=
-Received: from mail-yw1-f200.google.com (mail-yw1-f200.google.com
- [209.85.128.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-445-M-M5BoPHMpKypVw5gOFFRQ-1; Wed, 13 Sep 2023 08:38:21 -0400
-X-MC-Unique: M-M5BoPHMpKypVw5gOFFRQ-1
-Received: by mail-yw1-f200.google.com with SMTP id 00721157ae682-59b5d4a8242so54939407b3.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 05:38:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694608701; x=1695213501;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=a99oLOwjNNMyzFFsHd0MXUMcklXas63C6jeF9Gj5oJI=;
-        b=U05bEwBc5wf1BI4B0AX5Np2AM0SJWbfAK7fFh/dUjYsCVIfNJR0G5YYmIR2Hl7YAiU
-         2x2GCKSQTZRW3du/ddxZ2DSiiN1pXXOGE4+fqqivvGI2sus5jupO8xK85k3EfbDJcXMa
-         LZRmu3db5TyyNfi6fcT/H0gaNJUccJo/WjMqxYuV6Gwcw2t0+mrfowNuEkKjS9vXv41W
-         h4caAqS/fSvQn2303DXV//0grTS2RMD2KM2LYT6rcq06UBRA4hbPADC0z9rJa2a/a4GA
-         ZhUqiGcghU9yNOf4iAZOms9YNLnSYOsb3jff8hc2laJz2/Bo9elxVvRIY6wKd/jzalDo
-         3Icw==
-X-Gm-Message-State: AOJu0Ywmy2R8uZhIm9N2IstoY1zMQAVvhNe3OhU0lokpcBxMhA+FnQ1P
-        oTwqdj4k5yQY3oM1ZLDWAbbtk3NUszFjBA09k4DoS/zea6OiO0XhMtCMWX7P3VcJB+cHJLGPXPC
-        0unnCbBcgdvLFtFrXztTiFA==
-X-Received: by 2002:a81:840d:0:b0:592:227f:7964 with SMTP id u13-20020a81840d000000b00592227f7964mr2260159ywf.47.1694608700356;
-        Wed, 13 Sep 2023 05:38:20 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHkbtdNrR0YTB2Q5btwwGtmqxiH9pOyvhyovj8vNZpVcBvf93C7I4xQpOhZ3c2r3zgxp2VXpw==
-X-Received: by 2002:a81:840d:0:b0:592:227f:7964 with SMTP id u13-20020a81840d000000b00592227f7964mr2260142ywf.47.1694608700123;
-        Wed, 13 Sep 2023 05:38:20 -0700 (PDT)
-Received: from brian-x1 (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
-        by smtp.gmail.com with ESMTPSA id y198-20020a0dd6cf000000b005707fb5110bsm3106302ywd.58.2023.09.13.05.38.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Sep 2023 05:38:19 -0700 (PDT)
-Date:   Wed, 13 Sep 2023 08:38:17 -0400
-From:   Brian Masney <bmasney@redhat.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        bh=jOWHnup71AUlA2pdfGiWMAnf7L7N7R7hXAeXu+YYNpk=;
+        b=LoVXclUT4ag/ho/8wurTwZ89GnA2gA+DpO1lpnb6s8GY4d5cD124trIxlVkUZ0egL/1LET
+        sXeP8RWQPMYk/chORC/sv4Wo/pTkSwLQUV7+yC2nVNfv07CDYikZ6HIYPVjf8s35jtl3zn
+        c4OeEWb0mOT9DVwFgbTo/TYSTiivS9zgKA0tinbGJ506oJ1h3h+HIpKN/VpWExKOv0t1De
+        tzcfmiKZmJ3+a8IxyEtWNStEeyu9mNjCqWhZNVCMnU3gv8MrjqqcWgcr1i0azI/R7ecWH6
+        lHOIK0FYfDcTMHMPamOLZRJmJ+lR7xLMRcOJcpw/QH/hAKpcxgy+nxSgiqc66g==
+Message-ID: <f891b3b6-0cab-4aa3-beee-b20f45a3ce57@arinc9.com>
+Date:   Wed, 13 Sep 2023 15:44:03 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
+Content-Language: en-US
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: correct PMIC GPIO label in
- gpio-ranges
-Message-ID: <ZQGtObktGq3tvEuf@brian-x1>
-References: <20230818135538.47481-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230818135538.47481-1-krzysztof.kozlowski@linaro.org>
-User-Agent: Mutt/2.2.9 (2022-11-12)
+        Woojung Huh <woojung.huh@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, mithat.guner@xeront.com,
+        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230812091708.34665-3-arinc.unal@arinc9.com>
+ <abc44324-454c-4524-b05e-fe989755ea47@arinc9.com>
+ <47b61929-5c2d-4906-b153-2046a94858c8@arinc9.com>
+ <47b61929-5c2d-4906-b153-2046a94858c8@arinc9.com>
+ <20230813112026.ohsx6srbt2staxma@skbuf>
+ <8a8e14f1-0493-4298-a2cc-6e7ae7929334@arinc9.com>
+ <20230813190157.4y3zoro53qsz43pe@skbuf>
+ <f5f468c1-b5a2-4336-b1d9-fd82da95b21d@arinc9.com>
+ <617c51cf-2c09-4865-ac60-96599db597e7@lunn.ch>
+ <563ac27a-22f2-463e-b5c1-9df721842976@arinc9.com>
+ <c7eddf45-c259-47de-ac59-2569c09ed5f7@lunn.ch>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <c7eddf45-c259-47de-ac59-2569c09ed5f7@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: arinc.unal@arinc9.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 18, 2023 at 03:55:38PM +0200, Krzysztof Kozlowski wrote:
-> There are several PMICs with GPIO nodes and one of the nodes referenced
-> other's in gpio-ranges which could result in deferred-probes like:
+On 13.09.2023 04:21, Andrew Lunn wrote:
+>>> The marvell switch can have up to 2 MDIO busses. If i remember
+>>> correctly, there is also one switch which has one MDIO bus per port.
+>>
+>> I'm writing the json-schema for Marvell switches. I've checked a few
+>> devicetree source files on Linus's Linux tree, I only see two buses used at
+>> the most.
 > 
->   qcom-spmi-gpio c440000.spmi:pmic@2:gpio@8800: can't add gpio chip
+> Sorry, i was ambiguous. Its not a Marvell switch which can have one
+> MDIO bus per port. I don't remember which switch it is, and it might
+> be a pure switchdev switch, not a DSA switch.
 > 
-> Reported-by: Brian Masney <bmasney@redhat.com>
-> Closes: https://lore.kernel.org/all/ZN5KIlI+RDu92jsi@brian-x1/
-> Fixes: e5a893a7cec5 ("arm64: dts: qcom: sa8775p: add PMIC GPIO controller nodes")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> The internal bus and another bus with
+>> marvell,mv88e6xxx-mdio-external. I've never seen a devicetree with
+>> marvell,mv88e6250 though. Could the switch that has one MDIO bus per port
+>> be this one? Also, is every bus of this switch a
+>> marvell,mv88e6xxx-mdio-external bus or, one internal bus and the remaining
+>> are marvell mv88e6xxx-mdio-external buses?
+> 
+> Only the 6390 family has two busses. It has an internal MDIO bus with
+> the same register API as all the other switches. However, unlike the
+> other families, it is not exposed on pins. And the 6390 has a second
+> MDIO bus using a slight variant of the registers, which is connected
+> to the outside world via pins. This second bus then has a compatible
+> to separate it from the normal MDIO bus.
 
-Reviewed-by: Brian Masney <bmasney@redhat.com>
+OK, I will disallow the external mdio bus for the compatible strings other
+than marvell,mv88e6190.
 
+Arınç
