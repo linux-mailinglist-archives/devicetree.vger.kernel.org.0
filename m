@@ -2,108 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B0AA79E96F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 15:35:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D40C879E987
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 15:43:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240982AbjIMNgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 09:36:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45016 "EHLO
+        id S233304AbjIMNnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 09:43:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239451AbjIMNf7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 09:35:59 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5878E19B9;
-        Wed, 13 Sep 2023 06:35:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1694612155; x=1726148155;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=pj/V2UP2unub0wz1wILtsfcstjsxnGVCuZljE+FR6is=;
-  b=hwFMlmw/Vpz1TIdSWWVzkDj2SrdocYj2Mc8TkpyDn6Gby0/vZf6IchS5
-   Z8RgMCbQbbQGkPWGTfFNY9tUtrr18IT+tXtCmGsT/GsX9tcNP+0tKX6fe
-   sxlamtAzS1LaG48cj/hRNoBYK1Y9vKn2qmOcHYUREMYxs3myo8Aduq4uh
-   TnPa+GypGZYMGSneFHau27qyrSQ1tLAV3WJIkU+wjc6HuehIcLa1YsuK+
-   1CrWblBZw8f76eo9GHhV6NBnTgkh/ZcTJad8/AE6USNWKgmuwTPNn6LEY
-   UpWjT1DA21mEPwrz+cxmth9qJcGY7wh7EI+SpbaD4+yxySAKpk5tcLT+y
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="375993253"
-X-IronPort-AV: E=Sophos;i="6.02,143,1688454000"; 
-   d="scan'208";a="375993253"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2023 06:35:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="859269609"
-X-IronPort-AV: E=Sophos;i="6.02,143,1688454000"; 
-   d="scan'208";a="859269609"
-Received: from lkp-server02.sh.intel.com (HELO 9ef86b2655e5) ([10.239.97.151])
-  by fmsmga002.fm.intel.com with ESMTP; 13 Sep 2023 06:35:50 -0700
-Received: from kbuild by 9ef86b2655e5 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qgQ1z-00006X-2b;
-        Wed, 13 Sep 2023 13:35:47 +0000
-Date:   Wed, 13 Sep 2023 21:35:04 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        christian.koenig@amd.com, Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     oe-kbuild-all@lists.linux.dev,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+        with ESMTP id S240962AbjIMNnD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 09:43:03 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 804281BC9;
+        Wed, 13 Sep 2023 06:42:59 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FC45C433C7;
+        Wed, 13 Sep 2023 13:42:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694612579;
+        bh=lFraKzdNfExngIGaIv/1K58suMvu++hc1nKgmQ0iXQQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=iRikp+ctqfYM5nwvev0vmw1nveMqm+sw2yKSNsonXUlMahLHJF7ucVKX98G+txgkF
+         K62GisiU5xPDXcLI3UFlKnlWPITWbX1U/JVDNda7o/youuEm8H+9bloP+KKgtxSg/A
+         X6UYHNWPxzK5lCS3s8ZN1efrBbAiDUcTjWzSPaTtZy6/lsM9wgn+TokLNJE/16/sue
+         QTLIQIe3fIlUkdLIQejJcLZuTcN39IAZ3m9h9hyaZwa9nCu/Uk+f7NaedFkpvWLQ1D
+         +gErPJokNMYPNKZMwbzOSJ0NwRqlNVtx1i7N4S3pSGnaIg0MbvE9FxtfjydPgsARo9
+         hISqQFw6Yyd8g==
+From:   Conor Dooley <conor@kernel.org>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Brian Starkey <Brian.Starkey@arm.com>,
-        John Stultz <jstultz@google.com>, tjmercier@google.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Yong Wu <yong.wu@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, jianjiao.zeng@mediatek.com,
-        kuohong.wang@mediatek.com
-Subject: Re: [PATCH 5/9] dma-buf: heaps: mtk_sec_heap: Initialise tee session
-Message-ID: <202309132148.UABRshAB-lkp@intel.com>
-References: <20230911023038.30649-6-yong.wu@mediatek.com>
+        Walker Chen <walker.chen@starfivetech.com>,
+        Xingyu Wu <xingyu.wu@starfivetech.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Hal Feng <hal.feng@starfivetech.com>
+Cc:     conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v3 0/3] Add PWM-DAC audio support for StarFive JH7110 RISC-V SoC
+Date:   Wed, 13 Sep 2023 14:42:50 +0100
+Message-Id: <20230913-capital-skiing-1b504653358c@spud>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230814080618.10036-1-hal.feng@starfivetech.com>
+References: <20230814080618.10036-1-hal.feng@starfivetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230911023038.30649-6-yong.wu@mediatek.com>
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=675; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=Dk53k5rmUx7nlZbwvEoZddi3urCZf9sprXbm0Xahd8U=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDKmMeyK38Vg8XDP9ycTFbhttxeYbi8ZVxB3kv6naNlV07 Y54m2jdjlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAEyE6zIjw8EjHkdOMK3dId06 X519wpIDtUduBKd0XVTdxXxueUkrQyAjw9Ukc8aOR8/Ej4QYbfjN/GntYbGKDS+/zVA52tc/WSY 3kw8A
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yong,
+From: Conor Dooley <conor.dooley@microchip.com>
 
-kernel test robot noticed the following build errors:
+On Mon, 14 Aug 2023 16:06:15 +0800, Hal Feng wrote:
+> This patchset adds PWM-DAC audio support for the StarFive JH7110 SoC.
+> The PWM-DAC module does not require a hardware codec, but a dummy codec is
+> needed for the driver. The dummy spdif codec driver, which is already
+> upstream, is compatible with the one which JH7110 PWM-DAC needed. So we
+> use it as the dummy codec driver for the JH7110 PWM-DAC module.
+> 
+> The third patch depends on tag next-20230809 in linux-next branch.
+> 
+> [...]
 
-[auto build test ERROR on drm-misc/drm-misc-next]
-[also build test ERROR on robh/for-next linus/master v6.6-rc1 next-20230912]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Applied to riscv-dt-for-next, thanks!
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yong-Wu/dma-buf-heaps-Deduplicate-docs-and-adopt-common-format/20230911-103308
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20230911023038.30649-6-yong.wu%40mediatek.com
-patch subject: [PATCH 5/9] dma-buf: heaps: mtk_sec_heap: Initialise tee session
-config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20230913/202309132148.UABRshAB-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230913/202309132148.UABRshAB-lkp@intel.com/reproduce)
+[3/3] riscv: dts: starfive: Add JH7110 PWM-DAC support
+      https://git.kernel.org/conor/c/be326bee0937
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202309132148.UABRshAB-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   loongarch64-linux-ld: drivers/dma-buf/heaps/mtk_secure_heap.o: in function `mtk_kree_secure_session_init':
->> mtk_secure_heap.c:(.text+0x130): undefined reference to `tee_client_open_context'
-   loongarch64-linux-ld: drivers/dma-buf/heaps/mtk_secure_heap.o: in function `.L10':
->> mtk_secure_heap.c:(.text+0x19c): undefined reference to `tee_client_open_session'
-   loongarch64-linux-ld: drivers/dma-buf/heaps/mtk_secure_heap.o: in function `.L12':
->> mtk_secure_heap.c:(.text+0x1dc): undefined reference to `tee_client_close_context'
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks,
+Conor.
