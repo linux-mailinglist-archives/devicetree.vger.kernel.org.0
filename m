@@ -2,101 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CBEE79EB8F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 16:50:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5140D79EBAB
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 16:53:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237619AbjIMOuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 10:50:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45862 "EHLO
+        id S241534AbjIMOxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 10:53:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236344AbjIMOuM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 10:50:12 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58571AF;
-        Wed, 13 Sep 2023 07:50:08 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38DEnjxJ105094;
-        Wed, 13 Sep 2023 09:49:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1694616585;
-        bh=3kzN+eWiLMMqqT68k/QUtOeybIa03pmbjistamBKdXA=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=k4U5zLAMCAMqoBvJViKMPR4Wyu5+gLl3VSgwdw8ljLtMuIVvznYxA87JzozjaobjX
-         l9VtYEiZ1YlyxTaLuD9HmxzSIjbxXoj5ncifBSZNXwHHUp1nL3H0jNe7pJ2ApEOd0F
-         jkB2BJ1/sgn5DOy+hh8Bfm851OGAlr+lXhYnqm4o=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38DEnjad072702
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 13 Sep 2023 09:49:45 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 13
- Sep 2023 09:49:45 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 13 Sep 2023 09:49:45 -0500
-Received: from [128.247.81.19] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38DEnj37088462;
-        Wed, 13 Sep 2023 09:49:45 -0500
-Message-ID: <64a4a0a8-7628-ffee-fca0-c7b953769fa6@ti.com>
-Date:   Wed, 13 Sep 2023 09:49:45 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-am65: Add full compatible to
- dss-oldi-io-ctrl node
-To:     Andrew Davis <afd@ti.com>, Lee Jones <lee@kernel.org>,
+        with ESMTP id S230190AbjIMOxC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 10:53:02 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F12C6B3;
+        Wed, 13 Sep 2023 07:52:57 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id CF61860003;
+        Wed, 13 Sep 2023 14:52:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1694616776;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=aC2RwGdKDnCnTcsXt08pnHkYtsoUowN+XP5X8ItFDzc=;
+        b=EWGGroVBltxzuCTMJt8gh/2G/eIS6B94Qbe3nrqz+sp5y/iQBhr+/O1HKlOYMDY3TE9PC4
+        L6RELowCewGfATaEd1BYi5ynfm7M+G1PkGyfClkGeqCeZ7brzmiVhltXORoJIwqFnz62AV
+        QMqNup3T4xnUR3CRAG4k1LtxYWyDKI9RySRBsblI79TYUm8eHqFqp+ilb87PZjqsuTVx6R
+        OvMePhchN2VhFn45J4AmUqmTFbk4FPvtWSv6ExxPgkEdHEYYNAgC70wnjn+uPT3yEP5nI+
+        IjbFoQl30h2z0mrZE0DUi/xfVs+AuF4ogRRsV4TWD7u4En8RdGI0CJTnCncG0w==
+Date:   Wed, 13 Sep 2023 16:52:50 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230911142556.64108-1-afd@ti.com>
- <20230911142556.64108-2-afd@ti.com>
-Content-Language: en-US
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-In-Reply-To: <20230911142556.64108-2-afd@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+        Simon Horman <horms@kernel.org>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 08/31] dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc:
+ Add support for QMC HDLC
+Message-ID: <20230913165250.02bab2ad@bootlin.com>
+In-Reply-To: <20230913-unruly-recite-7dbbbd7e63e0@spud>
+References: <20230912081527.208499-1-herve.codina@bootlin.com>
+        <20230912101018.225246-1-herve.codina@bootlin.com>
+        <20230912-capable-stash-c7a3e33078ac@spud>
+        <20230913092640.76934b31@bootlin.com>
+        <20230913-unruly-recite-7dbbbd7e63e0@spud>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 13 Sep 2023 15:42:45 +0100
+Conor Dooley <conor@kernel.org> wrote:
 
-
-On 11/09/23 09:25, Andrew Davis wrote:
-> This matches the binding for this register region which fixes a couple
-> DTS check warnings.
+> On Wed, Sep 13, 2023 at 09:26:40AM +0200, Herve Codina wrote:
+> > Hi Conor,
+> > 
+> > On Tue, 12 Sep 2023 18:21:58 +0100
+> > Conor Dooley <conor@kernel.org> wrote:
+> >   
+> > > On Tue, Sep 12, 2023 at 12:10:18PM +0200, Herve Codina wrote:  
+> > > > The QMC (QUICC mutichannel controller) is a controller present in some
+> > > > PowerQUICC SoC such as MPC885.
+> > > > The QMC HDLC uses the QMC controller to transfer HDLC data.
+> > > > 
+> > > > Additionally, a framer can be connected to the QMC HDLC.
+> > > > If present, this framer is the interface between the TDM bus used by the
+> > > > QMC HDLC and the E1/T1 line.
+> > > > The QMC HDLC can use this framer to get information about the E1/T1 line
+> > > > and configure the E1/T1 line.
+> > > > 
+> > > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > > > ---
+> > > >  .../bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml   | 13 +++++++++++++
+> > > >  1 file changed, 13 insertions(+)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml
+> > > > index 82d9beb48e00..b5073531f3f1 100644
+> > > > --- a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml
+> > > > +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml
+> > > > @@ -101,6 +101,16 @@ patternProperties:
+> > > >            Channel assigned Rx time-slots within the Rx time-slots routed by the
+> > > >            TSA to this cell.
+> > > >  
+> > > > +      compatible:
+> > > > +        const: fsl,qmc-hdlc
+> > > > +
+> > > > +      fsl,framer:
+> > > > +        $ref: /schemas/types.yaml#/definitions/phandle
+> > > > +        description:
+> > > > +          phandle to the framer node. The framer is in charge of an E1/T1 line
+> > > > +          interface connected to the TDM bus. It can be used to get the E1/T1 line
+> > > > +          status such as link up/down.    
+> > > 
+> > > Sounds like this fsl,framer property should depend on the compatible
+> > > being present, no?  
+> > 
+> > Well from the implementation point of view, only the QMC HDLC driver uses this
+> > property.
+> > 
+> > From the hardware description point of view, this property means that the time slots
+> > handled by this channel are connected to the framer. So I think it makes sense for
+> > any channel no matter the compatible (even if compatible is not present).
+> > 
+> > Should I change and constraint the fsl,framer property to the compatible presence ?
+> > If so, is the following correct for this contraint ?
+> >    --- 8< ---
+> >    dependencies:
+> >      - fsl,framer: [ compatible ];
+> >    --- 8< ---  
 > 
-> While here trim the leading 0s from the "reg" definition.
-> 
-> Signed-off-by: Andrew Davis <afd@ti.com>
+> The regular sort of
+> if:
+> 	compatible:
+> 		contains:
+> 			const: foo
+> then:
+> 	required:
+> 		- fsl,framer
+> would fit the bill, no?
 
-For both the patches, 1/2 and 2/2,
+Not sure.
+"fsl,framer" is an optional property (depending on the hardware we can have
+a framer or not).
 
-Reviewed-by: Aradhya Bhatia <a-bhatia1@ti.com>
-
-> ---
->  arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> index bc460033a37a8..d5f217427893d 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> @@ -498,8 +498,8 @@ serdes_mux: mux-controller {
->  		};
->  
->  		dss_oldi_io_ctrl: dss-oldi-io-ctrl@41e0 {
-> -			compatible = "syscon";
-> -			reg = <0x000041e0 0x14>;
-> +			compatible = "ti,am654-dss-oldi-io-ctrl", "syscon";
-> +			reg = <0x41e0 0x14>;
->  		};
->  
->  		ehrpwm_tbclk: clock-controller@4140 {
+Hervé
