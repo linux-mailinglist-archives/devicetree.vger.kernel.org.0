@@ -2,25 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E545B79DEB0
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 05:40:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61FAA79DE91
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 05:22:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231590AbjIMDkR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Sep 2023 23:40:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50144 "EHLO
+        id S233304AbjIMDWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Sep 2023 23:22:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230302AbjIMDkR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 23:40:17 -0400
+        with ESMTP id S234151AbjIMDWm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Sep 2023 23:22:42 -0400
 Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C40C171E;
-        Tue, 12 Sep 2023 20:40:12 -0700 (PDT)
-X-UUID: 3be74c3051e711eea33bb35ae8d461a2-20230913
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70646170E;
+        Tue, 12 Sep 2023 20:22:38 -0700 (PDT)
+X-UUID: c780a65e51e411eea33bb35ae8d461a2-20230913
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
         h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=lC7bgmSlZln0cFB4s9uuryXpkVp8q7XbGutF3dBD6iM=;
         b=mHPj3IOGBU5FEZQ/28dsEfX9qKBdFefCUT5c7zjV5Pf8IH73L/vrwgIQuV/n4DIGHo8X1rl5P9rsHrirbv66fyXvg8Fg/AsMvVIn4nDwCf/7xVj8Zqov/RENrqYyRio4hhovkPD5KpmGDpytEGSsmOqiprlFfyMIWsaG4EGjIfg=;
-X-CID-CACHE: Type:Local,Time:202309131122+08,HitQuantity:1
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:558ce61c-3d9e-4bba-b90d-3f1e9a4e46fa,IP:0,U
+X-CID-O-INFO: VERSION:1.1.31,REQID:153de212-b660-4faf-8549-67371ed8597b,IP:0,U
         RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
         release,TS:0
 X-CID-META: VersionHash:0ad78a4,CLOUDID:99b8df13-4929-4845-9571-38c601e9c3c9,B
@@ -30,16 +29,13 @@ X-CID-META: VersionHash:0ad78a4,CLOUDID:99b8df13-4929-4845-9571-38c601e9c3c9,B
 X-CID-BVR: 0,NGT
 X-CID-BAS: 0,NGT,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
-X-UUID: 3be74c3051e711eea33bb35ae8d461a2-20230913
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
+X-UUID: c780a65e51e411eea33bb35ae8d461a2-20230913
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
         (envelope-from <macpaul.lin@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 771012949; Wed, 13 Sep 2023 11:40:07 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with ShadowRedundancy id
- 15.2.1118.7; Wed, 13 Sep 2023 03:39:58 +0000
+        with ESMTP id 396375416; Wed, 13 Sep 2023 11:22:33 +0800
 Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.2.1118.26; Wed, 13 Sep 2023 11:22:32 +0800
 Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
