@@ -2,131 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAE4079E1C9
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 10:16:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3081979E1D5
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 10:18:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238806AbjIMIRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 04:17:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39484 "EHLO
+        id S234572AbjIMISp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 04:18:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238822AbjIMIRA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 04:17:00 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C1131997;
-        Wed, 13 Sep 2023 01:16:56 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id EA3DD6607328;
-        Wed, 13 Sep 2023 09:16:53 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1694593014;
-        bh=mU5VTMmj4Bk5zwC02IZiyizGeuYAnQMM+ZrqhTcpD2g=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=bju3Cw55iBAwyWfAl/xdZy4PJepo6+Cje/AxJ8knGzUCWoaMNZzPFiAw5gl8ULUH3
-         1f6TqU9NiqEL06G9YGpC85RC2aA4PFdsvHvfExXRH12jg0P3mSzlWo1DF/xcjcS1HN
-         0/0OiHyeI21EghuCJMQs7w4o7aVUHU1+f73mcm/NQNKNl0tdjxMnF7TMawL/PzYTfv
-         dEJGSjvghHQV5DK8dUIX4hvoMG7soRfDBzmzIih8ZRu3BN/XqYpSJ1p2B+NSsqNra4
-         lm6kjqNHOrkoldvOzFOnqCVDvfoEv7RU4hI7rMFkuwWBx8YHSID/9K456vmSaP5hnS
-         LvWNHiugycxEw==
-Message-ID: <8949cbfa-acae-d6ac-e5fb-f238a29630bc@collabora.com>
-Date:   Wed, 13 Sep 2023 10:16:51 +0200
+        with ESMTP id S235808AbjIMISo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 04:18:44 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03CC0199E
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 01:18:39 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-403012f276dso43916915e9.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 01:18:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694593118; x=1695197918; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vwUUxaP5y+PTaTEbxwe7UpWq12N8jlqbyZbCYEg72fo=;
+        b=nkycTckrP8HdFKUV5uVj93rz9CIQ0vIe/lWNI5Mht9aWGn9ARA47W+zwCZJLnA7nqz
+         9oBLSs8vXq9IPpV9saqED0G8T2XXmWOU3DsfH87Vjd+TftYg5xPMYxfQiLK/QGfsTHqc
+         apJdVd/7q1S3uQIUcy3rN25Xmz30yNEg+ic26nzUoVetr5j2N/l4gv137+QSyeJwmACp
+         yvbnipujkT06AH0xGaqlr83xnx9IUnNQp89PFoDe2hkLmdAFqhvzOocTWAZECbI/FNai
+         W06KC+JZWbFDbY4Vg48+a220GF6ml/d6uMBQ7xhzjfEqbgcD09+BprTovOFKofUfvIfC
+         9dzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694593118; x=1695197918;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vwUUxaP5y+PTaTEbxwe7UpWq12N8jlqbyZbCYEg72fo=;
+        b=kL+l62C8ywwb+PEv3J2Fcy7v1eB2eT0IgKfUCYFjOhT9RuyiJphyxZP6aCVWiCNqQo
+         JmQoCrfa5nkJxI1jaiFIZtvTJSepds6IyzzI1Yx85/GrNHw3/Vc5ZfLASDxRAxcV5JF8
+         8aWuOdfB5Zhckx7+cBOcTsMUnYFXauzmvo7GLpx0wVxNgjn2B7xyFy8baYzh4F9ROwTG
+         gxJII9CsdZzIf8dvVgiAfwwN71WtadZbmxW0wWG7AB3iJ1KNQBk11t+4rXNqoBu23CIx
+         Up716H91lBqcbU8HZibKlzynfllXH+kpAjgQMWzuJlzxh4ie6+17hFq1C/sgONDqSwCw
+         xXRw==
+X-Gm-Message-State: AOJu0YxRwNQTEaVlahkXy4a/HluJRMD25erQINVk+INjnaI6mGck9tTJ
+        MHLRisezmh4RtNprEcdG1ddXoQ==
+X-Google-Smtp-Source: AGHT+IGtCk7VyJXdF5BMBjTf7j0eels6E5OC9Af+NH7CCXmJf24asywn1LuqHumwFefnCyRSRVL/Fw==
+X-Received: by 2002:a1c:6a11:0:b0:401:b53e:6c3b with SMTP id f17-20020a1c6a11000000b00401b53e6c3bmr1464789wmc.6.1694593118417;
+        Wed, 13 Sep 2023 01:18:38 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id l14-20020a1c790e000000b003fe4ca8decdsm1275565wme.31.2023.09.13.01.18.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Sep 2023 01:18:37 -0700 (PDT)
+Message-ID: <da6379ee-a024-0dca-4bde-137ad9090fc2@linaro.org>
+Date:   Wed, 13 Sep 2023 10:18:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [RFC v1 3/3] thermal/drivers/mediatek/lvts_thermal: add mt7988
- support
+Subject: Re: [PATCH 1/4] spi: dt-bindings: qup: Document power-domains and OPP
 Content-Language: en-US
-To:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
+To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Daniel Golle <daniel@makrotopia.org>
-References: <20230911183354.11487-1-linux@fw-web.de>
- <20230911183354.11487-4-linux@fw-web.de>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230911183354.11487-4-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230912-spi-qup-dvfs-v1-0-3e38aa09c2bd@kernkonzept.com>
+ <20230912-spi-qup-dvfs-v1-1-3e38aa09c2bd@kernkonzept.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230912-spi-qup-dvfs-v1-1-3e38aa09c2bd@kernkonzept.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 11/09/23 20:33, Frank Wunderlich ha scritto:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On 12/09/2023 16:30, Stephan Gerhold wrote:
+> Document power-domains and operating-points-v2 to allow making
+> performance state votes for certain clock frequencies of the SPI QUP
+> controller.
 > 
-> Add Support for mediatek fologic 880/MT7988.
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
 > ---
->   drivers/thermal/mediatek/lvts_thermal.c | 73 +++++++++++++++++++++++++
->   1 file changed, 73 insertions(+)
-> 
-> diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
-> index c1004b4da3b6..48b257a3c80e 100644
-> --- a/drivers/thermal/mediatek/lvts_thermal.c
-> +++ b/drivers/thermal/mediatek/lvts_thermal.c
-> @@ -82,6 +82,8 @@
->   #define LVTS_GOLDEN_TEMP_DEFAULT	50
->   #define LVTS_COEFF_A_MT8195			-250460
->   #define LVTS_COEFF_B_MT8195			250460
-> +#define LVTS_COEFF_A_MT7988			-204650
-> +#define LVTS_COEFF_B_MT7988			204650
->   
->   #define LVTS_MSR_IMMEDIATE_MODE		0
->   #define LVTS_MSR_FILTERED_MODE		1
-> @@ -1272,6 +1274,67 @@ static int lvts_remove(struct platform_device *pdev)
->   	return 0;
->   }
->   
-> +/*
-> + * LVTS MT7988
-> + */
-> +#define LVTS_HW_SHUTDOWN_MT7988	117000
+>  Documentation/devicetree/bindings/spi/qcom,spi-qup.yaml | 8 +++++++
 
-Are you sure that this chip's Tj is >117°C ?!
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Looks a bit high... if it is exactly 117°C, I would suggest cutting earlier,
-either at 110 (safe side) or 115: after all, this is a life-saver feature and
-the chip is actually never meant to *constantly* work at 110°C (as it would
-degrade fast and say goodbye earlier than "planned").
-
-> +//enum mt7988_lvts_domain { MT7988_AP_DOMAIN, MT7988_NUM_DOMAIN };
-> +
-> +enum mt7988_lvts_sensor_enum {
-> +	MT7988_TS3_0,
-> +	MT7988_TS3_1,
-> +	MT7988_TS3_2,
-> +	MT7988_TS3_3,
-> +	MT7988_TS4_0,
-> +	MT7988_TS4_1,
-> +	MT7988_TS4_2,
-> +	MT7988_TS4_3,
-> +	MT7988_NUM_TS
-> +};
-
-This enumeration should be definitions in bindings (mediatek,lvts-thermal.h).
-
-Besides, the LVTS is about internal temperatures, so those TS3_x and 4_x can
-be renamed like what was done for MT8192 and MT8195: this is because you will
-never see TS3_2 being CPU2 on a board and CPU4 on another, being those - again -
-internal to the SoC, hence unchangeable.
-
-Another reason is that you'll anyway have to refer to those sensors in the
-devicetree to configure thermal trips and such, so... :-)
-
-Regards,
-Angelo
+Best regards,
+Krzysztof
 
