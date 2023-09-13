@@ -2,113 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A424F79E021
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 08:39:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2330E79E02A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 08:42:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232766AbjIMGjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 02:39:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55894 "EHLO
+        id S232571AbjIMGmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 02:42:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231510AbjIMGjx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 02:39:53 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 482CF1735
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 23:39:49 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-401da71b7faso75050705e9.2
-        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 23:39:49 -0700 (PDT)
+        with ESMTP id S231575AbjIMGmv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 02:42:51 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C66C91735
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 23:42:46 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-401b393df02so75149525e9.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Sep 2023 23:42:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694587187; x=1695191987; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694587365; x=1695192165; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2Ui5s5Cw3xC0m/jtp0PhZyzY/A5ADu0VxxFvthfKrY8=;
-        b=bfPhFHlLK74bS5VzEeRGDx8IpZZqIb5NTHWYI5wne/T1XljNr8Oru9f+HY75etZCGt
-         78R4kridBvpVV9on6Q8vNhgSDNkgvbEADLzcWK80r+sPAtxXPZ4Pqxzj28NocmQ6G1dl
-         iGHAj0XMj762ZBiIk+6kZvnHyBc71KtYx7KcDN3ulEV1AhDPGkFsxVRDKTPzrj4G1EyX
-         qNhO4jqJVqHinwUKLH3hDAaOcad19KjpyZqmg9VmaYcZR5r53gvxPNK2o+ds/NF+9ASN
-         CI9tzIJ1v+d3G6Okd6sGk4xvrXxy8i0/e317zXYgfoGQvjVnetNweUYL0teeXLErJHTm
-         TO8w==
+        bh=luACkZMQYaAff8AQJIHA/Ls5QqC1rb9Wh8NKaWNzkDk=;
+        b=Ol0I1DXPnlOE3venSKf8Si2jBXMLs2NLYHCfSj2hf/3lXETMHay8RXNBPfwiR5ncdl
+         lREIwZZTzLUA8XzNR2qOUQ/tBUONayG/vlugCIQOka8sVdd53m1ibeLsRG6mV9WfRYpl
+         Ed/EvvStpFfOhfYn6YrUy6hKSlJCd7Lke5KDrRExSx9mBEhpsUprsxMMvV8IAQGT1eyr
+         JFcVru+YERJBzkQhincouf5Hv2mj4na1P1g+yB5YLb6w1K6xqyAav3TOenIqMLkM6EHp
+         x2ON/xi+Ux5uMaXa5wiUUR+toT0Hl0u/WvWEXO/nbUvImofzSO7E6/A4TDfsIRYqSbVo
+         mUiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694587187; x=1695191987;
+        d=1e100.net; s=20230601; t=1694587365; x=1695192165;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2Ui5s5Cw3xC0m/jtp0PhZyzY/A5ADu0VxxFvthfKrY8=;
-        b=OT4y8IFzxAdwvmT5WyIeguufmo1xOD92dpTipWWpVw8fCUtiAfzxM1RBpVQjtwm2Wd
-         TTVNJBcuVZ6qOEBmdkBLUIxPSJyBORSwktSqabWNC/AityeDhqh/j+I5vAHcMlS/r3Ri
-         LZQpPT5+RtxwHU+P0eDPSUNfinzppU7nBKLbMhgzDvHednJdm3APEYmyjyCfoKD54GH+
-         nSuPOCmKapXJTQKwT8/FXB0q0M8aFunZS1pkOQpeb7u/s/kDQRM4XDOPTrfHd1tJozgp
-         pst0gA6JvZU92ZECZyx4kFxK1oVZJF6iwEndm6CYqsB8k0pBevAeCChT/HIxLStYBSg4
-         uThg==
-X-Gm-Message-State: AOJu0YzUS6CJ+Xy3MPLsFrUhMDzCYpdNVLsFVdLcsylCez3mcPzpu2HO
-        O+2cLTBT1hZBHfNLYnWBPgxFNg==
-X-Google-Smtp-Source: AGHT+IHpyTen6GH7mcHEV/WC6XNcsNT7DRMaLYEEzm02K25SO6aZuYQOgCFKRJV53h8rKbJzYw1Rxg==
-X-Received: by 2002:adf:d08d:0:b0:313:f94f:3b15 with SMTP id y13-20020adfd08d000000b00313f94f3b15mr1260361wrh.2.1694587187637;
-        Tue, 12 Sep 2023 23:39:47 -0700 (PDT)
+        bh=luACkZMQYaAff8AQJIHA/Ls5QqC1rb9Wh8NKaWNzkDk=;
+        b=hGDNqYYTVdhDvx8KWoufRBN1otYc2OBgw6VCZtA8D3YkRuKqg4UmfLh9v2U/lp0McU
+         lIlMz+CdR7BAnGz636TsWzZS2HBygfZKM8aZp/seTRDWRl19b9mApF30TrRSUt47OeHr
+         iUPDS4ZvRFUrNwlGuwgjACEF8AQTSwMDCysxEAdR50UhZH+sURNEvpOlRGA7mxDTLefh
+         f9EhI3IakBNn+4e09375O2Xsbfbo2w5wptnsl3CsW1Pqbm3OnqZ35+doQBFhvETt7ews
+         pMrUEx0HOKdcLFJhGxphAQWYw+4RxzPC1tGQhHsyhTxvcR5cDNz1Evsx+gWPP1hJCmC+
+         iQQA==
+X-Gm-Message-State: AOJu0YwYktc0OmCJ7caqk/+IPgQDSBVfLxF0FUOjiGg7H13lqa9HDojW
+        nDBwMfBFCJsgmscjtdhOSgTfow==
+X-Google-Smtp-Source: AGHT+IEAIxQH5qvSmuuETYLt+QKKyHAu3o6+POI2RoUl/25iI03HCsIv5WiySXLmuGaNLQvvl6o5UQ==
+X-Received: by 2002:a1c:7210:0:b0:401:cbf6:e5cc with SMTP id n16-20020a1c7210000000b00401cbf6e5ccmr1291026wmc.22.1694587365204;
+        Tue, 12 Sep 2023 23:42:45 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id n15-20020a5d598f000000b0031fba0a746bsm3589496wri.9.2023.09.12.23.39.44
+        by smtp.gmail.com with ESMTPSA id l17-20020a7bc451000000b003fe29dc0ff2sm1043821wmi.21.2023.09.12.23.42.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Sep 2023 23:39:46 -0700 (PDT)
-Message-ID: <85a43c63-9e79-09c3-ac3e-6974547655e0@linaro.org>
-Date:   Wed, 13 Sep 2023 08:39:44 +0200
+        Tue, 12 Sep 2023 23:42:44 -0700 (PDT)
+Message-ID: <be7d9ab7-9559-3f22-cc07-6fc3e018ef37@linaro.org>
+Date:   Wed, 13 Sep 2023 08:42:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH v5 11/14] media: platform: mtk-mdp3: add mt8195 platform
- configuration
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm64: dts: mediatek: add mt8390-evk
+ board
 Content-Language: en-US
-To:     =?UTF-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-        "airlied@gmail.com" <airlied@gmail.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-Cc:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "angelogioacchino.delregno@collabora.com" 
+To:     Macpaul Lin <macpaul.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230912075805.11432-1-moudy.ho@mediatek.com>
- <20230912075805.11432-12-moudy.ho@mediatek.com>
- <6b7a229d-54c9-2450-4b37-9acc659cbd12@linaro.org>
- <c8f12e96e49f471f287db82cee51b3104e2bc0de.camel@mediatek.com>
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Cc:     Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>
+References: <20230913040449.29560-1-macpaul.lin@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c8f12e96e49f471f287db82cee51b3104e2bc0de.camel@mediatek.com>
+In-Reply-To: <20230913040449.29560-1-macpaul.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/09/2023 04:08, Moudy Ho (何宗原) wrote:
+On 13/09/2023 06:04, Macpaul Lin wrote:
+> 1. Add compatible for MT8390.
+> 2. Add bindings for the MediaTek mt8390-evk board, also known
+> as the "Genio 700-EVK".
+> 
 
->> This does not make any sense and such mess at v5 is confusing.
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> Hi Krzysztof,
-> 
-> 
-> Apologize for the confusion caused by the improper separation of
-> patches.
-> This occurred because I misunderstood the new warning message
-> "DT_SPLIT_BINDING_PATCH: DT binding docs and includes shoulde be a
-> separate patch" that I received after running 'checkpatch.pl'.
-
-Yes, separate patch. Patch.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
