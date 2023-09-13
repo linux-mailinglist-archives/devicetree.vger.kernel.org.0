@@ -2,200 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CF0479EBD5
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 16:59:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22E1579EBF4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 17:02:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235300AbjIMO7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 10:59:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40980 "EHLO
+        id S240971AbjIMPCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 11:02:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233101AbjIMO7y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 10:59:54 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16A63AF;
-        Wed, 13 Sep 2023 07:59:50 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5EDBC433C8;
-        Wed, 13 Sep 2023 14:59:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694617189;
-        bh=0AbGKrvHkbfmwX2tPrwgjwFrlaY/UK4+5XEpUO6Hmk4=;
+        with ESMTP id S239071AbjIMPCt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 11:02:49 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05900AF;
+        Wed, 13 Sep 2023 08:02:44 -0700 (PDT)
+Received: from mercury (dyndsl-091-248-208-175.ewe-ip-backbone.de [91.248.208.175])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 27A936607326;
+        Wed, 13 Sep 2023 16:02:43 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1694617363;
+        bh=Mr987lQ7RX7Mpx8E4S7W1u4g24PmSRwWpxK8RTK2Ldw=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kTHkg6U2OrOp9s11X766GHIMjWESKKOX2vVpe8mIR0Uj+fuatFjupPtR2QKTXjtvr
-         yyq629oLWrJZv+fhaxlXXihlD2CL9SRcmFJxZ8ymQ7v8nI9z6dQ/jBBE+k4T0d3kMe
-         5tQht4mgII3Zt3IH/dXx1sf9mZwYIGqQ4X4/Dln/R5QcTVQP15KQBtU2vb1CRKj3Tm
-         IU+/n1n/1z40lgmI+EInQ2RPMp8hCqzl+luIqDX7rKrHaQGADi9yhBRcOlIxyoZCoG
-         cx1xy8qPJKijtLTyaYqY7uoFqT9m+fIg+j0pngkk0UI2/lR0L9uwBTuK8kFzbFhRsL
-         Ok847V3L9PMGQ==
-Date:   Wed, 13 Sep 2023 15:59:41 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        b=B0/gHKlDXsv6JA/cl1vKUowyUnEHiXQYLoPM1Zeg+Y/1UP1z1mEmqi8gGzhcLP6q6
+         cROzXAHzDteJ7zeFQMmMa+GlNgDtcnJKp3k9nbP61b2clzEa/Nny/g5CTgMydEuyre
+         ogzmP6jaTjLv1Gmf0NcX3XrdJ7rJFgxqQo5R2eay/mPUNAkVVp8y/hu/vuubA5pJFh
+         78tMZ+Kf5aqNHn089ep6MyDcndysI0GGZ+dxcpXjRb1GO7VSsz5Ckc4vtENIBgowXA
+         fyqzO+otZb31msahdIS/nRhsR5pMDF4T8tJUIN8Hp1QpOF0pXnzuBgTlCIrrD2DQPX
+         U1o/0Du3WSOxg==
+Received: by mercury (Postfix, from userid 1000)
+        id BC530106098A; Wed, 13 Sep 2023 17:02:40 +0200 (CEST)
+Date:   Wed, 13 Sep 2023 17:02:40 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Simon Horman <horms@kernel.org>,
-        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 08/31] dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc:
- Add support for QMC HDLC
-Message-ID: <20230913-unburned-overturn-41b83e1eed25@spud>
-References: <20230912081527.208499-1-herve.codina@bootlin.com>
- <20230912101018.225246-1-herve.codina@bootlin.com>
- <20230912-capable-stash-c7a3e33078ac@spud>
- <20230913092640.76934b31@bootlin.com>
- <20230913-unruly-recite-7dbbbd7e63e0@spud>
- <20230913165250.02bab2ad@bootlin.com>
- <20230913-oversold-delay-05368e5de9fe@spud>
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH RESEND v2 2/3] dt-bindings: power: supply: Document
+ Mitsumi MM8013 fuel gauge
+Message-ID: <20230913150240.4nzkxu6pnxv65tv2@mercury.elektranox.org>
+References: <20230621-topic-mm8013-v2-0-9f1b41f4bc06@linaro.org>
+ <20230621-topic-mm8013-v2-2-9f1b41f4bc06@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="k94xrof+2xueRHia"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="fxffqrwxy4s7q74c"
 Content-Disposition: inline
-In-Reply-To: <20230913-oversold-delay-05368e5de9fe@spud>
+In-Reply-To: <20230621-topic-mm8013-v2-2-9f1b41f4bc06@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---k94xrof+2xueRHia
+--fxffqrwxy4s7q74c
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 13, 2023 at 03:56:16PM +0100, Conor Dooley wrote:
-> On Wed, Sep 13, 2023 at 04:52:50PM +0200, Herve Codina wrote:
-> > On Wed, 13 Sep 2023 15:42:45 +0100
-> > Conor Dooley <conor@kernel.org> wrote:
-> >=20
-> > > On Wed, Sep 13, 2023 at 09:26:40AM +0200, Herve Codina wrote:
-> > > > Hi Conor,
-> > > >=20
-> > > > On Tue, 12 Sep 2023 18:21:58 +0100
-> > > > Conor Dooley <conor@kernel.org> wrote:
-> > > >  =20
-> > > > > On Tue, Sep 12, 2023 at 12:10:18PM +0200, Herve Codina wrote: =20
-> > > > > > The QMC (QUICC mutichannel controller) is a controller present =
-in some
-> > > > > > PowerQUICC SoC such as MPC885.
-> > > > > > The QMC HDLC uses the QMC controller to transfer HDLC data.
-> > > > > >=20
-> > > > > > Additionally, a framer can be connected to the QMC HDLC.
-> > > > > > If present, this framer is the interface between the TDM bus us=
-ed by the
-> > > > > > QMC HDLC and the E1/T1 line.
-> > > > > > The QMC HDLC can use this framer to get information about the E=
-1/T1 line
-> > > > > > and configure the E1/T1 line.
-> > > > > >=20
-> > > > > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > > > > > ---
-> > > > > >  .../bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml   | 13 +++++=
-++++++++
-> > > > > >  1 file changed, 13 insertions(+)
-> > > > > >=20
-> > > > > > diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/f=
-sl,cpm1-scc-qmc.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl=
-,cpm1-scc-qmc.yaml
-> > > > > > index 82d9beb48e00..b5073531f3f1 100644
-> > > > > > --- a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1=
--scc-qmc.yaml
-> > > > > > +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1=
--scc-qmc.yaml
-> > > > > > @@ -101,6 +101,16 @@ patternProperties:
-> > > > > >            Channel assigned Rx time-slots within the Rx time-sl=
-ots routed by the
-> > > > > >            TSA to this cell.
-> > > > > > =20
-> > > > > > +      compatible:
-> > > > > > +        const: fsl,qmc-hdlc
-> > > > > > +
-> > > > > > +      fsl,framer:
-> > > > > > +        $ref: /schemas/types.yaml#/definitions/phandle
-> > > > > > +        description:
-> > > > > > +          phandle to the framer node. The framer is in charge =
-of an E1/T1 line
-> > > > > > +          interface connected to the TDM bus. It can be used t=
-o get the E1/T1 line
-> > > > > > +          status such as link up/down.   =20
-> > > > >=20
-> > > > > Sounds like this fsl,framer property should depend on the compati=
-ble
-> > > > > being present, no? =20
-> > > >=20
-> > > > Well from the implementation point of view, only the QMC HDLC drive=
-r uses this
-> > > > property.
-> > > >=20
-> > > > From the hardware description point of view, this property means th=
-at the time slots
-> > > > handled by this channel are connected to the framer. So I think it =
-makes sense for
-> > > > any channel no matter the compatible (even if compatible is not pre=
-sent).
-> > > >=20
-> > > > Should I change and constraint the fsl,framer property to the compa=
-tible presence ?
-> > > > If so, is the following correct for this contraint ?
-> > > >    --- 8< ---
-> > > >    dependencies:
-> > > >      - fsl,framer: [ compatible ];
-> > > >    --- 8< --- =20
-> > >=20
-> > > The regular sort of
-> > > if:
-> > > 	compatible:
-> > > 		contains:
-> > > 			const: foo
-> > > then:
-> > > 	required:
-> > > 		- fsl,framer
-> > > would fit the bill, no?
-> >=20
-> > Not sure.
-> > "fsl,framer" is an optional property (depending on the hardware we can =
-have
-> > a framer or not).
+Hi,
+
+On Wed, Aug 23, 2023 at 04:36:14PM +0200, Konrad Dybcio wrote:
+> The Mitsumi MM8013 is an I2C fuel gauge for Li-Ion cells. The partial
+> datasheet is available at [1]. Add bindings for this chip.
 >=20
-> Ah apologies, I had it backwards! Your suggestion seems fair in that
-> case.
+> [1] https://www.mitsumi.co.jp/latest-M/Catalog/pdf/battery_mm_8013_e.pdf
+>=20
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  .../bindings/power/supply/mitsumi,mm8013.yaml      | 35 ++++++++++++++++=
+++++++
+>  1 file changed, 35 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/power/supply/mitsumi,mm801=
+3.yaml b/Documentation/devicetree/bindings/power/supply/mitsumi,mm8013.yaml
+> new file mode 100644
+> index 000000000000..080fd44083ac
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/supply/mitsumi,mm8013.yaml
+> @@ -0,0 +1,35 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/supply/mitsumi,mm8013.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mitsumi MM8013 fuel gauge
+> +
+> +maintainers:
+> +  - Konrad Dybcio <konradybcio@kernel.org>
+> +
 
-Or actually,
-if:
-	compatible:
-		not:
-	 		contains:
-	 			const: foo
- then:
- 	properties:
- 		fsl,framer: false
-? That should do the trick in a more conventional way.
+allOf:
+  - $ref: power-supply.yaml#
 
---k94xrof+2xueRHia
+-- Sebastian
+
+> +properties:
+> +  compatible:
+> +    const: mitsumi,mm8013
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      fuel-gauge@55 {
+> +        compatible =3D "mitsumi,mm8013";
+> +        reg =3D <0x55>;
+> +      };
+> +    };
+>=20
+> --=20
+> 2.42.0
+>=20
+
+--fxffqrwxy4s7q74c
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQHOXQAKCRB4tDGHoIJi
-0poQAQDqNLWYV0v7EFgrkPDKkkHvvsg4hXdY0+WRr/xipZ7pfQEAux/D0zjPvPjQ
-t36Kzm5ducMZfS17zQJL3mrN2qrf3gA=
-=C+xz
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmUBzwcACgkQ2O7X88g7
++poQfg//aEug4AGvhTIulK7IlBjIM2qSfT76xGJwCsud4znJvqzvvYdOfWs8lBFm
+WZLb8rkqwlA+jYk/rKKPwnZmDQmkhCcc4gEA526AFS6D2siRukHLccfjAnfPuPhG
+CjWUoQG2/JWeIpOiA9n3YJFhnASLyq6pfpM7Y8BzzH3V7cLQwUcjy8hQNWM2r2Vp
+tWJrYikFb3dHd0N2AXQSqaHt5qNAUItiWv2ogcNPfWlGhAUjsodpBIBSz9SDPPn6
+y/UIpWB3pObYWidXOgvZBnwd5X5ZsfGvqZoV9xpE165PbJ9kCNlQzLnTSCoO6g8L
+CIwhqppQbJ+yh5NcqVXcYzmAO3WfPZ8rS5PMS7WVV0dcDg4sqZhxRCqhgiZrIfAo
+3+HPhbq70mtu7hvxEF+wl/03DpEEUCsQRLQl49ypMm25UQB2GpkLH5Ps0EMq80PI
+MSHCMr90IccREB1O5Jkf4dtfWZ7gfD9k+uZN/LRTFwRwHSBms8rlrZmQbBO1/tDY
+sfh1HNRXjDrSdKbM41BC2mRxc/NSFGJ1uO0M3qZ4vfk7t/5r7jU55vV3+kXJqLoJ
+w3Fq5IHHKSgc25tSLwKFN/jghurPNBaDamvQ7OQgXpmz6r5xaB3m/bTaUo18bIW+
+4m/1ZgP/+uYYnCgqsRYoEGD3CdJTFiUq8pgU5nxqZv24/dFqTx0=
+=QHk4
 -----END PGP SIGNATURE-----
 
---k94xrof+2xueRHia--
+--fxffqrwxy4s7q74c--
