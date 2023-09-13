@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAC3B79E155
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 10:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE0AB79E162
+	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 10:03:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238673AbjIMIAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Sep 2023 04:00:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41968 "EHLO
+        id S238696AbjIMIDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Sep 2023 04:03:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238705AbjIMIAf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 04:00:35 -0400
-Received: from out28-121.mail.aliyun.com (out28-121.mail.aliyun.com [115.124.28.121])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4414B1992;
-        Wed, 13 Sep 2023 01:00:30 -0700 (PDT)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1324828|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00210616-0.000271328-0.997623;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047206;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=28;RT=28;SR=0;TI=SMTPD_---.Ue3l8iB_1694592017;
-Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.Ue3l8iB_1694592017)
+        with ESMTP id S238695AbjIMIDc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Sep 2023 04:03:32 -0400
+Received: from out28-124.mail.aliyun.com (out28-124.mail.aliyun.com [115.124.28.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36469D3;
+        Wed, 13 Sep 2023 01:03:28 -0700 (PDT)
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1099867|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0935481-0.000793447-0.905658;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047192;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=28;RT=28;SR=0;TI=SMTPD_---.Ue3S9t0_1694592196;
+Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.Ue3S9t0_1694592196)
           by smtp.aliyun-inc.com;
-          Wed, 13 Sep 2023 16:00:26 +0800
+          Wed, 13 Sep 2023 16:03:24 +0800
 From:   wangweidong.a@awinic.com
 To:     krzysztof.kozlowski@linaro.org
 Cc:     13916275206@139.com, alsa-devel@alsa-project.org, arnd@arndb.de,
@@ -32,50 +32,64 @@ Cc:     13916275206@139.com, alsa-devel@alsa-project.org, arnd@arndb.de,
         sebastian.reichel@collabora.com, shumingf@realtek.com,
         tiwai@suse.com, trix@redhat.com, wangweidong.a@awinic.com,
         yijiangtao@awinic.com
-Subject: Re: [PATCH V2 4/5] ASoC: codecs: Change the aw88261 variable name and i2c driver name
-Date:   Wed, 13 Sep 2023 16:00:17 +0800
-Message-ID: <20230913080017.364430-1-wangweidong.a@awinic.com>
+Subject: Re: [PATCH V2 1/5] ASoC: dt-bindings: Adds properties to "awinic,aw88395"
+Date:   Wed, 13 Sep 2023 16:03:10 +0800
+Message-ID: <20230913080310.364486-1-wangweidong.a@awinic.com>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <3ee11823-a441-b646-bdd7-aedd3a3a55e5@linaro.org>
-References: <3ee11823-a441-b646-bdd7-aedd3a3a55e5@linaro.org>
+In-Reply-To: <cc6ad994-a3c3-03d6-6095-14e43f105314@linaro.org>
+References: <cc6ad994-a3c3-03d6-6095-14e43f105314@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thank you very much for your review.=0D
+Thank you very much for your review, but I have a question that I would lik=
+e to consult=0D
 =0D
 On 13/09/2023 09:03, krzysztof.kozlowski@linaro.org wrote:=0D
 > On 12/09/2023 08:58, wangweidong.a@awinic.com wrote:=0D
 >> From: Weidong Wang <wangweidong.a@awinic.com>=0D
 >> =0D
->> Change "sound-channel" to "awinic,audio-channel"=0D
->> Change "aw88261_smartpa" to "aw88261"=0D
+>> Adds properties to "awinic,aw88395" to make files more complete=0D
+>> =0D
+>> Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>=0D
+>> ---=0D
+>>  .../bindings/sound/awinic,aw88395.yaml        | 19 +++++++++++++++++++=
 =0D
-I'll add "This change is for consistency with yaml properties" to the commi=
-t message.=0D
-=0D
->> -	prof_name =3D aw88261_dev_get_prof_name(aw88261->aw_pa, count);=0D
->> -	if (!prof_name) {=0D
->> +	ret =3D aw88261_dev_get_prof_name(aw88261->aw_pa, count, &prof_name);=
-=0D
->> +	if (ret) {=0D
->>  		strscpy(uinfo->value.enumerated.name, "null",=0D
->>  						strlen("null") + 1);=0D
->>  		return 0;=0D
->> @@ -1189,7 +1190,7 @@ static void aw88261_parse_channel_dt(struct aw8826=
-1 *aw88261)=0D
->>  	u32 channel_value =3D AW88261_DEV_DEFAULT_CH;=0D
->>  	u32 sync_enable =3D false;=0D
+>>  1 file changed, 19 insertions(+)=0D
+>> =0D
+>> diff --git a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml=
+ b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml=0D
+>> index 4051c2538caf..4965aa4a5370 100644=0D
+>> --- a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml=0D
+>> +++ b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml=0D
+>> @@ -32,11 +32,28 @@ properties:=0D
+>>    reset-gpios:=0D
+>>     maxItems: 1=0D
 >>  =0D
->> -	of_property_read_u32(np, "sound-channel", &channel_value);=0D
->> +	of_property_read_u32(np, "awinic,audio-channel", &channel_value);=0D
->>  	of_property_read_u32(np, "sync-flag", &sync_enable);=0D
+>> +  awinic,audio-channel:=0D
+>> +    description:=0D
+>> +      It is used to distinguish multiple PA devices, so that different=
 =0D
-> What about this?=0D
+>> +      configurations can be loaded to different PA devices=0D
+>> +    $ref: /schemas/types.yaml#/definitions/uint32=0D
+>> +    minimum: 0=0D
+>> +    maximum: 7=0D
+>> +=0D
+>> +  awinic,sync-flag:=0D
+>> +    description:=0D
+>> +      Flag bit used to keep the phase synchronized in the case of multi=
+ple PA=0D
+>> +    $ref: /schemas/types.yaml#/definitions/uint32=0D
 =0D
-This change is to be consistent with the name in the yaml file=0D
+> Looks like bool, not uint32. If you made it uint32 for some future=0D
+> purpose, then the name "flag" is misleading and anyway what would be the=
+=0D
+> third option here for sync?=0D
+=0D
+Thank you very much. Can I Change it to "$ref: /schemas/types.yaml#/definit=
+ions/bool"?=0D
 =0D
 Best regards,=0D
 Weidong Wang=
