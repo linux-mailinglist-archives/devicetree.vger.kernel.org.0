@@ -1,157 +1,108 @@
-Return-Path: <devicetree+bounces-193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C4F07A02AA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 13:32:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25FE97A02AF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 13:32:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D80F61F22759
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:32:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2BD61C20A1F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:32:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1674DD2ED;
-	Thu, 14 Sep 2023 11:32:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3108C15E90;
+	Thu, 14 Sep 2023 11:32:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06349208C8
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 11:32:01 +0000 (UTC)
-Received: from mail-vk1-xa30.google.com (mail-vk1-xa30.google.com [IPv6:2607:f8b0:4864:20::a30])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D5DF1FC4;
-	Thu, 14 Sep 2023 04:32:01 -0700 (PDT)
-Received: by mail-vk1-xa30.google.com with SMTP id 71dfb90a1353d-490e78ae83bso423592e0c.0;
-        Thu, 14 Sep 2023 04:32:01 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22954208A3;
+	Thu, 14 Sep 2023 11:32:50 +0000 (UTC)
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7311E1BE8;
+	Thu, 14 Sep 2023 04:32:49 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b9338e4695so12003011fa.2;
+        Thu, 14 Sep 2023 04:32:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694691120; x=1695295920; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NsttBv8HKlL9XAEyJGK+M8jti8yQoZtbn/MGaMyCekw=;
-        b=TdJU3jalD3qyOayvf/YLrkImlzps/ADP/hszeQenkAEC0mReTVzThsXBWkRk5gnrgR
-         pDIbtrtel+j7pJsmpYGAEdv2N6Igy6+wuiP5wDuUyxVuCBA2ZP9k4XIcYNZStxJd8NGR
-         46uhk7WRrpVOGkwhq72v6UXU80mAo6/4MOi7ySdENRwURcc7jvVYgoi493KUANFDAR1B
-         CjI4ma8waMZfcEoQno6XIDReRvaNCMCpgjY4kx1MmJw0mSEa2FiLyMHuKpf1z3g8HAtN
-         ktdGzX5+w/KjaR3GlIM0mJvNJpGvqNKJQGUzbHDSIjG1mP0B1dm0L58T+4fma+43f1Zq
-         S98w==
+        d=gmail.com; s=20221208; t=1694691167; x=1695295967; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=LtP+ORG51cOnQgAyG8Q8L/PuvqcAZFq5aTIYWfYMZs4=;
+        b=UDEqhXjW/OEqJJS2rAavgtk9cYHfatxeVCSon8uQQxxeYcfnfxEodg7nErgoqNEb4j
+         kVr2juhb/2LakczKz2VpfH3OrglkOvJUk2y+NVj457o+zaXOM2zujsuY49XLsV+hBmCn
+         +lX7+7UxjNSGTXYrH1IrsR7gzvQK5Ly9TWZBPlNmK39VqkTclMFQuBTeYv1HyuIYKEgR
+         1hn7kQ3VMNp8jy5+j3BZC2Fl9ew32xXF2Emnl1U6fcW5Of9XBk/H/6CpFUbX4YXhl3Ti
+         m8QIGxH2ozO2TV3tgiNn8MF0PGUOX/KBBs4ljYPq4/0+zbJUdEDAX1vKFD+7EYHxX7Fh
+         /mdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694691120; x=1695295920;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NsttBv8HKlL9XAEyJGK+M8jti8yQoZtbn/MGaMyCekw=;
-        b=cSmaHbOP4VRRFdUcgykYY0aK54IAwB/3Nie2JQ2Ecrt+F6fcnKmiMSALYqx35VF0+U
-         ohVM1HkOmiOHmgDpunk9+5H2OQb2CHMeDtNrQwbnx2fW7zESFJEBnFrX8KJYtPRSG9Sx
-         Dooev2C6c26qKdLIQqI2NReAVQTfRXf6sa7UkidsnbmS6HHfGKjGfTeqmKSVO+Z9fGL5
-         PzX8ROwJyH79p80RRRPzpyO30Cs5HwDhl+S4SD+LjEpCvmVwljaSszS3K3tBePDwGMY+
-         DPJYk45ZN+tldM2hw9aN6iu+AEM5QgXnXhLamCB/FRyfw1LpsTa9lrzARG/ZMk9PqW3l
-         Qlyg==
-X-Gm-Message-State: AOJu0YyUrUozqAQCR6AH7ukN+vlcSXR9lOT4DOH1btUeTppE4XNt3PW9
-	6Pl10GsJWV5eyHQA+SvbSXxUneR19JQNmg0jmnc=
-X-Google-Smtp-Source: AGHT+IESWsHYz9G4ymkwNCpggjjEBLUHskGcC8fJ9HmW6kkuQ5lRxsApyTLayB9kCoZHd0z9GkE5FQCSjpKzSZ+9bS0=
-X-Received: by 2002:a1f:dd82:0:b0:48f:c07e:433a with SMTP id
- u124-20020a1fdd82000000b0048fc07e433amr5030783vkg.11.1694691120138; Thu, 14
- Sep 2023 04:32:00 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1694691167; x=1695295967;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LtP+ORG51cOnQgAyG8Q8L/PuvqcAZFq5aTIYWfYMZs4=;
+        b=nx2Y/tbCxzlmXpaEdCkN1m6W6hQ4XD9O+DLyzYSHENazJdhJPP75W9Ws3H/4+X5gfI
+         8CdnB9XBv/D9Oyfp8cTdb0Xx1MBtHiKfqvzmDvrnFXqk/lzQmPjSZeH3209BiYYRSjZa
+         8DVXs2R3NffDL8PYc6KCoG1n+LOLvOIEQXvy4/kPKJROq0VsTKwFemxFaKUgbYkDYw79
+         saPOpCsH4AxEeW+Xs2SO84x/na+x8XVh95JzgJGm8sJbfUrnmGMAMucjBgFU++1XNWJY
+         pyq4qazmzjgrzeroQly/NZUaSD7xyavWHm549sI4qWMnalr9Snk/pMY7ubCyiFegxCPL
+         QaSg==
+X-Gm-Message-State: AOJu0Yy1lWfBErYZZAO6TE56BhGjPFE1RZQ/HGWs0CKmPc4D9WaQhUrI
+	ebgkJryoTMrAQeQaD8PIlgU=
+X-Google-Smtp-Source: AGHT+IFU1JI/BHPOJOArjfnzjINNAJavuJJ6VMYd9VBuQkPUCgFXcEp/9CjG0Rg8PaabYFr1/HcxFQ==
+X-Received: by 2002:a2e:350d:0:b0:2bc:ed75:1b0 with SMTP id z13-20020a2e350d000000b002bced7501b0mr4966389ljz.2.1694691167361;
+        Thu, 14 Sep 2023 04:32:47 -0700 (PDT)
+Received: from skbuf ([188.26.56.202])
+        by smtp.gmail.com with ESMTPSA id x8-20020a170906298800b0099bcb44493fsm884550eje.147.2023.09.14.04.32.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Sep 2023 04:32:47 -0700 (PDT)
+Date: Thu, 14 Sep 2023 14:32:44 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: "David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>,
+	Eric Dumazet <edumazet@google.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Arun Ramadoss <arun.ramadoss@microchip.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, UNGLinuxDriver@microchip.com,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v5 1/2] dt-bindings: net: dsa: microchip: Update
+ ksz device tree bindings for drive strength
+Message-ID: <20230914113244.ozj4swe7ck3l4dbr@skbuf>
+References: <20230914075107.2239886-1-o.rempel@pengutronix.de>
+ <20230914075107.2239886-1-o.rempel@pengutronix.de>
+ <20230914075107.2239886-2-o.rempel@pengutronix.de>
+ <20230914075107.2239886-2-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230913151606.69494-1-romain.perier@gmail.com>
- <20230913151606.69494-3-romain.perier@gmail.com> <20230913-depress-bootlace-6b88bfd83966@spud>
- <CABgxDoK2T3xkKYDVeqRuDXMHfVEJcRkkBOBBkMJ5=XUv9Y5MsQ@mail.gmail.com> <20230914-coagulant-unbroken-2461d32274a1@wendy>
-In-Reply-To: <20230914-coagulant-unbroken-2461d32274a1@wendy>
-From: Romain Perier <romain.perier@gmail.com>
-Date: Thu, 14 Sep 2023 13:31:49 +0200
-Message-ID: <CABgxDo+SddJkBUHgQ+s5x2g_j-7M7DK24_=pLO8=fCksX5jwbw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: rtc: Add Mstar SSD202D RTC
-To: Conor Dooley <conor.dooley@microchip.com>
-Cc: Conor Dooley <conor@kernel.org>, Alessandro Zummo <a.zummo@towertech.it>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Daniel Palmer <daniel@0x0f.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230914075107.2239886-2-o.rempel@pengutronix.de>
+ <20230914075107.2239886-2-o.rempel@pengutronix.de>
 
-Le jeu. 14 sept. 2023 =C3=A0 10:28, Conor Dooley
-<conor.dooley@microchip.com> a =C3=A9crit :
->
-> On Thu, Sep 14, 2023 at 09:08:52AM +0200, Romain Perier wrote:
-> > Le mer. 13 sept. 2023 =C3=A0 20:30, Conor Dooley <conor@kernel.org> a =
-=C3=A9crit :
-> > >
-> > > On Wed, Sep 13, 2023 at 05:16:05PM +0200, Romain Perier wrote:
-> > > > Add YAML bindings for Mstar SSD202D RTC.
-> > > >
-> > > > Signed-off-by: Romain Perier <romain.perier@gmail.com>
-> > > > ---
-> > > >  .../bindings/rtc/mstar,ssd202d-rtc.yaml       | 35 +++++++++++++++=
-++++
-> > > >  1 file changed, 35 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/rtc/mstar,ssd=
-202d-rtc.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/rtc/mstar,ssd202d-rt=
-c.yaml b/Documentation/devicetree/bindings/rtc/mstar,ssd202d-rtc.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..4c1f22ef5a2c
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/rtc/mstar,ssd202d-rtc.yaml
-> > > > @@ -0,0 +1,35 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/rtc/mstar,ssd202d-rtc.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Mstar SSD202D Real Time Clock
-> > > > +
-> > > > +maintainers:
-> > > > +  - Daniel Palmer <daniel@0x0f.com>
-> > > > +  - Romain Perier <romain.perier@gmail.com>
-> > > > +
-> > > > +allOf:
-> > > > +  - $ref: rtc.yaml#
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - mstar,ssd202d-rtc
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - reg
-> > >
-> >
-> > Hi,
-> >
-> > > So, this seems fine to me in isolation, but isn't this now the sort o=
-f
-> > > thing that can be documented in trivial-rtc.yaml?
-> > > Its only got compatible & reg, which seems to fit the bill for that.
-> > >
-> >
-> > With the current state, it might make sense. However, currently, the
-> > RTC hw block is mostly
-> > reverse-engineered, the driver is not complete yet, things like
-> > external irq or wakeup irq might arrive later (once we know how it is
-> > wired up and used).
-> > So the content of the dt-bindings might change and differ from a
-> > simple "compatible & reg" requirement.
->
-> It's always possible to move from that to a fully fledged binding at a
-> later date. re: interrupts, trivial-rtc permits a single interrupt, so
-> it'd still be suitable if the device only has one.
+On Thu, Sep 14, 2023 at 09:51:06AM +0200, Oleksij Rempel wrote:
+> Extend device tree bindings to support drive strength configuration for the
+> ksz* switches. Introduced properties:
+> - microchip,hi-drive-strength-microamp: Controls the drive strength for
+>   high-speed interfaces like GMII/RGMII and more.
+> - microchip,lo-drive-strength-microamp: Governs the drive strength for
+>   low-speed interfaces such as LEDs, PME_N, and others.
+> - microchip,io-drive-strength-microamp: Controls the drive strength for
+>   for undocumented Pads on KSZ88xx variants.
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> ---
 
-I agree, good point. Yes, we can make the change later, sure. I will
-fix it in the next patch series.
-
-Thanks,
-Romain
+Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
 
