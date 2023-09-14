@@ -1,383 +1,115 @@
-Return-Path: <devicetree+bounces-214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 073657A04A7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 14:59:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 144CD7A04DA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:03:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B14F3282319
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 12:59:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 986DF1F237AB
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 13:03:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47CA21C2B3;
-	Thu, 14 Sep 2023 12:58:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 594A018E3A;
+	Thu, 14 Sep 2023 13:03:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ACC7241E0
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 12:58:59 +0000 (UTC)
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2656F1FD8;
-	Thu, 14 Sep 2023 05:58:58 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1c3d6d88231so7677185ad.0;
-        Thu, 14 Sep 2023 05:58:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C6572420D
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 13:03:18 +0000 (UTC)
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9C341FD8
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 06:03:17 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id 3f1490d57ef6-d801c83325fso990977276.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 06:03:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694696337; x=1695301137; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l3MGl7C5EjM9ttfGWxVFA90kZYQHBe9Ye5VWhldrIso=;
-        b=JmLEQCXO1znC9sXQvdVL1L0gt0FC3skyrRsLg7fX0hN0y8zLyFhn7x9yA1+MV5FnwW
-         AOyotuiX8UNle/drpSlw2slEeXkhP9yL/1cxEAZnSQENGKfRtT4iB8Nkzp2uNm4hgLOv
-         U8T2aiJdfzSSiFSEcJEOU5YVJUfyOw0dAV/fmI7MdK0rrqw6Y68wbCWlMxwZcIk5Buw3
-         ppo7t5lVG7KhJeHzKdS3SbPBG57DJoDHph/3ZSB9WjDTbjFysF6zEvMKvqvAyn58Vais
-         91JuAWxp9SzxvducuOP1XBfSSXXkExyW639RiYvZ61j9vu1gddDDTN/Mnvjnn5cwtJFk
-         GKpA==
+        d=linaro.org; s=google; t=1694696597; x=1695301397; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=aCsgoVc5MdDS0OEMSd5NVyJPQJml3xjCRjHmB8pQyQU=;
+        b=UmE2vFAwharNvYSJfAL72mxudS2a4wmMf/TkC49VsGZd89aOhrQvypUzbF7VHtx+5a
+         YC0BViG1cIGoWdpq0Wk1WSpeJL+12Xh2uJyvSYm4SC027sk8+3R+pbPXDyFh0sgVh+zq
+         +toHzyaCDhS2DVcf+VzvePK3BfVZmovOBVq2KdwMDfy5PAWy12EcC9/a0poZjYvQyi/L
+         CNS44n8C13mCfK+ICsZayqr9N842nE3AoEGju5c4BBD/ulhQAdP6J0AO99JNrOrCt24I
+         Ayvd+SP0ciP7DovwVIQLwsp++nn1D6dz0sQPsuh3QoBcK5aT0bUCOLTT6cWsXl9M78IH
+         b8MA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694696337; x=1695301137;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l3MGl7C5EjM9ttfGWxVFA90kZYQHBe9Ye5VWhldrIso=;
-        b=IeCyUNn396E9QJWj+OZG2cJcT1Cjrl4ZVIfob45O7UK+ZD9Y1HMMqJfuEG7cgRxnWh
-         Wgoiq4fBY9Bz6psKsv09ZBmd+iKKwPKwRydasvqKLyn+OXsNyhv4T701F7cS8Eou4g8Y
-         xVM/R9/Orf1mUbuorejxpRntS3qva8czXYtiphuRxrR1iSt1fwnZnCDb2xkL+LOoy8PP
-         Sf+R7xJ4nqdQTjp/XgtWmlT0Ji8silCoXcFxm8LgQLYGXTyFw6w12TMDJP/c+Iqtt8NK
-         R7zFB5j1GkuFKylzS+kWlgsSSb4xSBG4SsD5HNCxitqOQ/AA/xtv0D263hsr09R5WBM5
-         LDKQ==
-X-Gm-Message-State: AOJu0YyjoucgvOkb+BP3Ogqpr1iuWGP7PqLrVU1d+7Fhdkd6aidVLQ6R
-	aY0VvzBm2YEEfWm4wQ62Dh73sNcVMSc=
-X-Google-Smtp-Source: AGHT+IGoTGX55SvuPJvG5KNCZxjfgvAW1U8GTQz0U4GzYX80ErzgcFCKRYeqfGHK+nMHzYYsiA0A7w==
-X-Received: by 2002:a17:902:7084:b0:1c0:d17a:bfe9 with SMTP id z4-20020a170902708400b001c0d17abfe9mr4035605plk.46.1694696337546;
-        Thu, 14 Sep 2023 05:58:57 -0700 (PDT)
-Received: from obliging-System-Product-Name.dhcpserver.bu9bmc.local (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
-        by smtp.gmail.com with ESMTPSA id c11-20020a170903234b00b001b8a3e2c241sm1535105plh.14.2023.09.14.05.58.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Sep 2023 05:58:57 -0700 (PDT)
-From: Yang Chen <yangchen.openbmc@gmail.com>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	joel@jms.id.au,
-	andrew@aj.id.au,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Cc: patrick@stwcx.xyz,
-	Jerry.Lin@quantatw.com,
-	Eddie.Chen@quantatw.com,
-	EasonChen1@quantatw.com,
-	yangchen.openbmc@gmail.com
-Subject: [PATCH v2 2/2] ARM: dts: aspeed: Minerva: Add Facebook Minerva CMC board
-Date: Thu, 14 Sep 2023 20:56:48 +0800
-Message-Id: <20230914125648.3966519-3-yangchen.openbmc@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230914125648.3966519-1-yangchen.openbmc@gmail.com>
-References: <20230914125648.3966519-1-yangchen.openbmc@gmail.com>
+        d=1e100.net; s=20230601; t=1694696597; x=1695301397;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aCsgoVc5MdDS0OEMSd5NVyJPQJml3xjCRjHmB8pQyQU=;
+        b=YbicXI4/JeDkQmL3fenK+MhQkfGacdRPAf+PMuZcCR7ZdyTdFXtRFZ4Rn/x51kbHOG
+         wv5RZhs5vsOKkBkCkTzGuEmmJeLLBemuMfFIqk9ZEHQlFCIg0zi6l26X4TQV1eGaOC4V
+         hAiBFhSF2qEgrqtEml4MqNXf21o2MYO67qPYjVvfQfHobU12wi/Q/0J5HmrUiYDqx+cI
+         cFiv6b7lguB4PqDF6u5rS5fcjdmzcBI3CSIoyNdf6V9MSLZRx2nnqfRZR6QTLIMW/fKj
+         0LDCujyiUNs2qo6ptADU6BqDoKUodjQH1Ole3AySMvE+i6FglUPlLFKIoi6sKYWrJr87
+         jrNg==
+X-Gm-Message-State: AOJu0YwYhJ9zHDd1oJkQKGvMEQVspj4Rqj6OpXtej5++UUydnrtFx2NY
+	dQj+gjQ6SFvBb38pvZouvy/hb3353nRMJlhgb/Ye3A==
+X-Google-Smtp-Source: AGHT+IHtq67DZntMzVUKa/tcZfvAY9V5Pu2y+pL8a0RH0Ax2Jq7NeiRTvdNMEGDNeImVEaPGukeWC05mKHKjfg4DqmE=
+X-Received: by 2002:a5b:449:0:b0:d54:b34c:1c7b with SMTP id
+ s9-20020a5b0449000000b00d54b34c1c7bmr4766279ybp.59.1694696596656; Thu, 14 Sep
+ 2023 06:03:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230825135503.282135-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230825135503.282135-1-krzysztof.kozlowski@linaro.org>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 14 Sep 2023 15:02:40 +0200
+Message-ID: <CAPDyKFpZnoVnZt-WN_5YdqesoT_Xcbs56tJunwS5oNZSJySxgg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: sdhci-msm: correct minimum number
+ of clocks
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bhupesh Sharma <bhupesh.sharma@linaro.org>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Add linux device tree entry related to the Minerva Chassis Management
-Controller (CMC) specific devices connected to the Aspeed SoC (AST2600).
+On Fri, 25 Aug 2023 at 15:55, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> In the TXT binding before conversion, the "xo" clock was listed as
+> optional.  Conversion kept it optional in "clock-names", but not in
+> "clocks".  This fixes dbts_check warnings like:
+>
+>   qcom-sdx65-mtp.dtb: mmc@8804000: clocks: [[13, 59], [13, 58]] is too short
+>
+> Cc: <stable@vger.kernel.org>
+> Fixes: a45537723f4b ("dt-bindings: mmc: sdhci-msm: Convert bindings to yaml")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Yang Chen <yangchen.openbmc@gmail.com>
----
- arch/arm/boot/dts/aspeed/Makefile             |   1 +
- .../aspeed-bmc-facebook-minerva-cmc.dts       | 265 ++++++++++++++++++
- 2 files changed, 266 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva-cmc.dts
+Applied for fixes, thanks!
 
-diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-index 23cbc7203a8e..d3ac20e316d0 100644
---- a/arch/arm/boot/dts/aspeed/Makefile
-+++ b/arch/arm/boot/dts/aspeed/Makefile
-@@ -19,6 +19,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-facebook-fuji.dtb \
- 	aspeed-bmc-facebook-galaxy100.dtb \
- 	aspeed-bmc-facebook-greatlakes.dtb \
-+	aspeed-bmc-facebook-minerva-cmc.dtb \
- 	aspeed-bmc-facebook-minipack.dtb \
- 	aspeed-bmc-facebook-tiogapass.dtb \
- 	aspeed-bmc-facebook-wedge40.dtb \
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva-cmc.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva-cmc.dts
-new file mode 100644
-index 000000000000..3c389fdf58a5
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva-cmc.dts
-@@ -0,0 +1,265 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+// Copyright (c) 2023 Facebook Inc.
-+/dts-v1/;
-+
-+#include "aspeed-g6.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/i2c/i2c.h>
-+
-+/ {
-+	model = "Facebook Minerva CMC";
-+	compatible = "facebook,minerva-cmc", "aspeed,ast2600";
-+
-+	aliases {
-+		serial5 = &uart5;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial5:57600n8";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x80000000>;
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-+			<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-+			<&adc1 2>;
-+	};
-+};
-+
-+&uart6 {
-+	status = "okay";
-+};
-+
-+&wdt1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdtrst1_default>;
-+	aspeed,reset-type = "soc";
-+	aspeed,external-signal;
-+	aspeed,ext-push-pull;
-+	aspeed,ext-active-high;
-+	aspeed,ext-pulse-duration = <256>;
-+};
-+
-+&mac3 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rmii4_default>;
-+	use-ncsi;
-+	mlx,multi-host;
-+};
-+
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc";
-+		spi-max-frequency = <50000000>;
-+#include "openbmc-flash-layout-128.dtsi"
-+	};
-+	flash@1 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "alt-bmc";
-+		spi-max-frequency = <50000000>;
-+	};
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&sgpiom1 {
-+	status = "okay";
-+	ngpios = <128>;
-+	bus-frequency = <2000000>;
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	temperature-sensor@4B {
-+		compatible = "ti,tmp75";
-+		reg = <0x4B>;
-+	};
-+
-+	eeprom@51 {
-+		compatible = "atmel,24c128";
-+		reg = <0x51>;
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	i2c-mux@77 {
-+		compatible = "nxp,pca9548";
-+		reg = <0x77>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+
-+		i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+
-+			eeprom@50 {
-+				compatible = "atmel,24c128";
-+				reg = <0x50>;
-+			};
-+		};
-+
-+		i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+
-+			eeprom@50 {
-+				compatible = "atmel,24c128";
-+				reg = <0x50>;
-+			};
-+		};
-+
-+		i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+
-+			eeprom@50 {
-+				compatible = "atmel,24c128";
-+				reg = <0x50>;
-+			};
-+		};
-+
-+		i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+
-+			eeprom@50 {
-+				compatible = "atmel,24c128";
-+				reg = <0x50>;
-+			};
-+		};
-+
-+		i2c@4 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <4>;
-+
-+			eeprom@50 {
-+				compatible = "atmel,24c128";
-+				reg = <0x50>;
-+			};
-+		};
-+
-+		i2c@5 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <5>;
-+
-+			eeprom@50 {
-+				compatible = "atmel,24c128";
-+				reg = <0x50>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+};
-+
-+&i2c8 {
-+	status = "okay";
-+};
-+
-+&i2c9 {
-+	status = "okay";
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+};
-+
-+&i2c13 {
-+	status = "okay";
-+};
-+
-+&i2c14 {
-+	status = "okay";
-+	multi-master;
-+
-+	ipmb@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c15 {
-+	status = "okay";
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c128";
-+		reg = <0x50>;
-+	};
-+};
-+
-+&adc0 {
-+	aspeed,int-vref-microvolt = <2500000>;
-+	status = "okay";
-+	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
-+		&pinctrl_adc2_default &pinctrl_adc3_default
-+		&pinctrl_adc4_default &pinctrl_adc5_default
-+		&pinctrl_adc6_default &pinctrl_adc7_default>;
-+};
-+
-+&adc1 {
-+	aspeed,int-vref-microvolt = <2500000>;
-+	status = "okay";
-+	pinctrl-0 = <&pinctrl_adc10_default>;
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&uhci {
-+	status = "okay";
-+};
--- 
-2.34.1
+Kind regards
+Uffe
 
+
+> ---
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> index 80141eb7fc6b..10f34aa8ba8a 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> @@ -69,7 +69,7 @@ properties:
+>      maxItems: 4
+>
+>    clocks:
+> -    minItems: 3
+> +    minItems: 2
+>      items:
+>        - description: Main peripheral bus clock, PCLK/HCLK - AHB Bus clock
+>        - description: SDC MMC clock, MCLK
+> --
+> 2.34.1
+>
 
