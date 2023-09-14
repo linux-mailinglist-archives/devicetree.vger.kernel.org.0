@@ -1,107 +1,141 @@
-Return-Path: <devicetree+bounces-222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C9187A0566
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:19:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A9DC7A0570
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:20:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09BD51F239FB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 13:19:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 564F4B20C25
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 13:20:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 045D9208CC;
-	Thu, 14 Sep 2023 13:19:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2D82208CC;
+	Thu, 14 Sep 2023 13:20:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBE97241E0
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 13:19:26 +0000 (UTC)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E94D2118;
-	Thu, 14 Sep 2023 06:19:26 -0700 (PDT)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-59be6bcf408so10975147b3.2;
-        Thu, 14 Sep 2023 06:19:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694697565; x=1695302365;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4uZJSTJpkTY7WDoLQQFFp+wNWgzUgYBYIubQOSDA1p4=;
-        b=d+GDl4HmOQuJucCMgKLXtlTYAaHozUBNEUHJfhAcLc9IA5olrnIdUAg18YKSUzPnTL
-         FtKp7FTb2lXFSUl1NTI0Msa0kzCpWzYdSveGz/I4KDoVqv6+Z7wXz2Oqnd0QSKGGasHc
-         spB1vnPynvMGzp9FePbu67aLbCZ4fT1GRE6hFn5POUMuvEnYoJHybHdKb197k87v5FxO
-         43C4sb7wxnrLbzaeIbxd9YGSfRSuKsaumkKxjzlNovdlFsTCSbFkJJ8fp44n+z9/EYu1
-         BdGcKfNZE1YnsDrHJANHtwwq8u+uaaC/28RVCyKOzn2cYi7cm5q2o3EkU3TI8VEcPmPj
-         bKvQ==
-X-Gm-Message-State: AOJu0YxSOtJ91M/+m8Eh/MFmaG109gAXcDnqrWU8O23ei7i3T4h7+5oP
-	6Sdok6pH53rBLA2YNPB+61RcivhJz1cKpg==
-X-Google-Smtp-Source: AGHT+IGeOj+7TvsOg0sYCahslHPaDV6RS/lHn+S2/o3KDQ6yeDkCQErAC2LuLGLdyhY61hcyAAcypA==
-X-Received: by 2002:a0d:c087:0:b0:599:da80:e1e6 with SMTP id b129-20020a0dc087000000b00599da80e1e6mr5484264ywd.34.1694697565168;
-        Thu, 14 Sep 2023 06:19:25 -0700 (PDT)
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
-        by smtp.gmail.com with ESMTPSA id f4-20020a0ddc04000000b005869ca8da8esm307222ywe.146.2023.09.14.06.19.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Sep 2023 06:19:24 -0700 (PDT)
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-d7ecdb99b7aso974501276.3;
-        Thu, 14 Sep 2023 06:19:24 -0700 (PDT)
-X-Received: by 2002:a5b:cca:0:b0:d7f:9215:6869 with SMTP id
- e10-20020a5b0cca000000b00d7f92156869mr5228632ybr.55.1694697564530; Thu, 14
- Sep 2023 06:19:24 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D631F241E0
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 13:20:26 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F00A1A5;
+	Thu, 14 Sep 2023 06:20:26 -0700 (PDT)
+Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 28B8A12AE;
+	Thu, 14 Sep 2023 15:18:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1694697531;
+	bh=P8Fv3m8a1ccWANsx+oyHLY8IHHlnvGwRC93xpQj+i9w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vd5vSVo6laW2yqhWLYoFUw2pR9IDCbyTnxTHpQWG9+oKf5HlG93fm3AxwYyzUn3+T
+	 Y/2a8cUk4u8/CgYi0juf/HMVld9JiFIjBb9ej/Akjm8DCptcuNp/SexuQyTX65TL4d
+	 Pqpwfz9GkKmitEJk38hr3Xs36ZgfNG1mY28KXRAU=
+Date: Thu, 14 Sep 2023 15:20:20 +0200
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Sakari Ailus <sakari.ailus@iki.fi>
+Cc: Fabio Estevam <festevam@gmail.com>, mchehab@kernel.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>, 
+	jacopo.mondi@ideasonboard.com
+Subject: Re: [PATCH] media: dt-bindings: ovti,ov772x: Make powerdown-gpios
+ active-high
+Message-ID: <hmic7q3hbndw3afwdktjaptcfinfjekh24zo5iryrtvtykjqmw@dydp7czzkv7z>
+References: <20230913193932.1947918-1-festevam@gmail.com>
+ <ZQLgauEc3VtRQUMm@valkosipuli.retiisi.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com> <20230912045157.177966-14-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20230912045157.177966-14-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 14 Sep 2023 15:19:12 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWkOOPrwUX4iJCA5SqDGB+0WgU5yx_XzuoexKYu0Y=zkw@mail.gmail.com>
-Message-ID: <CAMuHMdWkOOPrwUX4iJCA5SqDGB+0WgU5yx_XzuoexKYu0Y=zkw@mail.gmail.com>
-Subject: Re: [PATCH 13/37] clk: renesas: rzg2l: use FIELD_GET() for PLL
- register fields
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
-	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
-	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
-	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <ZQLgauEc3VtRQUMm@valkosipuli.retiisi.eu>
 
-On Tue, Sep 12, 2023 at 6:52=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Hi Sakari, Fabio
+
+On Thu, Sep 14, 2023 at 10:28:58AM +0000, Sakari Ailus wrote:
+> Hi Fabio,
 >
-> Use FIELD_GET() for PLL register fields. This is its purpose.
+> On Wed, Sep 13, 2023 at 04:39:32PM -0300, Fabio Estevam wrote:
+> > From: Fabio Estevam <festevam@denx.de>
+> >
+> > The powerdown-gpios description mentions:
+> >
+> > "Reference to the GPIO connected to the PWDN pin which is active high."
+
+From datasheet:
+
+        Power down mode selection:
+        0: Normal mode
+        1: Power down mode
+
+> >
+> > Improve the example by making powerdown-gpios active-high for consistency.
+> >
+> > Signed-off-by: Fabio Estevam <festevam@denx.de>
+> > ---
+> >  Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> > index 5d24edba8f99..5aec65b053af 100644
+> > --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> > @@ -114,7 +114,7 @@ examples:
+> >              compatible = "ovti,ov7725";
+> >              reg = <0x21>;
+> >              reset-gpios = <&axi_gpio_0 0 GPIO_ACTIVE_LOW>;
+> > -            powerdown-gpios = <&axi_gpio_0 1 GPIO_ACTIVE_LOW>;
+> > +            powerdown-gpios = <&axi_gpio_0 1 GPIO_ACTIVE_HIGH>;
+> >              clocks = <&xclk>;
+> >
+> >              port {
 >
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> Looking at the driver code, it seems the powerdown GPIO is set to state 1
+> when the device is powered on and to 0 when it's powered down. This looks
+> like a driver bug.
+>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-clk-for-v6.7.
 
-Gr{oetje,eeting}s,
+It is. As you can see I ported the driver from the old soc-camera
+version and in 762c28121d7c ("media: i2c: ov772x: Remove soc_camera
+dependencies") I defintely introduced this. I'll here play the card "I
+was young in 2018".
 
-                        Geert
+This is also probably wrong
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+	priv->pwdn_gpio = gpiod_get_optional(&client->dev, "powerdown",
+					     GPIOD_OUT_LOW);
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+As it sets the chip in power-up mode during probe() (this should be
+safe to change, but there's no way I can test it unfortunately)
+
+> But what happens if you fix something like this after five years in
+> existence? Maybe just leave it as-is, and document it??? Then again,
+
+As the rule "old dtbs are supposed to work with new versions of a
+driver", "fixing" the driver would defintely break them.
+
+I would add a comment in the .yaml file and in the driver.
+As I introduced this, I can do that if Fabio doesn't.
+
+> there's a single Renesas board that appears to have such a device, added
+> two and half years ago.
+
+yeah, that stuff is dead, but we can't tell how many users of this
+driver are there in the wild..
+
+>
+> Also cc Jacopo.
+
+Thanks, I'm listead as maintainer for this driver for odd-fixes.
+Please use get_maintainer.pl
+
+>
+> --
+> Regards,
+>
+> Sakari Ailus
 
