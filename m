@@ -1,83 +1,92 @@
-Return-Path: <devicetree+bounces-288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A30127A0A2D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 18:02:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF43B7A0A0A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 18:00:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B17E28228D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 16:02:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3D921C20C74
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 16:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E3521100;
-	Thu, 14 Sep 2023 16:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 069FE210FD;
+	Thu, 14 Sep 2023 16:00:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FAF11D523
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 16:01:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25E00C433C7;
-	Thu, 14 Sep 2023 16:01:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0CB928E2F
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 16:00:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64221C433C7;
+	Thu, 14 Sep 2023 16:00:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694707260;
-	bh=Nkkv6aDL1D5TTqvjrRRRh4zdX4zcZxoBLRYI9o1UB9M=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=tJTs7BD1Sd1brkG65MiVYm8K8L2ti9/t1hqenkLmk5OPz2flwUbQ5agxW+wumyI1e
-	 Gl+rqKsX0hgFW32O0RoRIwwqVaE0pG4sA9tL56ynB+oqCf6ot5Wd7tosybFwHlDYI4
-	 EyDarBB54e0E+x8gFsf1uc/a8ARD1SO2Ezsdbq6gvJs8WuncVtrNqxD28zWPMhdUqm
-	 WWnN2SwvIVEKBB3Y2XF25ssCNLC/ZVCD2vUdiC31iUm6HK4Qia4rHaAF46vWJw8G44
-	 pVuesm6H4UDU/SUYUQcv2a+Jze+ByiFSklcuramK7NK0Havv1IMT6LWimOT/BEQ5wP
-	 XiNtXmjjDiTsQ==
-Date: Thu, 14 Sep 2023 11:00:58 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-	lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-	manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
-	kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, marek.vasut+renesas@gmail.com,
-	fancer.lancer@gmail.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v20 07/19] PCI: dwc: Add missing PCI_EXP_LNKCAP_MLW
- handling
-Message-ID: <20230914160058.GA32113@bhelgaas>
+	s=k20201202; t=1694707230;
+	bh=OYN5GeHDGg/fi2AaPThTCk4AuKi5RjqpvJ0Y1SDgX/w=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Fcy6Q1bfxYDY/IOa3YKiQaKZRUXtIgxcdDtZZUjHZw/Djm1cjCKi4u+av9XChdltj
+	 pfPAZrMEfjJjxoWshrmdUzUHYIUfA4JbyUZQG7UvjLryoJpKgnOmFInRQukxnBEwj/
+	 SxC2GVT415zPjU5UUJJZxheXhyK9DfD9usF1uhaqfBc1DhTd6RDsAYqTUDfy8UMH/l
+	 cngmJVmD1VsRP1QBS/JGUvA/q/tPMcQmieszLQMep0tGIcNNIntPTn7d+Tcj7GQORC
+	 DHYR5sH2LRqGjswvwj0lyE51TapExlIMZdIXT9rzvUQEoHjE9DdgYdFyIHb8B01aeg
+	 pynNGXH7QZ9lg==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Adam Skladowski <a39.skl@gmail.com>
+Cc: phone-devel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht,
+	Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	AngeloGioacchino Del Regno <kholk11@gmail.com>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v3 0/7] MSM8976 PLL,RPMPD and DTS changes
+Date: Thu, 14 Sep 2023 09:04:18 -0700
+Message-ID: <169470744874.681825.2938456613731544807.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20230812112534.8610-1-a39.skl@gmail.com>
+References: <20230812112534.8610-1-a39.skl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230825093219.2685912-8-yoshihiro.shimoda.uh@renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Fri, Aug 25, 2023 at 06:32:07PM +0900, Yoshihiro Shimoda wrote:
-> Update dw_pcie_link_set_max_link_width() to set PCI_EXP_LNKCAP_MLW.
-> In accordance with the DW PCIe RC/EP HW manuals [1,2,3,...] aside with
-> the PORT_LINK_CTRL_OFF.LINK_CAPABLE and GEN2_CTRL_OFF.NUM_OF_LANES[8:0]
-> field there is another one which needs to be updated. It's
-> LINK_CAPABILITIES_REG.PCIE_CAP_MAX_LINK_WIDTH. If it isn't done at
-> the very least the maximum link-width capability CSR won't expose
-> the actual maximum capability.
+
+On Sat, 12 Aug 2023 13:24:43 +0200, Adam Skladowski wrote:
+> This patch series fixes introduce support for msm8976 pll,
+> also brings some adjustments and fixes domains setup and few dts nitpicks.
 > 
-> [1] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
->     Version 4.60a, March 2015, p.1032
-> [2] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
->     Version 4.70a, March 2016, p.1065
-> [3] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
->     Version 4.90a, March 2016, p.1057
-> ...
-> [X] DesignWare Cores PCI Express Controller Databook - DWC PCIe Endpoint,
->       Version 5.40a, March 2019, p.1396
-> [X+1] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
->       Version 5.40a, March 2019, p.1266
+> Changes since v1
+> ================
+> 1. Fixed few styling issues
+> 2. Changed compatibles for plls
+> 3. Added fixes: tag to first patch
+> 
+> [...]
 
-Is there value in keeping all four of these Root Port citations?  I
-assume that if you have the most recent one (X+1), it completely
-obsoletes the older ones, so you should never have to look at the
-older ones?
+Applied, thanks!
 
-Bjorn
+[2/7] clk: qcom: clk-hfpll: Configure l_val in init when required
+      commit: 500a4609eef46d49a260173b66cabb20bd5159ad
+[3/7] clk: qcom: hfpll: Allow matching pdata
+      commit: 34e000c0963e55f24be2254fa645f8dd8257a9e0
+[4/7] dt-bindings: clock: qcom,hfpll: Document MSM8976 compatibles
+      commit: de37ca2dc98607e74522d8f243aa7feac74577c5
+[5/7] clk: qcom: hfpll: Add MSM8976 PLL data
+      commit: 1fa2d1a887c763246662a88e203d69b36052770c
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
