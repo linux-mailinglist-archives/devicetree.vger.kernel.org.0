@@ -1,207 +1,456 @@
-Return-Path: <devicetree+bounces-258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C42A07A08BE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 17:13:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BD417A08C2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 17:14:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1C6AFB20BA0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:13:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 775CEB20C33
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:14:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1C5D26280;
-	Thu, 14 Sep 2023 14:57:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C2192629B;
+	Thu, 14 Sep 2023 14:58:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEEE228E11
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 14:57:07 +0000 (UTC)
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2076.outbound.protection.outlook.com [40.107.20.76])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 068F91FC7;
-	Thu, 14 Sep 2023 07:57:07 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JcV3ZT2KQMQsohI/AIuyJPttxkRLH27/sX6tQWF/Xx++G+Y5C15qTAvbhBVBx+pajv2RkuELtBF8dHOIN4gRxEYu0r9S+Yi8zpc5iDBtX+3l08zdFAEB2Mm88s9AFzuKtnHLpeLbeLQ4igZtPM46Zwysj8VclYdfO2g947AFF52wmah8pGgtYChimxD+vqnrIR2G/2RcdQXYkD+YfOZLTU8XiBhQHvQb3HChT7zfP5bSTnCdlx/oP1Qkoy5zWsmderLcOyZYN4Le2W7NuuYL1Xsq7vtc3jMEaUpVFJqIdIOik+r+mhN7VtV8fp8MyUg/UiIZ2j5GW/RwH76POdd2qQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BpB8xU1eXhJHyYI6ZZQRg4LgYCYDbKTblEMSWdko7x0=;
- b=bwqGzlbXv8M2myXzP14jS2h2cZdnB18KYu3bgVGw5DhQy1z8KI2DoXiC2dYReUGwrh5bBqSm8KyGIsykqoTChFFfyMAxH4aPlmDIia5K0BoxAYEUTaWi5n0rSRAO+VnGWfiotHkY6Gg33tORT7gcr822tLnPLm2rvFmzN/jn89Iyv3W1Qh1N7Ai37kpKsGWZvzDGb/PM2v7zKB//OVDjBF3r521HIlGHAwXJdXP9IPBU7856kqKk292a3+rIrZ0+FgacIg4mLcUyhibo+RlegixBzSJ8eVPrn3cjqbt89pCz5RflCmjB902qnW3yRhXuiH8zu3a4yXMi+NdRhbqz8w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BpB8xU1eXhJHyYI6ZZQRg4LgYCYDbKTblEMSWdko7x0=;
- b=aKUAFPfypRA/UESS50kCD77iRoQRq8jCGwodWFXIOL8nBA61fibX3zAg1K2NmkReGrOppAbdMcJcuCihsbOxy5tQlCGqiv6aie4K0N/kOxcQr+BRoRnY0szxgfoGCnOUDgCElPGDQi3+51VRGYvqg2JsOYgWqDacUfLi+5Tc6XU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9380.eurprd04.prod.outlook.com (2603:10a6:10:368::16)
- by PAXPR04MB8142.eurprd04.prod.outlook.com (2603:10a6:102:1ce::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.19; Thu, 14 Sep
- 2023 14:57:04 +0000
-Received: from DB9PR04MB9380.eurprd04.prod.outlook.com
- ([fe80::179f:1c4a:4573:acb9]) by DB9PR04MB9380.eurprd04.prod.outlook.com
- ([fe80::179f:1c4a:4573:acb9%4]) with mapi id 15.20.6768.029; Thu, 14 Sep 2023
- 14:57:04 +0000
-From: Laurentiu Tudor <laurentiu.tudor@nxp.com>
-To: shawnguo@kernel.org,
-	leoyang.li@nxp.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Laurentiu Tudor <laurentiu.tudor@nxp.com>
-Subject: [PATCH] arm64: dts: ls208xa: use a pseudo-bus to constrain usb dma size
-Date: Thu, 14 Sep 2023 17:56:52 +0300
-Message-Id: <20230914145652.25728-1-laurentiu.tudor@nxp.com>
-X-Mailer: git-send-email 2.17.1
-Content-Type: text/plain
-X-ClientProxiedBy: AM0PR06CA0078.eurprd06.prod.outlook.com
- (2603:10a6:208:fa::19) To DB9PR04MB9380.eurprd04.prod.outlook.com
- (2603:10a6:10:368::16)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A40828E11
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 14:58:54 +0000 (UTC)
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79CA61FD5;
+	Thu, 14 Sep 2023 07:58:53 -0700 (PDT)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id 53AA142476;
+	Thu, 14 Sep 2023 19:58:51 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1694703531; bh=GFz9gA2Jil0rMSV6BK6G7cBuVLLNcRsExuN57gZ1Gvo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=PeMpoyKRvb84SJ+kaOsMhyC/nIxvh6lc4xGuLUAOUD8ej8HY6N64BOhcbC0O96Md2
+	 Adisw6VxyRe9bIDl9NCzYz2ovoeQ87u/ZPJZgAEzf11QB5F4SCwK3eaDqyGsQ6/rvc
+	 NlZEsQ1UpimRm1E3efiJz0jZGl65X8/jCA/XUeMC1qeMDbvg2fDiAqgbIDE1UBfzGe
+	 nUzHbjm2bghLgargvkfeQ9pfAYgQ66BIF0e1FRkKObBQ/0Ud9IA6rxj13owii0lfrt
+	 94a0sOVJJtN3Jm5PqVO9aYOLMj8GGK/eefNxVQ1+pzCHxSN7/zT2TkcZqsqOIH7Qnz
+	 1MmsrMvn/2MpA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9380:EE_|PAXPR04MB8142:EE_
-X-MS-Office365-Filtering-Correlation-Id: 418cdd3f-9edd-4533-7771-08dbb532dbcf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	LzC/TCqj1IMzp7h3im0X5CqIIMrqaiRu9f3g0BKs7YOzP98FlpXMWNHrDJsGTI/JBkAjS776C71F1lhqp2QwE9h6/2WYd7D19CyBBUUpp4Xu3EFCAOdUxlCcEGy2PW/14OEmPod1fC6g5RC9nSjB8hJPXcPsz7TST0dryD0HIX9ZCq9rCm3dHlWQOgzvHuEsgRD3dssyWSKMraAYtMS5Xy3H4pQvK8Md96Eh8+nuCxiMerRKIUy81Tcxl3vFcMOVRpakvZrowlauY43Mzul4cicPz/BCPX73S34FILQiYCW/4eNSgUPsuqfOug66Zflugo7vs/NmrUlwt0C1DcMXpfxGHL1JJDtmUaLsw8MvgWp7vAPT/XVDS+rYDATdjxaay8RpEpbRHNYifWLnUpYjcGTQMUX4dUtK6KAyF+OC0qU5X1uxOI+eR8ox27gavQyZNweuzKpcgowRuzgaOY5bhiwH+t/OJcJ+4etl7DKD8XPdxoKhdXlP6azk2+CoNJLAdtuCsBGP2hUmbaF23LKrgcemtVXaDJvjycoGF+fif4ixgiZeZm7kQbk9y5D1r7/fQMwMssVC1Y6em3/zvg3Rr/4q90uxpVqmjWin55RiKLe9b+lCR4Xc8TRvRl+91nEB
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9380.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(346002)(39860400002)(136003)(376002)(396003)(451199024)(186009)(1800799009)(316002)(6666004)(6506007)(52116002)(6486002)(478600001)(38100700002)(38350700002)(26005)(83380400001)(1076003)(6512007)(2616005)(41300700001)(36756003)(8676002)(86362001)(2906002)(66946007)(5660300002)(66476007)(44832011)(8936002)(66556008)(4326008);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?JpCZHgcz9YKGlImyBOhkl/nhXIwIYGYWrDTm670BdrfbErKK8DEkdv2ffgsm?=
- =?us-ascii?Q?rCW5ZEJvdKBBa8/Eq5DdyS6EXMS9t6oB13+UNVQr3ghUuY6S1E8P7X/8fWjb?=
- =?us-ascii?Q?1K8Hvdg4fV+6EXqtEHtW88wnPpB6IRxPziQZVXzy1EEni2nIrCjgHkd5hwK9?=
- =?us-ascii?Q?6+BN7W396gkfCmMhi9lIDp4jE+ZghctgvySg/LIwlDua9CUo2lpq30GWbrKx?=
- =?us-ascii?Q?RAuXUugRYxSZvieZXfnJ7huTJTZ8RxlAgktvKmlOmxXh3tizhrydYkK7PUAT?=
- =?us-ascii?Q?dNmlt4nTQtfF7w97vDARW6mPzTOwHbqFju9qpXF7Hn73/AeaHe8IzIoy1VE/?=
- =?us-ascii?Q?VRrq8KRgdRdYmc72nxH2c6FsSzjLSPKhVqY8GP0WZmhQ+hTJUZo3tmOro8jC?=
- =?us-ascii?Q?WGZ0e3rkGnq/qbkXP5cjhocpzw8Mu/S35Id8LzF8fCCsrfivDA+dB8EOMVRo?=
- =?us-ascii?Q?TbW5xaUhqKCJY9S4omt3biglTYt7hqE/Dfy1dw/kYnQemWZFv6eGM0enDXc1?=
- =?us-ascii?Q?hfOOAUhWvpeHVnyHspO9NGQ52+omRiNbb6YQoNjGbjEBINhLLfdVvaG4OVQn?=
- =?us-ascii?Q?PBvQxxxMh+1mtgO/j7vl0UrvH1jQbC2Ug6xFaESutuTszfSx5nCUkE3PvsYK?=
- =?us-ascii?Q?r7NYCcjGSTA7TSNIC8KrH7VgK2NJKJ3qD7kWyWTbr1gpxoBJHvetamPlh80a?=
- =?us-ascii?Q?AzFI3Nfom1HMUDuVbTxC6wK2suxVWiwr8zX2LeCIwhdhx/oG8vg1o9Au9mhv?=
- =?us-ascii?Q?/QG0v3Fm8EF/D5P93rkWBK8k3C598+fjiJycgYdURwAF5oX8Fw0+Eocm7UEZ?=
- =?us-ascii?Q?f5QmuiwXbht0O9f9vQTnb4n3A1hnY2YdGX1aGXb6V2nzG1B7ZUbhvolpDsk8?=
- =?us-ascii?Q?nosgmSuJPA4wnXFoZodspMr04BSjXXxtiolyybzEQ/QqQ1zgEFLCHYiNubzm?=
- =?us-ascii?Q?g5QACUpUGnJAF+YNZmV2yQPdZVNSUpdaqQlkNS4P16RYBks7dCygoX8ge64d?=
- =?us-ascii?Q?jN0qEk5S+VGx4crrdIMQ9dMea1dtVSV7mduKyi4YNYtcDzZOA/VOz09RZcjJ?=
- =?us-ascii?Q?t0SXE5zp8phixFvcKcGHcoX96I0gV1FDu4BQl3pHSHYFTrbsYqEpEfTK+sMY?=
- =?us-ascii?Q?sx0I19fSxTpSHvWEpCzORCTcUe7eWH/mS0HFUe9jr/y3sbGT2GEokM7WsxMy?=
- =?us-ascii?Q?5XmdnSDUE7Chh+2B0hSh5wY0hym60ygXuqfCHi1OHgUTfZ3bsaZjfz4AjGPy?=
- =?us-ascii?Q?4ijCCxumbhJQESGjdpg6+u11T9jDNppAsvsJbRFKiihUIzjVq+is8wHznjlR?=
- =?us-ascii?Q?SFLsra3aFfe5+LTxqKa+IQ4QmpN6PN0MF55gx99u4BqCJ1VPezfuMw0/7uNF?=
- =?us-ascii?Q?VpdKWJ7pXetn9KcUUFfMMBGogkY4NBYCbFZ4WrSiB3YCAf3/+V+dmio/16CV?=
- =?us-ascii?Q?DwO3Ppr0u2FBwCZUKDwKa5dLbFV0vab66rsrrXRBtbLemTO5/NP5xgKFWeKW?=
- =?us-ascii?Q?KSy5IHS12MOTAEjdG8TW6uuWDYFyUHvJcqirzOqSWPHx/nQPekkH7YPXIcm3?=
- =?us-ascii?Q?Zy7yykkwvmDKpMUMhraGKcAqfxWd5nO8s4wYGrx/?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 418cdd3f-9edd-4533-7771-08dbb532dbcf
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9380.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2023 14:57:04.5516
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1epRoF4AC8HkqkRcZr5/nexm2s7eYbdF6gVIhhPer6frVbjbfwhpWuyPfaNQjWQ57LXsx5DEi5B+4c7Hxick5w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8142
+Date: Thu, 14 Sep 2023 19:58:50 +0500
+From: Nikita Travkin <nikita@trvn.ru>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] power: supply: Add pm8916 VM-BMS support
+In-Reply-To: <20230914143514.s7ty4ixeykiqehev@mercury.elektranox.org>
+References: <20230731-pm8916-bms-lbc-v2-0-82a4ebb39c16@trvn.ru>
+ <20230731-pm8916-bms-lbc-v2-3-82a4ebb39c16@trvn.ru>
+ <20230914143514.s7ty4ixeykiqehev@mercury.elektranox.org>
+Message-ID: <e1d1fae275f9544f8ba73245352797d2@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Wrap the usb controllers in an intermediate simple-bus and use it to
-constrain the dma address size of these usb controllers to the 40b
-that they generate toward the interconnect. This is required because
-the SoC uses 48b address sizes and this mismatch would lead to smmu
-context faults [1] because the usb generates 40b addresses while the
-smmu page tables are populated with 48b wide addresses.
+Sebastian Reichel писал(а) 14.09.2023 19:35:
+> Hi,
+> 
+> On Mon, Jul 31, 2023 at 10:06:26PM +0500, Nikita Travkin wrote:
+>> This driver adds basic support for VM-BMS found in pm8916.
+>>
+>> VM-BMS is a very basic fuel-gauge hardware block that is, sadly,
+>> incapable of any gauging. The hardware supports measuring OCV in
+>> sleep mode, where the battery is not in use, or measuring average
+>> voltage over time when the device is active.
+>>
+>> This driver implements basic value readout from this block.
+>>
+>> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+>> ---
+>> v2: Get irq by name
+>> ---
+> 
+> Thanks for the patch. I have a few small change requests.
+> 
+>>  drivers/power/supply/Kconfig         |  11 ++
+>>  drivers/power/supply/Makefile        |   1 +
+>>  drivers/power/supply/pm8916_bms_vm.c | 296 +++++++++++++++++++++++++++++++++++
+>>  3 files changed, 308 insertions(+)
+>>
+>> diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
+>> index 663a1c423806..e93a5a4d03e2 100644
+>> --- a/drivers/power/supply/Kconfig
+>> +++ b/drivers/power/supply/Kconfig
+>> @@ -629,6 +629,17 @@ config CHARGER_QCOM_SMBB
+>>  	  documentation for more detail.  The base name for this driver is
+>>  	  'pm8941_charger'.
+>>
+>> +config BATTERY_PM8916_BMS_VM
+>> +	tristate "Qualcomm PM8916 BMS-VM support"
+>> +	depends on MFD_SPMI_PMIC || COMPILE_TEST
+>> +	help
+>> +	  Say Y to add support for Voltage Mode BMS block found in some
+>> +	  Qualcomm PMICs such as PM8916. This hardware block provides
+>> +	  battery voltage monitoring for the system.
+>> +
+>> +	  To compile this driver as module, choose M here: the
+>> +	  module will be called pm8916_bms_vm.
+>> +
+>>  config CHARGER_BQ2415X
+>>  	tristate "TI BQ2415x battery charger driver"
+>>  	depends on I2C
+>> diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
+>> index a8a9fa6de1e9..fdf7916f80ed 100644
+>> --- a/drivers/power/supply/Makefile
+>> +++ b/drivers/power/supply/Makefile
+>> @@ -84,6 +84,7 @@ obj-$(CONFIG_CHARGER_MP2629)	+= mp2629_charger.o
+>>  obj-$(CONFIG_CHARGER_MT6360)	+= mt6360_charger.o
+>>  obj-$(CONFIG_CHARGER_MT6370)	+= mt6370-charger.o
+>>  obj-$(CONFIG_CHARGER_QCOM_SMBB)	+= qcom_smbb.o
+>> +obj-$(CONFIG_BATTERY_PM8916_BMS_VM)	+= pm8916_bms_vm.o
+>>  obj-$(CONFIG_CHARGER_BQ2415X)	+= bq2415x_charger.o
+>>  obj-$(CONFIG_CHARGER_BQ24190)	+= bq24190_charger.o
+>>  obj-$(CONFIG_CHARGER_BQ24257)	+= bq24257_charger.o
+>> diff --git a/drivers/power/supply/pm8916_bms_vm.c b/drivers/power/supply/pm8916_bms_vm.c
+>> new file mode 100644
+>> index 000000000000..6cf00bf1c466
+>> --- /dev/null
+>> +++ b/drivers/power/supply/pm8916_bms_vm.c
+>> @@ -0,0 +1,296 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2023, Nikita Travkin <nikita@trvn.ru>
+>> + */
+>> +
+>> +#include <linux/errno.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/of_device.h>
+> 
+> You should be able to remove the of headers after my proposed
+> changes.
+> 
 
-[1]
-xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
-xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
-xhci-hcd xhci-hcd.0.auto: hcc params 0x0220f66d hci version 0x100 quirks 0x0000000002000010
-xhci-hcd xhci-hcd.0.auto: irq 108, io mem 0x03100000
-xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
-xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
-xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
-arm-smmu 5000000.iommu: Unhandled context fault: fsr=0x402, iova=0xffffffb000, fsynr=0x0, cbfrsynra=0xc01, cb=3
+Will switch and drop this.
 
-Signed-off-by: Laurentiu Tudor <laurentiu.tudor@nxp.com>
----
- .../arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 46 +++++++++++--------
- 1 file changed, 27 insertions(+), 19 deletions(-)
+>> +#include <linux/platform_device.h>
+>> +#include <linux/power_supply.h>
+>> +#include <linux/property.h>
+>> +#include <linux/regmap.h>
+>> +#include <linux/slab.h>
+>> +#include <linux/delay.h>
+>> +#include <linux/interrupt.h>
+>> +
+>> +#define PM8916_PERPH_TYPE 0x04
+>> +#define PM8916_BMS_VM_TYPE 0x020D
+>> +
+>> +#define PM8916_SEC_ACCESS 0xD0
+>> +#define PM8916_SEC_MAGIC 0xA5
+>> +
+>> +#define PM8916_BMS_VM_STATUS1 0x08
+>> +#define PM8916_BMS_VM_FSM_STATE(x) (((x) & 0b00111000) >> 3)
+>> +#define PM8916_BMS_VM_FSM_STATE_S2 0x2
+>> +
+>> +#define PM8916_BMS_VM_MODE_CTL 0x40
+>> +#define PM8916_BMS_VM_MODE_FORCE_S3 (BIT(0) | BIT(1))
+>> +#define PM8916_BMS_VM_MODE_NORMAL (BIT(1) | BIT(3))
+>> +
+>> +#define PM8916_BMS_VM_EN_CTL 0x46
+>> +#define PM8916_BMS_ENABLED BIT(7)
+>> +
+>> +#define PM8916_BMS_VM_FIFO_LENGTH_CTL 0x47
+>> +#define PM8916_BMS_VM_S1_SAMPLE_INTERVAL_CTL 0x55
+>> +#define PM8916_BMS_VM_S2_SAMPLE_INTERVAL_CTL 0x56
+>> +#define PM8916_BMS_VM_S3_S7_OCV_DATA0 0x6A
+>> +#define PM8916_BMS_VM_BMS_FIFO_REG_0_LSB 0xC0
+>> +
+>> +/* Using only 1 fifo is broken in hardware */
+>> +#define PM8916_BMS_VM_FIFO_COUNT 2 /* 2 .. 8 */
+>> +
+>> +#define PM8916_BMS_VM_S1_SAMPLE_INTERVAL 10
+>> +#define PM8916_BMS_VM_S2_SAMPLE_INTERVAL 10
+>> +
+>> +struct pm8916_bms_vm_battery {
+>> +	struct device *dev;
+>> +	struct power_supply *battery;
+>> +	struct power_supply_battery_info *info;
+>> +	struct regmap *regmap;
+>> +	unsigned int reg;
+>> +	unsigned int last_ocv;
+>> +	unsigned int vbat_now;
+>> +};
+>> +
+>> +static int pm8916_bms_vm_battery_get_property(struct power_supply *psy,
+>> +					      enum power_supply_property psp,
+>> +					      union power_supply_propval *val)
+>> +{
+>> +	struct pm8916_bms_vm_battery *bat = power_supply_get_drvdata(psy);
+>> +	struct power_supply_battery_info *info = bat->info;
+>> +	int supplied;
+>> +
+>> +	switch (psp) {
+>> +	case POWER_SUPPLY_PROP_STATUS:
+>> +		supplied = power_supply_am_i_supplied(psy);
+>> +
+>> +		if (supplied < 0 && supplied != -ENODEV)
+>> +			return supplied;
+>> +		else if (supplied && supplied != -ENODEV)
+>> +			val->intval = POWER_SUPPLY_STATUS_CHARGING;
+>> +		else
+>> +			val->intval = POWER_SUPPLY_STATUS_DISCHARGING;
+>> +		return 0;
+>> +
+>> +	case POWER_SUPPLY_PROP_HEALTH:
+>> +		if (bat->vbat_now < info->voltage_min_design_uv)
+>> +			val->intval = POWER_SUPPLY_HEALTH_DEAD;
+>> +		else if (bat->vbat_now > info->voltage_max_design_uv)
+>> +			val->intval = POWER_SUPPLY_HEALTH_OVERVOLTAGE;
+>> +		else
+>> +			val->intval = POWER_SUPPLY_HEALTH_GOOD;
+>> +		return 0;
+>> +
+>> +	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
+>> +		val->intval = bat->vbat_now;
+>> +		return 0;
+>> +
+>> +	case POWER_SUPPLY_PROP_VOLTAGE_BOOT:
+>> +		/* Returning last known ocv value here - it changes after suspend. */
+>> +		val->intval = bat->last_ocv;
+>> +		return 0;
+> 
+> Returning OCV from last suspend is not the same as VOLTAGE_BOOT. How
+> about exposing POWER_SUPPLY_PROP_VOLTAGE_OCV and returning -ENODATA
+> if the value is older than 180 seconds?
+> 
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-index d2f5345d0560..47cc7699ca16 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-@@ -1186,26 +1186,34 @@
- 			dma-coherent;
- 		};
- 
--		usb0: usb@3100000 {
--			status = "disabled";
--			compatible = "snps,dwc3";
--			reg = <0x0 0x3100000 0x0 0x10000>;
--			interrupts = <0 80 0x4>; /* Level high type */
--			dr_mode = "host";
--			snps,quirk-frame-length-adjustment = <0x20>;
--			snps,dis_rxdet_inp3_quirk;
--			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
--		};
-+		aux_bus: aux_bus {
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			compatible = "simple-bus";
-+			ranges;
-+			dma-ranges = <0x0 0x0 0x0 0x0 0x100 0x00000000>;
-+
-+			usb0: usb@3100000 {
-+				status = "disabled";
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0x3100000 0x0 0x10000>;
-+				interrupts = <0 80 0x4>; /* Level high type */
-+				dr_mode = "host";
-+				snps,quirk-frame-length-adjustment = <0x20>;
-+				snps,dis_rxdet_inp3_quirk;
-+				snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
-+			};
- 
--		usb1: usb@3110000 {
--			status = "disabled";
--			compatible = "snps,dwc3";
--			reg = <0x0 0x3110000 0x0 0x10000>;
--			interrupts = <0 81 0x4>; /* Level high type */
--			dr_mode = "host";
--			snps,quirk-frame-length-adjustment = <0x20>;
--			snps,dis_rxdet_inp3_quirk;
--			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
-+			usb1: usb@3110000 {
-+				status = "disabled";
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0x3110000 0x0 0x10000>;
-+				interrupts = <0 81 0x4>; /* Level high type */
-+				dr_mode = "host";
-+				snps,quirk-frame-length-adjustment = <0x20>;
-+				snps,dis_rxdet_inp3_quirk;
-+				snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
-+			};
- 		};
- 
- 		ccn@4000000 {
--- 
-2.17.1
+Hm, indeed, I didn't think of this as an option... Will implement
+that instead.
 
+Thanks,
+Nikita
+
+>> +
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +}
+>> +
+>> +static enum power_supply_property pm8916_bms_vm_battery_properties[] = {
+>> +	POWER_SUPPLY_PROP_STATUS,
+>> +	POWER_SUPPLY_PROP_VOLTAGE_NOW,
+>> +	POWER_SUPPLY_PROP_VOLTAGE_BOOT,
+>> +	POWER_SUPPLY_PROP_HEALTH,
+>> +};
+>> +
+>> +static irqreturn_t pm8916_bms_vm_fifo_update_done_irq(int irq, void *data)
+>> +{
+>> +	struct pm8916_bms_vm_battery *bat = data;
+>> +	u16 vbat_data[PM8916_BMS_VM_FIFO_COUNT];
+>> +	int ret;
+>> +
+>> +	ret = regmap_bulk_read(bat->regmap, bat->reg + PM8916_BMS_VM_BMS_FIFO_REG_0_LSB,
+>> +			       &vbat_data, PM8916_BMS_VM_FIFO_COUNT * 2);
+>> +	if (ret)
+>> +		return IRQ_HANDLED;
+>> +
+>> +	/*
+>> +	 * The VM-BMS hardware only collects voltage data and the software
+>> +	 * has to process it to calculate the OCV and SoC. Hardware provides
+>> +	 * up to 8 averaged measurements for software to take in account.
+>> +	 *
+>> +	 * Just use the last measured value for now to report the current
+>> +	 * battery voltage.
+>> +	 */
+>> +	bat->vbat_now = vbat_data[PM8916_BMS_VM_FIFO_COUNT - 1] * 300;
+>> +
+>> +	power_supply_changed(bat->battery);
+>> +
+>> +	return IRQ_HANDLED;
+>> +}
+>> +
+>> +static const struct power_supply_desc pm8916_bms_vm_battery_psy_desc = {
+>> +	.name = "pm8916-bms-vm",
+>> +	.type = POWER_SUPPLY_TYPE_BATTERY,
+>> +	.properties = pm8916_bms_vm_battery_properties,
+>> +	.num_properties = ARRAY_SIZE(pm8916_bms_vm_battery_properties),
+>> +	.get_property = pm8916_bms_vm_battery_get_property,
+>> +};
+>> +
+>> +static int pm8916_bms_vm_battery_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct pm8916_bms_vm_battery *bat;
+>> +	struct power_supply_config psy_cfg = {};
+>> +	int ret, irq;
+>> +	unsigned int tmp;
+>> +
+>> +	bat = devm_kzalloc(dev, sizeof(*bat), GFP_KERNEL);
+>> +	if (!bat)
+>> +		return -ENOMEM;
+>> +
+>> +	bat->dev = dev;
+>> +
+>> +	bat->regmap = dev_get_regmap(pdev->dev.parent, NULL);
+>> +	if (!bat->regmap)
+>> +		return -ENODEV;
+>> +
+>> +	of_property_read_u32(dev->of_node, "reg", &bat->reg);
+> 
+> device_property_read_u32(...)
+> 
+>> +	if (bat->reg < 0)
+>> +		return -EINVAL;
+>> +
+>> +	irq = platform_get_irq_byname(pdev, "fifo");
+>> +	if (irq < 0)
+>> +		return irq;
+>> +
+>> +	ret = devm_request_threaded_irq(dev, irq, NULL, pm8916_bms_vm_fifo_update_done_irq,
+>> +					IRQF_ONESHOT, "pm8916_vm_bms", bat);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = regmap_bulk_read(bat->regmap, bat->reg + PM8916_PERPH_TYPE, &tmp, 2);
+>> +	if (ret)
+>> +		goto comm_error;
+>> +
+>> +	if (tmp != PM8916_BMS_VM_TYPE)
+>> +		return dev_err_probe(dev, -ENODEV, "Device reported wrong type: 0x%X\n", tmp);
+>> +
+>> +	ret = regmap_write(bat->regmap, bat->reg + PM8916_BMS_VM_S1_SAMPLE_INTERVAL_CTL,
+>> +			   PM8916_BMS_VM_S1_SAMPLE_INTERVAL);
+>> +	if (ret)
+>> +		goto comm_error;
+>> +	ret = regmap_write(bat->regmap, bat->reg + PM8916_BMS_VM_S2_SAMPLE_INTERVAL_CTL,
+>> +			   PM8916_BMS_VM_S2_SAMPLE_INTERVAL);
+>> +	if (ret)
+>> +		goto comm_error;
+>> +	ret = regmap_write(bat->regmap, bat->reg + PM8916_BMS_VM_FIFO_LENGTH_CTL,
+>> +			   PM8916_BMS_VM_FIFO_COUNT << 4 | PM8916_BMS_VM_FIFO_COUNT);
+>> +	if (ret)
+>> +		goto comm_error;
+>> +	ret = regmap_write(bat->regmap,
+>> +			   bat->reg + PM8916_BMS_VM_EN_CTL, PM8916_BMS_ENABLED);
+>> +	if (ret)
+>> +		goto comm_error;
+>> +
+>> +	ret = regmap_bulk_read(bat->regmap,
+>> +			       bat->reg + PM8916_BMS_VM_S3_S7_OCV_DATA0, &tmp, 2);
+>> +	if (ret)
+>> +		goto comm_error;
+>> +
+>> +	bat->last_ocv = tmp * 300;
+>> +	bat->vbat_now = bat->last_ocv;
+>> +
+>> +	psy_cfg.drv_data = bat;
+>> +	psy_cfg.of_node = dev->of_node;
+>> +
+>> +	bat->battery = devm_power_supply_register(dev, &pm8916_bms_vm_battery_psy_desc, &psy_cfg);
+>> +	if (IS_ERR(bat->battery))
+>> +		return dev_err_probe(dev, PTR_ERR(bat->battery), "Unable to register battery\n");
+>> +
+>> +	ret = power_supply_get_battery_info(bat->battery, &bat->info);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "Unable to get battery info\n");
+>> +
+>> +	platform_set_drvdata(pdev, bat);
+>> +
+>> +	return 0;
+>> +
+>> +comm_error:
+>> +	return dev_err_probe(dev, ret, "Unable to communicate with device\n");
+>> +}
+>> +
+>> +static int pm8916_bms_vm_battery_suspend(struct platform_device *pdev, pm_message_t state)
+>> +{
+>> +	struct pm8916_bms_vm_battery *bat = platform_get_drvdata(pdev);
+>> +	int ret;
+>> +
+>> +	/*
+>> +	 * Due to a hardware quirk the FSM doesn't switch states normally.
+>> +	 * Instead we unlock the debug registers and force S3 (Measure OCV/Sleep)
+>> +	 * mode every time we suspend.
+>> +	 */
+>> +
+>> +	ret = regmap_write(bat->regmap,
+>> +			   bat->reg + PM8916_SEC_ACCESS, PM8916_SEC_MAGIC);
+>> +	if (ret)
+>> +		goto error;
+>> +	ret = regmap_write(bat->regmap,
+>> +			   bat->reg + PM8916_BMS_VM_MODE_CTL, PM8916_BMS_VM_MODE_FORCE_S3);
+>> +	if (ret)
+>> +		goto error;
+>> +
+>> +	return 0;
+>> +
+>> +error:
+>> +	dev_err(bat->dev, "Failed to force S3 mode: %pe\n", ERR_PTR(ret));
+>> +	return ret;
+>> +}
+>> +
+>> +static int pm8916_bms_vm_battery_resume(struct platform_device *pdev)
+>> +{
+>> +	struct pm8916_bms_vm_battery *bat = platform_get_drvdata(pdev);
+>> +	int ret;
+>> +	unsigned int tmp;
+>> +
+>> +	ret = regmap_bulk_read(bat->regmap,
+>> +			       bat->reg + PM8916_BMS_VM_S3_S7_OCV_DATA0, &tmp, 2);
+>> +
+>> +	bat->last_ocv = tmp * 300;
+>> +
+>> +	ret = regmap_write(bat->regmap,
+>> +			   bat->reg + PM8916_SEC_ACCESS, PM8916_SEC_MAGIC);
+>> +	if (ret)
+>> +		goto error;
+>> +	ret = regmap_write(bat->regmap,
+>> +			   bat->reg + PM8916_BMS_VM_MODE_CTL, PM8916_BMS_VM_MODE_NORMAL);
+>> +	if (ret)
+>> +		goto error;
+>> +
+>> +	return 0;
+>> +
+>> +error:
+>> +	dev_err(bat->dev, "Failed to return normal mode: %pe\n", ERR_PTR(ret));
+>> +	return ret;
+>> +}
+>> +
+>> +static const struct of_device_id pm8916_bms_vm_battery_of_match[] = {
+>> +	{ .compatible = "qcom,pm8916-bms-vm", },
+>> +	{ },
+> 
+> {}
+> 
+> (i.e. remove space and trailing , for terminator entry)
+> 
+>> +};
+>> +MODULE_DEVICE_TABLE(of, pm8916_bms_vm_battery_of_match);
+>> +
+>> +static struct platform_driver pm8916_bms_vm_battery_driver = {
+>> +	.driver = {
+>> +		.name = "pm8916-bms-vm",
+>> +		.of_match_table = of_match_ptr(pm8916_bms_vm_battery_of_match),
+> 
+> remove of_match_ptr().
+> 
+>> +	},
+>> +	.probe = pm8916_bms_vm_battery_probe,
+>> +	.suspend = pm8916_bms_vm_battery_suspend,
+>> +	.resume = pm8916_bms_vm_battery_resume,
+>> +};
+>> +module_platform_driver(pm8916_bms_vm_battery_driver);
+>> +
+>> +MODULE_DESCRIPTION("pm8916 BMS-VM driver");
+>> +MODULE_AUTHOR("Nikita Travkin <nikita@trvn.ru>");
+>> +MODULE_LICENSE("GPL");
+> 
+> Otherwise LGTM,
+> 
+> -- Sebastian
 
