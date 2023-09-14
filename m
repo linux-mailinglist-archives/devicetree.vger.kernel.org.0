@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-78-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A43979FB5F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:54:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 923CB79FB64
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:55:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A1BFB209A9
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 05:54:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A97C0281A17
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 05:55:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9F982511F;
-	Thu, 14 Sep 2023 05:54:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDBF217C3;
+	Thu, 14 Sep 2023 05:55:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E1B763B
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 05:54:25 +0000 (UTC)
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DD8DC1
-	for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 22:54:24 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-313e742a787so336718f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 22:54:24 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0B3E250FD
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 05:55:40 +0000 (UTC)
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2801CE
+	for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 22:55:39 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-401c90ed2ecso6303815e9.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 22:55:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694670863; x=1695275663; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694670938; x=1695275738; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Vont974mPR+vR1R39yYi+/MSVKxLVG/yjvIZF0kTQRc=;
-        b=yl2CJ87hp4cn8MtdgQLfoCHnHcykGpuXop7iShtXDX7LhcLlqybZO98Kx/IjGSQAni
-         +nC+k0jCfvsFkYLyNAvoMputiAr0cHhLfcE5jyAt56FkSYiSnNONx5RTk0WTbcyxLGHn
-         ++axWqnoT2npLOC1EN+nF0XfGI2kUEDd/tdPUxfhD7nYsBBTGYotVeixUUn0B9TDNq7u
-         eQyrN08COo63Dobzuqpc981PobbI7/xHNxADPu9DGHKi5qetJrgfiPkadOtkTNkmBDv3
-         S8FG36YEjzW8W6PFvP8yMUYb1DCcv9/e7IYGdDkoIV6PEZu+Er9T1u7NOTxWyQ2OlksC
-         8bqQ==
+        bh=KVqz5fTFaZOPkRTloQdqhhX4Yfas1CeW5UW/reBPVug=;
+        b=Ts1zjQnHej8q0dX+4eQ0t0eHxXNz+upMSVOHdTbRwUlC4DWVUWcOKWnNZJzcBRgjsP
+         djmj57EkNaeVUpb2rkdLL8J6c1HvjWp1Xsja+XThINc5nSklD1JV6Vi7Ab6rQhUR3ARd
+         f+p1vsvNnIBjd8H1sSBEuFkVkncVzzVB9ElWSkAWr0BC7dAVmLmMA0tXZlaZEJ52eHQe
+         leDU+d+RwmcyPH4Fi9OZFk/CtMCU4oBYmRQ3zC2gi8tu1FY624IOP3mlitUAhbS+eQUE
+         BiVA/gjmJMw0jWPk9/2+QyGcd1ulni1rL6NiEDvvoyuCTQ0YVPVeKqvnO9xwAe9t3zzu
+         AomQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694670863; x=1695275663;
+        d=1e100.net; s=20230601; t=1694670938; x=1695275738;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vont974mPR+vR1R39yYi+/MSVKxLVG/yjvIZF0kTQRc=;
-        b=iW8GDs7N6o3Q8xDgJfY7DWPe1q7xKC1iyEY9chZl6s+R0cAkNwMKjXaNxamRVlobO+
-         wg9nQeY1OuvreJgs2d7dsJ4YySYYN+KOKxJftgfYWCD+rRzgMysaX95vPdtOtSBuZYof
-         OI7int05VXuI8hYvaIClLTjqFX7WvUApAP6kjOQA+SoQt02VlylF1qsTobbL0+EGFhXb
-         l9XpEt/FkLNaFVuC/3JroGCPq6vFOyXorqsq81EL+Dk+9FOu8dc4WvNCXUSvedTh7KqT
-         AexBjVKUb8EDO5givDMOmJeMbXIB/994HYvShTs0Dg/0gESieTWNeZTTzkm5SilaclZb
-         /uWg==
-X-Gm-Message-State: AOJu0YxCY85FbWSi2Ia0h56lD518/gCaasOe7PPsNKv0m/ckIjIxx+Nv
-	1TRg5JOEWK3SlzTGfkUHmAK0qA==
-X-Google-Smtp-Source: AGHT+IFCo+0UH+egV7WEJxmQZmqKJAcM2k6gd0KiChB1i4jHeNdtLdZ6CD4BZ9jTtvogt60rDLTlgg==
-X-Received: by 2002:a5d:4c49:0:b0:31f:c9a4:667b with SMTP id n9-20020a5d4c49000000b0031fc9a4667bmr538888wrt.31.1694670863060;
-        Wed, 13 Sep 2023 22:54:23 -0700 (PDT)
+        bh=KVqz5fTFaZOPkRTloQdqhhX4Yfas1CeW5UW/reBPVug=;
+        b=lqYzmAw19nyGZuQbIAmg9UzmAXdjACT0W7/9nSBhetSS80oanYuVrLwAAHyY+OUWY8
+         rZ/XLNYqjxNoABbjV/q5roSRABlR11vFWw4b7xH65Q3TiRH6bK6jxcOxOUsi+rPiEmaX
+         CojNrPJE7nOOSyTWBxwz5zgJcsx5s3EDIrQZ0ZkSo1kF4BVgWKO+Vlg6Ht3b/n0Fmcra
+         VSEmefyIXJiJsa47ucCc+jEIr3gWupmp1Nbx+5z260GRL8Tso+SZT1xb/IkKXjeOa5p4
+         5tl4AznUpaL5NmCnwYCC+1lknZOW3juYAdaRuyMsAoj3D5DRJqvfuabH0bKdnZMznbqP
+         dqgQ==
+X-Gm-Message-State: AOJu0YzA8eH8zH8GVYGw5w6Us781sjWuVXaVB8aluLCf1s3GkyijmcGu
+	f5mHJGw+f2Le/7ryE27tnw89yw==
+X-Google-Smtp-Source: AGHT+IG0W3wyhxluqtBNYusc57CPjlOiC3XamIm1oevXpauiZO52uIinBPwKk77BV+JH8o7fg2a7pg==
+X-Received: by 2002:a5d:58e8:0:b0:319:666e:b466 with SMTP id f8-20020a5d58e8000000b00319666eb466mr3280085wrd.42.1694670938069;
+        Wed, 13 Sep 2023 22:55:38 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id l10-20020a5d560a000000b003142e438e8csm747480wrv.26.2023.09.13.22.54.21
+        by smtp.gmail.com with ESMTPSA id c3-20020a05600c0ac300b003fef6881350sm962830wmr.25.2023.09.13.22.55.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 22:54:22 -0700 (PDT)
-Message-ID: <465dc390-a5ff-547a-2bd3-54b29e1b6c43@linaro.org>
-Date: Thu, 14 Sep 2023 07:54:20 +0200
+        Wed, 13 Sep 2023 22:55:37 -0700 (PDT)
+Message-ID: <d7bf0ae3-d263-4231-9656-2b7af4b372a3@linaro.org>
+Date: Thu, 14 Sep 2023 07:55:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,61 +109,20 @@ On 13/09/2023 23:14, Max Filippov wrote:
 > +  - Max Filippov <jcmvbkbc@gmail.com>
 > +
 > +description: |
-
-Do not need '|' unless you need to preserve formatting.
-
 > +  ESP32 UART controller is a part of ESP32 SoC series.
+
+1. Company name?
+2. ESP32 SoC series suggests esp32 is a series.
+
 > +
 > +properties:
 > +  compatible:
 > +    oneOf:
-
-That's just enum. Your descriptions are useless - tell nothing - so drop
-them.
-
 > +      - description: UART controller for the ESP32 SoC
 > +        const: esp,esp32-uart
 
-Looks quite generic, so just to be sure? This is not a family name,
-right? Neither family names nor wildcards are allowed.
-
-> +      - description: UART controller for the ESP32S3 SoC
-> +        const: esp,esp32s3-uart
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    serial0: serial@60000000 {
-
-Drop unused label.
-
-> +            compatible = "esp,esp32s3-uart";
-
-Use 4 spaces for example indentation.
-
-> +            reg = <0x60000000 0x80>;
-> +            interrupts = <27 1 0>;
-
-Use proper define for IRQ flags.
-
-> +            clocks = <&serial_clk>;
-> +    };
+Also, the vendor prefix looks incorrect, so again - what is the company
+name?
 
 Best regards,
 Krzysztof
