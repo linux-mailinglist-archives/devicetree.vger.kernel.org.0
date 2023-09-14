@@ -1,121 +1,141 @@
-Return-Path: <devicetree+bounces-319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEEF27A0FA8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 23:16:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 468157A0FD1
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 23:26:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFC381C208E4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 21:16:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4CD61C211EF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 21:26:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DABE926E29;
-	Thu, 14 Sep 2023 21:16:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F28F266C6;
+	Thu, 14 Sep 2023 21:26:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F190210FE
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 21:16:17 +0000 (UTC)
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 676AD26BB
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 14:16:17 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B7B9F20003;
-	Thu, 14 Sep 2023 21:16:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1694726175;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=J2uByTSc6ef2wK15Maeotg/rSPIQ8wdVeYHF0MmEwJ8=;
-	b=ER65GMMSKPyr6+QvCoJU06vqzBVSGGkY0KbyPJ/2OanGNONbd+JcMb3bpegvJY2Qy/7G8w
-	w/jWn/U4WB9q3++/Hsb4hUmiULOZTsWGNC1RcPQvxTyl5AtkmD58/SOxhrFrxiZqYPstU6
-	mLUqYYJnOdCEFEJhuu3wOg98GftsQzOKHZrQT+hmMTcdveRV2q6DAW9rbm0YWKEZ4bcN0E
-	/SCJQFNraGGeZ5Uu+ik+F5a0NVwol3T1eeuH+NK39v8trS2M78Slntk5cU1JFQSCHUw7Xq
-	60TEcebW9ilV30MsUIRP6MwhpV9wdxk3Yue7bHRYuwaLzC2ELAyYuMICYUn/Ow==
-Date: Thu, 14 Sep 2023 23:16:10 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Lucas Stach <l.stach@pengutronix.de>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio
- Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, patchwork-lst@pengutronix.de, Richard
- Leitner <richard.leitner@skidata.com>, Sandor Yu <Sandor.yu@nxp.com>
-Subject: Re: [PATCH v3 2/2] phy: freescale: add Samsung HDMI PHY
-Message-ID: <20230914231610.2c339f7e@booty>
-In-Reply-To: <20230906184211.1857585-2-l.stach@pengutronix.de>
-References: <20230906184211.1857585-1-l.stach@pengutronix.de>
-	<20230906184211.1857585-2-l.stach@pengutronix.de>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99D1B10A2F
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 21:26:02 +0000 (UTC)
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B07A61FD2;
+	Thu, 14 Sep 2023 14:26:01 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2bcde83ce9fso23029361fa.1;
+        Thu, 14 Sep 2023 14:26:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694726760; x=1695331560; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=oMF1sMMODWcbgwT3pjH1uzXCcj9xNGEpLdRLCBrFrJQ=;
+        b=cmu42MFN2adM3nuknTtkg/iPg74QXm77WyUphNziYcaXwM1AYxr3Ynng9DBFsBdtfC
+         dBK2LbCIvbu05zbRMehg8oFzeZT8A2xRskrhPVx+FEP4fIOZrmHY41UhyffCgn97Tf0D
+         a7JCbvgVMt1gOtOrMgtxfRsyBx8TCKf4nJXDF/z5sgbBONpGNOiyBdetlunB9Bufnc2e
+         uSZ95JHb6GuVVOVWwJAMXLSFuI3LEa6tQlBhLUROxiya5287dtx10c/V56/4TQw3RnfR
+         pbzOfIg/6Zs+5+EAB4vNGrTcyOtr5vMLBZHQv5HxgHQYiuHXagD/afBOBOvcJP2RFLE/
+         HXjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694726760; x=1695331560;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oMF1sMMODWcbgwT3pjH1uzXCcj9xNGEpLdRLCBrFrJQ=;
+        b=OB/Crm1yPU0O2XFn0egCyaYTIsvNhQ960UORmAGrCCHc/9TSliewmjK3vDcdMed+6x
+         Izm8eRCj+wj08E9GnblSN3PjOgY8yB1kIvqp8YriOTijjD0kLRz5yJjYim1ll5xL0wOg
+         //JGvbMu0o8husE4eJPA1wDOJiCrPG9rTpNYoyApP4AgmaHP9hHQVy3vqZRoISNoufa2
+         pCEPem5ZXw+KnNTsJoXAMDuLzjGosPrgVFV8nX5RTc/5E1bP6GIbYFyAENgSf8f5fFAW
+         hBNffaITEqAzqhfPfhXMzdK1cEzObuNJTrj9RIL4TcGthpGM0vwqnNqt/OiHHdXKA4A+
+         Hu4A==
+X-Gm-Message-State: AOJu0YwQX6UkCvKp01fQavLj3D+WXmKWGKBC24ud4k6Raipmdd0nK3xG
+	Y1Rcu1Hq2rivYRVDYR9QVp8=
+X-Google-Smtp-Source: AGHT+IGeoMqy4vLAoSY2X/w+GA/HPMA45WiFFOP5RvQWLM6JvhicB+XTUCofBtivl+Hy1N1PeJ/JQw==
+X-Received: by 2002:a2e:94c9:0:b0:2bc:cc1a:139c with SMTP id r9-20020a2e94c9000000b002bccc1a139cmr6834ljh.11.1694726759634;
+        Thu, 14 Sep 2023 14:25:59 -0700 (PDT)
+Received: from mobilestation ([95.79.219.206])
+        by smtp.gmail.com with ESMTPSA id q7-20020a2e8747000000b002b787442f03sm437834ljj.88.2023.09.14.14.25.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Sep 2023 14:25:59 -0700 (PDT)
+Date: Fri, 15 Sep 2023 00:25:57 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
+	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com, lpieralisi@kernel.org, 
+	robh+dt@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
+	bhelgaas@google.com, kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v20 07/19] PCI: dwc: Add missing PCI_EXP_LNKCAP_MLW
+ handling
+Message-ID: <3fg7k3lr3yrghyek3eepxojpziso7w3j2jbyjcw4m7lh23ruce@clnpbrz7nuoc>
+References: <notuqnugfnmu7ep7rvnerix7hvgqt5b4wdrirjjgggjsxfc7lz@pismsfnlenu4>
+ <20230914205906.GA79508@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230914205906.GA79508@bhelgaas>
 
-Hi Lucas,
-
-[+Cc: Sandor]
-
-On Wed,  6 Sep 2023 20:42:11 +0200
-Lucas Stach <l.stach@pengutronix.de> wrote:
-
-> This adds the driver for the Samsung HDMI PHY found on the
-> i.MX8MP SoC. Based on downstream implementation from
-> Sandor Yu <Sandor.yu@nxp.com>.
+On Thu, Sep 14, 2023 at 03:59:06PM -0500, Bjorn Helgaas wrote:
+> On Thu, Sep 14, 2023 at 11:48:39PM +0300, Serge Semin wrote:
+> > On Thu, Sep 14, 2023 at 11:00:58AM -0500, Bjorn Helgaas wrote:
+> > > On Fri, Aug 25, 2023 at 06:32:07PM +0900, Yoshihiro Shimoda wrote:
+> > > > Update dw_pcie_link_set_max_link_width() to set PCI_EXP_LNKCAP_MLW.
+> > > > In accordance with the DW PCIe RC/EP HW manuals [1,2,3,...] aside with
+> > > > the PORT_LINK_CTRL_OFF.LINK_CAPABLE and GEN2_CTRL_OFF.NUM_OF_LANES[8:0]
+> > > > field there is another one which needs to be updated. It's
+> > > > LINK_CAPABILITIES_REG.PCIE_CAP_MAX_LINK_WIDTH. If it isn't done at
+> > > > the very least the maximum link-width capability CSR won't expose
+> > > > the actual maximum capability.
+> > > > 
+> > > > [1] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
+> > > >     Version 4.60a, March 2015, p.1032
+> > > > [2] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
+> > > >     Version 4.70a, March 2016, p.1065
+> > > > [3] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
+> > > >     Version 4.90a, March 2016, p.1057
+> > > > ...
+> > > > [X] DesignWare Cores PCI Express Controller Databook - DWC PCIe Endpoint,
+> > > >       Version 5.40a, March 2019, p.1396
+> > > > [X+1] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
+> > > >       Version 5.40a, March 2019, p.1266
+> > 
+> > > Is there value in keeping all four of these Root Port citations?  I
+> > > assume that if you have the most recent one (X+1), it completely
+> > > obsoletes the older ones, so you should never have to look at the
+> > > older ones?
+> > 
+> > In general the procedure may differ from one device version to
+> > another. Though it doesn't concern DW PCIe IP-cores. So by citing all
+> > these manuals I implied that all DW PCIe controllers expect the same
+> > link-width initialization procedure. Keeping that in mind I guess the
+> > text could be indeed simplified by keeping only two citations (note
+> > [X] and [X+1] refer to the Root Port and End-point HW databooks of the
+> > same IP-core version) and noting in the text that the procedure is
+> > common for the older DW PCIe controllers too.
+> > 
+> > In anyway I wouldn't say that new IP-core databooks obsolete the
+> > old one since the driver supports all old and new controllers. So
+> > before introducing a generic procedure we need to make sure that it
+> > will work for all the known to be supported devices. From that
+> > perspective citing all the available databooks gets to make sense.
 > 
-> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
 
-Also for v3:
-[On custom board based on MSC SM2S-IMX8PLUS SMARC module]
-Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> You mean that instead of merely *adding* new details about new
+> devices, v5.40a might OMIT details specific to older devices covered
+> by v4.60a?  That sounds like ... kind of an unhelpful way to manage
+> the spec, but if so, I see your point.
 
-I have a few notes however, see below.
+Right. I can't say for all the Synopsys IP-core documents but for
+instance DW PCIe, DW uMCTL2 DDRC, DW *MAC docs tend to omit a lot of
+changes history info. The most extensive list of changes is available
+in the release notes provided as a separate document.
 
-> +#define PHY_REG_14		0x38
-> +#define  REG14_TOL_MASK		GENMASK(7, 4)
-> +#define  REG14_RP_CODE_MASK	GENMASK(2, 1)
+-Serge(y)
 
-According to the latest reference manual currently available on the NXP
-website (Rev. 1, 06/2021), this should be GENMASK(3, 1). This is
-somewhat nitpicking as the only possible value documented is 2. But
-let's continue...
-
-> +#define PHY_REG_33		0x84
-> +#define  REG33_MODE_SET_DONE	BIT(7)
-> +#define  REG33_FIX_DA		BIT(1)
-
-Here the reference manual is very different:
-
-MODE_SET_DONE BIT(4)
-TX_INV2       BIT(3)
-TX_INV1       BIT(2)
-TX_INV0       BIT(1)
-MON_RXD       BIT(0)
-bits 7-5 are reserved
-
-...which is strange: in the code you are always writing 0 in bit 4,
-which according to the docs means MODE_SET_DONE is always "Assert
-forced global reset". Thus I guess your definitions come from the
-downstream driver which, as it sadly happens, is more authoritative
-than the docs. :-/
-
-Sandor, can you confirm this, or provide any clarifications?
-
-Otherwise LGTM.
-
-Luca
-
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> 
+> Bjorn
 
