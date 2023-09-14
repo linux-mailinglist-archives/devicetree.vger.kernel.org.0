@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 640CF79FDCB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 10:03:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0243A79FDD2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 10:07:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5F8FB20A19
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 08:03:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4B197B20A19
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 08:07:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A9B7CA60;
-	Thu, 14 Sep 2023 08:03:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46B3DCA67;
+	Thu, 14 Sep 2023 08:07:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CC06EBC
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 08:03:38 +0000 (UTC)
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85D8A9B
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 01:03:37 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso86015266b.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 01:03:37 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28B1FCA62
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 08:07:44 +0000 (UTC)
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FF799B
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 01:07:44 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-31c5c06e8bbso597711f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 01:07:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694678616; x=1695283416; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1694678862; x=1695283662; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4NRB4alMY1NVgea7TozYUMItQUlkCZKiIlDqxQtzmM8=;
-        b=Unc+nWjND6ZGB0WKXskuSUQ75iChOQoisCFygUyR2s+F6ZZY68pYqatSeI8VFq5D2W
-         QTIGbmPmOCmZHvDVqWv0ihyefbz0GAbt6WglYpw2Vgolc6xgcP4rB63s363/kmnhMBmy
-         xk+hbatpweg5XLXvzT+zg4xFPSzVYo/GxgPbS8/A5pJMIl8MpGyhM9e1TAnT9P6Q2Nuq
-         6vYYZe28cp3MfzWRdPuwDW7RwLeStQP7M8oyzTSPTZrsqzYvcW6/r9xQD8wSuy4xVmgr
-         HPn5+HjgCW4JVAELnPQddT1FR4hhtiNK5LOx7CdDgbwSlurAVoCxLB/nLS2uOkSgFmqM
-         L4Rg==
+        bh=0JKcQNz7/LxVTphbNd7WfpGxCIp3rFN7/X1ftN+SaLE=;
+        b=T6vE+k1AecNy+9+ZcgH+w6iWApbe5oCs+a0ff+c1xGipcYjZ9z5nCsjB3ycnxl/gCG
+         5XhLbN9sCNfzrnUBuxukdczvA3Es+BuqiU5yAH27bBJo9/2ORKrpxYimp0XcNGUnhI1z
+         0pFMR6phHC3oyzq+JMGzAwcfVK96+r+C+L/wImhyLgbH73vbYOSkBQ3cjoFK2DzHWXMa
+         qEkpSyQ2YJKTOThVcolX1rG52iqYJYHh9FGoe0mmFPH9E153GWzaf/o3V191Ok2r3Ql3
+         TPwPa/C1TX6RRbliRzeHvwxiWVNVMZI9KnjPhVU2arpN7IM+7/y6cI1bEmC/ZDt891Fp
+         6uiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694678616; x=1695283416;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=1e100.net; s=20230601; t=1694678862; x=1695283662;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4NRB4alMY1NVgea7TozYUMItQUlkCZKiIlDqxQtzmM8=;
-        b=VjxYXENNcmYnZJwBn96rOPLfwLfQHunuH2p219geoBSkbgxrdNrDRH+CeqKU/HYlxJ
-         rVPAUQZBdHEwqqe+AoiT3FsugzkGBnX6K5wn9SedljffKcWWlRFx00kMpliU4SqE7DY4
-         uPxyvQVQ3Eo89WvM65C//eO6Zaayg43uLft4Sve1EwaCr0Jn7BLkTuN09GuQoUgsVoNf
-         o5zmSasypHKCcCgWTruXxDK+kqh86WfoVOjDIYGuacMsRSTUbBkSxhZsaNro1uVuf0uY
-         C5c7VeNW4ZH8ayCGoNzS5G5qprkQElio1z5mQnrQhGGdVpZAh1duSbBALB+hi7+EmP9f
-         4SQA==
-X-Gm-Message-State: AOJu0YyLID8vsUuUtP1vWaeqO3l6xP1JrvVrGzWYHW859wBw39CLARrK
-	2VYoTQxQi5s/vJcb/stiEK7BSg==
-X-Google-Smtp-Source: AGHT+IFV4DfNqYLwUOKA3yGGXOAhUvrZ0uU0sDJrGix/jT6KMxNQwV//CEpyKC2hA+lZLd08e7+uJA==
-X-Received: by 2002:a17:906:5a5f:b0:9aa:20b2:35e7 with SMTP id my31-20020a1709065a5f00b009aa20b235e7mr3762342ejc.9.1694678615900;
-        Thu, 14 Sep 2023 01:03:35 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id v4-20020a17090690c400b00992b1c93279sm619880ejw.110.2023.09.14.01.03.33
+        bh=0JKcQNz7/LxVTphbNd7WfpGxCIp3rFN7/X1ftN+SaLE=;
+        b=vWBFfuKPwW5AjzGO/yvlGS8gL94rSKN7l6vjXxuKkhEr7iPmm70t/DhCpj/vkTaHIJ
+         Tmc1DfylOP+/e4eOgIgFpfJDmcjM8/fhJN7zW4nP2gE5kVDbYYhXgI9aI6dAiToW02hl
+         AFKjZBuFRLBKoeYX4iQRJuqAgx8PmyuUjpNYPjXjCBwd2B8CzPd7DCAgR4IeEGu8s1kX
+         w3/V5cFyE8T8shA6/YiG2oMzfaagAzfEFU/hbSflYA1kVHU1+IjSpYRau9bD9z0XKcph
+         xbSKy2NOIpx6KiisN2Oes/QqPENcFpqElA6CF3nPBvJCqp6zYk0NHqpJ+wlva7bDh6Ax
+         IYLw==
+X-Gm-Message-State: AOJu0YzLJosB5nF66BQyast9JH0awMdKjuBetRSIe6N2vC9dyECjYLX8
+	42jRAVDUTPwpcFHDXDaht/5XpA==
+X-Google-Smtp-Source: AGHT+IHQwbAwrzoJqX6EDFEjCD6cZ11exncxwjKKLNqXlQ/L9nCe/YfpzClC3irrIQyDR+Bhh+A2TA==
+X-Received: by 2002:adf:e984:0:b0:31f:b364:a6ba with SMTP id h4-20020adfe984000000b0031fb364a6bamr3439077wrm.52.1694678862539;
+        Thu, 14 Sep 2023 01:07:42 -0700 (PDT)
+Received: from ?IPV6:2a04:cec2:21:518d:60be:d1a1:47e5:d622? ([2a04:cec2:21:518d:60be:d1a1:47e5:d622])
+        by smtp.gmail.com with ESMTPSA id f13-20020a5d568d000000b0031fd849e797sm1024494wrv.105.2023.09.14.01.07.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Sep 2023 01:03:34 -0700 (PDT)
-Message-ID: <f69b4727-679f-7874-2d0e-137d17e5841f@linaro.org>
-Date: Thu, 14 Sep 2023 10:03:32 +0200
+        Thu, 14 Sep 2023 01:07:41 -0700 (PDT)
+Message-ID: <68673ccd-d136-075e-6704-7d1558388784@baylibre.com>
+Date: Thu, 14 Sep 2023 10:07:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,63 +66,166 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH v2] ARM: dts: exynos: enable polling in Exynos 4210
+Subject: Re: [PATCH 2/3] iommu: mediatek: Add support of unmanaged iommu
+ domain
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Mateusz Majewski <m.majewski2@samsung.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>
-References: <CGME20230911133431eucas1p2631e7060cecb0914933ed45b837cf8eb@eucas1p2.samsung.com>
- <20230911133417.14042-1-m.majewski2@samsung.com>
- <e30a38fd-ea70-d5de-795f-9c8ea3177ac4@linaro.org>
-In-Reply-To: <e30a38fd-ea70-d5de-795f-9c8ea3177ac4@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To: =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>,
+ "joro@8bytes.org" <joro@8bytes.org>, "will@kernel.org" <will@kernel.org>
+Cc: "linux-mediatek@lists.infradead.org"
+ <linux-mediatek@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+References: <20230130102722.133271-1-abailon@baylibre.com>
+ <20230130102722.133271-3-abailon@baylibre.com>
+ <741920ba-8637-5e28-695c-699b46351590@arm.com>
+ <f126c61f-6373-d6c5-59c8-24dea9d9d168@baylibre.com>
+ <0e9f677b-846d-809d-9bc3-30906f703fda@arm.com>
+ <21fef8eb-6482-fd8c-118a-c4d9da4cfbaf@baylibre.com>
+ <2b8e19488386b5ca523f010b8ded750a4213f84e.camel@mediatek.com>
+From: Alexandre Bailon <abailon@baylibre.com>
+In-Reply-To: <2b8e19488386b5ca523f010b8ded750a4213f84e.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 14/09/2023 10:01, Krzysztof Kozlowski wrote:
-> On 11/09/2023 15:34, Mateusz Majewski wrote:
->> It seems that thermal in Exynos 4210 is broken without this, as it will
->> never decrease cooling after increasing it.
+Hi,
+
+Sorry for long delay before the response.
+
+On 2/14/23 06:48, Yong Wu (吴勇) wrote:
+> On Tue, 2023-01-31 at 16:31 +0100, Alexandre Bailon wrote:
 >>
->> Signed-off-by: Mateusz Majewski <m.majewski2@samsung.com>
->> ---
->> v1 -> v2: Just uploaded separately from all the thermal: exynos:
->>   patches with a shorter recipient list, no change otherwise.
+>> On 1/31/23 15:15, Robin Murphy wrote:
+>>> On 31/01/2023 1:08 pm, Alexandre Bailon wrote:
+>>>> Hi Robin
+>>>>
+>>>> On 1/30/23 13:04, Robin Murphy wrote:
+>>>>> On 2023-01-30 10:27, Alexandre Bailon wrote:
+>>>>>> Currently, the driver can allocate an unmanaged iommu domain.
+>>>>>> But, this only works for SoC having multiple bank or multiple
+>>>>>> iova
+>>>>>> region.
+>>>>>
+>>>>> That is for good reason - there is only a single pagetable per
+>>>>> bank,
+>>>>> so if there are multiple devices assigned to a single bank,
+>>>>> they
+>>>>> cannot possibly be attached to different domains at the same
+>>>>> time.
+>>>>> Hence why the banks are modelled as groups.
+>>>>
+>>>> I understand.
+>>>> I am trying to upstream a remoteproc driver but the remote
+>>>> processor is
+>>>> behind the iommu.
+>>>> remoteproc can manage the iommu but it requires an unmanaged
+>>>> domain.
+>>>> I tried a couple of things but this cause code duplication,
+>>>> implies many hacks and not always reliable.
+>>>> Do you have any suggestion ?
+>>>
+>>> If there are other active devices behind the same IOMMU, and the
+>>> remoteproc device cannot be isolated into its own bank using the
+>>> existing IOMMU driver logic, then the remoteproc driver cannot
+>>> manage
+>>> the IOMMU directly, and must just use the regular DMA API. There's
+>>> no
+>>> way around it; you can't have two different parts of the kernel
+>>> both
+>>> thinking they have exclusive control of a single IOMMU address
+>>> space at
+>>> the same time. Similarly, remoteproc also cannot take explicit
+>>> control
+>>> of a multi-device group if it's not actually in control of the
+>>> other
+>>> devices, since their drivers will not be expecting the DMA address
+>>> space
+>>> to suddenly change underfoot - that's why iommu_attach_device() has
+>>> the
+>>> check which you presumably ran into.
 >>
->>  arch/arm/boot/dts/samsung/exynos4210.dtsi | 10 ++++++++--
->>  1 file changed, 8 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/samsung/exynos4210.dtsi b/arch/arm/boot/dts/samsung/exynos4210.dtsi
->> index 0e27c3375e2e..aae185b7f91c 100644
->> --- a/arch/arm/boot/dts/samsung/exynos4210.dtsi
->> +++ b/arch/arm/boot/dts/samsung/exynos4210.dtsi
->> @@ -391,8 +391,14 @@ &cpu_alert2 {
->>  };
->>  
->>  &cpu_thermal {
->> -	polling-delay-passive = <0>;
->> -	polling-delay = <0>;
->> +	/* Exynos 4210 supports thermal interrupts, but only for the rising threshold.
+>> Unfortunately, we can't just use the regular DMA API.
+>> Basically, the firmware use static addresses (and the remote core is
+>> only supposed to access addresses between 0x60000000 and 0x70000000).
+>> When we use DMA API, we get a random address that doesn't match what
+>> the
+>> firmware would expect.
+>> remoteproc use directly the iommu API to map physical address to the
+>> static address expected by the firmware when DMA API can't be use.
 > 
-> This is a friendly reminder during the review process.
+> If this master can only support this special address, We could handle
+> it inside this driver.
 > 
-> It seems my previous comments were not fully addressed. Maybe my
-> feedback got lost between the quotes, maybe you just forgot to apply it.
-> Please go back to the previous discussion and either implement all
-> requested changes or keep discussing them.
+> Could you help try to add these two patches [3/11] and [4/11]?
 > 
-> I fixed it up and applied.
+> [3/11]
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20230214031114.926-4-yong.wu@mediatek.com/
+> [4/11]
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20230214031114.926-5-yong.wu@mediatek.com/
+> 
+> 
+> and, then add the logical for mt8365(I see the APU is larb0 port10/11
+> in the binding):
+> --------------------------------
+> 
+> +#define MT8365_REGION_NR		2
+> +
+> +static const struct mtk_iommu_iova_region
+> mt8365_multi_rgn[MT8365_REGION_NR] = {
+> +	{ .iova_base = 0x0,		.size = SZ_4G},	       /* 0 ~
+> 4G. */
+> +	{ .iova_base = 0x60000000,	.size = SZ_256M},      /* APU
+> */
+> +};
+> +
+> 
+> xxxxxxxxxxx
+> 
+> +static const unsigned int
+> mt8365_larb_region_msk[MT8365_REGION_NR][MTK_LARB_NR_MAX] = {
+> +	[0] = {~(u32)(BIT(10) | BIT(11)), ~0, ~0, ~0, ~0, ~0},
+> +	[1] = {[0] = BIT(10) | BIT(11)},
+> +};
+> +
+>   static const struct mtk_iommu_plat_data mt8365_data = {
+>   	.m4u_plat	= M4U_MT8365,
+>   	.flags		= RESET_AXI | INT_ID_PORT_WIDTH_6,
+>   	.inv_sel_reg	= REG_MMU_INV_SEL_GEN1,
+>   	.banks_num	= 1,
+>   	.banks_enable	= {true},
+> -	.iova_region	= single_domain,
+> -	.iova_region_nr	= ARRAY_SIZE(single_domain),
+> +	.iova_region	= mt8365_multi_rgn,
+> +	.iova_region_nr	= ARRAY_SIZE(mt8365_multi_rgn),
+> +	.iova_region_larb_msk = mt8365_larb_region_msk,
+>   	.larbid_remap	= {{0}, {1}, {2}, {3}, {4}, {5}}, /* Linear
+> mapping. */
+>   };
+> --------------------------------
+> 
+> After that, If we call DMA API with the device whose dtsi has
+> M4U_PORT_APU_READ/M4U_PORT_APU_WRITE. The iova should be located at
+> that special address. Sorry, I have no board to test.
 > 
 
-BTW, line wrapping was also not correct :/ Please follow coding style -
-it is still 80, unless exception makes things readable. There is no need
-for exception here.
+I have not yet tested the patches but it will only address one part of 
+the problem.
+Using your patches, I could allocate some shared memory using DMA API 
+but the main issue still remain.
+The firmware is not relocatable at all. So, once the firmware is built, 
+it is expected to be loaded at a specific address.
+Remoteproc framework support this use case. Using the resource table, 
+the firmware expose to remoteproc what device address is expect and 
+remoteproc manually call iommu_map to satisfy this requirement.
+Using DMA_API, I could allocate the memory to load the firmware but I 
+could not be sure that the DMA address will be the one expected by firmware.
 
-Best regards,
-Krzysztof
-
+Thanks,
+Alexandre
 
