@@ -1,142 +1,107 @@
-Return-Path: <devicetree+bounces-162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D96E79FFC0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:10:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 778DC79FFDF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:21:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF5FD2819E1
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:10:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C1741F2294B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:21:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65551224FF;
-	Thu, 14 Sep 2023 09:10:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A996210A0E;
+	Thu, 14 Sep 2023 09:21:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 507E7224EB
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 09:10:33 +0000 (UTC)
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C0242118
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 02:10:32 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-401ec23be82so7508585e9.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 02:10:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694682631; x=1695287431; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=/p/h+1hjRJPkTJw7ohFZfNjwicd4vOn5u73LLVp5Pws=;
-        b=pCzhq7HLcxAm3ltl3eMVbQMWzzvuDOW1/9FU7XBZOX8LaKhwH7GFKrhSCfPjRQAsWm
-         tQ8Rvr8KoUzDtPrTLLXjWlwGK6BosWJelWXv4sd2mdIBz+SfORyAuL8nqkR/nCaV4+GH
-         13CfYmjE+0mdmWf7cEMQERm8tNBDni3pLbYJasAL0AD4LzbOVg36Hcd5J4VHT69ghDhZ
-         rJR+JYruxINgrEpRsPjjhLA0HSNUD5pNsg8hQMVCuFLDtXfAHG3qRIIqADzBDeXyeNMN
-         fXP7ScemVXR1lHC/J2klOWm6itysF+MyW831kjL0gZFgmgNvJ2VoMK3EJ9GhEeKQG0ax
-         CbWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694682631; x=1695287431;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:message-id:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/p/h+1hjRJPkTJw7ohFZfNjwicd4vOn5u73LLVp5Pws=;
-        b=Co4oaZ9YFceNM7eLLF2/AB9LDQW4PUWbWX55QDeoU0u45r9kh/TCp2AM83qt1UR3z/
-         zahCaZVojbsF43/wJEBGwNptg0VADkBQ6s+dxoIkaDeOve+zwQO46+A5RB7WDSjGoYPF
-         he3k3aeCO2s/cRnXt/W0Sybmx/U34cPSyLdI9lvOZSvu0HrvA1tbmzvPeT2S+foy83y2
-         1sSi+5ZMSsJqRpcbUnqQT4/jCaERcB64tZbjX+V9GjdZTVr2D7pqSbd/bx5mK4V4byoa
-         q9SzKA5asxTx87pfX+BUV2fzvlDoF7IR/HKM2ltM40PR2r3ophkQKZLfCm2lgdh+D3av
-         v1CQ==
-X-Gm-Message-State: AOJu0YydeucO7oamjD8iQlvklJGATf38K7S9cXJ0eDZuUDr+/FtgJYjQ
-	CNK9OgOEhcjOhgZdXfBrXC7zy4AGjhsrg1MPt48=
-X-Google-Smtp-Source: AGHT+IHOJr+9i6NWOvvuN/NveO9DgZMU7hC3xHft4L2jEtjxakLoHExd0GgllOpjdXdC9Tnpdx852A==
-X-Received: by 2002:a7b:ce93:0:b0:401:daf2:2735 with SMTP id q19-20020a7bce93000000b00401daf22735mr4087319wmj.31.1694682630841;
-        Thu, 14 Sep 2023 02:10:30 -0700 (PDT)
-Received: from localhost ([102.36.222.112])
-        by smtp.gmail.com with ESMTPSA id m7-20020a05600c280700b003fed630f560sm1379458wmb.36.2023.09.14.02.10.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Sep 2023 02:10:30 -0700 (PDT)
-Date: Thu, 14 Sep 2023 12:10:27 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, Linus Walleij <linus.walleij@linaro.org>,
-	Jan =?iso-8859-1?Q?Kundr=E1t?= <jan.kundrat@cesnet.cz>,
-	Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH 2/2] leds: triggers: gpio: Rewrite to use trigger-sources
-Message-ID: <21f871bb-d409-4337-9d90-27e5c9389aaf@kadam.mountain>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 977F6801
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 09:21:42 +0000 (UTC)
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4CB0CF3;
+	Thu, 14 Sep 2023 02:21:41 -0700 (PDT)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+	by mx0b-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38E74PZe017688;
+	Thu, 14 Sep 2023 04:21:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=PODMain02222019; bh=oxw8UGoxWAKPeFR
+	YH8/soFo0chAZTNm45vShNklDO6U=; b=RcGMDv8Qt9qEv5EQp4eHjYbr1rtU6JG
+	OK+5VijZki3iu1ileEtmxCOUay/kr3nB+TE4+2FXSrZ++Al22uaxwk6Ha/NFaGVo
+	CBxjTAEeNUZmEeko5k0/auAE5XRd6f6uEXRfRNy8pZrB6GGvu1eERB513M34m+42
+	FFErqwQfVzTGxMsxRztzOe8VLLNlu4/9h+2aIXoDbd95oC82RTIvE6axQ1CRrN73
+	xX2IlmX7nQnms64EJoR+Il6nGTnm8iqs/8f7yMDCkkU9F/8Ut5YT/oITqDSRi1zE
+	SyD8YBssvPUsFoh6XVu9FPAVn9zj1bP8JRgVYg+Z4RhcC9gV9qV5FPQ==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3t2y7shvxv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Sep 2023 04:21:09 -0500 (CDT)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Thu, 14 Sep
+ 2023 10:21:07 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.37 via Frontend
+ Transport; Thu, 14 Sep 2023 10:21:07 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id D24C43563;
+	Thu, 14 Sep 2023 09:21:07 +0000 (UTC)
+Date: Thu, 14 Sep 2023 09:21:07 +0000
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: John Watts <contact@jookia.org>
+CC: <alsa-devel@alsa-project.org>, Liam Girdwood <lgirdwood@gmail.com>,
+        "Mark
+ Brown" <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai
+	<tiwai@suse.com>, <patches@opensource.cirrus.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/3] ASoC: wm8782: Handle maximum audio rate at runtime
+Message-ID: <20230914092107.GR103419@ediswmail.ad.cirrus.com>
+References: <20230913171552.92252-1-contact@jookia.org>
+ <20230913171552.92252-2-contact@jookia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230912-gpio-led-trigger-dt-v1-2-1b50e3756dda@linaro.org>
+In-Reply-To: <20230913171552.92252-2-contact@jookia.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-GUID: T3VcIRVcK4-DQjHEfsYVgIDZjWmiGY1K
+X-Proofpoint-ORIG-GUID: T3VcIRVcK4-DQjHEfsYVgIDZjWmiGY1K
+X-Proofpoint-Spam-Reason: safe
 
-Hi Linus,
+On Thu, Sep 14, 2023 at 03:15:50AM +1000, John Watts wrote:
+> The wm8782 supports up to 192kHz audio when pins are set correctly.
+> Instead of hardcoding which rates are supported enable them all
+> then refer to a max_rate variable at runtime.
+> 
+> Signed-off-by: John Watts <contact@jookia.org>
+> ---
+> +static int wm8782_dai_hw_params(struct snd_pcm_substream *component,
+> +			    struct snd_pcm_hw_params *params,
+> +			    struct snd_soc_dai *dai)
+> +{
+> +	struct wm8782_priv *priv =
+> +		snd_soc_component_get_drvdata(dai->component);
+> +
+> +	if (params_rate(params) > priv->max_rate)
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
 
-kernel test robot noticed the following build warnings:
+We should be setting this as a constraint in startup, rather
+than returning an error in hw_params. That will let user-space
+know the supported rates and allow it to resample if necessary.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Linus-Walleij/dt-bindings-leds-Mention-GPIO-triggers/20230912-214554
-base:   0bb80ecc33a8fb5a682236443c1e740d5c917d1d
-patch link:    https://lore.kernel.org/r/20230912-gpio-led-trigger-dt-v1-2-1b50e3756dda%40linaro.org
-patch subject: [PATCH 2/2] leds: triggers: gpio: Rewrite to use trigger-sources
-config: x86_64-randconfig-161-20230913 (https://download.01.org/0day-ci/archive/20230914/202309140825.cVUTHU1K-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20230914/202309140825.cVUTHU1K-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202309140825.cVUTHU1K-lkp@intel.com/
-
-smatch warnings:
-drivers/leds/trigger/ledtrig-gpio.c:98 gpio_trig_activate() error: dereferencing freed memory 'gpio_data'
-
-vim +/gpio_data +98 drivers/leds/trigger/ledtrig-gpio.c
-
-2282e125a406e0 drivers/leds/trigger/ledtrig-gpio.c Uwe Kleine-König 2018-07-02   78  static int gpio_trig_activate(struct led_classdev *led)
-17354bfe85275f drivers/leds/ledtrig-gpio.c         Felipe Balbi     2009-02-17   79  {
-17354bfe85275f drivers/leds/ledtrig-gpio.c         Felipe Balbi     2009-02-17   80  	struct gpio_trig_data *gpio_data;
-2689cea6283a47 drivers/leds/trigger/ledtrig-gpio.c Linus Walleij    2023-09-12   81  	struct device *dev = led->dev;
-2689cea6283a47 drivers/leds/trigger/ledtrig-gpio.c Linus Walleij    2023-09-12   82  	int ret;
-17354bfe85275f drivers/leds/ledtrig-gpio.c         Felipe Balbi     2009-02-17   83  
-17354bfe85275f drivers/leds/ledtrig-gpio.c         Felipe Balbi     2009-02-17   84  	gpio_data = kzalloc(sizeof(*gpio_data), GFP_KERNEL);
-17354bfe85275f drivers/leds/ledtrig-gpio.c         Felipe Balbi     2009-02-17   85  	if (!gpio_data)
-9bfd7d9e5d6353 drivers/leds/trigger/ledtrig-gpio.c Uwe Kleine-König 2018-07-02   86  		return -ENOMEM;
-17354bfe85275f drivers/leds/ledtrig-gpio.c         Felipe Balbi     2009-02-17   87  
-2689cea6283a47 drivers/leds/trigger/ledtrig-gpio.c Linus Walleij    2023-09-12   88  	/*
-2689cea6283a47 drivers/leds/trigger/ledtrig-gpio.c Linus Walleij    2023-09-12   89  	 * The generic property "trigger-sources" is followed,
-2689cea6283a47 drivers/leds/trigger/ledtrig-gpio.c Linus Walleij    2023-09-12   90  	 * and we hope that this is a GPIO.
-2689cea6283a47 drivers/leds/trigger/ledtrig-gpio.c Linus Walleij    2023-09-12   91  	 */
-2689cea6283a47 drivers/leds/trigger/ledtrig-gpio.c Linus Walleij    2023-09-12   92  	gpio_data->gpiod = fwnode_gpiod_get_index(dev->fwnode,
-2689cea6283a47 drivers/leds/trigger/ledtrig-gpio.c Linus Walleij    2023-09-12   93  						  "trigger-sources",
-2689cea6283a47 drivers/leds/trigger/ledtrig-gpio.c Linus Walleij    2023-09-12   94  						  0, GPIOD_IN,
-2689cea6283a47 drivers/leds/trigger/ledtrig-gpio.c Linus Walleij    2023-09-12   95  						  "led-trigger");
-2689cea6283a47 drivers/leds/trigger/ledtrig-gpio.c Linus Walleij    2023-09-12   96  	if (IS_ERR(gpio_data->gpiod)) {
-2689cea6283a47 drivers/leds/trigger/ledtrig-gpio.c Linus Walleij    2023-09-12   97  		kfree(gpio_data);
-                                                                                                ^^^^^^^^^^^^^^^^
-
-2689cea6283a47 drivers/leds/trigger/ledtrig-gpio.c Linus Walleij    2023-09-12  @98  		return PTR_ERR(gpio_data->gpiod);
-                                                                                                               ^^^^^^^^^^^^^^^^
-Dereferencing freed memory.
-
-2689cea6283a47 drivers/leds/trigger/ledtrig-gpio.c Linus Walleij    2023-09-12   99  	}
-2689cea6283a47 drivers/leds/trigger/ledtrig-gpio.c Linus Walleij    2023-09-12  100  	if (!gpio_data->gpiod) {
-2689cea6283a47 drivers/leds/trigger/ledtrig-gpio.c Linus Walleij    2023-09-12  101  		dev_err(dev, "no valid GPIO for the trigger\n");
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
+Thanks,
+Charles
 
