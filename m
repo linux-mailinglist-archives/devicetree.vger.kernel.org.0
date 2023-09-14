@@ -1,239 +1,71 @@
-Return-Path: <devicetree+bounces-291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81C337A0A82
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 18:12:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C9ED7A0ACC
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 18:30:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 05C53B207B2
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 16:12:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8A4E281E05
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 16:30:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A55C721357;
-	Thu, 14 Sep 2023 16:12:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4C63224E7;
+	Thu, 14 Sep 2023 16:30:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E75528E39;
-	Thu, 14 Sep 2023 16:12:32 +0000 (UTC)
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE3801FD6;
-	Thu, 14 Sep 2023 09:12:31 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9ad8a822508so151937366b.0;
-        Thu, 14 Sep 2023 09:12:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694707950; x=1695312750; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=SThObeQlIaemVPSCk4ah7fqYpyLQMYXbP7Z15PryLj0=;
-        b=O2AWI2dIB+ylQ5iAEdz8Y0teCrDLileC+hoBn9/pTf9DYCFEERJrSxIGa+MV6FfCil
-         4eMvk+oDFKAeLkKgESN2YJJC93tDwRbDH0sdqc/aVgun+HREcqc4YyEFSF44JZr7fJX5
-         xoUQHF9P8JejgF82Q5BMCMi0JMe6jL2j96yjuN3eS7QivgtoKrrTjN4qioaDeseVP02F
-         msizHTMu/fnsE3WDfw5SFkhTGvYYZx02d2IHb4xioX+CQQIk4Hwngx9eBhvX29T/6x+9
-         maZU9w9sT7CpAxgHNuask6xrr6G//WxERiHstIgOiyh2EzZtJx76UFqVF8wVwUYB6gOV
-         TKNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694707950; x=1695312750;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SThObeQlIaemVPSCk4ah7fqYpyLQMYXbP7Z15PryLj0=;
-        b=R0iXEK0JoFKYMSz/uFIcqDF/0Z9l0/oWkSKDgwK5mHUbQ4N2DZv5UxPtaWMAo7fhFb
-         Frt8LSoU5KE0xeCzFe1EWTPBD2H7Cci5i2u+HADlb7kJ3DcTqrJj5FHvcD8U31TB80YH
-         Wa9LpWAo0ORcF7+dDIaEYY9uY589LLP/yugz4QXGVDvn1pHB7aaJje+YPKM6DejhY0In
-         0khE0g69aI5GOS++zC2Uw59gVbJcUqu2zjQ4282tPMsRNpGJ6HFvMSq+Mw5xNDtdGORu
-         rQMQcRDSORoIM+jrqQ1wRzQ/Z28ckKfFLz/x7FuiyuUQWhw6QYGSUZZt36SBQNLN3SsT
-         SMQw==
-X-Gm-Message-State: AOJu0YzwyZoF/Errt9oDuPq0B66loAwXNg8QRouRG96Gma1axEPTnIP6
-	9bF2f09aT2RJV+Dg1wmtybY=
-X-Google-Smtp-Source: AGHT+IELqO4SvOWFV2/pKbLA0g4UVTZ7AbMewT+KnbWAN1uC7xCJlW08XIvsVg3T7S+uvgq7bq1bMA==
-X-Received: by 2002:a17:906:7692:b0:9a2:739:3aa1 with SMTP id o18-20020a170906769200b009a207393aa1mr5162206ejm.61.1694707949815;
-        Thu, 14 Sep 2023 09:12:29 -0700 (PDT)
-Received: from skbuf ([188.26.56.202])
-        by smtp.gmail.com with ESMTPSA id l13-20020a170906078d00b009a193a5acffsm1179235ejc.121.2023.09.14.09.12.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Sep 2023 09:12:29 -0700 (PDT)
-Date: Thu, 14 Sep 2023 19:12:26 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	UNGLinuxDriver@microchip.com,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	mithat.guner@xeront.com, erkin.bozoglu@xeront.com,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
-Message-ID: <20230914161226.563423jjeuywfe57@skbuf>
-References: <0cee0928-74c9-4048-8cd8-70bfbfafd9b2@arinc9.com>
- <20230827121235.zog4c3ehu2cyd3jy@skbuf>
- <676d1a2b-6ffa-4aff-8bed-a749c373f5b3@arinc9.com>
- <87325ce9-595a-4dda-a6a1-b5927d25719b@arinc9.com>
- <20230911225126.rk23g3u3bzo3agby@skbuf>
- <036c0763-f1b2-49ff-bc82-1ff16eec27ab@arinc9.com>
- <20230912193450.h5s6miubag46z623@skbuf>
- <6cec079e-991e-4222-a76d-d6156de0daca@arinc9.com>
- <20230913074231.5azwxqjuv2wp5nik@skbuf>
- <ZQHcV5DUfcCYkkTi@shell.armlinux.org.uk>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D6C28593
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 16:30:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0C7FC433C7;
+	Thu, 14 Sep 2023 16:30:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1694709018;
+	bh=nhzaDPtDjFNbPiCIGqGrvXSRv8u+mkX5rY5cXHPXIyg=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=Dm8BJHKO+oN1VPX59fBzNz5hbhtgnQTaYqEzNlqiHyg3/Q+TebdGXj2DcI3a2WO0g
+	 fU84tjCBbCgehDqn8bZsOzcN6mjV67vc6lQGVnjKjIEjyWUkvC/WYSeG92GE57jAfx
+	 dLdWUBX6itACTWdaC6jc15D9ZzLhfEDJCB6mhMx7W5siky4FI4y4Lp+d+c768DN8pn
+	 ZIBGMA8/MRfKmtLIKrWK6dZBnrH5jZBhEQjFtbkOj0LZ8egKX7zfgAr3R3Gn2rENu0
+	 FnbUZit7JL1A230nO7ifdOsD0kPVrWYqXd5lAtBQI3nhob61IGES8GJpGBXsX4V7ku
+	 3geRAMW/3X15Q==
+Message-ID: <580f3934ab1171e27d785db7362c342d.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZQHcV5DUfcCYkkTi@shell.armlinux.org.uk>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <9952fa20-a27f-3240-cc49-5c5109febfc1@quicinc.com>
+References: <20230901091823.30242-1-quic_luoj@quicinc.com> <20230901091823.30242-5-quic_luoj@quicinc.com> <27ae3297ad161fd67706db70b402db04.sboyd@kernel.org> <16d09acf-7bdd-04ee-6faf-936c0366df03@quicinc.com> <17681a9f756cc70a190c674c51b90140.sboyd@kernel.org> <5a4805f7-f802-b1ba-9804-59c0fe6c7f26@quicinc.com> <92058c25fb11b75ee0a2298a684825e9.sboyd@kernel.org> <f67b354c-8a4b-49f5-6275-66b7d614301a@quicinc.com> <82adb75659e0d278e25b65b0e81df99a.sboyd@kernel.org> <9952fa20-a27f-3240-cc49-5c5109febfc1@quicinc.com>
+Subject: Re: [PATCH v6 4/4] clk: qcom: add clock controller driver for qca8386/qca8084
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, quic_srichara@quicinc.com
+To: Jie Luo <quic_luoj@quicinc.com>, agross@kernel.org, andersson@kernel.org, catalin.marinas@arm.com, conor+dt@kernel.org, konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, p.zabel@pengutronix.de, robh+dt@kernel.org, will@kernel.org
+Date: Thu, 14 Sep 2023 09:30:15 -0700
+User-Agent: alot/0.10
 
-On Wed, Sep 13, 2023 at 04:59:19PM +0100, Russell King (Oracle) wrote:
-> However, phylink pretty much requires phy-mode to be specified to be
-> something sane for shared ports, so I wouldn't be in favour of relaxing
-> the checkinng in dsa_shared_port_validate_of()... not unless you're
-> now going to accept the approach I originally proposed to have DSA
-> drivers tell the core (and thus phylink) what phy-mode and other link
-> parameters should be used when they are missing from DT.
+Quoting Jie Luo (2023-09-12 20:27:25)
+>=20
+>=20
+> On 9/13/2023 1:18 AM, Stephen Boyd wrote:
+> > Quoting Jie Luo (2023-09-12 05:07:02)
+> >>
+> >> and freq_tbl are necessary to this clock.
+> >=20
+> > I still don't see why the freq_tbl is necessary.
+>=20
+> Hi Stephen,
+> For clk_rcg2_ops, freq_tbl is used to find the closest rate to decided=20
+> the parent clock, the configuration of clock source and clock divider=20
+> are saved in the freq_tbl to configure the RCG hardware register, the=20
+> mapping of parent clock and hardware register value is decided by the=20
+> freq_tbl for the RCG clock.
 
-Ok, so with a missing phy-mode on the CPU port, phylink_parse_fixedlink() ->
-phy_lookup_setting() will return NULL and that will print a phylink_warn(),
-but other than that, phylink_mac_link_up() does get called at the right
-speed and duplex.
-
-I agree that for sane behavior it should be specified, but it appears
-that even with PHY_INTERFACE_MODE_NA something can be hacked up...
-
-[    4.818368] sja1105 spi0.1: Failed to read phy-mode or phy-interface-type property for port 4
-[    4.864667] sja1105 spi0.1: OF node /soc/spi@2100000/ethernet-switch@1/ports/port@4 of CPU port 4 lacks the required "phy-mode" property
-[    4.882957] sja1105 spi0.1: pl->link_config.speed 1000 pl->link_config.duplex 1 pl->supported 00,00000000,00000000,00000240
-[    4.894189] sja1105 spi0.1: phy_setting speed -1 duplex -1 bit -1
-[    4.900283] sja1105 spi0.1: fixed link full duplex 1000Mbps not recognised
-[    4.907798] sja1105 spi0.1: configuring for fixed/ link mode
-[    4.916183] sja1105 spi0.1 swp5 (uninitialized): PHY [mdio@2d24000:06] driver [Broadcom BCM5464] (irq=POLL)
-[    4.934770] sja1105 spi0.1 swp2 (uninitialized): PHY [mdio@2d24000:03] driver [Broadcom BCM5464] (irq=POLL)
-[    4.951619] sja1105 spi0.1 swp3 (uninitialized): PHY [mdio@2d24000:04] driver [Broadcom BCM5464] (irq=POLL)
-[    4.968349] sja1105 spi0.1 swp4 (uninitialized): PHY [mdio@2d24000:05] driver [Broadcom BCM5464] (irq=POLL)
-[    4.984017] fsl-gianfar soc:ethernet@2d90000 eth2: entered promiscuous mode
-[    4.991327] DSA: tree 0 setup
-[    4.995129] sja1105 spi0.1: sja1105_mac_link_up: port 4 interface  speed 1000 duplex 1
-[    5.005004] sja1105 spi0.1: Link is Up - 1Gbps/Full - flow control off
-
-diff --git a/arch/arm/boot/dts/nxp/ls/ls1021a-tsn.dts b/arch/arm/boot/dts/nxp/ls/ls1021a-tsn.dts
-index 1ea32fff4120..0bfffcb51af9 100644
---- a/arch/arm/boot/dts/nxp/ls/ls1021a-tsn.dts
-+++ b/arch/arm/boot/dts/nxp/ls/ls1021a-tsn.dts
-@@ -90,7 +90,7 @@ port@3 {
- 			port@4 {
- 				/* Internal port connected to eth2 */
- 				ethernet = <&enet2>;
--				phy-mode = "rgmii";
-+//				phy-mode = "rgmii";
- 				rx-internal-delay-ps = <0>;
- 				tx-internal-delay-ps = <0>;
- 				reg = <4>;
-diff --git a/drivers/net/dsa/sja1105/sja1105_main.c b/drivers/net/dsa/sja1105/sja1105_main.c
-index a23d980d28f5..dba1fa545a9c 100644
---- a/drivers/net/dsa/sja1105/sja1105_main.c
-+++ b/drivers/net/dsa/sja1105/sja1105_main.c
-@@ -327,6 +327,8 @@ static int sja1105_init_mii_settings(struct sja1105_private *priv)
- 			mii->xmii_mode[i] = XMII_MODE_SGMII;
- 			mii->special[i] = true;
- 			break;
-+		case PHY_INTERFACE_MODE_NA:
-+			break;
- unsupported:
- 		default:
- 			dev_err(dev, "Unsupported PHY mode %s on port %d!\n",
-@@ -1205,11 +1207,10 @@ static int sja1105_parse_ports_node(struct sja1105_private *priv,
- 		/* Get PHY mode from DT */
- 		err = of_get_phy_mode(child, &phy_mode);
- 		if (err) {
--			dev_err(dev, "Failed to read phy-mode or "
-+			dev_warn(dev, "Failed to read phy-mode or "
- 				"phy-interface-type property for port %d\n",
- 				index);
--			of_node_put(child);
--			return -ENODEV;
-+			phy_mode = PHY_INTERFACE_MODE_NA;
- 		}
- 
- 		phy_node = of_parse_phandle(child, "phy-handle", 0);
-@@ -1383,6 +1384,8 @@ static void sja1105_mac_link_up(struct dsa_switch *ds, int port,
- {
- 	struct sja1105_private *priv = ds->priv;
- 
-+	dev_err(ds->dev, "%s: port %d interface %s speed %d duplex %d\n", __func__, port, phy_modes(interface), speed, duplex);
-+
- 	sja1105_adjust_port_config(priv, port, speed);
- 
- 	sja1105_inhibit_tx(priv, BIT(port), false);
-@@ -1414,7 +1417,10 @@ static void sja1105_phylink_get_caps(struct dsa_switch *ds, int port,
- 		 * config (the xMII Mode table cannot be dynamically
- 		 * reconfigured), and we have to program that early.
- 		 */
--		__set_bit(phy_mode, config->supported_interfaces);
-+		if (phy_mode == PHY_INTERFACE_MODE_NA)
-+			phy_interface_set_rgmii(config->supported_interfaces);
-+		else
-+			__set_bit(phy_mode, config->supported_interfaces);
- 	}
- 
- 	/* The MAC does not support pause frames, and also doesn't
-diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
-index 0d7354955d62..674689011059 100644
---- a/drivers/net/phy/phylink.c
-+++ b/drivers/net/phy/phylink.c
-@@ -841,6 +841,15 @@ static int phylink_parse_fixedlink(struct phylink *pl,
- 	if (autoneg)
- 		phylink_set(pl->supported, Autoneg);
- 
-+	phylink_err(pl, "pl->link_config.speed %d pl->link_config.duplex %d pl->supported %*pb\n",
-+		    pl->link_config.speed, pl->link_config.duplex, __ETHTOOL_LINK_MODE_MASK_NBITS,
-+		    pl->supported);
-+
-+	phylink_err(pl, "phy_setting speed %d duplex %d bit %d\n",
-+		    s ? s->speed : -1,
-+		    s ? s->duplex : -1,
-+		    s ? s->bit : -1);
-+
- 	if (s) {
- 		__set_bit(s->bit, pl->supported);
- 		__set_bit(s->bit, pl->link_config.lp_advertising);
-diff --git a/net/dsa/port.c b/net/dsa/port.c
-index 5f01bd4f9dec..34e5dc48f0ff 100644
---- a/net/dsa/port.c
-+++ b/net/dsa/port.c
-@@ -1927,6 +1927,16 @@ static const char * const dsa_switches_apply_workarounds[] = {
- #if IS_ENABLED(CONFIG_NET_DSA_SMSC_LAN9303_I2C)
- 	"smsc,lan9303-i2c",
- #endif
-+	"nxp,sja1105e",
-+	"nxp,sja1105t",
-+	"nxp,sja1105p",
-+	"nxp,sja1105q",
-+	"nxp,sja1105r",
-+	"nxp,sja1105s",
-+	"nxp,sja1110a",
-+	"nxp,sja1110b",
-+	"nxp,sja1110c",
-+	"nxp,sja1110d",
- 	NULL,
- };
- 
+The divider is always 1. The frequency is the frequency of the parent.
+The two pieces of information are already known without the frequency
+table. Why is it needed?
 
