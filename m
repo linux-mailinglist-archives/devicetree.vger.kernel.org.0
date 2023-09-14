@@ -1,134 +1,124 @@
-Return-Path: <devicetree+bounces-224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B58467A0598
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:30:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 749067A06B1
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:59:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 755311F22FDE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 13:30:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 763201C209F8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 13:59:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE20A208DF;
-	Thu, 14 Sep 2023 13:29:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08ACC21A0F;
+	Thu, 14 Sep 2023 13:53:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA5D8241E0
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 13:29:54 +0000 (UTC)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C7001FD8;
-	Thu, 14 Sep 2023 06:29:54 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-5925e580f12so11411447b3.3;
-        Thu, 14 Sep 2023 06:29:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694698193; x=1695302993;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MMgnSEID+xkECrUs/n98woQl+ojuPd0/IiG5nfXIn2c=;
-        b=XzOelWPkiVoyl5RggkTcRd3uA415Z162tBB3CDrInXacj6nPzpABWMzAnB4PpROIua
-         nR2OvbrozuiwByoF79OQHRDCan6qXryQHUomw5kleQQzv29QBpZtP3sYxbss6G4i3LxE
-         97Xg53EqVldYoAxzJM//+QVFXFWZevXujZSnY9zxdP3K/1DfM/4A9plmlOmrCB0+GBm3
-         XA5jHgzZxV0WAX1y8GFy/NYTrvbiYOfLTy50/dM7PZ31+aHSyVJvDMF/gkRAk9DKGQX9
-         6qxmEiymL97L0V71FfS1AZwdmxa+3sYzzO1KCXZXT4U4ChqHnnShTZnSMbjZMvIGn/Dp
-         +OWg==
-X-Gm-Message-State: AOJu0YxRn2nJ1IhFRaj4ClhPlBwSXh4h7ibZXqSkuyZMCKL2ThaE198N
-	QZMCbJOix1H0a/ZZQ7wH85OUT6gcwbaAjw==
-X-Google-Smtp-Source: AGHT+IEqkaYIojyrujrVO1BiGM9aV1qiSgkX3ciD/0/s2n379RnWi+PZW1+3eZyfAzTGGaaNUj5fuw==
-X-Received: by 2002:a81:7287:0:b0:59b:8da4:dc1 with SMTP id n129-20020a817287000000b0059b8da40dc1mr5820380ywc.38.1694698193125;
-        Thu, 14 Sep 2023 06:29:53 -0700 (PDT)
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
-        by smtp.gmail.com with ESMTPSA id h125-20020a816c83000000b00582fae92aa7sm318186ywc.93.2023.09.14.06.29.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Sep 2023 06:29:52 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-59bd2e19c95so11653557b3.0;
-        Thu, 14 Sep 2023 06:29:52 -0700 (PDT)
-X-Received: by 2002:a0d:fe43:0:b0:589:c065:b419 with SMTP id
- o64-20020a0dfe43000000b00589c065b419mr5624958ywf.34.1694698192345; Thu, 14
- Sep 2023 06:29:52 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F099724209
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 13:53:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C98B1AE;
+	Thu, 14 Sep 2023 06:53:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1694699630; x=1726235630;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NEKocQoGfcfZKQftz4/7uTx3WA4f8EK2S6Mq45SyuhI=;
+  b=MCAlWSpQxmUGpvKeDHE6KwFPz5yOyjByNV7iHxaFenZV4R0GybF3bktc
+   js8q9/eqxQXv3JmNzdXYIEaIu3PEi8RNrZQd/ZG0gULpncEIfd0XfbYbs
+   9pyEQDfrHp8lp18WFi3eIWLBDddejWR0O9+3NKm9ITVq72P+QzN/4ocbU
+   V4T7Uznyrrfb7VfB1PZZ2uYmoEWOWuwg3JtexDOmJ08ZH/94RaG6ZqzmK
+   uOSkVidtP7RRr4N5QxbhuWBC1eYlY5G6LdgzOe8KSF3Si4kjSWzUhsBmr
+   g+1oF4os88mSCQg599EDdPjbMsQWoqbmGzicNveAiX6EmEBRIfHnarVaS
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="364000235"
+X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; 
+   d="scan'208";a="364000235"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Sep 2023 06:36:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="991389372"
+X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; 
+   d="scan'208";a="991389372"
+Received: from lkp-server02.sh.intel.com (HELO 9ef86b2655e5) ([10.239.97.151])
+  by fmsmga006.fm.intel.com with ESMTP; 14 Sep 2023 06:36:02 -0700
+Received: from kbuild by 9ef86b2655e5 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qgmVO-0001dF-0q;
+	Thu, 14 Sep 2023 13:36:00 +0000
+Date: Thu, 14 Sep 2023 21:34:39 +0800
+From: kernel test robot <lkp@intel.com>
+To: Daniel Matyas <daniel.matyas@analog.com>
+Cc: oe-kbuild-all@lists.linux.dev, Daniel Matyas <daniel.matyas@analog.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH 4/4] hwmon: max31827: Add custom attribute for resolution
+Message-ID: <202309142140.qvHsiLc3-lkp@intel.com>
+References: <20230913152135.457892-5-daniel.matyas@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com> <20230912045157.177966-15-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20230912045157.177966-15-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 14 Sep 2023 15:29:40 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWRxaBsPAn0OR15WFua_5HZVPTmWabFnnex5gDLKjE9Cw@mail.gmail.com>
-Message-ID: <CAMuHMdWRxaBsPAn0OR15WFua_5HZVPTmWabFnnex5gDLKjE9Cw@mail.gmail.com>
-Subject: Re: [PATCH 14/37] clk: renesas: rzg2l: use u32 for flag and mux_flags
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
-	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
-	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
-	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230913152135.457892-5-daniel.matyas@analog.com>
 
-Hi Claudiu,
+Hi Daniel,
 
-On Tue, Sep 12, 2023 at 6:52=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> flag and mux_flags are intended to keep bit masks. Use u32 type for it.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+kernel test robot noticed the following build warnings:
 
-Thanks for your patch!
+[auto build test WARNING on groeck-staging/hwmon-next]
+[also build test WARNING on linus/master v6.6-rc1 next-20230914]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> --- a/drivers/clk/renesas/rzg2l-cpg.h
-> +++ b/drivers/clk/renesas/rzg2l-cpg.h
-> @@ -92,8 +92,8 @@ struct cpg_core_clk {
->         unsigned int conf;
->         const struct clk_div_table *dtable;
->         const char * const *parent_names;
-> -       int flag;
-> -       int mux_flags;
-> +       u32 flag;
+url:    https://github.com/intel-lab-lkp/linux/commits/Daniel-Matyas/hwmon-max31827-Make-code-cleaner/20230913-232729
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20230913152135.457892-5-daniel.matyas%40analog.com
+patch subject: [PATCH 4/4] hwmon: max31827: Add custom attribute for resolution
+reproduce: (https://download.01.org/0day-ci/archive/20230914/202309142140.qvHsiLc3-lkp@intel.com/reproduce)
 
-"flag" is used for several purposes, which expected different types:
-    - clk_init_data.flags is unsigned long,
-    - The clk_divider_flags parameter of clk_hw_register_divider_table() is=
- u8,
-    - The clk_divider_flags parameter of __clk_hw_register_divider() is u8,
-    - The flags parameter of __devm_clk_hw_register_mux() is unsigned long.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202309142140.qvHsiLc3-lkp@intel.com/
 
-> +       u32 mux_flags;
+All warnings (new ones prefixed by >>):
 
-Actually the clk_mux_flags parameter of __devm_clk_hw_register_mux() is u8.
+>> Documentation/hwmon/max31827.rst:107: WARNING: Bullet list ends without a blank line; unexpected unindent.
 
->         int num_parents;
->  };
+vim +107 Documentation/hwmon/max31827.rst
 
-I guess u32 is fine for all.
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+    93	
+    94	The conversion time doubles with every bit of increased resolution. The
+    95	available resolutions are:
+    96		- 8 bit -> 8.75 ms conversion time
+    97		- 9 bit -> 17.5 ms conversion time
+    98		- 10 bit -> 35 ms conversion time
+    99		- 12 bit (default) -> 140 ms conversion time
+   100	
+   101	There is a temp1_resolution attribute which indicates the unit change in the
+   102	input temperature in milli-degrees C.
+   103		- 1000 mC -> 8 bit
+   104		- 500 mC -> 9 bit
+   105		- 250 mC -> 10 bit
+   106		- 62 mC -> 12 bit (default) - actually this is 62.5, but the file
+ > 107		returns 62
+   108	
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
