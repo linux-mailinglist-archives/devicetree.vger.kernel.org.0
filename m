@@ -1,136 +1,136 @@
-Return-Path: <devicetree+bounces-87-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-88-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBE8579FBC2
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 08:18:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA30079FBD1
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 08:20:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C313E1C2097D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 06:17:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 861D71F22107
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 06:20:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58DA11C01;
-	Thu, 14 Sep 2023 06:17:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AB332115;
+	Thu, 14 Sep 2023 06:18:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D3D53FFF
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 06:17:05 +0000 (UTC)
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60187F7
-	for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 23:17:04 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9a65f9147ccso75685366b.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 23:17:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694672223; x=1695277023; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UK0O4WJKJlOZsHN2AORyIn3x8ciKDTzhX6N4dTgrbtM=;
-        b=oxpc56GmwVM8T7ITmCtul2+h1l1OM4rnDWfEd6u7N7jZXtABZVKnif8VSsvXly5o8W
-         ZppQCIDTxiPPFHMG/O0S7ONp+bztV1vXr0BvZGHKe0U116CKFXCqdprhfxipXkwr/Y+Y
-         uoVoTKjlZaqXw44jwEzhOQfF/Si9p9d5W3Im5pIQlcAwkU80k+eV3clTQhY9iYOOh+41
-         ebpoN67B8YLhHTGF/LJ/y+H0JBllnPU7mH5bWDj5TsdFahV4i6LQ24sswrkg2BNG6J2P
-         FQyxgxjnBKCjQJc7n+36/bKFjL8lxrSRufPcnFUN6RSO7OTY7zT7x+jTwNx9dqUdWzDC
-         a+tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694672223; x=1695277023;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UK0O4WJKJlOZsHN2AORyIn3x8ciKDTzhX6N4dTgrbtM=;
-        b=MEg5CVE9MnyhebedYcdNU0nLoJvRHYg6T9RcB32rj0TvaTbGQPgxIM+qPXPccbc+Vo
-         I/gTuf1LMtW3jUbZdSBfQ4QLjvmMPL07NYhhthsyHqIn4lwUEzmRmlNZoP8wf90Kn5Zh
-         GPaTHwggGbR20E8f6Zcpn3d9p6Qp2fUDPuBOHTQN7HoU2+BulBf8IgNFE5/jPfmRAjsD
-         LU1ZjzD+7lyn5PwbAG2TmKP7lYv5Gy8+8iItHYJbFlVNgo3HfPw0yYTnZL0xGom+G/yE
-         n54iygpAnnfACVHUjfF7ypRa68ZE6JKS/2HXo3ywQQiD/mYvglNbf65SkqOYP5QU0RzX
-         lUZw==
-X-Gm-Message-State: AOJu0Yw7PPTC7g3pU1APsEPrvDoNs2lahKBcd+LJMWw1g21OzEWXu5s6
-	tVJA2Kw+6CBpOsZ1nL+nVtkzng==
-X-Google-Smtp-Source: AGHT+IFoQUQl22lWSHFNhUxXzHXGNgTqAInQGx0SzU77yOY3Lg/+ylETFd0JjlYLR9E9wxvPxBnT4A==
-X-Received: by 2002:a17:907:62a6:b0:99d:e8da:c20b with SMTP id nd38-20020a17090762a600b0099de8dac20bmr4172306ejc.24.1694672221956;
-        Wed, 13 Sep 2023 23:17:01 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id q13-20020a170906770d00b0097073f1ed84sm514322ejm.4.2023.09.13.23.17.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 23:17:01 -0700 (PDT)
-Message-ID: <45637012-0972-fc7b-1276-163da363b962@linaro.org>
-Date: Thu, 14 Sep 2023 08:16:59 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CB6220EC
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 06:18:49 +0000 (UTC)
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF1C7F9;
+	Wed, 13 Sep 2023 23:18:48 -0700 (PDT)
+X-UUID: 8f1096c052c611eea33bb35ae8d461a2-20230914
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=O4h5fYRZFmt56au9RCo9s0/lnAw7EXvGeNA+W6+DHww=;
+	b=SQ2mrC1o4EfKUML6eeZerKyMTjpFaNBAHNwPSLk78oDmwHghsy1JOu/cDgS6tYUaxElkE+Cyp4Fx8K5Z/OhdhQLmYkMUP3EN32JNt/QKJ6av8k3zz6Q5gJW8x2HxdqWjyLPuVu3HCALpGhjsSFUN/YDKhmAuEFAiegk4QpytAcM=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:cb45a170-970a-4ea0-8ce9-1a6353e74459,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:0ad78a4,CLOUDID:afb1d2be-14cc-44ca-b657-2d2783296e72,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 8f1096c052c611eea33bb35ae8d461a2-20230914
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1813030361; Thu, 14 Sep 2023 14:18:45 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 14 Sep 2023 14:18:43 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 14 Sep 2023 14:18:43 +0800
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Macpaul Lin
+	<macpaul.lin@mediatek.com>, =?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?=
+	<bero@baylibre.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>
+CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+	Macpaul Lin <macpaul@gmail.com>
+Subject: [PATCH v3 1/2] dt-bindings: arm64: mediatek: add mt8390-evk board
+Date: Thu, 14 Sep 2023 14:18:32 +0800
+Message-ID: <20230914061833.32288-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: Add compatibles for Amlogic T7
- SoCs
-Content-Language: en-US
-To: Huqiang Qin <huqiang.qin@amlogic.com>, linus.walleij@linaro.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, brgl@bgdev.pl, andy@kernel.org
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20230914054525.1180595-1-huqiang.qin@amlogic.com>
- <20230914054525.1180595-2-huqiang.qin@amlogic.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230914054525.1180595-2-huqiang.qin@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On 14/09/2023 07:45, Huqiang Qin wrote:
-> Add a new compatible name for Amlogic T7 pin controller, and add
-> a new dt-binding header file which document the detail pin names.
-> 
-> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
-> ---
->  .../pinctrl/amlogic,meson-pinctrl-a1.yaml     |   1 +
->  include/dt-bindings/gpio/amlogic-t7-gpio.h    | 179 ++++++++++++++++++
->  2 files changed, 180 insertions(+)
->  create mode 100644 include/dt-bindings/gpio/amlogic-t7-gpio.h
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
-> index 4e7a456ea4cc..c7df4cd34197 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
-> @@ -16,6 +16,7 @@ properties:
->    compatible:
->      enum:
->        - amlogic,c3-periphs-pinctrl
-> +      - amlogic,t7-periphs-pinctrl
->        - amlogic,meson-a1-periphs-pinctrl
->        - amlogic,meson-s4-periphs-pinctrl
->  
-> diff --git a/include/dt-bindings/gpio/amlogic-t7-gpio.h b/include/dt-bindings/gpio/amlogic-t7-gpio.h
-> new file mode 100644
-> index 000000000000..2bab9a99501a
-> --- /dev/null
-> +++ b/include/dt-bindings/gpio/amlogic-t7-gpio.h
+1. Add compatible for MT8390.
+2. Add bindings for the MediaTek mt8390-evk board, also known
+as the "Genio 700-EVK".
 
-Use compatible syntax.
+The MT8390 and MT8188 belong to the same SoC family,
+with only minor differences in their physical characteristics.
+They utilize unique efuse values for differentiation.
 
-> @@ -0,0 +1,179 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-> +/*
-> + * Copyright (c) 2023 Amlogic, Inc. All rights reserved.
-> + * Author: Huqiang Qin <huqiang.qin@amlogic.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_AMLOGIC_T7_GPIO_H
-> +#define _DT_BINDINGS_AMLOGIC_T7_GPIO_H
-> +
-> +#define	GPIOB_0		0
+The booting process and configurations are managed by boot
+loaders, firmware, and TF-A. Consequently, the part numbers
+and procurement channels vary.
 
-Why weird indentation?
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
+dependencies for v1:
+ - This patch should be applied after the following patch set
+  - mt8365's bindings
+   - https://lore.kernel.org/linux-arm-kernel/20230912092444.31635-1-macpaul.lin@mediatek.com/T/
+  - mt8395's bindings: v6
+   - https://lore.kernel.org/lkml/20230911115717.26184-1-macpaul.lin@mediatek.com/T/
+  - mt8188's bindings
+   - https://lore.kernel.org/lkml/a4e1a80ebd19896410f50b0297e05dce06fb47cc.camel@mediatek.com/T/
 
+Changes for v2:
+ - drop description for multiple boards
+ - update dependencies with the following patch sets
+  - mt8395's bindings: v7
+   - https://lore.kernel.org/linux-arm-kernel/20230913032057.3197-1-macpaul.lin@mediatek.com/T/  
 
-Best regards,
-Krzysztof
+Changes for v3:
+ - drop "dts: " in $subject by Conor's suggestion.
+ - Update "Reviewed-by" and "Acked-by" tags, Thanks.  
+ - update dependencies with the following patch sets
+  - mt8395's bindings: v8
+   - https://lore.kernel.org/lkml/20230914055145.16801-1-macpaul.lin@mediatek.com/T/
+
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index 0248bb458180..3968d5934fa2 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -252,6 +252,11 @@ properties:
+           - enum:
+               - mediatek,mt8365-evk
+           - const: mediatek,mt8365
++      - items:
++          - enum:
++              - mediatek,mt8390-evk
++          - const: mediatek,mt8390
++          - const: mediatek,mt8188
+       - items:
+           - enum:
+               - mediatek,mt8395-evk
+-- 
+2.18.0
 
 
