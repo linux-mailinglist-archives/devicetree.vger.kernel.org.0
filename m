@@ -1,108 +1,119 @@
-Return-Path: <devicetree+bounces-183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB94C7A017B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 12:18:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD36F7A0182
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 12:19:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACB091C20E76
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 10:18:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A65C282395
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 10:19:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89761F18D;
-	Thu, 14 Sep 2023 10:18:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C418E1F18D;
+	Thu, 14 Sep 2023 10:19:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC3CC1D524
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 10:18:29 +0000 (UTC)
-Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA38E1BE3;
-	Thu, 14 Sep 2023 03:18:28 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (82-181-192-243.bb.dnainternet.fi [82.181.192.243])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by meesny.iki.fi (Postfix) with ESMTPSA id 4RmYDv5p6dzyWJ;
-	Thu, 14 Sep 2023 13:18:23 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-	t=1694686705;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=icMC27BzeY6SN2EXUotyJ+BK0dx4eNWCSZ4I3xj8aTU=;
-	b=Y2QiSpib/nAQz+mKuXKs+r1Z1KuNVM3UnVSYLwbGY3GpsUNP9kTysIyIAmy4MQ0I4Gpixq
-	1Z2JQI3uDZr2GmAoOUS3RXMo2EtgVifZWO/X7aqwMRs1BVupM22cdSYJGQkgFIlcYlqgs1
-	bmuEjgrpiysRkdMfO5X5VhwF1fJP3c8=
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1694686705; a=rsa-sha256; cv=none;
-	b=qfZMJHDuh+FhXq0zZ2Z8UMQ5hPrIuU7qjPTUVsOrRuDRqdrM6EhP1kv50wKUN8q3WCcFw0
-	CnN3uJIaN9iV4NP8TOWl3f3nfZj5CBzByU2NfmT8KQiFBT153HGlk3FEM7bk3tLX7K4TQF
-	Sk0rhQemWDPacjUZXOek5E6tfbg1eL0=
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=meesny; t=1694686705;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=icMC27BzeY6SN2EXUotyJ+BK0dx4eNWCSZ4I3xj8aTU=;
-	b=FGXPkUyP4O7zvZ+QxqaxvSriyG8lYJ6HhucxNmEB9g/jwSKMlJQxmgyhYI+8TGe9F4Dfsu
-	dtpoGTwl81ygLlC+dMD9mR0NoTb1fszmbNxZ+DFyyMnFx3TUHIHLQrA1Owo/Jlgo03+yzI
-	Sba4mDPowWJ9V57fWhSAWyWKPG/3m1w=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 54800634C93;
-	Thu, 14 Sep 2023 13:18:23 +0300 (EEST)
-Date: Thu, 14 Sep 2023 10:18:23 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Conor Dooley <conor@kernel.org>
-Cc: Fabio Estevam <festevam@denx.de>, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	mchehab@kernel.org, linux-media@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v3] dt-bindings: media: Add OV5642
-Message-ID: <ZQLd74RoAyx8S1d2@valkosipuli.retiisi.eu>
-References: <20230802160326.293420-1-festevam@denx.de>
- <ZQHbm4K6tDs6ILo+@valkosipuli.retiisi.eu>
- <19523723a202647d0ab5135581f5090f@denx.de>
- <20230913-undocked-geek-757dddbbabd7@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8B9B1D524
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 10:19:25 +0000 (UTC)
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3DF11BE8
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 03:19:24 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4013454fa93so8856875e9.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 03:19:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694686763; x=1695291563; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DSE6vNwk20eh8NCSE2NhhZGBduenyT49EAR4BzWUtsc=;
+        b=uxUr+z/OTPrjlFvXF8oy3cMnno8G30upc5Rh5b/5nQqoT86P42alX1+KUYsQUcethH
+         GMMImZ9r+AWI8jvGI3TW1DHmVG+Iqa/tAMEb7NHFhQRcL4nwXA7LJhJdX+O1tXiY01H0
+         0skHo3OSj/6g8YP2n9QRwkOzsEEMV1A20H47hHQqnUpcf1CY3UzW7CslVsIhrrbFdsQ6
+         +gmZRVvNEcqWrKNOQawLRz4YzX0SZGll4MgCp3QxKywu3/vzFncVtkRXeyqHlUyGsqfI
+         ONYyHLPOdrPgkk4tuDBNDsYViszWx7cAU6jpxgSA2d9sxJgduIxEHhzc7K3YXtXayMiW
+         avxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694686763; x=1695291563;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DSE6vNwk20eh8NCSE2NhhZGBduenyT49EAR4BzWUtsc=;
+        b=Y671Wy+Z+VqaNJh5nBEgw2ALGMA/dimdn0D+nhSn3xYEv3zZZbox2Tz+C4NdM4jLkP
+         BqUUuw0+mZDLxjRwFkF9j6sV0gLKmBZsG3KDcEKfavQiB3cwExEtRtrmWja0/u75j6YX
+         e2GVIho/MMTAbf7PcvyGvJPqGq5iLNkbNwazinAviQbmMgUEYA03O7TCt50JoiOb3xuo
+         XwBzbTyScyQJFzyRKZQVMQGO1iINuOvvHb0QZeBI9XJG3bGWWYiBuvd2N/CufLjwKDMk
+         uASoa+0Nm7t+SiL3+bw0dMmL3xdUwKV+WOO3jUttc+XbpqTHgEDT8LHE8k2RQ/2r1QJy
+         MTxg==
+X-Gm-Message-State: AOJu0YwK3KAXfuqBzwEoWtJZeU3Rl2PLmW1H1BUsVLM9yO/ye+PHdF60
+	ABy5uAq9zbevU07Bn8wlG5QfqQ==
+X-Google-Smtp-Source: AGHT+IF6v82RzlrnfNjx4ipBuZ7qR28aYGyW2mBEYRyGX0ND6yLnJ39DaT4XSfL2o3/dNZl7/S4StA==
+X-Received: by 2002:a7b:ca47:0:b0:3fe:4cbc:c345 with SMTP id m7-20020a7bca47000000b003fe4cbcc345mr4307221wml.41.1694686763321;
+        Thu, 14 Sep 2023 03:19:23 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id q5-20020a7bce85000000b004013797efb6sm4437044wmj.9.2023.09.14.03.19.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Sep 2023 03:19:22 -0700 (PDT)
+Message-ID: <3e0df2c9-f4c5-ce7b-5b19-de8530a25d95@linaro.org>
+Date: Thu, 14 Sep 2023 12:19:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230913-undocked-geek-757dddbbabd7@spud>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 2/2] arm64: dts: imx93: add DDR controller node
+To: Xu Yang <xu.yang_2@nxp.com>, will@kernel.org, mark.rutland@arm.com,
+ robh+dt@kernel.org, shawnguo@kernel.org
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-imx@nxp.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, ye.li@nxp.com
+References: <20230914102038.2944844-1-xu.yang_2@nxp.com>
+ <20230914102038.2944844-2-xu.yang_2@nxp.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230914102038.2944844-2-xu.yang_2@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Sep 13, 2023 at 07:26:48PM +0100, Conor Dooley wrote:
-> On Wed, Sep 13, 2023 at 01:04:06PM -0300, Fabio Estevam wrote:
-> > Hi Sakari,
-> > 
-> > On 13/09/2023 12:56, Sakari Ailus wrote:
-> > 
-> > > One more little thing. Do you have a driver for this device? In upstream
-> > > there doesn't seem to be any.
-> > 
-> > Correct. There is no driver for OV5642 upstream.
-> > 
-> > The DT folks asked me to document the OV5642 binding even without an
-> > existing driver.
+On 14/09/2023 12:20, Xu Yang wrote:
+> Add DDR controller node which will be used by EDAC driver later, also
+> move the DDR PMU node as the subnode of the DDR controller.
 > 
-> IIRC, Fabio wanted to delete it from trivial-devices, and Krzysztof and
-> I both felt it was more suitable to document it properly rather than
-> delete it.
+> Signed-off-by: Ye Li <ye.li@nxp.com>
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx93.dtsi | 18 ++++++++++++++----
+>  1 file changed, 14 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> index 6f85a05ee7e1..992bdeef70cd 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> @@ -917,10 +917,20 @@ media_blk_ctrl: system-controller@4ac10000 {
+>  			status = "disabled";
+>  		};
+>  
+> -		ddr-pmu@4e300dc0 {
+> -			compatible = "fsl,imx93-ddr-pmu";
+> -			reg = <0x4e300dc0 0x200>;
+> -			interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+> +		ddr: memory-controller@4e300000 {
+> +			compatible = "simple-mfd";
 
-Ack, works for me.
+No, that's not allowed alone.
 
--- 
-Sakari Ailus
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+Best regards,
+Krzysztof
+
 
