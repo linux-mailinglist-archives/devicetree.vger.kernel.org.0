@@ -1,124 +1,114 @@
-Return-Path: <devicetree+bounces-226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 749067A06B1
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:59:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38F4A7A065D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:47:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 763201C209F8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 13:59:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2E7E1C20A00
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 13:47:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08ACC21A0F;
-	Thu, 14 Sep 2023 13:53:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B760621A05;
+	Thu, 14 Sep 2023 13:47:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F099724209
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 13:53:50 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C98B1AE;
-	Thu, 14 Sep 2023 06:53:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1694699630; x=1726235630;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=NEKocQoGfcfZKQftz4/7uTx3WA4f8EK2S6Mq45SyuhI=;
-  b=MCAlWSpQxmUGpvKeDHE6KwFPz5yOyjByNV7iHxaFenZV4R0GybF3bktc
-   js8q9/eqxQXv3JmNzdXYIEaIu3PEi8RNrZQd/ZG0gULpncEIfd0XfbYbs
-   9pyEQDfrHp8lp18WFi3eIWLBDddejWR0O9+3NKm9ITVq72P+QzN/4ocbU
-   V4T7Uznyrrfb7VfB1PZZ2uYmoEWOWuwg3JtexDOmJ08ZH/94RaG6ZqzmK
-   uOSkVidtP7RRr4N5QxbhuWBC1eYlY5G6LdgzOe8KSF3Si4kjSWzUhsBmr
-   g+1oF4os88mSCQg599EDdPjbMsQWoqbmGzicNveAiX6EmEBRIfHnarVaS
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="364000235"
-X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; 
-   d="scan'208";a="364000235"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Sep 2023 06:36:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="991389372"
-X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; 
-   d="scan'208";a="991389372"
-Received: from lkp-server02.sh.intel.com (HELO 9ef86b2655e5) ([10.239.97.151])
-  by fmsmga006.fm.intel.com with ESMTP; 14 Sep 2023 06:36:02 -0700
-Received: from kbuild by 9ef86b2655e5 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qgmVO-0001dF-0q;
-	Thu, 14 Sep 2023 13:36:00 +0000
-Date: Thu, 14 Sep 2023 21:34:39 +0800
-From: kernel test robot <lkp@intel.com>
-To: Daniel Matyas <daniel.matyas@analog.com>
-Cc: oe-kbuild-all@lists.linux.dev, Daniel Matyas <daniel.matyas@analog.com>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH 4/4] hwmon: max31827: Add custom attribute for resolution
-Message-ID: <202309142140.qvHsiLc3-lkp@intel.com>
-References: <20230913152135.457892-5-daniel.matyas@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACAE01FA4
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 13:47:44 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15E241AE;
+	Thu, 14 Sep 2023 06:47:44 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38EDlV8g042617;
+	Thu, 14 Sep 2023 08:47:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1694699251;
+	bh=bvTFouSGru3/P8THWO1c+pCZJasbLhY1JpKYv57LT34=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=X9fVAQJGJ5F0aw1gZVlH3T7xvbEVi7q2ezZ5LL0t3Xxsk/gJSWhfn1DQULw1efgjP
+	 ZNz9QVUEiPNtqdIT+LuLIvwJri2mSn+W2lEuwEycOMj+HdCcIjNCkMBytUSwim0zDB
+	 LZsFoDjHsNNYyGGbIbroEN5Lcmm7qRUOMLF/kwi4=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38EDlVFB027658
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 14 Sep 2023 08:47:31 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 14
+ Sep 2023 08:47:31 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 14 Sep 2023 08:47:31 -0500
+Received: from [128.247.81.19] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38EDlUUA004373;
+	Thu, 14 Sep 2023 08:47:30 -0500
+Message-ID: <e7a48365-3cfd-8a5f-f4d7-6b40dd394f54@ti.com>
+Date: Thu, 14 Sep 2023 08:47:30 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230913152135.457892-5-daniel.matyas@analog.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: syscon: Add
+ ti,am654-dss-oldi-io-ctrl compatible
+Content-Language: en-US
+To: Andrew Davis <afd@ti.com>, Lee Jones <lee@kernel.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230911142556.64108-1-afd@ti.com>
+From: Aradhya Bhatia <a-bhatia1@ti.com>
+In-Reply-To: <20230911142556.64108-1-afd@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Daniel,
 
-kernel test robot noticed the following build warnings:
 
-[auto build test WARNING on groeck-staging/hwmon-next]
-[also build test WARNING on linus/master v6.6-rc1 next-20230914]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On 11/09/23 09:25, Andrew Davis wrote:
+> Add TI DSS OLDI-IO control registers compatible. This is a region of 5
+> 32bit registers found in the TI AM65 CTRL_MMR0 register space[0]. They
+> are used to control the characteristics of the OLDI DATA/CLK IO as needed
+> by the DSS display controller node.
+> 
+> [0] https://www.ti.com/lit/pdf/spruid7
+> 
+> Signed-off-by: Andrew Davis <afd@ti.com>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Daniel-Matyas/hwmon-max31827-Make-code-cleaner/20230913-232729
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20230913152135.457892-5-daniel.matyas%40analog.com
-patch subject: [PATCH 4/4] hwmon: max31827: Add custom attribute for resolution
-reproduce: (https://download.01.org/0day-ci/archive/20230914/202309142140.qvHsiLc3-lkp@intel.com/reproduce)
+Reviewed-by: Aradhya Bhatia <a-bhatia1@ti.com>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202309142140.qvHsiLc3-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> Documentation/hwmon/max31827.rst:107: WARNING: Bullet list ends without a blank line; unexpected unindent.
-
-vim +107 Documentation/hwmon/max31827.rst
-
-    93	
-    94	The conversion time doubles with every bit of increased resolution. The
-    95	available resolutions are:
-    96		- 8 bit -> 8.75 ms conversion time
-    97		- 9 bit -> 17.5 ms conversion time
-    98		- 10 bit -> 35 ms conversion time
-    99		- 12 bit (default) -> 140 ms conversion time
-   100	
-   101	There is a temp1_resolution attribute which indicates the unit change in the
-   102	input temperature in milli-degrees C.
-   103		- 1000 mC -> 8 bit
-   104		- 500 mC -> 9 bit
-   105		- 250 mC -> 10 bit
-   106		- 62 mC -> 12 bit (default) - actually this is 62.5, but the file
- > 107		returns 62
-   108	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> ---
+> 
+> Changes for v2:
+>  - Use device specific compatible string
+> 
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> index 8103154bbb529..ab7e26c3469af 100644
+> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> @@ -69,6 +69,7 @@ properties:
+>                - rockchip,rk3588-qos
+>                - rockchip,rv1126-qos
+>                - starfive,jh7100-sysmain
+> +              - ti,am654-dss-oldi-io-ctrl
+>  
+>            - const: syscon
+>  
 
