@@ -1,351 +1,193 @@
-Return-Path: <devicetree+bounces-62-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDB1F79FB24
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:46:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FE5B79FAF5
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:44:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78DA5281A1A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 05:46:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52DAF281987
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 05:43:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20AD925112;
-	Thu, 14 Sep 2023 05:45:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CF6463B;
+	Thu, 14 Sep 2023 05:43:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15580250FC
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 05:45:13 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96C8A1BD9;
-	Wed, 13 Sep 2023 22:45:12 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38E4uOhd014884;
-	Thu, 14 Sep 2023 05:44:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=k5Ah6iUEoNLtovZlI8HbxGWRqoW3ME/oK7skrvUuzFQ=;
- b=R69fKEJ8KSU49GKdzJRxEORJfRkOfVCiNFax9SSQxG31XngY9lLlcnoqFlvn3nqbhuVn
- s9a3z7HG6004Pv2qRjtxAUjXh/RxWLLeLKpLVAz3iQ0erNkRnmIaLX3iQjPpj72sTGwC
- khaJrrujA7edN/xcnsKC6Ek3j5vNo4NEW9ndY8dTVfp5UkoKuSWx0hZuElrflMute3Zk
- uAyz6Fs1AVWX14yicLdpPVQ5WIEeUxLPAubEHB+YoYYVPgbxyzHilIoyqN+5BT2glnIh
- ROCu0dfEE++NG8sYh/tl5xHLcJ+Fcfb5w0b8FtQZqKSrbliYZbVYwtR42FOe1lH2M79+ gw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t3dj8a1xw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Sep 2023 05:44:59 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38E5iwdv030489
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Sep 2023 05:44:58 GMT
-Received: from taozha-gv.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Wed, 13 Sep 2023 22:44:53 -0700
-From: Tao Zhang <quic_taozha@quicinc.com>
-To: Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose
-	<suzuki.poulose@arm.com>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC: Tao Zhang <quic_taozha@quicinc.com>,
-        Jinlong Mao
-	<quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni
-	<quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <andersson@kernel.org>
-Subject: [PATCH v9 13/13] coresight-tpdm: Add nodes for dsb msr support
-Date: Thu, 14 Sep 2023 13:43:24 +0800
-Message-ID: <1694670204-11515-14-git-send-email-quic_taozha@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1694670204-11515-1-git-send-email-quic_taozha@quicinc.com>
-References: <1694670204-11515-1-git-send-email-quic_taozha@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D96481B
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 05:43:56 +0000 (UTC)
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C722C6
+	for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 22:43:55 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-404314388ceso3314465e9.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 22:43:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694670233; x=1695275033; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Gboc+yTSlTpqo4O2hT0cAj0WNACoksBEekqcz7Hl4Y0=;
+        b=qj/foAC6JHM58o+shEjt5deuS1KouDYNa66h/L+Hp/4Rl+MkS77NG9jwg7M6byduLw
+         CetU5Jvm+5EshWFqJm+5ZtBsP1znN0aE5Ll6yGcoTAv2T5h4NY7lgeq7Sk7EFzCoKcsD
+         T74mCJGRCP2tKrS0u+OAhd0EhXRvYR09lrAQ5ZSEWLbwl6zcv/Cqqew9Iyk7j+t9EOGK
+         2Oahcp0itVZXqM4uqD11vJKj9Q+h+hU9SQFYXfDNMA7ka4mMnZIA5EZKr70c5+HD5bJl
+         UR/iDwPSpboJtLpLZoHMsTGVE9n3snQYZGfhUdtKDQqaNkEL5elX8RhE55n3MFpgR/fW
+         6niA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694670233; x=1695275033;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gboc+yTSlTpqo4O2hT0cAj0WNACoksBEekqcz7Hl4Y0=;
+        b=D4XC+Ql8891yWNwWH/x3jJZ5c75E5gQ5ru79eMUf2biveKCuP9lYlcbCs/LgVLTtEI
+         lierkR5uYYOsLRqNwNKF+drTDx8CnAHN3KEmU2iaJnMhqkUh/KpD33gaGzbrFRAx+J5O
+         Uhg/6PgDMnccG4ZaHU10Bt+IZybo50gqAf38yUj4kEdNYHBQuwrabxTylcdxTk1GiT1t
+         7eIaTAhM188YbPgEFdRYjaBO8+cZMAMj0UGtqiTEWzH2u4qsdLz8nu0U9FbZ0dKP1H5u
+         VUmo03i6VEMjjsVmFUd4BiTAKb+pDn2L872ilsbytIS3WlQ2Ys9gSY+TcNSypn7KywU1
+         hZLQ==
+X-Gm-Message-State: AOJu0YyseiBrPyeV0lwPaNyawo6g68IbfOsITHVoBMp8nMU+OjuEdK21
+	qL2gUusBBw2TQDIB6pqZibfo9g==
+X-Google-Smtp-Source: AGHT+IHhTwruxbWAJnFseDhN3IBL74tiH5GdBHD333uhU9mBS+pwEm+niM0SFeeTRHH3WUdznGqUtQ==
+X-Received: by 2002:a5d:444c:0:b0:318:7bc:122e with SMTP id x12-20020a5d444c000000b0031807bc122emr3500282wrr.23.1694670233432;
+        Wed, 13 Sep 2023 22:43:53 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id k8-20020a5d4288000000b00317a29af4b2sm709967wrq.68.2023.09.13.22.43.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Sep 2023 22:43:52 -0700 (PDT)
+Message-ID: <c3ad0911-72eb-9054-a0b5-397ecdae3205@linaro.org>
+Date: Thu, 14 Sep 2023 07:43:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: O_zgs5dDr3H2qw7fc3PdymuC6MYjkQhH
-X-Proofpoint-ORIG-GUID: O_zgs5dDr3H2qw7fc3PdymuC6MYjkQhH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-14_03,2023-09-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 mlxscore=0 lowpriorityscore=0 adultscore=0 spamscore=0
- impostorscore=0 malwarescore=0 bulkscore=0 phishscore=0 suspectscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309140049
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 2/4] dt-bindings: hwmon: Added new properties to the
+ devicetree
+Content-Language: en-US
+To: "Matyas, Daniel" <Daniel.Matyas@analog.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
+References: <20230913152135.457892-1-daniel.matyas@analog.com>
+ <20230913152135.457892-3-daniel.matyas@analog.com>
+ <177ef05b-0cca-be25-afad-ac518d9f6473@linaro.org>
+ <PH0PR03MB67716A8AA5139C407BB0712989F0A@PH0PR03MB6771.namprd03.prod.outlook.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <PH0PR03MB67716A8AA5139C407BB0712989F0A@PH0PR03MB6771.namprd03.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add the nodes for DSB subunit MSR(mux select register) support.
-The TPDM MSR (mux select register) interface is an optional
-interface and associated bank of registers per TPDM subunit.
-The intent of mux select registers is to control muxing structures
-driving the TPDM’s’ various subunit interfaces.
+On 13/09/2023 17:48, Matyas, Daniel wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Wednesday, September 13, 2023 6:41 PM
+>> To: Matyas, Daniel <Daniel.Matyas@analog.com>
+>> Cc: Jean Delvare <jdelvare@suse.com>; Guenter Roeck <linux@roeck-
+>> us.net>; Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+>> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
+>> <conor+dt@kernel.org>; Jonathan Corbet <corbet@lwn.net>; linux-
+>> hwmon@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; linux-doc@vger.kernel.org
+>> Subject: Re: [PATCH 2/4] dt-bindings: hwmon: Added new properties to
+>> the devicetree
+>>
+>> [External]
+>>
+>> On 13/09/2023 17:21, Daniel Matyas wrote:
+>>
+>> Subject: not much improved. I am sorry, but you are not adding new
+>> properties to entire devicetree of entire world. You are actually not
+>> adding anything to any devicetree, because these are bindings (which is
+>> obvious, as said by prefix).
+>>
+>> You got comments on this.
+>>
+>>> These attributes are:
+>>> 	- adi,comp-int - boolean property
+>>> 	- adi,alrm-pol - can be 0, 1 (if not present, default value)
+>>> 	- adi,flt-q - can be 1, 2, 4, 8 (if not present, default value)
+>>> 	- adi,timeout-enable - boolean property
+>>
+>> Don't repeat what the code does. Explain why you are adding it, what is
+>> the purpose.
+>>
+>>>
+>>> These modify the corresponding bits in the configuration register.
+>>>
+>>> Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
+>>> ---
+>>>  .../bindings/hwmon/adi,max31827.yaml          | 35
+>> +++++++++++++++++++
+>>>  1 file changed, 35 insertions(+)
+>>>
+>>> diff --git
+>> a/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+>>> b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+>>> index 2dc8b07b4d3b..6bde71bdb8dd 100644
+>>> --- a/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+>>> +++
+>> b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+>>> @@ -32,6 +32,37 @@ properties:
+>>>        Must have values in the interval (1.6V; 3.6V) in order for the device
+>> to
+>>>        function correctly.
+>>>
+>>> +  adi,comp-int:
+>>> +    description:
+>>> +      If present interrupt mode is used. If not present comparator mode
+>> is used
+>>> +      (default).
+>>
+>> Why this is a property of hardware?
+>>
+>>> +    type: boolean
+>>> +
+>>> +  adi,alrm-pol:
+>>> +    description:
+>>> +      Sets the alarms active state.
+>>> +            - 0 = active low
+>>> +            - 1 = active high
+>>> +      For max31827 and max31828 the default alarm polarity is low. For
+>> max31829
+>>> +      it is high.
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    enum: [0, 1]
+>>> +
+>>> +  adi,flt-q:
+>>> +    description:
+>>> +      Select how many consecutive temperature faults must occur
+>> before
+>>> +      overtemperature or undertemperature faults are indicated in the
+>>> +      corresponding status bits.
+>>> +      For max31827 default fault queue is 1. For max31828 and max31829
+>> it is 4.
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    enum: [1, 2, 4, 8]
+>>> +
+>>> +  adi,timeout-enable:
+>>> +    description:
+>>> +      Enables timeout. Bus timeout resets the I2C-compatible interface
+>> when SCL
+>>> +      is low for more than 30ms (nominal).
+>>
+>> Why this is a property of hardware?
 
-Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
----
- .../ABI/testing/sysfs-bus-coresight-devices-tpdm   |  8 +++
- drivers/hwtracing/coresight/coresight-tpdm.c       | 81 ++++++++++++++++++++++
- drivers/hwtracing/coresight/coresight-tpdm.h       | 12 ++++
- 3 files changed, 101 insertions(+)
+Code is okay, after Guenter's explanation. However please fix the
+subject and improve the commit msg.
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-index 1f20a3f..f07218e 100644
---- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-+++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-@@ -162,3 +162,11 @@ Description:
- 		Accepts only one of the 2 values -  0 or 1.
- 		0 : Set the DSB pattern type to value.
- 		1 : Set the DSB pattern type to toggle.
-+
-+What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_msr/msr[0:31]
-+Date:		March 2023
-+KernelVersion	6.7
-+Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
-+Description:
-+		(RW) Set/Get the MSR(mux select register) for the DSB subunit
-+		TPDM.
-diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
-index 7acc220..ea29e05 100644
---- a/drivers/hwtracing/coresight/coresight-tpdm.c
-+++ b/drivers/hwtracing/coresight/coresight-tpdm.c
-@@ -61,6 +61,11 @@ static ssize_t tpdm_simple_dataset_show(struct device *dev,
- 			return -EINVAL;
- 		return sysfs_emit(buf, "0x%x\n",
- 			drvdata->dsb->patt_mask[tpdm_attr->idx]);
-+	case DSB_MSR:
-+		if (tpdm_attr->idx >= drvdata->dsb_msr_num)
-+			return -EINVAL;
-+		return sysfs_emit(buf, "0x%x\n",
-+				drvdata->dsb->msr[tpdm_attr->idx]);
- 	}
- 	return -EINVAL;
- }
-@@ -107,6 +112,12 @@ static ssize_t tpdm_simple_dataset_store(struct device *dev,
- 		else
- 			ret = -EINVAL;
- 		break;
-+	case DSB_MSR:
-+		if (tpdm_attr->idx < drvdata->dsb_msr_num)
-+			drvdata->dsb->msr[tpdm_attr->idx] = val;
-+		else
-+			ret = -EINVAL;
-+		break;
- 	default:
- 		ret = -EINVAL;
- 	}
-@@ -132,6 +143,18 @@ static umode_t tpdm_dsb_is_visible(struct kobject *kobj,
- 	return 0;
- }
- 
-+static umode_t tpdm_dsb_msr_is_visible(struct kobject *kobj,
-+				       struct attribute *attr, int n)
-+{
-+	struct device *dev = kobj_to_dev(kobj);
-+	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-+
-+	if (drvdata->dsb_msr_num != 0)
-+		return attr->mode;
-+
-+	return 0;
-+}
-+
- static void tpdm_reset_datasets(struct tpdm_drvdata *drvdata)
- {
- 	if (tpdm_has_dsb_dataset(drvdata)) {
-@@ -193,6 +216,15 @@ static void set_dsb_tier(struct tpdm_drvdata *drvdata)
- 	writel_relaxed(val, drvdata->base + TPDM_DSB_TIER);
- }
- 
-+static void set_dsb_msr(struct tpdm_drvdata *drvdata)
-+{
-+	int i;
-+
-+	for (i = 0; i < drvdata->dsb_msr_num; i++)
-+		writel_relaxed(drvdata->dsb->msr[i],
-+			   drvdata->base + TPDM_DSB_MSR(i));
-+}
-+
- static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
- {
- 	u32 val, i;
-@@ -216,6 +248,8 @@ static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
- 
- 	set_dsb_tier(drvdata);
- 
-+	set_dsb_msr(drvdata);
-+
- 	val = readl_relaxed(drvdata->base + TPDM_DSB_CR);
- 	/* Set the mode of DSB dataset */
- 	set_dsb_mode(drvdata, &val);
-@@ -739,6 +773,42 @@ static struct attribute *tpdm_dsb_patt_attrs[] = {
- 	NULL,
- };
- 
-+static struct attribute *tpdm_dsb_msr_attrs[] = {
-+	DSB_MSR_ATTR(0),
-+	DSB_MSR_ATTR(1),
-+	DSB_MSR_ATTR(2),
-+	DSB_MSR_ATTR(3),
-+	DSB_MSR_ATTR(4),
-+	DSB_MSR_ATTR(5),
-+	DSB_MSR_ATTR(6),
-+	DSB_MSR_ATTR(7),
-+	DSB_MSR_ATTR(8),
-+	DSB_MSR_ATTR(9),
-+	DSB_MSR_ATTR(10),
-+	DSB_MSR_ATTR(11),
-+	DSB_MSR_ATTR(12),
-+	DSB_MSR_ATTR(13),
-+	DSB_MSR_ATTR(14),
-+	DSB_MSR_ATTR(15),
-+	DSB_MSR_ATTR(16),
-+	DSB_MSR_ATTR(17),
-+	DSB_MSR_ATTR(18),
-+	DSB_MSR_ATTR(19),
-+	DSB_MSR_ATTR(20),
-+	DSB_MSR_ATTR(21),
-+	DSB_MSR_ATTR(22),
-+	DSB_MSR_ATTR(23),
-+	DSB_MSR_ATTR(24),
-+	DSB_MSR_ATTR(25),
-+	DSB_MSR_ATTR(26),
-+	DSB_MSR_ATTR(27),
-+	DSB_MSR_ATTR(28),
-+	DSB_MSR_ATTR(29),
-+	DSB_MSR_ATTR(30),
-+	DSB_MSR_ATTR(31),
-+	NULL,
-+};
-+
- static struct attribute *tpdm_dsb_attrs[] = {
- 	&dev_attr_dsb_mode.attr,
- 	&dev_attr_dsb_trig_ts.attr,
-@@ -769,12 +839,19 @@ static struct attribute_group tpdm_dsb_patt_grp = {
- 	.name = "dsb_patt",
- };
- 
-+static struct attribute_group tpdm_dsb_msr_grp = {
-+	.attrs = tpdm_dsb_msr_attrs,
-+	.is_visible = tpdm_dsb_msr_is_visible,
-+	.name = "dsb_msr",
-+};
-+
- static const struct attribute_group *tpdm_attr_grps[] = {
- 	&tpdm_attr_grp,
- 	&tpdm_dsb_attrs_grp,
- 	&tpdm_dsb_edge_grp,
- 	&tpdm_dsb_trig_patt_grp,
- 	&tpdm_dsb_patt_grp,
-+	&tpdm_dsb_msr_grp,
- 	NULL,
- };
- 
-@@ -809,6 +886,10 @@ static int tpdm_probe(struct amba_device *adev, const struct amba_id *id)
- 	if (ret)
- 		return ret;
- 
-+	if (drvdata && tpdm_has_dsb_dataset(drvdata))
-+		of_property_read_u32(drvdata->dev->of_node,
-+			   "qcom,dsb_msr_num", &drvdata->dsb_msr_num);
-+
- 	/* Set up coresight component description */
- 	desc.name = coresight_alloc_device_name(&tpdm_devs, dev);
- 	if (!desc.name)
-diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h b/drivers/hwtracing/coresight/coresight-tpdm.h
-index 891979d..4115b2a1 100644
---- a/drivers/hwtracing/coresight/coresight-tpdm.h
-+++ b/drivers/hwtracing/coresight/coresight-tpdm.h
-@@ -18,6 +18,7 @@
- #define TPDM_DSB_XPMR(n)	(0x7E8 + (n * 4))
- #define TPDM_DSB_EDCR(n)	(0x808 + (n * 4))
- #define TPDM_DSB_EDCMR(n)	(0x848 + (n * 4))
-+#define TPDM_DSB_MSR(n)		(0x980 + (n * 4))
- 
- /* Enable bit for DSB subunit */
- #define TPDM_DSB_CR_ENA		BIT(0)
-@@ -90,6 +91,8 @@
- #define TPDM_DSB_MAX_EDCMR	8
- /* MAX number of DSB pattern */
- #define TPDM_DSB_MAX_PATT	8
-+/* MAX number of DSB MSR */
-+#define TPDM_DSB_MAX_MSR 32
- 
- #define tpdm_simple_dataset_ro(name, mem, idx)			\
- 	(&((struct tpdm_dataset_attribute[]) {			\
-@@ -134,6 +137,10 @@
- 		tpdm_simple_dataset_rw(tpmr##nr,		\
- 		DSB_PATT_MASK, nr)
- 
-+#define DSB_MSR_ATTR(nr)					\
-+		tpdm_simple_dataset_rw(msr##nr,			\
-+		DSB_MSR, nr)
-+
- /**
-  * struct dsb_dataset - specifics associated to dsb dataset
-  * @mode:             DSB programming mode
-@@ -144,6 +151,7 @@
-  * @patt_mask:        Save value for pattern mask
-  * @trig_patt:        Save value for trigger pattern
-  * @trig_patt_mask:   Save value for trigger pattern mask
-+ * @msr               Save value for MSR
-  * @patt_ts:          Enable/Disable pattern timestamp
-  * @patt_type:        Set pattern type
-  * @trig_ts:          Enable/Disable trigger timestamp.
-@@ -158,6 +166,7 @@ struct dsb_dataset {
- 	u32			patt_mask[TPDM_DSB_MAX_PATT];
- 	u32			trig_patt[TPDM_DSB_MAX_PATT];
- 	u32			trig_patt_mask[TPDM_DSB_MAX_PATT];
-+	u32			msr[TPDM_DSB_MAX_MSR];
- 	bool			patt_ts;
- 	bool			patt_type;
- 	bool			trig_ts;
-@@ -173,6 +182,7 @@ struct dsb_dataset {
-  * @enable:     enable status of the component.
-  * @datasets:   The datasets types present of the TPDM.
-  * @dsb         Specifics associated to TPDM DSB.
-+ * @dsb_msr_num Number of MSR supported by DSB TPDM
-  */
- 
- struct tpdm_drvdata {
-@@ -183,6 +193,7 @@ struct tpdm_drvdata {
- 	bool			enable;
- 	unsigned long		datasets;
- 	struct dsb_dataset	*dsb;
-+	u32			dsb_msr_num;
- };
- 
- /* Enumerate members of various datasets */
-@@ -193,6 +204,7 @@ enum dataset_mem {
- 	DSB_TRIG_PATT_MASK,
- 	DSB_PATT,
- 	DSB_PATT_MASK,
-+	DSB_MSR,
- };
- 
- /**
--- 
-2.7.4
+Best regards,
+Krzysztof
 
 
