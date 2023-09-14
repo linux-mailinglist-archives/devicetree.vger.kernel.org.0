@@ -1,186 +1,192 @@
-Return-Path: <devicetree+bounces-227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D9737A06C3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 16:01:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C099E7A06EE
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 16:09:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB2C91F239B3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 14:01:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BAEE1C20A39
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 14:09:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 932DA22F15;
-	Thu, 14 Sep 2023 13:58:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 367CA224D2;
+	Thu, 14 Sep 2023 14:09:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 832D31FA4
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 13:58:21 +0000 (UTC)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EF411FD5;
-	Thu, 14 Sep 2023 06:58:20 -0700 (PDT)
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-d8162698f0dso1054130276.0;
-        Thu, 14 Sep 2023 06:58:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694699899; x=1695304699;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=89wnnpn5qWRvVKp5fLbV+KH4FRgXN/OCspIecwMYI/I=;
-        b=jbmpWgb3dtD3ty4tskGVo7/WjuwqKJqVri3v42osYvuew8OkBloDf3Qr/dMA1kNeHb
-         MKxrmL4wkzeeluRdc90m7Y/wt/6I7nnHJVY3L/TvlQPpcTqFg9Tsph+E86wEbCOctR3p
-         +6nthQyLSJPRbVb+CsOvdWwgHcbBrGvDx3oWpuKUWVeHivnOJcfmgwbOUAbcte+U5ML5
-         v4cDRl++O4XMN3IDycyC3dZJeozz7YjJ2NsqADrmHhshUFDO3jHpc533N9bTv76Vh2cj
-         JJvijX9gnyO/U3L0eT40+VPP0p/83UsQP34u0WC2WuXt+DyRGuPahX+Y7xkYsbs+Rqbw
-         rGEQ==
-X-Gm-Message-State: AOJu0YzbHxbC0B+bEVGfR/1klciZjJBTcmJyIFVY9PdD/DTI4lEbtpSR
-	cv/hVuE7wBc7l4iA3e4AzouBSVD8sIU2HA==
-X-Google-Smtp-Source: AGHT+IFu83r7/LnH/QO9nc6pxfEozxawaMj+9NYuVcUrCUwHggHW4VZOMjiUH7ef9a5iNkdv+krHGw==
-X-Received: by 2002:a25:603:0:b0:d62:b8f5:d745 with SMTP id 3-20020a250603000000b00d62b8f5d745mr4653761ybg.52.1694699899511;
-        Thu, 14 Sep 2023 06:58:19 -0700 (PDT)
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
-        by smtp.gmail.com with ESMTPSA id v20-20020a25ab94000000b00d7360e0b240sm343654ybi.31.2023.09.14.06.58.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Sep 2023 06:58:18 -0700 (PDT)
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-d7f0048b042so1036218276.2;
-        Thu, 14 Sep 2023 06:58:18 -0700 (PDT)
-X-Received: by 2002:a25:ff0a:0:b0:d36:58a6:3281 with SMTP id
- c10-20020a25ff0a000000b00d3658a63281mr4967250ybe.39.1694699897744; Thu, 14
- Sep 2023 06:58:17 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 231872421B
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 14:09:33 +0000 (UTC)
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.51])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EE89DF;
+	Thu, 14 Sep 2023 07:09:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1694700569; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=ECLa/iHpIzlyQADfvAVjpjAHb1awJ9StlaEXiaobB3JIdM1a4GUSND4YJYWJBPNGwR
+    hrwqEPXmUZt4bibYgVIs7YnUMjjYSVwkOPzKQoM/etytRJ4YShrBUZPY/mflT+MsZYvn
+    ChVQYoZly5Kkcs/lFCum9Q/fv0WbcOdY7gh4LV/ua0ZZS6REr+D2LVziwxyKHMXnvz0H
+    HLXy5i6et4oRsbFMJMvDzwAaz32WVUDv83jRe9NepkUgxFyG1E7ZEMHrkpnDHWBxXBCn
+    l621AxGE0YTQfkrX3IfB8cs6JC+C9weeWXiGKgSLdWk4EgldsbtGyzi9ySXHiFOIMdYe
+    HS1g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1694700569;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=Jd84c8VCl84O/X9LEKWHRrmMX+GqRKSgI/d7fqGsbbA=;
+    b=gcH5zWtdkG7/49Jc58d3hNdcfi8OvFZZSXgAoQNlWV27kLJnLY7Vtg2s8AfKO9t6YI
+    K4W5M98yRErJum5bpJp2j0Q9R2fUFWX59AyrH+pUM8JmJFEfoUlnbIXd7FyvdKm5itCm
+    Tsp7Ej/TZ8XfgNPpMUpgWqzXG3LTnjGJfLhMRsN2g6LYWM2S6qOeV+iGo5YZoPFjuEjo
+    T7vt+gueNYKp9RwP8sRpUT2it36KdbytjzffNhqXu9Qx1hH+QLjYVSjo52llUOPTYyZT
+    ja98zf3w8Ft7S6/7wVqiSYMQUTsZdd5blyhTIKpJAs387wUjMbIOS2VBCGqS3HoXiSL0
+    ToLw==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1694700569;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=Jd84c8VCl84O/X9LEKWHRrmMX+GqRKSgI/d7fqGsbbA=;
+    b=OCmbhFhTcMki8DZuV5mKGQPIclWAc7xMHZe785354ILcIz2tXydZ+dg+YaKRpgZb8Q
+    EnimhNLOqgph6ByCK/78wZO9pRLvk9p35WimNkjGIgQVb2qNGSgUIAIQs0OogN+KfXWJ
+    Syv0ElFqF+3is1f5fCgs2slH5pxEnk+LJPIlrby5pSbacFlXhxLQ0MAG+PoRSZjVmPHi
+    d1hCgMT7SxdN1MtgvYEYypXHkgXis2FM96rePqWBU2xX8JwPU0RpNP4ylm4Dhg7Lc6gi
+    8hpJL11/1ntTX662Pl8xCOv4fgR9tV3lL8OC3X+eQpQ3qVGx9UfKtXJ676iDihpbGHhX
+    Rcxw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1694700569;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=Jd84c8VCl84O/X9LEKWHRrmMX+GqRKSgI/d7fqGsbbA=;
+    b=Q4mPF6ZxHdSrbpH757k/hUpbtKmpalM7zTUSBR1Wx2XHTvqA01GsNSK82g1jl2e8Uf
+    jJUYh9lLf+gePq50wZBg==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA95vh"
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.8.2 DYNA|AUTH)
+    with ESMTPSA id R04c57z8EE9T47Q
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Thu, 14 Sep 2023 16:09:29 +0200 (CEST)
+Date: Thu, 14 Sep 2023 16:09:22 +0200
+From: Stephan Gerhold <stephan@gerhold.net>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/9] arm64: dts: qcom: msm8916: Reserve firmware memory
+ dynamically
+Message-ID: <ZQMUDia6cYA0mGmL@gerhold.net>
+References: <20230911-msm8916-rmem-v1-0-b7089ec3e3a1@gerhold.net>
+ <20230911-msm8916-rmem-v1-4-b7089ec3e3a1@gerhold.net>
+ <912f90ee-0816-43ae-bc6f-a9a9a3e33d8a@linaro.org>
+ <9b1beb38-9ec2-4bdb-97f5-fccf98d3b0c3@linaro.org>
+ <ZQGLioVhjCK3TRva@gerhold.net>
+ <568b4e18-1ade-4a12-9766-d16d8ca9838d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com> <20230912045157.177966-16-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20230912045157.177966-16-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 14 Sep 2023 15:58:05 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU5S6noFjkdYeyQjVSfa4oM780e0mMCAiScDoBjF=Rpqw@mail.gmail.com>
-Message-ID: <CAMuHMdU5S6noFjkdYeyQjVSfa4oM780e0mMCAiScDoBjF=Rpqw@mail.gmail.com>
-Subject: Re: [PATCH 15/37] clk: renesas: rzg2l: add support for RZ/G3S PLL
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
-	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
-	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
-	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <568b4e18-1ade-4a12-9766-d16d8ca9838d@linaro.org>
+Content-Transfer-Encoding: 7bit
 
-Hi Claudiu,
+On Wed, Sep 13, 2023 at 09:39:50PM +0200, Konrad Dybcio wrote:
+> On 13.09.2023 12:14, Stephan Gerhold wrote:
+> > On Wed, Sep 13, 2023 at 10:12:12AM +0100, Bryan O'Donoghue wrote:
+> >> On 13/09/2023 10:06, Konrad Dybcio wrote:
+> >>> On 11.09.2023 19:41, Stephan Gerhold wrote:
+> >>>> Most of the reserved firmware memory on MSM8916 can be relocated when
+> >>>> respecting the required alignment. To avoid having to precompute the
+> >>>> reserved memory regions in every board DT, describe the actual
+> >>>> requirements (size, alignment, alloc-ranges) using the dynamic reserved
+> >>>> memory allocation.
+> >>>>
+> >>>> This approach has several advantages:
+> >>>>
+> >>>>   1. We can define "templates" for the reserved memory regions in
+> >>>>      msm8916.dtsi and keep only device-specific details in the board DT.
+> >>>>      This is useful for the "mpss" region size for example, which varies
+> >>>>      from device to device. It is no longer necessary to redefine all
+> >>>>      firmware regions to shift their addresses.
+> >>>>
+> >>>>   2. When some of the functionality (e.g. WCNSS, Modem, Venus) is not
+> >>>>      enabled or needed for a device, the reserved memory can stay
+> >>>>      disabled, freeing up the unused reservation for Linux.
+> >>>>
+> >>>>   3. Devices with special requirements for one of the firmware regions
+> >>>>      are handled automatically. For example, msm8916-longcheer-l8150
+> >>>>      has non-relocatable "wcnss" firmware that must be loaded exactly
+> >>>>      at address 0x8b600000. When this is defined as a static region,
+> >>>>      the other dynamic allocations automatically adjust to a different
+> >>>>      place with suitable alignment.
+> >>>>
+> >>>> All in all this approach significantly reduces the boilerplate necessary
+> >>>> to define the different firmware regions, and makes it easier to enable
+> >>>> functionality on the different devices.
+> >>>>
+> >>>> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> >>>> ---
+> >>> [...]
+> >>>
+> >>>>   		mpss_mem: mpss@86800000 {
+> >>>> +			/*
+> >>>> +			 * The memory region for the mpss firmware is generally
+> >>>> +			 * relocatable and could be allocated dynamically.
+> >>>> +			 * However, many firmware versions tend to fail when
+> >>>> +			 * loaded to some special addresses, so it is hard to
+> >>>> +			 * define reliable alloc-ranges.
+> >>>> +			 *
+> >>>> +			 * alignment = <0x0 0x400000>;
+> >>>> +			 * alloc-ranges = <0x0 0x86800000 0x0 0x8000000>;
+> >>>> +			 */
+> >>> Do we know of any devices that this would actually work on?
+> [...]
+> >  - On DB410c it works just fine. All addresses I tried work without any
+> >    problems.
+> > 
+> >  - On longcheer-l8150 the modem firmare works fine when the memory
+> >    region starts somewhere between 0x86800000 and 0x8a800000. It also
+> >    works again after 0x8e800000. But on anything between 0x8a800000 and
+> >    0x8e800000 it's broken for who knows what reason.
+> > [...]
+> Were you able to find a phone (likely a very reference-design-based
+> one) that this worked on, btw?
 
-On Tue, Sep 12, 2023 at 6:52=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Add support for reading the frequency of PLL1/4/6 available on RZ/G3S.
-> The computation formula for PLL frequency is as follows:
-> Fout =3D (nir + nfr / 4096) * Fin / (mr * pr)
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Actually I would count the Longcheer devices (l8150 = Wileyfox Swift and
+l8910 = BQ Aquaris X5) to the category of close-to-QRD-based devices.
+Based on quick tests both behave like described above (only
+0x8a800000-0x8e800000 is broken). Same for wingtech-wt88047.
 
-Thanks for your patch!
+In other words, for those using the dynamic allocation would work fine,
+because the alloc-ranges = <0x0 0x86800000 0x0 0x8000000>; only includes
+working start addresses from 0x86800000 to ~0x89800000 (with a size of
+0x5000000).
 
-> --- a/drivers/clk/renesas/rzg2l-cpg.c
-> +++ b/drivers/clk/renesas/rzg2l-cpg.c
-> @@ -718,11 +718,43 @@ static const struct clk_ops rzg2l_cpg_pll_ops =3D {
->         .recalc_rate =3D rzg2l_cpg_pll_clk_recalc_rate,
->  };
->
-> +static unsigned long rzg3s_cpg_pll_clk_recalc_rate(struct clk_hw *hw,
-> +                                                  unsigned long parent_r=
-ate)
-> +{
-> +       struct pll_clk *pll_clk =3D to_pll(hw);
-> +       struct rzg2l_cpg_priv *priv =3D pll_clk->priv;
-> +       u32 nir, nfr, mr, pr, val;
-> +       u64 rate;
-> +
-> +       if (pll_clk->type !=3D CLK_TYPE_G3S_SAM_PLL)
-> +               return parent_rate;
-> +
-> +       val =3D readl(priv->base + GET_REG_SAMPLL_CLK1(pll_clk->conf));
-> +
-> +       pr =3D 1 << FIELD_GET(GENMASK(28, 26), val);
+I guess I could use it for them and only make other devices use a fixed
+address. But I also don't quite have the capacity to test every device
+to see if relocating the region works or not.
 
-Please add defines for the various GENMASK(...) fields.
+I think it's still easiest to allocate mpss on a fixed address
+everywhere. The only real disadvantage is that overriding "reg", e.g.
 
-> +       /* Hardware interprets values higher than 8 as p =3D 16. */
-> +       if (pr > 8)
-> +               pr =3D 16;
-> +
-> +       mr  =3D FIELD_GET(GENMASK(25, 22), val) + 1;
-> +       nir =3D FIELD_GET(GENMASK(21, 13), val) + 1;
-> +       nfr =3D FIELD_GET(GENMASK(12, 1), val);
-> +
-> +       rate =3D DIV_ROUND_CLOSEST_ULL((u64)parent_rate * nfr, 4096);
-> +       rate +=3D (u64)parent_rate * nir;
+	&mpss_mem {
+		reg = <0x0 0x86800000 0x0 0x5100000>;
+	};
 
-When rewriting the formula as:
+is a bit more ugly than overriding size:
 
-    Fout =3D (4096 * nir + nfr) * Fin / (4096 * mr * pr)
+	&mpss_mem {
+		size = <0x0 0x5100000>;
+	};
 
-you can simplify to:
+but well, this is a very minor disadvantage.
 
-    rate =3D mul_u64_u32_shr(parent_rate, 4096 * nir + nfr, 12);
-
-> +       return DIV_ROUND_CLOSEST_ULL(rate, (mr + pr));
-
-mr * pr
-
-> +}
-
-> --- a/drivers/clk/renesas/rzg2l-cpg.h
-> +++ b/drivers/clk/renesas/rzg2l-cpg.h
-> @@ -102,6 +102,7 @@ enum clk_types {
->         CLK_TYPE_IN,            /* External Clock Input */
->         CLK_TYPE_FF,            /* Fixed Factor Clock */
->         CLK_TYPE_SAM_PLL,
-> +       CLK_TYPE_G3S_SAM_PLL,
-
-CLK_TYPE_G3S_PLL, as the documentation doesn't use SAM?
-
->
->         /* Clock with divider */
->         CLK_TYPE_DIV,
-> @@ -129,6 +130,8 @@ enum clk_types {
->         DEF_TYPE(_name, _id, _type, .parent =3D _parent)
->  #define DEF_SAMPLL(_name, _id, _parent, _conf) \
->         DEF_TYPE(_name, _id, CLK_TYPE_SAM_PLL, .parent =3D _parent, .conf=
- =3D _conf)
-> +#define DEF_G3S_SAMPLL(_name, _id, _parent, _conf) \
-
-DEF_G3S_PLL
-
-> +       DEF_TYPE(_name, _id, CLK_TYPE_G3S_SAM_PLL, .parent =3D _parent, .=
-conf =3D _conf)
->  #define DEF_INPUT(_name, _id) \
->         DEF_TYPE(_name, _id, CLK_TYPE_IN)
->  #define DEF_FIXED(_name, _id, _parent, _mult, _div) \
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Thanks,
+Stephan
 
