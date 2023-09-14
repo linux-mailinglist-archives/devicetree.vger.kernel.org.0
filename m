@@ -1,114 +1,186 @@
-Return-Path: <devicetree+bounces-225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38F4A7A065D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:47:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D9737A06C3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 16:01:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2E7E1C20A00
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 13:47:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB2C91F239B3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 14:01:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B760621A05;
-	Thu, 14 Sep 2023 13:47:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 932DA22F15;
+	Thu, 14 Sep 2023 13:58:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACAE01FA4
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 13:47:44 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15E241AE;
-	Thu, 14 Sep 2023 06:47:44 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38EDlV8g042617;
-	Thu, 14 Sep 2023 08:47:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1694699251;
-	bh=bvTFouSGru3/P8THWO1c+pCZJasbLhY1JpKYv57LT34=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=X9fVAQJGJ5F0aw1gZVlH3T7xvbEVi7q2ezZ5LL0t3Xxsk/gJSWhfn1DQULw1efgjP
-	 ZNz9QVUEiPNtqdIT+LuLIvwJri2mSn+W2lEuwEycOMj+HdCcIjNCkMBytUSwim0zDB
-	 LZsFoDjHsNNYyGGbIbroEN5Lcmm7qRUOMLF/kwi4=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38EDlVFB027658
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 14 Sep 2023 08:47:31 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 14
- Sep 2023 08:47:31 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 14 Sep 2023 08:47:31 -0500
-Received: from [128.247.81.19] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38EDlUUA004373;
-	Thu, 14 Sep 2023 08:47:30 -0500
-Message-ID: <e7a48365-3cfd-8a5f-f4d7-6b40dd394f54@ti.com>
-Date: Thu, 14 Sep 2023 08:47:30 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 832D31FA4
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 13:58:21 +0000 (UTC)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EF411FD5;
+	Thu, 14 Sep 2023 06:58:20 -0700 (PDT)
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-d8162698f0dso1054130276.0;
+        Thu, 14 Sep 2023 06:58:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694699899; x=1695304699;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=89wnnpn5qWRvVKp5fLbV+KH4FRgXN/OCspIecwMYI/I=;
+        b=jbmpWgb3dtD3ty4tskGVo7/WjuwqKJqVri3v42osYvuew8OkBloDf3Qr/dMA1kNeHb
+         MKxrmL4wkzeeluRdc90m7Y/wt/6I7nnHJVY3L/TvlQPpcTqFg9Tsph+E86wEbCOctR3p
+         +6nthQyLSJPRbVb+CsOvdWwgHcbBrGvDx3oWpuKUWVeHivnOJcfmgwbOUAbcte+U5ML5
+         v4cDRl++O4XMN3IDycyC3dZJeozz7YjJ2NsqADrmHhshUFDO3jHpc533N9bTv76Vh2cj
+         JJvijX9gnyO/U3L0eT40+VPP0p/83UsQP34u0WC2WuXt+DyRGuPahX+Y7xkYsbs+Rqbw
+         rGEQ==
+X-Gm-Message-State: AOJu0YzbHxbC0B+bEVGfR/1klciZjJBTcmJyIFVY9PdD/DTI4lEbtpSR
+	cv/hVuE7wBc7l4iA3e4AzouBSVD8sIU2HA==
+X-Google-Smtp-Source: AGHT+IFu83r7/LnH/QO9nc6pxfEozxawaMj+9NYuVcUrCUwHggHW4VZOMjiUH7ef9a5iNkdv+krHGw==
+X-Received: by 2002:a25:603:0:b0:d62:b8f5:d745 with SMTP id 3-20020a250603000000b00d62b8f5d745mr4653761ybg.52.1694699899511;
+        Thu, 14 Sep 2023 06:58:19 -0700 (PDT)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id v20-20020a25ab94000000b00d7360e0b240sm343654ybi.31.2023.09.14.06.58.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Sep 2023 06:58:18 -0700 (PDT)
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-d7f0048b042so1036218276.2;
+        Thu, 14 Sep 2023 06:58:18 -0700 (PDT)
+X-Received: by 2002:a25:ff0a:0:b0:d36:58a6:3281 with SMTP id
+ c10-20020a25ff0a000000b00d3658a63281mr4967250ybe.39.1694699897744; Thu, 14
+ Sep 2023 06:58:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: syscon: Add
- ti,am654-dss-oldi-io-ctrl compatible
-Content-Language: en-US
-To: Andrew Davis <afd@ti.com>, Lee Jones <lee@kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230911142556.64108-1-afd@ti.com>
-From: Aradhya Bhatia <a-bhatia1@ti.com>
-In-Reply-To: <20230911142556.64108-1-afd@ti.com>
+References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com> <20230912045157.177966-16-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20230912045157.177966-16-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 14 Sep 2023 15:58:05 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU5S6noFjkdYeyQjVSfa4oM780e0mMCAiScDoBjF=Rpqw@mail.gmail.com>
+Message-ID: <CAMuHMdU5S6noFjkdYeyQjVSfa4oM780e0mMCAiScDoBjF=Rpqw@mail.gmail.com>
+Subject: Re: [PATCH 15/37] clk: renesas: rzg2l: add support for RZ/G3S PLL
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
+	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
+	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
+	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
 
+Hi Claudiu,
 
+On Tue, Sep 12, 2023 at 6:52=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Add support for reading the frequency of PLL1/4/6 available on RZ/G3S.
+> The computation formula for PLL frequency is as follows:
+> Fout =3D (nir + nfr / 4096) * Fin / (mr * pr)
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-On 11/09/23 09:25, Andrew Davis wrote:
-> Add TI DSS OLDI-IO control registers compatible. This is a region of 5
-> 32bit registers found in the TI AM65 CTRL_MMR0 register space[0]. They
-> are used to control the characteristics of the OLDI DATA/CLK IO as needed
-> by the DSS display controller node.
-> 
-> [0] https://www.ti.com/lit/pdf/spruid7
-> 
-> Signed-off-by: Andrew Davis <afd@ti.com>
+Thanks for your patch!
 
-Reviewed-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> --- a/drivers/clk/renesas/rzg2l-cpg.c
+> +++ b/drivers/clk/renesas/rzg2l-cpg.c
+> @@ -718,11 +718,43 @@ static const struct clk_ops rzg2l_cpg_pll_ops =3D {
+>         .recalc_rate =3D rzg2l_cpg_pll_clk_recalc_rate,
+>  };
+>
+> +static unsigned long rzg3s_cpg_pll_clk_recalc_rate(struct clk_hw *hw,
+> +                                                  unsigned long parent_r=
+ate)
+> +{
+> +       struct pll_clk *pll_clk =3D to_pll(hw);
+> +       struct rzg2l_cpg_priv *priv =3D pll_clk->priv;
+> +       u32 nir, nfr, mr, pr, val;
+> +       u64 rate;
+> +
+> +       if (pll_clk->type !=3D CLK_TYPE_G3S_SAM_PLL)
+> +               return parent_rate;
+> +
+> +       val =3D readl(priv->base + GET_REG_SAMPLL_CLK1(pll_clk->conf));
+> +
+> +       pr =3D 1 << FIELD_GET(GENMASK(28, 26), val);
 
-> ---
-> 
-> Changes for v2:
->  - Use device specific compatible string
-> 
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> index 8103154bbb529..ab7e26c3469af 100644
-> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> @@ -69,6 +69,7 @@ properties:
->                - rockchip,rk3588-qos
->                - rockchip,rv1126-qos
->                - starfive,jh7100-sysmain
-> +              - ti,am654-dss-oldi-io-ctrl
->  
->            - const: syscon
->  
+Please add defines for the various GENMASK(...) fields.
+
+> +       /* Hardware interprets values higher than 8 as p =3D 16. */
+> +       if (pr > 8)
+> +               pr =3D 16;
+> +
+> +       mr  =3D FIELD_GET(GENMASK(25, 22), val) + 1;
+> +       nir =3D FIELD_GET(GENMASK(21, 13), val) + 1;
+> +       nfr =3D FIELD_GET(GENMASK(12, 1), val);
+> +
+> +       rate =3D DIV_ROUND_CLOSEST_ULL((u64)parent_rate * nfr, 4096);
+> +       rate +=3D (u64)parent_rate * nir;
+
+When rewriting the formula as:
+
+    Fout =3D (4096 * nir + nfr) * Fin / (4096 * mr * pr)
+
+you can simplify to:
+
+    rate =3D mul_u64_u32_shr(parent_rate, 4096 * nir + nfr, 12);
+
+> +       return DIV_ROUND_CLOSEST_ULL(rate, (mr + pr));
+
+mr * pr
+
+> +}
+
+> --- a/drivers/clk/renesas/rzg2l-cpg.h
+> +++ b/drivers/clk/renesas/rzg2l-cpg.h
+> @@ -102,6 +102,7 @@ enum clk_types {
+>         CLK_TYPE_IN,            /* External Clock Input */
+>         CLK_TYPE_FF,            /* Fixed Factor Clock */
+>         CLK_TYPE_SAM_PLL,
+> +       CLK_TYPE_G3S_SAM_PLL,
+
+CLK_TYPE_G3S_PLL, as the documentation doesn't use SAM?
+
+>
+>         /* Clock with divider */
+>         CLK_TYPE_DIV,
+> @@ -129,6 +130,8 @@ enum clk_types {
+>         DEF_TYPE(_name, _id, _type, .parent =3D _parent)
+>  #define DEF_SAMPLL(_name, _id, _parent, _conf) \
+>         DEF_TYPE(_name, _id, CLK_TYPE_SAM_PLL, .parent =3D _parent, .conf=
+ =3D _conf)
+> +#define DEF_G3S_SAMPLL(_name, _id, _parent, _conf) \
+
+DEF_G3S_PLL
+
+> +       DEF_TYPE(_name, _id, CLK_TYPE_G3S_SAM_PLL, .parent =3D _parent, .=
+conf =3D _conf)
+>  #define DEF_INPUT(_name, _id) \
+>         DEF_TYPE(_name, _id, CLK_TYPE_IN)
+>  #define DEF_FIXED(_name, _id, _parent, _mult, _div) \
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
