@@ -1,142 +1,167 @@
-Return-Path: <devicetree+bounces-117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1B2B79FCC4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:06:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB6D379FCD3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:09:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F11FB207B4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:06:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1FD21C20983
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:09:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6E5C63C2;
-	Thu, 14 Sep 2023 07:06:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DFED63C4;
+	Thu, 14 Sep 2023 07:09:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD526135
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 07:06:51 +0000 (UTC)
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30388CCD;
-	Thu, 14 Sep 2023 00:06:51 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id 6a1803df08f44-649c6ea6e72so3931136d6.2;
-        Thu, 14 Sep 2023 00:06:51 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FC606135
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 07:09:05 +0000 (UTC)
+Received: from mail-vs1-xe2b.google.com (mail-vs1-xe2b.google.com [IPv6:2607:f8b0:4864:20::e2b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51CAFCFA;
+	Thu, 14 Sep 2023 00:09:04 -0700 (PDT)
+Received: by mail-vs1-xe2b.google.com with SMTP id ada2fe7eead31-44d426d0e05so321180137.0;
+        Thu, 14 Sep 2023 00:09:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694675210; x=1695280010; darn=vger.kernel.org;
+        d=gmail.com; s=20221208; t=1694675343; x=1695280143; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CdMJftDb2abTrZue0NcN+6ucPSI/cjbXwCs/rx5nuBI=;
-        b=hQRzmlq4SSkgJttp420bVdRQiQyknp+1iX/YZFHAU3p1t/Y8hAp5IOtTffAybKtO/a
-         iv6gsiS2qemJGeY+259GUXt2WFN/Y92/lv5CvpkXaRHEqWvA2aprE3XHi3ZXlwd46YB3
-         vsmwXINw2kckZiujE1zdp6mhscuNGyKO0JN8VoMZJne5gA3i2qrd1eePU9vo3oNod98C
-         H9lKPIlp3RH9sIhS0vL/xnHK0bORBgcnw1AtCrZiwLTY3NG/dHhj1c6xo+HikzFwXXWS
-         1j4TlfQy8LnYnxnF86OLNfll4b5OG9Jeq6lQokw6ZI0JHN6ooT6IwvOkkOFbUQPD8hhE
-         S2Pw==
+        bh=MSaG/LXIBUgueSj0zQWyWDs1ASmEFDDPeMdCeBBOALM=;
+        b=jpg02TTe4gumVaAK8i4eKDZkVBJibJn6tRMkB0UifFwou/oTqG2zCVmax0LzpVbAd1
+         efQYncK4HWXxx8yLOVe11TqllepkyrArt6enprUbp+a8QpUxHnW+gj7Jki/1Nc/4vPt5
+         QDbX5m57suyWWR40sgdkOmcsUeuB3wQIVbTXNe6GbH2ZxRFU3kF6+ecJjSvhIYxofW1z
+         aKmUtdsTPjsPkSdKlJrpH3pV6SkQZtut7cZ7lIsFX57GYQQweXJAY3VxKRphqay1/4Gt
+         0j9eQcm9SD3yqpZCjbQ7kjUoUcxSBGqS7xP8sQp5P8seX0mhSGRvyJ/nPiWQTf/5UGHQ
+         JYrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694675210; x=1695280010;
+        d=1e100.net; s=20230601; t=1694675343; x=1695280143;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CdMJftDb2abTrZue0NcN+6ucPSI/cjbXwCs/rx5nuBI=;
-        b=upgAxDEb2CTZ0gABU9YV7r0NBMOrv5ESW0WjLHlqu95IoNwligNL9J9hxxlehVFQkD
-         DXE46yRcexuil4lNv4Pi9RnHyfwI57xOB9cZ3r7dUqewZCKI2T7nsuvULVut2EQM64YR
-         XJP5rB5cIZsk5Z4dXEVuEkrTVuSF1YdqZh9flP7fd8JQYKSG1D3GG3YUXPjpcoGxpT4j
-         lKosDXWqZuClxYxL6W14rSFcMo4J1sLpphlwSlzDNGiKdjWzV1O21IyXj65HrSwCnuio
-         +rAI3CJh5ejiD/5L4T1IJJhqyMoh7kLJcUKLx/DR28mTt62SO8k5M5yth7lg/bE+CP6v
-         SLrg==
-X-Gm-Message-State: AOJu0YzLBkTcRmUoOWklXGVI8qkgod0C7dYTu6T5Dfvq2Kp9BXRzPFQx
-	f6YbybhKQ0aAUiDIE63dz5mDXSlr/7vjBQSP+Pw=
-X-Google-Smtp-Source: AGHT+IFqMtl/34KkZbegI6c9ryJlkvbUxhils7C7k7j6r6kOxcF5Y/+mKtx4G0fmvBIO0rSFFwBDjSW6Gw84IZF5D14=
-X-Received: by 2002:a05:6214:c83:b0:655:ddd7:fcab with SMTP id
- r3-20020a0562140c8300b00655ddd7fcabmr6324953qvr.49.1694675210300; Thu, 14 Sep
- 2023 00:06:50 -0700 (PDT)
+        bh=MSaG/LXIBUgueSj0zQWyWDs1ASmEFDDPeMdCeBBOALM=;
+        b=N2eKqT4xX2ctYcCQ8jBk2Hq/Zf8xlx8c/A1bUpoDUoi6+LVdRpPQ7AvxYttMWtMuWP
+         XCgbPfjcToLLMzGCn1/s0chKPgYncs+5bNfVhLcuAvl1FwZ6hiLnuOLRuSTX/DfFoT90
+         /cQOPEZJA9Sh70MKmbhSkv0NujGsculfMFNKbsJrACJFoFi8LhJNzWnSr3eMt95dWD7X
+         xiyNWUuLVV/CsM05fxe0LuXUS8bbxmvvmufkN8lfcW2P7OY3BKo4GwAdZveRmMoKM80f
+         oBN/ALeGpllNUYa84AIRLiLKJGqWLW7uo31ksfs8btQ8CAoEO+IGJiAdG5zSSymeTn0n
+         WFHg==
+X-Gm-Message-State: AOJu0YwgEGs7EQiV0qqB5b2oP4UFVb+ELStfgDgSjM1Xjpn2WcDWpOB8
+	PYJu5mevS7zDgFJubU6zBRS8cz2XVV1N7Yo+pfG7EVfHugs=
+X-Google-Smtp-Source: AGHT+IGCS14Z6FMbrKeskOrdIgCVw+Vksufj/9LkVLiORgVUhji/+0z6isrK7A8qGvjTODmtqLF+2NeM43teJmb/Ldo=
+X-Received: by 2002:a05:6102:15aa:b0:450:f9eb:f412 with SMTP id
+ g42-20020a05610215aa00b00450f9ebf412mr2418236vsv.5.1694675343350; Thu, 14 Sep
+ 2023 00:09:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230912140532.3797736-1-yangchen.openbmc@gmail.com>
- <20230912140532.3797736-3-yangchen.openbmc@gmail.com> <1bfdc230-e358-6aa4-7d60-03b5477a6be9@linaro.org>
- <CALFa7M_GvCgmEZxvo_ZSYoCPOe+9-tQt3KHn=_cu3n7psP+PTA@mail.gmail.com> <11c822f3-96f1-17d6-6c2a-feaa950aeea1@linaro.org>
-In-Reply-To: <11c822f3-96f1-17d6-6c2a-feaa950aeea1@linaro.org>
-From: Yang Chen <yangchen.openbmc@gmail.com>
-Date: Thu, 14 Sep 2023 15:06:39 +0800
-Message-ID: <CALFa7M-9N=J-WKOU=ZbLsFfXvw7=Gmw28DXdKuvuQ7Kyf=5x9g@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Minerva: Add Facebook Minerva CMC board
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, 
-	andrew@aj.id.au, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org, patrick@stwcx.xyz, Jerry.Lin@quantatw.com, 
-	Eddie.Chen@quantatw.com, EasonChen1@quantatw.com
+References: <20230913151606.69494-1-romain.perier@gmail.com>
+ <20230913151606.69494-3-romain.perier@gmail.com> <20230913-depress-bootlace-6b88bfd83966@spud>
+In-Reply-To: <20230913-depress-bootlace-6b88bfd83966@spud>
+From: Romain Perier <romain.perier@gmail.com>
+Date: Thu, 14 Sep 2023 09:08:52 +0200
+Message-ID: <CABgxDoK2T3xkKYDVeqRuDXMHfVEJcRkkBOBBkMJ5=XUv9Y5MsQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: rtc: Add Mstar SSD202D RTC
+To: Conor Dooley <conor@kernel.org>
+Cc: Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Daniel Palmer <daniel@0x0f.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 13, 2023 at 6:04=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+Le mer. 13 sept. 2023 =C3=A0 20:30, Conor Dooley <conor@kernel.org> a =C3=
+=A9crit :
 >
-> On 12/09/2023 16:05, yangchen.openbmc@gmail.com wrote:
-> > From: Yang Chen <yangchen.openbmc@gmail.com>
+> On Wed, Sep 13, 2023 at 05:16:05PM +0200, Romain Perier wrote:
+> > Add YAML bindings for Mstar SSD202D RTC.
 > >
-> > Add linux device tree entry related to the Minerva Chassis Management
-> > Controller (CMC) specific devices connected to the Aspeed SoC (AST2600)=
-.
-> >
-> > Signed-off-by: Yang Chen <yangchen.openbmc@gmail.com>
+> > Signed-off-by: Romain Perier <romain.perier@gmail.com>
 > > ---
-> >  arch/arm/boot/dts/aspeed/Makefile             |   1 +
-> >  .../aspeed-bmc-facebook-minerva-cmc.dts       | 265 ++++++++++++++++++
-> >  2 files changed, 266 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerv=
-a-cmc.dts
+> >  .../bindings/rtc/mstar,ssd202d-rtc.yaml       | 35 +++++++++++++++++++
+> >  1 file changed, 35 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/rtc/mstar,ssd202d=
+-rtc.yaml
 > >
-> > diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/
->
->
+> > diff --git a/Documentation/devicetree/bindings/rtc/mstar,ssd202d-rtc.ya=
+ml b/Documentation/devicetree/bindings/rtc/mstar,ssd202d-rtc.yaml
+> > new file mode 100644
+> > index 000000000000..4c1f22ef5a2c
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/rtc/mstar,ssd202d-rtc.yaml
+> > @@ -0,0 +1,35 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/rtc/mstar,ssd202d-rtc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > +
-> > +&i2c15 {
-> > +     status =3D "okay";
+> > +title: Mstar SSD202D Real Time Clock
 > > +
-> > +     eeprom@50 {
-> > +             compatible =3D "atmel,24c128";
-> > +             reg =3D <0x50>;
-> > +     };
-> > +};
+> > +maintainers:
+> > +  - Daniel Palmer <daniel@0x0f.com>
+> > +  - Romain Perier <romain.perier@gmail.com>
 > > +
-> > +&adc0 {
-> > +     ref_voltage =3D <2500>;
->
-> There is no such property in the bindings.
-
-Hi Krzysztof,
-
-I will change this property to the "aspeed,int-vref-microvolt" which
-is defined in the binding that can choose the ADC internal reference
-voltage is 1200000 or 2500000 =C2=B5V, and will add these changes to the v2
-patches.
-
->
-> > +     status =3D "okay";
-> > +     pinctrl-0 =3D <&pinctrl_adc0_default &pinctrl_adc1_default
-> > +             &pinctrl_adc2_default &pinctrl_adc3_default
-> > +             &pinctrl_adc4_default &pinctrl_adc5_default
-> > +             &pinctrl_adc6_default &pinctrl_adc7_default>;
-> > +};
+> > +allOf:
+> > +  - $ref: rtc.yaml#
 > > +
-> > +&adc1 {
-> > +     ref_voltage =3D <2500>;
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - mstar,ssd202d-rtc
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
 >
-> NAK, there is no such property.
 
-I will change this property to the "aspeed,int-vref-microvolt" which
-is defined in the binding that can choose the ADC internal reference
-voltage is 1200000 or 2500000 =C2=B5V, and will add these changes to the v2
-patches.
+Hi,
+
+> So, this seems fine to me in isolation, but isn't this now the sort of
+> thing that can be documented in trivial-rtc.yaml?
+> Its only got compatible & reg, which seems to fit the bill for that.
+>
+
+With the current state, it might make sense. However, currently, the
+RTC hw block is mostly
+reverse-engineered, the driver is not complete yet, things like
+external irq or wakeup irq might arrive later (once we know how it is
+wired up and used).
+So the content of the dt-bindings might change and differ from a
+simple "compatible & reg" requirement.
+
+What do you think ?
+
+> Apologies if I am missing something,
+
+No problem, I am open to suggestions :)
 
 Thanks,
-Yang Chen
+Regards,
+Romain
+
+
+
+> Conor.
+>
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    rtc@6800 {
+> > +        compatible =3D "mstar,ssd202d-rtc";
+> > +        reg =3D <0x6800 0x200>;
+> > +    };
+> > +...
+> > --
+> > 2.39.2
+> >
 
