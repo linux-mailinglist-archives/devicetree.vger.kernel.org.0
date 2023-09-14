@@ -1,105 +1,161 @@
-Return-Path: <devicetree+bounces-195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14D5D7A02BA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 13:34:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A82697A02C4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 13:35:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4FAAFB20974
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:34:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB72F1C20ABB
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:35:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2694D18E10;
-	Thu, 14 Sep 2023 11:34:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C06611D683;
+	Thu, 14 Sep 2023 11:34:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1729D208B9;
-	Thu, 14 Sep 2023 11:34:15 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4222F1BE8;
-	Thu, 14 Sep 2023 04:34:15 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9a645e54806so112349966b.0;
-        Thu, 14 Sep 2023 04:34:15 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B12061D680
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 11:34:23 +0000 (UTC)
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 663D21FDC
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 04:34:22 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-52f9a45b4bdso963408a12.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 04:34:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694691253; x=1695296053; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jU+/vaAdL7V/15DsnYyd/r36ogvO2f5D0t3bVwa4MJk=;
-        b=WLyY/N+NNp12zIvUt6tdOoRyQZEBJ8KNlze+Zk+9UqOemukMRiU15W34ztTGlViWo2
-         cH++bB+7ehWycESTDX2/fsbR1hqGEaRoulkLnBOH7hdV/IEKRopnxzfpKakjydhNGoPk
-         E/xQHIpdrJ7mJy1+ZaziUenPAEpO3rwzhgXdyWcbvuumj3gjep1dtscREaJZZeIUPEnt
-         SeyE6ba3CAe6BpJ7jrCU8WJ1TCqa6cHSgZc6GX70vvsv8y1GEhSXYNaagF/uMIYu+l1M
-         /+U7KdR/K+prBay/uOZBpXfUVpMwO17bFZEXN1y8OFfmU2/qoCvO9PCQ8S8v+E+bjwpL
-         CQTg==
+        d=9elements.com; s=google; t=1694691261; x=1695296061; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oXa4ycYFzT7jLeokUgoWTtJjQh8+NIDSPVuIE36lEvI=;
+        b=TcUy05WeARz+LFWGVi8yH1dw7F0mWoa4WJBNDiQ5PnB/9xefhisF5srV995mBw12CC
+         OWOcRYqndaPWkQQd8YTwAxSdEGEl90fHxUJ3nx3eY+xTicjdp+cRCoD94csY33O8/bx4
+         4sU4zj4bcQAg+AfJrwX+oAvQ06DrqktiIPEGfFhjFMj/3eRNB2ccocmi87kLme1OUTB0
+         G3oedJVA+/rfBC7OR45jt1ehBWiPxWzrNtD9HFeH1nAY+wYIviDmRb6qa3XIp6ZE/ZJ/
+         BtTIYEq9nzudNLzao1pkzaa3WgFCM9pblakoeZ0rOl4dBy2dPiP0i5cfUxm2MbSMQAQk
+         OL8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694691253; x=1695296053;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jU+/vaAdL7V/15DsnYyd/r36ogvO2f5D0t3bVwa4MJk=;
-        b=gVto1JK6dP8pVr2gtd3DkhOSXfsNgrjSncoIF3cZH8f9y48ZwkS20fW5ac7tSBP+oD
-         EO0l1vLCBiynPYGT40RJuk/EG6cK1ZmEozgmrZCuAlUMp6LOQgLHuDD7YgG9IUB0MNZ3
-         Ircs2+LlnwA7RMtqHy+92z5yqH3KenuHjrJ5rpgeq7E2o0UuPZWJCujwoMqN3w3GB3Qh
-         eBtlMN+3MjpO7M9WR6rviubL3JPNBYJku5CVyvCSawPl2/VRBiEUMWm2hBjfE6QF7gVF
-         ptbVshdc7wb8cJbuG4grosPRBi3CYywyJ24sKRl9A2IvZYxIYdQmEFDATvDY29ly32ck
-         6CSA==
-X-Gm-Message-State: AOJu0YzyMQqGC59Q6gWZhtv1xWMyIMsmFcUdSnezqf3fBuF5bXzXxIhy
-	RGRiaLH/rIbOor91e+7MAsg=
-X-Google-Smtp-Source: AGHT+IEo2AN2heLwgqGobes+LwHh4vQg7d6lEXZZ//jBa7GDaS6HTdnNur4ZpEDoKCiop9ZRT8vM3A==
-X-Received: by 2002:a17:906:31d9:b0:9a2:232f:6f85 with SMTP id f25-20020a17090631d900b009a2232f6f85mr4323483ejf.52.1694691253255;
-        Thu, 14 Sep 2023 04:34:13 -0700 (PDT)
-Received: from skbuf ([188.26.56.202])
-        by smtp.gmail.com with ESMTPSA id rp15-20020a170906d96f00b009a1b857e3a5sm882096ejb.54.2023.09.14.04.34.11
+        d=1e100.net; s=20230601; t=1694691261; x=1695296061;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oXa4ycYFzT7jLeokUgoWTtJjQh8+NIDSPVuIE36lEvI=;
+        b=JCRnp2ZgN7ELpwi5qH3vKNP+Wjrto3yLv2s8zDZLB3mqRfN5aUGZT7HfdDf/B/oO8p
+         pBKJewSGFtKkCld15MQxB+A4VUli5sjYVt9eqe0SNPHb09QsxciVNhugmUaq1v3P+hIm
+         ZsilvK+/ZV5cRyQXdXW80t/o9qm+/5iPg99UdFJWCpAuZI45wGRcvFHMwmMZg6cuE5Vj
+         ulUo13EJ7RAYG0DSN1MfQKJVQVNGL1efvkVr2o4hL40DYyNB6rQAFyS7oYLU7MGgFasH
+         o03Aadaq0f/KiG7dn7Or1rD29hocJ0fKEOg/xmZrpqjZ0i70MyVL+cxj7Ju7/15PA8ZE
+         9iAg==
+X-Gm-Message-State: AOJu0YyOLLPaOQQei15zbay4I6idX+jx21ECWTn2RhMYYBzL3N7PMy6l
+	e7Z7RzTskpqWML3770+NPBOWHQ==
+X-Google-Smtp-Source: AGHT+IGhxfGLWS9n5UK96bk1q/w1vuoTujKcbBAcFbFYwjmqvmyvlCpC/ds32SMX6ht2v9Hva9iFDQ==
+X-Received: by 2002:a17:907:2724:b0:9ad:7ec3:c055 with SMTP id d4-20020a170907272400b009ad7ec3c055mr4343650ejl.10.1694691260689;
+        Thu, 14 Sep 2023 04:34:20 -0700 (PDT)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id h11-20020a170906854b00b0099ccee57ac2sm875119ejy.194.2023.09.14.04.34.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Sep 2023 04:34:12 -0700 (PDT)
-Date: Thu, 14 Sep 2023 14:34:10 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: "David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>,
-	Eric Dumazet <edumazet@google.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Arun Ramadoss <arun.ramadoss@microchip.com>,
-	Conor Dooley <conor+dt@kernel.org>,
+        Thu, 14 Sep 2023 04:34:20 -0700 (PDT)
+From: Naresh Solanki <naresh.solanki@9elements.com>
+To: Peter Rosin <peda@axentia.se>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	UNGLinuxDriver@microchip.com,
-	"Russell King (Oracle)" <linux@armlinux.org.uk>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v5 2/2] net: dsa: microchip: Add drive strength
- configuration
-Message-ID: <20230914113410.7trf2267r4eijuim@skbuf>
-References: <20230914075107.2239886-1-o.rempel@pengutronix.de>
- <20230914075107.2239886-1-o.rempel@pengutronix.de>
- <20230914075107.2239886-3-o.rempel@pengutronix.de>
- <20230914075107.2239886-3-o.rempel@pengutronix.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Patrick Rudolph <patrick.rudolph@9elements.com>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: i2c: pca954x: Add custom properties for MAX7357/MAX7358
+Date: Thu, 14 Sep 2023 13:34:14 +0200
+Message-ID: <20230914113416.1285518-1-naresh.solanki@9elements.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230914075107.2239886-3-o.rempel@pengutronix.de>
- <20230914075107.2239886-3-o.rempel@pengutronix.de>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Sep 14, 2023 at 09:51:07AM +0200, Oleksij Rempel wrote:
-> Add device tree based drive strength configuration support. It is needed to
-> pass EMI validation on our hardware.
-> 
-> Configuration values are based on the vendor's reference driver.
-> 
-> Tested on KSZ9563R.
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> ---
+From: Patrick Rudolph <patrick.rudolph@9elements.com>
 
-Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+Both chips have a configuration register to enable additional
+features. These features aren't enabled by default & its up to
+board designer to enable the same as it may have unexpected side effects.
+
+These should be validated for proper functioning & detection of devices
+in secondary bus as sometimes it can cause secondary bus being disabled.
+
+Add booleans for:
+ - maxim,isolate-stuck-channel
+ - maxim,send-flush-out-sequence
+ - maxim,preconnection-wiggle-test-enable
+
+Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+---
+Changes in V3:
+- Update commit message
+Changes in V2:
+- Update properties.
+---
+ .../bindings/i2c/i2c-mux-pca954x.yaml         | 31 +++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+index 2d7bb998b0e9..fa73eadfdf7b 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
++++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+@@ -71,6 +71,23 @@ properties:
+     description: A voltage regulator supplying power to the chip. On PCA9846
+       the regulator supplies power to VDD2 (core logic) and optionally to VDD1.
+ 
++  maxim,isolate-stuck-channel:
++    type: boolean
++    description: Allows to use non faulty channels while a stuck channel is
++      isolated from the upstream bus. If not set all channels are isolated from
++      the upstream bus until the fault is cleared.
++
++  maxim,send-flush-out-sequence:
++    type: boolean
++    description: Send a flush-out sequence to stuck auxiliary buses
++      automatically after a stuck channel is being detected.
++
++  maxim,preconnection-wiggle-test-enable:
++    type: boolean
++    description: Send a STOP condition to the auxiliary buses when the switch
++      register activates a channel to detect a stuck high fault. On fault the
++      channel is isolated from the upstream bus.
++
+ required:
+   - compatible
+   - reg
+@@ -95,6 +112,20 @@ allOf:
+         "#interrupt-cells": false
+         interrupt-controller: false
+ 
++  - if:
++      not:
++        properties:
++          compatible:
++            contains:
++              enum:
++                - maxim,max7357
++                - maxim,max7358
++    then:
++      properties:
++        maxim,isolate-stuck-channel: false
++        maxim,send-flush-out-sequence: false
++        maxim,preconnection-wiggle-test-enable: false
++
+ unevaluatedProperties: false
+ 
+ examples:
+
+base-commit: 637f33a4fe864ac8636e22766d67210e801fcd0d
+-- 
+2.41.0
+
 
