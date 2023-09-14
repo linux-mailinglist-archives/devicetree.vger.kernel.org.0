@@ -1,141 +1,134 @@
-Return-Path: <devicetree+bounces-223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A9DC7A0570
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:20:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B58467A0598
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:30:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 564F4B20C25
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 13:20:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 755311F22FDE
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 13:30:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2D82208CC;
-	Thu, 14 Sep 2023 13:20:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE20A208DF;
+	Thu, 14 Sep 2023 13:29:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D631F241E0
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 13:20:26 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F00A1A5;
-	Thu, 14 Sep 2023 06:20:26 -0700 (PDT)
-Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 28B8A12AE;
-	Thu, 14 Sep 2023 15:18:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1694697531;
-	bh=P8Fv3m8a1ccWANsx+oyHLY8IHHlnvGwRC93xpQj+i9w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vd5vSVo6laW2yqhWLYoFUw2pR9IDCbyTnxTHpQWG9+oKf5HlG93fm3AxwYyzUn3+T
-	 Y/2a8cUk4u8/CgYi0juf/HMVld9JiFIjBb9ej/Akjm8DCptcuNp/SexuQyTX65TL4d
-	 Pqpwfz9GkKmitEJk38hr3Xs36ZgfNG1mY28KXRAU=
-Date: Thu, 14 Sep 2023 15:20:20 +0200
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Sakari Ailus <sakari.ailus@iki.fi>
-Cc: Fabio Estevam <festevam@gmail.com>, mchehab@kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>, 
-	jacopo.mondi@ideasonboard.com
-Subject: Re: [PATCH] media: dt-bindings: ovti,ov772x: Make powerdown-gpios
- active-high
-Message-ID: <hmic7q3hbndw3afwdktjaptcfinfjekh24zo5iryrtvtykjqmw@dydp7czzkv7z>
-References: <20230913193932.1947918-1-festevam@gmail.com>
- <ZQLgauEc3VtRQUMm@valkosipuli.retiisi.eu>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA5D8241E0
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 13:29:54 +0000 (UTC)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C7001FD8;
+	Thu, 14 Sep 2023 06:29:54 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-5925e580f12so11411447b3.3;
+        Thu, 14 Sep 2023 06:29:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694698193; x=1695302993;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MMgnSEID+xkECrUs/n98woQl+ojuPd0/IiG5nfXIn2c=;
+        b=XzOelWPkiVoyl5RggkTcRd3uA415Z162tBB3CDrInXacj6nPzpABWMzAnB4PpROIua
+         nR2OvbrozuiwByoF79OQHRDCan6qXryQHUomw5kleQQzv29QBpZtP3sYxbss6G4i3LxE
+         97Xg53EqVldYoAxzJM//+QVFXFWZevXujZSnY9zxdP3K/1DfM/4A9plmlOmrCB0+GBm3
+         XA5jHgzZxV0WAX1y8GFy/NYTrvbiYOfLTy50/dM7PZ31+aHSyVJvDMF/gkRAk9DKGQX9
+         6qxmEiymL97L0V71FfS1AZwdmxa+3sYzzO1KCXZXT4U4ChqHnnShTZnSMbjZMvIGn/Dp
+         +OWg==
+X-Gm-Message-State: AOJu0YxRn2nJ1IhFRaj4ClhPlBwSXh4h7ibZXqSkuyZMCKL2ThaE198N
+	QZMCbJOix1H0a/ZZQ7wH85OUT6gcwbaAjw==
+X-Google-Smtp-Source: AGHT+IEqkaYIojyrujrVO1BiGM9aV1qiSgkX3ciD/0/s2n379RnWi+PZW1+3eZyfAzTGGaaNUj5fuw==
+X-Received: by 2002:a81:7287:0:b0:59b:8da4:dc1 with SMTP id n129-20020a817287000000b0059b8da40dc1mr5820380ywc.38.1694698193125;
+        Thu, 14 Sep 2023 06:29:53 -0700 (PDT)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
+        by smtp.gmail.com with ESMTPSA id h125-20020a816c83000000b00582fae92aa7sm318186ywc.93.2023.09.14.06.29.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Sep 2023 06:29:52 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-59bd2e19c95so11653557b3.0;
+        Thu, 14 Sep 2023 06:29:52 -0700 (PDT)
+X-Received: by 2002:a0d:fe43:0:b0:589:c065:b419 with SMTP id
+ o64-20020a0dfe43000000b00589c065b419mr5624958ywf.34.1694698192345; Thu, 14
+ Sep 2023 06:29:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <ZQLgauEc3VtRQUMm@valkosipuli.retiisi.eu>
+References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com> <20230912045157.177966-15-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20230912045157.177966-15-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 14 Sep 2023 15:29:40 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWRxaBsPAn0OR15WFua_5HZVPTmWabFnnex5gDLKjE9Cw@mail.gmail.com>
+Message-ID: <CAMuHMdWRxaBsPAn0OR15WFua_5HZVPTmWabFnnex5gDLKjE9Cw@mail.gmail.com>
+Subject: Re: [PATCH 14/37] clk: renesas: rzg2l: use u32 for flag and mux_flags
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
+	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
+	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
+	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Sakari, Fabio
+Hi Claudiu,
 
-On Thu, Sep 14, 2023 at 10:28:58AM +0000, Sakari Ailus wrote:
-> Hi Fabio,
+On Tue, Sep 12, 2023 at 6:52=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >
-> On Wed, Sep 13, 2023 at 04:39:32PM -0300, Fabio Estevam wrote:
-> > From: Fabio Estevam <festevam@denx.de>
-> >
-> > The powerdown-gpios description mentions:
-> >
-> > "Reference to the GPIO connected to the PWDN pin which is active high."
-
-From datasheet:
-
-        Power down mode selection:
-        0: Normal mode
-        1: Power down mode
-
-> >
-> > Improve the example by making powerdown-gpios active-high for consistency.
-> >
-> > Signed-off-by: Fabio Estevam <festevam@denx.de>
-> > ---
-> >  Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-> > index 5d24edba8f99..5aec65b053af 100644
-> > --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-> > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-> > @@ -114,7 +114,7 @@ examples:
-> >              compatible = "ovti,ov7725";
-> >              reg = <0x21>;
-> >              reset-gpios = <&axi_gpio_0 0 GPIO_ACTIVE_LOW>;
-> > -            powerdown-gpios = <&axi_gpio_0 1 GPIO_ACTIVE_LOW>;
-> > +            powerdown-gpios = <&axi_gpio_0 1 GPIO_ACTIVE_HIGH>;
-> >              clocks = <&xclk>;
-> >
-> >              port {
+> flag and mux_flags are intended to keep bit masks. Use u32 type for it.
 >
-> Looking at the driver code, it seems the powerdown GPIO is set to state 1
-> when the device is powered on and to 0 when it's powered down. This looks
-> like a driver bug.
->
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
+Thanks for your patch!
 
-It is. As you can see I ported the driver from the old soc-camera
-version and in 762c28121d7c ("media: i2c: ov772x: Remove soc_camera
-dependencies") I defintely introduced this. I'll here play the card "I
-was young in 2018".
+> --- a/drivers/clk/renesas/rzg2l-cpg.h
+> +++ b/drivers/clk/renesas/rzg2l-cpg.h
+> @@ -92,8 +92,8 @@ struct cpg_core_clk {
+>         unsigned int conf;
+>         const struct clk_div_table *dtable;
+>         const char * const *parent_names;
+> -       int flag;
+> -       int mux_flags;
+> +       u32 flag;
 
-This is also probably wrong
+"flag" is used for several purposes, which expected different types:
+    - clk_init_data.flags is unsigned long,
+    - The clk_divider_flags parameter of clk_hw_register_divider_table() is=
+ u8,
+    - The clk_divider_flags parameter of __clk_hw_register_divider() is u8,
+    - The flags parameter of __devm_clk_hw_register_mux() is unsigned long.
 
-	priv->pwdn_gpio = gpiod_get_optional(&client->dev, "powerdown",
-					     GPIOD_OUT_LOW);
+> +       u32 mux_flags;
 
-As it sets the chip in power-up mode during probe() (this should be
-safe to change, but there's no way I can test it unfortunately)
+Actually the clk_mux_flags parameter of __devm_clk_hw_register_mux() is u8.
 
-> But what happens if you fix something like this after five years in
-> existence? Maybe just leave it as-is, and document it??? Then again,
+>         int num_parents;
+>  };
 
-As the rule "old dtbs are supposed to work with new versions of a
-driver", "fixing" the driver would defintely break them.
+I guess u32 is fine for all.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-I would add a comment in the .yaml file and in the driver.
-As I introduced this, I can do that if Fabio doesn't.
+Gr{oetje,eeting}s,
 
-> there's a single Renesas board that appears to have such a device, added
-> two and half years ago.
+                        Geert
 
-yeah, that stuff is dead, but we can't tell how many users of this
-driver are there in the wild..
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
->
-> Also cc Jacopo.
-
-Thanks, I'm listead as maintainer for this driver for odd-fixes.
-Please use get_maintainer.pl
-
->
-> --
-> Regards,
->
-> Sakari Ailus
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
