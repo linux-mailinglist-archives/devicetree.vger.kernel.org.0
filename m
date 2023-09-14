@@ -1,112 +1,95 @@
-Return-Path: <devicetree+bounces-270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A24487A0997
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 17:47:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FDE37A09AE
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 17:49:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B8B1282060
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:47:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B3E51C20E83
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:49:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CEA92134F;
-	Thu, 14 Sep 2023 15:37:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BA41208A9;
+	Thu, 14 Sep 2023 15:42:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F73710A1E
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 15:37:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30273D534
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 15:42:14 +0000 (UTC)
 Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8285CCC;
-	Thu, 14 Sep 2023 08:37:25 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40A5D99;
+	Thu, 14 Sep 2023 08:42:14 -0700 (PDT)
 Received: from mercury (dyndsl-091-248-132-131.ewe-ip-backbone.de [91.248.132.131])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 4505F660734A;
-	Thu, 14 Sep 2023 16:37:24 +0100 (BST)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id E7DCB660727E;
+	Thu, 14 Sep 2023 16:42:12 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1694705844;
-	bh=UqG6z/8olviMZZzuNUbgG32FtONrrbBej7k30uDeaV8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MZbdEXF4K5B9Sq8Z9fCZfLNzBdqkbF4+Ku771FQAjs3A5dKRglc7Sc6GzmYrYttlG
-	 F0YB6qS0MwTt5hP4vl9r4Zl3bJil2UunmPJ73XRbQ7TVObPzjZqa5AI6Q3tSLqow0j
-	 v90hxe4nZYxlmjbQFtOGs34xf0UvV+1G76QwqKdirUXf0W3wWBTWna5bU1HRWsQyIK
-	 oILZG9cffkR1z2V451N+yAL5FpI82iQUTT3aJqw2VCTCQ9U/v9TAuCqvL3yYU1B3ud
-	 QD7ohXF/ohheh4VoB7kkQQf91C/IK5Sn7+CaR6189Kd28VMVk0b7XIJUp+8lVc5R+g
-	 U60LthjaYLKLw==
+	s=mail; t=1694706133;
+	bh=b3WOb1uGDFt0IdxghELoF5bLCGKcPAe4bvnXM/jp+U0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=AnVdVV8c/DNZKuwHpmVv/IlLfRbeoXn0jdKN3Nx9cIHwKcuznyBC7jKjG/1bDQFsx
+	 OkfsWn2Zr/w3NxcxCcYGdnexKaV+vg/z3Ci3K17Cj16NTGr0LAHsQJNCPE+DzTNcBl
+	 u37D/ehG67JV8Szz8lLzJcBgBZyX5abn4Isb4GbppNZ6CGCzRMoszYfJ8UEGuYnGVW
+	 0le7WeBXio9FOxL1a9JxVf23FFiguDQqwQya4ebAWQ0Z7rpUVRNdfiw7tj084++Xt8
+	 trXvhwCggdpv9rj6S7vLFwk0W1J6Wv138qPQ9bLowRHkqLHmC30FkScOEQIi1PuPz/
+	 xtZbiXFbVmnJA==
 Received: by mercury (Postfix, from userid 1000)
-	id A3323106098B; Thu, 14 Sep 2023 17:37:22 +0200 (CEST)
-Date: Thu, 14 Sep 2023 17:37:22 +0200
+	id 0D6DE106098B; Thu, 14 Sep 2023 17:42:11 +0200 (CEST)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 0/3] MM8013 fg driver
-Message-ID: <20230914153722.gkk5wruzswwubazq@mercury.elektranox.org>
-References: <20230621-topic-mm8013-v3-0-781da361ec60@linaro.org>
+To: Iskren Chernev <me@iskren.info>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Matheus Castello <matheus@castello.eng.br>, 
+ Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Arnd Bergmann <arnd@arndb.de>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Claudiu Beznea <claudiu.beznea@microchip.com>, 
+ Stefan Hansson <newbie13xd@gmail.com>, 
+ Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org
+In-Reply-To: <20230731073613.10394-1-clamor95@gmail.com>
+References: <20230731073613.10394-1-clamor95@gmail.com>
+Subject: Re: (subset) [PATCH v3 0/4] Add optional properties to MAX17040
+Message-Id: <169470613104.705505.7085807512019934835.b4-ty@collabora.com>
+Date: Thu, 14 Sep 2023 17:42:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3c6puuxssbxshm2z"
-Content-Disposition: inline
-In-Reply-To: <20230621-topic-mm8013-v3-0-781da361ec60@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
 
 
---3c6puuxssbxshm2z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, 31 Jul 2023 10:36:09 +0300, Svyatoslav Ryhel wrote:
+> Extend properties supported by max17040 fuel gauge if it is accompanied
+> by different devices.
+> 
+> If max17040 is coupled with a charger, pass charger status since it should
+> match and max17040 has no dedicated status detection ability.
+> 
+> max17040_get_online can be reused for PRESENT property since if it is
+> online it must be present.
+> 
+> [...]
 
-Hi,
+Applied, thanks!
 
-On Wed, Sep 13, 2023 at 05:28:42PM +0200, Konrad Dybcio wrote:
-> This series brings support for the Mitsumi MM8013 Li-Ion fuel gauge.
->=20
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-> Changes in v3:
-> - Reference power-supply.yaml in bindings
-> - Link to v2: https://lore.kernel.org/r/20230621-topic-mm8013-v2-0-9f1b41=
-f4bc06@linaro.org
+[3/4] power: max17040: get thermal data from adc if available
+      commit: 814755c48f8b2c3e83b3c11535c48ab416128978
 
-I also provided feedback to the driver in v2, since that did not
-change between v2 and v3 the feedback still applies.
+Best regards,
+-- 
+Sebastian Reichel <sebastian.reichel@collabora.com>
 
--- Sebastian
-
---3c6puuxssbxshm2z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmUDKLIACgkQ2O7X88g7
-+ppBQRAAp8H5TFgvYQxZnI7Tqen/GfI2+bS2mHXmHB9TsNaF3X1Dl50561c1AMDh
-5moVY43E5bv+AQ9Kx2qNzL33HgOr0AMLsVA/0WufHpqfAq9wrUTs3KJdWedg1LmW
-jU+mOLKvURZm9WDCe+mt6kS17PRWODaGo9pqZAtfsT8ZDqvoqpFEyokQfcqUNW6t
-cxF//9eicwCtEAgnBiSl6ETgvQVe1eA6APApNb9RyMN0w9Xct1+EZKoTBn1mUxn7
-y8PVVaNBGUdQq+KrCGe9hZG5DT1xPpdDynCxWq30CrnEF5ys/H08zoU6W/KLk7OM
-S9UpjTXN8iFWEXTzEj1/GVMmHHDUhCa7xqFCMTDzlwJFrrSxEuFmfGmJaeQ7rUVq
-kn/YpEL+v0njIu7yWFdJ0/YgknREZvoMoqrw2byKEx0dg7BapJO9rK2IACIf5Og8
-DnXlkMsuL3gYTUNNB8b9Xks+0c3AgPvGwCZm3YGjOq0c/k+flc/IxvABNJQMwS3C
-iecF66KvXbxSkoO8Qi9uznpKcksXkJLbbRPk3V6bdvizJ0+wr+FtMzBH1VuJVNV6
-5eMcd1y+7/QyJyOBjdOJSlYFfEW7kNFYmS/CIiTIkQdrMs2vqVEAgztNeR3UKrlj
-5rl/tfbZ6DBa2tCYHsLsXPZ9krls/AIpnPBRdFWjo7X0p0xB1+8=
-=s91H
------END PGP SIGNATURE-----
-
---3c6puuxssbxshm2z--
 
