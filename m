@@ -1,167 +1,159 @@
-Return-Path: <devicetree+bounces-119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB6D379FCD3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:09:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0C8C79FCDC
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:11:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1FD21C20983
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:09:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7902928102C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:11:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DFED63C4;
-	Thu, 14 Sep 2023 07:09:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E29D963C7;
+	Thu, 14 Sep 2023 07:11:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FC606135
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 07:09:05 +0000 (UTC)
-Received: from mail-vs1-xe2b.google.com (mail-vs1-xe2b.google.com [IPv6:2607:f8b0:4864:20::e2b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51CAFCFA;
-	Thu, 14 Sep 2023 00:09:04 -0700 (PDT)
-Received: by mail-vs1-xe2b.google.com with SMTP id ada2fe7eead31-44d426d0e05so321180137.0;
-        Thu, 14 Sep 2023 00:09:04 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D61626135
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 07:11:21 +0000 (UTC)
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4EACCE5
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 00:11:20 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-401b393ddd2so6833475e9.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 00:11:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694675343; x=1695280143; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MSaG/LXIBUgueSj0zQWyWDs1ASmEFDDPeMdCeBBOALM=;
-        b=jpg02TTe4gumVaAK8i4eKDZkVBJibJn6tRMkB0UifFwou/oTqG2zCVmax0LzpVbAd1
-         efQYncK4HWXxx8yLOVe11TqllepkyrArt6enprUbp+a8QpUxHnW+gj7Jki/1Nc/4vPt5
-         QDbX5m57suyWWR40sgdkOmcsUeuB3wQIVbTXNe6GbH2ZxRFU3kF6+ecJjSvhIYxofW1z
-         aKmUtdsTPjsPkSdKlJrpH3pV6SkQZtut7cZ7lIsFX57GYQQweXJAY3VxKRphqay1/4Gt
-         0j9eQcm9SD3yqpZCjbQ7kjUoUcxSBGqS7xP8sQp5P8seX0mhSGRvyJ/nPiWQTf/5UGHQ
-         JYrQ==
+        d=linaro.org; s=google; t=1694675479; x=1695280279; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5h0ZuDwh1rf6DxeXFX2hTo7zsJWLjsfMyXea4lnDesA=;
+        b=yn+Mq0Gwxu96XJ0pRlPE3ZHPPEMARv/MUIyxzg9ZjQ2x+eC0yl9G7ybGOtO1VzxmSM
+         2RTK+7Kgtk6ZhpVU/Rto5VGGttTUp6H++SQ8IX0g913daaZddSqOoQ7zQQWb0cMS7kNe
+         C+4sHCLoPUzbc9pLMaqgygkM9i+GaAyJM8BcW6pE4v/i3yAXAakSrhdva8O0wsuU/Qzj
+         uKhVYEr1fg5xNMUXvdJxuldXbXey2m5B1qW+5SDWbZQjYnSfxV4V5WOEvCR9b2CRzBMr
+         zoXIw5n8YARfWt4/OgICDrFkUOw16zgiaTyLWzdD36RHxqLhxB6X2Dn7ZB/gBtPUO3Py
+         c1Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694675343; x=1695280143;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MSaG/LXIBUgueSj0zQWyWDs1ASmEFDDPeMdCeBBOALM=;
-        b=N2eKqT4xX2ctYcCQ8jBk2Hq/Zf8xlx8c/A1bUpoDUoi6+LVdRpPQ7AvxYttMWtMuWP
-         XCgbPfjcToLLMzGCn1/s0chKPgYncs+5bNfVhLcuAvl1FwZ6hiLnuOLRuSTX/DfFoT90
-         /cQOPEZJA9Sh70MKmbhSkv0NujGsculfMFNKbsJrACJFoFi8LhJNzWnSr3eMt95dWD7X
-         xiyNWUuLVV/CsM05fxe0LuXUS8bbxmvvmufkN8lfcW2P7OY3BKo4GwAdZveRmMoKM80f
-         oBN/ALeGpllNUYa84AIRLiLKJGqWLW7uo31ksfs8btQ8CAoEO+IGJiAdG5zSSymeTn0n
-         WFHg==
-X-Gm-Message-State: AOJu0YwgEGs7EQiV0qqB5b2oP4UFVb+ELStfgDgSjM1Xjpn2WcDWpOB8
-	PYJu5mevS7zDgFJubU6zBRS8cz2XVV1N7Yo+pfG7EVfHugs=
-X-Google-Smtp-Source: AGHT+IGCS14Z6FMbrKeskOrdIgCVw+Vksufj/9LkVLiORgVUhji/+0z6isrK7A8qGvjTODmtqLF+2NeM43teJmb/Ldo=
-X-Received: by 2002:a05:6102:15aa:b0:450:f9eb:f412 with SMTP id
- g42-20020a05610215aa00b00450f9ebf412mr2418236vsv.5.1694675343350; Thu, 14 Sep
- 2023 00:09:03 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1694675479; x=1695280279;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5h0ZuDwh1rf6DxeXFX2hTo7zsJWLjsfMyXea4lnDesA=;
+        b=nxpttdvUtirNasCtwv3B/rIrbRG/7trXQHv0Vz+MD5FL/0mR7+ZVbBV3pUW6UG+poY
+         FWLP6Mk9xOt158+lG6AQVOFcwFO2UAog2jIWk2tt1qsjH8qynHdFPDNEeuT5zrt6QhNJ
+         bQF/qL5lolVp1YpeKdzAStsgVWRwDlxhcMKZBDVyqVJhryPFKngUTVTDZam3f5AtguZm
+         M3nlWKR/uUY1K0h4MHHdp7xIJfCP4GJ7jph55w9+sth7ZouFVxMarKDkkdt/eaZilZUv
+         H76fqeWONnnAK8CwZvf1tX6vKVjkQGr+u6I8mKDAQs7P3kOXthazff6BOXVvE/EPhQm2
+         KFuw==
+X-Gm-Message-State: AOJu0YxhgMITVFYOw1e0/vXtArK35mEX2SWOFYIrufyhQ8m2aHxD0Pyq
+	3BoDsFBI/bcDJmmHVoTlsejy6Q==
+X-Google-Smtp-Source: AGHT+IGepcioAmLDJ5yHj/4XT3khz32VPFxMtQxJjTkGxn1Sec0dfMWaMrgX4erCJapFuFurG6tFqg==
+X-Received: by 2002:adf:ee08:0:b0:319:8c35:37b with SMTP id y8-20020adfee08000000b003198c35037bmr4177430wrn.7.1694675479125;
+        Thu, 14 Sep 2023 00:11:19 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id m6-20020adfe946000000b0031980783d78sm918742wrn.54.2023.09.14.00.11.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Sep 2023 00:11:18 -0700 (PDT)
+Message-ID: <cc25b9ba-08e6-24e1-8e21-f3e43bb73311@linaro.org>
+Date: Thu, 14 Sep 2023 09:11:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230913151606.69494-1-romain.perier@gmail.com>
- <20230913151606.69494-3-romain.perier@gmail.com> <20230913-depress-bootlace-6b88bfd83966@spud>
-In-Reply-To: <20230913-depress-bootlace-6b88bfd83966@spud>
-From: Romain Perier <romain.perier@gmail.com>
-Date: Thu, 14 Sep 2023 09:08:52 +0200
-Message-ID: <CABgxDoK2T3xkKYDVeqRuDXMHfVEJcRkkBOBBkMJ5=XUv9Y5MsQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: rtc: Add Mstar SSD202D RTC
-To: Conor Dooley <conor@kernel.org>
-Cc: Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Daniel Palmer <daniel@0x0f.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 5/5] arm64: dts: imx93: update gpio node
+To: Peng Fan <peng.fan@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Stefan Agner <stefan@agner.ch>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>
+Cc: "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+References: <20230914-vf610-gpio-v1-0-3ed418182a6a@nxp.com>
+ <20230914-vf610-gpio-v1-5-3ed418182a6a@nxp.com>
+ <bc122417-6d59-4c1d-3f73-c20711f9a32f@linaro.org>
+ <DU0PR04MB941722CE1A9BF9F87946DE0A88F7A@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <9fc4817d-00ae-aaf4-bfb6-b24361f55799@linaro.org>
+ <DU0PR04MB94177EF6250838FFFB5FD6D188F7A@DU0PR04MB9417.eurprd04.prod.outlook.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <DU0PR04MB94177EF6250838FFFB5FD6D188F7A@DU0PR04MB9417.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Le mer. 13 sept. 2023 =C3=A0 20:30, Conor Dooley <conor@kernel.org> a =C3=
-=A9crit :
->
-> On Wed, Sep 13, 2023 at 05:16:05PM +0200, Romain Perier wrote:
-> > Add YAML bindings for Mstar SSD202D RTC.
-> >
-> > Signed-off-by: Romain Perier <romain.perier@gmail.com>
-> > ---
-> >  .../bindings/rtc/mstar,ssd202d-rtc.yaml       | 35 +++++++++++++++++++
-> >  1 file changed, 35 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/rtc/mstar,ssd202d=
--rtc.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/rtc/mstar,ssd202d-rtc.ya=
-ml b/Documentation/devicetree/bindings/rtc/mstar,ssd202d-rtc.yaml
-> > new file mode 100644
-> > index 000000000000..4c1f22ef5a2c
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/rtc/mstar,ssd202d-rtc.yaml
-> > @@ -0,0 +1,35 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/rtc/mstar,ssd202d-rtc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Mstar SSD202D Real Time Clock
-> > +
-> > +maintainers:
-> > +  - Daniel Palmer <daniel@0x0f.com>
-> > +  - Romain Perier <romain.perier@gmail.com>
-> > +
-> > +allOf:
-> > +  - $ref: rtc.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - mstar,ssd202d-rtc
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
->
+On 14/09/2023 08:53, Peng Fan wrote:
+>> Subject: Re: [PATCH 5/5] arm64: dts: imx93: update gpio node
+>>
+>> On 14/09/2023 08:04, Peng Fan wrote:
+>>>> Subject: Re: [PATCH 5/5] arm64: dts: imx93: update gpio node
+>>>>
+>>>> On 14/09/2023 04:21, Peng Fan (OSS) wrote:
+>>>>> From: Peng Fan <peng.fan@nxp.com>
+>>>>>
+>>>>> Per binding doc, i.MX93 GPIO supports two interrupts, and not
+>>>>> compatible with i.MX7ULP. So update the node
+>>>>>
+>>>>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+>>>>> ---
+>>>>>  arch/arm64/boot/dts/freescale/imx93.dtsi | 20 ++++++++++++--------
+>>>>>  1 file changed, 12 insertions(+), 8 deletions(-)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi
+>>>>> b/arch/arm64/boot/dts/freescale/imx93.dtsi
+>>>>> index 6f85a05ee7e1..011c34a57c53 100644
+>>>>> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+>>>>> @@ -825,11 +825,12 @@ usdhc3: mmc@428b0000 {
+>>>>>  		};
+>>>>>
+>>>>>  		gpio2: gpio@43810080 {
+>>>>> -			compatible = "fsl,imx93-gpio", "fsl,imx7ulp-gpio";
+>>>>> +			compatible = "fsl,imx93-gpio", "fsl,imx8ulp-gpio";
+>>>>
+>>>> As your driver change points, it is breaking users, so no :(
+>>>
+>>> ok. Although i.MX93 GPIO is not compatible with i.MX7ULP from HW
+>>> perspective, the compatible string should keep as it is now and
+>>> binding
+>>
+>> If it is not compatible, then how could it work before?
+> 
+> i.MX7ULP reg:
+> 0h Port Data Output Register (PDOR) 
+> 4h Port Set Output Register (PSOR) 
+> 8h Port Clear Output Register (PCOR) 
+> Ch Port Toggle Output Register (PTOR) 
+> 10h Port Data Input Register (PDIR) 
+> 14h Port Data Direction Register (PDDR)
+> 
+> i.MX8ULP/93 has different registers address, but 
+> i.MX93 registers has 0x40 off as below:
+> 40h Port Data Output (PDOR)
+> 
+> Even linux i.MX7ULP gpio driver could work with i.MX8ULP/93
+> GPIO HW with dts node using an 0x40 offset + base addr
+> for i.MX93 gpio. I think from hw design, they are
+> not compatible. Besides the upper differences,
+> there are other differences.
 
-Hi,
+Sorry, I don't understand it. I asked how could they work before in
+Linux, if they are not compatible, and you pasted regs.
 
-> So, this seems fine to me in isolation, but isn't this now the sort of
-> thing that can be documented in trivial-rtc.yaml?
-> Its only got compatible & reg, which seems to fit the bill for that.
->
+So again - if they are not compatible, how could it work? Or maybe it
+never worked? But then commit msg would say it.
 
-With the current state, it might make sense. However, currently, the
-RTC hw block is mostly
-reverse-engineered, the driver is not complete yet, things like
-external irq or wakeup irq might arrive later (once we know how it is
-wired up and used).
-So the content of the dt-bindings might change and differ from a
-simple "compatible & reg" requirement.
+Best regards,
+Krzysztof
 
-What do you think ?
-
-> Apologies if I am missing something,
-
-No problem, I am open to suggestions :)
-
-Thanks,
-Regards,
-Romain
-
-
-
-> Conor.
->
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    rtc@6800 {
-> > +        compatible =3D "mstar,ssd202d-rtc";
-> > +        reg =3D <0x6800 0x200>;
-> > +    };
-> > +...
-> > --
-> > 2.39.2
-> >
 
