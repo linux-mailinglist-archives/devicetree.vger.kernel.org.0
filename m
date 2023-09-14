@@ -1,499 +1,172 @@
-Return-Path: <devicetree+bounces-250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BC637A0832
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 16:58:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CEC27A0850
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 17:00:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43D78B20940
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 14:58:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC2241F23DBE
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:00:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 769BD2629A;
-	Thu, 14 Sep 2023 14:40:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A79E128E28;
+	Thu, 14 Sep 2023 14:42:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C56D26288;
-	Thu, 14 Sep 2023 14:40:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 658D6C433B8;
-	Thu, 14 Sep 2023 14:40:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37CE128E11
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 14:42:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 801DBC433C7;
+	Thu, 14 Sep 2023 14:42:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694702405;
-	bh=uFy0yaIXeuU1WIHiqXjw8Vi32xgRKC9435bq8I2+iF0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=SXIcBOlrAXldRWLG6CkqIVCX4GvN14veWYaBfKe8QpwQbpCu54yffxtvNlL1V2iYA
-	 JOu7CuVlqxLF9vHZFcHDZ/b9Vhg1WWjBOYJlgkZFtj8i+p/+J4MjCZO69/g9TWcwyH
-	 CvF1pNmQpBaZvgnc8f19Z2goLMpGq7tLhkRTcvXObuSavC8Qvss+HlmjUqj7F3gtPw
-	 qyfRdzJBIvkmdoaDtsjTUtx01w+t72yA1I1vkg9yZm/+LpUxovdeCr0LpTBIKfbTp8
-	 aXijRLsNk8/0kdTibOuMdgLneCvv3o2ZjU1vQivZx9VQyJvj4j8VqfUgCovKuLFM0p
-	 8FFlr4EZeVPpw==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: netdev@vger.kernel.org
-Cc: lorenzo.bianconi@redhat.com,
-	nbd@nbd.name,
-	john@phrozen.org,
-	sean.wang@mediatek.com,
-	Mark-MC.Lee@mediatek.com,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	daniel@makrotopia.org,
-	linux-mediatek@lists.infradead.org,
-	sujuan.chen@mediatek.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH net-next 15/15] net: ethernet: mtk_wed: debugfs: add WED 3.0 debugfs entries
-Date: Thu, 14 Sep 2023 16:38:20 +0200
-Message-ID: <a387f20ea6032dd74165cdd830f7b945f9e093c7.1694701767.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <cover.1694701767.git.lorenzo@kernel.org>
-References: <cover.1694701767.git.lorenzo@kernel.org>
+	s=k20201202; t=1694702525;
+	bh=O9w4R0Iu6/XNvjfu2aj/DjJkGOobrTu4cV0g3uZvCyc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ed497R3ieIebv7g5fw/xSOgE3pjwdUxNHnBc/LRisrd3WOhjfXkVlP1xUfG6GZ1dh
+	 yhMvzh0fLaKCjCh9EIfdwFf5u+um7WgmHDVhRcKGUU8HNwl3JZqr4ynQ08IuGfWizT
+	 TK+ihlUxtec6fRDNTjfobbb5uPVC+wIxfXiOsu0rKFDCdIsGCjMC8v5JkXv0uWl9Q+
+	 kPvHCkw3F4uvq3l8umHhUpVRUnhHc646iJA50d96tmNV8KJ3Mrgf74hC0AkTtpa1cy
+	 AXDOAs05ebD2GTWCm/eg+6nwKZXz5cn0jjAxYqNt1bcv43PD4BVh4C7CVkkXZUq4mr
+	 7UI9/X2DP/L+Q==
+Date: Thu, 14 Sep 2023 15:42:01 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Daniel Matyas <daniel.matyas@analog.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] dt-bindings: hwmon: Add possible new properties
+ to max31827 bindings
+Message-ID: <20230914-qualify-ragweed-b06b7b7923c9@spud>
+References: <20230914075948.208046-1-daniel.matyas@analog.com>
+ <20230914075948.208046-2-daniel.matyas@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="71snxAjsMqH/MtRQ"
+Content-Disposition: inline
+In-Reply-To: <20230914075948.208046-2-daniel.matyas@analog.com>
 
-From: Sujuan Chen <sujuan.chen@mediatek.com>
 
-Introduce WED3.0 debugfs entries useful for debugging.
+--71snxAjsMqH/MtRQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Co-developed-by: Lorenzo Bianconi <lorenzo@kernel.org>
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-Signed-off-by: Sujuan Chen <sujuan.chen@mediatek.com>
----
- .../net/ethernet/mediatek/mtk_wed_debugfs.c   | 371 +++++++++++++++++-
- 1 file changed, 369 insertions(+), 2 deletions(-)
+On Thu, Sep 14, 2023 at 10:59:45AM +0300, Daniel Matyas wrote:
+> These modify the corresponding bits in the configuration register.
+>=20
+> adi,comp-int is a hardware property, because it affects the behavior
+> of the interrupt signal and whatever it is connected to.
+>=20
+> adi,timeout-enable is a hardware property, because it affects i2c
+> bus operation.
+>=20
+> Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
+> ---
+>=20
+> v2 -> v3: Changed commit subject and message
+>=20
+> v1 -> v2: Added adi,timeout-enable property to binding. Fixed
+> dt_binding_check errors.
+>=20
+>  .../bindings/hwmon/adi,max31827.yaml          | 35 +++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml b/=
+Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> index 2dc8b07b4d3b..6bde71bdb8dd 100644
+> --- a/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> @@ -32,6 +32,37 @@ properties:
+>        Must have values in the interval (1.6V; 3.6V) in order for the dev=
+ice to
+>        function correctly.
+> =20
+> +  adi,comp-int:
+> +    description:
+> +      If present interrupt mode is used. If not present comparator mode =
+is used
+> +      (default).
+> +    type: boolean
+> +
+> +  adi,alrm-pol:
 
-diff --git a/drivers/net/ethernet/mediatek/mtk_wed_debugfs.c b/drivers/net/ethernet/mediatek/mtk_wed_debugfs.c
-index 8999d0c743f3..781c691473e1 100644
---- a/drivers/net/ethernet/mediatek/mtk_wed_debugfs.c
-+++ b/drivers/net/ethernet/mediatek/mtk_wed_debugfs.c
-@@ -11,6 +11,7 @@ struct reg_dump {
- 	u16 offset;
- 	u8 type;
- 	u8 base;
-+	u32 mask;
- };
- 
- enum {
-@@ -25,6 +26,8 @@ enum {
- 
- #define DUMP_STR(_str) { _str, 0, DUMP_TYPE_STRING }
- #define DUMP_REG(_reg, ...) { #_reg, MTK_##_reg, __VA_ARGS__ }
-+#define DUMP_REG_MASK(_reg, _mask)	\
-+	{ #_mask, MTK_##_reg, DUMP_TYPE_WED, 0, MTK_##_mask }
- #define DUMP_RING(_prefix, _base, ...)				\
- 	{ _prefix " BASE", _base, __VA_ARGS__ },		\
- 	{ _prefix " CNT",  _base + 0x4, __VA_ARGS__ },	\
-@@ -32,6 +35,7 @@ enum {
- 	{ _prefix " DIDX", _base + 0xc, __VA_ARGS__ }
- 
- #define DUMP_WED(_reg) DUMP_REG(_reg, DUMP_TYPE_WED)
-+#define DUMP_WED_MASK(_reg, _mask) DUMP_REG_MASK(_reg, _mask)
- #define DUMP_WED_RING(_base) DUMP_RING(#_base, MTK_##_base, DUMP_TYPE_WED)
- 
- #define DUMP_WDMA(_reg) DUMP_REG(_reg, DUMP_TYPE_WDMA)
-@@ -212,18 +216,372 @@ wed_rxinfo_show(struct seq_file *s, void *data)
- 		DUMP_WED(WED_RTQM_Q2B_MIB),
- 		DUMP_WED(WED_RTQM_PFDBK_MIB),
- 	};
-+	static const struct reg_dump regs_wed_v3[] = {
-+		DUMP_STR("WED RX RRO DATA"),
-+		DUMP_WED_RING(WED_RRO_RX_D_RX(0)),
-+		DUMP_WED_RING(WED_RRO_RX_D_RX(1)),
-+
-+		DUMP_STR("WED RX MSDU PAGE"),
-+		DUMP_WED_RING(WED_RRO_MSDU_PG_CTRL0(0)),
-+		DUMP_WED_RING(WED_RRO_MSDU_PG_CTRL0(1)),
-+		DUMP_WED_RING(WED_RRO_MSDU_PG_CTRL0(2)),
-+
-+		DUMP_STR("WED RX IND CMD"),
-+		DUMP_WED(WED_IND_CMD_RX_CTRL1),
-+		DUMP_WED_MASK(WED_IND_CMD_RX_CTRL2, WED_IND_CMD_MAX_CNT),
-+		DUMP_WED_MASK(WED_IND_CMD_RX_CTRL0, WED_IND_CMD_PROC_IDX),
-+		DUMP_WED_MASK(RRO_IND_CMD_SIGNATURE, RRO_IND_CMD_DMA_IDX),
-+		DUMP_WED_MASK(WED_IND_CMD_RX_CTRL0, WED_IND_CMD_MAGIC_CNT),
-+		DUMP_WED_MASK(RRO_IND_CMD_SIGNATURE, RRO_IND_CMD_MAGIC_CNT),
-+		DUMP_WED_MASK(WED_IND_CMD_RX_CTRL0,
-+			      WED_IND_CMD_PREFETCH_FREE_CNT),
-+		DUMP_WED_MASK(WED_RRO_CFG1, WED_RRO_CFG1_PARTICL_SE_ID),
-+
-+		DUMP_STR("WED ADDR ELEM"),
-+		DUMP_WED(WED_ADDR_ELEM_CFG0),
-+		DUMP_WED_MASK(WED_ADDR_ELEM_CFG1,
-+			      WED_ADDR_ELEM_PREFETCH_FREE_CNT),
-+
-+		DUMP_STR("WED Route QM"),
-+		DUMP_WED(WED_RTQM_ENQ_I2Q_DMAD_CNT),
-+		DUMP_WED(WED_RTQM_ENQ_I2N_DMAD_CNT),
-+		DUMP_WED(WED_RTQM_ENQ_I2Q_PKT_CNT),
-+		DUMP_WED(WED_RTQM_ENQ_I2N_PKT_CNT),
-+		DUMP_WED(WED_RTQM_ENQ_USED_ENTRY_CNT),
-+		DUMP_WED(WED_RTQM_ENQ_ERR_CNT),
-+
-+		DUMP_WED(WED_RTQM_DEQ_DMAD_CNT),
-+		DUMP_WED(WED_RTQM_DEQ_Q2I_DMAD_CNT),
-+		DUMP_WED(WED_RTQM_DEQ_PKT_CNT),
-+		DUMP_WED(WED_RTQM_DEQ_Q2I_PKT_CNT),
-+		DUMP_WED(WED_RTQM_DEQ_USED_PFDBK_CNT),
-+		DUMP_WED(WED_RTQM_DEQ_ERR_CNT),
-+	};
- 	struct mtk_wed_hw *hw = s->private;
- 	struct mtk_wed_device *dev = hw->wed_dev;
- 
- 	if (dev) {
- 		dump_wed_regs(s, dev, regs_common, ARRAY_SIZE(regs_common));
--		dump_wed_regs(s, dev, regs_wed_v2, ARRAY_SIZE(regs_wed_v2));
-+		if (mtk_wed_is_v2(hw))
-+			dump_wed_regs(s, dev,
-+				      regs_wed_v2, ARRAY_SIZE(regs_wed_v2));
-+		else
-+			dump_wed_regs(s, dev,
-+				      regs_wed_v3, ARRAY_SIZE(regs_wed_v3));
- 	}
- 
- 	return 0;
- }
- DEFINE_SHOW_ATTRIBUTE(wed_rxinfo);
- 
-+static int
-+wed_amsdu_show(struct seq_file *s, void *data)
-+{
-+	static const struct reg_dump regs[] = {
-+		DUMP_STR("WED AMDSU INFO"),
-+		DUMP_WED(WED_MON_AMSDU_FIFO_DMAD),
-+
-+		DUMP_STR("WED AMDSU ENG0 INFO"),
-+		DUMP_WED(WED_MON_AMSDU_ENG_DMAD(0)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QFPL(0)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENI(0)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENO(0)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_MERG(0)),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(0),
-+			      WED_AMSDU_ENG_MAX_PL_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(0),
-+			      WED_AMSDU_ENG_MAX_QGPP_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(0),
-+			      WED_AMSDU_ENG_CUR_ENTRY),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(0),
-+			      WED_AMSDU_ENG_MAX_BUF_MERGED),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(0),
-+			      WED_AMSDU_ENG_MAX_MSDU_MERGED),
-+
-+		DUMP_STR("WED AMDSU ENG1 INFO"),
-+		DUMP_WED(WED_MON_AMSDU_ENG_DMAD(1)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QFPL(1)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENI(1)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENO(1)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_MERG(1)),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(1),
-+			      WED_AMSDU_ENG_MAX_PL_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(1),
-+			      WED_AMSDU_ENG_MAX_QGPP_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(1),
-+			      WED_AMSDU_ENG_CUR_ENTRY),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(2),
-+			      WED_AMSDU_ENG_MAX_BUF_MERGED),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(2),
-+			      WED_AMSDU_ENG_MAX_MSDU_MERGED),
-+
-+		DUMP_STR("WED AMDSU ENG2 INFO"),
-+		DUMP_WED(WED_MON_AMSDU_ENG_DMAD(2)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QFPL(2)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENI(2)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENO(2)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_MERG(2)),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(2),
-+			      WED_AMSDU_ENG_MAX_PL_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(2),
-+			      WED_AMSDU_ENG_MAX_QGPP_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(2),
-+			      WED_AMSDU_ENG_CUR_ENTRY),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(2),
-+			      WED_AMSDU_ENG_MAX_BUF_MERGED),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(2),
-+			      WED_AMSDU_ENG_MAX_MSDU_MERGED),
-+
-+		DUMP_STR("WED AMDSU ENG3 INFO"),
-+		DUMP_WED(WED_MON_AMSDU_ENG_DMAD(3)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QFPL(3)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENI(3)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENO(3)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_MERG(3)),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(3),
-+			      WED_AMSDU_ENG_MAX_PL_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(3),
-+			      WED_AMSDU_ENG_MAX_QGPP_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(3),
-+			      WED_AMSDU_ENG_CUR_ENTRY),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(3),
-+			      WED_AMSDU_ENG_MAX_BUF_MERGED),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(3),
-+			      WED_AMSDU_ENG_MAX_MSDU_MERGED),
-+
-+		DUMP_STR("WED AMDSU ENG4 INFO"),
-+		DUMP_WED(WED_MON_AMSDU_ENG_DMAD(4)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QFPL(4)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENI(4)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENO(4)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_MERG(4)),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(4),
-+			      WED_AMSDU_ENG_MAX_PL_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(4),
-+			      WED_AMSDU_ENG_MAX_QGPP_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(4),
-+			      WED_AMSDU_ENG_CUR_ENTRY),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(4),
-+			      WED_AMSDU_ENG_MAX_BUF_MERGED),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(4),
-+			      WED_AMSDU_ENG_MAX_MSDU_MERGED),
-+
-+		DUMP_STR("WED AMDSU ENG5 INFO"),
-+		DUMP_WED(WED_MON_AMSDU_ENG_DMAD(5)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QFPL(5)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENI(5)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENO(5)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_MERG(5)),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(5),
-+			      WED_AMSDU_ENG_MAX_PL_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(5),
-+			      WED_AMSDU_ENG_MAX_QGPP_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(5),
-+			      WED_AMSDU_ENG_CUR_ENTRY),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(5),
-+			      WED_AMSDU_ENG_MAX_BUF_MERGED),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(5),
-+			      WED_AMSDU_ENG_MAX_MSDU_MERGED),
-+
-+		DUMP_STR("WED AMDSU ENG6 INFO"),
-+		DUMP_WED(WED_MON_AMSDU_ENG_DMAD(6)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QFPL(6)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENI(6)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENO(6)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_MERG(6)),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(6),
-+			      WED_AMSDU_ENG_MAX_PL_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(6),
-+			      WED_AMSDU_ENG_MAX_QGPP_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(6),
-+			      WED_AMSDU_ENG_CUR_ENTRY),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(6),
-+			      WED_AMSDU_ENG_MAX_BUF_MERGED),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(6),
-+			      WED_AMSDU_ENG_MAX_MSDU_MERGED),
-+
-+		DUMP_STR("WED AMDSU ENG7 INFO"),
-+		DUMP_WED(WED_MON_AMSDU_ENG_DMAD(7)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QFPL(7)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENI(7)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENO(7)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_MERG(7)),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(7),
-+			      WED_AMSDU_ENG_MAX_PL_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(7),
-+			      WED_AMSDU_ENG_MAX_QGPP_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(7),
-+			      WED_AMSDU_ENG_CUR_ENTRY),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(7),
-+			      WED_AMSDU_ENG_MAX_BUF_MERGED),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(4),
-+			      WED_AMSDU_ENG_MAX_MSDU_MERGED),
-+
-+		DUMP_STR("WED AMDSU ENG8 INFO"),
-+		DUMP_WED(WED_MON_AMSDU_ENG_DMAD(8)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QFPL(8)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENI(8)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_QENO(8)),
-+		DUMP_WED(WED_MON_AMSDU_ENG_MERG(8)),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(8),
-+			      WED_AMSDU_ENG_MAX_PL_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT8(8),
-+			      WED_AMSDU_ENG_MAX_QGPP_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(8),
-+			      WED_AMSDU_ENG_CUR_ENTRY),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(8),
-+			      WED_AMSDU_ENG_MAX_BUF_MERGED),
-+		DUMP_WED_MASK(WED_MON_AMSDU_ENG_CNT9(8),
-+			      WED_AMSDU_ENG_MAX_MSDU_MERGED),
-+
-+		DUMP_STR("WED QMEM INFO"),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_CNT(0), WED_AMSDU_QMEM_FQ_CNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_CNT(0), WED_AMSDU_QMEM_SP_QCNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_CNT(1), WED_AMSDU_QMEM_TID0_QCNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_CNT(1), WED_AMSDU_QMEM_TID1_QCNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_CNT(2), WED_AMSDU_QMEM_TID2_QCNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_CNT(2), WED_AMSDU_QMEM_TID3_QCNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_CNT(3), WED_AMSDU_QMEM_TID4_QCNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_CNT(3), WED_AMSDU_QMEM_TID5_QCNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_CNT(4), WED_AMSDU_QMEM_TID6_QCNT),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_CNT(4), WED_AMSDU_QMEM_TID7_QCNT),
-+
-+		DUMP_STR("WED QMEM HEAD INFO"),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(0), WED_AMSDU_QMEM_FQ_HEAD),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(0), WED_AMSDU_QMEM_SP_QHEAD),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(1), WED_AMSDU_QMEM_TID0_QHEAD),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(1), WED_AMSDU_QMEM_TID1_QHEAD),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(2), WED_AMSDU_QMEM_TID2_QHEAD),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(2), WED_AMSDU_QMEM_TID3_QHEAD),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(3), WED_AMSDU_QMEM_TID4_QHEAD),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(3), WED_AMSDU_QMEM_TID5_QHEAD),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(4), WED_AMSDU_QMEM_TID6_QHEAD),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(4), WED_AMSDU_QMEM_TID7_QHEAD),
-+
-+		DUMP_STR("WED QMEM TAIL INFO"),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(5), WED_AMSDU_QMEM_FQ_TAIL),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(5), WED_AMSDU_QMEM_SP_QTAIL),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(6), WED_AMSDU_QMEM_TID0_QTAIL),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(6), WED_AMSDU_QMEM_TID1_QTAIL),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(7), WED_AMSDU_QMEM_TID2_QTAIL),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(7), WED_AMSDU_QMEM_TID3_QTAIL),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(8), WED_AMSDU_QMEM_TID4_QTAIL),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(8), WED_AMSDU_QMEM_TID5_QTAIL),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(9), WED_AMSDU_QMEM_TID6_QTAIL),
-+		DUMP_WED_MASK(WED_MON_AMSDU_QMEM_PTR(9), WED_AMSDU_QMEM_TID7_QTAIL),
-+
-+		DUMP_STR("WED HIFTXD MSDU INFO"),
-+		DUMP_WED(WED_MON_AMSDU_HIFTXD_FETCH_MSDU(1)),
-+		DUMP_WED(WED_MON_AMSDU_HIFTXD_FETCH_MSDU(2)),
-+		DUMP_WED(WED_MON_AMSDU_HIFTXD_FETCH_MSDU(3)),
-+		DUMP_WED(WED_MON_AMSDU_HIFTXD_FETCH_MSDU(4)),
-+		DUMP_WED(WED_MON_AMSDU_HIFTXD_FETCH_MSDU(5)),
-+		DUMP_WED(WED_MON_AMSDU_HIFTXD_FETCH_MSDU(6)),
-+		DUMP_WED(WED_MON_AMSDU_HIFTXD_FETCH_MSDU(7)),
-+		DUMP_WED(WED_MON_AMSDU_HIFTXD_FETCH_MSDU(8)),
-+		DUMP_WED(WED_MON_AMSDU_HIFTXD_FETCH_MSDU(9)),
-+		DUMP_WED(WED_MON_AMSDU_HIFTXD_FETCH_MSDU(10)),
-+		DUMP_WED(WED_MON_AMSDU_HIFTXD_FETCH_MSDU(11)),
-+		DUMP_WED(WED_MON_AMSDU_HIFTXD_FETCH_MSDU(12)),
-+		DUMP_WED(WED_MON_AMSDU_HIFTXD_FETCH_MSDU(13)),
-+	};
-+	struct mtk_wed_hw *hw = s->private;
-+	struct mtk_wed_device *dev = hw->wed_dev;
-+
-+	if (dev)
-+		dump_wed_regs(s, dev, regs, ARRAY_SIZE(regs));
-+
-+	return 0;
-+}
-+DEFINE_SHOW_ATTRIBUTE(wed_amsdu);
-+
-+static int
-+wed_rtqm_show(struct seq_file *s, void *data)
-+{
-+	static const struct reg_dump regs[] = {
-+		DUMP_STR("WED Route QM IGRS0(N2H + Recycle)"),
-+		DUMP_WED(WED_RTQM_IGRS0_I2HW_DMAD_CNT),
-+		DUMP_WED(WED_RTQM_IGRS0_I2H_DMAD_CNT(0)),
-+		DUMP_WED(WED_RTQM_IGRS0_I2H_DMAD_CNT(1)),
-+		DUMP_WED(WED_RTQM_IGRS0_I2HW_PKT_CNT),
-+		DUMP_WED(WED_RTQM_IGRS0_I2H_PKT_CNT(0)),
-+		DUMP_WED(WED_RTQM_IGRS0_I2H_PKT_CNT(0)),
-+		DUMP_WED(WED_RTQM_IGRS0_FDROP_CNT),
-+
-+		DUMP_STR("WED Route QM IGRS1(Legacy)"),
-+		DUMP_WED(WED_RTQM_IGRS1_I2HW_DMAD_CNT),
-+		DUMP_WED(WED_RTQM_IGRS1_I2H_DMAD_CNT(0)),
-+		DUMP_WED(WED_RTQM_IGRS1_I2H_DMAD_CNT(1)),
-+		DUMP_WED(WED_RTQM_IGRS1_I2HW_PKT_CNT),
-+		DUMP_WED(WED_RTQM_IGRS1_I2H_PKT_CNT(0)),
-+		DUMP_WED(WED_RTQM_IGRS1_I2H_PKT_CNT(1)),
-+		DUMP_WED(WED_RTQM_IGRS1_FDROP_CNT),
-+
-+		DUMP_STR("WED Route QM IGRS2(RRO3.0)"),
-+		DUMP_WED(WED_RTQM_IGRS2_I2HW_DMAD_CNT),
-+		DUMP_WED(WED_RTQM_IGRS2_I2H_DMAD_CNT(0)),
-+		DUMP_WED(WED_RTQM_IGRS2_I2H_DMAD_CNT(1)),
-+		DUMP_WED(WED_RTQM_IGRS2_I2HW_PKT_CNT),
-+		DUMP_WED(WED_RTQM_IGRS2_I2H_PKT_CNT(0)),
-+		DUMP_WED(WED_RTQM_IGRS2_I2H_PKT_CNT(1)),
-+		DUMP_WED(WED_RTQM_IGRS2_FDROP_CNT),
-+
-+		DUMP_STR("WED Route QM IGRS3(DEBUG)"),
-+		DUMP_WED(WED_RTQM_IGRS2_I2HW_DMAD_CNT),
-+		DUMP_WED(WED_RTQM_IGRS3_I2H_DMAD_CNT(0)),
-+		DUMP_WED(WED_RTQM_IGRS3_I2H_DMAD_CNT(1)),
-+		DUMP_WED(WED_RTQM_IGRS3_I2HW_PKT_CNT),
-+		DUMP_WED(WED_RTQM_IGRS3_I2H_PKT_CNT(0)),
-+		DUMP_WED(WED_RTQM_IGRS3_I2H_PKT_CNT(1)),
-+		DUMP_WED(WED_RTQM_IGRS3_FDROP_CNT),
-+	};
-+	struct mtk_wed_hw *hw = s->private;
-+	struct mtk_wed_device *dev = hw->wed_dev;
-+
-+	if (dev)
-+		dump_wed_regs(s, dev, regs, ARRAY_SIZE(regs));
-+
-+	return 0;
-+}
-+DEFINE_SHOW_ATTRIBUTE(wed_rtqm);
-+
-+static int
-+wed_rro_show(struct seq_file *s, void *data)
-+{
-+	static const struct reg_dump regs[] = {
-+		DUMP_STR("RRO/IND CMD CNT"),
-+		DUMP_WED(WED_RX_IND_CMD_CNT(1)),
-+		DUMP_WED(WED_RX_IND_CMD_CNT(2)),
-+		DUMP_WED(WED_RX_IND_CMD_CNT(3)),
-+		DUMP_WED(WED_RX_IND_CMD_CNT(4)),
-+		DUMP_WED(WED_RX_IND_CMD_CNT(5)),
-+		DUMP_WED(WED_RX_IND_CMD_CNT(6)),
-+		DUMP_WED(WED_RX_IND_CMD_CNT(7)),
-+		DUMP_WED(WED_RX_IND_CMD_CNT(8)),
-+		DUMP_WED_MASK(WED_RX_IND_CMD_CNT(9),
-+			      WED_IND_CMD_MAGIC_CNT_FAIL_CNT),
-+
-+		DUMP_WED(WED_RX_ADDR_ELEM_CNT(0)),
-+		DUMP_WED_MASK(WED_RX_ADDR_ELEM_CNT(1),
-+			      WED_ADDR_ELEM_SIG_FAIL_CNT),
-+		DUMP_WED(WED_RX_MSDU_PG_CNT(1)),
-+		DUMP_WED(WED_RX_MSDU_PG_CNT(2)),
-+		DUMP_WED(WED_RX_MSDU_PG_CNT(3)),
-+		DUMP_WED(WED_RX_MSDU_PG_CNT(4)),
-+		DUMP_WED(WED_RX_MSDU_PG_CNT(5)),
-+		DUMP_WED_MASK(WED_RX_PN_CHK_CNT,
-+			      WED_PN_CHK_FAIL_CNT),
-+	};
-+	struct mtk_wed_hw *hw = s->private;
-+	struct mtk_wed_device *dev = hw->wed_dev;
-+
-+	if (dev)
-+		dump_wed_regs(s, dev, regs, ARRAY_SIZE(regs));
-+
-+	return 0;
-+}
-+DEFINE_SHOW_ATTRIBUTE(wed_rro);
-+
- static int
- mtk_wed_reg_set(void *data, u64 val)
- {
-@@ -264,7 +622,16 @@ void mtk_wed_hw_add_debugfs(struct mtk_wed_hw *hw)
- 	debugfs_create_u32("regidx", 0600, dir, &hw->debugfs_reg);
- 	debugfs_create_file_unsafe("regval", 0600, dir, hw, &fops_regval);
- 	debugfs_create_file_unsafe("txinfo", 0400, dir, hw, &wed_txinfo_fops);
--	if (!mtk_wed_is_v1(hw))
-+	if (!mtk_wed_is_v1(hw)) {
- 		debugfs_create_file_unsafe("rxinfo", 0400, dir, hw,
- 					   &wed_rxinfo_fops);
-+		if (mtk_wed_is_v3_or_greater(hw)) {
-+			debugfs_create_file_unsafe("amsdu", 0400, dir, hw,
-+						   &wed_amsdu_fops);
-+			debugfs_create_file_unsafe("rtqm", 0400, dir, hw,
-+						   &wed_rtqm_fops);
-+			debugfs_create_file_unsafe("rro", 0400, dir, hw,
-+						   &wed_rro_fops);
-+		}
-+	}
- }
--- 
-2.41.0
+Characters are not at a premium, is there a reason not to use the full
+words? "flt-q" in particular would be quite cryptic if I saw it in a
+dts.
 
+> +    description:
+> +      Sets the alarms active state.
+> +            - 0 =3D active low
+> +            - 1 =3D active high
+> +      For max31827 and max31828 the default alarm polarity is low. For m=
+ax31829
+> +      it is high.
+
+This constraint can be expressed in the binding, rather than in free
+form text like done here. Ditto below.
+
+Thanks,
+Conor.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1]
+> +
+> +  adi,flt-q:
+> +    description:
+> +      Select how many consecutive temperature faults must occur before
+> +      overtemperature or undertemperature faults are indicated in the
+> +      corresponding status bits.
+> +      For max31827 default fault queue is 1. For max31828 and max31829 i=
+t is 4.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2, 4, 8]
+> +
+> +  adi,timeout-enable:
+> +    description:
+> +      Enables timeout. Bus timeout resets the I2C-compatible interface w=
+hen SCL
+> +      is low for more than 30ms (nominal).
+> +    type: boolean
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -49,6 +80,10 @@ examples:
+>              compatible =3D "adi,max31827";
+>              reg =3D <0x42>;
+>              vref-supply =3D <&reg_vdd>;
+> +            adi,comp-int;
+> +            adi,alrm-pol =3D <0>;
+> +            adi,flt-q =3D <1>;
+> +            adi,timeout-enable;
+>          };
+>      };
+>  ...
+> --=20
+> 2.34.1
+>=20
+
+--71snxAjsMqH/MtRQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQMbuQAKCRB4tDGHoIJi
+0gqiAQDbZmcqv2uLoYCOMuAvkhjjcMC3XJyStjoO3fVxrPd9BQEA4h/jctruYGgi
+yrh/mEKmKTQtA3z6WR3RqxXxaJ2mowA=
+=RMiX
+-----END PGP SIGNATURE-----
+
+--71snxAjsMqH/MtRQ--
 
