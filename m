@@ -1,80 +1,135 @@
-Return-Path: <devicetree+bounces-187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29F327A01A8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 12:27:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C1817A01AD
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 12:29:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 418241C20BA1
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 10:27:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2794B1C20BA1
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 10:29:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE01820B31;
-	Thu, 14 Sep 2023 10:27:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B342B20B35;
+	Thu, 14 Sep 2023 10:29:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD501D524;
-	Thu, 14 Sep 2023 10:27:50 +0000 (UTC)
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C0AC1BEC;
-	Thu, 14 Sep 2023 03:27:49 -0700 (PDT)
-Received: from mail.denx.de (unknown [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A76D2DF4C
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 10:29:01 +0000 (UTC)
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [IPv6:2a0b:5c81:1c1::37])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EEF41BE9;
+	Thu, 14 Sep 2023 03:29:01 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (82-181-192-243.bb.dnainternet.fi [82.181.192.243])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: festevam@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 2F7CB86907;
-	Thu, 14 Sep 2023 12:27:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1694687267;
-	bh=1Q/AFQfaU7MJvgFWoBA1WBlnBomqrlH9jRBRjIyqRmc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=LVRabDJIiCY/07ZH01gIHAncOW7pVO8svUbHwGUy+KfMOtOrt1GDGiqpBou4Hq1R0
-	 Du2A9oJcE0nE8N8H30ZQ91oxOl1GsFHWDEq/4+IGP+SFmyd4CnJoejry8Nz5ABwDk6
-	 Hw6A3CW2t0ir3VMJu3u33a6UeynBBRjCkn4vdbVjbEChg3QXodEnwJ9QgwUBsq9F19
-	 uHfMG+Qhqv3fEaD3OnVApredAwmKscQsygLkLvfFEwiu7ync1zoGewDwaywI8XsflF
-	 mMkAtQYio+nq/z50ArvLX5vGB2O1k4a9TOOU00BnU5p3sTSbE+fT7a/4wgdIGwsXm0
-	 kt5xF8dmqASjw==
+	(Authenticated sender: sailus)
+	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4RmYT70x8Jz49Q2P;
+	Thu, 14 Sep 2023 13:28:59 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+	t=1694687339;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=WtaGqx5GLqOEJpsE/wQo6ET6eiXrk4gLftnj+VCpbJo=;
+	b=XFio6yfYKTZkvEBSHiw15j5+pY2W7TW682lrxe+uPFBTVTkiQfnsu6kzWq4G/izweztnns
+	KN++liK8ZfNoByMXGXEYmRZ9w8uCxxxEbbcUpWELGeUbFGKyP7GPd4ijkZ+PanhB9hSHG3
+	cNn46xAKpPiXHKmn7OT2vcktXsyOFHt3LxdhlIZHXlncQar+nw3HVxyyRnHSjr1WFrjP9I
+	KMQ+NB03nGc6wzPYZ9ZkheSWsiZmwSnNl7FV2S2rMBmcgz6IpKMxtbEtW1R6TYz2dUXbr7
+	HCq41YEAvQGHUvEvDpca/7PvFNoQC5yNSsa+IYLIYTCVkJvcx4u8UjoIS85mfw==
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1694687339; a=rsa-sha256;
+	cv=none;
+	b=tq++DlDlXFEm+byNMExaafhAq0wVtDj16f6fdB3zZyxdgTdbQEvqasmUk/Qne+TEbygZYY
+	1den4cQCfYSctZb2ILayW0ilEWC2TZWE6yT7NQeccKIrzyR2L7Q2ZUGL3OQ8CmOLkYVurg
+	/Uh5Gjg4ACb0lbMisiKiOkGAg3D7AOeAskycmmGxqo/1+9fLl1VTfSsIAcU9u01zhf1O+3
+	MkOKYMqQ2Q1pkRImCJrdxzqOIjys0UKIfP4GxgeZnnnYXWZ/9DE7ViCTet2T0mP4ec86NO
+	ikhPF+lPVjDImFpiQryYm2Dl198sjFVQ0mnCd+6OhuynzrvmltYtaghYB0PMMQ==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=lahtoruutu; t=1694687339;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=WtaGqx5GLqOEJpsE/wQo6ET6eiXrk4gLftnj+VCpbJo=;
+	b=Nv4DXPQHXFM0ENdf6M25YuSB9QgibSPLzvcau+zrZCDvZdDhiX1RjzEbGibcvz+7kTo6WI
+	Yy9mk4s0BRpJ19InYZrGbNURcwqhZbevXJwjh6LQZnZfvMDVHmV39lgWPM3HOLCyxIbfk9
+	Ahpil8pQyJk0979yyhce550Cm8qeyDx/riB3vs7QiCSZoDOUEiPa+oXw4u1JKc/W3oPtkf
+	nvIq1L37wNHhQOJWYZZQmua9CWq9FfSVAiTMldCwZtP+rIiIvXvO1pAUQ2vqaV7a4VU5Mn
+	Us8VQ6+eDuldsOOMBeBfD/Nq/d5+lmsn+WKDO4kg18Gz3u32a6+CXAUelYRdEg==
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id A74B7634C93;
+	Thu, 14 Sep 2023 13:28:58 +0300 (EEST)
+Date: Thu, 14 Sep 2023 10:28:58 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: mchehab@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>, jacopo.mondi@ideasonboard.com
+Subject: Re: [PATCH] media: dt-bindings: ovti,ov772x: Make powerdown-gpios
+ active-high
+Message-ID: <ZQLgauEc3VtRQUMm@valkosipuli.retiisi.eu>
+References: <20230913193932.1947918-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date: Thu, 14 Sep 2023 07:27:47 -0300
-From: Fabio Estevam <festevam@denx.de>
-To: Paolo Abeni <pabeni@redhat.com>
-Cc: Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org,
- wei.fang@nxp.com, shenwei.wang@nxp.com, xiaoning.wang@nxp.com,
- kuba@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] arm64: dts: imx8dxl-ss-conn: Complete the FEC
- compatibles
-In-Reply-To: <eba4483dd75a1c18bdb24f7c41e701f96f1e2d0a.camel@redhat.com>
-References: <20230909123107.1048998-1-festevam@gmail.com>
- <20230909123107.1048998-2-festevam@gmail.com>
- <9dd78edb2476cc5b57ce7f6b5c6bb338ebef43fd.camel@redhat.com>
- <eba4483dd75a1c18bdb24f7c41e701f96f1e2d0a.camel@redhat.com>
-Message-ID: <5927d40861ccd43b6d362a68718e7eba@denx.de>
-X-Sender: festevam@denx.de
-User-Agent: Roundcube Webmail/1.3.6
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230913193932.1947918-1-festevam@gmail.com>
 
-Hi Paolo,
+Hi Fabio,
 
-On 14/09/2023 03:16, Paolo Abeni wrote:
+On Wed, Sep 13, 2023 at 04:39:32PM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> The powerdown-gpios description mentions:
+> 
+> "Reference to the GPIO connected to the PWDN pin which is active high."
+> 
+> Improve the example by making powerdown-gpios active-high for consistency.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+>  Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> index 5d24edba8f99..5aec65b053af 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> @@ -114,7 +114,7 @@ examples:
+>              compatible = "ovti,ov7725";
+>              reg = <0x21>;
+>              reset-gpios = <&axi_gpio_0 0 GPIO_ACTIVE_LOW>;
+> -            powerdown-gpios = <&axi_gpio_0 1 GPIO_ACTIVE_LOW>;
+> +            powerdown-gpios = <&axi_gpio_0 1 GPIO_ACTIVE_HIGH>;
+>              clocks = <&xclk>;
+>  
+>              port {
 
-> Thinking again about it, I assume this should go via the devicetree git
-> tree, so I'm dropping it from the netdev pw.
+Looking at the driver code, it seems the powerdown GPIO is set to state 1
+when the device is powered on and to 0 when it's powered down. This looks
+like a driver bug.
 
-You're right. This one should go via Shawn's tree.
+But what happens if you fix something like this after five years in
+existence? Maybe just leave it as-is, and document it??? Then again,
+there's a single Renesas board that appears to have such a device, added
+two and half years ago.
 
-Thanks
+Also cc Jacopo.
+
+-- 
+Regards,
+
+Sakari Ailus
 
