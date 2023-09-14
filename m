@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C48979FE51
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 10:28:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97FA179FE55
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 10:28:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 307601F22660
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 08:28:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB4911C20C8D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 08:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6082610A19;
-	Thu, 14 Sep 2023 08:27:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A969A10A1B;
+	Thu, 14 Sep 2023 08:28:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 522561391
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 08:27:52 +0000 (UTC)
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7945E1FCF
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 01:27:51 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-31fd89c27e2so538076f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 01:27:51 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E5031391
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 08:28:11 +0000 (UTC)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA7F01FD4
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 01:28:10 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4018af103bcso4416505e9.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 01:28:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694680070; x=1695284870; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694680089; x=1695284889; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=q2WcVjPBs3fFe0/D2LShO9ZiZ6qQh5rdBuTf9oU5ymE=;
-        b=oJLXAsm2yGnSjjqW/qHTxV2ZnAfDyZcRpwr/PFZNL4l+rtzcPIi74cnXlp6AERk7QK
-         0XVFs83Jbz2l5ajn0Bj7emBibeFxOAx2EyuQR5QiTZKIwDmnbmAtcsnSwvR89NX+qlm1
-         hW7ohE8+Cpn1qTDqlRHc7O63vzsZsixLdxiUZkGIM2O8cKhhOCY1+Y8+tC/fgjMW8i5a
-         y07j20gVL5ENjVJSQj/+bUbRKr5Pk+yYzg90nmJPOn4SOcExSQG56xsTmDQm7c4pFehR
-         4iz4npPhqOvYkwVF1inxSfjypWQOOW+EztzCDDfAtIP4El7Ox/90QkwAydttcYbSnRJY
-         scQg==
+        bh=AxGQXNzN+NwBnNyk/TZou6F9rmpM0eYJarlgQW2CMAg=;
+        b=NDEkv5O732fkaxr7OAUszavP+aipF+Pc1eJCk0bmHEebshURNIK/8VmVMPcoNM4kef
+         HKLFQywMft7HssYbUG6UTvM7ehKaGfAuv1nEY9YS71jLPL6N9+3ivR6Q0vGlGkj0vbjQ
+         EtxbRnR043e7J/f5AgfZjtj982azKKX8hkCmlMG1KTu5ub+E72rNTlAS3cveF7gQBryT
+         hiTOKfzgHyYc8NUu105CLGHoDxXoW+hAKeirIcTGd8akePLfSGR2JyyPyeUOWCGqLhLb
+         lkVAP9hIu+GkLWHjov5KmvQem6Ztg70Uffcrsh7qj5+bkhNguoIF6SWzHr3M2aVwWqaw
+         4pRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694680070; x=1695284870;
+        d=1e100.net; s=20230601; t=1694680089; x=1695284889;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=q2WcVjPBs3fFe0/D2LShO9ZiZ6qQh5rdBuTf9oU5ymE=;
-        b=CtCJkztw+2qZDvZp+ztJNsQ4Oowdo7idp+Bfc99XRvtxBOf5ZFH/raOW2H5Xhx8Cwa
-         Hhsv0Zn1H6VNEnxkoX3PecF4/PAr4EJk5TCwz7zasRzxXA8N53OLEh/kmjS3Q5Ye8LSA
-         sJpDYO5kB/0QRZXwKx5EU3/yRp2VKfzjopFDcTR2mF/CeYMvkGHO0LdCT9eNm25DoXwp
-         xMgxZetzK88vQcBCkMw0YN04pAikoPIG6VGpqeIk9ogNVc2wca07J6+Wbzb/aWPCLAnT
-         LUVO/ZBp02s7GxvO1ZBUFueQlwzvxW2XQk4uzp5m6KTmyYnOAwaBIc1XvbQ9ll5umVxM
-         B5UQ==
-X-Gm-Message-State: AOJu0YwMFofzer0wmIK11EnD3W5BuJKOEV0vljMMCfKqpdM9BjANh6rc
-	CneYZXJIShR/mwln/G9FkU1SIw==
-X-Google-Smtp-Source: AGHT+IEkZM5xkr565q68ZsFr7T1qMnViqvIK/JEj5NSuqG6hxI79hG6NM/YPOu3j0dE4vtkjhZkmLg==
-X-Received: by 2002:adf:ebcd:0:b0:31a:d4d0:6e98 with SMTP id v13-20020adfebcd000000b0031ad4d06e98mr3634619wrn.8.1694680069862;
-        Thu, 14 Sep 2023 01:27:49 -0700 (PDT)
+        bh=AxGQXNzN+NwBnNyk/TZou6F9rmpM0eYJarlgQW2CMAg=;
+        b=HMZE4sH6ltYY2mDvdRFUL9NQzXVzjwVnkJvbyfH3duKAHv7+2AXN1C1aPdrrkPzyxk
+         xYqneSd8rgg585HJzb/Whe6SmkwxM1sAJbqbv9gEtKWVnZgM5H2GsqAZ3nJgM6SJjnBY
+         gbj+Q565MQUXjSZHrXKyyN/mTt9nCUnIPbs+SnelwPPcEPcYdXWDRUE+EnzbPC+S4rc8
+         WbmEyzARvkcRf2qng5Tr5hndABhphpZKoFNIF6RLQhhIoVkf934M+v82xf+ri/nUNFiE
+         ruORmxjZIvR70NDPgDChuAnkrRJmN2n4kdHzqMAHClzlc13x2fwx02yClc7MpR8JuH/T
+         9E9A==
+X-Gm-Message-State: AOJu0YyAQ1uI02t/+M8n3tjez6t1UQdjneoTTVUK9bzMLoD0ygYT+J5a
+	eVkl+UVNovz6YIUtGiVvq3B9pLPfL965x30ProwD1JB5
+X-Google-Smtp-Source: AGHT+IFEGFDMleZi4sTo/OOg2pcnaPOtvFe5E6YxWvlKnqaMGiOQFJwFRp9lYNGJhdERHXK7yzRKVw==
+X-Received: by 2002:a1c:770c:0:b0:3ff:516b:5c4c with SMTP id t12-20020a1c770c000000b003ff516b5c4cmr912355wmi.18.1694680089139;
+        Thu, 14 Sep 2023 01:28:09 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:c61:ffb9:3ed9:c494? ([2a01:e0a:982:cbb0:c61:ffb9:3ed9:c494])
-        by smtp.gmail.com with ESMTPSA id w16-20020adfec50000000b003141a3c4353sm1091493wrn.30.2023.09.14.01.27.48
+        by smtp.gmail.com with ESMTPSA id w16-20020adfec50000000b003141a3c4353sm1091493wrn.30.2023.09.14.01.28.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Sep 2023 01:27:49 -0700 (PDT)
-Message-ID: <56164dee-ceb7-4dac-a2c6-fae8fcfc00a6@linaro.org>
-Date: Thu, 14 Sep 2023 10:27:48 +0200
+        Thu, 14 Sep 2023 01:28:08 -0700 (PDT)
+Message-ID: <c4cccb50-2b59-4e79-9462-5f76c7c45f33@linaro.org>
+Date: Thu, 14 Sep 2023 10:28:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,19 +67,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
+From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 3/3] arm64: dts: Add pinctrl node for Amlogic T7 SoCs
+Subject: Re: [PATCH v4 2/3] reset: reset-meson: add support for Amlogic C3 SoC
+ Reset Controller
 Content-Language: en-US, fr
-To: Huqiang Qin <huqiang.qin@amlogic.com>, linus.walleij@linaro.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, brgl@bgdev.pl, andy@kernel.org
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20230914054525.1180595-1-huqiang.qin@amlogic.com>
- <20230914054525.1180595-4-huqiang.qin@amlogic.com>
+To: zelong dong <zelong.dong@amlogic.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ yonghui.yu@amlogic.com, kelvin.zhang@amlogic.com,
+ Dmitry Rokosov <ddrokosov@sberdevices.ru>
+References: <20230914064018.18790-1-zelong.dong@amlogic.com>
+ <20230914064018.18790-3-zelong.dong@amlogic.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -105,45 +109,36 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20230914054525.1180595-4-huqiang.qin@amlogic.com>
+In-Reply-To: <20230914064018.18790-3-zelong.dong@amlogic.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 14/09/2023 07:45, Huqiang Qin wrote:
-> Add pinctrl device.
+On 14/09/2023 08:40, zelong dong wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
 > 
-> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+> Add a new compatible string to support for the reset controller
+> on the C3 SoC. The count and offset for C3 Soc RESET registers are
+> same as S4 Soc.
+> 
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> Reviewed-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 16 ++++++++++++++++
->   1 file changed, 16 insertions(+)
+>   drivers/reset/reset-meson.c | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> index dae3465bd39b..a03c7667d2b6 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> @@ -155,6 +155,22 @@ watchdog@2100 {
->   				clocks = <&xtal>;
->   			};
->   
-> +			periphs_pinctrl: pinctrl@4000 {
-> +				compatible = "amlogic,t7-periphs-pinctrl";
-> +				#address-cells = <2>;
-> +				#size-cells = <2>;
-> +				ranges;
-> +
-> +				gpio: bank@4000 {
-> +					reg = <0x0 0x4000 0x0 0x0064>,
-> +					      <0x0 0x40c0 0x0 0x0220>;
-> +					reg-names = "mux", "gpio";
-> +					gpio-controller;
-> +					#gpio-cells = <2>;
-> +					gpio-ranges = <&periphs_pinctrl 0 0 157>;
-> +				};
-> +			};
-> +
->   			uart_a: serial@78000 {
->   				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
->   				reg = <0x0 0x78000 0x0 0x18>;
+> diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
+> index a7af051b17fb..f78be97898bc 100644
+> --- a/drivers/reset/reset-meson.c
+> +++ b/drivers/reset/reset-meson.c
+> @@ -108,6 +108,7 @@ static const struct of_device_id meson_reset_dt_ids[] = {
+>   	 { .compatible = "amlogic,meson-axg-reset",  .data = &meson8b_param},
+>   	 { .compatible = "amlogic,meson-a1-reset",   .data = &meson_a1_param},
+>   	 { .compatible = "amlogic,meson-s4-reset",   .data = &meson_s4_param},
+> +	 { .compatible = "amlogic,c3-reset",   .data = &meson_s4_param},
+>   	 { /* sentinel */ },
+>   };
+>   MODULE_DEVICE_TABLE(of, meson_reset_dt_ids);
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
