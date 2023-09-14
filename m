@@ -1,85 +1,147 @@
-Return-Path: <devicetree+bounces-25-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D8EB79F6A9
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 03:55:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F38C479F72E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 04:00:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBC132818D1
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 01:55:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A26C91F21D3C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 02:00:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1E3AA53;
-	Thu, 14 Sep 2023 01:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FCF339A;
+	Thu, 14 Sep 2023 01:59:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9134CA38;
-	Thu, 14 Sep 2023 01:55:13 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA9D41BD0;
-	Wed, 13 Sep 2023 18:55:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=AWjszMGAWwAmKRftVpe0hRnvM8CrBy/Ah5EmpYh7ovU=; b=weob5U3WI1KVyn80QQzY4IVrs3
-	Nu306fsr4NyATTTU73asLYk0ASWuNiui/fHYecrXRng8P4gemkx5OKzRiSEHeYtAkLJdb9ecLALXA
-	vmDY/cl+pk5uWrdFXRhJvFuizdBcO2baumL2Qwv6PLff/BrMMV92n+IQSMnnAUtJYwpE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1qgbZP-006M7W-W0; Thu, 14 Sep 2023 03:55:03 +0200
-Date: Thu, 14 Sep 2023 03:55:03 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	corbet@lwn.net, steen.hegelund@microchip.com, rdunlap@infradead.org,
-	horms@kernel.org, casper.casan@gmail.com, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, horatiu.vultur@microchip.com,
-	Woojung.Huh@microchip.com, Nicolas.Ferre@microchip.com,
-	UNGLinuxDriver@microchip.com, Thorsten.Kummermehr@microchip.com
-Subject: Re: [RFC PATCH net-next 5/6] microchip: lan865x: add driver support
- for Microchip's LAN865X MACPHY
-Message-ID: <8d5078b0-1a45-43ac-89bd-c71c514336f5@lunn.ch>
-References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
- <20230908142919.14849-6-Parthiban.Veerasooran@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94C82369
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 01:59:58 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04C658A7A;
+	Wed, 13 Sep 2023 18:59:58 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38E0v5eP021892;
+	Thu, 14 Sep 2023 01:59:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=x8n3MXEK2j8hijljFVUVtE3/21k8bAP/M6M7qZvc9lw=;
+ b=SjnNt5rn/i4ZxE860ySihJWE6fUs4HQmfsLL6Px8bQLe6/Zf79K6H0pKb/cPwP5a7xS1
+ eQQ2k9giwQftxhPbTYCApr30wjbdNt8cO0a9B/3ArLIiW4g5+Zqrgj4kKZVd7SwWV4L/
+ afGk2hzPdLqnKb6A/gEu0ADhyofTmd5ygt6nhkLAuAsqODm4RNf0R6k7s23SgXXiTNvu
+ QyvLP7EuEMkkxH9qmAoNpO4VlyTPHjZHkiIrxTErHdomuetEfPDl+EbKuf3o8iZzPptM
+ 6Na02fqagwbemqu0Z+OFux4uvWHFZ013mRbMwdy4qwTjkEQactXIzhsZMu+fMejWHnpG gg== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t3h0dh15m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Sep 2023 01:59:28 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38E1xRsG031046
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Sep 2023 01:59:27 GMT
+Received: from [10.239.155.136] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 13 Sep
+ 2023 18:59:22 -0700
+Message-ID: <ee823de5-d5b4-6719-a7e3-cc799cd15ad1@quicinc.com>
+Date: Thu, 14 Sep 2023 09:59:19 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230908142919.14849-6-Parthiban.Veerasooran@microchip.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] scsi: ufs: qcom: dt-bindings: Add MCQ ESI property
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <quic_asutoshd@quicinc.com>, <quic_cang@quicinc.com>,
+        <bvanassche@acm.org>, <mani@kernel.org>, <adrian.hunter@intel.com>,
+        <beanhuo@micron.com>, <avri.altman@wdc.com>,
+        <junwoo80.lee@samsung.com>, <martin.petersen@oracle.com>,
+        <quic_nguyenb@quicinc.com>, <quic_nitirawa@quicinc.com>
+CC: <linux-scsi@vger.kernel.org>, Andy Gross <agross@kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        "open list:ARM/QUALCOMM SUPPORT"
+	<linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED
+ DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+        open list
+	<linux-kernel@vger.kernel.org>
+References: <1694163203-39123-1-git-send-email-quic_ziqichen@quicinc.com>
+ <0231fa19-bc71-db11-ffd4-8c922d110447@linaro.org>
+From: Ziqi Chen <quic_ziqichen@quicinc.com>
+In-Reply-To: <0231fa19-bc71-db11-ffd4-8c922d110447@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: p5-lBC98slKbgOoJUZwZ5RTPrf5DOIWG
+X-Proofpoint-GUID: p5-lBC98slKbgOoJUZwZ5RTPrf5DOIWG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-13_19,2023-09-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
+ suspectscore=0 mlxlogscore=999 phishscore=0 priorityscore=1501
+ lowpriorityscore=0 spamscore=0 malwarescore=0 bulkscore=0 impostorscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309140016
 
-> +#define REG_STDR_RESET		0x00000003
+Hi Krzysztof，
 
-This appears to be a standard register, so you should not need to
-define it here.
+Thanks for your comment very much ~
+I will remove this property in next patch version.
+We just plan to post "msi-parent" property for MCQ.
 
-> +#define REG_MAC_ADDR_BO		0x00010022
-> +#define REG_MAC_ADDR_L		0x00010024
-> +#define REG_MAC_ADDR_H		0x00010025
-> +#define REG_MAC_NW_CTRL         0x00010000
-> +#define REG_MAC_NW_CONFIG	0x00010001
-> +#define REG_MAC_HASHL		0x00010020
-> +#define REG_MAC_HASHH		0x00010021
-> +#define REG_MAC_ADDR_BO		0x00010022
-> +#define REG_MAC_ADDR_L		0x00010024
-> +#define REG_MAC_ADDR_H		0x00010025
-> +
-> +#define CCS_Q0_TX_CFG		0x000A0081
-> +#define CCS_Q0_RX_CFG		0x000A0082
 
-These are proprietary vendor registers, so please add a prefix to make
-this clear.
+Best Regards,
+Ziqi
 
-     Andrew
+On 9/11/2023 2:27 PM, Krzysztof Kozlowski wrote:
+> On 08/09/2023 10:53, Ziqi Chen wrote:
+>> Document the description for the qcom,esi-affinity-mask.
+> 
+> This tells me nothing what is this feature for.
+> 
+>>
+>> Signed-off-by: Ziqi Chen <quic_ziqichen@quicinc.com>
+>> ---
+>>   Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+>> index bdfa86a..323595f 100644
+>> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+>> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+>> @@ -97,6 +97,10 @@ properties:
+>>       description:
+>>         GPIO connected to the RESET pin of the UFS memory device.
+>>   
+>> +  qcom,esi-affinity-mask:
+> 
+> Not tested. You also miss proper type.
+> 
+>> +    description:
+>> +       UFS MCQ ESI affinity mask. Affine ESI on registration according to this CPU mask.
+> 
+> And why is this a property of DT? Aren't you now describing driver?
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
