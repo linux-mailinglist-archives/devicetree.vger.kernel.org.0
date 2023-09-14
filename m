@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2DAF79FD17
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:18:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC1A079FD26
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:19:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8795D1F22339
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:18:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 364F7B20930
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:19:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B223D6AD6;
-	Thu, 14 Sep 2023 07:17:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EED76FB9;
+	Thu, 14 Sep 2023 07:19:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A60446135
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 07:17:57 +0000 (UTC)
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBB6AE50
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 00:17:56 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-31ae6bf91a9so555451f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 00:17:56 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F70B6135
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 07:19:34 +0000 (UTC)
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E2CBCF3
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 00:19:34 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-317c3ac7339so523814f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 00:19:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694675875; x=1695280675; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=linaro.org; s=google; t=1694675972; x=1695280772; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=TnyV9af3KTDSn5LmFo4v6eXcrqZ+B9e5Qxfuac0pjUY=;
-        b=bBbpkGr2n0HTB6HQGlZEQHjLa0Tpxp1IpvUIgNVu3aEXG/u1wqNiL9RxT+wFLnVAYy
-         lPYZSiSU4+dwTbDl+IGFoxUUQUosc8UeoUMfYbiUIl782pzdNqpyRwCktg9c4nVFRXLm
-         gBkPYu82+qa7S3WbZfzhkViQiSBxJbOfQRAUi27r1hseHd+buQOw14PaM8URO0OxFhsX
-         CMHqyrAl1/AKfEPm1sFEICCOjo4cdLFWHUtMAwrUgr/cS+hgl6ORmdowGd1C1Gdy9/bY
-         RZ9iWU5fCtdPoj6s74p7WfHO38h1xLLtMb50CrDf/Y28likNu0J6nXW249GkdCUqp3Gj
-         c+kQ==
+        bh=EuhVNGrFW68jxe2JJJtLZHWfPCfJOHNfdRCfgAWkxb8=;
+        b=v5wSoZSu1jJd8OnF4/bmqv7oaCKoSLtlHLYvOFmwd8AL7+aiwlmtL/2xBSfr+GnFTc
+         5Tz80xFJJtUO7PZSoFDzqaozXWyl4drdG+zhPVxtF1+J2tIX3SxtzuyRHtoQQtnsZwpa
+         XFy7b+Poo9CO/eK7RQIRfirKRDgiC6RoBdlOjYFmYDNku1gE1JHV1fFCeQZPsLjDAIW2
+         06IU04I1KaSv6HUU5PVjwhBmWGzsTwq5LmcXtxsmXOod3qOLxbM9Y82Aiv9j5N8ttDW2
+         GcoLUsvhV70QofjI8j8WBctBnPpC5q72MimW9774QsLotPdKB5lfZ3sH5Ef909OYGQqs
+         RMFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694675875; x=1695280675;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=1e100.net; s=20230601; t=1694675972; x=1695280772;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TnyV9af3KTDSn5LmFo4v6eXcrqZ+B9e5Qxfuac0pjUY=;
-        b=pb8OD9I+zogo+e/vWZRmy6jz9bYCMJYv49vkymXCxIgxbbYPLaK1yq/rAbK+h2ZZcv
-         vmSKVpciU8OcXKhxhdEdlVj7ITmw8Kr7NozRvd5T2REY/9mH3O0qkuLGap27aV3zzRll
-         SOvQyCbjRp6hm7hgVy0dpfGKhmdoDVE5t6Wj4iAvyyvuDrKCknm6fXQh6gLu/3vQ1mci
-         +64JorkPYic5oINQd6RGv/YKl/ZWPeOGcOVcpjrE87BIN7plFYiKHNddtAZPT/a2OLdj
-         TfuOy7tU99P5e4oJQ4zjtwxvQIt/fj4AOULXJLAhMbSHKSeo2sDHDeEaKeVV1QvaZCA2
-         s87g==
-X-Gm-Message-State: AOJu0YwxmzrLS0Sp3ycL5XQCn1hdtEYQpB1WBblNZIZ0ZdeTUBnuCaRn
-	QIluOgvhIsUtQriGYkb8S7OGcg==
-X-Google-Smtp-Source: AGHT+IEK6SYA+nBzWeG6lMDvkeq82QWkULn4oFR/HTZ2x3sw8wMbXcV31yc++OhQtubr4HHqola0wA==
-X-Received: by 2002:adf:de8a:0:b0:314:3bd7:6a0c with SMTP id w10-20020adfde8a000000b003143bd76a0cmr3970173wrl.33.1694675875014;
-        Thu, 14 Sep 2023 00:17:55 -0700 (PDT)
+        bh=EuhVNGrFW68jxe2JJJtLZHWfPCfJOHNfdRCfgAWkxb8=;
+        b=jyEJdVml3XE3zEZkNBV+Kx9jf79VhWBH09q9E0+nQb8LoYO2yyBF3wlEbFhf+HvnD9
+         r4g9aexIUch9V31kjmzR+pdhlhidr7fcUlNEZSPEU8Hah2RmDdrMEoRsqcHC1taNGTJ8
+         W5NcJ6uYZGaQqknttSxk8fswvnrKXgi3WaT09D3p06s0N0hSrwhY/YIlVUUCrMl+TCtt
+         RCBmYnCZvXgeBB0Smmlt7sIbqSwtzqBSMCtRla+voEjqcYnWVNdd+xN9YLDgGTXm31zm
+         hunw/4SW3riqJ7gQlYoqcNNgiMd8SsU1A6n+J4C1gFm1x9aJO/Dj7LzdKNFxngoRHu+b
+         TbaQ==
+X-Gm-Message-State: AOJu0Yy1wCCh9toa+RJW4Y9Z+9BBhHEYTTw5c7sIyZWVrjHb8Hx3JPfR
+	uHkOAkgCxElgznD+SRKwRbnFyA==
+X-Google-Smtp-Source: AGHT+IH3nxwuXTTFge+SiA2fbG0x1vjEZPiN16+NTWzo1snCwvJ/WSzxrpwYFfBLDjDyKeinWZOfNA==
+X-Received: by 2002:a5d:4944:0:b0:31a:d6cb:7f9d with SMTP id r4-20020a5d4944000000b0031ad6cb7f9dmr4216926wrs.24.1694675972548;
+        Thu, 14 Sep 2023 00:19:32 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id q5-20020a5d6585000000b0031f5f0d0be0sm933196wru.31.2023.09.14.00.17.52
+        by smtp.gmail.com with ESMTPSA id n11-20020a5d484b000000b00317ddccb0d1sm935246wrs.24.2023.09.14.00.19.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Sep 2023 00:17:54 -0700 (PDT)
-Message-ID: <bccc1cad-c50b-c10e-6cb0-80b6fb7ac4cd@linaro.org>
-Date: Thu, 14 Sep 2023 09:17:51 +0200
+        Thu, 14 Sep 2023 00:19:32 -0700 (PDT)
+Message-ID: <ff4f2b93-7e22-8b15-aaad-b7d6f8b5517d@linaro.org>
+Date: Thu, 14 Sep 2023 09:19:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,90 +66,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH v2] scsi: ufs: qcom: dt-bindings: Add MCQ properties
+Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: Add compatibles for Amlogic T7
+ SoCs
 Content-Language: en-US
+To: Huqiang Qin <huqiang.qin@amlogic.com>, linus.walleij@linaro.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, brgl@bgdev.pl, andy@kernel.org
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20230914054525.1180595-1-huqiang.qin@amlogic.com>
+ <20230914054525.1180595-2-huqiang.qin@amlogic.com>
+ <45637012-0972-fc7b-1276-163da363b962@linaro.org>
+ <cde944c4-acfe-b3fb-32b8-072740475e35@amlogic.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Ziqi Chen <quic_ziqichen@quicinc.com>, quic_asutoshd@quicinc.com,
- quic_cang@quicinc.com, bvanassche@acm.org, mani@kernel.org,
- adrian.hunter@intel.com, beanhuo@micron.com, avri.altman@wdc.com,
- martin.petersen@oracle.com, quic_nguyenb@quicinc.com,
- quic_nitirawa@quicinc.com
-Cc: linux-scsi@vger.kernel.org, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <1694675158-38301-1-git-send-email-quic_ziqichen@quicinc.com>
- <1e89183a-b42a-b447-0c1a-bbfe646705ef@linaro.org>
-In-Reply-To: <1e89183a-b42a-b447-0c1a-bbfe646705ef@linaro.org>
+In-Reply-To: <cde944c4-acfe-b3fb-32b8-072740475e35@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/09/2023 09:16, Krzysztof Kozlowski wrote:
-> On 14/09/2023 09:05, Ziqi Chen wrote:
->> Remove the maxItem limitation to property 'reg',
-
-Your commit should answer to "why". Not "what".
-
->> and add description for the property 'msi-parent'.
+On 14/09/2023 09:00, Huqiang Qin wrote:
+> Hi Krzysztof,
+> 
+> On 2023/9/14 14:16, Krzysztof Kozlowski wrote:
+> ...
+>>> diff --git a/include/dt-bindings/gpio/amlogic-t7-gpio.h b/include/dt-bindings/gpio/amlogic-t7-gpio.h
+>>> new file mode 100644
+>>> index 000000000000..2bab9a99501a
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/gpio/amlogic-t7-gpio.h
 >>
->> Signed-off-by: Ziqi Chen <quic_ziqichen@quicinc.com>
->> ---
->>  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 12 +++++++++++-
->>  1 file changed, 11 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->> index bdfa86a..5ec2717 100644
->> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->> @@ -77,7 +77,13 @@ properties:
->>  
->>    reg:
->>      minItems: 1
->> -    maxItems: 2
+>> Use compatible syntax.
 > 
-> So 20 items are allowed? No, that's not correct.
-> 
-> 
->> +    description:
->> +      Register base addresses and lengths of the UFS areas.
-> 
-> Drop description - it's useless and redundant.
-> 
->> +
->> +  reg-names:
->> +    minItems: 1
->> +    description:
->> +      Names of the reg areas to use during resource lookup.
-> 
-> Drop such description it's useless, instead list and describe items.
-> 
-> Also, why all devices now have two regs? No, this is just wrong. And
-> haven't we been here with two items?
-> 
-> 
->>  
->>    required-opps:
->>      maxItems: 1
->> @@ -97,6 +103,10 @@ properties:
->>      description:
->>        GPIO connected to the RESET pin of the UFS memory device.
->>  
->> +  msi-parent:
->> +    description:
->> +      Pointer to the hardware entity that serves as the MSI controller for thi UFS controller.
-> 
-> typo in "thi". Not wrapped according to Linux coding style (as written
-> in coding style document). BTW, this is usually just "true" and without
-> need for description.
-> 
+> The amlogic-t7-gpio.h is not a file in the dt-bindings/pinctrl/ directory.
+> Does it also need to be named according to the compatible name of pinctrl?
 
-BTW, for both my comments - for reg/reg-names and this property - where
-is the user? Except adding this to example, I expect to see users somewhere.
+The convention, which we introduced since ~1-2 years, is to use the
+device compatible or binding filename as the headers filename. Now,
+where you put what does not affect it.
+
+
 
 Best regards,
 Krzysztof
