@@ -1,155 +1,107 @@
-Return-Path: <devicetree+bounces-173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C1137A00A6
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:47:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDDDF7A00B8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:49:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 596F21C20B1A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:47:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7AF70B20CBB
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:49:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2172E2AB5D;
-	Thu, 14 Sep 2023 09:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA2022AB4F;
+	Thu, 14 Sep 2023 09:49:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16F6D224FF
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 09:45:57 +0000 (UTC)
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41DE9EB
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 02:45:57 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-529fb04a234so835234a12.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 02:45:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1694684755; x=1695289555; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ulj0sxL109s6WRduuI+x9sWJvUGugBDVjc0AW8V0tV0=;
-        b=uuk12mev2HWLDJAhvfuqzmp1ltAEshLoPc1rBu7J257yD0YyMPyYDYfaBLyTADJaxu
-         dqql4D2SxdAMpnuCcVOXFJJAxWXXtdNELkrFL8uOSmn7veBVGudmPTklc18BUst7bjOz
-         dIWDEIfOBIAqQGSKE9AICVaEPBxAvShaticG5T89j72wkvQc9+tucPvb4KetRke3LK48
-         8wAgHTJ2kYoXi9Yy8XvbxA2ZNj4KcEACgsO17GmcNbaHYKrGwco06EXEbt00PvEEGws4
-         owHyckkfo1sXQWsxJsskDakeryKHQy8K0BJ1aSf3XNgZz795Uz3JEjtxUgcjpxk+8JdH
-         4mYQ==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9FD9224F2
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 09:49:22 +0000 (UTC)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2B43E3;
+	Thu, 14 Sep 2023 02:49:21 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-59bbbeea69fso8778527b3.0;
+        Thu, 14 Sep 2023 02:49:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694684755; x=1695289555;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1694684961; x=1695289761;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Ulj0sxL109s6WRduuI+x9sWJvUGugBDVjc0AW8V0tV0=;
-        b=LfoBql0Iq2bUIUO60SglATx4ItUYpWPff7IDK/Lhjxv239vQHlt/jQzwjW53lrJc+o
-         oQz5KhktB/7RhPSSogz7kZyOOHAvv15u62qjWZpM/BmOPuQR4OZuh9nn7oU3NI4IgsW5
-         U81QWf8n3A1BwoO7zKDAF712cG/21gLB9rVDXv+Wddk+K652xFZdDRZNHy3TSmO//Ssi
-         j6l7Pwv2APsA5U70/buodDhzhemAO1bTA2E0DQUxUqhR8ALbQDIdXjV8fvZXnwq9iK0X
-         mCkSLWTsXG+FHhVVgGp8BF1PxglGI0Snm8EJacWWaL6wo2l0EIfM6RpUz1ULcEO0AS2p
-         qEdQ==
-X-Gm-Message-State: AOJu0YwTs0UVawyU6VfLP89GCRwgnlHNyUs7+9zbxmt8jPrAij7LO2JD
-	MwIW0mM8DTNmS8zAfkgbWfQQw3HWtaLHDalpbUY=
-X-Google-Smtp-Source: AGHT+IHUUXjR202tEyKfXygRVDaxtDSF35MAKczmRFFXZk/N71UuM9KZrB8zkt+OWbntduc9N+RLTQ==
-X-Received: by 2002:a05:6402:517b:b0:51d:d4c3:6858 with SMTP id d27-20020a056402517b00b0051dd4c36858mr4439955ede.12.1694684755560;
-        Thu, 14 Sep 2023 02:45:55 -0700 (PDT)
-Received: from fedora.. (dh207-96-100.xnet.hr. [88.207.96.100])
-        by smtp.googlemail.com with ESMTPSA id e10-20020a50ec8a000000b0052565298bedsm690790edr.34.2023.09.14.02.45.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Sep 2023 02:45:55 -0700 (PDT)
-From: Robert Marko <robert.marko@sartura.hr>
-To: andrew@lunn.ch,
-	gregory.clement@bootlin.com,
-	sebastian.hesselbarth@gmail.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: luka.perkov@sartura.hr,
-	Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH 2/2] arm64: dts: marvell: eDPU: add support for version with external switch
-Date: Thu, 14 Sep 2023 11:45:01 +0200
-Message-ID: <20230914094550.1519097-2-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230914094550.1519097-1-robert.marko@sartura.hr>
-References: <20230914094550.1519097-1-robert.marko@sartura.hr>
+        bh=6gFLY2IMJxQUgyhc4c6QO4qakT/ISmys8Z8hG9m2OZ0=;
+        b=iyLqbP09/fI0q2uTcLxZMBuNRcXKOsZsUum0LY4k598lh3MSCLYLhSLyFVfuuP+lzF
+         6wU0kPdWXusTun5TrBXZmQWqbt3gc+Xof3hY1qOIRBr4RwUKBWN7mnCy++CAjcgWrVsw
+         XlAnH33K0bno/aDKnFhxrqQM+SVndKp3eiiLGU8I7KyTFYDrN2kb3WM0sVmAJNFh7iO+
+         jFPMhnP1/uVCj/ebsWmygd61mT3ChmdD99FND6kfmHUuJUZ3uzkFR1ekKl9tlp50gm/o
+         PAlG90iEDtE0NKUAMpaWVd8TnckKqJBwYSh073R3n68Yiuz7IMXBlflnRsRoHAzgC06U
+         4f9A==
+X-Gm-Message-State: AOJu0YyrP0ukobi3dWgaYLj0afVO0kLWikOZolLO69J9wYvkXwZreY1M
+	WZF+dMEoF8c1UXK7ACJfEnw3sBTExw/AJw==
+X-Google-Smtp-Source: AGHT+IFp9ulQBIKOKi9VDoashW8zbaOQfXpQJiQhP3lQPQJdqOSO2x9xLrL4P0fMJ1m1P1uUGUdBuQ==
+X-Received: by 2002:a81:de4f:0:b0:592:ffc:c787 with SMTP id o15-20020a81de4f000000b005920ffcc787mr4514871ywl.30.1694684961014;
+        Thu, 14 Sep 2023 02:49:21 -0700 (PDT)
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
+        by smtp.gmail.com with ESMTPSA id q66-20020a815c45000000b0059b547b167esm239119ywb.98.2023.09.14.02.49.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Sep 2023 02:49:19 -0700 (PDT)
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-d7b91422da8so755976276.2;
+        Thu, 14 Sep 2023 02:49:19 -0700 (PDT)
+X-Received: by 2002:a25:87:0:b0:d44:af:3cce with SMTP id 129-20020a250087000000b00d4400af3ccemr5046648yba.27.1694684958968;
+ Thu, 14 Sep 2023 02:49:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com> <20230912045157.177966-3-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20230912045157.177966-3-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 14 Sep 2023 11:49:06 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWSFkeV0u1GsQox1EQZzOHBrhV5roRLp17VCZRCQzkDZw@mail.gmail.com>
+Message-ID: <CAMuHMdWSFkeV0u1GsQox1EQZzOHBrhV5roRLp17VCZRCQzkDZw@mail.gmail.com>
+Subject: Re: [PATCH 02/37] dt-bindings: soc: renesas: document Renesas RZ/G3S
+ SoC variants
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
+	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
+	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
+	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-New revision of eDPU uses an Marvell MV88E6361 switch to connect the SFP
-cage and G.hn IC instead of connecting them directly to the ethernet
-controllers.
+On Tue, Sep 12, 2023 at 6:52=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Document RZ/G3S (R9A08G045) SoC variants.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-U-Boot will enable the switch node and disable the unused ethernet
-controller.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.7.
 
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
----
- .../boot/dts/marvell/armada-3720-eDPU.dts     | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
+Gr{oetje,eeting}s,
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
-index 57fc698e55d0..d6d37a1f6f38 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
-@@ -12,3 +12,50 @@ / {
- &eth0 {
- 	phy-mode = "2500base-x";
- };
-+
-+/*
-+ * External MV88E6361 switch is only available on v2 of the board.
-+ * U-Boot will enable the MDIO bus and switch nodes.
-+ */
-+&mdio {
-+	status = "disabled";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&smi_pins>;
-+
-+	/* Actual device is MV88E6361 */
-+	switch: switch@0 {
-+		compatible = "marvell,mv88e6190";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0>;
-+		status = "disabled";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				label = "cpu";
-+				phy-mode = "2500base-x";
-+				managed = "in-band-status";
-+				ethernet = <&eth0>;
-+			};
-+
-+			port@9 {
-+				reg = <9>;
-+				label = "downlink";
-+				phy-mode = "2500base-x";
-+				managed = "in-band-status";
-+			};
-+
-+			port@a {
-+				reg = <10>;
-+				label = "uplink";
-+				phy-mode = "2500base-x";
-+				managed = "in-band-status";
-+				sfp = <&sfp_eth1>;
-+			};
-+		};
-+	};
-+};
--- 
-2.41.0
+                        Geert
 
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
