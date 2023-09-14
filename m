@@ -1,159 +1,82 @@
-Return-Path: <devicetree+bounces-317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37CCC7A0F98
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 23:12:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46D0E7A0FA7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 23:16:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99984282340
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 21:12:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 525B41C2092D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 21:16:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B2A926E16;
-	Thu, 14 Sep 2023 21:07:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C410C26E20;
+	Thu, 14 Sep 2023 21:16:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FD871CF92
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 21:07:12 +0000 (UTC)
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C69E269D;
-	Thu, 14 Sep 2023 14:07:11 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-502d9ce31cbso2403947e87.3;
-        Thu, 14 Sep 2023 14:07:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694725630; x=1695330430; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=AVJyPVKLIulflTV3/WSA+XOgCTmNY7LsZuZCObq0St4=;
-        b=cuhbdK46eAz+Zi2Dp3K4FAdfmzdY0iMr7Z2faR6PLktSKl8kDQRlNRlJ8LxQW4eRUJ
-         yqBKSUS0nXQ0Lm3ibQS96NV1d5OUiWZtlyTHlcP5Z4nWwlhuChsronzHl0Obdsb9kpgv
-         Hs/2IdP+8Lc5daBDUExQ6UaQkbd/Eeh+WaJEs8B4SlDpsXGBeH2nh0lm9Now9LSwubjU
-         599aJ2cJngQkl6TGKxHW4vHgrpwujOvO4L+I9R513U4UHUeQ8s2Mi8WxcvPYQG1gmnp4
-         6T1lVgF2y8nvur9WEqB2ft+Q2vj2RI/ToFYYCxYPd9mFQfUHcpEw22woFo8iJSwS9aWd
-         G3aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694725630; x=1695330430;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AVJyPVKLIulflTV3/WSA+XOgCTmNY7LsZuZCObq0St4=;
-        b=Fs2DfuRpBdIfBoYgreWIUAVVR5kOBqAKJOIJ+/taUnX7YUeDvpK9lFE3UvuluJja25
-         32soBSLzbueE9g9nUJEiUoRu+WBkc07y7xmp+IBieoucRIDvEnbm/799DMg5yAgOaCvS
-         zC7FER3vFhGI5MjeDsqUwjO0wcDmtY7UrWtVg4rRJSv6IIPeUfs+nK7HmqGnSZQrdi+B
-         4xrAJ/0oxIc6s9tzYp5mR7oBaigBshOAgKcokR6U/YneDS5H1mYUYsyqRVZkHmBQubnu
-         HHsJ7dPy+rxosrkXxqsa2vDSqJgYUfaQwjVzTb+OD8UlxAVkyyhruO2qWNE3rBVRxHOQ
-         L/jg==
-X-Gm-Message-State: AOJu0Yykt1WUr0eb2BUxwS0X3O6D5j/0P/HUIkAbCQPDptiGSa6eTlYL
-	DCKRFWjIPH3nOoC1vk5iDSo=
-X-Google-Smtp-Source: AGHT+IFj1THt0saZ05dJlgfkw8bFwN8RIZCVypUymQNg4WYerxM5cSzoTS1lc/LU8mbqGyBpGhFZtQ==
-X-Received: by 2002:a05:6512:234d:b0:4e0:a426:6ddc with SMTP id p13-20020a056512234d00b004e0a4266ddcmr7060798lfu.0.1694725629531;
-        Thu, 14 Sep 2023 14:07:09 -0700 (PDT)
-Received: from mobilestation ([95.79.219.206])
-        by smtp.gmail.com with ESMTPSA id q13-20020ac2514d000000b00502e2e0fa4csm409709lfd.71.2023.09.14.14.07.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Sep 2023 14:07:08 -0700 (PDT)
-Date: Fri, 15 Sep 2023 00:07:06 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
-	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com, lpieralisi@kernel.org, 
-	robh+dt@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
-	bhelgaas@google.com, kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v20 09/19] PCI: dwc: Add EDMA_UNROLL capability flag
-Message-ID: <vu43wsorndu6oflrubp5affridnb2j5i4j6kc6jqepg2ucybfp@qra6ztmyjlqa>
-References: <20230825093219.2685912-10-yoshihiro.shimoda.uh@renesas.com>
- <20230914160941.GA32484@bhelgaas>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F863210FE
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 21:16:13 +0000 (UTC)
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 223E426BB
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 14:16:12 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B4981FF803;
+	Thu, 14 Sep 2023 21:16:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1694726169;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=QfHE7Gy8icrSvGsTMlEV38zZ/z1OUPzjNqGfkRIIxr8=;
+	b=jhodw+HFc8WoRUsJCam8bcN36VprOZAAK3tj8P1awGAj7ay5iRO5VsGz6YGrR/pGkYWJfF
+	p8YTlMZ1UycuI17niKtxYPlH9Zyh/hsZ8F8TzUFeNrVOkKW6k91S83GOPWxinoB24NkEv2
+	Gvhhpz5c6JxTdmADlzJBX0MQ/B7z2JY2/tXeiOMam2urXKhZwMpPNgtaFnoGP5kYksv1TZ
+	n4YfSI83N/xDyyXc9+Okkf5Fgi2e9DKm7xmqaijHyKhsj6zX5Z56AV6fy66vAb/y+aZhS3
+	bFZEzE2wkHSDiRdEK3ATnL0Zyr/qS3JPJkagnoC53MiGzCVOhwiYxbnnY9JL+Q==
+Date: Thu, 14 Sep 2023 23:16:06 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Lucas Stach <l.stach@pengutronix.de>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio
+ Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, patchwork-lst@pengutronix.de, Richard
+ Leitner <richard.leitner@skidata.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: phy: add binding for the i.MX8MP
+ HDMI PHY
+Message-ID: <20230914231606.714982be@booty>
+In-Reply-To: <20230906184211.1857585-1-l.stach@pengutronix.de>
+References: <20230906184211.1857585-1-l.stach@pengutronix.de>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230914160941.GA32484@bhelgaas>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-Hi Bjorn
+Hi Lucas,
 
-On Thu, Sep 14, 2023 at 11:09:41AM -0500, Bjorn Helgaas wrote:
-> On Fri, Aug 25, 2023 at 06:32:09PM +0900, Yoshihiro Shimoda wrote:
-> > Renesas R-Car Gen4 PCIe controllers have an unexpected register value in
-> > the eDMA CTRL register. So, add a new capability flag "EDMA_UNROLL"
-> > which would force the unrolled eDMA mapping for the problematic device.
-> > 
-> > Suggested-by: Serge Semin <fancer.lancer@gmail.com>
-> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-> > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  drivers/pci/controller/dwc/pcie-designware.c | 8 +++++++-
-> >  drivers/pci/controller/dwc/pcie-designware.h | 5 +++--
-> >  2 files changed, 10 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> > index c4998194fe74..4812ce040f1e 100644
-> > --- a/drivers/pci/controller/dwc/pcie-designware.c
-> > +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> > @@ -883,8 +883,14 @@ static int dw_pcie_edma_find_chip(struct dw_pcie *pci)
-> >  	 * Indirect eDMA CSRs access has been completely removed since v5.40a
-> >  	 * thus no space is now reserved for the eDMA channels viewport and
-> >  	 * former DMA CTRL register is no longer fixed to FFs.
-> > +	 *
-> > +	 * Note that Renesas R-Car S4-8's PCIe controllers for unknown reason
-> > +	 * have zeros in the eDMA CTRL register even though the HW-manual
-> > +	 * explicitly states there must FFs if the unrolled mapping is enabled.
-> > +	 * For such cases the low-level drivers are supposed to manually
-> > +	 * activate the unrolled mapping to bypass the auto-detection procedure.
-> >  	 */
-> > -	if (dw_pcie_ver_is_ge(pci, 540A))
-> > +	if (dw_pcie_ver_is_ge(pci, 540A) || dw_pcie_cap_is(pci, EDMA_UNROLL))
-> >  		val = 0xFFFFFFFF;
-> >  	else
-> >  		val = dw_pcie_readl_dbi(pci, PCIE_DMA_VIEWPORT_BASE + PCIE_DMA_CTRL);
-> > diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> > index b731e38a71fc..c7759a508ca9 100644
-> > --- a/drivers/pci/controller/dwc/pcie-designware.h
-> > +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> > @@ -51,8 +51,9 @@
-> >  
-> >  /* DWC PCIe controller capabilities */
-> >  #define DW_PCIE_CAP_REQ_RES		0
-> > -#define DW_PCIE_CAP_IATU_UNROLL		1
-> > -#define DW_PCIE_CAP_CDM_CHECK		2
-> > +#define DW_PCIE_CAP_EDMA_UNROLL		1
-> > +#define DW_PCIE_CAP_IATU_UNROLL		2
-> > +#define DW_PCIE_CAP_CDM_CHECK		3
+On Wed,  6 Sep 2023 20:42:10 +0200
+Lucas Stach <l.stach@pengutronix.de> wrote:
+
+> Add a DT binding for the HDMI PHY found on the i.MX8MP SoC.
 > 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> Why did you make the new DW_PCIE_CAP_EDMA_UNROLL "1" and shift all the
-> existing ones down?  If they don't need to be ordered like this,
-> leaving the existing ones alone and making DW_PCIE_CAP_EDMA_UNROLL "3"
-> would be a simpler one-line diff.
+Thanks for resending this series!
 
-The discussion in framework of which this patch was born is available
-here:
-https://lore.kernel.org/linux-pci/20221121124400.1282768-6-yoshihiro.shimoda.uh@renesas.com/
-So the patch is mainly what I suggested back then. Though in my case
-DW_PCIE_CAP_EDMA_UNROLL was intended to have index 2.
+Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
-Why didn't I add the unrolled DMA-capability macros to the tail of the
-list? My intention was to have the IATU and EDMA unrolled capability
-flags defined nearby for the sake of having a tiny bit better
-readability since functionally they look similar but refer to the
-different controller modules. IMO it was better to have the flags
-functionally grouped than to save several diff lines.
-
--Serge(y)
-
-> 
-> >  #define dw_pcie_cap_is(_pci, _cap) \
-> >  	test_bit(DW_PCIE_CAP_ ## _cap, &(_pci)->caps)
-> > -- 
-> > 2.25.1
-> > 
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
