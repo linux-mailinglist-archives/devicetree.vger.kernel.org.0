@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5F8979FCAE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:03:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B5DB79FCB2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:03:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04ECCB2095D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:03:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 753D6B207B4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:03:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA0D663A1;
-	Thu, 14 Sep 2023 07:01:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 008F563BD;
+	Thu, 14 Sep 2023 07:01:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC255883C
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 07:01:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8E156135
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 07:01:24 +0000 (UTC)
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 167DA10C3;
-	Thu, 14 Sep 2023 00:01:20 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54C2EE4D;
+	Thu, 14 Sep 2023 00:01:24 -0700 (PDT)
 Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38E237v7016462;
-	Thu, 14 Sep 2023 07:01:15 GMT
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38E4fNfl024818;
+	Thu, 14 Sep 2023 07:01:20 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : date :
  subject : mime-version : content-type : content-transfer-encoding :
  message-id : references : in-reply-to : to : cc; s=qcppdkim1;
- bh=6bUxuFmDS4klU4fka2mvvCCsFdZpWPq+L4yzDGtwpo8=;
- b=i181YpEvLJ38kFFhde718m4MO4L1kpBXzOeftAlrkLebvOlGewsFzH84saVEVdICBBua
- odF4nCdy9SiSB4ko7LUKGfum+8usoSDoIZD0RGO3HhP0DfT4QQlyf8JdjSDSS7Wq0Sr3
- 1gz66GteZD0P0GUjvJ8jWy5tfWZu521OkNAbtjl5EwqzcyIVjVk9wvB7xRQ9OjRcpI1Y
- V93xW/8VUqE9RUxfBizbIIIKmT1vn7YNv7xvPD7K48ZdY+uwOU03VRUtxZDYk9pjprym
- op0OqNKubgllBg6LbLUfxolvuPt9FcLrjcTMoUz+4awI+nu9XwObwzxghvLh+GMRsL+r wQ== 
+ bh=0CyX3dFxQnuV4INYMUbKL566KX3a4BhqW3DaG4m3JxA=;
+ b=WgTwTr8wNzoql/+yBlyGN1RDrqEUEEtmEvECz0G0b4BsfSa/i/UJ/qvuFDrwsmwFyPJM
+ Z5urqKdnwbSMaUDe9tiKz2cFwwy8PBuf5+Vu4bnYC75D00SVlPT6ZXD0wBp8wGJiHsQw
+ 4Ye0iaI3N9+iZHWSZjcloowWRXGkAyKB+auPuJzSdx6Csaj9WDBEDQrVYIKZqIqG04h5
+ MczaQnaPqnkAcqH/ewGYUVStIFwYF1daojQjiciJ4PaIxqc7kPcCMifXjDMRxnN1iNs+
+ HVHXW4YD4n/joBTTVP3Y/v2VlvI1aWktOoPaAKWjlP0/2kZVc8UYBmuBbrDYgZeo4L1F zg== 
 Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t3dj8a6ch-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t3dj8a6ct-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Sep 2023 07:01:14 +0000
+	Thu, 14 Sep 2023 07:01:20 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38E71DET025648
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38E71Jwd026167
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Sep 2023 07:01:13 GMT
+	Thu, 14 Sep 2023 07:01:19 GMT
 Received: from hu-kathirav-blr.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Thu, 14 Sep 2023 00:01:08 -0700
+ 15.2.1118.36; Thu, 14 Sep 2023 00:01:13 -0700
 From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-Date: Thu, 14 Sep 2023 12:30:00 +0530
-Subject: [PATCH v2 10/11] arm64: dts: qcom: ipq9574: include the GPLL0 as
+Date: Thu, 14 Sep 2023 12:30:01 +0530
+Subject: [PATCH v2 11/11] arm64: dts: qcom: ipq5332: include the GPLL0 as
  clock provider for mailbox
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -57,7 +57,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20230913-gpll_cleanup-v2-10-c8ceb1a37680@quicinc.com>
+Message-ID: <20230913-gpll_cleanup-v2-11-c8ceb1a37680@quicinc.com>
 References: <20230913-gpll_cleanup-v2-0-c8ceb1a37680@quicinc.com>
 In-Reply-To: <20230913-gpll_cleanup-v2-0-c8ceb1a37680@quicinc.com>
 To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
@@ -82,11 +82,11 @@ CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
         "Kathiravan
  Thirumoorthy" <quic_kathirav@quicinc.com>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1694674810; l=1231;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1694674810; l=1223;
  i=quic_kathirav@quicinc.com; s=20230906; h=from:subject:message-id;
- bh=veUniM41mszJd7aRSOLoQFrZylo/OvtixnEi2jYQD+g=;
- b=YmuzWpY0/eLnQ8avGXiBUEaaMIW0z1Z/W9uWq0dWK6y1RfzlsnoHOA6ouEQC1mx1C8bLnBn/o
- l5Ggj1UQHTUA4Z0FgcoPTteTe/6/hJmSJKXagPbU0QoKbD/xXL7mQI+
+ bh=aXroxBycIALRxsYiDXTUpvPyc+RSgTjo74t6paOuFH0=;
+ b=48mqn/p5Fc7dWJyGe5Se2k9cTv/rMTwuHaLI8XeHBz8r9JW7ryN34H1SSYrBd7DRr68idmo83
+ z3QCZHFgbKcCFCBriV92IMZnMjZA4aVJrWFHHQJHaXZRS8NbprR5AD+
 X-Developer-Key: i=quic_kathirav@quicinc.com; a=ed25519;
  pk=xWsR7pL6ch+vdZ9MoFGEaP61JUaRf0XaZYWztbQsIiM=
 X-Originating-IP: [10.80.80.8]
@@ -94,8 +94,8 @@ X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: BDRiFF-3wDs-KOYGKY9YKIyuzMH8KzPz
-X-Proofpoint-ORIG-GUID: BDRiFF-3wDs-KOYGKY9YKIyuzMH8KzPz
+X-Proofpoint-GUID: Ftb7vQ2iUuzIAdshwAYuCC3Txne84cHt
+X-Proofpoint-ORIG-GUID: Ftb7vQ2iUuzIAdshwAYuCC3Txne84cHt
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
  definitions=2023-09-14_04,2023-09-13_01,2023-05-22_02
@@ -117,20 +117,20 @@ Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
 Changes in V2:
 	- Splitted the change into target specific file
 ---
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 4 ++--
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index 51aba071c1eb..89edb4b852df 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -652,8 +652,8 @@ apcs_glb: mailbox@b111000 {
+diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+index 8bfc2db44624..82761ae199a9 100644
+--- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+@@ -335,8 +335,8 @@ apcs_glb: mailbox@b111000 {
  				     "qcom,ipq6018-apcs-apps-global";
  			reg = <0x0b111000 0x1000>;
  			#clock-cells = <1>;
--			clocks = <&a73pll>, <&xo_board_clk>;
+-			clocks = <&a53pll>, <&xo_board>;
 -			clock-names = "pll", "xo";
-+			clocks = <&a73pll>, <&xo_board_clk>, <&gcc GPLL0>;
++			clocks = <&a53pll>, <&xo_board>, <&gcc GPLL0>;
 +			clock-names = "pll", "xo", "gpll0";
  			#mbox-cells = <1>;
  		};
