@@ -1,133 +1,142 @@
-Return-Path: <devicetree+bounces-274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A55A07A09C5
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 17:52:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E4F77A09C6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 17:52:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2892E1C21125
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:52:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA7851F2470D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:52:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17AD421351;
-	Thu, 14 Sep 2023 15:47:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20BAA1CF9F;
+	Thu, 14 Sep 2023 15:48:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C920CA78
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 15:47:23 +0000 (UTC)
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25FB0DD
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 08:47:23 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-404573e6c8fso8631265e9.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 08:47:23 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1293ECA78
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 15:48:09 +0000 (UTC)
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AF93DD;
+	Thu, 14 Sep 2023 08:48:09 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-31427ddd3fbso960116f8f.0;
+        Thu, 14 Sep 2023 08:48:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694706441; x=1695311241; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2Y1+S4YPUZHV6bEDYOM6jByjByZjivqS16bGhRJtub4=;
-        b=Yib7Uw7qTmLuP3MPrOqEXKVfWJZMSh5TlU5g//mn/wq2N7dI4BNGXHizZUtM+JuuPI
-         ui5J5NByMIHbOWf0kj87XCmOU0lpIQMte8gf8B8+S1eMW0+r9yxWuIWH4XUvtbWQN30D
-         Bqd7NP1pKNAol+pvcd/tVpN27T5bnTfOHcQDbyXPQdm1bM/qLlqLrE/vMEFBOiAh6B9c
-         82w48p7gnKE89anaDJ+GADDrMqwCttGZPKQ3S2b2fjAw2xrdoJ0LNwfrf+IKrmMwZUd8
-         gmVLhOju+eit3O/3l3Op/cJUeAwyw2FF/3zAx+HOULQFLTCXfzdhJsDXg2VJeoDjjdk6
-         DaXg==
+        d=gmail.com; s=20221208; t=1694706488; x=1695311288; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=173yD9VjwXTBKZr7qMJ/4Ufdnz2W816dljbeIsZNNJE=;
+        b=WrnzjoC33WeYGdNGgn35Wh6m92DaACtpZ69Q1tOCE7koxOhwL817R5DHaocmBqkuYt
+         /2FGU/wAh9Bjy+0dXTf6U2ii8jCtRUEZA1Z324W0L0XADiO+uHBELM8aushwVrOglcZ8
+         VO52KogniC0yGEtWtEBK5Q+oJNdkSQWg6b2/n5UCZySqJzQllA1n1Q4gwDfGsYpLSiGq
+         LVH6AzF9cz2jOR9/Kwr4cLMFHDv4Vzd+aeEQET95H2DZ9f7MqRNMNT8NGimk7+HzTpuR
+         ZrOrr7Z+zRd6gxsCy7K5fIm/moeJwPQ9L6ebD4S2ml0oPbGVK8AEi9AeawE1XhYFe+u6
+         jN5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694706441; x=1695311241;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2Y1+S4YPUZHV6bEDYOM6jByjByZjivqS16bGhRJtub4=;
-        b=HKUhzz8yGhUVyWBiCWeC80n3wlcPCxcNkqm9J5TFYq87d592JX4jMliJEUSRhNz7L/
-         g8LB4y5ywsZ6FfV76u6TbEHBo33oHf44XK6/UtcOER+JvvV5NPgFWb7J4TVvXSJsXo3t
-         ZSwhV2j/oU3AdODUprwPhUqJiRTn6DSRnS3m0xJq4rDHjnwGtINQws40xQCqhd/WAZe2
-         mimtG1bhbCX+dPusN71gNpqFPlO+dHJGNK72K+L7q0DhuU2MBYcweuVkSy/tN5BoG995
-         ycf3EzxHebgUfK8ugv5tWcSM/q8EHQH03bL5s/qNLMQ1ekdYzfIwDlok6dPAmIVe2YmW
-         tiMw==
-X-Gm-Message-State: AOJu0Yyd5sRpSS8AxdNGr6DfxVJ/0jRwg2hU/1p8anANCq9UslnluzfN
-	EP/MFGd6n/K9KR4kdeO4TBZOFQ==
-X-Google-Smtp-Source: AGHT+IFUiLqOu3FSpTNqE/FXs43Z+oCWKwTaAmpfJPvf5bz0GF4UwkZUD95wwrG8Nb/qPK6zVr0y3A==
-X-Received: by 2002:a5d:61c4:0:b0:313:e971:53af with SMTP id q4-20020a5d61c4000000b00313e97153afmr5290417wrv.32.1694706441479;
-        Thu, 14 Sep 2023 08:47:21 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id x2-20020adfec02000000b003179d7ed4f3sm2055514wrn.12.2023.09.14.08.47.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Sep 2023 08:47:20 -0700 (PDT)
-Message-ID: <1ae7f23c-af9d-8ac6-49fd-46b607de971c@linaro.org>
-Date: Thu, 14 Sep 2023 17:47:17 +0200
+        d=1e100.net; s=20230601; t=1694706488; x=1695311288;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=173yD9VjwXTBKZr7qMJ/4Ufdnz2W816dljbeIsZNNJE=;
+        b=ef6h1lx2GVKOKga97c6/PJFe7VWUji7JMkFeKsdY9CS7u327JngqgSspqOpIWc+jdt
+         pXx2A4Yv0589X1aE5XHS67hA50rEM6FNpdSIjT15kZDP008UJUec9Bzh7Zo/v2FMI/b+
+         Ej/KjbOYOCPqOKomIpQo11CgWm7hAMfx9JVolp38Ns5yDdrNo1AZUskuMosVMdcsiTFH
+         KYiW3/W+9ldu1k/dp+WF0uM8YQGylCovNYJzKUSZNh1ugMfXvcBdMdiF3XtN8Fwh3Htb
+         q7NQSU8ePMY4v62x9v7Ipr7zh/3wVKcgzWqBRLlSV/3kNu1rsVFwZKMrvIDeqj1jYVYx
+         x9hQ==
+X-Gm-Message-State: AOJu0YysHXWc5JF9rT2MxK2f54ahAwCmFDfd07uZPlA+qeZIu8i5d5y+
+	dRQJgX3pqcOxVhJ5PBgiejA=
+X-Google-Smtp-Source: AGHT+IExFJBi9Q/weXMg9QbYK5aU/ZB8UO7tgl1uqyFTBjDeP5xJo3SlFUOuek25Ef8mJ+0llrnpzA==
+X-Received: by 2002:a5d:5587:0:b0:315:a17d:dbc6 with SMTP id i7-20020a5d5587000000b00315a17ddbc6mr5250564wrv.14.1694706487552;
+        Thu, 14 Sep 2023 08:48:07 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation.station (net-188-217-54-79.cust.vodafonedsl.it. [188.217.54.79])
+        by smtp.gmail.com with ESMTPSA id f13-20020adff44d000000b0031c79de4d8bsm2071169wrp.106.2023.09.14.08.48.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Sep 2023 08:48:07 -0700 (PDT)
+From: Tommaso Merciai <tomm.merciai@gmail.com>
+To: 
+Cc: jacopo.mondi@ideasonboard.com,
+	laurent.pinchart@ideasonboard.com,
+	linuxfancy@googlegroups.com,
+	hdegoede@redhat.com,
+	Tommaso Merciai <tomm.merciai@gmail.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Martin Hecht <martin.hecht@avnet.eu>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Jagan Teki <jagan@edgeble.ai>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Yang Xiwen <forbidden405@foxmail.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Gerald Loacker <gerald.loacker@wolfvision.net>,
+	Bingbu Cao <bingbu.cao@intel.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	Shawn Tu <shawnx.tu@intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org
+Subject: [PATCH v8 1/3] dt-bindings: vendor-prefixes: Add prefix alliedvision
+Date: Thu, 14 Sep 2023 17:47:53 +0200
+Message-Id: <20230914154758.1795663-2-tomm.merciai@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230914154758.1795663-1-tomm.merciai@gmail.com>
+References: <20230914154758.1795663-1-tomm.merciai@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH] arm64: dts: ls208xa: use a pseudo-bus to constrain usb
- dma size
-Content-Language: en-US
-To: Laurentiu Tudor <laurentiu.tudor@nxp.com>, shawnguo@kernel.org,
- leoyang.li@nxp.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230914145652.25728-1-laurentiu.tudor@nxp.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230914145652.25728-1-laurentiu.tudor@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 14/09/2023 16:56, Laurentiu Tudor wrote:
-> Wrap the usb controllers in an intermediate simple-bus and use it to
-> constrain the dma address size of these usb controllers to the 40b
-> that they generate toward the interconnect. This is required because
-> the SoC uses 48b address sizes and this mismatch would lead to smmu
-> context faults [1] because the usb generates 40b addresses while the
-> smmu page tables are populated with 48b wide addresses.
-> 
-> [1]
-> xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
-> xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
-> xhci-hcd xhci-hcd.0.auto: hcc params 0x0220f66d hci version 0x100 quirks 0x0000000002000010
-> xhci-hcd xhci-hcd.0.auto: irq 108, io mem 0x03100000
-> xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
-> xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
-> xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
-> arm-smmu 5000000.iommu: Unhandled context fault: fsr=0x402, iova=0xffffffb000, fsynr=0x0, cbfrsynra=0xc01, cb=3
-> 
-> Signed-off-by: Laurentiu Tudor <laurentiu.tudor@nxp.com>
-> ---
->  .../arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 46 +++++++++++--------
->  1 file changed, 27 insertions(+), 19 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-> index d2f5345d0560..47cc7699ca16 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-> @@ -1186,26 +1186,34 @@
->  			dma-coherent;
->  		};
->  
-> -		usb0: usb@3100000 {
-> -			status = "disabled";
-> -			compatible = "snps,dwc3";
-> -			reg = <0x0 0x3100000 0x0 0x10000>;
-> -			interrupts = <0 80 0x4>; /* Level high type */
-> -			dr_mode = "host";
-> -			snps,quirk-frame-length-adjustment = <0x20>;
-> -			snps,dis_rxdet_inp3_quirk;
-> -			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
-> -		};
-> +		aux_bus: aux_bus {
+Add a vendor prefix entry for Allied Vision Technologies GmbH
+(https://www.alliedvision.com)
 
-No underscores in node names. The node name should be anyway generic, so
- just "bus".
+Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes since v3:
+ - Collected tags from LPinchart, CDooley, KKozlowski
 
+Changes since v7:
+ - Fix company legal entity from Inc. to GmbH
 
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index af60bf1a6664..0a1d75c5a302 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -77,6 +77,8 @@ patternProperties:
+     description: ALFA Network Inc.
+   "^allegro,.*":
+     description: Allegro DVT
++  "^alliedvision,.*":
++    description: Allied Vision Technologies GmbH
+   "^allo,.*":
+     description: Allo.com
+   "^allwinner,.*":
+-- 
+2.34.1
 
 
