@@ -1,51 +1,56 @@
-Return-Path: <devicetree+bounces-278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 930697A09FB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 18:00:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B44E67A0A11
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 18:01:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 431041C20C99
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 16:00:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECF8F282288
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 16:00:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B31208A9;
-	Thu, 14 Sep 2023 16:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB5321103;
+	Thu, 14 Sep 2023 16:00:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D45271CF84
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 16:00:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAE8BC433CC;
-	Thu, 14 Sep 2023 16:00:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 397C4210EF
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 16:00:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6EF1C433D9;
+	Thu, 14 Sep 2023 16:00:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694707231;
-	bh=MomOO14fmhQ7KLpx8us+y8UV9w9TPmqAEXBLp6aa/28=;
+	s=k20201202; t=1694707232;
+	bh=DihOCs/1P+ZYQX6g6Ox3tDlhitMMI7Usg/cYg6dZaNU=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=iowD5wesMtVuNJ0amqaoqh0QTI+9ABNu8iG6WTaLlr1Y/+ViOWldtYF8sCzmSSGfG
-	 5yH27Pcwa2gZtSQguqXNg9TdnP35drT+KkecQQsPe+iJJwW+MBOmZgqGb5w0yewgvD
-	 bKKt0HbLRzXgUL2KOxvGUMpOWsJPds/AiJui+EtFjCKpkhZa8XhdLu/LGPb3nqrqYt
-	 70TP8EOSIjnLm+xHXq9Yfz3oHF6oBjx5M34/Av7v1m2Qo/uikio80F6cYZ4oPYWDWo
-	 1Wd4XuFUWp4eOiVE6fpbwI8hbL3lFI5pP3IQFB1eINlQq4bClkrufAMGLtRftAq4kO
-	 LfXBt1CqCNtHw==
+	b=jLFY/RED3rc26Lfylm+vVSV4H6WWnBZ6ROB9AJgMOzwP9Y837P1FrmbRZe+nxLoY1
+	 4NQXxFThdRHpVosMr/Xex1o56ZfMtOwSfUchCayju7ZW43gVdcyzT4Lf3w3OflyYZ7
+	 DaiS1Oa0PuJu7aUMQj7nUt9LsGdEan7acjT7Suwff8GpFA2bYWuJ0cS5GMR/QD2f9E
+	 IM8TGM31Z7KWBKQZeN2r3V9gE82yHxKDi400hmGO+olKZdJxCjF2zD0srp2gjhiDwe
+	 SgKbqz0LMDWpVpkjf7bxuLJWykv8/w+0p35l8l/nMACRQzWJcn1siMTcrWuLyx009/
+	 24R8qmnsTMbYA==
 From: Bjorn Andersson <andersson@kernel.org>
-To: agross@kernel.org,
-	konrad.dybcio@linaro.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	Danila Tikhonov <danila@jiaxyga.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/2] soc: qcom: socinfo: Add SM7150P ID
-Date: Thu, 14 Sep 2023 09:04:19 -0700
-Message-ID: <169470744871.681825.920484586780940732.b4-ty@kernel.org>
+To: cros-qcom-dts-watchers@chromium.org,
+	Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	David Heidelberg <david@ixit.cz>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Douglas Anderson <dianders@chromium.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 1/2] arm64: dts: qcom: sdm845: Fix PSCI power domain names
+Date: Thu, 14 Sep 2023 09:04:20 -0700
+Message-ID: <169470744884.681825.16549416026586738722.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230913181722.13917-1-danila@jiaxyga.com>
-References: <20230913181722.13917-1-danila@jiaxyga.com>
+In-Reply-To: <20230912071205.11502-1-david@ixit.cz>
+References: <20230912071205.11502-1-david@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,25 +61,18 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 13 Sep 2023 21:17:20 +0300, Danila Tikhonov wrote:
-> This series adds ID for Qualcomm SM7150P SoC.
+On Tue, 12 Sep 2023 12:42:03 +0530, David Heidelberg wrote:
+> The original commit hasn't been updated according to
+> refactoring done in sdm845.dtsi.
 > 
-> The SM7150P does not have Qualcomm IP Accelerator (IPA), unlike the SM7150.
-> And also has a different SoC id. SM7150P is used in
-> Lenovo Tab P11 Pro (lenovo-j706f) for example.
 > 
-> Danila Tikhonov (2):
->   dt-bindings: arm: qcom,ids: Add Soc ID for SM7150P
->   soc: qcom: socinfo: Add Soc ID for SM7150P
-> 
-> [...]
 
 Applied, thanks!
 
-[1/2] dt-bindings: arm: qcom,ids: Add Soc ID for SM7150P
-      commit: edc3a1fb626bfb191228fb40a9ddd8806a77eeb9
-[2/2] soc: qcom: socinfo: Add Soc ID for SM7150P
-      commit: 776b29eb57849bd81ece3e82b1b1b76452dde017
+[1/2] arm64: dts: qcom: sdm845: Fix PSCI power domain names
+      commit: a5f01673d3946e424091e6b8ff274716f9c21454
+[2/2] arm64: dts: qcom: sdm845: cheza doesn't support LMh node
+      commit: 197ae69d1caedb3203e0b189a39efb820675fd5c
 
 Best regards,
 -- 
