@@ -1,267 +1,183 @@
-Return-Path: <devicetree+bounces-309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E759C7A0E77
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 21:47:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C36137A0EA0
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 22:00:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93308281C48
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 19:47:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8999D281958
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 20:00:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69729266BB;
-	Thu, 14 Sep 2023 19:47:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 635E1266BD;
+	Thu, 14 Sep 2023 20:00:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EA2F210FE
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 19:47:22 +0000 (UTC)
-Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98B7C2698
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 12:47:21 -0700 (PDT)
-Received: by mail-oo1-xc33.google.com with SMTP id 006d021491bc7-5711d5dac14so289562eaf.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 12:47:21 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E541F266A5
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 20:00:18 +0000 (UTC)
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FBBC26B8;
+	Thu, 14 Sep 2023 13:00:18 -0700 (PDT)
+Received: by mail-pf1-x42a.google.com with SMTP id d2e1a72fcca58-69042d398b1so80494b3a.0;
+        Thu, 14 Sep 2023 13:00:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694720841; x=1695325641; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5BmLkfcOi2CngTJ6qYE4a1GHZ/PJd6vNXn8AVUJg5uk=;
-        b=sRn1cKGob1BFl5JRbkZ0iO0u6ikJzHwx+3/wqxQYNSR22Gi2tNI4MCf+YgaQ41FCc4
-         Km696MoorkJCVvixnjwbRMxro4hW61QYIUku00gyfnj47diH6WAtR6Nqnhe3mhkO0baU
-         42MFSjlGK27qt/InMJaF7m0QlJnVHh1ee7KwnBRPJNwUD7RDAgJViZKVDq7+XPtKo3Ir
-         Sci9XedqR9BHK1OIAyPnrWrgcCS52W6y3RiNoEw+yDN/ZTdm1JpQfKpPbekw+WsBvb+F
-         pMu2f7Yim1Smbnbt3g5ijOQySISCAm3Gwm0/h6Tt/+F4uZmkEQGX+REN5fBfKPsZYuP4
-         fyNg==
+        d=gmail.com; s=20221208; t=1694721617; x=1695326417; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=B23YuAv6dhYvSN5C36lVW/kvrfHC6KB7exZefOVxwtg=;
+        b=o0dQYoQeVLZFjIDy3B8RMR6rtTIW6AbN60YpA1T+ChDCVh7+NkbuC6PSa10Km+u/L0
+         Eks8uuUxiKO5hJBiwZHDuePukkSEjHDxn+OGg/9F7Wr1uY4SdTPsDmZwGQVyMiwfbdE8
+         2PPpoPjvvJQME2umWSakEZjDbnsy2tWHpiTQW+BPcK1Y3FlZHgKk6ypH4l86L68q42Tb
+         W1laKe35QVTnON3AJU5gG0HpQCBGndxKXo3lvRd/UHuz+8tGI1i5Buhjwaq6aKh2v6FC
+         YmmuhL0WUV+fRvfIwcyKfA28E3k70XEDOvT0VgfsOrYemUPSaqsMQ6I+5Egzd3wnG1di
+         aozw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694720841; x=1695325641;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5BmLkfcOi2CngTJ6qYE4a1GHZ/PJd6vNXn8AVUJg5uk=;
-        b=km3n97i0ocWxskr8X9he3TUDVjQMG1p1yv/bD5p8H+bk5C32MJJPMS/ZzUnPOVvdEH
-         bcciGkX0ws0K0ao/e8kskTaM/+H9tHV0TMDm7Cq1ClnXHFoEBRdqrkwCzCsRRRSa6Epb
-         GjeXIViJRlwENHCrMCPakfdzJfSjzyPyzooCFDVqA1wcVh02wviKa2izwgMFtmJ7PdHe
-         cMUdzckteLuSTF74Gnvb1sc6TGO16fWTfmePL1jYm9hpzFeNzy59EjJ3wetcXJrRL3Zv
-         ZBTod2atlDHdfXEiG7i9MWBkbjXXnsjvO+PJiV4CiA06h5AvZv85+sZHugj2Bytk1bQ+
-         SIXw==
-X-Gm-Message-State: AOJu0YzxcKswSxw+2cJfQT1JXx2KMB4H4PfUJUq2+93zr6brAHyLKygp
-	M8cudtcqmYmKQqtFv9FCHjVz7GqGJ8A=
-X-Google-Smtp-Source: AGHT+IGjrKDJPTT/BY/CQSKqBO73TN3Ij3QMVzxA0kz3J4LUOA4jfrJC+bMOaMevQ88zGvGRfxK4+g==
-X-Received: by 2002:a05:6820:616:b0:578:a06a:5d8f with SMTP id e22-20020a056820061600b00578a06a5d8fmr7856578oow.1.1694720839920;
-        Thu, 14 Sep 2023 12:47:19 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:706c:eaa3:3489:c237])
-        by smtp.gmail.com with ESMTPSA id 62-20020a4a1a41000000b00570bc62a8d4sm1003742oof.29.2023.09.14.12.47.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Sep 2023 12:47:19 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: shawnguo@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	marcel.ziswiler@toradex.com,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] ARM: dts: imx6ull/7d-colibri: Fix compatible
-Date: Thu, 14 Sep 2023 16:47:09 -0300
-Message-Id: <20230914194709.2516651-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1694721617; x=1695326417;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=B23YuAv6dhYvSN5C36lVW/kvrfHC6KB7exZefOVxwtg=;
+        b=s2Iv0is6xSf/aC34sug9mWGPKHFi2OwOkJrPS/Zps8epkR75slJ3Ryeqi/5XArfUbg
+         GXmBDIJS3g7qV9uTlC76FMb0zeXq6rlQV39cMP7EOsF1BJ9f+HrD3kw7hd1foOBve68d
+         tWxD2phwphisGK3oHDVFKtF/zL6Cs4AtAMfXhG9nqKrTPGtYYZgXPrOXpM7ip9lf54+o
+         a3v8D8HqRDVdHPXhDqZ4y7tuI4+ESyk+g6syPCGgh+YFCcco1gV/Usz0stLS5u3yy3qO
+         1QEl/jOLdOoLFJkGS017FkiojqGRZWOvKmLcer3LULVTFV+CHRJgk2tGz+FhPd54Z/IX
+         2wyQ==
+X-Gm-Message-State: AOJu0Yzpu/Wl4sghbXhzNqIIYA/AliXEc4LwnkMabnQbuDpoNweQ5N6b
+	bkLuZiDB7iuygv4otmRz9gyt+6tW6bAh7kCHyBc=
+X-Google-Smtp-Source: AGHT+IEGZcYWfFuWw2dQfPhJ0OBpPROolNoIo/obh/jVO4iBsP9rJYT+1Flp4m7jWHC+Q8uaRg2HlWmd1gmt2gpXj3A=
+X-Received: by 2002:a05:6a00:1d10:b0:690:15c7:60bf with SMTP id
+ a16-20020a056a001d1000b0069015c760bfmr5463233pfx.20.1694721617453; Thu, 14
+ Sep 2023 13:00:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230913211449.668796-1-jcmvbkbc@gmail.com> <20230913211449.668796-2-jcmvbkbc@gmail.com>
+ <465dc390-a5ff-547a-2bd3-54b29e1b6c43@linaro.org>
+In-Reply-To: <465dc390-a5ff-547a-2bd3-54b29e1b6c43@linaro.org>
+From: Max Filippov <jcmvbkbc@gmail.com>
+Date: Thu, 14 Sep 2023 13:00:06 -0700
+Message-ID: <CAMo8Bf+5EOjOrusD7bHanxcrQm445b=wOq4xDGXVeij0tYY3XA@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: serial: document esp32-uart bindings
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+	devicetree@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Fabio Estevam <festevam@denx.de>
+On Wed, Sep 13, 2023 at 10:54=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 13/09/2023 23:14, Max Filippov wrote:
+> > Add documentation for the ESP32xx UART controllers.
+> >
+> > Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
+> > ---
+> >  .../bindings/serial/esp,esp32-uart.yaml       | 48 +++++++++++++++++++
+> >  1 file changed, 48 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/serial/esp,esp32-=
+uart.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/serial/esp,esp32-uart.ya=
+ml b/Documentation/devicetree/bindings/serial/esp,esp32-uart.yaml
+> > new file mode 100644
+> > index 000000000000..8b45ef808107
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/serial/esp,esp32-uart.yaml
+> > @@ -0,0 +1,48 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/serial/esp,esp32-uart.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: ESP32 UART controller
+> > +
+> > +maintainers:
+> > +  - Max Filippov <jcmvbkbc@gmail.com>
+> > +
+> > +description: |
+>
+> Do not need '|' unless you need to preserve formatting.
 
-Fix the imx6ull/7d-colibri devicetrees as per the rules defined
-at fsl.yaml.
+Ok.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Hi,
+> > +  ESP32 UART controller is a part of ESP32 SoC series.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+>
+> That's just enum. Your descriptions are useless - tell nothing - so drop
+> them.
 
-I am assuming that fsl.yaml is correct and that the devicetree files
-are the ones that should be fixed.
+Ok.
 
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-aster.dts   | 1 -
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-eval-v3.dts | 1 -
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris-v2.dts | 1 -
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris.dts    | 1 -
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-eval-v3.dts      | 2 +-
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-aster.dts   | 2 +-
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-eval-v3.dts | 2 +-
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris-v2.dts | 2 +-
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris.dts    | 2 +-
- arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-aster.dts     | 1 -
- arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-eval-v3.dts   | 1 -
- arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris-v2.dts   | 1 -
- arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris.dts      | 1 -
- 13 files changed, 5 insertions(+), 13 deletions(-)
+> > +      - description: UART controller for the ESP32 SoC
+> > +        const: esp,esp32-uart
+>
+> Looks quite generic, so just to be sure? This is not a family name,
+> right? Neither family names nor wildcards are allowed.
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-aster.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-aster.dts
-index 919c0464d6cb..b2cdf4877718 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-aster.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-aster.dts
-@@ -12,6 +12,5 @@ / {
- 	model = "Toradex Colibri iMX6ULL 1GB (eMMC) on Colibri Aster";
- 	compatible = "toradex,colibri-imx6ull-emmc-aster",
- 		     "toradex,colibri-imx6ull-emmc",
--		     "toradex,colibri-imx6ull",
- 		     "fsl,imx6ull";
- };
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-eval-v3.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-eval-v3.dts
-index 61b93cb040c7..2dc16c54fc78 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-eval-v3.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-eval-v3.dts
-@@ -12,6 +12,5 @@ / {
- 	model = "Toradex Colibri iMX6ULL 1GB (eMMC) on Colibri Evaluation Board V3";
- 	compatible = "toradex,colibri-imx6ull-emmc-eval",
- 		     "toradex,colibri-imx6ull-emmc",
--		     "toradex,colibri-imx6ull",
- 		     "fsl,imx6ull";
- };
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris-v2.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris-v2.dts
-index b9060c2f7977..6088ee0a029a 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris-v2.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris-v2.dts
-@@ -11,7 +11,6 @@
- / {
- 	model = "Toradex Colibri iMX6ULL 1G (eMMC) on Colibri Iris V2";
- 	compatible = "toradex,colibri-imx6ull-iris-v2",
--		     "toradex,colibri-imx6ull-emmc",
- 		     "toradex,colibri-imx6ull",
- 		     "fsl,imx6ull";
- };
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris.dts
-index 0ab71f2f5daa..0b1603ff9420 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris.dts
-@@ -12,6 +12,5 @@ / {
- 	model = "Toradex Colibri iMX6ULL 1GB (eMMC) on Colibri Iris";
- 	compatible = "toradex,colibri-imx6ull-emmc-iris",
- 		     "toradex,colibri-imx6ull-emmc",
--		     "toradex,colibri-imx6ull",
- 		     "fsl,imx6ull";
- };
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-eval-v3.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-eval-v3.dts
-index d6da984e518d..c5bc255b21e1 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-eval-v3.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-eval-v3.dts
-@@ -10,7 +10,7 @@
- 
- / {
- 	model = "Toradex Colibri iMX6ULL 256/512MB on Colibri Evaluation Board V3";
--	compatible = "toradex,colibri-imx6ull-eval", "fsl,imx6ull";
-+	compatible = "toradex,colibri-imx6ull-eval", "toradex,colibri-imx6ull", "fsl,imx6ull";
- };
- 
- &ad7879_ts {
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-aster.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-aster.dts
-index c7da5b41966f..d3bbd05da293 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-aster.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-aster.dts
-@@ -11,7 +11,7 @@
- / {
- 	model = "Toradex Colibri iMX6ULL 512MB on Colibri Aster";
- 	compatible = "toradex,colibri-imx6ull-wifi-aster",
--		     "toradex,colibri-imx6ull",
-+		     "toradex,colibri-imx6ull-wifi",
- 		     "fsl,imx6ull";
- };
- 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-eval-v3.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-eval-v3.dts
-index 917f5dbe64ba..0ac306c9cef2 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-eval-v3.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-eval-v3.dts
-@@ -10,7 +10,7 @@
- 
- / {
- 	model = "Toradex Colibri iMX6ULL 512MB on Colibri Evaluation Board V3";
--	compatible = "toradex,colibri-imx6ull-wifi-eval", "fsl,imx6ull";
-+	compatible = "toradex,colibri-imx6ull-wifi-eval", "toradex,colibri-imx6ull-wifi", "fsl,imx6ull";
- };
- 
- &ad7879_ts {
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris-v2.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris-v2.dts
-index 488da6df56fa..38cd52c45496 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris-v2.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris-v2.dts
-@@ -11,7 +11,7 @@
- / {
- 	model = "Toradex Colibri iMX6ULL 512MB on Colibri Iris V2";
- 	compatible = "toradex,colibri-imx6ull-wifi-iris-v2",
--		     "toradex,colibri-imx6ull",
-+		     "toradex,colibri-imx6ull-wifi",
- 		     "fsl,imx6ull";
- };
- 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris.dts
-index e63253254754..5f60df64f173 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris.dts
-@@ -11,7 +11,7 @@
- / {
- 	model = "Toradex Colibri iMX6ULL 512MB on Colibri Iris";
- 	compatible = "toradex,colibri-imx6ull-wifi-iris",
--		     "toradex,colibri-imx6ull",
-+		     "toradex,colibri-imx6ull-wifi",
- 		     "fsl,imx6ull";
- };
- 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-aster.dts b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-aster.dts
-index d9c7045a55ba..212e0685585d 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-aster.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-aster.dts
-@@ -12,7 +12,6 @@ / {
- 	model = "Toradex Colibri iMX7D 1GB (eMMC) on Aster Carrier Board";
- 	compatible = "toradex,colibri-imx7d-emmc-aster",
- 		     "toradex,colibri-imx7d-emmc",
--		     "toradex,colibri-imx7d",
- 		     "fsl,imx7d";
- };
- 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-eval-v3.dts b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-eval-v3.dts
-index 96b599439dde..1deece7e7129 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-eval-v3.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-eval-v3.dts
-@@ -11,7 +11,6 @@ / {
- 	model = "Toradex Colibri iMX7D 1GB (eMMC) on Colibri Evaluation Board V3";
- 	compatible = "toradex,colibri-imx7d-emmc-eval-v3",
- 		     "toradex,colibri-imx7d-emmc",
--		     "toradex,colibri-imx7d",
- 		     "fsl,imx7d";
- };
- 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris-v2.dts b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris-v2.dts
-index 5eccb837b158..22e7863c2e80 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris-v2.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris-v2.dts
-@@ -11,7 +11,6 @@ / {
- 	model = "Toradex Colibri iMX7D 1GB on Iris V2 Carrier Board";
- 	compatible = "toradex,colibri-imx7d-emmc-iris-v2",
- 		     "toradex,colibri-imx7d-emmc",
--		     "toradex,colibri-imx7d",
- 		     "fsl,imx7d";
- };
- 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris.dts b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris.dts
-index ae10e8a66ff1..a3cf8f50e3dc 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris.dts
-@@ -11,7 +11,6 @@ / {
- 	model = "Toradex Colibri iMX7D 1GB on Iris Carrier Board";
- 	compatible = "toradex,colibri-imx7d-emmc-iris",
- 		     "toradex,colibri-imx7d-emmc",
--		     "toradex,colibri-imx7d",
- 		     "fsl,imx7d";
- };
- 
--- 
-2.34.1
+ESP32 is the official name of a specific SoC. More recent SoC models of
+that family are named ESP32-S2 and ESP32-S3, sometimes they are
+collectively referred to as the 'ESP32 series'. In this binding 'esp32' is =
+used
+for the ESP32 SoC and 'esp32s3' is used for the ESP32-S3.
 
+> > +      - description: UART controller for the ESP32S3 SoC
+> > +        const: esp,esp32s3-uart
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    serial0: serial@60000000 {
+>
+> Drop unused label.
+
+Ok.
+
+> > +            compatible =3D "esp,esp32s3-uart";
+>
+> Use 4 spaces for example indentation.
+
+Ok.
+
+> > +            reg =3D <0x60000000 0x80>;
+> > +            interrupts =3D <27 1 0>;
+>
+> Use proper define for IRQ flags.
+
+These are not IRQ flags. 1 and 0 are the routing parts
+of the IRQ specification.
+
+--=20
+Thanks.
+-- Max
 
