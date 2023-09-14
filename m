@@ -1,134 +1,132 @@
-Return-Path: <devicetree+bounces-85-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-86-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EC6C79FBBA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 08:15:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CE2379FBC0
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 08:17:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 139B7B20960
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 06:15:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8291B2095B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 06:17:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAFE11FDA;
-	Thu, 14 Sep 2023 06:15:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B8CB20F8;
+	Thu, 14 Sep 2023 06:16:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92DA63B
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 06:15:44 +0000 (UTC)
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0836F3
-	for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 23:15:43 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9ad810be221so76142766b.2
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 23:15:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694672142; x=1695276942; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dGvyPuDXfJumH13lGGqN64P86dyDCoQjPGvMDx/fHQU=;
-        b=DLQQgPDEAaObTKNLdTw7Z/9rGBt/jvdZqSnKERdo+TGuRJ4qECLiOJ6UQaMsOSUhyc
-         ZvYCcv9Rv80J6hSAo7dE0li52dgQaMTkavf4spd7QjByTl1wHnjCSVkRO6DVQkkAxWaH
-         VPwg+hiEPLk9wMCe73wNwJ2zeRzOQQM6DgHAmPjL+EyK8K9uMwTlxXxfnMxIeu+nqH6B
-         2krsrZQKoC0rgrrZswHzWXIRMSBNuFd0OX0GhnNl319akWcvKhKc5wzZloMRlYNgbMj9
-         AqTAM7ZeQVgmgTRwuTGw7nDxcvRfkHWmdQMAanKBf5Bt9G0KaZZpiMcSSKz1lY5EyRsP
-         n3wA==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9048320EC
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 06:16:49 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 47030F7
+	for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 23:16:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1694672207;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5HrkaNTsOJNvN14ax51kGi2IdMuBS6PxaLbOw0uKJTo=;
+	b=UQBMVaDyzRFUj2rb6N6dPeat/GlOY3lNVaaTbQxm3ZxJjWlXrXlE86AX04bazCNTvWT6Ku
+	gtpHjrZLDqe4CicF/SueA6oM+eBVxr2AX+sqqyg7t/F/qc899J1Tg/NxXTkzGz+Q5SqqMG
+	uAXSNWpKEhy02i6+RYNb9K7eAbgnDos=
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
+ [209.85.208.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-517-og1fPtDpPyOfh9CjbHk24A-1; Thu, 14 Sep 2023 02:16:45 -0400
+X-MC-Unique: og1fPtDpPyOfh9CjbHk24A-1
+Received: by mail-ed1-f69.google.com with SMTP id 4fb4d7f45d1cf-525691cfd75so121848a12.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 23:16:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694672142; x=1695276942;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dGvyPuDXfJumH13lGGqN64P86dyDCoQjPGvMDx/fHQU=;
-        b=lVqUJV8LFdnPonhC7v2BPdmsuwRNhieEhwCrBYQm3nCkW/AAI0X/bcBhTM7D8Ys8uv
-         4jVV8F6qEFThWxwy2Tb/4yMvXFfoeRlCOYx8F3FU4m8bXvQwAluExzMUl5UE2mgJzxPv
-         EOhnfWYsxXxplD2vdxV7m01j6kOo0EtMjkiHmYvajH+/lyvH9WlkMqFuT3w4HXgK/GVa
-         wLvkLk07rADI/nQluozMxWRnuzP5lcNls89c12dkWeGia39f74Q4j47LufHxncRGSq7j
-         5XczqVWBbMAM/AIPcu66ambP1TI3VitetqoQ6wygaQ/U4jpQYoq/Fkyrz5dPT5OvXr6c
-         g44g==
-X-Gm-Message-State: AOJu0Yw9Srnhgs8xoQyTFeCd9W7qWz6X576J0mZ6gFV56tXHqFdSFNPj
-	h8ShxSIVVydw144X7vmJrY9imw==
-X-Google-Smtp-Source: AGHT+IG1noJ5RA1ZmYbaJkfluW31QIPR0bzM86PlU4mJbJH0FwvIkxbeMJN40Jg1iBviRz4KoWnPTw==
-X-Received: by 2002:a17:907:b10:b0:9ad:ada4:bad4 with SMTP id h16-20020a1709070b1000b009adada4bad4mr1786445ejl.11.1694672142335;
-        Wed, 13 Sep 2023 23:15:42 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id uz3-20020a170907118300b0099cc36c4681sm507215ejb.157.2023.09.13.23.15.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 23:15:41 -0700 (PDT)
-Message-ID: <357805c5-bedb-8972-bcf1-fabaaaf90ad9@linaro.org>
-Date: Thu, 14 Sep 2023 08:15:39 +0200
+        d=1e100.net; s=20230601; t=1694672205; x=1695277005;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5HrkaNTsOJNvN14ax51kGi2IdMuBS6PxaLbOw0uKJTo=;
+        b=kGRKHk72iv4EVljE0yi7M1p63jukNR3LgqjXRH5xfyl1ZM99TJDB1CJbv5ApeVsE2s
+         1zHSj9DtKSXDWh64z9K9Ghj0sRUXmUAUXd1Q2XXCyfvukTlnGBjsHFbRX8Im2VkXJP4W
+         y03cQu+drKKU34EZMgoDszfhlsWK/LAQPuJ54A3FtOntHMDZ9z9O8lH0l/u+zPO0x6zw
+         Ps4AlxZLm1ugeLi32s7V8Hx7cInLKzkeV1gIp2uR5rnD/N4nyDKzDsQY1k3qyZ0t2aJD
+         8o9zfhd2Q90biXjYpILG/sLPJzuCNMkvM4KC9Yncy42E8eE6gLLFPUCDL7fOAQQxYnXh
+         6Ruw==
+X-Gm-Message-State: AOJu0YxpBLhRxYSzDh9d7LMU/z/98/NMGIm66yugiH0FLvqaM38hvxl1
+	RUSyGsTX7gGKU1wLSKCBwpvSDVoTzZxK86D8kzXghj/DY6OeyUnBz8wL3F2N605b+XB298CG9lR
+	EsAH9oepHYPsaMt2gcRklSg==
+X-Received: by 2002:a05:6402:518a:b0:523:37cf:6f37 with SMTP id q10-20020a056402518a00b0052337cf6f37mr3597884edd.4.1694672204782;
+        Wed, 13 Sep 2023 23:16:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHVPmJWO9rwdgzF0VjssgMmybRTxys9eCkPpElR8AcfT5cRq87VZLU5gu3+14wqMa0pCCO7CA==
+X-Received: by 2002:a05:6402:518a:b0:523:37cf:6f37 with SMTP id q10-20020a056402518a00b0052337cf6f37mr3597870edd.4.1694672204454;
+        Wed, 13 Sep 2023 23:16:44 -0700 (PDT)
+Received: from gerbillo.redhat.com (146-241-242-187.dyn.eolo.it. [146.241.242.187])
+        by smtp.gmail.com with ESMTPSA id n13-20020aa7db4d000000b005232ea6a330sm469915edt.2.2023.09.13.23.16.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Sep 2023 23:16:44 -0700 (PDT)
+Message-ID: <eba4483dd75a1c18bdb24f7c41e701f96f1e2d0a.camel@redhat.com>
+Subject: Re: [PATCH 2/2] arm64: dts: imx8dxl-ss-conn: Complete the FEC
+ compatibles
+From: Paolo Abeni <pabeni@redhat.com>
+To: Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org
+Cc: wei.fang@nxp.com, shenwei.wang@nxp.com, xiaoning.wang@nxp.com, 
+	kuba@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@denx.de>
+Date: Thu, 14 Sep 2023 08:16:42 +0200
+In-Reply-To: <9dd78edb2476cc5b57ce7f6b5c6bb338ebef43fd.camel@redhat.com>
+References: <20230909123107.1048998-1-festevam@gmail.com>
+	 <20230909123107.1048998-2-festevam@gmail.com>
+	 <9dd78edb2476cc5b57ce7f6b5c6bb338ebef43fd.camel@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v7 4/4] clk: qcom: add clock controller driver for
- qca8386/qca8084
-Content-Language: en-US
-To: Luo Jie <quic_luoj@quicinc.com>, andersson@kernel.org, agross@kernel.org,
- konrad.dybcio@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_srichara@quicinc.com
-References: <20230914054639.13075-1-quic_luoj@quicinc.com>
- <20230914054639.13075-5-quic_luoj@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230914054639.13075-5-quic_luoj@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 14/09/2023 07:46, Luo Jie wrote:
-> The clock controller driver of qca8386/qca8084 is registered
-> as the MDIO device, the hardware register is accessed by MDIO bus
-> that is normally used to access general PHY device, which is
-> different from the current existed qcom clock controller drivers
-> using ioremap to access hardware clock registers.
-> 
-> MDIO bus is common utilized by both qca8386/qca8084 and other
-> PHY devices, so the mutex lock mdio_bus->mdio_lock should be
-> used instead of using the mutex lock of remap.
-> 
-> To access the hardware clock registers of qca8386/qca8084, there
-> is special MDIO frame sequence(three MDIO read/write operations)
-> need to be sent to device.
-> 
-> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
-> ---
->  drivers/clk/qcom/Kconfig       |    9 +
->  drivers/clk/qcom/Makefile      |    1 +
->  drivers/clk/qcom/nsscc-qca8k.c | 2178 ++++++++++++++++++++++++++++++++
->  3 files changed, 2188 insertions(+)
->  create mode 100644 drivers/clk/qcom/nsscc-qca8k.c
-> 
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index 865db5202e4c..c95ada6a1385 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -203,6 +203,15 @@ config IPQ_GCC_9574
->  	  i2c, USB, SD/eMMC, etc. Select this for the root clock
->  	  of ipq9574.
->  
-> +config IPQ_NSSCC_QCA8K
-> +	tristate "QCA8K(QCA8386 or QCA8084) NSS Clock Controller"
-> +	depends on MDIO_BUS || COMPILE_TEST
+On Tue, 2023-09-12 at 10:09 +0200, Paolo Abeni wrote:
+> Hi,
+>=20
+> On Sat, 2023-09-09 at 09:31 -0300, Fabio Estevam wrote:
+> > From: Fabio Estevam <festevam@denx.de>
+> >=20
+> > Use the full compatible list for the imx8dl FEC as per fsl,fec.yaml.=
+=20
+> >=20
+> > This fixes the following schema warning:
+> >=20
+> > imx8dxl-evk.dtb: ethernet@5b040000: compatible: 'oneOf' conditional fai=
+led, one must be fixed:
+> > 	['fsl,imx8qm-fec'] is too short
+> > 	'fsl,imx8qm-fec' is not one of ['fsl,imx25-fec', 'fsl,imx27-fec', 'fsl=
+,imx28-fec', 'fsl,imx6q-fec', 'fsl,mvf600-fec', 'fsl,s32v234-fec']
+> > 	'fsl,imx8qm-fec' is not one of ['fsl,imx53-fec', 'fsl,imx6sl-fec']
+> > 	'fsl,imx8qm-fec' is not one of ['fsl,imx35-fec', 'fsl,imx51-fec']
+> > 	'fsl,imx8qm-fec' is not one of ['fsl,imx6ul-fec', 'fsl,imx6sx-fec']
+> > 	'fsl,imx8qm-fec' is not one of ['fsl,imx7d-fec']
+> > 	'fsl,imx8mq-fec' was expected
+> > 	'fsl,imx8qm-fec' is not one of ['fsl,imx8mm-fec', 'fsl,imx8mn-fec', 'f=
+sl,imx8mp-fec', 'fsl,imx93-fec']
+> > 	'fsl,imx8qm-fec' is not one of ['fsl,imx8dxl-fec', 'fsl,imx8qxp-fec']
+> > 	'fsl,imx8qm-fec' is not one of ['fsl,imx8ulp-fec']
+> > 	from schema $id: http://devicetree.org/schemas/net/fsl,fec.yaml#
+> >=20
+> > Signed-off-by: Fabio Estevam <festevam@denx.de>
+>=20
+> It looks like this series is targeting the net-next tree, am I
+> misreading this?
+>=20
+> I guess we could have small conflicts whatever target tree we will use,
+> so I *think* the above should be ok. @Shawn Guo: do you prefer
+> otherwise?
 
-This is SoC is for both ARM and ARM64 worlds?
+Thinking again about it, I assume this should go via the devicetree git
+tree, so I'm dropping it from the netdev pw.
 
-> +	help
-> +	  Support for NSS(Network SubSystem) clock controller on
-> +	  qca8386/qca8084 chip.
-> +	  Say Y or M if you want to use network features of switch or
-> +	  PHY device. Select this for the root clock of qca8k.
-> +
+Please correct me otherwise, thanks!
 
-
-Best regards,
-Krzysztof
+Paolo
 
 
