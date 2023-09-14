@@ -1,192 +1,211 @@
-Return-Path: <devicetree+bounces-228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C099E7A06EE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 16:09:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 752A17A0725
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 16:20:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BAEE1C20A39
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 14:09:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FE971F238D6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 14:20:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 367CA224D2;
-	Thu, 14 Sep 2023 14:09:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 724AD22F0B;
+	Thu, 14 Sep 2023 14:19:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 231872421B
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 14:09:33 +0000 (UTC)
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.51])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EE89DF;
-	Thu, 14 Sep 2023 07:09:31 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1694700569; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=ECLa/iHpIzlyQADfvAVjpjAHb1awJ9StlaEXiaobB3JIdM1a4GUSND4YJYWJBPNGwR
-    hrwqEPXmUZt4bibYgVIs7YnUMjjYSVwkOPzKQoM/etytRJ4YShrBUZPY/mflT+MsZYvn
-    ChVQYoZly5Kkcs/lFCum9Q/fv0WbcOdY7gh4LV/ua0ZZS6REr+D2LVziwxyKHMXnvz0H
-    HLXy5i6et4oRsbFMJMvDzwAaz32WVUDv83jRe9NepkUgxFyG1E7ZEMHrkpnDHWBxXBCn
-    l621AxGE0YTQfkrX3IfB8cs6JC+C9weeWXiGKgSLdWk4EgldsbtGyzi9ySXHiFOIMdYe
-    HS1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1694700569;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=Jd84c8VCl84O/X9LEKWHRrmMX+GqRKSgI/d7fqGsbbA=;
-    b=gcH5zWtdkG7/49Jc58d3hNdcfi8OvFZZSXgAoQNlWV27kLJnLY7Vtg2s8AfKO9t6YI
-    K4W5M98yRErJum5bpJp2j0Q9R2fUFWX59AyrH+pUM8JmJFEfoUlnbIXd7FyvdKm5itCm
-    Tsp7Ej/TZ8XfgNPpMUpgWqzXG3LTnjGJfLhMRsN2g6LYWM2S6qOeV+iGo5YZoPFjuEjo
-    T7vt+gueNYKp9RwP8sRpUT2it36KdbytjzffNhqXu9Qx1hH+QLjYVSjo52llUOPTYyZT
-    ja98zf3w8Ft7S6/7wVqiSYMQUTsZdd5blyhTIKpJAs387wUjMbIOS2VBCGqS3HoXiSL0
-    ToLw==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1694700569;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=Jd84c8VCl84O/X9LEKWHRrmMX+GqRKSgI/d7fqGsbbA=;
-    b=OCmbhFhTcMki8DZuV5mKGQPIclWAc7xMHZe785354ILcIz2tXydZ+dg+YaKRpgZb8Q
-    EnimhNLOqgph6ByCK/78wZO9pRLvk9p35WimNkjGIgQVb2qNGSgUIAIQs0OogN+KfXWJ
-    Syv0ElFqF+3is1f5fCgs2slH5pxEnk+LJPIlrby5pSbacFlXhxLQ0MAG+PoRSZjVmPHi
-    d1hCgMT7SxdN1MtgvYEYypXHkgXis2FM96rePqWBU2xX8JwPU0RpNP4ylm4Dhg7Lc6gi
-    8hpJL11/1ntTX662Pl8xCOv4fgR9tV3lL8OC3X+eQpQ3qVGx9UfKtXJ676iDihpbGHhX
-    Rcxw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1694700569;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=Jd84c8VCl84O/X9LEKWHRrmMX+GqRKSgI/d7fqGsbbA=;
-    b=Q4mPF6ZxHdSrbpH757k/hUpbtKmpalM7zTUSBR1Wx2XHTvqA01GsNSK82g1jl2e8Uf
-    jJUYh9lLf+gePq50wZBg==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA95vh"
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.8.2 DYNA|AUTH)
-    with ESMTPSA id R04c57z8EE9T47Q
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Thu, 14 Sep 2023 16:09:29 +0200 (CEST)
-Date: Thu, 14 Sep 2023 16:09:22 +0200
-From: Stephan Gerhold <stephan@gerhold.net>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/9] arm64: dts: qcom: msm8916: Reserve firmware memory
- dynamically
-Message-ID: <ZQMUDia6cYA0mGmL@gerhold.net>
-References: <20230911-msm8916-rmem-v1-0-b7089ec3e3a1@gerhold.net>
- <20230911-msm8916-rmem-v1-4-b7089ec3e3a1@gerhold.net>
- <912f90ee-0816-43ae-bc6f-a9a9a3e33d8a@linaro.org>
- <9b1beb38-9ec2-4bdb-97f5-fccf98d3b0c3@linaro.org>
- <ZQGLioVhjCK3TRva@gerhold.net>
- <568b4e18-1ade-4a12-9766-d16d8ca9838d@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67CC5241E7
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 14:19:30 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id C027B1FD8;
+	Thu, 14 Sep 2023 07:19:29 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 85A341FB;
+	Thu, 14 Sep 2023 07:20:06 -0700 (PDT)
+Received: from [10.57.93.68] (unknown [10.57.93.68])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 591303F738;
+	Thu, 14 Sep 2023 07:19:27 -0700 (PDT)
+Message-ID: <9595ad86-ecdc-e613-1b34-113b8c3123cd@arm.com>
+Date: Thu, 14 Sep 2023 15:19:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <568b4e18-1ade-4a12-9766-d16d8ca9838d@linaro.org>
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 2/3] iommu: mediatek: Add support of unmanaged iommu
+ domain
+Content-Language: en-GB
+To: Alexandre Bailon <abailon@baylibre.com>,
+ =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
+ "joro@8bytes.org" <joro@8bytes.org>, "will@kernel.org" <will@kernel.org>
+Cc: "linux-mediatek@lists.infradead.org"
+ <linux-mediatek@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+References: <20230130102722.133271-1-abailon@baylibre.com>
+ <20230130102722.133271-3-abailon@baylibre.com>
+ <741920ba-8637-5e28-695c-699b46351590@arm.com>
+ <f126c61f-6373-d6c5-59c8-24dea9d9d168@baylibre.com>
+ <0e9f677b-846d-809d-9bc3-30906f703fda@arm.com>
+ <21fef8eb-6482-fd8c-118a-c4d9da4cfbaf@baylibre.com>
+ <2b8e19488386b5ca523f010b8ded750a4213f84e.camel@mediatek.com>
+ <68673ccd-d136-075e-6704-7d1558388784@baylibre.com>
+From: Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <68673ccd-d136-075e-6704-7d1558388784@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Sep 13, 2023 at 09:39:50PM +0200, Konrad Dybcio wrote:
-> On 13.09.2023 12:14, Stephan Gerhold wrote:
-> > On Wed, Sep 13, 2023 at 10:12:12AM +0100, Bryan O'Donoghue wrote:
-> >> On 13/09/2023 10:06, Konrad Dybcio wrote:
-> >>> On 11.09.2023 19:41, Stephan Gerhold wrote:
-> >>>> Most of the reserved firmware memory on MSM8916 can be relocated when
-> >>>> respecting the required alignment. To avoid having to precompute the
-> >>>> reserved memory regions in every board DT, describe the actual
-> >>>> requirements (size, alignment, alloc-ranges) using the dynamic reserved
-> >>>> memory allocation.
-> >>>>
-> >>>> This approach has several advantages:
-> >>>>
-> >>>>   1. We can define "templates" for the reserved memory regions in
-> >>>>      msm8916.dtsi and keep only device-specific details in the board DT.
-> >>>>      This is useful for the "mpss" region size for example, which varies
-> >>>>      from device to device. It is no longer necessary to redefine all
-> >>>>      firmware regions to shift their addresses.
-> >>>>
-> >>>>   2. When some of the functionality (e.g. WCNSS, Modem, Venus) is not
-> >>>>      enabled or needed for a device, the reserved memory can stay
-> >>>>      disabled, freeing up the unused reservation for Linux.
-> >>>>
-> >>>>   3. Devices with special requirements for one of the firmware regions
-> >>>>      are handled automatically. For example, msm8916-longcheer-l8150
-> >>>>      has non-relocatable "wcnss" firmware that must be loaded exactly
-> >>>>      at address 0x8b600000. When this is defined as a static region,
-> >>>>      the other dynamic allocations automatically adjust to a different
-> >>>>      place with suitable alignment.
-> >>>>
-> >>>> All in all this approach significantly reduces the boilerplate necessary
-> >>>> to define the different firmware regions, and makes it easier to enable
-> >>>> functionality on the different devices.
-> >>>>
-> >>>> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> >>>> ---
-> >>> [...]
-> >>>
-> >>>>   		mpss_mem: mpss@86800000 {
-> >>>> +			/*
-> >>>> +			 * The memory region for the mpss firmware is generally
-> >>>> +			 * relocatable and could be allocated dynamically.
-> >>>> +			 * However, many firmware versions tend to fail when
-> >>>> +			 * loaded to some special addresses, so it is hard to
-> >>>> +			 * define reliable alloc-ranges.
-> >>>> +			 *
-> >>>> +			 * alignment = <0x0 0x400000>;
-> >>>> +			 * alloc-ranges = <0x0 0x86800000 0x0 0x8000000>;
-> >>>> +			 */
-> >>> Do we know of any devices that this would actually work on?
-> [...]
-> >  - On DB410c it works just fine. All addresses I tried work without any
-> >    problems.
-> > 
-> >  - On longcheer-l8150 the modem firmare works fine when the memory
-> >    region starts somewhere between 0x86800000 and 0x8a800000. It also
-> >    works again after 0x8e800000. But on anything between 0x8a800000 and
-> >    0x8e800000 it's broken for who knows what reason.
-> > [...]
-> Were you able to find a phone (likely a very reference-design-based
-> one) that this worked on, btw?
+On 2023-09-14 09:07, Alexandre Bailon wrote:
+> Hi,
+> 
+> Sorry for long delay before the response.
+> 
+> On 2/14/23 06:48, Yong Wu (吴勇) wrote:
+>> On Tue, 2023-01-31 at 16:31 +0100, Alexandre Bailon wrote:
+>>>
+>>> On 1/31/23 15:15, Robin Murphy wrote:
+>>>> On 31/01/2023 1:08 pm, Alexandre Bailon wrote:
+>>>>> Hi Robin
+>>>>>
+>>>>> On 1/30/23 13:04, Robin Murphy wrote:
+>>>>>> On 2023-01-30 10:27, Alexandre Bailon wrote:
+>>>>>>> Currently, the driver can allocate an unmanaged iommu domain.
+>>>>>>> But, this only works for SoC having multiple bank or multiple
+>>>>>>> iova
+>>>>>>> region.
+>>>>>>
+>>>>>> That is for good reason - there is only a single pagetable per
+>>>>>> bank,
+>>>>>> so if there are multiple devices assigned to a single bank,
+>>>>>> they
+>>>>>> cannot possibly be attached to different domains at the same
+>>>>>> time.
+>>>>>> Hence why the banks are modelled as groups.
+>>>>>
+>>>>> I understand.
+>>>>> I am trying to upstream a remoteproc driver but the remote
+>>>>> processor is
+>>>>> behind the iommu.
+>>>>> remoteproc can manage the iommu but it requires an unmanaged
+>>>>> domain.
+>>>>> I tried a couple of things but this cause code duplication,
+>>>>> implies many hacks and not always reliable.
+>>>>> Do you have any suggestion ?
+>>>>
+>>>> If there are other active devices behind the same IOMMU, and the
+>>>> remoteproc device cannot be isolated into its own bank using the
+>>>> existing IOMMU driver logic, then the remoteproc driver cannot
+>>>> manage
+>>>> the IOMMU directly, and must just use the regular DMA API. There's
+>>>> no
+>>>> way around it; you can't have two different parts of the kernel
+>>>> both
+>>>> thinking they have exclusive control of a single IOMMU address
+>>>> space at
+>>>> the same time. Similarly, remoteproc also cannot take explicit
+>>>> control
+>>>> of a multi-device group if it's not actually in control of the
+>>>> other
+>>>> devices, since their drivers will not be expecting the DMA address
+>>>> space
+>>>> to suddenly change underfoot - that's why iommu_attach_device() has
+>>>> the
+>>>> check which you presumably ran into.
+>>>
+>>> Unfortunately, we can't just use the regular DMA API.
+>>> Basically, the firmware use static addresses (and the remote core is
+>>> only supposed to access addresses between 0x60000000 and 0x70000000).
+>>> When we use DMA API, we get a random address that doesn't match what
+>>> the
+>>> firmware would expect.
+>>> remoteproc use directly the iommu API to map physical address to the
+>>> static address expected by the firmware when DMA API can't be use.
+>>
+>> If this master can only support this special address, We could handle
+>> it inside this driver.
+>>
+>> Could you help try to add these two patches [3/11] and [4/11]?
+>>
+>> [3/11]
+>> https://patchwork.kernel.org/project/linux-mediatek/patch/20230214031114.926-4-yong.wu@mediatek.com/
+>> [4/11]
+>> https://patchwork.kernel.org/project/linux-mediatek/patch/20230214031114.926-5-yong.wu@mediatek.com/
+>>
+>>
+>> and, then add the logical for mt8365(I see the APU is larb0 port10/11
+>> in the binding):
+>> --------------------------------
+>>
+>> +#define MT8365_REGION_NR        2
+>> +
+>> +static const struct mtk_iommu_iova_region
+>> mt8365_multi_rgn[MT8365_REGION_NR] = {
+>> +    { .iova_base = 0x0,        .size = SZ_4G},           /* 0 ~
+>> 4G. */
+>> +    { .iova_base = 0x60000000,    .size = SZ_256M},      /* APU
+>> */
+>> +};
+>> +
+>>
+>> xxxxxxxxxxx
+>>
+>> +static const unsigned int
+>> mt8365_larb_region_msk[MT8365_REGION_NR][MTK_LARB_NR_MAX] = {
+>> +    [0] = {~(u32)(BIT(10) | BIT(11)), ~0, ~0, ~0, ~0, ~0},
+>> +    [1] = {[0] = BIT(10) | BIT(11)},
+>> +};
+>> +
+>>   static const struct mtk_iommu_plat_data mt8365_data = {
+>>       .m4u_plat    = M4U_MT8365,
+>>       .flags        = RESET_AXI | INT_ID_PORT_WIDTH_6,
+>>       .inv_sel_reg    = REG_MMU_INV_SEL_GEN1,
+>>       .banks_num    = 1,
+>>       .banks_enable    = {true},
+>> -    .iova_region    = single_domain,
+>> -    .iova_region_nr    = ARRAY_SIZE(single_domain),
+>> +    .iova_region    = mt8365_multi_rgn,
+>> +    .iova_region_nr    = ARRAY_SIZE(mt8365_multi_rgn),
+>> +    .iova_region_larb_msk = mt8365_larb_region_msk,
+>>       .larbid_remap    = {{0}, {1}, {2}, {3}, {4}, {5}}, /* Linear
+>> mapping. */
+>>   };
+>> --------------------------------
+>>
+>> After that, If we call DMA API with the device whose dtsi has
+>> M4U_PORT_APU_READ/M4U_PORT_APU_WRITE. The iova should be located at
+>> that special address. Sorry, I have no board to test.
+>>
+> 
+> I have not yet tested the patches but it will only address one part of 
+> the problem.
+> Using your patches, I could allocate some shared memory using DMA API 
+> but the main issue still remain.
+> The firmware is not relocatable at all. So, once the firmware is built, 
+> it is expected to be loaded at a specific address.
+> Remoteproc framework support this use case. Using the resource table, 
+> the firmware expose to remoteproc what device address is expect and 
+> remoteproc manually call iommu_map to satisfy this requirement.
+> Using DMA_API, I could allocate the memory to load the firmware but I 
+> could not be sure that the DMA address will be the one expected by 
+> firmware.
 
-Actually I would count the Longcheer devices (l8150 = Wileyfox Swift and
-l8910 = BQ Aquaris X5) to the category of close-to-QRD-based devices.
-Based on quick tests both behave like described above (only
-0x8a800000-0x8e800000 is broken). Same for wingtech-wt88047.
-
-In other words, for those using the dynamic allocation would work fine,
-because the alloc-ranges = <0x0 0x86800000 0x0 0x8000000>; only includes
-working start addresses from 0x86800000 to ~0x89800000 (with a size of
-0x5000000).
-
-I guess I could use it for them and only make other devices use a fixed
-address. But I also don't quite have the capacity to test every device
-to see if relocating the region works or not.
-
-I think it's still easiest to allocate mpss on a fixed address
-everywhere. The only real disadvantage is that overriding "reg", e.g.
-
-	&mpss_mem {
-		reg = <0x0 0x86800000 0x0 0x5100000>;
-	};
-
-is a bit more ugly than overriding size:
-
-	&mpss_mem {
-		size = <0x0 0x5100000>;
-	};
-
-but well, this is a very minor disadvantage.
+I think the solution to this is now to use the new DT binding to require 
+an IOMMU identity mapping of the firmware region[1], such that it's all 
+taken care of for you.
 
 Thanks,
-Stephan
+Robin.
+
+[1] https://git.kernel.org/torvalds/c/af0d81357cc5
 
