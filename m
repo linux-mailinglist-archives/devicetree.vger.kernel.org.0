@@ -1,108 +1,120 @@
-Return-Path: <devicetree+bounces-167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 573C67A0037
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:36:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2F767A004E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:38:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2CCFF1C2105C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:36:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFD12282162
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:38:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F92520B3D;
-	Thu, 14 Sep 2023 09:35:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74E7720B3E;
+	Thu, 14 Sep 2023 09:38:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83756224ED
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 09:35:28 +0000 (UTC)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDC8D1FD3;
-	Thu, 14 Sep 2023 02:35:27 -0700 (PDT)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-59be9a09c23so7361757b3.1;
-        Thu, 14 Sep 2023 02:35:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694684127; x=1695288927;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LTh8xPM+07FBTf1rIq+GUK/2kHbHJWljrJibJkEvgc4=;
-        b=I7sz6BPoc8T2L0eqmoseib7EGNmf9l9CpfWIhHuDwx5F57YCJ0FOJaO1F5KEEmohV0
-         8G8AJPPRyQ6Sl557+4paMevydZoCvHwA+zk/78mkcmFC2p+YcmWqZ8du/li7pdiihvx7
-         9dKPcNTi6VUFA6Xa0sDZ1kEkl/SX/I3JiU1flmIujTwkk3vqV9kL7qXk000GySLiYuSw
-         8Y0jzpZi9f6RsURtWNOg9MiW9qN9aMzxZtXcICgS6Mh/9pnEgS7oMbi70h1qbtrCgLDx
-         /7FXNeRp49m9V5/kRoflMg77Eq1qgZdoUPVN8AXFbhglDNC0pgSWd4f6TiJZ3g61FLlq
-         2a6g==
-X-Gm-Message-State: AOJu0Yyfv3VgpjqRuEFvFRgOaC8fh4XvLYo1Ooj6VwESy1ktRmATLvoo
-	SYSCocp4kN4kHB9fg+lsYK3jBFqFggOKNw==
-X-Google-Smtp-Source: AGHT+IE2zonk+hup+uaOx0EVS3UrnYkAZUE5WTq1dNfGMoXak4bWzcR+xy0uC00D5lWMSWz29HEY1g==
-X-Received: by 2002:a81:498c:0:b0:57a:8ecb:11ad with SMTP id w134-20020a81498c000000b0057a8ecb11admr4669031ywa.43.1694684127028;
-        Thu, 14 Sep 2023 02:35:27 -0700 (PDT)
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
-        by smtp.gmail.com with ESMTPSA id g5-20020a0ddd05000000b0059b085c4051sm233923ywe.85.2023.09.14.02.35.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Sep 2023 02:35:25 -0700 (PDT)
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-d7b79a4899bso749171276.2;
-        Thu, 14 Sep 2023 02:35:25 -0700 (PDT)
-X-Received: by 2002:a25:32c4:0:b0:d80:e259:ce67 with SMTP id
- y187-20020a2532c4000000b00d80e259ce67mr4305854yby.61.1694684125448; Thu, 14
- Sep 2023 02:35:25 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 679AC224E4
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 09:38:21 +0000 (UTC)
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA6C71FC4;
+	Thu, 14 Sep 2023 02:38:20 -0700 (PDT)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38E3ihC2012982;
+	Thu, 14 Sep 2023 04:37:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=PODMain02222019; bh=PgPgRK+/j1+zXmV
+	y3XMmwkmh0K8fdGhl//JJcR1N0uQ=; b=KESbjM/m4ZW7mMq5uzG5dkqyirKQeL4
+	BDqeq0I1ihRuCLseqbliVzcCFp+b5PxoNo8z2y5MpoCscN4mE/pHDbxJP4GquRcu
+	CRSNKjWI4oJ4Mzet80XEyy+yNjpDhzQwxI7ipaUKt+MuRof11DJA0tOKIGXiAk+I
+	x5xsifkGQE1IXQ+amgV6dp6Tvwi3MvVbxzaqE7De/zZ2NdBepcYV4sCGk66s42tv
+	dOEP2xlWVQABUa1AqrVgZvoKJTCfd+DuTM3PFLikAVj8g3eDJ6OkO1fm8C2ZL2VP
+	AvybehyKqGXG+BElqCibioPP9ThyJ1UBKdG2bWlVpqrHgsxiqFyCOmw==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3t2y7u25xv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Sep 2023 04:37:33 -0500 (CDT)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Thu, 14 Sep
+ 2023 10:37:31 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.37 via Frontend Transport; Thu, 14 Sep 2023 10:37:31 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 03BE93575;
+	Thu, 14 Sep 2023 09:37:31 +0000 (UTC)
+Date: Thu, 14 Sep 2023 09:37:31 +0000
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: John Watts <contact@jookia.org>
+CC: <alsa-devel@alsa-project.org>, Liam Girdwood <lgirdwood@gmail.com>,
+        "Mark
+ Brown" <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai
+	<tiwai@suse.com>, <patches@opensource.cirrus.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/3] ASoC: wm8782: Handle maximum audio rate at runtime
+Message-ID: <20230914093731.GS103419@ediswmail.ad.cirrus.com>
+References: <20230913171552.92252-1-contact@jookia.org>
+ <20230913171552.92252-2-contact@jookia.org>
+ <20230914092107.GR103419@ediswmail.ad.cirrus.com>
+ <ZQLR50CAzr0VDpeh@titan>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com> <20230912045157.177966-2-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20230912045157.177966-2-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 14 Sep 2023 11:35:13 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUeLiV-P6MUC7F2Mfs+axZjrM-iscTT0W9GqYZaXcKhQg@mail.gmail.com>
-Message-ID: <CAMuHMdUeLiV-P6MUC7F2Mfs+axZjrM-iscTT0W9GqYZaXcKhQg@mail.gmail.com>
-Subject: Re: [PATCH 01/37] dt-bindings: serial: renesas,scif: document
- r9a08g045 support
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
-	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
-	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
-	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ZQLR50CAzr0VDpeh@titan>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-GUID: b6do4WOHYNEt-Js07443kw8u0Rdbb7Z4
+X-Proofpoint-ORIG-GUID: b6do4WOHYNEt-Js07443kw8u0Rdbb7Z4
+X-Proofpoint-Spam-Reason: safe
 
-On Tue, Sep 12, 2023 at 6:52=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Document support for the Serial Communication Interface with FIFO (SCIF)
-> available in the Renesas RZ/G3S (R9A08G045) SoC. SCIF interface in
-> Renesas RZ/G3S is similar to the one available in RZ/G2L.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On Thu, Sep 14, 2023 at 07:27:03PM +1000, John Watts wrote:
+> On Thu, Sep 14, 2023 at 09:21:07AM +0000, Charles Keepax wrote:
+> > On Thu, Sep 14, 2023 at 03:15:50AM +1000, John Watts wrote:
+> > > The wm8782 supports up to 192kHz audio when pins are set correctly.
+> > > Instead of hardcoding which rates are supported enable them all
+> > > then refer to a max_rate variable at runtime.
+> > > 
+> > > Signed-off-by: John Watts <contact@jookia.org>
+> > > ---
+> > > +static int wm8782_dai_hw_params(struct snd_pcm_substream *component,
+> > > +			    struct snd_pcm_hw_params *params,
+> > > +			    struct snd_soc_dai *dai)
+> > > +{
+> > > +	struct wm8782_priv *priv =
+> > > +		snd_soc_component_get_drvdata(dai->component);
+> > > +
+> > > +	if (params_rate(params) > priv->max_rate)
+> > > +		return -EINVAL;
+> > > +
+> > > +	return 0;
+> > > +}
+> > 
+> > We should be setting this as a constraint in startup, rather
+> > than returning an error in hw_params. That will let user-space
+> > know the supported rates and allow it to resample if necessary.
+> 
+> How do you do this? The struct with the rate is statically defined.
+> 
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+You can programmatically add additional constraints, commonly
+this will be done from the startup callback on the DAI. See
+something like arizona_startup in sound/soc/codecs/arizona.c for
+an example, that enables 44.1/48k rates based on clocks but the
+principle should be similar.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Thanks,
+Charles
 
