@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-84-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 020CD79FBB2
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 08:12:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EC6C79FBBA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 08:15:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93304B208F5
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 06:12:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 139B7B20960
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 06:15:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D631E1FA6;
-	Thu, 14 Sep 2023 06:12:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAFE11FDA;
+	Thu, 14 Sep 2023 06:15:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C69681873
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 06:12:01 +0000 (UTC)
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BBC8F3
-	for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 23:12:00 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-402c46c49f4so5707105e9.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 23:12:00 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92DA63B
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 06:15:44 +0000 (UTC)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0836F3
+	for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 23:15:43 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9ad810be221so76142766b.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 23:15:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694671919; x=1695276719; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694672142; x=1695276942; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2a/PHWqxsvCjYvw/PrGstkPwApGUDTH1LI40pfCDPVU=;
-        b=WyH8FAFbkA33GCBtaxJNxOd3NtHQfvMjpBVZLBhH87u4tT32p54ddHDYsL33JRrYZk
-         iVAo3kxs/4SXHUuDgqZuWZSA/A7EtSZ9LoTbFz1tAItuoEVU8M9MNXAiCabW3dZWFQUh
-         Ax8jKOkNqWBgboFrIvP6FaG85PHCZ4Ae01UR4bVd1rLlLV7wt8aNywNnzKybYPx+bfJh
-         Vf/uI3NRbxQQvp5un2THZGjNKB8BKNjpzpaaMmXMyJji1pUWeSJGice5Fz9HOjpKEVD3
-         XwxGkRJQ4aRFL42uLIt0HVyR+8ZKRIAwgzyH4PVvO3s7RfdMInLOw3Hu1NeC1w4a5OQl
-         s86A==
+        bh=dGvyPuDXfJumH13lGGqN64P86dyDCoQjPGvMDx/fHQU=;
+        b=DLQQgPDEAaObTKNLdTw7Z/9rGBt/jvdZqSnKERdo+TGuRJ4qECLiOJ6UQaMsOSUhyc
+         ZvYCcv9Rv80J6hSAo7dE0li52dgQaMTkavf4spd7QjByTl1wHnjCSVkRO6DVQkkAxWaH
+         VPwg+hiEPLk9wMCe73wNwJ2zeRzOQQM6DgHAmPjL+EyK8K9uMwTlxXxfnMxIeu+nqH6B
+         2krsrZQKoC0rgrrZswHzWXIRMSBNuFd0OX0GhnNl319akWcvKhKc5wzZloMRlYNgbMj9
+         AqTAM7ZeQVgmgTRwuTGw7nDxcvRfkHWmdQMAanKBf5Bt9G0KaZZpiMcSSKz1lY5EyRsP
+         n3wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694671919; x=1695276719;
+        d=1e100.net; s=20230601; t=1694672142; x=1695276942;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2a/PHWqxsvCjYvw/PrGstkPwApGUDTH1LI40pfCDPVU=;
-        b=PMsgSxaeIkUMvtIpTEiF2AdvWgPu9nscsugiRufTaE9CLSZjvisz2aj5XN+ZZDwGO7
-         /ID9yy893T31NHHRr6Gl+Ast6fQ9JuxsF3uAuPq1ZBoLAJpISJYl7/UPuLTK2LFRoJa3
-         4wGXFyaIen+41ogNyfvrTIoKanXiSndWOVDzVMeOUIR6V5m76dRKqNUm+qWhZVT6oOYl
-         PZiTsECVjvfRD7JMNn2BGWTEiLwXB/M1BHYlIhhCiHEvkPqgOyRNFEQB562WyErewY1J
-         koCyfPOzvwjxNdpJmhffRovrEno8Oa6O6hje8p5ldezPkZu3hl+6Xw3mUBSmN78sa+5X
-         Nojw==
-X-Gm-Message-State: AOJu0YxzwVPHY17ttiwB6CpQq3gj6I041uKn6oDxw9L2X9qF3n6b5cFP
-	944hBrhp0srv1CqtUaJtIrXa/A==
-X-Google-Smtp-Source: AGHT+IGw6rLBiZ/VZp782H6iiBB72aJIj5bR1ullvx8HbEIzsNDjz5tNRHSmEU1mgTSDc50+cIZokQ==
-X-Received: by 2002:a05:600c:204c:b0:401:db82:3edf with SMTP id p12-20020a05600c204c00b00401db823edfmr3487074wmg.39.1694671918950;
-        Wed, 13 Sep 2023 23:11:58 -0700 (PDT)
+        bh=dGvyPuDXfJumH13lGGqN64P86dyDCoQjPGvMDx/fHQU=;
+        b=lVqUJV8LFdnPonhC7v2BPdmsuwRNhieEhwCrBYQm3nCkW/AAI0X/bcBhTM7D8Ys8uv
+         4jVV8F6qEFThWxwy2Tb/4yMvXFfoeRlCOYx8F3FU4m8bXvQwAluExzMUl5UE2mgJzxPv
+         EOhnfWYsxXxplD2vdxV7m01j6kOo0EtMjkiHmYvajH+/lyvH9WlkMqFuT3w4HXgK/GVa
+         wLvkLk07rADI/nQluozMxWRnuzP5lcNls89c12dkWeGia39f74Q4j47LufHxncRGSq7j
+         5XczqVWBbMAM/AIPcu66ambP1TI3VitetqoQ6wygaQ/U4jpQYoq/Fkyrz5dPT5OvXr6c
+         g44g==
+X-Gm-Message-State: AOJu0Yw9Srnhgs8xoQyTFeCd9W7qWz6X576J0mZ6gFV56tXHqFdSFNPj
+	h8ShxSIVVydw144X7vmJrY9imw==
+X-Google-Smtp-Source: AGHT+IG1noJ5RA1ZmYbaJkfluW31QIPR0bzM86PlU4mJbJH0FwvIkxbeMJN40Jg1iBviRz4KoWnPTw==
+X-Received: by 2002:a17:907:b10:b0:9ad:ada4:bad4 with SMTP id h16-20020a1709070b1000b009adada4bad4mr1786445ejl.11.1694672142335;
+        Wed, 13 Sep 2023 23:15:42 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id c20-20020a7bc854000000b003fee6f027c7sm3840112wml.19.2023.09.13.23.11.57
+        by smtp.gmail.com with ESMTPSA id uz3-20020a170907118300b0099cc36c4681sm507215ejb.157.2023.09.13.23.15.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 23:11:58 -0700 (PDT)
-Message-ID: <f4dc58b3-b721-3081-6fed-66976b694217@linaro.org>
-Date: Thu, 14 Sep 2023 08:11:56 +0200
+        Wed, 13 Sep 2023 23:15:41 -0700 (PDT)
+Message-ID: <357805c5-bedb-8972-bcf1-fabaaaf90ad9@linaro.org>
+Date: Thu, 14 Sep 2023 08:15:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,31 +66,67 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm-smmu: Add SM7150 GPU SMMUv2
+Subject: Re: [PATCH v7 4/4] clk: qcom: add clock controller driver for
+ qca8386/qca8084
 Content-Language: en-US
-To: Danila Tikhonov <danila@jiaxyga.com>, will@kernel.org,
- robin.murphy@arm.com, joro@8bytes.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- dmitry.baryshkov@linaro.org, konrad.dybcio@linaro.org,
- quic_saipraka@quicinc.com, quic_bjorande@quicinc.com, a39.skl@gmail.com,
- robdclark@chromium.org, mani@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230913184526.20016-1-danila@jiaxyga.com>
- <20230913184526.20016-2-danila@jiaxyga.com>
+To: Luo Jie <quic_luoj@quicinc.com>, andersson@kernel.org, agross@kernel.org,
+ konrad.dybcio@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ quic_srichara@quicinc.com
+References: <20230914054639.13075-1-quic_luoj@quicinc.com>
+ <20230914054639.13075-5-quic_luoj@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230913184526.20016-2-danila@jiaxyga.com>
+In-Reply-To: <20230914054639.13075-5-quic_luoj@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/09/2023 20:45, Danila Tikhonov wrote:
-> SM7150 has a qcom,smmu-v2-style SMMU just for Adreno and friends.
-> Document it.
+On 14/09/2023 07:46, Luo Jie wrote:
+> The clock controller driver of qca8386/qca8084 is registered
+> as the MDIO device, the hardware register is accessed by MDIO bus
+> that is normally used to access general PHY device, which is
+> different from the current existed qcom clock controller drivers
+> using ioremap to access hardware clock registers.
 > 
-> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> MDIO bus is common utilized by both qca8386/qca8084 and other
+> PHY devices, so the mutex lock mdio_bus->mdio_lock should be
+> used instead of using the mutex lock of remap.
+> 
+> To access the hardware clock registers of qca8386/qca8084, there
+> is special MDIO frame sequence(three MDIO read/write operations)
+> need to be sent to device.
+> 
+> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
 > ---
+>  drivers/clk/qcom/Kconfig       |    9 +
+>  drivers/clk/qcom/Makefile      |    1 +
+>  drivers/clk/qcom/nsscc-qca8k.c | 2178 ++++++++++++++++++++++++++++++++
+>  3 files changed, 2188 insertions(+)
+>  create mode 100644 drivers/clk/qcom/nsscc-qca8k.c
+> 
+> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> index 865db5202e4c..c95ada6a1385 100644
+> --- a/drivers/clk/qcom/Kconfig
+> +++ b/drivers/clk/qcom/Kconfig
+> @@ -203,6 +203,15 @@ config IPQ_GCC_9574
+>  	  i2c, USB, SD/eMMC, etc. Select this for the root clock
+>  	  of ipq9574.
+>  
+> +config IPQ_NSSCC_QCA8K
+> +	tristate "QCA8K(QCA8386 or QCA8084) NSS Clock Controller"
+> +	depends on MDIO_BUS || COMPILE_TEST
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This is SoC is for both ARM and ARM64 worlds?
+
+> +	help
+> +	  Support for NSS(Network SubSystem) clock controller on
+> +	  qca8386/qca8084 chip.
+> +	  Say Y or M if you want to use network features of switch or
+> +	  PHY device. Select this for the root clock of qca8k.
+> +
+
 
 Best regards,
 Krzysztof
