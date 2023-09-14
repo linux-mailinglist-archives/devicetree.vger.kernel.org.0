@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D65F79FD0B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:16:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2DAF79FD17
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:18:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A5BDCB20938
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:16:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8795D1F22339
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:18:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEDC66AAB;
-	Thu, 14 Sep 2023 07:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B223D6AD6;
+	Thu, 14 Sep 2023 07:17:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0CF86135
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 07:16:21 +0000 (UTC)
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB6FAE50
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 00:16:20 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2bfc8c02e82so5308251fa.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 00:16:20 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A60446135
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 07:17:57 +0000 (UTC)
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBB6AE50
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 00:17:56 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-31ae6bf91a9so555451f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 00:17:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694675779; x=1695280579; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1694675875; x=1695280675; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=U7SrPQRJuK4tHzsE8n6A80x2pTokYnOBQDatv0CVuDU=;
-        b=uti4irkc/imu88lmXQ7ZiF/40I+CzVSFATcK5BzueCC3ndBmcg488zqDGt+y0PeI0w
-         5ITxHU8q9qdUbUXlEVm+rIRcxpNDAeayviAu8+6XMeb8bI7Sd0X+lDCHAMwz1l1oRD5F
-         47pp/kP6XrL8CSmLGd34Wmw+bpoUYDY2B8JUs5dn2mE22QgdE8WgSxI+uDArmuxSn34v
-         M9YHpo23rkWjG2FzBqQ2nwz2XEnSlLdAXFJk4hy/vc466L/in64+YiH2CM5RERt7DHfh
-         O9aLdTTDpzWSGG0jm+8hfQLmVS+S88E14uG3jojzlLIMKu2Gtkj2S9nBsL/CLmMrN6qv
-         c6FQ==
+        bh=TnyV9af3KTDSn5LmFo4v6eXcrqZ+B9e5Qxfuac0pjUY=;
+        b=bBbpkGr2n0HTB6HQGlZEQHjLa0Tpxp1IpvUIgNVu3aEXG/u1wqNiL9RxT+wFLnVAYy
+         lPYZSiSU4+dwTbDl+IGFoxUUQUosc8UeoUMfYbiUIl782pzdNqpyRwCktg9c4nVFRXLm
+         gBkPYu82+qa7S3WbZfzhkViQiSBxJbOfQRAUi27r1hseHd+buQOw14PaM8URO0OxFhsX
+         CMHqyrAl1/AKfEPm1sFEICCOjo4cdLFWHUtMAwrUgr/cS+hgl6ORmdowGd1C1Gdy9/bY
+         RZ9iWU5fCtdPoj6s74p7WfHO38h1xLLtMb50CrDf/Y28likNu0J6nXW249GkdCUqp3Gj
+         c+kQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694675779; x=1695280579;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20230601; t=1694675875; x=1695280675;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=U7SrPQRJuK4tHzsE8n6A80x2pTokYnOBQDatv0CVuDU=;
-        b=ufFbC9eNerNR+FqAp/5zRax2ozL1HPrO3tBwiVKo82nDXqlUAE+Sh15Yc4hatmPwVg
-         7SkkMud2UhkQlc9l3avvNG97Igp/nnB3D6+/nvJeXS+NJWpdjnId/YlAhn6H1GK2LLBf
-         VqFvydUKTb5D2Fo79gOE0lr/kGuFiBp6ou1Waf8q+2nFtPLHarrYcqFA1REQDX1T/8pM
-         eP8BQZTUZSVoI7YvU/JP4PAI12hZ1Jaxd3QkUFf84m0UoPoFdrix0MPWnWUDu37N5Exi
-         Y7IclJVvcW1Z4T731pxXgC4kIRKunwNBcoP0xguxmDbFsDMriVu6iCFf6VqtYPc3jqiu
-         BRwA==
-X-Gm-Message-State: AOJu0YzyzaU/fGrM3TSFtqH3MHfneWfHeKIGxzS2xTYEFw3a216fEJgx
-	+bUdxnaq1oukk10GKyzUSS+EqQ==
-X-Google-Smtp-Source: AGHT+IFitqCCdZTcNe2aSaytxGYa0WadIwjc1hNgHYxmqTfCFqIzAlese3qhtNRPnl1aL81WJPb/Zw==
-X-Received: by 2002:a2e:9590:0:b0:2bd:ddf:8aa7 with SMTP id w16-20020a2e9590000000b002bd0ddf8aa7mr4055748ljh.0.1694675779129;
-        Thu, 14 Sep 2023 00:16:19 -0700 (PDT)
+        bh=TnyV9af3KTDSn5LmFo4v6eXcrqZ+B9e5Qxfuac0pjUY=;
+        b=pb8OD9I+zogo+e/vWZRmy6jz9bYCMJYv49vkymXCxIgxbbYPLaK1yq/rAbK+h2ZZcv
+         vmSKVpciU8OcXKhxhdEdlVj7ITmw8Kr7NozRvd5T2REY/9mH3O0qkuLGap27aV3zzRll
+         SOvQyCbjRp6hm7hgVy0dpfGKhmdoDVE5t6Wj4iAvyyvuDrKCknm6fXQh6gLu/3vQ1mci
+         +64JorkPYic5oINQd6RGv/YKl/ZWPeOGcOVcpjrE87BIN7plFYiKHNddtAZPT/a2OLdj
+         TfuOy7tU99P5e4oJQ4zjtwxvQIt/fj4AOULXJLAhMbSHKSeo2sDHDeEaKeVV1QvaZCA2
+         s87g==
+X-Gm-Message-State: AOJu0YwxmzrLS0Sp3ycL5XQCn1hdtEYQpB1WBblNZIZ0ZdeTUBnuCaRn
+	QIluOgvhIsUtQriGYkb8S7OGcg==
+X-Google-Smtp-Source: AGHT+IEK6SYA+nBzWeG6lMDvkeq82QWkULn4oFR/HTZ2x3sw8wMbXcV31yc++OhQtubr4HHqola0wA==
+X-Received: by 2002:adf:de8a:0:b0:314:3bd7:6a0c with SMTP id w10-20020adfde8a000000b003143bd76a0cmr3970173wrl.33.1694675875014;
+        Thu, 14 Sep 2023 00:17:55 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id r6-20020a5d4e46000000b003198a9d758dsm912172wrt.78.2023.09.14.00.16.16
+        by smtp.gmail.com with ESMTPSA id q5-20020a5d6585000000b0031f5f0d0be0sm933196wru.31.2023.09.14.00.17.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Sep 2023 00:16:18 -0700 (PDT)
-Message-ID: <1e89183a-b42a-b447-0c1a-bbfe646705ef@linaro.org>
-Date: Thu, 14 Sep 2023 09:16:15 +0200
+        Thu, 14 Sep 2023 00:17:54 -0700 (PDT)
+Message-ID: <bccc1cad-c50b-c10e-6cb0-80b6fb7ac4cd@linaro.org>
+Date: Thu, 14 Sep 2023 09:17:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,6 +68,7 @@ User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
 Subject: Re: [PATCH v2] scsi: ufs: qcom: dt-bindings: Add MCQ properties
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Ziqi Chen <quic_ziqichen@quicinc.com>, quic_asutoshd@quicinc.com,
  quic_cang@quicinc.com, bvanassche@acm.org, mani@kernel.org,
  adrian.hunter@intel.com, beanhuo@micron.com, avri.altman@wdc.com,
@@ -83,65 +84,72 @@ Cc: linux-scsi@vger.kernel.org, Andy Gross <agross@kernel.org>,
  "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
  <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
 References: <1694675158-38301-1-git-send-email-quic_ziqichen@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1694675158-38301-1-git-send-email-quic_ziqichen@quicinc.com>
+ <1e89183a-b42a-b447-0c1a-bbfe646705ef@linaro.org>
+In-Reply-To: <1e89183a-b42a-b447-0c1a-bbfe646705ef@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/09/2023 09:05, Ziqi Chen wrote:
-> Remove the maxItem limitation to property 'reg',
-> and add description for the property 'msi-parent'.
+On 14/09/2023 09:16, Krzysztof Kozlowski wrote:
+> On 14/09/2023 09:05, Ziqi Chen wrote:
+>> Remove the maxItem limitation to property 'reg',
+
+Your commit should answer to "why". Not "what".
+
+>> and add description for the property 'msi-parent'.
+>>
+>> Signed-off-by: Ziqi Chen <quic_ziqichen@quicinc.com>
+>> ---
+>>  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 12 +++++++++++-
+>>  1 file changed, 11 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+>> index bdfa86a..5ec2717 100644
+>> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+>> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+>> @@ -77,7 +77,13 @@ properties:
+>>  
+>>    reg:
+>>      minItems: 1
+>> -    maxItems: 2
 > 
-> Signed-off-by: Ziqi Chen <quic_ziqichen@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 12 +++++++++++-
->  1 file changed, 11 insertions(+), 1 deletion(-)
+> So 20 items are allowed? No, that's not correct.
 > 
-> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> index bdfa86a..5ec2717 100644
-> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> @@ -77,7 +77,13 @@ properties:
->  
->    reg:
->      minItems: 1
-> -    maxItems: 2
+> 
+>> +    description:
+>> +      Register base addresses and lengths of the UFS areas.
+> 
+> Drop description - it's useless and redundant.
+> 
+>> +
+>> +  reg-names:
+>> +    minItems: 1
+>> +    description:
+>> +      Names of the reg areas to use during resource lookup.
+> 
+> Drop such description it's useless, instead list and describe items.
+> 
+> Also, why all devices now have two regs? No, this is just wrong. And
+> haven't we been here with two items?
+> 
+> 
+>>  
+>>    required-opps:
+>>      maxItems: 1
+>> @@ -97,6 +103,10 @@ properties:
+>>      description:
+>>        GPIO connected to the RESET pin of the UFS memory device.
+>>  
+>> +  msi-parent:
+>> +    description:
+>> +      Pointer to the hardware entity that serves as the MSI controller for thi UFS controller.
+> 
+> typo in "thi". Not wrapped according to Linux coding style (as written
+> in coding style document). BTW, this is usually just "true" and without
+> need for description.
+> 
 
-So 20 items are allowed? No, that's not correct.
-
-
-> +    description:
-> +      Register base addresses and lengths of the UFS areas.
-
-Drop description - it's useless and redundant.
-
-> +
-> +  reg-names:
-> +    minItems: 1
-> +    description:
-> +      Names of the reg areas to use during resource lookup.
-
-Drop such description it's useless, instead list and describe items.
-
-Also, why all devices now have two regs? No, this is just wrong. And
-haven't we been here with two items?
-
-
->  
->    required-opps:
->      maxItems: 1
-> @@ -97,6 +103,10 @@ properties:
->      description:
->        GPIO connected to the RESET pin of the UFS memory device.
->  
-> +  msi-parent:
-> +    description:
-> +      Pointer to the hardware entity that serves as the MSI controller for thi UFS controller.
-
-typo in "thi". Not wrapped according to Linux coding style (as written
-in coding style document). BTW, this is usually just "true" and without
-need for description.
-
+BTW, for both my comments - for reg/reg-names and this property - where
+is the user? Except adding this to example, I expect to see users somewhere.
 
 Best regards,
 Krzysztof
