@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-72-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2709879FB4D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:50:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7A9379FB4E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:50:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DEDFB20A07
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 05:50:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 007F51C203B1
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 05:50:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E00142511C;
-	Thu, 14 Sep 2023 05:47:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FB742511D;
+	Thu, 14 Sep 2023 05:48:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D528E3D7F
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 05:47:33 +0000 (UTC)
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 124C61738
-	for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 22:47:33 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99bcf2de59cso76848266b.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 22:47:32 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44FFE250FC
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 05:48:05 +0000 (UTC)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65EE2C6
+	for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 22:48:04 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99c1c66876aso71452366b.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 22:48:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694670451; x=1695275251; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694670483; x=1695275283; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aRwKx+aVUNdsT/yRs8dmsSCK+EhxcclEATZc5SW5dvk=;
-        b=CwWSiijddI8KOTo71TaKJsUGwgeBO4AN7smiA5V2bM9M8y4U4SD4p/fdw4XAdGZCfZ
-         EYtqIyqM0mLEA5SQWraJ28eSVvGIaMvQH7dTVClICZYrXItPEdFI/3aQtTfviakmiBbK
-         Kf4kwbQxsiaOpvWN7tXvonFaXbHDw781u+HpcmCbjnjevh3AZUc9GkuPhFVLljXSjuuS
-         vEGbEzXp5D4zbv6Csr+Xd6rmo0O9QlKyK88AZ7KTWDmzRA27fLa//HkhMtwYdIle97sF
-         t/Hee40bl4FrF62ndwIWyOIVGsp8B82jDILjRu87kasYqXwZuJfg8h2fyuZsaql76Z4X
-         QKxw==
+        bh=TfGXKt00Cpu1VM3dmeeDSUKZ343EJMe0hHl3+p8EaQw=;
+        b=fPlCijpuc4g8adn4j4ufcvDl1fxvdNZdp+YU9bNamZqm2B9WbvBe8onnm+pENwZDtD
+         rUwlgt3nbsrKY3d12twN51T+YYhhIwhwRqD4LIP+eo0MpKTack0ujk5RoYtgzz/lm/F+
+         YxmU0ra6BQlveCaZVBt7/S8Dsc2Ta6ArQKEWjfYIgwOdgzQ55nWAwr1Ypl7RdozwvxV3
+         PVUjNRGuDITLWoP26sByPCogQhgVDNYKXebAeifWF13qr5HBAy3yiF3YpONI6BM/JNWu
+         s3K9/qkIxX58j3s4h+nYljchEWnnazOmAX/4qMUBi50S2p4FaW52hECkAqd56p0JY4h0
+         wfAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694670451; x=1695275251;
+        d=1e100.net; s=20230601; t=1694670483; x=1695275283;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aRwKx+aVUNdsT/yRs8dmsSCK+EhxcclEATZc5SW5dvk=;
-        b=WQyPKf01hoYM+eOPLxYzAX1vZvBAKqjmbPXtln6ztjETtoRm3kxn91GFQwpW6qzAWq
-         mAnZ0PMrd2jurlrp3O5n66dW4SgXyPBwEp6cF7sbgH3ykvmPKIuavgH0zWPu0F3e8JAp
-         0fABzo81JGil9LUdA2ZnBjRLefg2kVR3xj4WF4q0AJZSVuTb/OfazItWRgsVYtNUi1ZI
-         8uJfWm/+AFekw68rlJRehLli3U9yf5MnvkhtEIOzKiWvB01o93Xnm1ZtNvwbn7IZhbHd
-         Hrh0hV+TG/e4EGh6BeKSrN8MID6DRcofDKBZKpztaPu+EQmpPSVDdMqP2GgOw/anRSRX
-         lh2Q==
-X-Gm-Message-State: AOJu0YyA0C1K1qsSoA6PuuZHvr06/9CESBXD5m6WBzjud5iLeAlmnJoK
-	Y8Ok2pHmwAqIr5KG9hkeHDJvTQ==
-X-Google-Smtp-Source: AGHT+IGxTh/8mNU2+nmm+vM8YqApu/9J2UNCKeeNHOXZXyiuYhSXCWhblzjZH7lFirW7vVAD2E7tLA==
-X-Received: by 2002:a17:906:e:b0:9a2:2635:daa9 with SMTP id 14-20020a170906000e00b009a22635daa9mr3555311eja.6.1694670451368;
-        Wed, 13 Sep 2023 22:47:31 -0700 (PDT)
+        bh=TfGXKt00Cpu1VM3dmeeDSUKZ343EJMe0hHl3+p8EaQw=;
+        b=DqzjE3rh6Quiw7Xq8boQ3f9q3aEadboUbvI+M2jCb/CR2G6S9h3n1SEw4FYE7Q3fre
+         AfhzxcSqKa93SJb/y0ghGcikSQBarULSHdgTXRv44MwCYX1KjWEFNYdjmdc1xvK4YOCm
+         dupExCsDKrOc8MEnBihM2pQZM/O5kQrJFAVQau59g0gjMTBDCpuyiz5sIpJi5dycp3Xa
+         vdtgnroNvtRPK9bO2c6UkUGGteSAQ1NvQ5NmbCRaZJbo0sef6P+NQdZ/3sXw7RgRA4SO
+         QaPxs+PlHOAgzE1pq9qOTDoHKcCigw33e3M9zpcW+KLumiMQhq7soPYCZyfP6wDZzUCB
+         YF4A==
+X-Gm-Message-State: AOJu0Yyt45tD/u+dKYI8qe1zU/nxwVLZBa71UP4EWNXswkkTiOXDTTGf
+	5Ya4c9d5dUFJBQDhP33eCFP2WA==
+X-Google-Smtp-Source: AGHT+IH4Mh5DkZfgKNLNhCRsuNSHMLuMtZFw02LD8r/PeDnq8+urBDArz5zwYgwUsw7gAsU4QwYXDQ==
+X-Received: by 2002:a17:906:3297:b0:9a6:5696:3887 with SMTP id 23-20020a170906329700b009a656963887mr3624398ejw.59.1694670482941;
+        Wed, 13 Sep 2023 22:48:02 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id gy18-20020a170906f25200b00991d54db2acsm484864ejb.44.2023.09.13.22.47.29
+        by smtp.gmail.com with ESMTPSA id x26-20020a1709064a9a00b009a13fdc139fsm472558eju.183.2023.09.13.22.48.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 22:47:30 -0700 (PDT)
-Message-ID: <4520fa76-8645-a438-ba7d-ef50c9781249@linaro.org>
-Date: Thu, 14 Sep 2023 07:47:29 +0200
+        Wed, 13 Sep 2023 22:48:02 -0700 (PDT)
+Message-ID: <8f86536f-42a3-a549-f01a-d1ce60aee338@linaro.org>
+Date: Thu, 14 Sep 2023 07:48:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,8 +66,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH 1/5] dt-bindings: gpio: vf610: correct i.MX8ULP and i.MX93
- interrupts
+Subject: Re: [PATCH 2/5] dt-bindings: gpio: vf610: add i.MX95 compatible
 Content-Language: en-US
 To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
  Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
@@ -82,38 +81,37 @@ Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Peng Fan <peng.fan@nxp.com>
 References: <20230914-vf610-gpio-v1-0-3ed418182a6a@nxp.com>
- <20230914-vf610-gpio-v1-1-3ed418182a6a@nxp.com>
+ <20230914-vf610-gpio-v1-2-3ed418182a6a@nxp.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230914-vf610-gpio-v1-1-3ed418182a6a@nxp.com>
+In-Reply-To: <20230914-vf610-gpio-v1-2-3ed418182a6a@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 14/09/2023 04:20, Peng Fan (OSS) wrote:
 > From: Peng Fan <peng.fan@nxp.com>
 > 
-> i.MX8ULP and i.MX93 actually has two interrupts for each gpio
-> controller, one for
+> Add i.MX95 compatible string which is compatible with i.MX8ULP
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/gpio/gpio-vf610.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml b/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
+> index 2593cc96fcbb..d0db2089cfab 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
+> @@ -26,7 +26,9 @@ properties:
+>            - const: fsl,imx7ulp-gpio
+>            - const: fsl,vf610-gpio
+>        - items:
+> -          - const: fsl,imx93-gpio
+> +          - enum:
 
-...
+Just make it an enum in your previous patch, so you won't change this
+line twice.
 
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,vf610-gpio
-> +              - fsl,imx7ulp-gpio
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-> +    else:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 2
-
-Instead describe the items with "items:" and descriptions.
+> +              - fsl,imx93-gpio
 
 Best regards,
 Krzysztof
