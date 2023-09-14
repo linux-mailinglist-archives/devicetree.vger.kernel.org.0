@@ -1,110 +1,115 @@
-Return-Path: <devicetree+bounces-155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E008C79FE9B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 10:41:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEB9679FEF2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 10:48:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E407281B35
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 08:41:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF1C81C20D0F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 08:48:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B94491CFBC;
-	Thu, 14 Sep 2023 08:40:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DBA910A19;
+	Thu, 14 Sep 2023 08:48:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACEA71CFA9
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 08:40:52 +0000 (UTC)
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32A831BF9
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 01:40:52 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-d8181087dc9so682220276.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 01:40:52 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30D1710A0E
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 08:48:35 +0000 (UTC)
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 745B8106
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 01:48:35 -0700 (PDT)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-59be8a2099bso7758797b3.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 01:48:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694680851; x=1695285651; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694681314; x=1695286114; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rBgKOX9HU0Cqf61gn84yvvVhKTbuYZo7XwNQLZJ6zZQ=;
-        b=n+HADZPRDaVcTgqRN5ARP3ajMfJkvybXCSDh3gpfl44JUiypjc0/2V2H9xRDnMa02L
-         GogX8fQVXn0s381cAovCMd06foZrauZjhyOBap0mLDCAPHe3mXoT2aiP6eFCtCELQtf0
-         No3nDZ3MqXZpg/BBorPaKFo+cw34NcuLUlb1PflEN1Z3qw/tn81HcLFh+y2UyWJT2Sor
-         PtE7Yj/2gQpR8iGR+T0IZvUC8JSH9v9x2pEJ0M3a5Mwf6x456JRwPNAMXKiFoPEb4AGR
-         /1O+1HTjQPjbydRY9fcyGmp6UfLzwETv4QUkc7rt+QZfoDy0B6DzDfhHbfbv1lemzh8j
-         fgRg==
+        bh=GgpTo8R8cmbn0NQ4Vlj56EaTvnRjrAgeOGC10HJRtqo=;
+        b=Hpnb+hzCSPUIOqPD4GZnNXO4j/huzhreLOqE3+VvJtlU3+u+wzM+3y7+NQ4skzhusL
+         EYcEZWrEewd7OMmdei5lTA8u60e0lalUqu1J7RH4jiwtmfPDfdLRlK2nXe6e6nNusMfE
+         c2/cdGQdIRn++9ofjsiCVm6mhSUebkxCu6iI5UEJvc+icbTSW5Ud8jR5GuwG+iUJDFna
+         8a7g82bpE0KR8pI5Cqnwu76bfxY5Dcay29OqhmLJIwJyPYfWfeEMD+eC/Dety52VmCXR
+         Y8UJqDc7njr2UMzE+4v7c1AElL9U7QCMuXTaGZP2ooWxKrpCAH3D351AB4WHRrGVHNZi
+         ca2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694680851; x=1695285651;
+        d=1e100.net; s=20230601; t=1694681314; x=1695286114;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=rBgKOX9HU0Cqf61gn84yvvVhKTbuYZo7XwNQLZJ6zZQ=;
-        b=mHmTD7OwsEFj3ydjgHznSbsIT2Gu36OdV5cfXWBryxDzEmvMVUwdsAbTbkq/Gwr0Iy
-         tItlWbc6hR+UYql+mGKbIn6GJ+Fpo1Pkb5viva0StQ+00hmzdC9tXAI9uoXviRV+mKDV
-         Fjvu6196uOKoHRues4eQ4O+35pit6VmzC1/gbG+gCAcHzud7cG5/DPQuOpYRO65f6bTc
-         YPCOyjt4pbx/Gmei1Oyyj7TCWSbfxvTwMh6m9/AFQr/UfagRQ+SVd0kbL0k28uPPaiGH
-         /Ev7ixKz1dnz1KtrimF2i5Dqd6U3IlEFI1vxv3LhnHAcVE9qK82l5ZNABXkfFraYEZ4n
-         bing==
-X-Gm-Message-State: AOJu0YwxhM3ssRvFdF8KoTvF0y/xcGw7UPGTo2L+72NXVbihvow/Znb5
-	6LRWyEklxi3/wrGRZ+6snnzkMv+Yh8rcELl1dEBIcw==
-X-Google-Smtp-Source: AGHT+IFwZobHxcqKOc9i9F0FwU196xwcuhkf7p5VMd50HiyGLwvFBTBzw2gNzhm4i/jnEP5lPJDUpXQSAPyK3EQ0058=
-X-Received: by 2002:a25:8001:0:b0:d4b:6a0:fe2b with SMTP id
- m1-20020a258001000000b00d4b06a0fe2bmr4591638ybk.36.1694680851406; Thu, 14 Sep
- 2023 01:40:51 -0700 (PDT)
+        bh=GgpTo8R8cmbn0NQ4Vlj56EaTvnRjrAgeOGC10HJRtqo=;
+        b=PLeKdoY2fc8i1/aWTwLnKt2nuFbb0qzVYY6Y0Ugt19j+xaFo3juxtObSznpboD/IoE
+         /Vts5IOimGoLJZ7pIhYADAsk1TfUyq1X+MjSKQtQ+kuCqr4V2Q8+xbo2zYEbLnOZr9D/
+         65JWuT8UBrmz0Ie3u4/JqbowHbnhW2F6r7LS6xXrrecrJYEki4wlQyR5APDW55cKM46s
+         YFgn4L4dBldsIyIKhCg1gZbzklyl4+ZFKuRX22t1ZMw8sY9+96e6ckl3vWT6tcncsff6
+         tnNyLxZIlTdYAklOBw0htmvsPALERrhWbXmrdHs4yn7YoM2fNBIMBYfVn8VsYRLNQflT
+         z0dQ==
+X-Gm-Message-State: AOJu0Yw/uiS5U5khBOaAT72inmgo90SrkJtIh2gbZLcd4ElkYSuvMm14
+	BkpLdvUA85nVn3xVrFvp7ueFlbs7uQIQIDiv9gaJwQ==
+X-Google-Smtp-Source: AGHT+IH0/RvG4XKSLv54lS1VtzFk3qWRB3eh8qCYQISlXOFNm4f+ZAr6PIOVb5l8XmXpGSFRjTp8xmu5+NtuZdyDXF4=
+X-Received: by 2002:a0d:f604:0:b0:589:e4aa:7b67 with SMTP id
+ g4-20020a0df604000000b00589e4aa7b67mr4381748ywf.41.1694681314700; Thu, 14 Sep
+ 2023 01:48:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230912-gpio-led-trigger-dt-v1-0-1b50e3756dda@linaro.org>
- <20230912-gpio-led-trigger-dt-v1-1-1b50e3756dda@linaro.org> <20230913133451.GA2841610-robh@kernel.org>
-In-Reply-To: <20230913133451.GA2841610-robh@kernel.org>
+References: <20230914-vf610-gpio-v1-0-3ed418182a6a@nxp.com>
+ <20230914-vf610-gpio-v1-3-3ed418182a6a@nxp.com> <b97ff9b6-97df-2c62-1946-06cd4ac79c95@linaro.org>
+In-Reply-To: <b97ff9b6-97df-2c62-1946-06cd4ac79c95@linaro.org>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 14 Sep 2023 10:40:40 +0200
-Message-ID: <CACRpkdb72f9WFeEGo-tXscZaBmFH04WiePM+tJSmuuXQxxy=3A@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: leds: Mention GPIO triggers
-To: Rob Herring <robh@kernel.org>
-Cc: =?UTF-8?B?SmFuIEt1bmRyw6F0?= <jan.kundrat@cesnet.cz>, 
-	Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
+Date: Thu, 14 Sep 2023 10:48:23 +0200
+Message-ID: <CACRpkdYJFp72o=c1OxN9Kcd7-Ee-id8+O2m0ag-rrT-nfq1Srg@mail.gmail.com>
+Subject: Re: [PATCH 3/5] gpio: vf610: add i.MX8ULP of_device_id entry
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+	Stefan Agner <stefan@agner.ch>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 13, 2023 at 3:34=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
-> On Tue, Sep 12, 2023 at 03:44:30PM +0200, Linus Walleij wrote:
-> > We reuse the trigger-sources phandle to just point to
-> > GPIOs we may want to use as LED triggers.
+On Thu, Sep 14, 2023 at 7:48=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 14/09/2023 04:20, Peng Fan (OSS) wrote:
+> > From: Peng Fan <peng.fan@nxp.com>
 > >
-> > Example:
+> > i.MX8ULP supports two interrupts, while i.MX7ULP supports one interrupt=
+.
+> > So from hardware perspective, they are not compatible.
 > >
-> > gpio: gpio@0 {
-> >     compatible "my-gpio";
-> >     gpio-controller;
-> >     #gpio-cells =3D <2>;
-> >     interrupt-controller;
-> >     #interrupt-cells =3D <2>;
-> >     #trigger-source-cells =3D <2>;
+> > So add entry for i.MX8ULP.
+> >
+> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> >  drivers/gpio/gpio-vf610.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/drivers/gpio/gpio-vf610.c b/drivers/gpio/gpio-vf610.c
+> > index dbc7ba0ee72c..88f7215cdf4b 100644
+> > --- a/drivers/gpio/gpio-vf610.c
+> > +++ b/drivers/gpio/gpio-vf610.c
+> > @@ -67,6 +67,7 @@ static const struct fsl_gpio_soc_data imx_data =3D {
+> >  static const struct of_device_id vf610_gpio_dt_ids[] =3D {
+> >       { .compatible =3D "fsl,vf610-gpio",       .data =3D NULL, },
+> >       { .compatible =3D "fsl,imx7ulp-gpio",     .data =3D &imx_data, },
+> > +     { .compatible =3D "fsl,imx8ulp-gpio",     .data =3D &imx_data, },
 >
-> BTW, this is not documented for any GPIO binding. If we want to specify
-> the cell size, then it has to be added to every GPIO controller binding.
-> If not, we then need to reference gpio.yaml in every GPIO controller
-> binding (along with unevaluatedProperties). Doesn't have to be done for
-> this patch to go in though.
+> Why? It is the same as imx7. No need.
 
-Yeah I mean this trigger-sources =3D <...>; one-size-fits-all is a bit
-weird in a way.
+Because compatible =3D "fsl,imx7ulp-gpio" is not what is going to be in the
+device tree, but compatible =3D "fsl,imx8ulp-gpio"?
 
-My other idea was to simply add trigger-gpios to the normal way
-and be done with it, but now the trigger binding has this weird
-thing.
-
-Would trigger-gpios be better?
+What am I missing here? Maybe the commit message is weird.
 
 Yours,
 Linus Walleij
