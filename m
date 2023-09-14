@@ -1,188 +1,129 @@
-Return-Path: <devicetree+bounces-314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 835937A0F3F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 22:47:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A9EC7A0F46
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 22:48:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A61821C20957
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 20:47:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 083861C20930
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 20:48:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35D0D26296;
-	Thu, 14 Sep 2023 20:47:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21F1E266CB;
+	Thu, 14 Sep 2023 20:48:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12B7D33D3
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 20:47:25 +0000 (UTC)
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D5FC2120;
-	Thu, 14 Sep 2023 13:47:25 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id 41be03b00d2f7-53482b44007so1047080a12.2;
-        Thu, 14 Sep 2023 13:47:25 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1F0133D3
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 20:48:44 +0000 (UTC)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D44AF2697;
+	Thu, 14 Sep 2023 13:48:43 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-501cba1ec0aso2437435e87.2;
+        Thu, 14 Sep 2023 13:48:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694724445; x=1695329245; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=V+vcKKBW7m4dimFQCqOQ/FSEh/1OFmvKpug97OFECsw=;
-        b=NBs3c42Uj7z2Bln8/oHxtFGfuzfj6PFjetfkYnywUw4Arf5a7DjULPuTbkMJMUbcmG
-         EOJhssZR9XpoiFimYT+rCrG82hgsXjU/ZrVuR55PGQLiV9Voa/QsyJROp3BaYg2lOtMj
-         tqTX/gnv4kKoD0nJ9zHLiGbNAhWSnZUB4TpUDUKx+zspcfw4KgvygvKKsD57snJ40rVw
-         2X7xaeIy7nnxH/9n/1NXQ4tUgGlRTtJ4IgNv9OLINlq1TD73d3AdtYe9KF1OT/csKIT1
-         Bzsk63FWdZYgjrTCkmL6aK69vA9vFj46Ep2nyD084hw8hOfpZnu5kuEBsv6HAIJUmVHu
-         6vpQ==
+        d=gmail.com; s=20221208; t=1694724522; x=1695329322; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=45ptA9Ev0Q7vvV6dGzDO73E6C/RcgoUUw8K6bYHgVzc=;
+        b=Zcw3FeQ3Ci2luEb41EljhtRCPMo/uWQrjxwLmeZMNaH45hMY1Dz9unim4mytNDlBzC
+         +j+p4utsau6k0cuh4swKV2oF6arDzYS5cYaEwcK92Kg2Zgb9yxCbcfCZlNdsScElZdLx
+         znNxnvo3JJ3SIYe4MvzM/C7TTHEGqhCucD4Ifz8b4PT7zS4fuAS8Cwfy1mMJGTnG/6P2
+         XS6+tTo5JqSdPH+Xk/V+KgvBqJqWkFGd5SI6Bbgt5LbrfZZE6NgImrnv5v/cIhD80jSs
+         J8jvqQmGBfD3YtGxi5bkfIfpEHssnDi21WSy2qmE1KTbOpNlrPS1mSif0lsjwPSSQBFs
+         8Ptg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694724445; x=1695329245;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=V+vcKKBW7m4dimFQCqOQ/FSEh/1OFmvKpug97OFECsw=;
-        b=c7cuHRAWUHjKnkHup8iiyPdDPSwPEpw2NhkbZT6wkqiBfqRJ2gk7ze10Diqk0WN/4p
-         zscuyzU4MYFqOTNxuDU6Rw2tGOHcV7A15o2GCffFA5Yiggo3UL8+L6NG4pFoawcx7CWR
-         7HvB5jWzRra+RJzB4j2sshpXHJYpQjp0FP9h8R0PyQfj8EMYxivGop3OoZ/MecUJ0UPb
-         9p5IUm03B+4ZuB4cr60mO/tZmiizvpnPl0reuszN4yBU8BXeETgNU/Llh/WvJYCWtiXo
-         0d4CR/mjHixDrCQ9J0VfgAlYBiBg/jjyu63RzG9XNXjM7/CEceuq+990AtjTfOLsUi8B
-         C8wQ==
-X-Gm-Message-State: AOJu0YzUJbHOF2V+lp9jWm2ckDa8xfzup5xh6p2PlwiAM6H9aKVXKf9d
-	sF4Bjzc/nbJqEQZ9xN+1ZYoKMQQxFDXuwdetulf4gMui+e0=
-X-Google-Smtp-Source: AGHT+IEYq3Ge99GvmTYyrwRhMv5Siqo9GkcGQyZgtksJ6lYipoYwXo09EZ4kCTqZIkp1e/A/33VpAXMFKiv3xnGL9tY=
-X-Received: by 2002:a17:90b:709:b0:274:6135:8363 with SMTP id
- s9-20020a17090b070900b0027461358363mr3424523pjz.33.1694724444919; Thu, 14 Sep
- 2023 13:47:24 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1694724522; x=1695329322;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=45ptA9Ev0Q7vvV6dGzDO73E6C/RcgoUUw8K6bYHgVzc=;
+        b=EPCYGx48dGGuQuzBMGD0I1yfDTU0psu/zj1KBigDRpS2RvYNkQb+/G9rMK0pG1WFsx
+         kU6fayL97D+RNVxoOwXu05OcWzHQ368mdheT6WbNDNI78Bg/O17YcRsmyIewtVvGE7mq
+         SuW1y+7RN+GsEu+AnUwuxVOuBx9UozZ3rVTorPzF4FNVYFwu3ueG/HpXzWxyHANioSHk
+         e5qZ44tcUv+u3HHzZedhd6MvFd3yhFyl1K1qCODEwmcFnF2AQWh1EIwkQG9wB1WHc5Vf
+         gFynirlN1nrXog2NheaVdfd/CcmeVGB6Ctup5EqeddIUgZ+lIAYe+h38/0b4TE+SQx7w
+         yFjg==
+X-Gm-Message-State: AOJu0YwTx+8S8Ajz3SVznCVFbS3u6JlY//LK03F8VzIHOc+10Yg82x6x
+	nmVdQbMlCd6VopNhMFFzwz8=
+X-Google-Smtp-Source: AGHT+IFCsr2E7SKoFrH6KHmPB6GF5TiLZHBUe7C3gLRFdJnc5FamwTHlf5hXyEti1JblE5Ery9W6Xg==
+X-Received: by 2002:ac2:5f57:0:b0:502:9fce:b6db with SMTP id 23-20020ac25f57000000b005029fceb6dbmr5066923lfz.1.1694724521662;
+        Thu, 14 Sep 2023 13:48:41 -0700 (PDT)
+Received: from mobilestation ([95.79.219.206])
+        by smtp.gmail.com with ESMTPSA id t10-20020ac2548a000000b004ff9ab6463fsm400992lfk.87.2023.09.14.13.48.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Sep 2023 13:48:41 -0700 (PDT)
+Date: Thu, 14 Sep 2023 23:48:39 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
+	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com, lpieralisi@kernel.org, 
+	robh+dt@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
+	bhelgaas@google.com, kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v20 07/19] PCI: dwc: Add missing PCI_EXP_LNKCAP_MLW
+ handling
+Message-ID: <notuqnugfnmu7ep7rvnerix7hvgqt5b4wdrirjjgggjsxfc7lz@pismsfnlenu4>
+References: <20230825093219.2685912-8-yoshihiro.shimoda.uh@renesas.com>
+ <20230914160058.GA32113@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230913211449.668796-1-jcmvbkbc@gmail.com> <20230913211449.668796-4-jcmvbkbc@gmail.com>
- <196fb9ac-53b7-51a6-6ce4-9f980215fde4@linaro.org>
-In-Reply-To: <196fb9ac-53b7-51a6-6ce4-9f980215fde4@linaro.org>
-From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Thu, 14 Sep 2023 13:47:13 -0700
-Message-ID: <CAMo8Bf+u3hkk8zW6EQUtQcAC5t-hUJ5+HoE8JDskBj4KyFK7xA@mail.gmail.com>
-Subject: Re: [PATCH 3/4] dt-bindings: serial: document esp32s3-acm bindings
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	devicetree@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230914160058.GA32113@bhelgaas>
 
-On Wed, Sep 13, 2023 at 10:57=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 13/09/2023 23:14, Max Filippov wrote:
-> > Add documentation for the ESP32S3 ACM controller.
->
-> A nit, subject: drop second/last, redundant "bindings". The
-> "dt-bindings" prefix is already stating that these are bindings.
+On Thu, Sep 14, 2023 at 11:00:58AM -0500, Bjorn Helgaas wrote:
+> On Fri, Aug 25, 2023 at 06:32:07PM +0900, Yoshihiro Shimoda wrote:
+> > Update dw_pcie_link_set_max_link_width() to set PCI_EXP_LNKCAP_MLW.
+> > In accordance with the DW PCIe RC/EP HW manuals [1,2,3,...] aside with
+> > the PORT_LINK_CTRL_OFF.LINK_CAPABLE and GEN2_CTRL_OFF.NUM_OF_LANES[8:0]
+> > field there is another one which needs to be updated. It's
+> > LINK_CAPABILITIES_REG.PCIE_CAP_MAX_LINK_WIDTH. If it isn't done at
+> > the very least the maximum link-width capability CSR won't expose
+> > the actual maximum capability.
+> > 
+> > [1] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
+> >     Version 4.60a, March 2015, p.1032
+> > [2] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
+> >     Version 4.70a, March 2016, p.1065
+> > [3] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
+> >     Version 4.90a, March 2016, p.1057
+> > ...
+> > [X] DesignWare Cores PCI Express Controller Databook - DWC PCIe Endpoint,
+> >       Version 5.40a, March 2019, p.1396
+> > [X+1] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
+> >       Version 5.40a, March 2019, p.1266
+> 
 
-Ok.
+> Is there value in keeping all four of these Root Port citations?  I
+> assume that if you have the most recent one (X+1), it completely
+> obsoletes the older ones, so you should never have to look at the
+> older ones?
 
-> > Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
-> > ---
-> >  .../bindings/serial/esp,esp32-acm.yaml        | 40 +++++++++++++++++++
-> >  1 file changed, 40 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/serial/esp,esp32-=
-acm.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/serial/esp,esp32-acm.yam=
-l b/Documentation/devicetree/bindings/serial/esp,esp32-acm.yaml
-> > new file mode 100644
-> > index 000000000000..dafbae38aa64
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/serial/esp,esp32-acm.yaml
-> > @@ -0,0 +1,40 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/serial/esp,esp32-acm.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: ESP32S3 ACM controller
-> > +
-> > +maintainers:
-> > +  - Max Filippov <jcmvbkbc@gmail.com>
-> > +
-> > +description: |
->
-> Do not need '|' unless you need to preserve formatting.
+In general the procedure may differ from one device version to
+another. Though it doesn't concern DW PCIe IP-cores. So by citing all
+these manuals I implied that all DW PCIe controllers expect the same
+link-width initialization procedure. Keeping that in mind I guess the
+text could be indeed simplified by keeping only two citations (note
+[X] and [X+1] refer to the Root Port and End-point HW databooks of the
+same IP-core version) and noting in the text that the procedure is
+common for the older DW PCIe controllers too.
 
-Ok.
+In anyway I wouldn't say that new IP-core databooks obsolete the
+old one since the driver supports all old and new controllers. So
+before introducing a generic procedure we need to make sure that it
+will work for all the known to be supported devices. From that
+perspective citing all the available databooks gets to make sense.
 
-> > +  ESP32S3 ACM controller is a communication device found in the ESP32S=
-3
->
-> What is "ACM"?
+-Serge(y)
 
-It's an 'Abstract Control Model' as in USB CDC-ACM: 'Communication Device C=
-lass
-- Abstract Control Model'.
-
-> Why is this in serial? Only serial controllers are in serial.
-
-Because it's a serial communication device. The SoC TRM calls this peripher=
-al
-'USB Serial', but the USB part is fixed and is not controllable on the SoC =
-side.
-When you plug it into a host USB socket you get a serial port called ttyACM=
- on
-the host.
-
-> The description is very vague, way too vague.
-
-Is the following better?
-
-  Fixed function USB CDC-ACM device controller of the Espressif ESP32S3 SoC=
-.
-
-> > +  SoC that is connected to one of its USB controllers.
->
-> Same comments as previous patch.
->
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: esp,esp32s3-acm
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    acm@60038000 {
-> > +            compatible =3D "esp,esp32s3-acm";
->
-> Use 4 spaces for example indentation.
-
-Ok.
-
-> > +            reg =3D <0x60038000 0x1000>;
-> > +            interrupts =3D <96 3 0>;
->
-> Same comments as previous patch.
-
-These are not IRQ flags. In any case the contents of the IRQ
-specification cells is not relevant here, right?
-
---=20
-Thanks.
--- Max
+> 
+> Bjorn
 
