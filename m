@@ -1,94 +1,116 @@
-Return-Path: <devicetree+bounces-166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA4437A0015
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:31:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98B2B7A0011
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:30:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98114281B29
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:31:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 248BEB20D4C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:30:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2B0E10A12;
-	Thu, 14 Sep 2023 09:31:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1558DEAD0;
+	Thu, 14 Sep 2023 09:30:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9535D224D3
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 09:31:49 +0000 (UTC)
-Received: from out-229.mta0.migadu.com (out-229.mta0.migadu.com [IPv6:2001:41d0:1004:224b::e5])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FA16BB
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 02:31:48 -0700 (PDT)
-Date: Thu, 14 Sep 2023 19:27:03 +1000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-	t=1694683906;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vmPa+r4UrqSI4OyMQhsi2Wq5TKQmIhNTWv2ugXVReZk=;
-	b=mqea8Dco5GkiVp3d+wmxmrg67/ao1nY64YhP2JCR+VosQ6HsA5pdF5EP+IMKNcOfvAkHDh
-	JSbCKG24sH0K2Gbc1pwDeCvd2Y+kIS1DOdjSkSX3BkXvArTN36u1OTiDRr5KvQrz1def6i
-	YoPsCEptgGxC/s4Ep7cAwC7qVtq3CTmGWiHLmEgmqzGAG08iJCsLq/ykteyK2nxamCfhwQ
-	3xi4D3moJXUHTs7IGutAy/+oNofpaZjLQMsb8FBUKaMj4y+YeFpIbj5ZngStaPQgkavLma
-	ayx+AH+lwFfUGuOZhiMtJtID6PAQIpVYb1FgRTtkA5/wvvd1pfvKrC55Awm/ng==
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: John Watts <contact@jookia.org>
-To: Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc: alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] ASoC: wm8782: Handle maximum audio rate at runtime
-Message-ID: <ZQLR50CAzr0VDpeh@titan>
-References: <20230913171552.92252-1-contact@jookia.org>
- <20230913171552.92252-2-contact@jookia.org>
- <20230914092107.GR103419@ediswmail.ad.cirrus.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08287224D3
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 09:30:50 +0000 (UTC)
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01F8ECC7
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 02:30:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1694683846; x=1697275846;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=BikrMtESuNp+DgxwHDrljdpsjzQ302FVUhgX7muuOUk=;
+	b=lpkXwOUT0ck26Q2lbH75Gdhzvt+BV2lyGyqcC6WEEGpNfk2Yi7tAk2i8kJYN2YCR
+	Hs62PkMQrQ5ot15wAwoMXnvQNV7sMJzvJkHCHbbg/tKuQFqBU+4q1H88ogyTQHeJ
+	V+by2xr+dXJztt4bJGsLHlKOQTwRCKB2rFJp1FMGK0g=;
+X-AuditID: ac14000a-6e25770000001e37-f1-6502d2c626ef
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id B9.F2.07735.6C2D2056; Thu, 14 Sep 2023 11:30:46 +0200 (CEST)
+Received: from augenblix2.phytec.de (172.25.0.11) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 14 Sep
+ 2023 11:30:46 +0200
+From: Wadim Egorov <w.egorov@phytec.de>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <upstream@lists.phytec.de>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH] arm64: dts: ti: phycore-am64: Add RTC interrupt pin
+Date: Thu, 14 Sep 2023 11:30:27 +0200
+Message-ID: <20230914093027.3901602-1-w.egorov@phytec.de>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230914092107.GR103419@ediswmail.ad.cirrus.com>
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.25.0.11]
+X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrPLMWRmVeSWpSXmKPExsWyRpKBR/fYJaZUg9ZFShZr9p5jsph/5Byr
+	xfLPs9kt+l48ZLbY9Pgaq8XlXXPYLN78OMtk0br3CLtF9zt1i/9nP7A7cHlsWtXJ5nHn2h42
+	j81L6j36u1tYPY7f2M7k8XmTXABbFJdNSmpOZllqkb5dAlfGiXWn2QvecFbcPPeQvYGxj6OL
+	kZNDQsBE4uXRTqYuRi4OIYElTBLn19xghXCeMErcmXCXDaSKTUBd4s6Gb2AJEYFuRomTB5Yx
+	gzjMAm2MEof2rmEEqRIWcJFY9fYNK4jNIqAqceH3axYQm1fAUuLz01NsEPvkJWZe+s4OEReU
+	ODnzCVgNM1C8eetsZghbQuLgixdgthBQ/MWl5SwwvdPOvWaGsEMljmxazTSBUWAWklGzkIya
+	hWTUAkbmVYxCuZnJ2alFmdl6BRmVJanJeimpmxhBkSDCwLWDsW+OxyFGJg7GQ4wSHMxKIrxs
+	tkypQrwpiZVVqUX58UWlOanFhxilOViUxHnv9zAlCgmkJ5akZqemFqQWwWSZODilGhitpIKv
+	lzAErJdyeXFTJPrhhM0lBSeNPXZM8FT35wxa4dvMe9NturTfJN9zej8v3/At5V8ZkSl/wL+O
+	8UxwdEz3HKUuZQ0lvQyR0zMF/9k+tsz738Q968XMrM1OVfZ9hYdCuRsXPD0gJMSz4iTLXNfn
+	tXVWB/+90lv4Xp5Z5dXc7+ZZUwq/pyixFGckGmoxFxUnAgDh8L4rcgIAAA==
 
-On Thu, Sep 14, 2023 at 09:21:07AM +0000, Charles Keepax wrote:
-> On Thu, Sep 14, 2023 at 03:15:50AM +1000, John Watts wrote:
-> > The wm8782 supports up to 192kHz audio when pins are set correctly.
-> > Instead of hardcoding which rates are supported enable them all
-> > then refer to a max_rate variable at runtime.
-> > 
-> > Signed-off-by: John Watts <contact@jookia.org>
-> > ---
-> > +static int wm8782_dai_hw_params(struct snd_pcm_substream *component,
-> > +			    struct snd_pcm_hw_params *params,
-> > +			    struct snd_soc_dai *dai)
-> > +{
-> > +	struct wm8782_priv *priv =
-> > +		snd_soc_component_get_drvdata(dai->component);
-> > +
-> > +	if (params_rate(params) > priv->max_rate)
-> > +		return -EINVAL;
-> > +
-> > +	return 0;
-> > +}
-> 
-> We should be setting this as a constraint in startup, rather
-> than returning an error in hw_params. That will let user-space
-> know the supported rates and allow it to resample if necessary.
+Wth commit 16b26f602758 ("rtc: rv3028: Use IRQ flags obtained from device
+tree if available") we can now use the interrupt pin of the RTC.
+Let's add interrupt pin definitions to the SoM RTC.
 
-How do you do this? The struct with the rate is statically defined.
+Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+---
+ arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-> 
-> Thanks,
-> Charles
+diff --git a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
+index 1c2c8f0daca9..f87f09d83c95 100644
+--- a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
+@@ -126,6 +126,12 @@ AM64X_IOPAD(0x0028, PIN_INPUT, 0)	/* (M17) OSPI0_D7 */
+ 			AM64X_IOPAD(0x002c, PIN_OUTPUT, 0)	/* (L19) OSPI0_CSn0 */
+ 		>;
+ 	};
++
++	rtc_pins_default: rtc-defaults-pins {
++		pinctrl-single,pins = <
++			AM64X_IOPAD(0x0278, PIN_INPUT, 7)	/* (C19) EXTINTn.GPIO1_70 */
++		>;
++	};
+ };
+ 
+ &cpsw3g {
+@@ -177,6 +183,11 @@ eeprom@50 {
+ 	i2c_som_rtc: rtc@52 {
+ 		compatible = "microcrystal,rv3028";
+ 		reg = <0x52>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&rtc_pins_default>;
++		interrupt-parent = <&main_gpio1>;
++		interrupts = <70 IRQ_TYPE_EDGE_FALLING>;
++		wakeup-source;
+ 	};
+ };
+ 
+-- 
+2.25.1
 
-John.
 
