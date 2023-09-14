@@ -1,99 +1,126 @@
-Return-Path: <devicetree+bounces-170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACB7D7A0089
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:43:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 963747A0094
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:44:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EC541F22608
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:43:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FB1F1F22620
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:44:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03F212AB43;
-	Thu, 14 Sep 2023 09:43:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A69972AB44;
+	Thu, 14 Sep 2023 09:44:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D7DF1CFBE
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 09:43:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54C34C433C7;
-	Thu, 14 Sep 2023 09:43:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694684619;
-	bh=W6rK1+h3h9AyTDVnNHiqbnJQlFfPlOPuQQ4PQrSlA4I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qiVaPzH12lkz1U80y+1+eINheR5ADAZHgxyD/lCkA4ULKC2py6C4+B81jtt56wdz6
-	 gt1E1VLb6EsF1R8fZ3yVqnNcZOwJ42LX8WpUF/SE0m9ADwHRNeK73XwIWtaprUYgI6
-	 krAca/RS4BtseBtuOOoUbwbuw8Mct1jxvxoJqe+Tb4ZZ0nAjkM3ogEoy+KJ9aICicE
-	 7Ww6f6FopSNNR/CGRq69EaDJPwWyTHOgqO3j5YDKRkCzkA0DVjJTCqgseA7HVoxEZh
-	 vcooMkatK4W3+3sgP4mCO6IemU6u56oStD4923/fjpQhmZLyIDbM8gjobg9Pxj1G24
-	 0BunEK9hM2ljg==
-Date: Thu, 14 Sep 2023 10:43:31 +0100
-From: Lee Jones <lee@kernel.org>
-To: Aradhya Bhatia <a-bhatia1@ti.com>
-Cc: Andrew Davis <afd@ti.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-am65: Add full compatible to
- dss-oldi-io-ctrl node
-Message-ID: <20230914094331.GJ13143@google.com>
-References: <20230911142556.64108-1-afd@ti.com>
- <20230911142556.64108-2-afd@ti.com>
- <64a4a0a8-7628-ffee-fca0-c7b953769fa6@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A1D1101CB
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 09:44:48 +0000 (UTC)
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08D30210B;
+	Thu, 14 Sep 2023 02:44:47 -0700 (PDT)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+	by mx0b-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38E74Pac017688;
+	Thu, 14 Sep 2023 04:44:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=PODMain02222019; bh=2IPcvMJ6I8FbRO8
+	Q4YQtRfi9KDKzY1NIt+8SrW/Lmko=; b=k4vrvgwH+PHcuZOxITvoDXV/MGy6LsJ
+	fxq6A0NwXRHusvyS1L86igNQhbdOmNzfoRFa1/9NuGaJ0lozThBcwAKQiasypKRm
+	XsLE0ciCDMaULGybZ2EwdK351FUFRGQ7GiCIMJSUVIlMhSpaoOtJF0yUjXmU4kKM
+	jy2JFOZ+gz9GPm/l5tYgwTtYXGb0H4efbLnx0ogm0y0U7K5Kz5VXblh9ER0jI9PT
+	WblW1Q8aI9DUHCcM0638xOFCJwCbr8K0YyriSLSptdhNHM7PlLlCFoN8XagE2Z0s
+	mk8OS9vcL+mpE9mo26rUA6cu2RiLX71uooAlY86JbEcrIFGDQSfxqRA==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3t2y7shwme-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Sep 2023 04:44:26 -0500 (CDT)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Thu, 14 Sep
+ 2023 10:44:24 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.37 via Frontend
+ Transport; Thu, 14 Sep 2023 10:44:24 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id AC7A93563;
+	Thu, 14 Sep 2023 09:44:24 +0000 (UTC)
+Date: Thu, 14 Sep 2023 09:44:24 +0000
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: John Watts <contact@jookia.org>
+CC: <alsa-devel@alsa-project.org>, Liam Girdwood <lgirdwood@gmail.com>,
+        "Mark
+ Brown" <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai
+	<tiwai@suse.com>, <patches@opensource.cirrus.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/3] ASoC: wm8782: Handle maximum audio rate at runtime
+Message-ID: <20230914094424.GT103419@ediswmail.ad.cirrus.com>
+References: <20230913171552.92252-1-contact@jookia.org>
+ <20230913171552.92252-2-contact@jookia.org>
+ <20230914092107.GR103419@ediswmail.ad.cirrus.com>
+ <ZQLR50CAzr0VDpeh@titan>
+ <20230914093731.GS103419@ediswmail.ad.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <64a4a0a8-7628-ffee-fca0-c7b953769fa6@ti.com>
+In-Reply-To: <20230914093731.GS103419@ediswmail.ad.cirrus.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-GUID: UHigTcmN-D1fbaxpxvzaZ8DMT4-fWt-r
+X-Proofpoint-ORIG-GUID: UHigTcmN-D1fbaxpxvzaZ8DMT4-fWt-r
+X-Proofpoint-Spam-Reason: safe
 
-On Wed, 13 Sep 2023, Aradhya Bhatia wrote:
-
-> 
-> 
-> On 11/09/23 09:25, Andrew Davis wrote:
-> > This matches the binding for this register region which fixes a couple
-> > DTS check warnings.
+On Thu, Sep 14, 2023 at 09:37:31AM +0000, Charles Keepax wrote:
+> On Thu, Sep 14, 2023 at 07:27:03PM +1000, John Watts wrote:
+> > On Thu, Sep 14, 2023 at 09:21:07AM +0000, Charles Keepax wrote:
+> > > On Thu, Sep 14, 2023 at 03:15:50AM +1000, John Watts wrote:
+> > > > The wm8782 supports up to 192kHz audio when pins are set correctly.
+> > > > Instead of hardcoding which rates are supported enable them all
+> > > > then refer to a max_rate variable at runtime.
+> > > > 
+> > > > Signed-off-by: John Watts <contact@jookia.org>
+> > > > ---
+> > > > +static int wm8782_dai_hw_params(struct snd_pcm_substream *component,
+> > > > +			    struct snd_pcm_hw_params *params,
+> > > > +			    struct snd_soc_dai *dai)
+> > > > +{
+> > > > +	struct wm8782_priv *priv =
+> > > > +		snd_soc_component_get_drvdata(dai->component);
+> > > > +
+> > > > +	if (params_rate(params) > priv->max_rate)
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > 
+> > > We should be setting this as a constraint in startup, rather
+> > > than returning an error in hw_params. That will let user-space
+> > > know the supported rates and allow it to resample if necessary.
 > > 
-> > While here trim the leading 0s from the "reg" definition.
+> > How do you do this? The struct with the rate is statically defined.
 > > 
-> > Signed-off-by: Andrew Davis <afd@ti.com>
 > 
-> For both the patches, 1/2 and 2/2,
-
-If you want to Ack both patches, you have to Ack both patches.
-
-> Reviewed-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> You can programmatically add additional constraints, commonly
+> this will be done from the startup callback on the DAI. See
+> something like arizona_startup in sound/soc/codecs/arizona.c for
+> an example, that enables 44.1/48k rates based on clocks but the
+> principle should be similar.
 > 
-> > ---
-> >  arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> > index bc460033a37a8..d5f217427893d 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> > @@ -498,8 +498,8 @@ serdes_mux: mux-controller {
-> >  		};
-> >  
-> >  		dss_oldi_io_ctrl: dss-oldi-io-ctrl@41e0 {
-> > -			compatible = "syscon";
-> > -			reg = <0x000041e0 0x14>;
-> > +			compatible = "ti,am654-dss-oldi-io-ctrl", "syscon";
-> > +			reg = <0x41e0 0x14>;
-> >  		};
-> >  
-> >  		ehrpwm_tbclk: clock-controller@4140 {
 
--- 
-Lee Jones [李琼斯]
+Although I would also imagine snd_pcm_hw_constraint_minmax is
+going to be more appropriate in your case.
+
+Thanks,
+Charles
 
