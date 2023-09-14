@@ -1,131 +1,133 @@
-Return-Path: <devicetree+bounces-273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CB117A09BA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 17:50:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A55A07A09C5
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 17:52:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5664B1C2106E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:50:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2892E1C21125
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 15:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9300421376;
-	Thu, 14 Sep 2023 15:45:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17AD421351;
+	Thu, 14 Sep 2023 15:47:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82673CA78;
-	Thu, 14 Sep 2023 15:45:52 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E847D1FDA;
-	Thu, 14 Sep 2023 08:45:51 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38EFE4hK003959;
-	Thu, 14 Sep 2023 15:45:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=25aS0EJkCskLRfxjNaNCLueqzUMPVBM9At3Cq6IJbeQ=;
- b=J9p+U6Llth2WLxI40mR4dwbssC6++wfnrtGkHxGqZ04A3ihglaORcBUZN5qQU/eM8vNP
- 2fjTLeII18kbE1vZ6zB4EJ9p/0ROenvOb6xIEv7C1zs1oxuIrDLIwScfGcxTlG6v47eg
- csy+T0o79tHLBZhVo4vi01jBlZPuEHobioCLPZjUWy5Sg6PrApDZm4dciHWkW8Y9U4s7
- etSJxVT+lMoknPSm4TqD9F/TM+H8LBmRswTfYU0tMRUterqkuOMyo1epRfQ1OJ1F9tZ8
- OC+8VmJnYv3UgT4NeYNDQ0wmcT3AtsPCjfLenen5DQwGexEiVZow6hrItVjB7u1gEDqK 5w== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t3x6mseav-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Sep 2023 15:45:33 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38EFjXxj021265
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Sep 2023 15:45:33 GMT
-Received: from [10.216.57.92] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Thu, 14 Sep
- 2023 08:45:25 -0700
-Message-ID: <e7e4fc1e-661a-fd62-e8b1-1e173cbfcd3e@quicinc.com>
-Date: Thu, 14 Sep 2023 21:15:21 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C920CA78
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 15:47:23 +0000 (UTC)
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25FB0DD
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 08:47:23 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-404573e6c8fso8631265e9.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 08:47:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694706441; x=1695311241; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2Y1+S4YPUZHV6bEDYOM6jByjByZjivqS16bGhRJtub4=;
+        b=Yib7Uw7qTmLuP3MPrOqEXKVfWJZMSh5TlU5g//mn/wq2N7dI4BNGXHizZUtM+JuuPI
+         ui5J5NByMIHbOWf0kj87XCmOU0lpIQMte8gf8B8+S1eMW0+r9yxWuIWH4XUvtbWQN30D
+         Bqd7NP1pKNAol+pvcd/tVpN27T5bnTfOHcQDbyXPQdm1bM/qLlqLrE/vMEFBOiAh6B9c
+         82w48p7gnKE89anaDJ+GADDrMqwCttGZPKQ3S2b2fjAw2xrdoJ0LNwfrf+IKrmMwZUd8
+         gmVLhOju+eit3O/3l3Op/cJUeAwyw2FF/3zAx+HOULQFLTCXfzdhJsDXg2VJeoDjjdk6
+         DaXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694706441; x=1695311241;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2Y1+S4YPUZHV6bEDYOM6jByjByZjivqS16bGhRJtub4=;
+        b=HKUhzz8yGhUVyWBiCWeC80n3wlcPCxcNkqm9J5TFYq87d592JX4jMliJEUSRhNz7L/
+         g8LB4y5ywsZ6FfV76u6TbEHBo33oHf44XK6/UtcOER+JvvV5NPgFWb7J4TVvXSJsXo3t
+         ZSwhV2j/oU3AdODUprwPhUqJiRTn6DSRnS3m0xJq4rDHjnwGtINQws40xQCqhd/WAZe2
+         mimtG1bhbCX+dPusN71gNpqFPlO+dHJGNK72K+L7q0DhuU2MBYcweuVkSy/tN5BoG995
+         ycf3EzxHebgUfK8ugv5tWcSM/q8EHQH03bL5s/qNLMQ1ekdYzfIwDlok6dPAmIVe2YmW
+         tiMw==
+X-Gm-Message-State: AOJu0Yyd5sRpSS8AxdNGr6DfxVJ/0jRwg2hU/1p8anANCq9UslnluzfN
+	EP/MFGd6n/K9KR4kdeO4TBZOFQ==
+X-Google-Smtp-Source: AGHT+IFUiLqOu3FSpTNqE/FXs43Z+oCWKwTaAmpfJPvf5bz0GF4UwkZUD95wwrG8Nb/qPK6zVr0y3A==
+X-Received: by 2002:a5d:61c4:0:b0:313:e971:53af with SMTP id q4-20020a5d61c4000000b00313e97153afmr5290417wrv.32.1694706441479;
+        Thu, 14 Sep 2023 08:47:21 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id x2-20020adfec02000000b003179d7ed4f3sm2055514wrn.12.2023.09.14.08.47.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Sep 2023 08:47:20 -0700 (PDT)
+Message-ID: <1ae7f23c-af9d-8ac6-49fd-46b607de971c@linaro.org>
+Date: Thu, 14 Sep 2023 17:47:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.1
-Subject: Re: [PATCH v11 13/13] arm64: dts: qcom: sa8540-ride: Enable first
- port of tertiary usb controller
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH] arm64: dts: ls208xa: use a pseudo-bus to constrain usb
+ dma size
 Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Thinh Nguyen
-	<Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>, Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi
-	<balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Johan Hovold
-	<johan@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>
-CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>,
-        <quic_jackp@quicinc.com>, <ahalaney@redhat.com>,
-        <quic_shazhuss@quicinc.com>
-References: <20230828133033.11988-1-quic_kriskura@quicinc.com>
- <20230828133033.11988-14-quic_kriskura@quicinc.com>
- <f19fa545-0ccb-4670-af77-7c034b1016ef@linaro.org>
- <e7bd3aa9-b8ee-4b8a-2354-e786f9a9ff47@quicinc.com>
- <3920bc96-fe58-4e3b-96ab-706f00edb2ee@linaro.org>
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <3920bc96-fe58-4e3b-96ab-706f00edb2ee@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: C3-6HXJM9MvGEdsAnyfnrF0grhv9JR47
-X-Proofpoint-ORIG-GUID: C3-6HXJM9MvGEdsAnyfnrF0grhv9JR47
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-14_09,2023-09-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 mlxlogscore=493 malwarescore=0 mlxscore=0 priorityscore=1501
- suspectscore=0 bulkscore=0 spamscore=0 adultscore=0 impostorscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309140136
+To: Laurentiu Tudor <laurentiu.tudor@nxp.com>, shawnguo@kernel.org,
+ leoyang.li@nxp.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230914145652.25728-1-laurentiu.tudor@nxp.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230914145652.25728-1-laurentiu.tudor@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-
-On 9/13/2023 5:40 PM, Konrad Dybcio wrote:
-> On 7.09.2023 05:36, Krishna Kurapati PSSNV wrote:
->>
->>
->>> Is there any benefit to removing the other ports?
->>>
->>> i.e. are ports 1-3 not parked properly by the dwc3 driver if
->>> they're never connected to anything?
->>>
->> Hi Konrad,
->>
->>   Whether or not the phy is connected to a port, the controller would modify the GUSB2PHYCFG/GUSB3PIPECTL registers. But if we don't specify only one phy and let phys from base DTSI take effect (4 HS / 2 SS), we would end up initializing and powering on phy's which are never connected to a port. To avoid that we need to specify only one phy for this platform.
-> And does that have any major effect on power use?
+On 14/09/2023 16:56, Laurentiu Tudor wrote:
+> Wrap the usb controllers in an intermediate simple-bus and use it to
+> constrain the dma address size of these usb controllers to the 40b
+> that they generate toward the interconnect. This is required because
+> the SoC uses 48b address sizes and this mismatch would lead to smmu
+> context faults [1] because the usb generates 40b addresses while the
+> smmu page tables are populated with 48b wide addresses.
 > 
-> Do these PHYs not have some dormant/low power mode?
+> [1]
+> xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+> xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
+> xhci-hcd xhci-hcd.0.auto: hcc params 0x0220f66d hci version 0x100 quirks 0x0000000002000010
+> xhci-hcd xhci-hcd.0.auto: irq 108, io mem 0x03100000
+> xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+> xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
+> xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
+> arm-smmu 5000000.iommu: Unhandled context fault: fsr=0x402, iova=0xffffffb000, fsynr=0x0, cbfrsynra=0xc01, cb=3
 > 
-Hi Konrad,
+> Signed-off-by: Laurentiu Tudor <laurentiu.tudor@nxp.com>
+> ---
+>  .../arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 46 +++++++++++--------
+>  1 file changed, 27 insertions(+), 19 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+> index d2f5345d0560..47cc7699ca16 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+> @@ -1186,26 +1186,34 @@
+>  			dma-coherent;
+>  		};
+>  
+> -		usb0: usb@3100000 {
+> -			status = "disabled";
+> -			compatible = "snps,dwc3";
+> -			reg = <0x0 0x3100000 0x0 0x10000>;
+> -			interrupts = <0 80 0x4>; /* Level high type */
+> -			dr_mode = "host";
+> -			snps,quirk-frame-length-adjustment = <0x20>;
+> -			snps,dis_rxdet_inp3_quirk;
+> -			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
+> -		};
+> +		aux_bus: aux_bus {
 
-  I believe there will be some minimal power use. IMO its best to keep 
-only one phy enabled for this variant instead of giving all and 
-initializing/powering-on all 4 of them.
+No underscores in node names. The node name should be anyway generic, so
+ just "bus".
 
-Regards,
-Krishna,
+
+
+Best regards,
+Krzysztof
+
 
