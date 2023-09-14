@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-80-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8AFC79FB68
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:57:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 751B479FB8C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 08:04:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDB6C1C20A6C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 05:57:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A0571F21E47
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 06:04:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE41F17F4;
-	Thu, 14 Sep 2023 05:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4200C25102;
+	Thu, 14 Sep 2023 06:03:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E295563B
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 05:57:37 +0000 (UTC)
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7690C6
-	for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 22:57:36 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4018af103bcso3537315e9.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 22:57:36 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34749184E
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 06:03:57 +0000 (UTC)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F1E0F5
+	for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 23:03:57 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-401bbfc05fcso5651835e9.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 23:03:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694671055; x=1695275855; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694671435; x=1695276235; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Sd+yNH3HCnvohWB8kKSot+DWu8r82XF/02XSPDy4hjI=;
-        b=UvDXbsFrxyjkT18fjOC3Nxj0bIkmoBXqgIdESy4mNm/znxKs+DqDC3Yp2+KQqaD5K4
-         nC1aZ0dgNV4kmitZlNestAqaU23OkyaHjBngBW/zSLxyGORmHJ1aVhAuheUxFJNve/Ts
-         N9KhGmtOGsywG7izkjUmiB0vLeMLxsV3r14pjLlqkdgepgcKZWxXfgvZzlfj7Rq7sOvk
-         0GrQ7+gjLVEiB5BFj2omrvXDmsCNpVwgHOMJ0Fktn3uZtnMtnIOR7HOkbgRUdsL0LKrH
-         IXeDD690qy0lWemaSUOVQnzo6lXtwW3SQUNOBEXfdRg+FsADgt/AHTdaZ/Rc3jDCKXMq
-         sk/w==
+        bh=wJrl1gf/KgIL72MKV3GsbSVepIuZ30o12UlDdGV1sJI=;
+        b=k14rQHBIGnztU1L5LBd4Fgzd2zLSk3gWWSK/MAsqxSRlvE2pt/UoL/8dkaiLhdlnN7
+         UfekMtc42QaMae6PqJss0L2LFlii60ZhZg2Dev3VzIVtsMZnRilNZnwM7Q5WP35ugn+0
+         kF1r57EwulUuvbVyoKk71NUR2hSpXLtm81r2VCIN9zLpUambgpFetoGyvAFUZW5mudiI
+         YQjCWdNqkunJRZcMa/erKlzbzJAx5m/Ma+6M9cYQUz7AHe7egVlp75mFq3l6Ipytjfgo
+         uwGtSExKTSkAQFOl7b+ahcfLXRMvtELCZVtNylNB03SKF+2BuhVxybHWRU0eSAEJlCaQ
+         WrcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694671055; x=1695275855;
+        d=1e100.net; s=20230601; t=1694671435; x=1695276235;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sd+yNH3HCnvohWB8kKSot+DWu8r82XF/02XSPDy4hjI=;
-        b=FnYmRbDBhkK0RSUUzxg08qvzhMhx60esgkWz8/f/zXuZQzPBuxLs67N2GtRpZYU9kS
-         Ss60+HaVMZmtVMHiGFDTYdRyaRdLbdxQEChjgrN9/V22UZIzfp2ID3feu/MQJGaIMqjd
-         iYaGfMpGOcidDuApcA6n937g53xLJkdG1jeL313p3ntVpCzcLrO2POO+PRXX6bhT09gc
-         XuOZjl7vPIEHrGPxTBId1/6ShSRD83//6T/Z5KO3tvD4mHJM6nFzNYVS1IJQw1xxyYmy
-         ryKi5Gox4C3xn3lRVQqlcRez9o+Zs2euEde4iLj9HgumKySDWgeKTvBXAQkWNuBQXL3e
-         9NGA==
-X-Gm-Message-State: AOJu0Yy8p20jByrjU7KKMlAlx82CCa6HHFB9RjXAgCAHV1J9Wg/oevMx
-	VtyCJA7hR8DMpHmc5B/WiQFqrShmPn9WoqWWf14=
-X-Google-Smtp-Source: AGHT+IHQ3ToshXAt0xNl0LOHLgftxsrHEuc1Dba4IRwvwAmsrwulg2mrlsMfDvVYxxeB3xwA76gJBw==
-X-Received: by 2002:a05:600c:8607:b0:402:ea5c:1845 with SMTP id ha7-20020a05600c860700b00402ea5c1845mr574855wmb.5.1694671054983;
-        Wed, 13 Sep 2023 22:57:34 -0700 (PDT)
+        bh=wJrl1gf/KgIL72MKV3GsbSVepIuZ30o12UlDdGV1sJI=;
+        b=mzLesST4x7ibQGM2TQWKZ8SLx+YlP5zX99K7++h7zEmglhHoBbQYjcZR5egSVqSxhR
+         UIN8+IcG+RjyFVh/FE8GdAGZCq6dCcTDB+XCS2cDTqq6qp9tcShp4QtXEXtlnSf2GZfb
+         2i5lXrc1I0wZMWITnceCb7AUOy5PY5HX6E9HwE1ujylQv/ja9q4NmtMGaQBxyeYzDXsO
+         MnQ65rOmmQbQEn5ON72pTQsfk+vUIlg6G4l53mThlwXTwaKXKUZtgQDrI3FMre+RkwUg
+         Av0q8Gwm6gMnWM/q8Nu7UVE2qDuFMxvjWLP7Vrlx8UxiItsB7DC39CMssfTYAYbeu7DM
+         nAVg==
+X-Gm-Message-State: AOJu0Yz2+p+N0G+tRhL8tqzRsfTx5obLAZHQbM5DtrRjaKJeGNXix0X3
+	JRwiKUvJpN8JQbIvKDPLvg2DeQ==
+X-Google-Smtp-Source: AGHT+IHcGwQRogpWWtp7Paz0eXwAfZRpttx5AEZ+wm18CWR/bLpMdyGvknlYqkTXte6C48a1sbwfVw==
+X-Received: by 2002:a05:600c:3657:b0:3fe:1871:1826 with SMTP id y23-20020a05600c365700b003fe18711826mr3809097wmq.27.1694671435549;
+        Wed, 13 Sep 2023 23:03:55 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id a22-20020a05600c225600b00402d7105035sm3871567wmm.26.2023.09.13.22.57.33
+        by smtp.gmail.com with ESMTPSA id s24-20020a7bc398000000b003feee8d8011sm3849122wmj.41.2023.09.13.23.03.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Sep 2023 22:57:34 -0700 (PDT)
-Message-ID: <196fb9ac-53b7-51a6-6ce4-9f980215fde4@linaro.org>
-Date: Thu, 14 Sep 2023 07:57:32 +0200
+        Wed, 13 Sep 2023 23:03:55 -0700 (PDT)
+Message-ID: <73a52175-73bd-1b1b-9592-4d8bd0ab2874@linaro.org>
+Date: Thu, 14 Sep 2023 08:03:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,97 +66,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH 3/4] dt-bindings: serial: document esp32s3-acm bindings
+Subject: Re: [PATCH] dt-bindings: firmware: document Qualcomm SM7150 SCM
 Content-Language: en-US
-To: Max Filippov <jcmvbkbc@gmail.com>, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20230913211449.668796-1-jcmvbkbc@gmail.com>
- <20230913211449.668796-4-jcmvbkbc@gmail.com>
+To: Danila Tikhonov <danila@jiaxyga.com>, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, robimarko@gmail.com,
+ quic_gurus@quicinc.com
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20230913194418.30272-1-danila@jiaxyga.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230913211449.668796-4-jcmvbkbc@gmail.com>
+In-Reply-To: <20230913194418.30272-1-danila@jiaxyga.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/09/2023 23:14, Max Filippov wrote:
-> Add documentation for the ESP32S3 ACM controller.
-
-A nit, subject: drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-
+On 13/09/2023 21:44, Danila Tikhonov wrote:
+> Document the compatible for Qualcomm SM7150 SCM.
 > 
-> Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
 > ---
->  .../bindings/serial/esp,esp32-acm.yaml        | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/serial/esp,esp32-acm.yaml
+>  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/serial/esp,esp32-acm.yaml b/Documentation/devicetree/bindings/serial/esp,esp32-acm.yaml
-> new file mode 100644
-> index 000000000000..dafbae38aa64
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/serial/esp,esp32-acm.yaml
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/serial/esp,esp32-acm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ESP32S3 ACM controller
-> +
-> +maintainers:
-> +  - Max Filippov <jcmvbkbc@gmail.com>
-> +
-> +description: |
+> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> index 4233ea839bfc..0c073335f8ff 100644
+> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> @@ -56,6 +56,7 @@ properties:
+>            - qcom,scm-sm6125
+>            - qcom,scm-sm6350
+>            - qcom,scm-sm6375
+> +          - qcom,scm-sm7150
 
-Do not need '|' unless you need to preserve formatting.
+Where is the user of this binding? Please provide a link in any future
+submission without obvious user.
 
 
-> +  ESP32S3 ACM controller is a communication device found in the ESP32S3
-
-What is "ACM"? Why is this in serial? Only serial controllers are in
-serial. The description is very vague, way too vague.
-
-> +  SoC that is connected to one of its USB controllers.
-
-Same comments as previous patch.
-
-> +
-> +properties:
-> +  compatible:
-> +    const: esp,esp32s3-acm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    acm@60038000 {
-> +            compatible = "esp,esp32s3-acm";
-
-Use 4 spaces for example indentation.
-
-> +            reg = <0x60038000 0x1000>;
-> +            interrupts = <96 3 0>;
-
-Same comments as previous patch.
-
-> +    };
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
