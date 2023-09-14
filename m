@@ -1,47 +1,54 @@
-Return-Path: <devicetree+bounces-21-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66D2479F58E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 01:31:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E20879F5FB
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 02:46:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9D573B20B3C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Sep 2023 23:31:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A4101C20ADA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 00:46:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 100FA1873;
-	Wed, 13 Sep 2023 23:31:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83C7F37A;
+	Thu, 14 Sep 2023 00:46:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 502A717F4
-	for <devicetree@vger.kernel.org>; Wed, 13 Sep 2023 23:31:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8CC0C433C7;
-	Wed, 13 Sep 2023 23:31:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694647878;
-	bh=hxr26k1B7gBayRPGem0+EIMrG1KjojApXUJldbdhIms=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=tuQ0PIVv2S5ZditTMDcbxY/v+34J/uHH2IhIYQtdhBGZsvDeTTQS9L42B2rLFESIz
-	 iOeUTRS4SdFqrqNMDzSM6xOT1gtU77aAaNfQ9488SHn/mllIfbishfhHNcp8Wfx3UX
-	 3XqwlbSO2th8jhZQt7cOBe5dia+DtEvPiFBAJ1hL/1Na9Ds3gzgwzEFkAZGpH9DDA/
-	 yyLtI+OYdaiVDdYE45AqRUOJqCFeGeF4gR8h7sj0OoXO23TTteQSxP3Vkg6WB3HN3r
-	 XQnkbyEw2ooUw+wXAbrobzSLfuZfclexMEJEfLnyM/VGCS8BkfgM5YiXBakoOZdcqv
-	 jiVGM7sYmf+fg==
-Date: Wed, 13 Sep 2023 18:31:15 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-	lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-	manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
-	kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, marek.vasut+renesas@gmail.com,
-	fancer.lancer@gmail.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v20 04/19] PCI: designware-ep: Add INTx IRQs support
-Message-ID: <20230913233115.GA11062@bhelgaas>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A24B369;
+	Thu, 14 Sep 2023 00:46:23 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 840B41BCD;
+	Wed, 13 Sep 2023 17:46:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=ubbJptGmaQtLPF4XkWG4x6+bOZSb0KamTqcEQOaigX8=; b=XZUI6b+klpdLAVLEcOxtCKC8HO
+	wxY6iesSPwn88hd2U97UhI3FUFlVyA21Pjq6MXmMgpVhdyOO12szaEQD6BG5PMJvspgBQQRw59ce1
+	my1WXuaZfhC30LSA8a8jGpY7crBxfrh504vHUitwL7avJvi+WXZH5xPnszSKlrrR+RpE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qgaUe-006Lst-0W; Thu, 14 Sep 2023 02:46:04 +0200
+Date: Thu, 14 Sep 2023 02:46:03 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	corbet@lwn.net, steen.hegelund@microchip.com, rdunlap@infradead.org,
+	horms@kernel.org, casper.casan@gmail.com, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, horatiu.vultur@microchip.com,
+	Woojung.Huh@microchip.com, Nicolas.Ferre@microchip.com,
+	UNGLinuxDriver@microchip.com, Thorsten.Kummermehr@microchip.com
+Subject: Re: [RFC PATCH net-next 3/6] net: ethernet: implement OA TC6
+ configuration function
+Message-ID: <dd0a6cd5-91e5-4e13-8025-d6c88bdab5a2@lunn.ch>
+References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
+ <20230908142919.14849-4-Parthiban.Veerasooran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,184 +57,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230825093219.2685912-5-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20230908142919.14849-4-Parthiban.Veerasooran@microchip.com>
 
-On Fri, Aug 25, 2023 at 06:32:04PM +0900, Yoshihiro Shimoda wrote:
-> Add support for triggering INTx IRQs by using outbound iATU.
-> Outbound iATU is utilized to send assert and de-assert INTA TLPs
-> as simulated edge IRQ for INTA. (Other INT[BCD] are not asserted.)
-> This INTx support is optional (if there is no memory for INTx,
-> probe will not fail).
-> 
-> The message is generated based on the payloadless Msg TLP with type
-> 0x14, where 0x4 is the routing code implying the Terminate at
-> Receiver message. The message code is specified as b1000xx for
-> the INTx assertion and b1001xx for the INTx de-assertion.
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-> ---
->  .../pci/controller/dwc/pcie-designware-ep.c   | 70 +++++++++++++++++--
->  drivers/pci/controller/dwc/pcie-designware.h  |  2 +
->  2 files changed, 68 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> index 747d5bc07222..91e3c4335031 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> @@ -6,9 +6,11 @@
->   * Author: Kishon Vijay Abraham I <kishon@ti.com>
->   */
->  
-> +#include <linux/delay.h>
->  #include <linux/of.h>
->  #include <linux/platform_device.h>
->  
-> +#include "../../pci.h"
->  #include "pcie-designware.h"
->  #include <linux/pci-epc.h>
->  #include <linux/pci-epf.h>
-> @@ -484,14 +486,61 @@ static const struct pci_epc_ops epc_ops = {
->  	.get_features		= dw_pcie_ep_get_features,
->  };
->  
-> +static int dw_pcie_ep_send_msg(struct dw_pcie_ep *ep, u8 func_no, u8 code,
-> +			       u8 routing)
+> +int oa_tc6_configure(struct oa_tc6 *tc6, u8 cps, bool ctrl_prot, bool tx_cut_thr,
+> +		     bool rx_cut_thr)
 > +{
-> +	struct dw_pcie_ob_atu_cfg atu = { 0 };
-> +	struct pci_epc *epc = ep->epc;
+> +	u32 regval;
 > +	int ret;
 > +
-> +	atu.func_no = func_no;
-> +	atu.code = code;
-> +	atu.routing = routing;
-> +	atu.type = PCIE_ATU_TYPE_MSG;
-> +	atu.cpu_addr = ep->intx_mem_phys;
-> +	atu.size = epc->mem->window.page_size;
-> +
-> +	ret = dw_pcie_ep_outbound_atu(ep, &atu);
+> +	/* Read and configure the IMASK0 register for unmasking the interrupts */
+> +	ret = oa_tc6_read_register(tc6, OA_TC6_IMASK0, &regval, 1);
 > +	if (ret)
 > +		return ret;
 > +
-> +	/* A dummy-write ep->intx_mem is converted to a Msg TLP */
-> +	writel(0, ep->intx_mem);
-> +
-> +	dw_pcie_ep_unmap_addr(epc, func_no, 0, ep->intx_mem_phys);
-> +
-> +	return 0;
-> +}
-> +
->  int dw_pcie_ep_raise_legacy_irq(struct dw_pcie_ep *ep, u8 func_no)
->  {
->  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
->  	struct device *dev = pci->dev;
-> +	int ret;
->  
-> -	dev_err(dev, "EP cannot trigger legacy IRQs\n");
-> +	if (!ep->intx_mem) {
-> +		dev_err(dev, "legacy IRQs not supported\n");
-> +		return -EOPNOTSUPP;
-> +	}
->  
-> -	return -EINVAL;
-> +	/*
-> +	 * Even though the PCI bus specification implies the level-triggered
-> +	 * INTx interrupts the kernel PCIe endpoint framework has a single
-> +	 * PCI_EPC_IRQ_INTx flag defined for the legacy IRQs simulation. Thus
-> +	 * this function sends the Deassert_INTx PCIe TLP after the Assert_INTx
-> +	 * message with the 50 usec duration basically implementing the
-> +	 * rising-edge triggering IRQ. Hopefully the interrupt controller will
-> +	 * still be able to register the incoming IRQ event...
+> +	regval &= TXPEM & TXBOEM & TXBUEM & RXBOEM & LOFEM & HDREM;
+> +	ret = oa_tc6_write_register(tc6, OA_TC6_IMASK0, &regval, 1);
 
-I'm not really convinced about this "assert INTA, wait 50us, deassert
-INTA" thing.  All the INTx language in the spec is like this:
+It is not so obvious what this 1 means. Maybe change to regval[1], and
+user ARRAY_SIZE(). What also does not help is the function name,
+oa_tc6_write_register(). Singular. So it appears to write one register,
+not multiple registers. It might even make sense to make
+oa_tc6_write_register() truly access a single register, and add
+oa_tc6_write_registers() for multiple registers.
 
-  ... the virtual INTx wire must be asserted whenever and *as long as*
-  the following conditions are satisfied:
+> +/* Unmasking interrupt fields in IMASK0 */
+> +#define HDREM		~BIT(5)		/* Header Error Mask */
+> +#define LOFEM		~BIT(4)		/* Loss of Framing Error Mask */
+> +#define RXBOEM		~BIT(3)		/* Rx Buffer Overflow Error Mask */
+> +#define TXBUEM		~BIT(2)		/* Tx Buffer Underflow Error Mask */
+> +#define TXBOEM		~BIT(1)		/* Tx Buffer Overflow Error Mask */
+> +#define TXPEM		~BIT(0)		/* Tx Protocol Error Mask */
 
-    - The Interrupt Disable bit in the Command register is set to 0b.
+Using ~BIT(X) is very usual. I would not do this, Principle of Least
+Surprise.
 
-    - The <feature> Interrupt Enable bit in the <feature> Control
-      Register is set to 1b.
-
-    - The <feature> Status bit in the <feature> Status register is
-      set.
-
-E.g., sec PCIe r6.0, sec 5.5.6 (Link Activation), 6.1.6 (Native PME),
-6.2.4.1.2 (AER Interrupt Generation), 6.2.11.1 (DPC Interrupts),
-6.7.3.4 (Software Notification of Hot-Plug Events).
-
-So it seems to me like the endpoint needs an "interrupt status" bit,
-and the Deassert_INTx message would be sent when the host interrupt
-handler clears that bit.
-
-> +	 */
-> +	ret = dw_pcie_ep_send_msg(ep, func_no, PCI_MSG_CODE_ASSERT_INTA,
-> +				  PCI_MSG_TYPE_R_LOCAL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	usleep_range(50, 100);
-> +
-> +	return dw_pcie_ep_send_msg(ep, func_no, PCI_MSG_CODE_DEASSERT_INTA,
-> +				   PCI_MSG_TYPE_R_LOCAL);
->  }
->  EXPORT_SYMBOL_GPL(dw_pcie_ep_raise_legacy_irq);
->  
-> @@ -622,6 +671,10 @@ void dw_pcie_ep_exit(struct dw_pcie_ep *ep)
->  
->  	dw_pcie_edma_remove(pci);
->  
-> +	if (ep->intx_mem)
-> +		pci_epc_mem_free_addr(epc, ep->intx_mem_phys, ep->intx_mem,
-> +				      epc->mem->window.page_size);
-> +
->  	pci_epc_mem_free_addr(epc, ep->msi_mem_phys, ep->msi_mem,
->  			      epc->mem->window.page_size);
->  
-> @@ -793,9 +846,14 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  		goto err_exit_epc_mem;
->  	}
->  
-> +	ep->intx_mem = pci_epc_mem_alloc_addr(epc, &ep->intx_mem_phys,
-> +					      epc->mem->window.page_size);
-> +	if (!ep->intx_mem)
-> +		dev_warn(dev, "Failed to reserve memory for INTx\n");
-> +
->  	ret = dw_pcie_edma_detect(pci);
->  	if (ret)
-> -		goto err_free_epc_mem;
-> +		goto err_free_epc_mem_intx;
->  
->  	if (ep->ops->get_features) {
->  		epc_features = ep->ops->get_features(ep);
-> @@ -812,7 +870,11 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  err_remove_edma:
->  	dw_pcie_edma_remove(pci);
->  
-> -err_free_epc_mem:
-> +err_free_epc_mem_intx:
-> +	if (ep->intx_mem)
-> +		pci_epc_mem_free_addr(epc, ep->intx_mem_phys, ep->intx_mem,
-> +				      epc->mem->window.page_size);
-> +
->  	pci_epc_mem_free_addr(epc, ep->msi_mem_phys, ep->msi_mem,
->  			      epc->mem->window.page_size);
->  
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 8f22a7bc0523..e02d4986bc2b 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -376,6 +376,8 @@ struct dw_pcie_ep {
->  	unsigned long		*ob_window_map;
->  	void __iomem		*msi_mem;
->  	phys_addr_t		msi_mem_phys;
-> +	void __iomem		*intx_mem;
-> +	phys_addr_t		intx_mem_phys;
->  	struct pci_epf_bar	*epf_bar[PCI_STD_NUM_BARS];
+>  struct oa_tc6 {
+> -	struct spi_device *spi;
+> -	bool ctrl_prot;
+> +	struct completion rst_complete;
+>  	struct task_struct *tc6_task;
+>  	wait_queue_head_t tc6_wq;
+> +	struct spi_device *spi;
+> +	bool tx_cut_thr;
+> +	bool rx_cut_thr;
+> +	bool ctrl_prot;
+>  	bool int_flag;
+> -	struct completion rst_complete;
+> +	u8 cps;
 >  };
->  
-> -- 
-> 2.25.1
-> 
+
+Please try not to move stuff around. It makes the diff bigger than it
+should be.
+
+       Andrew
 
