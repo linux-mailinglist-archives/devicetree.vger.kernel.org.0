@@ -1,150 +1,200 @@
-Return-Path: <devicetree+bounces-159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FB5479FF75
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:05:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C85CA79FFAF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:09:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46F801F22A33
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:05:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 458F928217C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:09:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7A815E93;
-	Thu, 14 Sep 2023 08:58:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A79A224DE;
+	Thu, 14 Sep 2023 09:08:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E779224CF
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 08:58:41 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06441CF3;
-	Thu, 14 Sep 2023 01:58:40 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38E8jJg9000343;
-	Thu, 14 Sep 2023 08:58:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=IW4mLgmBY+b7dkD515MeinvlgD+7VUY0ebbrgqceikE=;
- b=XlVQBIJTN0r7TSQMOAwPvkQ2vPBfZqs5avRiADFCw74b2AnyYlyEG0goTgrQ0zOFTM/I
- 3buA9lB+aCYrqTgGYUmXKQ7yQJKUwlXhryybZUrE8nFr7TGKwZZ/VhslTpXy2W7Uu9ML
- mI6pmRIFyTcnbXY2FRw/rNHnxXyAXMl7PYXb35/fq4m9L+jLfF893ok9OCoSLF/cags1
- qqrXxQKGBv2XQ+nfDuJ1ZEwtP8jWXQlw15cx+OETX3ySYTp/a71HqHo46Ss3Krje/cwc
- x94aafpBvqgcK/OR0Z5ZsAdJL4pIVi9TjtERZKyB/DYD1Uz28ojHS+A3Yz/I7orK/Njp 9Q== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t3v4h8ha7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Sep 2023 08:58:24 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38E8wN4R016665
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Sep 2023 08:58:23 GMT
-Received: from [10.253.32.174] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 14 Sep
- 2023 01:58:19 -0700
-Message-ID: <e08e3cc1-f70c-31b7-7e7c-0cc368213374@quicinc.com>
-Date: Thu, 14 Sep 2023 16:58:16 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2752224D7
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 09:08:07 +0000 (UTC)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDC4F30D8;
+	Thu, 14 Sep 2023 02:08:06 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-500a8b2b73eso1169107e87.0;
+        Thu, 14 Sep 2023 02:08:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694682485; x=1695287285; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hl4nS3eJDv9omiSZ8gxu5sTzl2Wgv9hxhPxCWSjSJ1s=;
+        b=hV5XB5KU7hYTYQ+6+ObPIMPfrmO2wbbV8gW8vnRqvOgvqVbF4CVf2Y/Owikfy+oLK7
+         FwMhkfgMJ4rY8nYgLlPiL/iXxiO0cRAE6oE+0o+7qJyofrxktu8mSsE2M9sQxuvrkemH
+         5EOAwrQ0KqDRk/Si+z+JVS8tGJplcsGQYqzmgJFnDLHuQU8YjslvDrCUEt2csUbBiQoU
+         JJgt9kg7mt7w/GqUntMDz8Ad36xKY4OouWOCTBZeISiO04EWhYoMrclr0JyBDJjwDpQ0
+         5QywF4vaxC5MbDcWku/su3Tqjc4IAOltmvuBq4DfjHtHqvjewmYX3HW8beUwQ7zFzYDD
+         45xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694682485; x=1695287285;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hl4nS3eJDv9omiSZ8gxu5sTzl2Wgv9hxhPxCWSjSJ1s=;
+        b=Wlae0zJbISoEQfJrxN/2fetIXiy2ZfvxF7B4MgPql3x1roxvgvORGC5KmAXNcHRZZx
+         KXtCYRyE5TseP4OCj/N/jGf7i9Lc8tRC1xX3cEwUg8Fv5nCxoLlXaeFI1n8CqZwgI64C
+         8SiAfbiPCOK0rM9d8JnVt3JUW5VvKsDSp4VrldCXNYKAHaOLbWO84GDQTy73OJ7944D0
+         Er9SFpp+O7Hw6MoVYMhO5ngT8eXp8LNKhMqVBgJaP9zHBqB+zBR0EUaRd8LsfZ3xz3Ga
+         8YbWeGrpOt8Ssedg6PxeV7HER4Er6F1Qy1OYltQ47dKR9m1vghY2gRhJinw5StPZk5y5
+         oHTw==
+X-Gm-Message-State: AOJu0YxCyek32vJrA/7O2cbt26l/U3FCsshljdJMoLpByANBG95AIeQo
+	4mkLGzVIfNQG4o2uir76QSQ=
+X-Google-Smtp-Source: AGHT+IHLnjQEvTVqllIsWA9wQwovx+WXjA9Q9csjJqXlqqN5zknxPu0RnvVF3c4cQBI53rSnWtLViA==
+X-Received: by 2002:a05:6512:250c:b0:500:a3be:1ab6 with SMTP id be12-20020a056512250c00b00500a3be1ab6mr4502063lfb.6.1694682484578;
+        Thu, 14 Sep 2023 02:08:04 -0700 (PDT)
+Received: from [127.0.1.1] (2a02-8389-41b4-ce80-b80d-9e19-c65b-2777.cable.dynamic.v6.surfer.at. [2a02:8389:41b4:ce80:b80d:9e19:c65b:2777])
+        by smtp.gmail.com with ESMTPSA id eg33-20020a05640228a100b0053030c3355asm110004edb.75.2023.09.14.02.08.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Sep 2023 02:08:03 -0700 (PDT)
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Date: Thu, 14 Sep 2023 11:07:59 +0200
+Subject: [PATCH v2] dt-bindings: rtc: pcf2123: convert to YAML
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v7 4/4] clk: qcom: add clock controller driver for
- qca8386/qca8084
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andersson@kernel.org>, <agross@kernel.org>,
-        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>, <p.zabel@pengutronix.de>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_srichara@quicinc.com>
-References: <20230914054639.13075-1-quic_luoj@quicinc.com>
- <20230914054639.13075-5-quic_luoj@quicinc.com>
- <357805c5-bedb-8972-bcf1-fabaaaf90ad9@linaro.org>
- <1a1922ec-a8ae-4a42-d8a9-921450592213@quicinc.com>
- <c7c28667-0266-5fc4-2dc3-132c51a93a92@linaro.org>
-Content-Language: en-US
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <c7c28667-0266-5fc4-2dc3-132c51a93a92@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: SZbgNemHIHIg1FOb40FhWH-VZaDUV3uL
-X-Proofpoint-GUID: SZbgNemHIHIg1FOb40FhWH-VZaDUV3uL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-14_07,2023-09-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- clxscore=1015 spamscore=0 impostorscore=0 malwarescore=0
- lowpriorityscore=0 mlxscore=0 bulkscore=0 mlxlogscore=689 adultscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309140076
+Message-Id: <20230907-topic-pcf2123_yaml-v2-1-ea87a8e12190@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAG7NAmUC/32NQQqDMBBFryKzbkoyWtN21XsUKTGOOmCMJCIV8
+ e6NHqDL9z+Pt0GkwBThmW0QaOHIfkyAlwxsb8aOBDeJASXm8iG1mP3EVky2RYX5ZzVuEGjpptu
+ CtG40JLE2kUQdzGj7Q3UmzhSOYwrU8vesvavEPcfZh/WML+pY/3YWJZQoJN2xpgZlWb46Z3i4W
+ u+g2vf9B12npZ/NAAAA
+To: Alessandro Zummo <a.zummo@towertech.it>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1694682483; l=3111;
+ i=javier.carrasco.cruz@gmail.com; s=20230509; h=from:subject:message-id;
+ bh=a4kY+3LJ7mblDfdCMOJy32yH7TjpqB1j+vQT54tBpGc=;
+ b=JpYphy5LylWIl5uPUDKvy5rXLIywSFJGJ7LgyLxwF8VpgzPYkzVb4T8UUgfTDbpxeYy358tRZ
+ 7v0i+ZvztNACKW/xYRCwBosjxqyYC589djkVwsDXpAkKm5RjPBnxzt8
+X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
+ pk=tIGJV7M+tCizagNijF0eGMBGcOsPD+0cWGfKjl4h6K8=
 
+Convert the existing txt binding to the preferred YAML format.
 
+The pcf2123 node may contain SPI settings such as spi-cs-high and
+spi-max-frequency, which keeps it from being added to the trivial-rtc
+binding with its current definition. Add a reference to
+spi-peripheral-props.yaml to account for that.
 
-On 9/14/2023 3:58 PM, Krzysztof Kozlowski wrote:
-> On 14/09/2023 09:52, Jie Luo wrote:
->>
->>
->> On 9/14/2023 2:15 PM, Krzysztof Kozlowski wrote:
->>> On 14/09/2023 07:46, Luo Jie wrote:
->>>> The clock controller driver of qca8386/qca8084 is registered
->>>> as the MDIO device, the hardware register is accessed by MDIO bus
->>>> that is normally used to access general PHY device, which is
->>>> different from the current existed qcom clock controller drivers
->>>> using ioremap to access hardware clock registers.
->>>>
->>>> MDIO bus is common utilized by both qca8386/qca8084 and other
->>>> PHY devices, so the mutex lock mdio_bus->mdio_lock should be
->>>> used instead of using the mutex lock of remap.
->>>>
->>>> To access the hardware clock registers of qca8386/qca8084, there
->>>> is special MDIO frame sequence(three MDIO read/write operations)
->>>> need to be sent to device.
->>>>
->>>> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
->>>> ---
->>>>    drivers/clk/qcom/Kconfig       |    9 +
->>>>    drivers/clk/qcom/Makefile      |    1 +
->>>>    drivers/clk/qcom/nsscc-qca8k.c | 2178 ++++++++++++++++++++++++++++++++
->>>>    3 files changed, 2188 insertions(+)
->>>>    create mode 100644 drivers/clk/qcom/nsscc-qca8k.c
->>>>
->>>> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
->>>> index 865db5202e4c..c95ada6a1385 100644
->>>> --- a/drivers/clk/qcom/Kconfig
->>>> +++ b/drivers/clk/qcom/Kconfig
->>>> @@ -203,6 +203,15 @@ config IPQ_GCC_9574
->>>>    	  i2c, USB, SD/eMMC, etc. Select this for the root clock
->>>>    	  of ipq9574.
->>>>    
->>>> +config IPQ_NSSCC_QCA8K
->>>> +	tristate "QCA8K(QCA8386 or QCA8084) NSS Clock Controller"
->>>> +	depends on MDIO_BUS || COMPILE_TEST
->>>
->>> This is SoC is for both ARM and ARM64 worlds?
->>>
->> Thanks Krzysztof for the comments.
->> This chip is independent of the ARCH, which just depends on the MDIO
->> bus, both mips and arm are supported.
-> 
-> There is no ARCH_QCOM on MIPS, so it's limited to ARM. Then add
-> restriction to ARM || COMPILE_TEST.
-> 
-> Best regards,
-> Krzysztof
-> 
-okay, will add the depends on ARM, thanks Krzysztof.
+The "interrupts" property was missing in the binding although it is
+already supported. Add the missing property in the new binding.
+
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes in v2:
+- Added interrupt to the example
+- Changed maintainer to Javier Carrasco (maintainer from v1 no longer
+  reachable)
+- Link to v1: https://lore.kernel.org/r/20230907-topic-pcf2123_yaml-v1-1-40e82bed2066@gmail.com
+---
+ .../devicetree/bindings/rtc/nxp,pcf2123.yaml       | 47 ++++++++++++++++++++++
+ .../devicetree/bindings/rtc/nxp,rtc-2123.txt       | 17 --------
+ 2 files changed, 47 insertions(+), 17 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2123.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2123.yaml
+new file mode 100644
+index 000000000000..96e377a4d1bc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2123.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/nxp,pcf2123.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP PCF2123 SPI Real Time Clock
++
++maintainers:
++  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++  - $ref: rtc.yaml#
++
++properties:
++  compatible:
++    enum:
++      - nxp,pcf2123
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        rtc@3 {
++            compatible = "nxp,pcf2123";
++            reg = <3>;
++            interrupts = <GIC_SPI 130 IRQ_TYPE_LEVEL_LOW>;
++            spi-cs-high;
++        };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,rtc-2123.txt b/Documentation/devicetree/bindings/rtc/nxp,rtc-2123.txt
+deleted file mode 100644
+index 7371f525a687..000000000000
+--- a/Documentation/devicetree/bindings/rtc/nxp,rtc-2123.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-NXP PCF2123 SPI Real Time Clock
+-
+-Required properties:
+-- compatible: should be: "nxp,pcf2123"
+-                      or "microcrystal,rv2123"
+-- reg: should be the SPI slave chipselect address
+-
+-Optional properties:
+-- spi-cs-high: PCF2123 needs chipselect high
+-
+-Example:
+-
+-pcf2123: rtc@3 {
+-	compatible = "nxp,pcf2123"
+-	reg = <3>
+-	spi-cs-high;
+-};
+
+---
+base-commit: 0bb80ecc33a8fb5a682236443c1e740d5c917d1d
+change-id: 20230907-topic-pcf2123_yaml-2ce57f4e77d7
+
+Best regards,
+-- 
+Javier Carrasco <javier.carrasco.cruz@gmail.com>
+
 
