@@ -1,211 +1,196 @@
-Return-Path: <devicetree+bounces-229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 752A17A0725
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 16:20:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFEDA7A0727
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 16:21:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FE971F238D6
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 14:20:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 33E51B209E6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 14:20:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 724AD22F0B;
-	Thu, 14 Sep 2023 14:19:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2A2521A13;
+	Thu, 14 Sep 2023 14:20:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67CC5241E7
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 14:19:30 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id C027B1FD8;
-	Thu, 14 Sep 2023 07:19:29 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 85A341FB;
-	Thu, 14 Sep 2023 07:20:06 -0700 (PDT)
-Received: from [10.57.93.68] (unknown [10.57.93.68])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 591303F738;
-	Thu, 14 Sep 2023 07:19:27 -0700 (PDT)
-Message-ID: <9595ad86-ecdc-e613-1b34-113b8c3123cd@arm.com>
-Date: Thu, 14 Sep 2023 15:19:20 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0404241E7
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 14:20:52 +0000 (UTC)
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2055.outbound.protection.outlook.com [40.107.22.55])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35536DF
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 07:20:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CR+ojh5+p1HYPUE9mrT6JVdhu6i2jFlwNoJzWiBHCoYBPvOkwxcV551OEjy54fUqwLuyKLK0pY7LxPXOyg/jF9o5Ndznwcqa6bHbQPJfVbFanWwZGi6Qrfp703JB3zWWGeRpcko4vPlMKWrTELfA6QPJ2v7bmQJ8XgILQFH92tAzvjvqb5/R9uXcRcXdd55SCdP8aG6kRodSib3wZAhJNi4OqS+2YMiEG+5g/KoahDUNq0n9eM//MA+vV3xKc1Rb7POSOeKSyorYeSNrb3y0LgIW2MJnoJd76TwX4misJZvXNe69l4pjlhKQr2shtOd2pNR4hpe4YZtCGmZux5+rkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BXfN9tfTOLAYQBfSCpEc5Th8pkV/1WGv0uhWFrS3HLE=;
+ b=Cs0Ohg7VOqJx5WdTglifE5bGHjdFac9WPtB7KEbUY/8zcY7M2RD91YOVjK1u1c4CkD122kUMCVFq7o5YZV/NzL8d9N8A400zN6uTO+EZW/lZ0njouYEgzSMmkpnNzm7ZRpi7Y0l7WXH0SQEWWl6eG/apbxBJOlMHxYrWx+MZe5wl6bLwnZBezCuA51z+J2eqTuJVB8UKrWuOSvUfgQgdYNHfgKFlDCHyMIfGmbctPYCJRP5xPHlkHD+rvYWBUmkM+D0MiTBcCUmV9MHyzk3x/53rXrsHcwVJ6Y5uGtvPtY5vwBFFS/S3v/1ICE1fiQ+kIOpyVHjRshu54IKzmPHBCQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BXfN9tfTOLAYQBfSCpEc5Th8pkV/1WGv0uhWFrS3HLE=;
+ b=F/fL12UshgAt0UlwqOwrb8jeWH7vTs/bTu4apOyISyKb0ok83j6uKiSlS1ZohObwcNUW27QmrGUkhI6ib6tKt/TwsDYWeXlS8X4AZWR9iLCFppjHywB7y9YAWgFJMt2SESLVts6mR3iVBTKWr02tPVcuCpW2oVscKHWL1V7aSJ4=
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
+ by DUZPR04MB9727.eurprd04.prod.outlook.com (2603:10a6:10:4b1::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.19; Thu, 14 Sep
+ 2023 14:20:49 +0000
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::aa90:117d:c1d0:346a]) by AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::aa90:117d:c1d0:346a%3]) with mapi id 15.20.6792.020; Thu, 14 Sep 2023
+ 14:20:49 +0000
+From: Frank Li <frank.li@nxp.com>
+To: Xu Yang <xu.yang_2@nxp.com>, "will@kernel.org" <will@kernel.org>,
+	"mark.rutland@arm.com" <mark.rutland@arm.com>, "robh+dt@kernel.org"
+	<robh+dt@kernel.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>
+CC: "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, dl-linux-imx
+	<linux-imx@nxp.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, Ye Li <ye.li@nxp.com>
+Subject: RE: [EXT] [PATCH 2/2] arm64: dts: imx93: add DDR controller node
+Thread-Topic: [EXT] [PATCH 2/2] arm64: dts: imx93: add DDR controller node
+Thread-Index: AQHZ5vSPitj3lxuP00q++zJOk7ZvW7AaXuQw
+Date: Thu, 14 Sep 2023 14:20:49 +0000
+Message-ID:
+ <AM6PR04MB4838810FDC93B54DE774BC4488F7A@AM6PR04MB4838.eurprd04.prod.outlook.com>
+References: <20230914102038.2944844-1-xu.yang_2@nxp.com>
+ <20230914102038.2944844-2-xu.yang_2@nxp.com>
+In-Reply-To: <20230914102038.2944844-2-xu.yang_2@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM6PR04MB4838:EE_|DUZPR04MB9727:EE_
+x-ms-office365-filtering-correlation-id: f0e43717-cf93-4947-1529-08dbb52dcb73
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ zj1EYBzZs+womI/UQw+e8l2EUH9Z1IlqkS6psDAOcJcfSGpA4AemSs2TutwPPhrD1G/WDJoBT2GkcgPo3UOgL28yA/uVPmIucJAmMTI6ewEtTLiytwkGun2S9x81XFRNs476HeJVAeHMygDozayUkAiu3RIrsGat6jbR2FGW+IQKWIQKlRoNUuZFCI56tM7xnb3Jg+mB5l6BKD7jRymEMfMPGS3hVR6aHY8hYxnCfu05xDq2/VbzsWkFqkmOoz5GDZKcakaW/BV2LdP+XtSYmlJmj8RoEIKLHjidf1dK9eAAQRbMGs3F6ZdfQ0DW9gl1IZds4GAT2x3Q1KW70uADb1z5RNWJ41Hw2z7ZCcX2KYuEemfA2EsmooG30faNr/xRJerQr5LOJf1KLrbu9MnFNkzaKTp+jty8iJ+yJUCEQyh+hLCmv6tvk0uvj9S7HY7NREvfMYe9zE0PuaIvpcECpAXnDAuzKjIf5uYrZYDfxHxcN6vMbXC469PGDHI390uNyIadmNHWWxk0qX5EDI33FBepjODQS7g/l1wOQXyWCF7ZEhyO8wCL4shAGNnvf5Jxl4po6lMUfegF9keeeOH2nPyFZdUsALzigiFmwbZbPCE=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39860400002)(376002)(366004)(346002)(136003)(451199024)(186009)(1800799009)(55236004)(53546011)(9686003)(110136005)(478600001)(55016003)(44832011)(38100700002)(76116006)(86362001)(122000001)(7696005)(6506007)(71200400001)(38070700005)(83380400001)(26005)(8676002)(4326008)(2906002)(52536014)(8936002)(41300700001)(66946007)(5660300002)(316002)(66556008)(54906003)(66476007)(66446008)(64756008)(33656002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?j58+LEG6fl9fEK3Y312PvFRJAbA5ZEEWlXiFcyfzFKw9Kv/ruPQdMFK6peGC?=
+ =?us-ascii?Q?gDFSeYux1aiEZJtdI7CT3S8XBtchY1sh7zaJpgwB3UdGWk4oIQhsMWaZ98ac?=
+ =?us-ascii?Q?aQIwKxNO4zyvfhrZVjHK3bv6sHSVoh6zp9BK+6g0M0gKyjZuf5zOgrWoYV3P?=
+ =?us-ascii?Q?688duVv936xansdMOLYjPJEQ8SpVEmlMQR7y2D325g0ySyC6uQ+7VZOS6RZe?=
+ =?us-ascii?Q?nHorWzmR2RThNLZYp3ZD1Aljj66r6Vd4rVqIjWSVKkbNZo11DV+d2Ordz1Qa?=
+ =?us-ascii?Q?Lm0GX4cnpMaUy8cBKs/GzjoHxfHGiWV2RdIWImLFgvRLP6kdbvMUq0AuMfgj?=
+ =?us-ascii?Q?FCGfRz9adjDHncANwJsD3KVta+DUmA0tjO1V2ugc0g9gKEA+8A0fnnyHGsC5?=
+ =?us-ascii?Q?AoQW36t/ruseYXXDTQzVbFk3Ke8lkQqbb6QR0cAUoK2RrT4gbdo5je1IjZBk?=
+ =?us-ascii?Q?VmRtFTnlwsEz8EfDEaKSGDLgOfNYqXHrKooWXC4w7tawB3y0lRr+AHc23qOH?=
+ =?us-ascii?Q?e9v6ftq65K4fKDpGBkbXxOE/djoY5UWUitbb2eY9IvG4mo5Wab9jz2UgOVJo?=
+ =?us-ascii?Q?FD/ro6obZnLdfCqbJs+KZc2bugq1756z70xz9UT4KyrdFhqDwirvKcF7BtU7?=
+ =?us-ascii?Q?wy8SXg3zHYWFBKkJUyfukALGotfwTT3IcnMZYDCPRHiQ5p9/J+I8vTDNZx0j?=
+ =?us-ascii?Q?2Tm8qsVYEu+Dqs55d6aGjhc0+Ph8wyybo7h8BEWk5XHOsSTHzUufR44Zyw9X?=
+ =?us-ascii?Q?iRIgw+hJtH9nvceqe+FnAw6SZ2KHeLKEnl17wK0uOwbgFhzJSY3/ooR0Ycy8?=
+ =?us-ascii?Q?8JbcHbpnLo9ygQjwuHjEMz5elWnLwSZNHPS5sghwwgi1poQ6BrjPJei/ZQY+?=
+ =?us-ascii?Q?xFAtZ8i4gsa9wurPVBLbEbL8ZKbqqoWLrvVoJWAoPBsb7YebAww19bCpg3pg?=
+ =?us-ascii?Q?2r5si4Eqwx8lIkPKbdHgWc97dKDrnVe8rLkuF73RRuhW8Im4zY0BYoWVU6/A?=
+ =?us-ascii?Q?Q1y5bL17hYF9WWpZfGwEgPYhvQCTeCijhjp/bcJwmTkguPscR9eJ+qLTiGIL?=
+ =?us-ascii?Q?zSOR8KCUOGT/hl+JnXGKUkTOK71ERswx5rgtTaqmK8AEeH8XKHOan8hUmuSY?=
+ =?us-ascii?Q?eQZhKorZTQXt2D+JW5ZuHRGPhJipTX9GHpo3qdcBemD+1leKYDbRsNmTwEaU?=
+ =?us-ascii?Q?xxsAhQc4lzm2yDSd38nAoSofWH11BLdKOOoTTb2o5r341VgVKELR7C1cJBrF?=
+ =?us-ascii?Q?8pVR63xDJV5vgTe5jIZo2Aji1oDypUaaZMXTEYR0nUzZJ1F5T4iVSQzLpQ/2?=
+ =?us-ascii?Q?BPv1THXe73ga+fDsZnC+4ae6qMn5sAzl17sVbaGb2Z+2G/9V0qgdU9+myto5?=
+ =?us-ascii?Q?3x7oFeHiK8tLN24bac2ZXCOCOTbOVXaRnV8ZsmZ9RsYujc36RDDq8A9FTO5L?=
+ =?us-ascii?Q?y5OP4XZROgs/Nvdt/XqhA9OXGGwl4FV7aQBNSk6wKRPmefvlPkkvaIFjevC7?=
+ =?us-ascii?Q?hLo0RaUHB0R7Jwc9o54tOo+HdE5Vlpu00vYHEqAz8Ob9h8pzRgK4pA4pR7OM?=
+ =?us-ascii?Q?6FIBwrz90iYiWPbQ/9Q=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 2/3] iommu: mediatek: Add support of unmanaged iommu
- domain
-Content-Language: en-GB
-To: Alexandre Bailon <abailon@baylibre.com>,
- =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
- "joro@8bytes.org" <joro@8bytes.org>, "will@kernel.org" <will@kernel.org>
-Cc: "linux-mediatek@lists.infradead.org"
- <linux-mediatek@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-References: <20230130102722.133271-1-abailon@baylibre.com>
- <20230130102722.133271-3-abailon@baylibre.com>
- <741920ba-8637-5e28-695c-699b46351590@arm.com>
- <f126c61f-6373-d6c5-59c8-24dea9d9d168@baylibre.com>
- <0e9f677b-846d-809d-9bc3-30906f703fda@arm.com>
- <21fef8eb-6482-fd8c-118a-c4d9da4cfbaf@baylibre.com>
- <2b8e19488386b5ca523f010b8ded750a4213f84e.camel@mediatek.com>
- <68673ccd-d136-075e-6704-7d1558388784@baylibre.com>
-From: Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <68673ccd-d136-075e-6704-7d1558388784@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0e43717-cf93-4947-1529-08dbb52dcb73
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Sep 2023 14:20:49.4110
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: cf4KDdZzYdMaE+CqwB/1KcemGj5IX3V0eqoc2nSNtH8k0OGU4y+TU0Gapuv2kx286p77sAh1gVSotGZ5mjnKNg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUZPR04MB9727
 
-On 2023-09-14 09:07, Alexandre Bailon wrote:
-> Hi,
-> 
-> Sorry for long delay before the response.
-> 
-> On 2/14/23 06:48, Yong Wu (吴勇) wrote:
->> On Tue, 2023-01-31 at 16:31 +0100, Alexandre Bailon wrote:
->>>
->>> On 1/31/23 15:15, Robin Murphy wrote:
->>>> On 31/01/2023 1:08 pm, Alexandre Bailon wrote:
->>>>> Hi Robin
->>>>>
->>>>> On 1/30/23 13:04, Robin Murphy wrote:
->>>>>> On 2023-01-30 10:27, Alexandre Bailon wrote:
->>>>>>> Currently, the driver can allocate an unmanaged iommu domain.
->>>>>>> But, this only works for SoC having multiple bank or multiple
->>>>>>> iova
->>>>>>> region.
->>>>>>
->>>>>> That is for good reason - there is only a single pagetable per
->>>>>> bank,
->>>>>> so if there are multiple devices assigned to a single bank,
->>>>>> they
->>>>>> cannot possibly be attached to different domains at the same
->>>>>> time.
->>>>>> Hence why the banks are modelled as groups.
->>>>>
->>>>> I understand.
->>>>> I am trying to upstream a remoteproc driver but the remote
->>>>> processor is
->>>>> behind the iommu.
->>>>> remoteproc can manage the iommu but it requires an unmanaged
->>>>> domain.
->>>>> I tried a couple of things but this cause code duplication,
->>>>> implies many hacks and not always reliable.
->>>>> Do you have any suggestion ?
->>>>
->>>> If there are other active devices behind the same IOMMU, and the
->>>> remoteproc device cannot be isolated into its own bank using the
->>>> existing IOMMU driver logic, then the remoteproc driver cannot
->>>> manage
->>>> the IOMMU directly, and must just use the regular DMA API. There's
->>>> no
->>>> way around it; you can't have two different parts of the kernel
->>>> both
->>>> thinking they have exclusive control of a single IOMMU address
->>>> space at
->>>> the same time. Similarly, remoteproc also cannot take explicit
->>>> control
->>>> of a multi-device group if it's not actually in control of the
->>>> other
->>>> devices, since their drivers will not be expecting the DMA address
->>>> space
->>>> to suddenly change underfoot - that's why iommu_attach_device() has
->>>> the
->>>> check which you presumably ran into.
->>>
->>> Unfortunately, we can't just use the regular DMA API.
->>> Basically, the firmware use static addresses (and the remote core is
->>> only supposed to access addresses between 0x60000000 and 0x70000000).
->>> When we use DMA API, we get a random address that doesn't match what
->>> the
->>> firmware would expect.
->>> remoteproc use directly the iommu API to map physical address to the
->>> static address expected by the firmware when DMA API can't be use.
->>
->> If this master can only support this special address, We could handle
->> it inside this driver.
->>
->> Could you help try to add these two patches [3/11] and [4/11]?
->>
->> [3/11]
->> https://patchwork.kernel.org/project/linux-mediatek/patch/20230214031114.926-4-yong.wu@mediatek.com/
->> [4/11]
->> https://patchwork.kernel.org/project/linux-mediatek/patch/20230214031114.926-5-yong.wu@mediatek.com/
->>
->>
->> and, then add the logical for mt8365(I see the APU is larb0 port10/11
->> in the binding):
->> --------------------------------
->>
->> +#define MT8365_REGION_NR        2
->> +
->> +static const struct mtk_iommu_iova_region
->> mt8365_multi_rgn[MT8365_REGION_NR] = {
->> +    { .iova_base = 0x0,        .size = SZ_4G},           /* 0 ~
->> 4G. */
->> +    { .iova_base = 0x60000000,    .size = SZ_256M},      /* APU
->> */
->> +};
->> +
->>
->> xxxxxxxxxxx
->>
->> +static const unsigned int
->> mt8365_larb_region_msk[MT8365_REGION_NR][MTK_LARB_NR_MAX] = {
->> +    [0] = {~(u32)(BIT(10) | BIT(11)), ~0, ~0, ~0, ~0, ~0},
->> +    [1] = {[0] = BIT(10) | BIT(11)},
->> +};
->> +
->>   static const struct mtk_iommu_plat_data mt8365_data = {
->>       .m4u_plat    = M4U_MT8365,
->>       .flags        = RESET_AXI | INT_ID_PORT_WIDTH_6,
->>       .inv_sel_reg    = REG_MMU_INV_SEL_GEN1,
->>       .banks_num    = 1,
->>       .banks_enable    = {true},
->> -    .iova_region    = single_domain,
->> -    .iova_region_nr    = ARRAY_SIZE(single_domain),
->> +    .iova_region    = mt8365_multi_rgn,
->> +    .iova_region_nr    = ARRAY_SIZE(mt8365_multi_rgn),
->> +    .iova_region_larb_msk = mt8365_larb_region_msk,
->>       .larbid_remap    = {{0}, {1}, {2}, {3}, {4}, {5}}, /* Linear
->> mapping. */
->>   };
->> --------------------------------
->>
->> After that, If we call DMA API with the device whose dtsi has
->> M4U_PORT_APU_READ/M4U_PORT_APU_WRITE. The iova should be located at
->> that special address. Sorry, I have no board to test.
->>
-> 
-> I have not yet tested the patches but it will only address one part of 
-> the problem.
-> Using your patches, I could allocate some shared memory using DMA API 
-> but the main issue still remain.
-> The firmware is not relocatable at all. So, once the firmware is built, 
-> it is expected to be loaded at a specific address.
-> Remoteproc framework support this use case. Using the resource table, 
-> the firmware expose to remoteproc what device address is expect and 
-> remoteproc manually call iommu_map to satisfy this requirement.
-> Using DMA_API, I could allocate the memory to load the firmware but I 
-> could not be sure that the DMA address will be the one expected by 
-> firmware.
 
-I think the solution to this is now to use the new DT binding to require 
-an IOMMU identity mapping of the firmware region[1], such that it's all 
-taken care of for you.
 
-Thanks,
-Robin.
+> -----Original Message-----
+> From: Xu Yang <xu.yang_2@nxp.com>
+> Sent: Thursday, September 14, 2023 5:21 AM
+> To: will@kernel.org; mark.rutland@arm.com; robh+dt@kernel.org;
+> shawnguo@kernel.org
+> Cc: krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org; dl-linux-imx
+> <linux-imx@nxp.com>; devicetree@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org; Ye Li <ye.li@nxp.com>
+> Subject: [EXT] [PATCH 2/2] arm64: dts: imx93: add DDR controller node
+>=20
+> Caution: This is an external email. Please take care when clicking links =
+or
+> opening attachments. When in doubt, report the message using the 'Report
+> this email' button
+>=20
+>=20
+> Add DDR controller node which will be used by EDAC driver later, also
+> move the DDR PMU node as the subnode of the DDR controller.
+>=20
+> Signed-off-by: Ye Li <ye.li@nxp.com>
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx93.dtsi | 18 ++++++++++++++----
+>  1 file changed, 14 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> index 6f85a05ee7e1..992bdeef70cd 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> @@ -917,10 +917,20 @@ media_blk_ctrl: system-controller@4ac10000 {
+>                         status =3D "disabled";
+>                 };
+>=20
+> -               ddr-pmu@4e300dc0 {
+> -                       compatible =3D "fsl,imx93-ddr-pmu";
+> -                       reg =3D <0x4e300dc0 0x200>;
+> -                       interrupts =3D <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+> +               ddr: memory-controller@4e300000 {
+> +                       compatible =3D "simple-mfd";
+> +                       reg =3D <0x4e300000 0x2000>;
 
-[1] https://git.kernel.org/torvalds/c/af0d81357cc5
+[Frank Li] Can you just use EDAC register space size?=20
+I suppose EDAC and PMU's register space is not over lapped. =20
+
+> +                       interrupts =3D <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
+> +                       little-endian;
+> +                       #address-cells =3D <1>;
+> +                       #size-cells =3D <1>;
+> +                       ranges;
+> +
+> +                       ddr-pmu@4e300dc0 {
+> +                               compatible =3D "fsl,imx93-ddr-pmu";
+> +                               reg =3D <0x4e300dc0 0x200>;
+> +                               interrupts =3D <GIC_SPI 90 IRQ_TYPE_LEVEL=
+_HIGH>;
+> +                       };
+>                 };
+>         };
+>  };
+> --
+> 2.34.1
+>=20
+
 
