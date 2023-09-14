@@ -1,150 +1,204 @@
-Return-Path: <devicetree+bounces-297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 997427A0C55
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 20:16:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27CBF7A0D71
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 20:46:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 741EF1C20A89
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 18:16:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4E25281720
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 18:46:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1976266AE;
-	Thu, 14 Sep 2023 18:16:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DFA921366;
+	Thu, 14 Sep 2023 18:46:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B489518E1B
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 18:16:01 +0000 (UTC)
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2065.outbound.protection.outlook.com [40.107.92.65])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4FA71FFD;
-	Thu, 14 Sep 2023 11:16:00 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=A9TMWjLkFguhwsXODHC4KLgJTzyoZbAR24ZQBfO/Z0BFsAS2MR9hWALSWZ7K0zD0pzRLSrPVUSYwDhF/8FV7aZwzY8xA4o3iXh8BUiLOjvK+bBVmLg/AmwT32LATbnyU0akAhRDcTa7aNOv3y9I6mTAmNcUCQIzfXjVZ1L+3j7v6KEzvdBIPnDHqjXAyityiU4XPvRQ79TD7UEDmEBqGpgPJmHYnvDhSFAIxFOVca27ABN/H1weL30/Tfah1RcevvqwWDOV28ZNtEWKaqfZLlcwEO6k0SaDfwarUnGuTsGxJUdrvSewUfUzHPmKXUOMFQRTgi1nHT8JzA5Uh2ryJag==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SifNL8ODpDDFEdAUcg7nM4MGe88oeZea6j9iF8opzVE=;
- b=fQIIdk/QCHZBBTilTnySU2aDtmxtVh6c8fJs1fCtDVNG5rd3teZ9L4qFIhqQPIInTyBlyptDUqa2VTlev10xBrdg0h2JCTzwWg2rLG7wbzqkI48F3K111iby184GxzkbbKe7mLSQEuZRNXGHdHRzboudNGinHmYhbbQQIRcnKnvjkuljWdJ04NLyJCx+TWUE2dpLk6mXJE5ZxoOLLhPkRGpYRkf0RhGF88jrESTdI4XDW0do3mQZ4KxHJIv5H0wjAUqlA6aZ7395aCSXq+H98ttQ4ag7iqw3/bo8Xw3CxLvpSJlFu5Zf+JjFKfHGg4eJ5++swY6oL1jtRNOvNwah9Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SifNL8ODpDDFEdAUcg7nM4MGe88oeZea6j9iF8opzVE=;
- b=0dH6UuO4yPTXsCOxY2P26EqhP3v0Tfbq+X4RtwSoXr2c90P+OUv4GjBV7LclDf10lpuRtiEn5F9EMTC+qQXmG990hHpt9ikYh0oDu+S3IYghsOnaWjxTF+u0e0uBC8XvI4Yh9KU946qINgVfsMYK6c48I5I7l0cQtOOJXrk8b7Y=
-Received: from DM6PR18CA0009.namprd18.prod.outlook.com (2603:10b6:5:15b::22)
- by DM8PR12MB5399.namprd12.prod.outlook.com (2603:10b6:8:34::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6792.20; Thu, 14 Sep 2023 18:15:58 +0000
-Received: from DS2PEPF00003447.namprd04.prod.outlook.com
- (2603:10b6:5:15b:cafe::10) by DM6PR18CA0009.outlook.office365.com
- (2603:10b6:5:15b::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.20 via Frontend
- Transport; Thu, 14 Sep 2023 18:15:58 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DS2PEPF00003447.mail.protection.outlook.com (10.167.17.74) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6792.20 via Frontend Transport; Thu, 14 Sep 2023 18:15:58 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 14 Sep
- 2023 13:15:57 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 14 Sep
- 2023 13:15:57 -0500
-Received: from xsjlizhih40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Thu, 14 Sep 2023 13:15:56 -0500
-From: Lizhi Hou <lizhi.hou@amd.com>
-To: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <herve.codina@bootlin.com>
-CC: Lizhi Hou <lizhi.hou@amd.com>, <bhelgaas@google.com>, <robh@kernel.org>
-Subject: [PATCH] PCI: of: Fix memory leak when of_changeset_create_node() failed
-Date: Thu, 14 Sep 2023 11:15:51 -0700
-Message-ID: <1694715351-58279-1-git-send-email-lizhi.hou@amd.com>
-X-Mailer: git-send-email 1.8.3.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6569414F6B
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 18:46:26 +0000 (UTC)
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6679D58C1
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 11:46:25 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-31c3df710bdso1176416f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 11:46:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694717184; x=1695321984; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kIZovquInIL74DbQjfgBZgPlunuh9zGf95Z8S/ooNDg=;
+        b=QYHZqaNpezYBGk6OGK3K6m4VbH7SfnULqezfHtDvf7PB91oxxo1l2DDfY+/WWYqK8n
+         6mfLwZ3sOx29Y5ezx//R3tocP9wvcDGk6+fT11e2PcHepox1cw3ZJGaguRpIUs+8GUfO
+         7PeugPV3kwrp3TbmObDXlQN/98f3KQaKPFNKRAzsXqJNEGCmUJ1av0wr4aFLMDeXhjCf
+         G6HloF/jhuocXimEvYWhPg5TfuNMLK7dZMyF6HMqno9nDLwY29BA7vGHC4UKP7qaZIN6
+         3GQKhRvY1OHG+tZRrlsGdE0jeWEgrGDqG6TWGQqzu35znyYBWb+cRXf5H7IwBGJSa462
+         WBlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694717184; x=1695321984;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kIZovquInIL74DbQjfgBZgPlunuh9zGf95Z8S/ooNDg=;
+        b=NHovxSpf6KtUkBOjmjZVteVweUIzwGO6gNXCrgbYq/t/L+I/EVjRMRRkdIYVq8xGmL
+         aPyfM8YCCt8aJaXvVkzzXdbeufBS3+rfmd2XFbD5O+2AE4gkJZwYmEVQRPeUR/8Lwz0G
+         mqAwQBtiV31rAT7p314BAJG7tAUbhkjvKP4zA6kMdiQvyi7qM86cOF3H3WY0HHkxPdWZ
+         e19uFAlBaV29mu6nPywZiP0jqNlbBEliKgam/wD8wyeiPN8IBojrCQUHVaMxG38RJ8w0
+         k8+eoMSK4BTezmY12T2OJ0cy6mNyueIaDzUNJhzSwtbcLlnbwgC4dMbQvLrk7RJTDn9A
+         SJsg==
+X-Gm-Message-State: AOJu0YzjmYHrRuCLt/lwpfVgK0eoWQzEwgFIYZnoNcmmeXjhl48IDOfH
+	LwvevQXVLWuwNCAMQ4mqfURAlg==
+X-Google-Smtp-Source: AGHT+IHepuPWdsuiYR2oi1IwB/1DPQW73hMmiXEXagum6xwLJRh7Tnno1d2aZCEgN4NgYG4HRn/k/w==
+X-Received: by 2002:adf:f981:0:b0:319:8430:f80f with SMTP id f1-20020adff981000000b003198430f80fmr5343316wrr.49.1694717183627;
+        Thu, 14 Sep 2023 11:46:23 -0700 (PDT)
+Received: from [192.168.37.232] (178235177003.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.3])
+        by smtp.gmail.com with ESMTPSA id g8-20020a50ee08000000b00521d2f7459fsm1232748eds.49.2023.09.14.11.46.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Sep 2023 11:46:23 -0700 (PDT)
+Message-ID: <36287e2f-ddff-4323-bbc2-e7a07a9283e7@linaro.org>
+Date: Thu, 14 Sep 2023 20:46:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003447:EE_|DM8PR12MB5399:EE_
-X-MS-Office365-Filtering-Correlation-Id: 862b2080-7275-4fa2-b38f-08dbb54ea50a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	t27ziNgipgt7B4351WWtOcvN0RkCFKrV+/tpMeSz7c3Udh9Mf4wVkPM010UE+6VThGyNLleX1y2o4K9RXlm1CSd9Hu8jN5MJlQSDMw/GHTdKOulGzD2bUdQBKgt4+NZwz9M/aAtnBOCk+y3w9l3YbNEED9f52AeSLlJf+WVoDVghRUpw6bB5Z/opqJ6cavy9b/ADLAgKsYlT9a/UpbxiQYDjX6udo5TurNmLAIjpHAmDCzzKCBvNsFCbbt0GCo3X8DYbJchgDqhSakpnoCjuy97NBTkSEOguwsWWtfxH4KyKQkl1UbtQ66zt02+yOCNzCobNb+OVgjzXIYrlKuSNT4sf6/c7bdeX87GbNKEf3KoecDZ4esAjcZRUMBa1rw9eiXxu7gbOfXY4AN7/tZOXfStWR+OeY3LcwHSPxyTLTAstFri7xXuLpafr6T3pJSlw0C4mHkaXJqK+z5FUrw4/m79AGGb4eBIRThqjN1jHcaGUH13PW/ojHBIyN8ZAjnH1zsmtl36bXqVX9rln2H24yXxPV1CgEbh6vfb5sXuQcttGL2em/rkI/JVnCvewqJs5a0jkTi5EdauRHfQspkwcjWp2Eop1R0+ysinl2sQtu8mHpvyp4IyqNV8/tn7/ZVOK3Y4KYg0ypEUeBnZPyeIt5Co++9Pr8Wgu/GsawbkyJv8MGgGFPaEGUUmR2+61tL81GJZCFlKYSRt0xkCJclwzNWZuj3PPtSJILjbkikPHI8eeJHFi+rOmyd4YP9/ECviqcHRFoJQlXRVQmR8yDZa1Vg==
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(136003)(346002)(376002)(39860400002)(396003)(186009)(451199024)(1800799009)(82310400011)(46966006)(36840700001)(40470700004)(44832011)(36860700001)(4744005)(83380400001)(356005)(6666004)(4326008)(426003)(86362001)(8676002)(336012)(8936002)(5660300002)(47076005)(2906002)(26005)(54906003)(110136005)(70206006)(70586007)(40480700001)(478600001)(82740400003)(966005)(41300700001)(316002)(36756003)(2616005)(40460700003)(81166007)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2023 18:15:58.3294
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 862b2080-7275-4fa2-b38f-08dbb54ea50a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS2PEPF00003447.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR12MB5399
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v2 3/3] power: supply: Introduce MM8013 fuel gauge
+ driver
+Content-Language: en-US
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Marijn Suijten <marijn.suijten@somainline.org>, Rob Herring
+ <robh@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20230621-topic-mm8013-v2-0-9f1b41f4bc06@linaro.org>
+ <20230621-topic-mm8013-v2-3-9f1b41f4bc06@linaro.org>
+ <20230913154552.okinfq6gdxf2d7ab@mercury.elektranox.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230913154552.okinfq6gdxf2d7ab@mercury.elektranox.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Destroy and free cset when failure happens.
+On 13.09.2023 17:45, Sebastian Reichel wrote:
+> Hi,
+> 
+> On Wed, Aug 23, 2023 at 04:36:15PM +0200, Konrad Dybcio wrote:
+>> Add a driver for the Mitsumi MM8013 fuel gauge. The driver is a vastly
+>> cleaned up and improved version of the one that shipped in some obscure
+>> Lenovo downstream kernel [1], with some register definitions borrowed from
+>> ChromeOS EC platform code [2].
+>>
+>> [1] https://github.com/adazem009/kernel_lenovo_bengal/commit/b6b346427a871715709bd22aae449b9383f3b66b
+>> [2] https://chromium.googlesource.com/chromiumos/platform/ec/+/master/driver/battery/mm8013.h
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+[...]
 
-Fixes: 407d1a51921e ("PCI: Create device tree node for bridge")
-Reported-by: Herve Codina <herve.codina@bootlin.com>
-Closes: https://lore.kernel.org/all/20230911171319.495bb837@bootlin.com/
-Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
----
- drivers/pci/of.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> Please use regmap.
+Ack
 
-diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-index 2af64bcb7da3..67bbfa2fca59 100644
---- a/drivers/pci/of.c
-+++ b/drivers/pci/of.c
-@@ -663,7 +663,6 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
- 	np = of_changeset_create_node(cset, ppnode, name);
- 	if (!np)
- 		goto failed;
--	np->data = cset;
- 
- 	ret = of_pci_add_properties(pdev, cset, np);
- 	if (ret)
-@@ -673,12 +672,17 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
- 	if (ret)
- 		goto failed;
- 
-+	np->data = cset;
- 	pdev->dev.of_node = np;
- 	kfree(name);
- 
- 	return;
- 
- failed:
-+	if (cset) {
-+		of_changeset_destroy(cset);
-+		kfree(cset);
-+	}
- 	if (np)
- 		of_node_put(np);
- 	kfree(name);
--- 
-2.34.1
+[...]
 
+>> +	switch (psp) {
+>> +	case POWER_SUPPLY_PROP_CAPACITY:
+> 
+> this is in %, while the next two are in uAh. So the fuel gauge does
+> not provide the current capacity in uAh
+> (POWER_SUPPLY_PROP_CHARGE_NOW)?
+Yes. Doesn't seem like raw values are supported.
+
+[...]
+
+> 
+> this is just 'val->intval = (s16) ret;'.
+> 
+>> +		val->intval *= -1000;
+Ack
+
+> 
+> and this seems to be the only property, that properly scales its
+> values, assuming the hardware reports data in mA.
+> 
+
+[...]
+
+> 
+> that's in **micro** volts
+Oh, I didn't read enough docs..
+
+> 
+>> +		ret = mm8013_read_reg(client, REG_VOLTAGE);
+> 
+> this effectively does i2c_smbus_read_word_data() and thus the
+> maximum is is 65536. 65536uV = 65mV. I have serious doubts, that
+> this code does what you want. The same is true for a couple of
+> the other properties.
+Ack
+
+[...]
+
+> With the next submission please include a dump of the uevent
+> in sysfs in the cover letter or below the fold, so that its
+> easy to validty check if the reported values look sensible.
+State of what-will-be-sent in v(n+1), with additional fixups:
+
+POWER_SUPPLY_NAME=mm8013
+POWER_SUPPLY_TYPE=Battery
+POWER_SUPPLY_CAPACITY=100
+POWER_SUPPLY_CHARGE_FULL=7124
+POWER_SUPPLY_CHARGE_FULL_DESIGN=7500
+POWER_SUPPLY_CURRENT_NOW=-122000
+POWER_SUPPLY_CYCLE_COUNT=27
+POWER_SUPPLY_HEALTH=Good
+POWER_SUPPLY_PRESENT=1
+POWER_SUPPLY_STATUS=Full
+POWER_SUPPLY_TEMP=324
+POWER_SUPPLY_VOLTAGE_NOW=4407000
+
+
+> 
+> Thanks and sorry for the slow processing,
+No worries
+
+Konrad
 
