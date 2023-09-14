@@ -1,141 +1,127 @@
-Return-Path: <devicetree+bounces-320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 468157A0FD1
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 23:26:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD2777A11E8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 01:37:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4CD61C211EF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 21:26:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BD52281C21
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 23:37:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F28F266C6;
-	Thu, 14 Sep 2023 21:26:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5374BD308;
+	Thu, 14 Sep 2023 23:37:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99D1B10A2F
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 21:26:02 +0000 (UTC)
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B07A61FD2;
-	Thu, 14 Sep 2023 14:26:01 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2bcde83ce9fso23029361fa.1;
-        Thu, 14 Sep 2023 14:26:01 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5AA833F2
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 23:37:50 +0000 (UTC)
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9AC61FE5
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 16:37:49 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-522bd411679so1890667a12.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 16:37:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694726760; x=1695331560; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=oMF1sMMODWcbgwT3pjH1uzXCcj9xNGEpLdRLCBrFrJQ=;
-        b=cmu42MFN2adM3nuknTtkg/iPg74QXm77WyUphNziYcaXwM1AYxr3Ynng9DBFsBdtfC
-         dBK2LbCIvbu05zbRMehg8oFzeZT8A2xRskrhPVx+FEP4fIOZrmHY41UhyffCgn97Tf0D
-         a7JCbvgVMt1gOtOrMgtxfRsyBx8TCKf4nJXDF/z5sgbBONpGNOiyBdetlunB9Bufnc2e
-         uSZ95JHb6GuVVOVWwJAMXLSFuI3LEa6tQlBhLUROxiya5287dtx10c/V56/4TQw3RnfR
-         pbzOfIg/6Zs+5+EAB4vNGrTcyOtr5vMLBZHQv5HxgHQYiuHXagD/afBOBOvcJP2RFLE/
-         HXjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694726760; x=1695331560;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1694734666; x=1695339466; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=oMF1sMMODWcbgwT3pjH1uzXCcj9xNGEpLdRLCBrFrJQ=;
-        b=OB/Crm1yPU0O2XFn0egCyaYTIsvNhQ960UORmAGrCCHc/9TSliewmjK3vDcdMed+6x
-         Izm8eRCj+wj08E9GnblSN3PjOgY8yB1kIvqp8YriOTijjD0kLRz5yJjYim1ll5xL0wOg
-         //JGvbMu0o8husE4eJPA1wDOJiCrPG9rTpNYoyApP4AgmaHP9hHQVy3vqZRoISNoufa2
-         pCEPem5ZXw+KnNTsJoXAMDuLzjGosPrgVFV8nX5RTc/5E1bP6GIbYFyAENgSf8f5fFAW
-         hBNffaITEqAzqhfPfhXMzdK1cEzObuNJTrj9RIL4TcGthpGM0vwqnNqt/OiHHdXKA4A+
-         Hu4A==
-X-Gm-Message-State: AOJu0YwQX6UkCvKp01fQavLj3D+WXmKWGKBC24ud4k6Raipmdd0nK3xG
-	Y1Rcu1Hq2rivYRVDYR9QVp8=
-X-Google-Smtp-Source: AGHT+IGeoMqy4vLAoSY2X/w+GA/HPMA45WiFFOP5RvQWLM6JvhicB+XTUCofBtivl+Hy1N1PeJ/JQw==
-X-Received: by 2002:a2e:94c9:0:b0:2bc:cc1a:139c with SMTP id r9-20020a2e94c9000000b002bccc1a139cmr6834ljh.11.1694726759634;
-        Thu, 14 Sep 2023 14:25:59 -0700 (PDT)
-Received: from mobilestation ([95.79.219.206])
-        by smtp.gmail.com with ESMTPSA id q7-20020a2e8747000000b002b787442f03sm437834ljj.88.2023.09.14.14.25.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Sep 2023 14:25:59 -0700 (PDT)
-Date: Fri, 15 Sep 2023 00:25:57 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
-	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com, lpieralisi@kernel.org, 
-	robh+dt@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
-	bhelgaas@google.com, kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v20 07/19] PCI: dwc: Add missing PCI_EXP_LNKCAP_MLW
- handling
-Message-ID: <3fg7k3lr3yrghyek3eepxojpziso7w3j2jbyjcw4m7lh23ruce@clnpbrz7nuoc>
-References: <notuqnugfnmu7ep7rvnerix7hvgqt5b4wdrirjjgggjsxfc7lz@pismsfnlenu4>
- <20230914205906.GA79508@bhelgaas>
+        bh=WUQ7K1Uj3M2Ku8c5LZFJY/v14ESPAzqXsk3sQ7d9n6g=;
+        b=NlPDxEu4vgoUUPb/PZgTe/yE4dJpWrVZo5Zud7HsaYLLMqDIqZCOlwkC7NUf0/LGOl
+         CvH99b1NuCsTPaRvo/cmNR5gJTMvdMP3iMsLEwIke5297JsI3umIWgrhLEWh3CEOfaPy
+         5NC2Du6w6iFRylTSrEUn5iAEqXYs9ErZuTreQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694734666; x=1695339466;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WUQ7K1Uj3M2Ku8c5LZFJY/v14ESPAzqXsk3sQ7d9n6g=;
+        b=j1RwOcc/BVX7mZPPLxl1yD8PdNx2yx5U+xCRkK0bnXMS4/R2KLNMvJ1AtmIlVauoUA
+         NcVl2JKnJO/BFRvWPrJoPxwZj2TTOdUvVjN/X55y71+ykGI3dMWuQPNPhyHAAu/CFb9B
+         /1tw809WvWuG7PPIBy50gs8XkqFw0BE/BYwN61D/Tvm1Igo0Z4PNkfgfZUwHom1PM+Py
+         dqHJv98H96QP2emDyP+iy4ewr8VO5L9lMC/F2ZsI3HxSdtNZK7ViqG/sCS36ZmShkiFs
+         o37mWcDhTZx+gnlr/OrbzGFkQnjHcJUuoYLAuZsCk/HOXTrzFxB+cPLlcjwPoY8TbX2t
+         cLQQ==
+X-Gm-Message-State: AOJu0YyI6AAt87cT7+IjI9BKb/g9gmJzeM7fwr4xuaEItPPM8XQFWncR
+	2/E/IDkY7wCWhRSHriYMZ/cwGcxbjQRg0xvSfZBHNg==
+X-Google-Smtp-Source: AGHT+IE0yIou/i8E57RU/i3Os+YIjQYz3C2/Ji1N+565e1WFd2Mp9vMScmrqX4RsA1u6WaedR95L2A==
+X-Received: by 2002:a05:6402:128f:b0:523:100b:462b with SMTP id w15-20020a056402128f00b00523100b462bmr20797edv.5.1694734665624;
+        Thu, 14 Sep 2023 16:37:45 -0700 (PDT)
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com. [209.85.128.44])
+        by smtp.gmail.com with ESMTPSA id d25-20020aa7d5d9000000b005288f0e547esm1504861eds.55.2023.09.14.16.37.45
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Sep 2023 16:37:45 -0700 (PDT)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4047c6ec21dso885e9.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 16:37:45 -0700 (PDT)
+X-Received: by 2002:a05:600c:6027:b0:3fe:eb42:7ec with SMTP id
+ az39-20020a05600c602700b003feeb4207ecmr35638wmb.1.1694734664702; Thu, 14 Sep
+ 2023 16:37:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230914205906.GA79508@bhelgaas>
+References: <20230816112143.1.I7227efd47e0dc42b6ff243bd22aa1a3e01923220@changeid>
+In-Reply-To: <20230816112143.1.I7227efd47e0dc42b6ff243bd22aa1a3e01923220@changeid>
+From: Doug Anderson <dianders@chromium.org>
+Date: Thu, 14 Sep 2023 16:37:29 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=U4jmFcZRP0HoyOFbsBwahvsC8xiTkgQX6FhisVw8ubNg@mail.gmail.com>
+Message-ID: <CAD=FV=U4jmFcZRP0HoyOFbsBwahvsC8xiTkgQX6FhisVw8ubNg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sc7180: Move trogdor rt5682s bits
+ to a fragment
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>, 
+	Andy Gross <agross@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 14, 2023 at 03:59:06PM -0500, Bjorn Helgaas wrote:
-> On Thu, Sep 14, 2023 at 11:48:39PM +0300, Serge Semin wrote:
-> > On Thu, Sep 14, 2023 at 11:00:58AM -0500, Bjorn Helgaas wrote:
-> > > On Fri, Aug 25, 2023 at 06:32:07PM +0900, Yoshihiro Shimoda wrote:
-> > > > Update dw_pcie_link_set_max_link_width() to set PCI_EXP_LNKCAP_MLW.
-> > > > In accordance with the DW PCIe RC/EP HW manuals [1,2,3,...] aside with
-> > > > the PORT_LINK_CTRL_OFF.LINK_CAPABLE and GEN2_CTRL_OFF.NUM_OF_LANES[8:0]
-> > > > field there is another one which needs to be updated. It's
-> > > > LINK_CAPABILITIES_REG.PCIE_CAP_MAX_LINK_WIDTH. If it isn't done at
-> > > > the very least the maximum link-width capability CSR won't expose
-> > > > the actual maximum capability.
-> > > > 
-> > > > [1] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
-> > > >     Version 4.60a, March 2015, p.1032
-> > > > [2] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
-> > > >     Version 4.70a, March 2016, p.1065
-> > > > [3] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
-> > > >     Version 4.90a, March 2016, p.1057
-> > > > ...
-> > > > [X] DesignWare Cores PCI Express Controller Databook - DWC PCIe Endpoint,
-> > > >       Version 5.40a, March 2019, p.1396
-> > > > [X+1] DesignWare Cores PCI Express Controller Databook - DWC PCIe Root Port,
-> > > >       Version 5.40a, March 2019, p.1266
-> > 
-> > > Is there value in keeping all four of these Root Port citations?  I
-> > > assume that if you have the most recent one (X+1), it completely
-> > > obsoletes the older ones, so you should never have to look at the
-> > > older ones?
-> > 
-> > In general the procedure may differ from one device version to
-> > another. Though it doesn't concern DW PCIe IP-cores. So by citing all
-> > these manuals I implied that all DW PCIe controllers expect the same
-> > link-width initialization procedure. Keeping that in mind I guess the
-> > text could be indeed simplified by keeping only two citations (note
-> > [X] and [X+1] refer to the Root Port and End-point HW databooks of the
-> > same IP-core version) and noting in the text that the procedure is
-> > common for the older DW PCIe controllers too.
-> > 
-> > In anyway I wouldn't say that new IP-core databooks obsolete the
-> > old one since the driver supports all old and new controllers. So
-> > before introducing a generic procedure we need to make sure that it
-> > will work for all the known to be supported devices. From that
-> > perspective citing all the available databooks gets to make sense.
-> 
+Hi Bjorn,
 
-> You mean that instead of merely *adding* new details about new
-> devices, v5.40a might OMIT details specific to older devices covered
-> by v4.60a?  That sounds like ... kind of an unhelpful way to manage
-> the spec, but if so, I see your point.
+On Wed, Aug 16, 2023 at 11:23=E2=80=AFAM Douglas Anderson <dianders@chromiu=
+m.org> wrote:
+>
+> Several trogdor boards have moved from the older rt5862i to the newer
+> rt5862s, at least on newer revisions of boards. Let's get rid of the
+> dts duplication across boards and promote this to a fragment.
+>
+> Note: The old boards used to override the "compatible" in the "sound"
+> node with the exact same thing that was in "sc7180-trogdor.dtsi"
+> ("google,sc7180-trogdor"). I got rid of that.
+>
+> This is validated to produce the same result when taking the dtbs
+> generated by the kernel build and then doing:
+>
+>   for dtb in *trogdor*.dtb; do
+>     dtc -I dtb -O dts $dtb -o out/$dtb.dts;
+>   done
+>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
+>
+>  .../boot/dts/qcom/sc7180-trogdor-kingoftown.dts | 13 +------------
+>  .../dts/qcom/sc7180-trogdor-pazquel360.dtsi     | 13 +------------
+>  .../dts/qcom/sc7180-trogdor-rt5682s-sku.dtsi    | 17 +++++++++++++++++
+>  ...180-trogdor-wormdingler-rev1-boe-rt5682s.dts | 13 +------------
+>  ...180-trogdor-wormdingler-rev1-inx-rt5682s.dts | 13 +------------
+>  5 files changed, 21 insertions(+), 48 deletions(-)
 
-Right. I can't say for all the Synopsys IP-core documents but for
-instance DW PCIe, DW uMCTL2 DDRC, DW *MAC docs tend to omit a lot of
-changes history info. The most extensive list of changes is available
-in the release notes provided as a separate document.
+If you agree, it would be a wonderful time to land this patch now.
+Please let me know if there is anything outstanding you want me to
+change.
 
--Serge(y)
+NOTE: if it were me, I'd land _just_ patch #1 in this series (AKA
+${SUBJECT} patch) and skip patch #2. I don't mattery a ton either way,
+but it seemed like Konrad agreed with me that the benefits of patch #2
+were questionable and, unless someone loves it, I vote for less churn
+instead of more churn. :-P
 
-> 
-> Bjorn
+-Doug
 
