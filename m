@@ -1,109 +1,124 @@
-Return-Path: <devicetree+bounces-311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AE767A0EA7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 22:02:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27D057A0EE5
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 22:23:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B91F281953
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 20:02:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBF2728199E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 20:23:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A14FD266C2;
-	Thu, 14 Sep 2023 20:02:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0022266C7;
+	Thu, 14 Sep 2023 20:23:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F21CC266A5
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 20:02:46 +0000 (UTC)
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B6E226BC;
-	Thu, 14 Sep 2023 13:02:46 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id 41be03b00d2f7-573c62b3cd2so1032634a12.3;
-        Thu, 14 Sep 2023 13:02:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694721765; x=1695326565; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=A9kaqIbiQMAt0qlEWTpOzlY6l1PPJ/Q7QNkCIjKHZSY=;
-        b=PTsQQNcnexJIgMspZAd+C0u2Vi+ewaw5pteVbmX2uRMMpI6W7xWf8PVF78Y93G+awb
-         Gi14Y7jczypsYnkl4zERvE+cBWKHFSdfe0tQCOJLad8z6XkRpfFT0sz2Vv9H+rXsJ60q
-         6OoMB0cjq3PLqM6luTtIRIyzCLrChhg/jZgTXf3l+vTyrFAVJp5kALCS0aEJ0yIPTQMG
-         d0nCUE86zOULR8YC8PSbIhxh5JEv6sNcNeQF1YRePJtB/yPHDmsxnR0WeHK4DKwVIkcv
-         hoMEEINee+FU2fZiMwD/V6UYk1YYcgD+k2WRNG4irgRpYipa+9NA28zRf8DcfHJTI7LG
-         lUZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694721765; x=1695326565;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=A9kaqIbiQMAt0qlEWTpOzlY6l1PPJ/Q7QNkCIjKHZSY=;
-        b=K9pK2jWpjOcWaUTu50b51OlMRNle1q9PbS7Lo4XYLd0P2hzkfkNJN8fukYePxnAe+l
-         jR92NH/8EUw2zUrz+qzmNF2m7dMvYnkxdNxYZKnejrwY6UMXoL2iXUjssko8P4c3ORrn
-         WfNMrRLdqJQ7j5N+aka+tCTac0y0Z3MVOT9/3Ib696RqFnav0tgGywHYAG/NIj+9/9qA
-         6Wwmgd1qHZ3t6FWPJtzduXvG084xJa9pgxkHOv/+yaV8PyKgTgLR/U71j83edTyauffK
-         6Ft61Nlfmx0oi6qx3qwhl5rs3KlsfPFoA5NRNWjtxRUNFVct9G1Mixw4TW6ulCHuWnm/
-         X+Nw==
-X-Gm-Message-State: AOJu0Yxklwoxe1B8U95NGd03i9cuQpV0PUBuJZn15SkOrn0ntJJiWcm3
-	vYNDAmOeZEKxx2gWrlwwEn/8rigHLIaBYSNYt0nG9Pfmzqk=
-X-Google-Smtp-Source: AGHT+IF0AonOjgLve5XE/1tDMMKqZ4Phey7WW/x6Zy6mHY7woUjaH+9Urd+32q7KgKeFme4YyXkDWu1Gt6tz2NfKmV0=
-X-Received: by 2002:a05:6a20:7d85:b0:13a:12c2:359e with SMTP id
- v5-20020a056a207d8500b0013a12c2359emr7914124pzj.2.1694721765383; Thu, 14 Sep
- 2023 13:02:45 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 665752134C
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 20:23:05 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 078D226BC;
+	Thu, 14 Sep 2023 13:23:02 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38EKEMgW026050;
+	Thu, 14 Sep 2023 20:22:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=csdRelKfaDXqcZhgkZqpANLqD87tkq2pL9dztAw3FcY=;
+ b=RE6ZEuM1hWblVrFzEPZj3BkBkT5iEcuslUxpHncaLELlXK+rL+5jQNTm+oK7XsqXwvag
+ YqX+x+vKIhfH+ASp+eapYoBQuIinjuISP7Mx/j/Z5OBknnT5wn1t4IbuvKtS1J181qkO
+ gLiWrJV1b65TdfXofURMsM375ZCT0vz5WgL8cZ1w6OQH4sxD/pRjeAXGQIftyTf03G3S
+ scxnJIXxelYmIYjbx8OlmrC1pWA+KBpKqi1xSLGeh8lbGJNu5p8iY8fRFnS8D3OCTHnw
+ NaaaKbaiMb/Qrg7g1pWlo09l+OnoEqJiKog03WDcOLDCncJd63NTztSo+bnOSMzGiMBN hg== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t3re32t3s-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Sep 2023 20:22:51 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38EKMoiA011937
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Sep 2023 20:22:50 GMT
+Received: from [10.71.110.254] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Thu, 14 Sep
+ 2023 13:22:50 -0700
+Message-ID: <00e791f2-ee77-018d-275f-29793d6eb136@quicinc.com>
+Date: Thu, 14 Sep 2023 13:22:37 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230913211449.668796-1-jcmvbkbc@gmail.com> <20230913211449.668796-2-jcmvbkbc@gmail.com>
- <d7bf0ae3-d263-4231-9656-2b7af4b372a3@linaro.org> <20230914-stumbling-smother-2b048381952c@spud>
-In-Reply-To: <20230914-stumbling-smother-2b048381952c@spud>
-From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Thu, 14 Sep 2023 13:02:34 -0700
-Message-ID: <CAMo8BfJTr2q5+8jmUsDPsWY795udvO3vb-fEMUrsLuiFuV-eFw@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: serial: document esp32-uart bindings
-To: Conor Dooley <conor@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 5/8] drm/panel: nv3052c: Allow specifying registers
+ per panel
+Content-Language: en-US
+To: John Watts <contact@jookia.org>
+CC: <dri-devel@lists.freedesktop.org>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Chris Morgan
+	<macromorgan@hotmail.com>,
+        <linux-kernel@vger.kernel.org>, Jagan Teki
+	<jagan@edgeble.ai>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>
+References: <20230911090206.3121440-1-contact@jookia.org>
+ <20230911090206.3121440-6-contact@jookia.org>
+ <d46ee183-a010-e585-c47c-fa3229eafb33@quicinc.com> <ZQKHcDZ-mxNaSe0j@titan>
+From: Jessica Zhang <quic_jesszhan@quicinc.com>
+In-Reply-To: <ZQKHcDZ-mxNaSe0j@titan>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: KPDkt9EDQx8A0Kx3USw1mPiColUdJjZc
+X-Proofpoint-ORIG-GUID: KPDkt9EDQx8A0Kx3USw1mPiColUdJjZc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-14_12,2023-09-14_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ priorityscore=1501 malwarescore=0 mlxscore=0 mlxlogscore=691
+ lowpriorityscore=0 spamscore=0 clxscore=1015 suspectscore=0
+ impostorscore=0 adultscore=0 phishscore=0 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.12.0-2308100000
+ definitions=main-2309140177
 
-On Thu, Sep 14, 2023 at 7:48=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
-te:
-> On Thu, Sep 14, 2023 at 07:55:35AM +0200, Krzysztof Kozlowski wrote:
-> > On 13/09/2023 23:14, Max Filippov wrote:
-> > > +description: |
-> > > +  ESP32 UART controller is a part of ESP32 SoC series.
-> >
-> > 1. Company name?
-> > 2. ESP32 SoC series suggests esp32 is a series.
-> >
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - description: UART controller for the ESP32 SoC
-> > > +        const: esp,esp32-uart
-> >
-> > Also, the vendor prefix looks incorrect, so again - what is the company
-> > name?
->
-> esp32 is made by expressif, which would match with "esp" as a vendor
-> prefix.
 
-It's 'Espressif', but otherwise yes, this is a registered vendor prefix. Se=
-e
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Doc=
-umentation/devicetree/bindings/vendor-prefixes.yaml?h=3Dv6.6-rc1#n443
 
---=20
-Thanks.
--- Max
+On 9/13/2023 9:09 PM, John Watts wrote:
+> On Wed, Sep 13, 2023 at 02:34:38PM -0700, Jessica Zhang wrote:
+>> Hi John,
+>>
+>> Having a separate panel_regs_len field seems a bit unnecessary to me.
+>>
+>> Looks like it's only being called in the panel prepare() and I don't seen
+>> any reason why we shouldn't just call the ARRAY_SIZE() macro there.
+> 
+> Can you call ARRAY_SIZE on an an array pointer?
+
+Ah, I'd missed the array pointer declaration. This field is fine then.
+
+Thanks,
+
+Jessica Zhang
+
+> 
+>>
+>> Thanks,
+>>
+>> Jessica Zhang
+> 
+> John.
 
