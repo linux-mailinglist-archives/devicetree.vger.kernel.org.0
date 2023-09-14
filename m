@@ -1,271 +1,111 @@
-Return-Path: <devicetree+bounces-153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6610F79FE5A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 10:28:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E008C79FE9B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 10:41:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C2301C20364
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 08:28:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E407281B35
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 08:41:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD1E210A1E;
-	Thu, 14 Sep 2023 08:28:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B94491CFBC;
+	Thu, 14 Sep 2023 08:40:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A4181391
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 08:28:31 +0000 (UTC)
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F19F1FD9
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 01:28:30 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-31c3df710bdso579644f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 01:28:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACEA71CFA9
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 08:40:52 +0000 (UTC)
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32A831BF9
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 01:40:52 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-d8181087dc9so682220276.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 01:40:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694680109; x=1695284909; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9hJvi7Qukr4KTmm3HO3pBuqIIqV4p0lbOZT5NLNK++Y=;
-        b=lVOQto6AnRozD+pOr0QIRTPE7Azmmm+mOfTRpPjTQEKvbNiuorE/zvITXFi4+6Oilm
-         6sdcOtKXgwYPHi2YShKqpggUkyQG/wG4fm/+t3DW0fXVjVyN5VJz2rsYiF1+5fdBqghu
-         xip1EM1tPsCEueldco9mYMetBKqbB/H7d5w/HH3+xkKLvhmuTqB8RB6Lpo4KszyfLyg/
-         WZFLcY6IGuL/SLXz016oV3WGfo705dDsU8sPQpxFMlzaxUREYooUpgl0q754y71X/+02
-         /Sc1w3/pxLfgpeESaDYbkKf/Gh84ufIp8Wpd2yut/P6EW4wYqBPcRuPC07fNMUp14nTk
-         jDdQ==
+        d=linaro.org; s=google; t=1694680851; x=1695285651; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rBgKOX9HU0Cqf61gn84yvvVhKTbuYZo7XwNQLZJ6zZQ=;
+        b=n+HADZPRDaVcTgqRN5ARP3ajMfJkvybXCSDh3gpfl44JUiypjc0/2V2H9xRDnMa02L
+         GogX8fQVXn0s381cAovCMd06foZrauZjhyOBap0mLDCAPHe3mXoT2aiP6eFCtCELQtf0
+         No3nDZ3MqXZpg/BBorPaKFo+cw34NcuLUlb1PflEN1Z3qw/tn81HcLFh+y2UyWJT2Sor
+         PtE7Yj/2gQpR8iGR+T0IZvUC8JSH9v9x2pEJ0M3a5Mwf6x456JRwPNAMXKiFoPEb4AGR
+         /1O+1HTjQPjbydRY9fcyGmp6UfLzwETv4QUkc7rt+QZfoDy0B6DzDfhHbfbv1lemzh8j
+         fgRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694680109; x=1695284909;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=9hJvi7Qukr4KTmm3HO3pBuqIIqV4p0lbOZT5NLNK++Y=;
-        b=nPY7SHrJuyJ55zvXn9IauKC/xDBdBP2vJ02yFoikLOPGoH/Blz3thXewUMrsQ7U4hr
-         YqtBY3YyPJawMMXgyI3tz/5kPih/hlABEKvYnysApRR0kyedUyp8lwMmRvrLw27aGiP1
-         SbHG2ytZV2HjO7usWq/di2lgAm11+gL20kche6AxdNSAOSJw+chuXk1jTpDKVFamMD91
-         jPjwhDULiMJmdv1rkACQEdE0twuThgxu0bM8QwDTl/kivnW8Qe4UG72fFsu3rFxTKD0j
-         ExTm8gdsN8ml3gPnaosuArYNGxWzzP4IIGdWVbsQ4uvNfSHOZ50dVcsy3pRMUoHsxrSZ
-         PVtA==
-X-Gm-Message-State: AOJu0YzovAaUHmKxHa5ZzvGr/0RfQFUM56rsCkDxx3RnnTLWdaop3+ad
-	cuoFB3Luu1Yn564SqNocp6yQYw==
-X-Google-Smtp-Source: AGHT+IGzqPPfsCJ9P27YSwn8o4MzKsLD9Do+N7Gae6EQlc1D9zP+DatFOySiIeT5E3Ix3L182ClUzQ==
-X-Received: by 2002:a5d:6184:0:b0:319:7428:9caa with SMTP id j4-20020a5d6184000000b0031974289caamr4201788wru.38.1694680109062;
-        Thu, 14 Sep 2023 01:28:29 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:c61:ffb9:3ed9:c494? ([2a01:e0a:982:cbb0:c61:ffb9:3ed9:c494])
-        by smtp.gmail.com with ESMTPSA id w16-20020adfec50000000b003141a3c4353sm1091493wrn.30.2023.09.14.01.28.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Sep 2023 01:28:28 -0700 (PDT)
-Message-ID: <b0d234a5-62fc-45bb-98b3-bf55523a76cc@linaro.org>
-Date: Thu, 14 Sep 2023 10:28:27 +0200
+        d=1e100.net; s=20230601; t=1694680851; x=1695285651;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rBgKOX9HU0Cqf61gn84yvvVhKTbuYZo7XwNQLZJ6zZQ=;
+        b=mHmTD7OwsEFj3ydjgHznSbsIT2Gu36OdV5cfXWBryxDzEmvMVUwdsAbTbkq/Gwr0Iy
+         tItlWbc6hR+UYql+mGKbIn6GJ+Fpo1Pkb5viva0StQ+00hmzdC9tXAI9uoXviRV+mKDV
+         Fjvu6196uOKoHRues4eQ4O+35pit6VmzC1/gbG+gCAcHzud7cG5/DPQuOpYRO65f6bTc
+         YPCOyjt4pbx/Gmei1Oyyj7TCWSbfxvTwMh6m9/AFQr/UfagRQ+SVd0kbL0k28uPPaiGH
+         /Ev7ixKz1dnz1KtrimF2i5Dqd6U3IlEFI1vxv3LhnHAcVE9qK82l5ZNABXkfFraYEZ4n
+         bing==
+X-Gm-Message-State: AOJu0YwxhM3ssRvFdF8KoTvF0y/xcGw7UPGTo2L+72NXVbihvow/Znb5
+	6LRWyEklxi3/wrGRZ+6snnzkMv+Yh8rcELl1dEBIcw==
+X-Google-Smtp-Source: AGHT+IFwZobHxcqKOc9i9F0FwU196xwcuhkf7p5VMd50HiyGLwvFBTBzw2gNzhm4i/jnEP5lPJDUpXQSAPyK3EQ0058=
+X-Received: by 2002:a25:8001:0:b0:d4b:6a0:fe2b with SMTP id
+ m1-20020a258001000000b00d4b06a0fe2bmr4591638ybk.36.1694680851406; Thu, 14 Sep
+ 2023 01:40:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: reset: Add compatible and DT bindings
- for Amlogic C3 Reset Controller
-Content-Language: en-US, fr
-To: zelong dong <zelong.dong@amlogic.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>,
- Rob Herring <robh+dt@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- yonghui.yu@amlogic.com, kelvin.zhang@amlogic.com,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Dmitry Rokosov <ddrokosov@sberdevices.ru>, Rob Herring <robh@kernel.org>
-References: <20230914064018.18790-1-zelong.dong@amlogic.com>
- <20230914064018.18790-2-zelong.dong@amlogic.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20230914064018.18790-2-zelong.dong@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20230912-gpio-led-trigger-dt-v1-0-1b50e3756dda@linaro.org>
+ <20230912-gpio-led-trigger-dt-v1-1-1b50e3756dda@linaro.org> <20230913133451.GA2841610-robh@kernel.org>
+In-Reply-To: <20230913133451.GA2841610-robh@kernel.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 14 Sep 2023 10:40:40 +0200
+Message-ID: <CACRpkdb72f9WFeEGo-tXscZaBmFH04WiePM+tJSmuuXQxxy=3A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: leds: Mention GPIO triggers
+To: Rob Herring <robh@kernel.org>
+Cc: =?UTF-8?B?SmFuIEt1bmRyw6F0?= <jan.kundrat@cesnet.cz>, 
+	Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 14/09/2023 08:40, zelong dong wrote:
-> From: Zelong Dong <zelong.dong@amlogic.com>
-> 
-> Add new compatible and DT bindings for Amlogic C3 Reset Controller
-> 
-> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->   .../bindings/reset/amlogic,meson-reset.yaml   |   1 +
->   include/dt-bindings/reset/amlogic,c3-reset.h  | 119 ++++++++++++++++++
->   2 files changed, 120 insertions(+)
->   create mode 100644 include/dt-bindings/reset/amlogic,c3-reset.h
-> 
-> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> index d3fdee89d4f8..f0c6c0df0ce3 100644
-> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> @@ -18,6 +18,7 @@ properties:
->         - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
->         - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
->         - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
-> +      - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
->   
->     reg:
->       maxItems: 1
-> diff --git a/include/dt-bindings/reset/amlogic,c3-reset.h b/include/dt-bindings/reset/amlogic,c3-reset.h
-> new file mode 100644
-> index 000000000000..d9127863f603
-> --- /dev/null
-> +++ b/include/dt-bindings/reset/amlogic,c3-reset.h
-> @@ -0,0 +1,119 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-> +/*
-> + * Copyright (c) 2023 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_AMLOGIC_C3_RESET_H
-> +#define _DT_BINDINGS_AMLOGIC_C3_RESET_H
-> +
-> +/* RESET0 */
-> +/*						0-3 */
-> +#define RESET_USBCTRL				4
-> +/*						5-7 */
-> +#define RESET_USBPHY20				8
-> +/*						9 */
-> +#define RESET_USB2DRD				10
-> +#define RESET_MIPI_DSI_HOST			11
-> +#define RESET_MIPI_DSI_PHY			12
-> +/*						13-20 */
-> +#define RESET_GE2D				21
-> +#define RESET_DWAP				22
-> +/*						23-31 */
-> +
-> +/* RESET1 */
-> +#define RESET_AUDIO				32
-> +/*						33-34 */
-> +#define RESET_DDRAPB				35
-> +#define RESET_DDR				36
-> +#define RESET_DOS_CAPB3				37
-> +#define RESET_DOS				38
-> +/*						39-46 */
-> +#define RESET_NNA				47
-> +#define RESET_ETHERNET				48
-> +#define RESET_ISP				49
-> +#define RESET_VC9000E_APB			50
-> +#define RESET_VC9000E_A				51
-> +/*						52 */
-> +#define RESET_VC9000E_CORE			53
-> +/*						54-63 */
-> +
-> +/* RESET2 */
-> +#define RESET_ABUS_ARB				64
-> +#define RESET_IRCTRL				65
-> +/*						66 */
-> +#define RESET_TEMP_PII				67
-> +/*						68-72 */
-> +#define RESET_SPICC_0				73
-> +#define RESET_SPICC_1				74
-> +#define RESET_RSA				75
-> +
-> +/*						76-79 */
-> +#define RESET_MSR_CLK				80
-> +#define RESET_SPIFC				81
-> +#define RESET_SAR_ADC				82
-> +/*						83-87 */
-> +#define RESET_ACODEC				88
-> +/*						89-90 */
-> +#define RESET_WATCHDOG				91
-> +/*						92-95 */
-> +
-> +/* RESET3 */
-> +#define RESET_ISP_NIC_GPV			96
-> +#define RESET_ISP_NIC_MAIN			97
-> +#define RESET_ISP_NIC_VCLK			98
-> +#define RESET_ISP_NIC_VOUT			99
-> +#define RESET_ISP_NIC_ALL			100
-> +#define RESET_VOUT				101
-> +#define RESET_VOUT_VENC				102
-> +/*						103 */
-> +#define RESET_CVE_NIC_GPV			104
-> +#define RESET_CVE_NIC_MAIN			105
-> +#define RESET_CVE_NIC_GE2D			106
-> +#define RESET_CVE_NIC_DW			106
-> +#define RESET_CVE_NIC_CVE			108
-> +#define RESET_CVE_NIC_ALL			109
-> +#define RESET_CVE				110
-> +/*						112-127 */
-> +
-> +/* RESET4 */
-> +#define RESET_RTC				128
-> +#define RESET_PWM_AB				129
-> +#define RESET_PWM_CD				130
-> +#define RESET_PWM_EF				131
-> +#define RESET_PWM_GH				132
-> +#define RESET_PWM_IJ				133
-> +#define RESET_PWM_KL				134
-> +#define RESET_PWM_MN				135
-> +/*						136-137 */
-> +#define RESET_UART_A				138
-> +#define RESET_UART_B				139
-> +#define RESET_UART_C				140
-> +#define RESET_UART_D				141
-> +#define RESET_UART_E				142
-> +#define RESET_UART_F				143
-> +#define RESET_I2C_S_A				144
-> +#define RESET_I2C_M_A				145
-> +#define RESET_I2C_M_B				146
-> +#define RESET_I2C_M_C				147
-> +#define RESET_I2C_M_D				148
-> +/*						149-151 */
-> +#define RESET_SD_EMMC_A				152
-> +#define RESET_SD_EMMC_B				153
-> +#define RESET_SD_EMMC_C				154
-> +
-> +/* RESET5 */
-> +/*						160-172 */
-> +#define RESET_BRG_NIC_NNA			173
-> +#define RESET_BRG_MUX_NIC_MAIN			174
-> +#define RESET_BRG_AO_NIC_ALL			175
-> +/*						176-183 */
-> +#define RESET_BRG_NIC_VAPB			184
-> +#define RESET_BRG_NIC_SDIO_B			185
-> +#define RESET_BRG_NIC_SDIO_A			186
-> +#define RESET_BRG_NIC_EMMC			187
-> +#define RESET_BRG_NIC_DSU			188
-> +#define RESET_BRG_NIC_SYSCLK			189
-> +#define RESET_BRG_NIC_MAIN			190
-> +#define RESET_BRG_NIC_ALL			191
-> +
-> +#endif
+On Wed, Sep 13, 2023 at 3:34=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+> On Tue, Sep 12, 2023 at 03:44:30PM +0200, Linus Walleij wrote:
+> > We reuse the trigger-sources phandle to just point to
+> > GPIOs we may want to use as LED triggers.
+> >
+> > Example:
+> >
+> > gpio: gpio@0 {
+> >     compatible "my-gpio";
+> >     gpio-controller;
+> >     #gpio-cells =3D <2>;
+> >     interrupt-controller;
+> >     #interrupt-cells =3D <2>;
+> >     #trigger-source-cells =3D <2>;
+>
+> BTW, this is not documented for any GPIO binding. If we want to specify
+> the cell size, then it has to be added to every GPIO controller binding.
+> If not, we then need to reference gpio.yaml in every GPIO controller
+> binding (along with unevaluatedProperties). Doesn't have to be done for
+> this patch to go in though.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Yeah I mean this trigger-sources =3D <...>; one-size-fits-all is a bit
+weird in a way.
+
+My other idea was to simply add trigger-gpios to the normal way
+and be done with it, but now the trigger binding has this weird
+thing.
+
+Would trigger-gpios be better?
+
+Yours,
+Linus Walleij
 
