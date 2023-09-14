@@ -1,67 +1,68 @@
-Return-Path: <devicetree+bounces-174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDDDF7A00B8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:49:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FE807A00BE
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:49:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7AF70B20CBB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:49:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C0271C20B34
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:49:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA2022AB4F;
-	Thu, 14 Sep 2023 09:49:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 667A62AB4F;
+	Thu, 14 Sep 2023 09:49:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9FD9224F2
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 09:49:22 +0000 (UTC)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2B43E3;
-	Thu, 14 Sep 2023 02:49:21 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-59bbbeea69fso8778527b3.0;
-        Thu, 14 Sep 2023 02:49:21 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B249224F2
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 09:49:37 +0000 (UTC)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFC9CE3;
+	Thu, 14 Sep 2023 02:49:36 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-58fc4eaa04fso8706007b3.0;
+        Thu, 14 Sep 2023 02:49:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694684961; x=1695289761;
+        d=1e100.net; s=20230601; t=1694684976; x=1695289776;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=6gFLY2IMJxQUgyhc4c6QO4qakT/ISmys8Z8hG9m2OZ0=;
-        b=iyLqbP09/fI0q2uTcLxZMBuNRcXKOsZsUum0LY4k598lh3MSCLYLhSLyFVfuuP+lzF
-         6wU0kPdWXusTun5TrBXZmQWqbt3gc+Xof3hY1qOIRBr4RwUKBWN7mnCy++CAjcgWrVsw
-         XlAnH33K0bno/aDKnFhxrqQM+SVndKp3eiiLGU8I7KyTFYDrN2kb3WM0sVmAJNFh7iO+
-         jFPMhnP1/uVCj/ebsWmygd61mT3ChmdD99FND6kfmHUuJUZ3uzkFR1ekKl9tlp50gm/o
-         PAlG90iEDtE0NKUAMpaWVd8TnckKqJBwYSh073R3n68Yiuz7IMXBlflnRsRoHAzgC06U
-         4f9A==
-X-Gm-Message-State: AOJu0YyrP0ukobi3dWgaYLj0afVO0kLWikOZolLO69J9wYvkXwZreY1M
-	WZF+dMEoF8c1UXK7ACJfEnw3sBTExw/AJw==
-X-Google-Smtp-Source: AGHT+IFp9ulQBIKOKi9VDoashW8zbaOQfXpQJiQhP3lQPQJdqOSO2x9xLrL4P0fMJ1m1P1uUGUdBuQ==
-X-Received: by 2002:a81:de4f:0:b0:592:ffc:c787 with SMTP id o15-20020a81de4f000000b005920ffcc787mr4514871ywl.30.1694684961014;
-        Thu, 14 Sep 2023 02:49:21 -0700 (PDT)
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
-        by smtp.gmail.com with ESMTPSA id q66-20020a815c45000000b0059b547b167esm239119ywb.98.2023.09.14.02.49.19
+        bh=kGHFgFrGIBAAVa6J4diJj00gDkB/jKzsHsTxxfM9spg=;
+        b=Ih9H6SooXaJzm1BjyVT/fhz3j1ERxlUanTi2k4k6zkPDoC7e1f41t+tqzHw1LY1P7l
+         5yxGBsfWfMf3ewPvnygAzFTCLtwALr413nrJxFTUqxHoTNvUnKSo6dpY9+07T7o6/nHy
+         grmqtYYGmBWzx1M56Jj5kA1iglNGsQZwcvrvUC9+b+3dud/bjwnw+wFUCeU5ZAJcM+bi
+         EyfTdgdNyvmJtd0i8eJ2xT2b3KCSzIf01wl3N5h/JldY6mJqm+AndO+i0Dhw/nCm8Orc
+         Xt5Qn3muQD5ZQ9aRy7EhFbM1p6RI8oxZlcSdgQ54fx4VeNt9kStbLfLqpB3IWB9JCWaQ
+         ec4g==
+X-Gm-Message-State: AOJu0YymLfW0gHukWO3Ri7gBamdQqDVo8wlJEUHFK8UkzITq6M+ydcBY
+	5CmOeqsZWBIHDC0atL5Q4QH8fiFUoVtA2g==
+X-Google-Smtp-Source: AGHT+IE0FtO51OE2xXwaxCbYz29NQ16FH2YXTzXPBhgSLua7xJ5UWFHUxUZdAx9ijvoTXUKN1++Qhg==
+X-Received: by 2002:a81:af1d:0:b0:59b:de0f:c23b with SMTP id n29-20020a81af1d000000b0059bde0fc23bmr3423536ywh.46.1694684975874;
+        Thu, 14 Sep 2023 02:49:35 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id m126-20020a0de384000000b00594fb0e2db3sm236940ywe.138.2023.09.14.02.49.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Sep 2023 02:49:19 -0700 (PDT)
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-d7b91422da8so755976276.2;
-        Thu, 14 Sep 2023 02:49:19 -0700 (PDT)
-X-Received: by 2002:a25:87:0:b0:d44:af:3cce with SMTP id 129-20020a250087000000b00d4400af3ccemr5046648yba.27.1694684958968;
- Thu, 14 Sep 2023 02:49:18 -0700 (PDT)
+        Thu, 14 Sep 2023 02:49:35 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-58fc4eaa04fso8705827b3.0;
+        Thu, 14 Sep 2023 02:49:35 -0700 (PDT)
+X-Received: by 2002:a25:29c3:0:b0:d80:1023:8222 with SMTP id
+ p186-20020a2529c3000000b00d8010238222mr4854190ybp.34.1694684975146; Thu, 14
+ Sep 2023 02:49:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com> <20230912045157.177966-3-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20230912045157.177966-3-claudiu.beznea.uj@bp.renesas.com>
+References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com> <20230912045157.177966-4-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20230912045157.177966-4-claudiu.beznea.uj@bp.renesas.com>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 14 Sep 2023 11:49:06 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWSFkeV0u1GsQox1EQZzOHBrhV5roRLp17VCZRCQzkDZw@mail.gmail.com>
-Message-ID: <CAMuHMdWSFkeV0u1GsQox1EQZzOHBrhV5roRLp17VCZRCQzkDZw@mail.gmail.com>
-Subject: Re: [PATCH 02/37] dt-bindings: soc: renesas: document Renesas RZ/G3S
- SoC variants
+Date: Thu, 14 Sep 2023 11:49:21 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWXx_QNS0UKUdovnNGQFtWEqd1trfWYtQOZng2dVoXvtA@mail.gmail.com>
+Message-ID: <CAMuHMdWXx_QNS0UKUdovnNGQFtWEqd1trfWYtQOZng2dVoXvtA@mail.gmail.com>
+Subject: Re: [PATCH 03/37] dt-bindings: soc: renesas: renesas,rzg2l-sysc:
+ document RZ/G3S SoC
 To: Claudiu <claudiu.beznea@tuxon.dev>
 Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
 	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
@@ -83,7 +84,8 @@ On Tue, Sep 12, 2023 at 6:52=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
 wrote:
 > From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >
-> Document RZ/G3S (R9A08G045) SoC variants.
+> Document RZ/G3S (R9A08G045) SYSC bindings. The SYSC block found on the
+> RZ/G3S SoC is similar to one found on the RZ/G2UL.
 >
 > Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
