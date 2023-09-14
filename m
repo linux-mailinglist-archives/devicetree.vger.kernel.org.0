@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF4CF79FCA8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:02:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 310EA79FCA7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 09:02:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 14B05B202EA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:02:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E25D5281769
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 07:02:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7767163B5;
-	Thu, 14 Sep 2023 07:01:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5BD179E4;
+	Thu, 14 Sep 2023 07:01:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B7B563B4
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 07:01:19 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D172BE6E;
-	Thu, 14 Sep 2023 00:01:18 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38E237v6016462;
-	Thu, 14 Sep 2023 07:01:14 GMT
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D364F28EA
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 07:01:16 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F34BE59;
+	Thu, 14 Sep 2023 00:01:16 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38E5wHG7000988;
+	Thu, 14 Sep 2023 07:01:03 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : date :
  subject : mime-version : content-type : content-transfer-encoding :
  message-id : references : in-reply-to : to : cc; s=qcppdkim1;
- bh=LiD3LvDZ+UPBugMGzkY7XarM7OFaqZovwvV8zwDKJCM=;
- b=llfYURq/nkGEqP1JQS3pjafZdaUuZIh4SemFjmAjocVXqMCbnb68HubRLk0NykIUfQHL
- Um0hj7RIXW93LgjlUN7+EZXPGYwsEfqoede05wOgMQs94XTEa116ZtRV2qL6wv6IEsOY
- j0m+SB/LsTreApdQLTbLs5CwK/tS1qzE85hFNPqh5HjnSpRdPQMtR/zcHy1m31IhMP/c
- PPijBHv4rq/f6IHXl4vQGWlLJ6GKwZ200qiQXXXokHey4Vaphw3Q8HG94O5hMjMcvKKI
- qsVWmt34/KNGkgnEkV2/tFJ9bn9REUsSN+aNmxZOQkrI5NW4Qa7lz59AOOtCutZb3kmi IA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t3dj8a6c4-1
+ bh=Dg8yePeMXk6SuL/s9wPiXmMtqd5f1HuB1ZPVH7RbQWg=;
+ b=LYNV/KuqJ1U/r1r1OCLWdmNz39h7DbQJF4V1bOdWxYFtJmQG3PBcs4MP9oPrdvLaFaqT
+ 4v2xRAiEpGtRKqQcGWg41PTUD7Vii1OXfHmLpPjTxSE3zq4zW692sKC9ajO6HQ8LpqfI
+ aaMtmTNsDX4ODKCaMgT5ztyWrf1ItR1o6x0d0FBQUIlVyWLSDZDOuvo9l8FKm0QlhJ8a
+ oyIdneT4CXJ0y3UnXB/Bg0tgVlB/eXZYa9Mnglz9fVFqZy4OO8UIU7nJdhRccN8Osh2u
+ IR2mZd6a0KEbtTiCtyVLjiRBoKPZTb4uWCtXxdSWuWV3RvA3irDH7bWgrkDkK+mUYZrJ dA== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t3ar3jmwe-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Sep 2023 07:01:14 +0000
+	Thu, 14 Sep 2023 07:01:03 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38E70vrw020152
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38E712na023370
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Sep 2023 07:00:57 GMT
+	Thu, 14 Sep 2023 07:01:02 GMT
 Received: from hu-kathirav-blr.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Thu, 14 Sep 2023 00:00:51 -0700
+ 15.2.1118.36; Thu, 14 Sep 2023 00:00:57 -0700
 From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-Date: Thu, 14 Sep 2023 12:29:57 +0530
-Subject: [PATCH v2 07/11] clk: qcom: apss-ipq6018: add the GPLL0 clock also
- as clock provider
+Date: Thu, 14 Sep 2023 12:29:58 +0530
+Subject: [PATCH v2 08/11] arm64: dts: qcom: ipq8074: include the GPLL0 as
+ clock provider for mailbox
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,7 +57,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20230913-gpll_cleanup-v2-7-c8ceb1a37680@quicinc.com>
+Message-ID: <20230913-gpll_cleanup-v2-8-c8ceb1a37680@quicinc.com>
 References: <20230913-gpll_cleanup-v2-0-c8ceb1a37680@quicinc.com>
 In-Reply-To: <20230913-gpll_cleanup-v2-0-c8ceb1a37680@quicinc.com>
 To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
@@ -80,14 +80,13 @@ To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
 CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         "Kathiravan
- Thirumoorthy" <quic_kathirav@quicinc.com>,
-        Robert Marko <robimarko@gmail.com>
+ Thirumoorthy" <quic_kathirav@quicinc.com>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1694674810; l=1271;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1694674810; l=1255;
  i=quic_kathirav@quicinc.com; s=20230906; h=from:subject:message-id;
- bh=0WLXM7UqBZpsd0pHbjXLnJu/oCGwNfmF+vKO/PV2u8k=;
- b=fycx2BXyEF2j8rwWSoyeowB/WDt1d7i0/e6F/ZzF6MjPiruezY08l5sje0mGps2MWjtNyCboh
- K/puEx6hiooAuC61b9fZdGKgTY0FQ+XqOTnJez5ZbGOiY8nQOxEolf2
+ bh=1ug/sW+kzuMORC21mgnQOlnFEwUOksulPA68xrrHMRg=;
+ b=G8S+bURsKhd4b3okT0iuutbUpLpoPigwAAzr1aK669ErDT/RX8ZBAcoQJddUb19yHbF6l8ua2
+ aOIrpsQf8gzCW8PQ9lp3hQ2KNRTns9YiqrTCOTHyYhkkWp7GD/MUKB2
 X-Developer-Key: i=quic_kathirav@quicinc.com; a=ed25519;
  pk=xWsR7pL6ch+vdZ9MoFGEaP61JUaRf0XaZYWztbQsIiM=
 X-Originating-IP: [10.80.80.8]
@@ -95,59 +94,47 @@ X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: gywkCSXhlFJUEcY0CM-i6lZ8dJlbK2oO
-X-Proofpoint-ORIG-GUID: gywkCSXhlFJUEcY0CM-i6lZ8dJlbK2oO
+X-Proofpoint-GUID: hWmykwGiHMv2sAQezU959x2G9BRfJnBS
+X-Proofpoint-ORIG-GUID: hWmykwGiHMv2sAQezU959x2G9BRfJnBS
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-14_04,2023-09-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 mlxscore=0 lowpriorityscore=0 adultscore=0 spamscore=0
- impostorscore=0 malwarescore=0 bulkscore=0 phishscore=0 suspectscore=0
- mlxlogscore=975 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309140062
+ definitions=2023-09-14_03,2023-09-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=845
+ spamscore=0 clxscore=1015 priorityscore=1501 impostorscore=0 mlxscore=0
+ lowpriorityscore=0 suspectscore=0 phishscore=0 adultscore=2 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
+ definitions=main-2309140062
 
 While the kernel is booting up, APSS PLL will be running at 800MHz with
 GPLL0 as source. Once the cpufreq driver is available, APSS PLL will be
-configured and select the rate based on the opp table and the source will
-be changed to APSS_PLL_EARLY.
+configured to the rate based on the opp table and the source also will
+be changed to APSS_PLL_EARLY. So allow the mailbox to consume the GPLL0,
+with this inclusion, CPU Freq correctly reports that CPU is running at
+800MHz rather than 24MHz.
 
-Without this patch, CPU Freq driver reports that CPU is running at 24MHz
-instead of the 800MHz.
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Tested-by: Robert Marko <robimarko@gmail.com>
 Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
 ---
 Changes in V2:
-	- Pick up te R-b and T-b tags. Thanks Robert!
+	- Splitted the change into target specific file
 ---
- drivers/clk/qcom/apss-ipq6018.c | 3 +++
- 1 file changed, 3 insertions(+)
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/clk/qcom/apss-ipq6018.c b/drivers/clk/qcom/apss-ipq6018.c
-index f2f502e2d5a4..4e13a085a857 100644
---- a/drivers/clk/qcom/apss-ipq6018.c
-+++ b/drivers/clk/qcom/apss-ipq6018.c
-@@ -20,16 +20,19 @@
+diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+index 00ed71936b47..0be19267bdcf 100644
+--- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+@@ -719,8 +719,8 @@ apcs_glb: mailbox@b111000 {
+ 			compatible = "qcom,ipq8074-apcs-apps-global",
+ 				     "qcom,ipq6018-apcs-apps-global";
+ 			reg = <0x0b111000 0x1000>;
+-			clocks = <&a53pll>, <&xo>;
+-			clock-names = "pll", "xo";
++			clocks = <&a53pll>, <&xo>, <&gcc GPLL0>;
++			clock-names = "pll", "xo", "gpll0";
  
- enum {
- 	P_XO,
-+	P_GPLL0,
- 	P_APSS_PLL_EARLY,
- };
- 
- static const struct clk_parent_data parents_apcs_alias0_clk_src[] = {
- 	{ .fw_name = "xo" },
-+	{ .fw_name = "gpll0" },
- 	{ .fw_name = "pll" },
- };
- 
- static const struct parent_map parents_apcs_alias0_clk_src_map[] = {
- 	{ P_XO, 0 },
-+	{ P_GPLL0, 4 },
- 	{ P_APSS_PLL_EARLY, 5 },
- };
- 
+ 			#clock-cells = <1>;
+ 			#mbox-cells = <1>;
 
 -- 
 2.34.1
