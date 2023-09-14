@@ -1,170 +1,158 @@
-Return-Path: <devicetree+bounces-197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B51CB7A02E2
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 13:42:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 748457A02E6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 13:45:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 405C72817DA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:42:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16B241F22DCC
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 11:45:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E82ED18E32;
-	Thu, 14 Sep 2023 11:42:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 130DB1D529;
+	Thu, 14 Sep 2023 11:45:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8EC2208A3
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 11:42:19 +0000 (UTC)
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40446CC3;
-	Thu, 14 Sep 2023 04:42:19 -0700 (PDT)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-59b9d255037so9680767b3.2;
-        Thu, 14 Sep 2023 04:42:19 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04B3D15E96;
+	Thu, 14 Sep 2023 11:45:03 +0000 (UTC)
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 527469B;
+	Thu, 14 Sep 2023 04:45:03 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1c336f5b1ffso7061375ad.2;
+        Thu, 14 Sep 2023 04:45:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694691902; x=1695296702; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=t+kQMiG2y9xvH6Xiq+UYTxDs8hYtVgDtBvxZVJtfEGc=;
+        b=kvRR3QtDI9AFC0VJ1zlYzrnjA1n1fcJhsWu10HMiKyHKVgUkwSLBqEm0kuvi4DxHuS
+         np54vIN67BfCNV4owzskh7AlLY91bMbJzQAeht51orTRQ5X9QcWZLmSub5ncKzjgbqar
+         rSAJm9S0bLhxMa80P20znXXtthVCTkRVByDj3ushN1V6K9mEt/Okh2oCX3TNw7FEPoQT
+         kMCrP7nA8jw2QikiKUwHiRy3g/lKP6sTWFndiZYozqrAY/AHVps4/OcEzlsg/Gv/p0Xw
+         wcGbYlloNfhZ6jH4pY1sWm325kIjOFRAHiei19XvX9QNv2uFQNCFROx7p2Z3cTmRqBKL
+         SP0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694691738; x=1695296538;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TQF6azidQAjPWw/iF7OTkfye/Uwv7/91WnosuLGo4H0=;
-        b=KRnazo4b3oK3Ks80sZ9YwBqZ6xe5m9l7EplvvSZ7n533Jj0sGVsmxvb7E1Ubha9X49
-         3pvqgFAc0LQVRM5+uXjVO5J6hrkVd9Sltk4bM/lvxXfRURlGvW0/xhpsvu7f02kyzogs
-         If6oNpnHXlTaIQH99wRBrWT3j2hM8kA8SHG5+vyzLz03uxQlqxBlNRoi1xtAQlECi45K
-         10mUks1PSym7GeZ5M1iHso4qGqezTGe78jsCRkdp7SQkUiij6Rghsaf3Zq07BDQoUCns
-         PCdL1+gyRApk2rOaTVBg2CzIg8jGnIWDHLxVX+U3hSS7fh7dOG27D9O5WQe2YD9czxrx
-         UoaA==
-X-Gm-Message-State: AOJu0YxbPVJxeSkMv5ONQ3fTr4ZrWIKhzJrOkG3s+RryLnMCmHQag6cg
-	RkjZtdBGRhsaznrTFKa57v0SPj8cCFYQ1g==
-X-Google-Smtp-Source: AGHT+IF0Sgpy0A5vUjYzeH274xmHzh4WNbwSDJ0nsHb0aJrnlaQDcsZtmGN7NOioeDgdpMgpB5N8vQ==
-X-Received: by 2002:a81:49ca:0:b0:59b:e622:f820 with SMTP id w193-20020a8149ca000000b0059be622f820mr2817520ywa.13.1694691738247;
-        Thu, 14 Sep 2023 04:42:18 -0700 (PDT)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id z5-20020a81a245000000b005832fe29034sm269217ywg.89.2023.09.14.04.42.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Sep 2023 04:42:17 -0700 (PDT)
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-d776e1f181bso855446276.3;
-        Thu, 14 Sep 2023 04:42:17 -0700 (PDT)
-X-Received: by 2002:a25:8683:0:b0:d7b:8d9a:4ec5 with SMTP id
- z3-20020a258683000000b00d7b8d9a4ec5mr4800309ybk.41.1694691737069; Thu, 14 Sep
- 2023 04:42:17 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1694691902; x=1695296702;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=t+kQMiG2y9xvH6Xiq+UYTxDs8hYtVgDtBvxZVJtfEGc=;
+        b=N7xV3v4Qg+w+e263IqoWFUXOnT3ajnNqAIH0LQS/SQ0wYzMehMH3BQgywOAlPSwcE8
+         h3hSXQTi2lByOtTHJdbXT0EMm6qglGOFj4k5OObT/I0zMgEwG5vkhpINln2DRKpYIw2s
+         7Kzqc0tZyr7b1pZcdRVRi9f9iD3MUnAwxYEQRG/OLZxPUnhOkiZyV5k9DwCcjIkwcvAN
+         KRA8bGx8XrD/aVYHtCyHYddZMzjGYKC7dbhAbZ7toraFnxesonVahHpgG7O22r2Po/F9
+         81CDCRLUFa9ZVyKFeV9unKkiSKZeeZvMUNFSKYW8XQgYiKSb40H+L3qSqgZWr9+Exmm/
+         DQMQ==
+X-Gm-Message-State: AOJu0Yw+TCH7gtE3d3Pqfj0CS4jM2qMv0/R/OmebFq6RzH9EiRy355MR
+	yZF9AlOib425CfvXcLObjwo3nNk9JHo=
+X-Google-Smtp-Source: AGHT+IEdZ9OrlDQ1wj3a9ISCrzIrmQXHthOjb6+jUzE6gs8Mxu+sKRczcap9QjioakM5ICsyznnWXA==
+X-Received: by 2002:a17:903:22cd:b0:1c3:52ed:1905 with SMTP id y13-20020a17090322cd00b001c352ed1905mr7039337plg.28.1694691902278;
+        Thu, 14 Sep 2023 04:45:02 -0700 (PDT)
+Received: from kelvin-ThinkPad-L14-Gen-1.lan ([103.184.129.7])
+        by smtp.gmail.com with ESMTPSA id h12-20020a170902748c00b001b9cea4e8a2sm1388570pll.293.2023.09.14.04.44.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Sep 2023 04:45:01 -0700 (PDT)
+From: Keguang Zhang <keguang.zhang@gmail.com>
+To: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Lee Jones <lee@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+	Keguang Zhang <keguang.zhang@gmail.com>
+Subject: [PATCH v5 0/3] Move Loongson1 MAC arch-code to the driver dir
+Date: Thu, 14 Sep 2023 19:44:32 +0800
+Message-Id: <20230914114435.481900-1-keguang.zhang@gmail.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com> <20230912045157.177966-7-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20230912045157.177966-7-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 14 Sep 2023 13:42:04 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXoq96ptmm+oU_yHdkSfN4+WCfABn98tXV5xfyvM66Eig@mail.gmail.com>
-Message-ID: <CAMuHMdXoq96ptmm+oU_yHdkSfN4+WCfABn98tXV5xfyvM66Eig@mail.gmail.com>
-Subject: Re: [PATCH 06/37] clk: renesas: rzg2l: wait for status bit of SD mux
- before continuing
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
-	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
-	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
-	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Claudiu,
+In order to convert Loongson1 MAC platform devices to the devicetree
+nodes, Loongson1 MAC arch-code should be moved to the driver dir.
+Add dt-binding document and update MAINTAINERS file accordingly. 
+    
+In other words, this patchset is a preparation for converting
+Loongson1 platform devices to devicetree.
 
-On Tue, Sep 12, 2023 at 6:52=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Hardware user manual of RZ/G2L (r01uh0914ej0130-rzg2l-rzg2lc.pdf,
-> chapter 7.4.7 Procedure for Switching Clocks by the Dynamic Switching
-> Frequency Selectors) specifies that we need to check CPG_PL2SDHI_DSEL for
-> SD clock switching status.
->
-> Fixes: eaff33646f4cb ("clk: renesas: rzg2l: Add SDHI clk mux support")
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Changelog
+V4 -> V5: Replace stmmac_probe_config_dt() with devm_stmmac_probe_config_dt()
+          Replace stmmac_pltfr_probe() with devm_stmmac_pltfr_probe()
+          Squash patch 4 into patch 2 and 3
+V3 -> V4: Add Acked-by tag from Krzysztof Kozlowski
+          Add "|" to description part
+          Amend "phy-mode" property
+          Drop ls1x_dwmac_syscon definition and its instances
+          Drop three redundant fields from the ls1x_dwmac structure
+          Drop the ls1x_dwmac_init() method.
+          Update the dt-binding document entry of Loongson1 Ethernet
+          Some minor improvements
+V2 -> V3: Split the DT-schema file into loongson,ls1b-gmac.yaml
+          and loongson,ls1c-emac.yaml (suggested by Serge Semin)
+          Change the compatibles to loongson,ls1b-gmac and loongson,ls1c-emac
+          Rename loongson,dwmac-syscon to loongson,ls1-syscon
+          Amend the title
+          Add description
+          Add Reviewed-by tag from Krzysztof Kozlowski
+          Change compatibles back to loongson,ls1b-syscon
+          and loongson,ls1c-syscon
+          Determine the device ID by physical
+          base address(suggested by Serge Semin)
+          Use regmap instead of regmap fields
+          Use syscon_regmap_lookup_by_phandle()
+          Some minor fixes
+          Update the entries of MAINTAINERS
+V1 -> V2: Leave the Ethernet platform data for now
+          Make the syscon compatibles more specific
+          Fix "clock-names" and "interrupt-names" property
+          Rename the syscon property to "loongson,dwmac-syscon"
+          Drop "phy-handle" and "phy-mode" requirement
+          Revert adding loongson,ls1b-dwmac/loongson,ls1c-dwmac
+          to snps,dwmac.yaml
+          Fix the build errors due to CONFIG_OF being unset
+          Change struct reg_field definitions to const
+          Rename the syscon property to "loongson,dwmac-syscon"
+          Add MII PHY mode for LS1C
+          Improve the commit message
 
-Thanks for your patch!
+Keguang Zhang (3):
+  dt-bindings: mfd: syscon: Add compatibles for Loongson-1 syscon
+  dt-bindings: net: Add Loongson-1 Ethernet Controller
+  net: stmmac: Add glue layer for Loongson-1 SoC
 
-> --- a/drivers/clk/renesas/rzg2l-cpg.c
-> +++ b/drivers/clk/renesas/rzg2l-cpg.c
-> @@ -188,7 +188,8 @@ static int rzg2l_cpg_sd_clk_mux_set_parent(struct clk=
-_hw *hw, u8 index)
->         u32 off =3D GET_REG_OFFSET(hwdata->conf);
->         u32 shift =3D GET_SHIFT(hwdata->conf);
->         const u32 clk_src_266 =3D 2;
-> -       u32 bitmask;
-> +       u32 msk, val, bitmask;
-> +       int ret;
->
->         /*
->          * As per the HW manual, we should not directly switch from 533 M=
-Hz to
-> @@ -203,9 +204,6 @@ static int rzg2l_cpg_sd_clk_mux_set_parent(struct clk=
-_hw *hw, u8 index)
->          */
->         bitmask =3D (GENMASK(GET_WIDTH(hwdata->conf) - 1, 0) << shift) <<=
- 16;
->         if (index !=3D clk_src_266) {
-> -               u32 msk, val;
-> -               int ret;
-> -
->                 writel(bitmask | ((clk_src_266 + 1) << shift), priv->base=
- + off);
->
->                 msk =3D off ? CPG_CLKSTATUS_SELSDHI1_STS : CPG_CLKSTATUS_=
-SELSDHI0_STS;
-> @@ -221,7 +219,13 @@ static int rzg2l_cpg_sd_clk_mux_set_parent(struct cl=
-k_hw *hw, u8 index)
->
->         writel(bitmask | ((index + 1) << shift), priv->base + off);
->
-> -       return 0;
-> +       ret =3D readl_poll_timeout(priv->base + CPG_CLKSTATUS, val,
-> +                                !(val & msk), 100,
+ .../devicetree/bindings/mfd/syscon.yaml       |   2 +
+ .../bindings/net/loongson,ls1b-gmac.yaml      | 114 ++++++++++
+ .../bindings/net/loongson,ls1c-emac.yaml      | 113 ++++++++++
+ MAINTAINERS                                   |   2 +
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 +
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../ethernet/stmicro/stmmac/dwmac-loongson1.c | 209 ++++++++++++++++++
+ 7 files changed, 452 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/loongson,ls1b-gmac.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/loongson,ls1c-emac.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
 
-"msk" may be uninitialized.
 
-> +                                CPG_SDHI_CLK_SWITCH_STATUS_TIMEOUT_US);
-> +       if (ret)
-> +               dev_err(priv->dev, "failed to switch clk source\n");
-> +
-> +       return ret;
+base-commit: 98897dc735cf6635f0966f76eb0108354168fb15
+-- 
+2.39.2
 
-This is now (supposed to be) doing the same thing twice, once using
-clk_src_266, and then again with the wanted index, so why not introduce
-a small helper? That would have avoided the uninitialized variable, too.
-
-I know you're rewriting this code in "[PATCH 18/37] clk: renesas:
-rzg2l: refactor sd mux driver", but even after that, you always do
-a register write before calling rzg2l_cpg_wait_clk_update_done(),
-so it may still be a net win.
-
->  }
->
->  static u8 rzg2l_cpg_sd_clk_mux_get_parent(struct clk_hw *hw)
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
