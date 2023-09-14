@@ -1,47 +1,98 @@
-Return-Path: <devicetree+bounces-290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 406057A0A7A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 18:09:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81C337A0A82
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 18:12:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED6B5281D35
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 16:09:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 05C53B207B2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 16:12:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BF6D2134E;
-	Thu, 14 Sep 2023 16:09:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A55C721357;
+	Thu, 14 Sep 2023 16:12:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C9528E39
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 16:09:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F0DFC433C8;
-	Thu, 14 Sep 2023 16:09:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694707784;
-	bh=iG88UtPlCrOIAvGQL1fL5TxzQKU6atcBWhCTHpJ9NdI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=LAC9eY/p98qqoGW+p+QG0Vx4L3JGPYf/WEo9KjQxn2iY/s+U9sMSt5hLrDShTZo7w
-	 bfZpgFP+jZGRXW12kBYVr3ntcBqNI/4qI/lfIA+eeRJAOe+qucZOQHe/uD6pTLkP0j
-	 st7zYWVMc+Y2Gj0HqIBsFZkAkzeDB/zYKTV20QAd8EMBTG40407YQytq3nRlFVQzMX
-	 +wDnwYv7rPDmTXIY0HXy+U3LUUss63NpSaibpO3UYdEvwaDP903cA0OK3d6js0GI2P
-	 +NUntL2o+Sw/cgpkgP5DSqfzJpD8wF15vMiEVqJqU3BSb+73mjwStP+aClgZD0S8Ek
-	 e6bUy4lXt03Ig==
-Date: Thu, 14 Sep 2023 11:09:41 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-	lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-	manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
-	kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, marek.vasut+renesas@gmail.com,
-	fancer.lancer@gmail.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v20 09/19] PCI: dwc: Add EDMA_UNROLL capability flag
-Message-ID: <20230914160941.GA32484@bhelgaas>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E75528E39;
+	Thu, 14 Sep 2023 16:12:32 +0000 (UTC)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE3801FD6;
+	Thu, 14 Sep 2023 09:12:31 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9ad8a822508so151937366b.0;
+        Thu, 14 Sep 2023 09:12:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694707950; x=1695312750; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=SThObeQlIaemVPSCk4ah7fqYpyLQMYXbP7Z15PryLj0=;
+        b=O2AWI2dIB+ylQ5iAEdz8Y0teCrDLileC+hoBn9/pTf9DYCFEERJrSxIGa+MV6FfCil
+         4eMvk+oDFKAeLkKgESN2YJJC93tDwRbDH0sdqc/aVgun+HREcqc4YyEFSF44JZr7fJX5
+         xoUQHF9P8JejgF82Q5BMCMi0JMe6jL2j96yjuN3eS7QivgtoKrrTjN4qioaDeseVP02F
+         msizHTMu/fnsE3WDfw5SFkhTGvYYZx02d2IHb4xioX+CQQIk4Hwngx9eBhvX29T/6x+9
+         maZU9w9sT7CpAxgHNuask6xrr6G//WxERiHstIgOiyh2EzZtJx76UFqVF8wVwUYB6gOV
+         TKNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694707950; x=1695312750;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SThObeQlIaemVPSCk4ah7fqYpyLQMYXbP7Z15PryLj0=;
+        b=R0iXEK0JoFKYMSz/uFIcqDF/0Z9l0/oWkSKDgwK5mHUbQ4N2DZv5UxPtaWMAo7fhFb
+         Frt8LSoU5KE0xeCzFe1EWTPBD2H7Cci5i2u+HADlb7kJ3DcTqrJj5FHvcD8U31TB80YH
+         Wa9LpWAo0ORcF7+dDIaEYY9uY589LLP/yugz4QXGVDvn1pHB7aaJje+YPKM6DejhY0In
+         0khE0g69aI5GOS++zC2Uw59gVbJcUqu2zjQ4282tPMsRNpGJ6HFvMSq+Mw5xNDtdGORu
+         rQMQcRDSORoIM+jrqQ1wRzQ/Z28ckKfFLz/x7FuiyuUQWhw6QYGSUZZt36SBQNLN3SsT
+         SMQw==
+X-Gm-Message-State: AOJu0YzwyZoF/Errt9oDuPq0B66loAwXNg8QRouRG96Gma1axEPTnIP6
+	9bF2f09aT2RJV+Dg1wmtybY=
+X-Google-Smtp-Source: AGHT+IELqO4SvOWFV2/pKbLA0g4UVTZ7AbMewT+KnbWAN1uC7xCJlW08XIvsVg3T7S+uvgq7bq1bMA==
+X-Received: by 2002:a17:906:7692:b0:9a2:739:3aa1 with SMTP id o18-20020a170906769200b009a207393aa1mr5162206ejm.61.1694707949815;
+        Thu, 14 Sep 2023 09:12:29 -0700 (PDT)
+Received: from skbuf ([188.26.56.202])
+        by smtp.gmail.com with ESMTPSA id l13-20020a170906078d00b009a193a5acffsm1179235ejc.121.2023.09.14.09.12.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Sep 2023 09:12:29 -0700 (PDT)
+Date: Thu, 14 Sep 2023 19:12:26 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	UNGLinuxDriver@microchip.com,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Landen Chao <Landen.Chao@mediatek.com>,
+	DENG Qingfang <dqfext@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	mithat.guner@xeront.com, erkin.bozoglu@xeront.com,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
+Message-ID: <20230914161226.563423jjeuywfe57@skbuf>
+References: <0cee0928-74c9-4048-8cd8-70bfbfafd9b2@arinc9.com>
+ <20230827121235.zog4c3ehu2cyd3jy@skbuf>
+ <676d1a2b-6ffa-4aff-8bed-a749c373f5b3@arinc9.com>
+ <87325ce9-595a-4dda-a6a1-b5927d25719b@arinc9.com>
+ <20230911225126.rk23g3u3bzo3agby@skbuf>
+ <036c0763-f1b2-49ff-bc82-1ff16eec27ab@arinc9.com>
+ <20230912193450.h5s6miubag46z623@skbuf>
+ <6cec079e-991e-4222-a76d-d6156de0daca@arinc9.com>
+ <20230913074231.5azwxqjuv2wp5nik@skbuf>
+ <ZQHcV5DUfcCYkkTi@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,64 +101,139 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230825093219.2685912-10-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <ZQHcV5DUfcCYkkTi@shell.armlinux.org.uk>
 
-On Fri, Aug 25, 2023 at 06:32:09PM +0900, Yoshihiro Shimoda wrote:
-> Renesas R-Car Gen4 PCIe controllers have an unexpected register value in
-> the eDMA CTRL register. So, add a new capability flag "EDMA_UNROLL"
-> which would force the unrolled eDMA mapping for the problematic device.
-> 
-> Suggested-by: Serge Semin <fancer.lancer@gmail.com>
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  drivers/pci/controller/dwc/pcie-designware.c | 8 +++++++-
->  drivers/pci/controller/dwc/pcie-designware.h | 5 +++--
->  2 files changed, 10 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> index c4998194fe74..4812ce040f1e 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> @@ -883,8 +883,14 @@ static int dw_pcie_edma_find_chip(struct dw_pcie *pci)
->  	 * Indirect eDMA CSRs access has been completely removed since v5.40a
->  	 * thus no space is now reserved for the eDMA channels viewport and
->  	 * former DMA CTRL register is no longer fixed to FFs.
-> +	 *
-> +	 * Note that Renesas R-Car S4-8's PCIe controllers for unknown reason
-> +	 * have zeros in the eDMA CTRL register even though the HW-manual
-> +	 * explicitly states there must FFs if the unrolled mapping is enabled.
-> +	 * For such cases the low-level drivers are supposed to manually
-> +	 * activate the unrolled mapping to bypass the auto-detection procedure.
->  	 */
-> -	if (dw_pcie_ver_is_ge(pci, 540A))
-> +	if (dw_pcie_ver_is_ge(pci, 540A) || dw_pcie_cap_is(pci, EDMA_UNROLL))
->  		val = 0xFFFFFFFF;
->  	else
->  		val = dw_pcie_readl_dbi(pci, PCIE_DMA_VIEWPORT_BASE + PCIE_DMA_CTRL);
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index b731e38a71fc..c7759a508ca9 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -51,8 +51,9 @@
->  
->  /* DWC PCIe controller capabilities */
->  #define DW_PCIE_CAP_REQ_RES		0
-> -#define DW_PCIE_CAP_IATU_UNROLL		1
-> -#define DW_PCIE_CAP_CDM_CHECK		2
-> +#define DW_PCIE_CAP_EDMA_UNROLL		1
-> +#define DW_PCIE_CAP_IATU_UNROLL		2
-> +#define DW_PCIE_CAP_CDM_CHECK		3
+On Wed, Sep 13, 2023 at 04:59:19PM +0100, Russell King (Oracle) wrote:
+> However, phylink pretty much requires phy-mode to be specified to be
+> something sane for shared ports, so I wouldn't be in favour of relaxing
+> the checkinng in dsa_shared_port_validate_of()... not unless you're
+> now going to accept the approach I originally proposed to have DSA
+> drivers tell the core (and thus phylink) what phy-mode and other link
+> parameters should be used when they are missing from DT.
 
-Why did you make the new DW_PCIE_CAP_EDMA_UNROLL "1" and shift all the
-existing ones down?  If they don't need to be ordered like this,
-leaving the existing ones alone and making DW_PCIE_CAP_EDMA_UNROLL "3"
-would be a simpler one-line diff.
+Ok, so with a missing phy-mode on the CPU port, phylink_parse_fixedlink() ->
+phy_lookup_setting() will return NULL and that will print a phylink_warn(),
+but other than that, phylink_mac_link_up() does get called at the right
+speed and duplex.
 
->  #define dw_pcie_cap_is(_pci, _cap) \
->  	test_bit(DW_PCIE_CAP_ ## _cap, &(_pci)->caps)
-> -- 
-> 2.25.1
-> 
+I agree that for sane behavior it should be specified, but it appears
+that even with PHY_INTERFACE_MODE_NA something can be hacked up...
+
+[    4.818368] sja1105 spi0.1: Failed to read phy-mode or phy-interface-type property for port 4
+[    4.864667] sja1105 spi0.1: OF node /soc/spi@2100000/ethernet-switch@1/ports/port@4 of CPU port 4 lacks the required "phy-mode" property
+[    4.882957] sja1105 spi0.1: pl->link_config.speed 1000 pl->link_config.duplex 1 pl->supported 00,00000000,00000000,00000240
+[    4.894189] sja1105 spi0.1: phy_setting speed -1 duplex -1 bit -1
+[    4.900283] sja1105 spi0.1: fixed link full duplex 1000Mbps not recognised
+[    4.907798] sja1105 spi0.1: configuring for fixed/ link mode
+[    4.916183] sja1105 spi0.1 swp5 (uninitialized): PHY [mdio@2d24000:06] driver [Broadcom BCM5464] (irq=POLL)
+[    4.934770] sja1105 spi0.1 swp2 (uninitialized): PHY [mdio@2d24000:03] driver [Broadcom BCM5464] (irq=POLL)
+[    4.951619] sja1105 spi0.1 swp3 (uninitialized): PHY [mdio@2d24000:04] driver [Broadcom BCM5464] (irq=POLL)
+[    4.968349] sja1105 spi0.1 swp4 (uninitialized): PHY [mdio@2d24000:05] driver [Broadcom BCM5464] (irq=POLL)
+[    4.984017] fsl-gianfar soc:ethernet@2d90000 eth2: entered promiscuous mode
+[    4.991327] DSA: tree 0 setup
+[    4.995129] sja1105 spi0.1: sja1105_mac_link_up: port 4 interface  speed 1000 duplex 1
+[    5.005004] sja1105 spi0.1: Link is Up - 1Gbps/Full - flow control off
+
+diff --git a/arch/arm/boot/dts/nxp/ls/ls1021a-tsn.dts b/arch/arm/boot/dts/nxp/ls/ls1021a-tsn.dts
+index 1ea32fff4120..0bfffcb51af9 100644
+--- a/arch/arm/boot/dts/nxp/ls/ls1021a-tsn.dts
++++ b/arch/arm/boot/dts/nxp/ls/ls1021a-tsn.dts
+@@ -90,7 +90,7 @@ port@3 {
+ 			port@4 {
+ 				/* Internal port connected to eth2 */
+ 				ethernet = <&enet2>;
+-				phy-mode = "rgmii";
++//				phy-mode = "rgmii";
+ 				rx-internal-delay-ps = <0>;
+ 				tx-internal-delay-ps = <0>;
+ 				reg = <4>;
+diff --git a/drivers/net/dsa/sja1105/sja1105_main.c b/drivers/net/dsa/sja1105/sja1105_main.c
+index a23d980d28f5..dba1fa545a9c 100644
+--- a/drivers/net/dsa/sja1105/sja1105_main.c
++++ b/drivers/net/dsa/sja1105/sja1105_main.c
+@@ -327,6 +327,8 @@ static int sja1105_init_mii_settings(struct sja1105_private *priv)
+ 			mii->xmii_mode[i] = XMII_MODE_SGMII;
+ 			mii->special[i] = true;
+ 			break;
++		case PHY_INTERFACE_MODE_NA:
++			break;
+ unsupported:
+ 		default:
+ 			dev_err(dev, "Unsupported PHY mode %s on port %d!\n",
+@@ -1205,11 +1207,10 @@ static int sja1105_parse_ports_node(struct sja1105_private *priv,
+ 		/* Get PHY mode from DT */
+ 		err = of_get_phy_mode(child, &phy_mode);
+ 		if (err) {
+-			dev_err(dev, "Failed to read phy-mode or "
++			dev_warn(dev, "Failed to read phy-mode or "
+ 				"phy-interface-type property for port %d\n",
+ 				index);
+-			of_node_put(child);
+-			return -ENODEV;
++			phy_mode = PHY_INTERFACE_MODE_NA;
+ 		}
+ 
+ 		phy_node = of_parse_phandle(child, "phy-handle", 0);
+@@ -1383,6 +1384,8 @@ static void sja1105_mac_link_up(struct dsa_switch *ds, int port,
+ {
+ 	struct sja1105_private *priv = ds->priv;
+ 
++	dev_err(ds->dev, "%s: port %d interface %s speed %d duplex %d\n", __func__, port, phy_modes(interface), speed, duplex);
++
+ 	sja1105_adjust_port_config(priv, port, speed);
+ 
+ 	sja1105_inhibit_tx(priv, BIT(port), false);
+@@ -1414,7 +1417,10 @@ static void sja1105_phylink_get_caps(struct dsa_switch *ds, int port,
+ 		 * config (the xMII Mode table cannot be dynamically
+ 		 * reconfigured), and we have to program that early.
+ 		 */
+-		__set_bit(phy_mode, config->supported_interfaces);
++		if (phy_mode == PHY_INTERFACE_MODE_NA)
++			phy_interface_set_rgmii(config->supported_interfaces);
++		else
++			__set_bit(phy_mode, config->supported_interfaces);
+ 	}
+ 
+ 	/* The MAC does not support pause frames, and also doesn't
+diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
+index 0d7354955d62..674689011059 100644
+--- a/drivers/net/phy/phylink.c
++++ b/drivers/net/phy/phylink.c
+@@ -841,6 +841,15 @@ static int phylink_parse_fixedlink(struct phylink *pl,
+ 	if (autoneg)
+ 		phylink_set(pl->supported, Autoneg);
+ 
++	phylink_err(pl, "pl->link_config.speed %d pl->link_config.duplex %d pl->supported %*pb\n",
++		    pl->link_config.speed, pl->link_config.duplex, __ETHTOOL_LINK_MODE_MASK_NBITS,
++		    pl->supported);
++
++	phylink_err(pl, "phy_setting speed %d duplex %d bit %d\n",
++		    s ? s->speed : -1,
++		    s ? s->duplex : -1,
++		    s ? s->bit : -1);
++
+ 	if (s) {
+ 		__set_bit(s->bit, pl->supported);
+ 		__set_bit(s->bit, pl->link_config.lp_advertising);
+diff --git a/net/dsa/port.c b/net/dsa/port.c
+index 5f01bd4f9dec..34e5dc48f0ff 100644
+--- a/net/dsa/port.c
++++ b/net/dsa/port.c
+@@ -1927,6 +1927,16 @@ static const char * const dsa_switches_apply_workarounds[] = {
+ #if IS_ENABLED(CONFIG_NET_DSA_SMSC_LAN9303_I2C)
+ 	"smsc,lan9303-i2c",
+ #endif
++	"nxp,sja1105e",
++	"nxp,sja1105t",
++	"nxp,sja1105p",
++	"nxp,sja1105q",
++	"nxp,sja1105r",
++	"nxp,sja1105s",
++	"nxp,sja1110a",
++	"nxp,sja1110b",
++	"nxp,sja1110c",
++	"nxp,sja1110d",
+ 	NULL,
+ };
+ 
 
