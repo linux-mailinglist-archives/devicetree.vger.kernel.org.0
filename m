@@ -1,161 +1,88 @@
-Return-Path: <devicetree+bounces-303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A67257A0E01
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 21:17:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8E4E7A0E61
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 21:32:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4DA6BB20A36
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 19:17:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 893B0281C3E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 19:32:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 772212510E;
-	Thu, 14 Sep 2023 19:17:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F2DE266A9;
+	Thu, 14 Sep 2023 19:32:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01552210FE
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 19:17:22 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35E931FFA;
-	Thu, 14 Sep 2023 12:17:22 -0700 (PDT)
-Received: from mercury (unknown [185.209.196.239])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 199C0660734C;
-	Thu, 14 Sep 2023 20:17:20 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1694719040;
-	bh=+8h83Wl1ZJ9FOA73iw7dxoMzoNJHRKLssqoGddVcv6M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lNlMcofM1bz7EHdxr2v5+5T3W+PNpjVfPilbWQjzJ0AcIYWvb3nkl9qHPzNruXA9y
-	 a2qifrWI2xN/M+2q2yI1nOIVLIJyMGXhbg3agzxik9IXZ2u1JINzQ5cMIpLZ8f+OCp
-	 mMDTO+4UvlnXDuUpezi0BoS/dzhkKl5VjDqn/4O3YDvlQTH8OPoz4NYfEcaBrhu0PC
-	 bipQLjIbIPxz2aOPhCow+cno6JqoXq9Uw0nIdVfV2reNcJZFS+LSV8+i+gxbSYANgn
-	 MEEJuqnpq3HJNgGZKE1SDIO2UYTZSyaO4s1oNblGZqH1hsoqKinRtojZGEE3qjI6Tg
-	 4HYMQe64FLO6w==
-Received: by mercury (Postfix, from userid 1000)
-	id 4BD3E106098B; Thu, 14 Sep 2023 21:17:17 +0200 (CEST)
-Date: Thu, 14 Sep 2023 21:17:17 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0BE621116
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 19:32:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B9ABC433C7;
+	Thu, 14 Sep 2023 19:32:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1694719958;
+	bh=fKyYS2g33geFkbUD2j4K3fVgYEq20z/18T1pFUnsuP8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Pxnentepc2SbybFP7Hkgd2xQwe7Qacd6E6aJgOfmOwEeb/qctw6zrPzQacJFqG3sc
+	 ku89qhMijGWki0kIwERCgIInqr1Vdu1d3qvLOJC6TVRigI98zfhhuFj34z8jglKgK4
+	 /72xPv6BapxAteLUPAQuaYuSF/uBdnOh+ZVJ3CYuuqCoTjH+6orX2b2mX2RhLP2ee0
+	 IXmdkmdJEYz6lf3dyOJiDqtfHilaFRLPdsh4fOVnS9aQ3iNLvsuBjS8g5MufoY5q/3
+	 D6BzbZcmWt5rNL+gPE7Aafwv5z039Cgj+eBpMAQFYUs9/upE48ump4rCPXvjiGbTUT
+	 MYpdzsYzuAfFQ==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH RESEND v2 3/3] power: supply: Introduce MM8013 fuel gauge
- driver
-Message-ID: <20230914191717.u7jcxkfgrvpcb6hp@mercury.elektranox.org>
-References: <20230621-topic-mm8013-v2-0-9f1b41f4bc06@linaro.org>
- <20230621-topic-mm8013-v2-3-9f1b41f4bc06@linaro.org>
- <20230913154552.okinfq6gdxf2d7ab@mercury.elektranox.org>
- <36287e2f-ddff-4323-bbc2-e7a07a9283e7@linaro.org>
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Alex Elder <elder@linaro.org>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Cc: kernel@quicinc.com,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH 00/11] arm64: qcom: add and enable SHM Bridge support
+Date: Thu, 14 Sep 2023 12:36:39 -0700
+Message-ID: <169472019836.1902897.1391606385902193970.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20230828192507.117334-1-bartosz.golaszewski@linaro.org>
+References: <20230828192507.117334-1-bartosz.golaszewski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="nqk2z42bayjsqcyl"
-Content-Disposition: inline
-In-Reply-To: <36287e2f-ddff-4323-bbc2-e7a07a9283e7@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
 
---nqk2z42bayjsqcyl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Thu, Sep 14, 2023 at 08:46:21PM +0200, Konrad Dybcio wrote:
-> On 13.09.2023 17:45, Sebastian Reichel wrote:
-> > On Wed, Aug 23, 2023 at 04:36:15PM +0200, Konrad Dybcio wrote:
-> >> Add a driver for the Mitsumi MM8013 fuel gauge. The driver is a vastly
-> >> cleaned up and improved version of the one that shipped in some obscure
-> >> Lenovo downstream kernel [1], with some register definitions borrowed =
-=66rom
-> >> ChromeOS EC platform code [2].
-> >>
-> >> [1] https://github.com/adazem009/kernel_lenovo_bengal/commit/b6b346427=
-a871715709bd22aae449b9383f3b66b
-> >> [2] https://chromium.googlesource.com/chromiumos/platform/ec/+/master/=
-driver/battery/mm8013.h
-> >> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >> ---
+On Mon, 28 Aug 2023 21:24:56 +0200, Bartosz Golaszewski wrote:
+> SHM Bridge is a mechanism allowing to map limited areas of kernel's
+> virtual memory to physical addresses and share those with the
+> trustzone in order to not expose the entire RAM for SMC calls.
+> 
+> This series adds support for Qualcomm SHM Bridge in form of a platform
+> driver and library functions available to users. It enables SHM Bridge
+> support for three platforms and contains a bunch of cleanups for
+> qcom-scm.
+> 
 > [...]
 
-[...]
+Applied, thanks!
 
-> >> +	switch (psp) {
-> >> +	case POWER_SUPPLY_PROP_CAPACITY:
-> >=20
-> > this is in %, while the next two are in uAh. So the fuel gauge does
-> > not provide the current capacity in uAh
-> > (POWER_SUPPLY_PROP_CHARGE_NOW)?
-> Yes. Doesn't seem like raw values are supported.
+[01/11] firmware: qcom-scm: drop unneeded 'extern' specifiers
+        commit: 2758ac3a11d78af56e6969af04dec611806a62de
+[02/11] firmware: qcom-scm: order includes alphabetically
+        commit: bc7fbb5ea701b22c09c0fa5acbc122207283366a
 
-Ok. (It's quite unusual for a chip to provide design and full
-capacity separatly, but not providing the current capacity.)
-
-[...]
-
-> > With the next submission please include a dump of the uevent
-> > in sysfs in the cover letter or below the fold, so that its
-> > easy to validty check if the reported values look sensible.
-> State of what-will-be-sent in v(n+1), with additional fixups:
->=20
-> POWER_SUPPLY_NAME=3Dmm8013
-> POWER_SUPPLY_TYPE=3DBattery
-> POWER_SUPPLY_CAPACITY=3D100
-> POWER_SUPPLY_CHARGE_FULL=3D7124
-> POWER_SUPPLY_CHARGE_FULL_DESIGN=3D7500
-
-The unit for the above two are uAh. So that would be 7.5 mAh. With
-4.4V I expect you have something bigger than a coin cell, so that's
-probably wrong :)
-
-> POWER_SUPPLY_CURRENT_NOW=3D-122000
-> POWER_SUPPLY_CYCLE_COUNT=3D27
-> POWER_SUPPLY_HEALTH=3DGood
-> POWER_SUPPLY_PRESENT=3D1
-> POWER_SUPPLY_STATUS=3DFull
-> POWER_SUPPLY_TEMP=3D324
-> POWER_SUPPLY_VOLTAGE_NOW=3D4407000
-
-Otherwise looks sensible.
-
-Greetings,
-
--- Sebastian
-
---nqk2z42bayjsqcyl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmUDXDIACgkQ2O7X88g7
-+ppTRBAAj0xdui/gDf4QyvEwTygEOVRRAVoV2GsAtph8nsHv5lQTxkvHvzz0DC0z
-XU/GH6ejrwF4CpU6zPp4CxbDHNi8rnVWvf6OK8QARYKAxUqpja8h2Amz6j8Ilf/D
-i2mXRR+FQenY/pfoAPnaHav6Pn/9EeaZ9cr8GhGennOvJ+AtSGow6RwGhNnJYXOK
-BdEAG3c6O2g64eo64TE9PdbkGRDPI0bIpuCzKXsnQoNcobAlQK/DoKyvQZeof0Rb
-NWz1o7H+tBt9huncbUEmpdujgXUdsMsuE5lUrB/Y5Js++JBGwzNin06uss9B7pDw
-wPebE/e1BiGRfPhy1az6gotdubRhmK1wjC68DY9LVfqX5KXjIyTn1YEb6+0Sqhlo
-AAwWxe9HhFgJvVM9Zj8fA30egKQHl3H/kVFHqW3XSckte5PqBbeHKH28Zi+iT8NE
-9b3jfkfeM3E0ifAv1HlOL6lYSkF59Hq365tGKjFhdLzS7xVGxLshwm7o1CoRJr2R
-OD/Y23KSyQf4PWqh6QPlksrmTGo863aP0oLo1P5p6WF5aXnWRuIHqIaSQJB/xVRh
-J5SzAkjPbEF40Vc4Cn4CDaO/nseB/pTyiO3H7vEtnpWZAKdwrQIdJ/QEgXw3DTsi
-ZI+VNYanv9/F95hD4aV+NTyEIHLz+k6/XF7tTj80wPVc0wdqBCg=
-=vZJU
------END PGP SIGNATURE-----
-
---nqk2z42bayjsqcyl--
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
