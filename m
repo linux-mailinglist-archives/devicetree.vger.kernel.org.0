@@ -1,161 +1,150 @@
-Return-Path: <devicetree+bounces-298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93EB97A0CC3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 20:36:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 997427A0C55
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 20:16:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D4581F21893
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 18:36:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 741EF1C20A89
+	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 18:16:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D9F015EB7;
-	Thu, 14 Sep 2023 18:36:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1976266AE;
+	Thu, 14 Sep 2023 18:16:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3FFE1D54D;
-	Thu, 14 Sep 2023 18:07:27 +0000 (UTC)
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED36C1FDF;
-	Thu, 14 Sep 2023 11:07:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=DVM5Y9GchlYycYoe4MGIo5Kf5CTVmd8xy8ZARREdE/8=; b=SAh4R3lRHvnhPlZeNIxjJdVqBc
-	Mk0AoHkAFXaS6l/17Qv/R8L3TzYN2RnNSLENcMR0QLpY9x27DT37TD3jO3c7mn2QectFuXNDTe5K6
-	XzIJ5v5FqOSKTDgxd5VIyYaWnTLtpZQC7Jhmw4ifTjfeRktttX4bQLJ4ayglE8n4PNFkZ7AB5Wlac
-	zcxe9nw33PhorsMEfgbsPlm1x3F2nLP8YzXK3Xkec7jx0Jn0lPINXCgGnKbjbsxsNaReIGFA+a1iP
-	CjtgY8S6DqsN7dVpdnOSMyY6fPpjxrFdahQTcMJyWy85fyeGU27thT/Hwr8GI8hGyoh53EmBS++x9
-	m1mZKXvA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33982)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1qgqkD-0004gP-2T;
-	Thu, 14 Sep 2023 19:07:13 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1qgqkD-0004zA-Ty; Thu, 14 Sep 2023 19:07:13 +0100
-Date: Thu, 14 Sep 2023 19:07:13 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	UNGLinuxDriver@microchip.com,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	mithat.guner@xeront.com, erkin.bozoglu@xeront.com,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
-Message-ID: <ZQNL0Vy3kMbWlNFl@shell.armlinux.org.uk>
-References: <20230827121235.zog4c3ehu2cyd3jy@skbuf>
- <676d1a2b-6ffa-4aff-8bed-a749c373f5b3@arinc9.com>
- <87325ce9-595a-4dda-a6a1-b5927d25719b@arinc9.com>
- <20230911225126.rk23g3u3bzo3agby@skbuf>
- <036c0763-f1b2-49ff-bc82-1ff16eec27ab@arinc9.com>
- <20230912193450.h5s6miubag46z623@skbuf>
- <6cec079e-991e-4222-a76d-d6156de0daca@arinc9.com>
- <20230913074231.5azwxqjuv2wp5nik@skbuf>
- <ZQHcV5DUfcCYkkTi@shell.armlinux.org.uk>
- <ZQNLkiAt4jOjojRf@shell.armlinux.org.uk>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B489518E1B
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 18:16:01 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2065.outbound.protection.outlook.com [40.107.92.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4FA71FFD;
+	Thu, 14 Sep 2023 11:16:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=A9TMWjLkFguhwsXODHC4KLgJTzyoZbAR24ZQBfO/Z0BFsAS2MR9hWALSWZ7K0zD0pzRLSrPVUSYwDhF/8FV7aZwzY8xA4o3iXh8BUiLOjvK+bBVmLg/AmwT32LATbnyU0akAhRDcTa7aNOv3y9I6mTAmNcUCQIzfXjVZ1L+3j7v6KEzvdBIPnDHqjXAyityiU4XPvRQ79TD7UEDmEBqGpgPJmHYnvDhSFAIxFOVca27ABN/H1weL30/Tfah1RcevvqwWDOV28ZNtEWKaqfZLlcwEO6k0SaDfwarUnGuTsGxJUdrvSewUfUzHPmKXUOMFQRTgi1nHT8JzA5Uh2ryJag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SifNL8ODpDDFEdAUcg7nM4MGe88oeZea6j9iF8opzVE=;
+ b=fQIIdk/QCHZBBTilTnySU2aDtmxtVh6c8fJs1fCtDVNG5rd3teZ9L4qFIhqQPIInTyBlyptDUqa2VTlev10xBrdg0h2JCTzwWg2rLG7wbzqkI48F3K111iby184GxzkbbKe7mLSQEuZRNXGHdHRzboudNGinHmYhbbQQIRcnKnvjkuljWdJ04NLyJCx+TWUE2dpLk6mXJE5ZxoOLLhPkRGpYRkf0RhGF88jrESTdI4XDW0do3mQZ4KxHJIv5H0wjAUqlA6aZ7395aCSXq+H98ttQ4ag7iqw3/bo8Xw3CxLvpSJlFu5Zf+JjFKfHGg4eJ5++swY6oL1jtRNOvNwah9Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SifNL8ODpDDFEdAUcg7nM4MGe88oeZea6j9iF8opzVE=;
+ b=0dH6UuO4yPTXsCOxY2P26EqhP3v0Tfbq+X4RtwSoXr2c90P+OUv4GjBV7LclDf10lpuRtiEn5F9EMTC+qQXmG990hHpt9ikYh0oDu+S3IYghsOnaWjxTF+u0e0uBC8XvI4Yh9KU946qINgVfsMYK6c48I5I7l0cQtOOJXrk8b7Y=
+Received: from DM6PR18CA0009.namprd18.prod.outlook.com (2603:10b6:5:15b::22)
+ by DM8PR12MB5399.namprd12.prod.outlook.com (2603:10b6:8:34::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6792.20; Thu, 14 Sep 2023 18:15:58 +0000
+Received: from DS2PEPF00003447.namprd04.prod.outlook.com
+ (2603:10b6:5:15b:cafe::10) by DM6PR18CA0009.outlook.office365.com
+ (2603:10b6:5:15b::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.20 via Frontend
+ Transport; Thu, 14 Sep 2023 18:15:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DS2PEPF00003447.mail.protection.outlook.com (10.167.17.74) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6792.20 via Frontend Transport; Thu, 14 Sep 2023 18:15:58 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 14 Sep
+ 2023 13:15:57 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 14 Sep
+ 2023 13:15:57 -0500
+Received: from xsjlizhih40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
+ Transport; Thu, 14 Sep 2023 13:15:56 -0500
+From: Lizhi Hou <lizhi.hou@amd.com>
+To: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <herve.codina@bootlin.com>
+CC: Lizhi Hou <lizhi.hou@amd.com>, <bhelgaas@google.com>, <robh@kernel.org>
+Subject: [PATCH] PCI: of: Fix memory leak when of_changeset_create_node() failed
+Date: Thu, 14 Sep 2023 11:15:51 -0700
+Message-ID: <1694715351-58279-1-git-send-email-lizhi.hou@amd.com>
+X-Mailer: git-send-email 1.8.3.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZQNLkiAt4jOjojRf@shell.armlinux.org.uk>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003447:EE_|DM8PR12MB5399:EE_
+X-MS-Office365-Filtering-Correlation-Id: 862b2080-7275-4fa2-b38f-08dbb54ea50a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	t27ziNgipgt7B4351WWtOcvN0RkCFKrV+/tpMeSz7c3Udh9Mf4wVkPM010UE+6VThGyNLleX1y2o4K9RXlm1CSd9Hu8jN5MJlQSDMw/GHTdKOulGzD2bUdQBKgt4+NZwz9M/aAtnBOCk+y3w9l3YbNEED9f52AeSLlJf+WVoDVghRUpw6bB5Z/opqJ6cavy9b/ADLAgKsYlT9a/UpbxiQYDjX6udo5TurNmLAIjpHAmDCzzKCBvNsFCbbt0GCo3X8DYbJchgDqhSakpnoCjuy97NBTkSEOguwsWWtfxH4KyKQkl1UbtQ66zt02+yOCNzCobNb+OVgjzXIYrlKuSNT4sf6/c7bdeX87GbNKEf3KoecDZ4esAjcZRUMBa1rw9eiXxu7gbOfXY4AN7/tZOXfStWR+OeY3LcwHSPxyTLTAstFri7xXuLpafr6T3pJSlw0C4mHkaXJqK+z5FUrw4/m79AGGb4eBIRThqjN1jHcaGUH13PW/ojHBIyN8ZAjnH1zsmtl36bXqVX9rln2H24yXxPV1CgEbh6vfb5sXuQcttGL2em/rkI/JVnCvewqJs5a0jkTi5EdauRHfQspkwcjWp2Eop1R0+ysinl2sQtu8mHpvyp4IyqNV8/tn7/ZVOK3Y4KYg0ypEUeBnZPyeIt5Co++9Pr8Wgu/GsawbkyJv8MGgGFPaEGUUmR2+61tL81GJZCFlKYSRt0xkCJclwzNWZuj3PPtSJILjbkikPHI8eeJHFi+rOmyd4YP9/ECviqcHRFoJQlXRVQmR8yDZa1Vg==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(136003)(346002)(376002)(39860400002)(396003)(186009)(451199024)(1800799009)(82310400011)(46966006)(36840700001)(40470700004)(44832011)(36860700001)(4744005)(83380400001)(356005)(6666004)(4326008)(426003)(86362001)(8676002)(336012)(8936002)(5660300002)(47076005)(2906002)(26005)(54906003)(110136005)(70206006)(70586007)(40480700001)(478600001)(82740400003)(966005)(41300700001)(316002)(36756003)(2616005)(40460700003)(81166007)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2023 18:15:58.3294
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 862b2080-7275-4fa2-b38f-08dbb54ea50a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DS2PEPF00003447.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR12MB5399
 
-On Thu, Sep 14, 2023 at 07:06:11PM +0100, Russell King (Oracle) wrote:
-> On Wed, Sep 13, 2023 at 04:59:19PM +0100, Russell King (Oracle) wrote:
-> > On Wed, Sep 13, 2023 at 10:42:31AM +0300, Vladimir Oltean wrote:
-> > > On Wed, Sep 13, 2023 at 08:52:37AM +0300, Arınç ÜNAL wrote:
-> > > > On 12.09.2023 22:34, Vladimir Oltean wrote:
-> > > > > On Tue, Sep 12, 2023 at 10:23:51PM +0300, Arınç ÜNAL wrote:
-> > > > > > The phylink bindings for user ports I ended up making by looking up the
-> > > > > > existing devicetrees are different than the phylink bindings for the shared
-> > > > > > (CPU and DSA) ports currently enforced on all switches.
-> > > > > > 
-> > > > > > My phylink bindings for user ports:
-> > > > > > 
-> > > > > >              allOf:
-> > > > > >                - anyOf:
-> > > > > >                    - required: [ fixed-link ]
-> > > > > >                    - required: [ phy-handle ]
-> > > > > >                    - required: [ managed ]
-> > > > > > 
-> > > > > >                - if:
-> > > > > >                    required: [ fixed-link ]
-> > > > > >                  then:
-> > > > > >                    not:
-> > > > > >                      required: [ managed ]
-> > > > > 
-> > > > > Right, it should have been anyOf and not oneOf.. my mistake. It is a bug
-> > > > > which should be fixed. It's the same phylink that gets used in both cases,
-> > > > > user ports and shared ports :)
-> > > > 
-> > > > One more thing, I don't recall phy-mode being required to be defined for
-> > > > user ports as it will default to GMII. I don't believe this is the same
-> > > > case for shared ports so phy-mode is required only for them?
-> > > 
-> > > phy-mode is not strictly required, but I think there is a strong
-> > > preference to set it. IIRC, when looking at the DSA device trees, there
-> > > was no case where phy-mode would be absent on CPU/DSA ports if the other
-> > > link properties were also present, so we required it too. There were no
-> > > complaints in 1 year since dsa_shared_port_validate_of() is there. The
-> > > requirement can be relaxed to just a warning and no error in the kernel,
-> > > and the removal of "required" in the schema, if it helps making it
-> > > common with user ports.
-> > 
-> > However, phylink pretty much requires phy-mode to be specified to be
-> > something sane for shared ports, so I wouldn't be in favour of relaxing
-> > the checkinng in dsa_shared_port_validate_of()... not unless you're
-> > now going to accept the approach I originally proposed to have DSA
-> > drivers tell the core (and thus phylink) what phy-mode and other link
-> > parameters should be used when they are missing from DT.
-> 
-> You mean the approach that I picked up using software nodes that got
-> thrown out by the software node people? That approach that I picked
-> up from you and tried to get merged?
-> 
-> No, that's not going to happen, and it's not a question of whether
-> _I_ am going to accept that approach or not. So don't throw that
-> back on me, please.
-> 
-> If this is something that we want to solve, we need to stop being so
-> devisive (your language above is so) and try to come up with a
-> solution that is acceptable to everyone... the swnode approach
-> doesn't seem to be it.
+Destroy and free cset when failure happens.
 
-Oh dear. I must be going mad!
+Fixes: 407d1a51921e ("PCI: Create device tree node for bridge")
+Reported-by: Herve Codina <herve.codina@bootlin.com>
+Closes: https://lore.kernel.org/all/20230911171319.495bb837@bootlin.com/
+Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
+---
+ drivers/pci/of.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+index 2af64bcb7da3..67bbfa2fca59 100644
+--- a/drivers/pci/of.c
++++ b/drivers/pci/of.c
+@@ -663,7 +663,6 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
+ 	np = of_changeset_create_node(cset, ppnode, name);
+ 	if (!np)
+ 		goto failed;
+-	np->data = cset;
+ 
+ 	ret = of_pci_add_properties(pdev, cset, np);
+ 	if (ret)
+@@ -673,12 +672,17 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
+ 	if (ret)
+ 		goto failed;
+ 
++	np->data = cset;
+ 	pdev->dev.of_node = np;
+ 	kfree(name);
+ 
+ 	return;
+ 
+ failed:
++	if (cset) {
++		of_changeset_destroy(cset);
++		kfree(cset);
++	}
+ 	if (np)
+ 		of_node_put(np);
+ 	kfree(name);
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+2.34.1
+
 
