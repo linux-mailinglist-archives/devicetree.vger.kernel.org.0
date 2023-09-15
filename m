@@ -1,151 +1,135 @@
-Return-Path: <devicetree+bounces-655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 553927A2841
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 22:38:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ABEA7A288A
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 22:49:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F5B9282629
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 20:38:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8185282399
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 20:49:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 088681805C;
-	Fri, 15 Sep 2023 20:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D4E21B278;
+	Fri, 15 Sep 2023 20:49:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 000BB11CA0
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 20:38:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35890C433C7;
-	Fri, 15 Sep 2023 20:38:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694810312;
-	bh=6Q5uD+Zu8AqpFSr7DdUZmiNzQVx8ArnIRoKFeBRbrQQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=qQ2iyLjwa7dvCYxKHf2pb1xYmjUKk31qUJTGag1QN09CHOP4ctdyYN9gCl+v1QvYY
-	 niCKla3y+gP0W69WjI3Q/wYqj2nZFcltdDlDYPh+9Nf0uvN10a5CABsdORmk4IlC8q
-	 +wpFBM+txR2+IvVsJmH3R+AJZEu31glf4ve6NUCfJU8XjRdGegYxCSSseVCwyyFIH1
-	 DKkOkH7POk0SwA3MmpEDjqK5jQ9DxnPZ726i0FIlhn4B+w4stGpSNNz7OQ77Pd7Ukc
-	 OFIb2fbnQzLF42hmO+mSVQY4om9vb2b/ySY0eVIJ0/lkeR91SAHYSnZsjCA7Fizl7C
-	 2NuyeF9VrsGXw==
-Date: Fri, 15 Sep 2023 15:38:30 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-	"gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"kw@linux.com" <kw@linux.com>,
-	"manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
-	"bhelgaas@google.com" <bhelgaas@google.com>,
-	"kishon@kernel.org" <kishon@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-	"fancer.lancer@gmail.com" <fancer.lancer@gmail.com>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v20 16/19] PCI: rcar-gen4: Add R-Car Gen4 PCIe Host
- support
-Message-ID: <20230915203830.GA105215@bhelgaas>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49C330CFF
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 20:49:43 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D1132D48;
+	Fri, 15 Sep 2023 13:49:18 -0700 (PDT)
+Received: from mercury (unknown [185.254.75.45])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 324126600B9D;
+	Fri, 15 Sep 2023 21:49:17 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1694810957;
+	bh=vLgY8rCiM5Qt+aHqvAkM8PPmsp9niBHALfFONENovW0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=L1wGH56Z0WS8OhEY8S0k8nySdlcbENukcNliDWh8ttwcqWmEaVn/UZpzQrt9TOFMB
+	 xgXzt2cnBNSf3pt2Ud+3nl7eGK0RUka5UroNLHx5ph8Bxw4fJM6DugVx+pcLV5Ktdv
+	 bdwqrBpLd0UmMTGWvmcW+yo25U+uc5Vwgtftgba5bRN3eyHDkLNyZ/kXzIXobP6cvZ
+	 2GtZTCDq3UfWsBVgakQbxy+hGirAjBuguuqxjtEfbQShqZ8RCKRMTKYPwPEGp6cbfW
+	 44P7hs8Yyns3MUP70SCqK/rPF/53qeGKjowW60z2g35szc+VRlCtVNLVkrmm7+vPsg
+	 tGqRYPkHOxsZA==
+Received: by mercury (Postfix, from userid 1000)
+	id 5B719106044B; Fri, 15 Sep 2023 22:49:14 +0200 (CEST)
+Date: Fri, 15 Sep 2023 22:49:14 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Varshini Rajendran <varshini.rajendran@microchip.com>
+Cc: claudiu.beznea@microchip.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 07/50] dt-bindings: power: reset: atmel,sama5d2-shdwc:
+ add sam9x7
+Message-ID: <20230915204914.5ydicuwkiwmsuop4@mercury.elektranox.org>
+References: <20230728102407.265617-1-varshini.rajendran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="4rmbok64xucswjqi"
+Content-Disposition: inline
+In-Reply-To: <20230728102407.265617-1-varshini.rajendran@microchip.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
+
+
+--4rmbok64xucswjqi
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <TYBPR01MB534112A636FAFB61A4038337D8F6A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 15, 2023 at 09:37:15AM +0000, Yoshihiro Shimoda wrote:
-> > From: Bjorn Helgaas, Sent: Friday, September 15, 2023 1:35 AM
-> > On Fri, Aug 25, 2023 at 06:32:16PM +0900, Yoshihiro Shimoda wrote:
-> > > Add R-Car Gen4 PCIe Host support. This controller is based on
-> > > Synopsys DesignWare PCIe, but this controller has vendor-specific
-> > > registers so that requires initialization code like mode setting
-> > > and retraining and so on.
-> > >
-> > > To reduce code delta, adds some helper functions which are used by
-> > > both the host driver and the endpoint driver (which is added
-> > > immediately afterwards) into a separate file.
-> > >
-> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > > Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-> > > ---
-> > >  drivers/pci/controller/dwc/Kconfig            |  10 +
-> > >  drivers/pci/controller/dwc/Makefile           |   2 +
-> > >  .../controller/dwc/pcie-rcar-gen4-host-drv.c  | 135 +++++++++++
-> > >  drivers/pci/controller/dwc/pcie-rcar-gen4.c   | 227 ++++++++++++++++++
-> > >  drivers/pci/controller/dwc/pcie-rcar-gen4.h   |  44 ++++
-> > >  5 files changed, 418 insertions(+)
-> > >  create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-host-drv.c
-> > 
-> > Is "pcie-rcar-gen4-host-drv.c" following some pattern?  I don't see
-> > "-drv" in any nearby filenames.  Typical names are "-host.c" for host
-> > driver and "-ep.c" for endpoint driver.
-> 
-> This is not following some pattern on pcie subsystem. But, some
-> other subsystems have "*drv.c" filenames. Manivannan suggested the
-> filenames to rename the module filenames [1].
->
-> < Now >
-> The source code filenames : pcie-rcar-gen4-{host,ep}-drv.c
-> The module filenames : pcie-rcar-gen4-{host,ep}.ko
-> 
-> < Previous >
-> The source code filenames : pcie-rcar-gen4-{host,ep}.c
-> The module filenames : pcie-rcar-gen4-{host,ep}-drv.ko
-> 
-> [1]
-> https://lore.kernel.org/linux-pci/20230724122820.GM6291@thinkpad/
-> 
-> I don't have a strong opinion on which filenames are good.
+Hi,
 
-I have an opinion :)  I think splitting this up into four files is way
-more complicated than it needs to be.  This is all for driving a
-single piece of hardware, and I don't think there's enough benefit to
-split it into separate files.
+On Fri, Jul 28, 2023 at 03:54:07PM +0530, Varshini Rajendran wrote:
+> Add shutdown controller DT bindings.
+>=20
+> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+> ---
 
-Most drivers, even those that support both host and endpoint mode, are
-in a single file, e.g., pcie-artpec6.c, pci-imx6.c, pcie-keembay.c,
-pcie-tegra194.c, pci-dra7xx.c, pci-keystone.c.
+Acked-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-That makes the Makefile very simple and there's only one module name
-to worry about.
+-- Sebastian
 
-> > > +	msleep(100);	/* pe_rst requires 100msec delay */
-> > 
-> > Can we include a spec reference for this delay?  Ideally this would be
-> > a #define and likely shared across drivers.
-> 
-> I think so. Some other PCIe drivers also call "msleep(100)".
-> So, I'll add a #define into drivers/pci/pci.h.
+>  .../devicetree/bindings/power/reset/atmel,sama5d2-shdwc.yaml   | 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/power/reset/atmel,sama5d2-=
+shdwc.yaml b/Documentation/devicetree/bindings/power/reset/atmel,sama5d2-sh=
+dwc.yaml
+> index 8c58e12cdb60..0735ceb7c103 100644
+> --- a/Documentation/devicetree/bindings/power/reset/atmel,sama5d2-shdwc.y=
+aml
+> +++ b/Documentation/devicetree/bindings/power/reset/atmel,sama5d2-shdwc.y=
+aml
+> @@ -22,6 +22,9 @@ properties:
+>        - enum:
+>            - atmel,sama5d2-shdwc
+>            - microchip,sam9x60-shdwc
+> +      - items:
+> +          - const: microchip,sam9x7-shdwc
+> +          - const: microchip,sam9x60-shdwc
+> =20
+>    reg:
+>      maxItems: 1
+> --=20
+> 2.25.1
+>=20
 
-Yes.  I'm trying to move away from "msleep(100)" for everybody so we
-can make sure all the drivers include the appropriate delays and
-they're all based on the same reasoning.
+--4rmbok64xucswjqi
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> > > +#define PCIEDMAINTSTSEN		0x0314
-> > > +#define PCIEDMAINTSTSEN_INIT	GENMASK(15, 0)
-> > 
-> > These register offsets are hard to decode whenthey'reallruntogether.
-> 
-> Unfortunately, these registers' offset names are from the datasheet.
-> Perhaps, adding full register names as comments like below are helpful:
-> -----
-> /* PCIe Interrupt Status 0 */
-> +#define PCIEINTSTS0		0x0084
-> 
-> /* PCIe DMA Interrupt Status Enable */
-> #define PCIEDMAINTSTSEN		0x0314
-> #define PCIEDMAINTSTSEN_INIT	GENMASK(15, 0)
+-----BEGIN PGP SIGNATURE-----
 
-It's good to use names from the datasheet.  The comments should be
-enough.
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmUEw0oACgkQ2O7X88g7
++pqMaQ//fRpW3IAmANjZp1vqMTaLUVucVuRl9o6bRdbKxWdE52Vb11f44Q27IkdK
+eBECNresd47jrMxzMc5I2GrUmQP31aAfr1gtAWO2tmIoctf1gEvoFWOPnLmrBN7U
+tlnHfAGkgKd9fZocN5J9r3QBGrb+y9wWDnjgdxMcU6pg0UnVZS6cbx765W1jjbTi
+exjLlh4k7BvIaqIrQg19gbbofVbsn0PeFCW7nFXiO5Fqux8Z2xxHTNTD9x+Jjnzw
+ISOHEy/2F1PvOk5Ih/Zr3mRr7FQBHAVTqj9BLriMTUc0xiJeycClc5olw5+hn7Aa
+MD/F2orU9U1lEUdAJrXfPBw3kxqjjUupDfP1+/866W0+/5JrnTCDNN15HSaCmfHV
+wjsSOtf3o0UTdjQbWlycomzGsh95DVUPfhy1J81dOlgPbX2newx8PeyXqPuDfB5/
+aVlllGqUi71J/FJnYNm3lkbvg2o5sz67fmvimj3T8vYQ27+rCiG+t6RTKyROrJx0
+9FrmxpybxpWkY4MIfuqsg+DAoZXn+ECa+t3+ScwClG0HY+61dk08XRA+ySe0mmk2
+XxV8ZI6VWlsratzwlcHJJQFNEgkEbWdh3gYTAx5EspcXd/EP7hApWTGeEavL1OIV
+vYqSNJAvPyV7+jBfW0xim6YsUjp+qM0XtbkpOxL7G9ePlImSb34=
+=deto
+-----END PGP SIGNATURE-----
 
-Bjorn
+--4rmbok64xucswjqi--
 
