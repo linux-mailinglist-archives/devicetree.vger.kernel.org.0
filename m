@@ -1,151 +1,124 @@
-Return-Path: <devicetree+bounces-384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C4DE7A1711
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:13:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B55127A16E6
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:07:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0EB41C21364
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 07:13:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 793B7282665
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 07:07:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BAFAD26A;
-	Fri, 15 Sep 2023 07:13:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18B2E79D4;
+	Fri, 15 Sep 2023 07:07:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA3808478
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 07:13:50 +0000 (UTC)
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 905B3A1;
-	Fri, 15 Sep 2023 00:13:49 -0700 (PDT)
-Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-76ef27a8e4dso118967585a.1;
-        Fri, 15 Sep 2023 00:13:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694762028; x=1695366828;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yQu7qZKWAlj7tq/NRi+dvudr3FOrz54dbR3YSeAAyEY=;
-        b=RP1lHN/FauF8Ist99fWh0eWftrHtK0TgT7ovzTda13TCuP9SSPj92fouOiwsEQMRKR
-         53KoW3TCBSo+h0nBGtInYmq1u5wx4HkOLhz/PPRbE0SzuleToFBtuzaDeu0/htmUiWcU
-         YxB9vgMc81i+DPo63vAoFh4L4xWDxgZq9WjoBRqPJxO4kA1MsSmzRGDEIAZ0OhBcmSZJ
-         RHRIc9v1pMcqpMUssPhx1/ICaMocQz7W+NNuiwCs0XHvLdBD5Jyu5ily8QyQs39DdOuh
-         IbLFtx2M+Ory/VwpFWOQyTM/I9ErZbPTwhgYDsAfCD4zn334FDl9jrngTHatmRAGmRrl
-         Ecxg==
-X-Gm-Message-State: AOJu0YwH4M0dAeV9sPzd5jLYhbzT+cJY6jGjbFOprFm+kiZgCaWkQy6b
-	bHsgZDWe1Tu5ub8lTXoTrS3FB5hsWz8V8Q==
-X-Google-Smtp-Source: AGHT+IH1/6PBbk4Q7gFNBPTK6HVASIXvb5iO6zHfYc+f6n+2n1PTxciETzo/itOiu2r2xv1tzwjDIw==
-X-Received: by 2002:a05:620a:e98:b0:770:fc5d:c191 with SMTP id w24-20020a05620a0e9800b00770fc5dc191mr728429qkm.44.1694762028483;
-        Fri, 15 Sep 2023 00:13:48 -0700 (PDT)
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com. [209.85.222.170])
-        by smtp.gmail.com with ESMTPSA id a27-20020a05620a125b00b0076f16a00693sm1038854qkl.47.2023.09.15.00.13.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 00:13:48 -0700 (PDT)
-Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-773a0f36b4bso90739485a.0;
-        Fri, 15 Sep 2023 00:13:48 -0700 (PDT)
-X-Received: by 2002:a25:dcc3:0:b0:d62:6514:45b7 with SMTP id
- y186-20020a25dcc3000000b00d62651445b7mr319109ybe.37.1694761562659; Fri, 15
- Sep 2023 00:06:02 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 911823201
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 07:07:27 +0000 (UTC)
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E70A41998;
+	Fri, 15 Sep 2023 00:07:14 -0700 (PDT)
+Received: from kwepemm600013.china.huawei.com (unknown [172.30.72.55])
+	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4Rn4tZ1pJSzVkXV;
+	Fri, 15 Sep 2023 15:04:22 +0800 (CST)
+Received: from [10.174.178.156] (10.174.178.156) by
+ kwepemm600013.china.huawei.com (7.193.23.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.31; Fri, 15 Sep 2023 15:07:11 +0800
+Message-ID: <c2f6e5b7-8eda-fb00-08ac-e1f54938f6a4@huawei.com>
+Date: Fri, 15 Sep 2023 15:07:11 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
- <20230912045157.177966-13-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdVLx1d-6=5xx_GLAb7LxxRR9FwhAU56fxNc3b=9wj286g@mail.gmail.com> <f0aa7983-0300-ce21-8726-41d033f6afbe@tuxon.dev>
-In-Reply-To: <f0aa7983-0300-ce21-8726-41d033f6afbe@tuxon.dev>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 15 Sep 2023 09:05:48 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVtBoTRB7dMvxjwwhOXVUDS8LtZQsVcMctaxBU_J7HWwA@mail.gmail.com>
-Message-ID: <CAMuHMdVtBoTRB7dMvxjwwhOXVUDS8LtZQsVcMctaxBU_J7HWwA@mail.gmail.com>
-Subject: Re: [PATCH 12/37] clk: renesas: rzg2l: reduce the critical area
-To: claudiu beznea <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
-	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
-	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
-	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH v4 2/2] dt-bindings: dma: HiSilicon: Add bindings for
+ HiSilicon Ascend sdma
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <vkoul@kernel.org>,
+	<dmaengine@vger.kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<devicetree@vger.kernel.org>
+CC: <xuqiang36@huawei.com>, <chenweilong@huawei.com>
+References: <20230913082825.3180-1-guomengqi3@huawei.com>
+ <20230913082825.3180-3-guomengqi3@huawei.com>
+ <8eff1f20-1cfc-7097-da26-97daaae5e8ca@linaro.org>
+From: "guomengqi (A)" <guomengqi3@huawei.com>
+In-Reply-To: <8eff1f20-1cfc-7097-da26-97daaae5e8ca@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.174.178.156]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ kwepemm600013.china.huawei.com (7.193.23.68)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Claudiu,
 
-On Fri, Sep 15, 2023 at 7:51=E2=80=AFAM claudiu beznea <claudiu.beznea@tuxo=
-n.dev> wrote:
-> On 14.09.2023 16:12, Geert Uytterhoeven wrote:
-> > On Tue, Sep 12, 2023 at 6:52=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.d=
-ev> wrote:
-> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >>
-> >> spinlock in rzg2l_mod_clock_endisable() is intended to protect the acc=
-esses
-> >> to hardware register. There is no need to protect the instructions tha=
-t set
-> >> temporary variable which will be then written to register. Thus limit =
-the
-> >> spinlock only to the hardware register access.
-> >>
-> >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >
-> > Thanks for your patch!
-> >
-> >> --- a/drivers/clk/renesas/rzg2l-cpg.c
-> >> +++ b/drivers/clk/renesas/rzg2l-cpg.c
-> >> @@ -912,13 +912,13 @@ static int rzg2l_mod_clock_endisable(struct clk_=
-hw *hw, bool enable)
-> >>
-> >>         dev_dbg(dev, "CLK_ON %u/%pC %s\n", CLK_ON_R(reg), hw->clk,
-> >>                 enable ? "ON" : "OFF");
-> >> -       spin_lock_irqsave(&priv->rmw_lock, flags);
-> >>
-> >>         value =3D bitmask << 16;
-> >>         if (enable)
-> >>                 value |=3D bitmask;
-> >> -       writel(value, priv->base + CLK_ON_R(reg));
-> >>
-> >> +       spin_lock_irqsave(&priv->rmw_lock, flags);
-> >> +       writel(value, priv->base + CLK_ON_R(reg));
-> >>         spin_unlock_irqrestore(&priv->rmw_lock, flags);
-> >
-> > After this, it becomes obvious there is nothing to protect at all,
-> > so the locking can just be removed from this function?
+在 2023/9/13 17:20, Krzysztof Kozlowski 写道:
+> On 13/09/2023 10:28, Guo Mengqi wrote:
+>> Add device-tree binding documentation for sdma hardware on
+>> HiSilicon Ascend SoC families.
+>>
+>> Signed-off-by: Guo Mengqi <guomengqi3@huawei.com>
+>> ---
+>>
+>> +  dma-channel-mask:
+>> +    minItems: 1
+>> +    maxItems: 2
+> Why 2? Care to bring any example? Where is your DTS?
+
+Seems that the complete dts is not in the repository.
+
+Some platform supports up to 40 channels at most, in design. So I think 
+2 should be enough.
+
+>> +  iommus:
+>> +    maxItems: 1
+>> +
+>> +  pasid-num-bits:
+>> +    description: |
+>> +      This tells smmu that this device supports iommu-sva feature.
+>> +      This determines the maximum number of digits in the pasid.
+>> +    maximum: 0x10
+>> +
+>> +  dma-coherent: true
+>> +
+>> +  dma-can-stall: true
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - dma-channel-mask
+>> +  - '#dma-cells'
+>> +  - iommus
+>> +  - pasid-num-bits
+>> +  - dma-can-stall
+> I am not sure if requiring dma-can-stall is correct here. To my
+> understanding this is in general optional property.
+
+If  "dma-can-stall" is declared,  drivers can rely on smmu to handle 
+page-fault.
+
+Yes, this is not a required one. It does not affect main usage. Drop it 
+in next patch.
+
+> Best regards,
+> Krzysztof
 >
-> I tend to be paranoid when writing to hardware resources thus I kept it.
-> Would you prefer to remove it at all?
+>
+> .
 
-Yes please. I guess this was copied from R-Car and friends, where
-there is a RMW operation on an MSTPCR register.
+Best regards,
 
-Gr{oetje,eeting}s,
+Guo Mengqi
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
