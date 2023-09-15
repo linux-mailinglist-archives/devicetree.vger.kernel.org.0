@@ -1,193 +1,104 @@
-Return-Path: <devicetree+bounces-648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 918267A26B8
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 20:59:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68D757A256B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 20:15:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A74F1C2099B
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 18:59:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22AEB281BBB
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 18:15:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7695E18E0C;
-	Fri, 15 Sep 2023 18:59:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9E2615EBD;
+	Fri, 15 Sep 2023 18:14:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B222B30D16
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 18:59:13 +0000 (UTC)
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2074.outbound.protection.outlook.com [40.107.102.74])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E89E1AF;
-	Fri, 15 Sep 2023 11:59:11 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jpVoEKcxpwiuzKcMbtoMhAq/5sEcEBrwLLR0DkD7jGZk9KXyXMimdIbfLQ7EfznxkG0ilyUE9E/P0AjJ2xrj0kXMQOTnWa1Zjqct3S+xBq/Ajlc7ETfpwyKrf5sE2uRrYiWlEMlDRDfGw6AycXYIuxjH2IlDd3GoURV28XrF3rrWB2gJ5vkvNP5Y2fA3DvCaGnT32ypfxeo/RLNV5JGo4hX6GItzjvM+wsrDz9rEADN3RP1Cf3OUbo7V5CvrEfab08TulpVqXI4wmnlPZIGDap4yj0C/K/mydpQUOYqfO0LNXB7+svVjnvgAVAJ2nJ76QhCLZlTgU1zc5rtkY7gvSg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nM6ZWZakbe+IBI1miklYz4jGu8Gbpl9xf2mO7nvcpH0=;
- b=ZDjbu/qySScK8yNrOTl14z4mCJGXNsA0lzfyihH0t159xdOXo/qWYaldzZgwPk8Kn9e+CA9ziFOwNFgC1geXI4Pf64F2aF9bjzbkUAozv5DjEka+MA/g6mbPOZg83J8uR4mLM8cU1eY6ZMkqJSXiFG+/0b2w1jx9PEAyTLY2qKi7mIEMIbd3cMDrqRjembkezxIVRaGpnxPHHpslyPXVOlyP79o0iHcOangcT5ioMtjaKjBQQs6x7VWZGTJiIoFNjSz8xA4NQSG8c9Up09fqFlHofjVKq7gMWDl0cFglBmYUKxNzclWqxjVaBTPoTECS/Y6pQDfgbm7gND4yCgRMAA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nM6ZWZakbe+IBI1miklYz4jGu8Gbpl9xf2mO7nvcpH0=;
- b=nPCuxiBUdewwJAVkIR6R4+vmHvgrbZaBbjsETge6qg2vOeG1khS5MQDBUjN8fdf1w7ChFiFX9p1kf4uMVUiyVsl5MppbyMGXubYdBmvcYWDRoY/p0nCywNxl2qO+/xegjUvdEvSbsENQCkMQ2vn79bFvxrNEVrdXZYXzMRWMO6w=
-Received: from BL1PR13CA0178.namprd13.prod.outlook.com (2603:10b6:208:2bd::33)
- by BN9PR12MB5381.namprd12.prod.outlook.com (2603:10b6:408:102::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.21; Fri, 15 Sep
- 2023 18:59:09 +0000
-Received: from BL02EPF0001A0F9.namprd03.prod.outlook.com
- (2603:10b6:208:2bd:cafe::ac) by BL1PR13CA0178.outlook.office365.com
- (2603:10b6:208:2bd::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.21 via Frontend
- Transport; Fri, 15 Sep 2023 18:59:09 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BL02EPF0001A0F9.mail.protection.outlook.com (10.167.242.100) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6792.19 via Frontend Transport; Fri, 15 Sep 2023 18:59:09 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 15 Sep
- 2023 13:59:09 -0500
-Received: from xsjlizhih40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Fri, 15 Sep 2023 13:59:08 -0500
-From: Lizhi Hou <lizhi.hou@amd.com>
-To: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <herve.codina@bootlin.com>,
-	<Jonathan.Cameron@Huawei.com>
-CC: Lizhi Hou <lizhi.hou@amd.com>, <bhelgaas@google.com>, <robh@kernel.org>
-Subject: [PATCH 2/2] PCI: of_property: Fix uninitialized variable when of_irq_parse_raw() failed
-Date: Fri, 15 Sep 2023 11:08:07 -0700
-Message-ID: <1694801287-17217-2-git-send-email-lizhi.hou@amd.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1694801287-17217-1-git-send-email-lizhi.hou@amd.com>
-References: <1694801287-17217-1-git-send-email-lizhi.hou@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF63410959
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 18:14:37 +0000 (UTC)
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62A962105
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 11:14:36 -0700 (PDT)
+Received: by mail-yb1-xb36.google.com with SMTP id 3f1490d57ef6-d815a5eee40so2248908276.2
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 11:14:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694801675; x=1695406475; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xbloVE8nmpRklzhuAiR112rqAdagyUfXz/yXE+ALMUw=;
+        b=pD9LDM/jSQsevy3WblHMaCVcpilmziyEba7tYSSaaFOrvpVuWkruqHyckseN4DitTJ
+         wd6Y/m0hHoBdFcKMdsEM1CBqXSyMvfOWsBFm1zZw1nenYG1XHA/Ciw43LuVIkZYxLpHx
+         YFhrN1+yQpOYuByKY0nI0482YFZzL+VzxEgdrP2wgf9HlYUQfkhmMRW9y1O4Dj6m2Jb5
+         WdXQTr12xuDe1Xn8aIHEAKDAI3Z2ei0mo9HJnkhS4Up6Hj2RVlMdVeDelgczXRdp2HMW
+         hEf9Ylu6AQVGqWwkUIdA4yhHSR7oRP+rf1FDftaLpG0jZGPK1ZldFHsnbnwPd8kHGTbG
+         fLqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694801675; x=1695406475;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xbloVE8nmpRklzhuAiR112rqAdagyUfXz/yXE+ALMUw=;
+        b=R9qPnpK6l1MhVu0O+/XYaJSFzrz70A8P5H+pMojsuAOnCuGwR3+lARVeWa65PVYu9E
+         tiJK52XJJVqj+NLsFnm+zBiX8OHQwJK+btNudz/lya+OcqUjwQhCZIKHO+5qykAgmJZJ
+         1cvRtw+pAHDijl1EiTHbUsjkSjXW7nAOKjrVAj2+jZuoJjUnbxHh5kxmebrVb1CEGtOo
+         UZpLx/MLuQqp3xVyxJJUgBm7F9bqOwSaF++P4odOSyepY1QMkJi+qgAqHfega0cDYaB7
+         a+MQ/t8p7dsBH4lB4h6e38fuNG0OcvXu408cW7ngqx8o2u5KOqMrDNlTj7MeN9JBsUx+
+         jfeg==
+X-Gm-Message-State: AOJu0YwR8nktHH2IzPCTzbPx+bL+GtG2+S5F7afgwMuGoHPR1XJEDu10
+	r27AyWhFBilQb1vVPnPcvlRSl3wzEoxqRS2tDkk+Ig==
+X-Google-Smtp-Source: AGHT+IGhlDPPzTH3Fqdci1fTXm/PKLPUl8DSShnol/oSLFycRyWZpMfwroUjr2RIyQNpxuS8IG60KfH3yNBFW9UaSaI=
+X-Received: by 2002:a25:9702:0:b0:d82:9342:8612 with SMTP id
+ d2-20020a259702000000b00d8293428612mr97916ybo.12.1694801671461; Fri, 15 Sep
+ 2023 11:14:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0F9:EE_|BN9PR12MB5381:EE_
-X-MS-Office365-Filtering-Correlation-Id: e65c5161-bd34-4747-0543-08dbb61dd812
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	nNvggFL68bNTYVWHSPdxZdudNoxKDmhsjIWOkQCIGhD7ZaS3EEPO+L4A46J+e47l+jO1epGwgKwZ9qDxUG2KBJoMBTbk6VFUOxoSW955SKaeyxYuiADbXEy+d9zTdlT5MWcPsKFu27u3yZG/A4BMv4rsYOnmoTG8j4I6BtPvdX8qCZXvEyUkqxFdyPdKcGXBJnlnRxyx+IJsck3QGG1L2bF3Hi0WJiTamjBe62ONg08N+0qKbMEmmrnP5YLhhrv40jwpKxTgao3r39XIz6JFU7yYnBEbwu+jGvK+aVEfH2r2t0pQ7ZD0qLVnx3jALRiITR6nNkneX42aMKgrm1LSacOe/KiI8n5HJrJHgmszy0mgVd4wNwHZdd1j+RqwVdGbtiuyOA6dUdZFoDmtDdl1jA5cJhlSzTEPBh5STr22KmpcLxq3+IlcEhAOFAqURwqJk0WJvg66nlyazv7CZtyxafVEOVPawUrW3yGlefo1t51WZxT99sSfm9lEVd8v7Q7tegQsl23G231KQcJjkAZWBt/rPJYu1nvTN4LVJs2yay/XSV3D2IBX+M7tVNejK38OOQn6OvYidW3a5H1xy295oewCWBbd++Q7OQIBzWYeQLe81lxxPe5k26SoyvtPWGwpAmlF2ArSw540rAUmTG947xWPm1Wa0tM0QhbM16ooh4AnagboOMmMp06XIytMGlDJKtW5XsrONQtsl27nWfHJlFtLo20f+svrxJu8e7hOWgw02M/FuWTrcWdvJmRV66acySdK/DJ2+Kd6XsKLOuD5Ng==
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(396003)(39860400002)(346002)(376002)(136003)(82310400011)(451199024)(1800799009)(186009)(36840700001)(40470700004)(46966006)(336012)(40480700001)(2906002)(426003)(83380400001)(2616005)(478600001)(966005)(26005)(86362001)(40460700003)(356005)(36860700001)(70206006)(36756003)(70586007)(82740400003)(81166007)(47076005)(5660300002)(54906003)(316002)(41300700001)(110136005)(44832011)(4326008)(8676002)(8936002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2023 18:59:09.8111
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e65c5161-bd34-4747-0543-08dbb61dd812
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL02EPF0001A0F9.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5381
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-	autolearn=no autolearn_force=no version=3.4.6
+References: <20230912-gpio-led-trigger-dt-v1-0-1b50e3756dda@linaro.org>
+ <20230912-gpio-led-trigger-dt-v1-2-1b50e3756dda@linaro.org> <20230915141549.GA3658872-robh@kernel.org>
+In-Reply-To: <20230915141549.GA3658872-robh@kernel.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 15 Sep 2023 20:14:19 +0200
+Message-ID: <CACRpkdaG2oGGDjLGWgdi7Y-QS_1Odj7cbbuDiBX8DdNx7agOiw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] leds: triggers: gpio: Rewrite to use trigger-sources
+To: Rob Herring <robh@kernel.org>
+Cc: =?UTF-8?B?SmFuIEt1bmRyw6F0?= <jan.kundrat@cesnet.cz>, 
+	Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-In function of_pci_prop_intr_map(), addr_sz[i] will be uninitialized if
-of_irq_parse_raw() returns failure. Add addr_sz array initialization. And
-when parsing irq failed, skip generating interrupt-map pair for the pin.
+On Fri, Sep 15, 2023 at 4:15=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
 
-Fixes: 407d1a51921e ("PCI: Create device tree node for bridge")
-Reported-by: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Closes: https://lore.kernel.org/all/20230911154856.000076c3@Huawei.com/
-Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
----
- drivers/pci/of_property.c | 25 ++++++++++++++++++-------
- 1 file changed, 18 insertions(+), 7 deletions(-)
+> > +     /*
+> > +      * The generic property "trigger-sources" is followed,
+> > +      * and we hope that this is a GPIO.
+> > +      */
+> > +     gpio_data->gpiod =3D fwnode_gpiod_get_index(dev->fwnode,
+> > +                                               "trigger-sources",
+> > +                                               0, GPIOD_IN,
+> > +                                               "led-trigger");
+>
+> Isn't this going to look for "trigger-sources-gpio" and
+> ""trigger-sources-gpios"?
 
-diff --git a/drivers/pci/of_property.c b/drivers/pci/of_property.c
-index 710ec35ba4a1..c2c7334152bc 100644
---- a/drivers/pci/of_property.c
-+++ b/drivers/pci/of_property.c
-@@ -186,8 +186,8 @@ static int of_pci_prop_interrupts(struct pci_dev *pdev,
- static int of_pci_prop_intr_map(struct pci_dev *pdev, struct of_changeset *ocs,
- 				struct device_node *np)
- {
-+	u32 i, addr_sz[OF_PCI_MAX_INT_PIN] = { 0 }, map_sz = 0;
- 	struct of_phandle_args out_irq[OF_PCI_MAX_INT_PIN];
--	u32 i, addr_sz[OF_PCI_MAX_INT_PIN], map_sz = 0;
- 	__be32 laddr[OF_PCI_ADDRESS_CELLS] = { 0 };
- 	u32 int_map_mask[] = { 0xffff00, 0, 0, 7 };
- 	struct device_node *pnode;
-@@ -213,33 +213,44 @@ static int of_pci_prop_intr_map(struct pci_dev *pdev, struct of_changeset *ocs,
- 		out_irq[i].args[0] = pin;
- 		ret = of_irq_parse_raw(laddr, &out_irq[i]);
- 		if (ret) {
--			pci_err(pdev, "parse irq %d failed, ret %d", pin, ret);
-+			out_irq[i].np = NULL;
-+			pci_dbg(pdev, "parse irq %d failed, ret %d", pin, ret);
- 			continue;
- 		}
--		ret = of_property_read_u32(out_irq[i].np, "#address-cells",
--					   &addr_sz[i]);
--		if (ret)
--			addr_sz[i] = 0;
-+		of_property_read_u32(out_irq[i].np, "#address-cells",
-+				     &addr_sz[i]);
- 	}
- 
- 	list_for_each_entry(child, &pdev->subordinate->devices, bus_list) {
- 		for (pin = 1; pin <= OF_PCI_MAX_INT_PIN; pin++) {
- 			i = pci_swizzle_interrupt_pin(child, pin) - 1;
-+			if (!out_irq[i].np)
-+				continue;
- 			map_sz += 5 + addr_sz[i] + out_irq[i].args_count;
- 		}
- 	}
- 
-+	/*
-+	 * Parsing interrupt failed for all pins. In this case, it does not
-+	 * need to generate interrupt-map property.
-+	 */
-+	if (!map_sz)
-+		return 0;
-+
- 	int_map = kcalloc(map_sz, sizeof(u32), GFP_KERNEL);
- 	mapp = int_map;
- 
- 	list_for_each_entry(child, &pdev->subordinate->devices, bus_list) {
- 		for (pin = 1; pin <= OF_PCI_MAX_INT_PIN; pin++) {
-+			i = pci_swizzle_interrupt_pin(child, pin) - 1;
-+			if (!out_irq[i].np)
-+				continue;
-+
- 			*mapp = (child->bus->number << 16) |
- 				(child->devfn << 8);
- 			mapp += OF_PCI_ADDRESS_CELLS;
- 			*mapp = pin;
- 			mapp++;
--			i = pci_swizzle_interrupt_pin(child, pin) - 1;
- 			*mapp = out_irq[i].np->phandle;
- 			mapp++;
- 			if (addr_sz[i]) {
--- 
-2.34.1
+Indeed. I'll simply code an exception for this into
+gpiolib-of.c, it's an OF pecularity after all.
 
+Yours,
+Linus Walleij
 
