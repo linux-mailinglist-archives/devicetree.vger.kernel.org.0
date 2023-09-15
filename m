@@ -1,192 +1,201 @@
-Return-Path: <devicetree+bounces-373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 852687A16A6
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 08:57:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62CBF7A16AB
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 08:58:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A958282699
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 06:57:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E8E01C2123F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 06:58:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECD4346AD;
-	Fri, 15 Sep 2023 06:57:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02B2046AD;
+	Fri, 15 Sep 2023 06:58:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 447D81379
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 06:57:45 +0000 (UTC)
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEAAA2723
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 23:57:11 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C0D3D1C0006;
-	Fri, 15 Sep 2023 06:57:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1694761030;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=L2sqXGX4RhAKmchQsyxvig/E2PRZhb7DReGQK6xBbNU=;
-	b=k7twtjv6n8Xxz02Bp/gL0ujKol4nOUFVLl0MvEaDXFChS/iA1yTepQVk9WwaOLNPw2n1/r
-	yQSWeM/0zUiQ2/SpYtds6CKKXiyeuqwbYeXgY1A1LrNUCkARLCP23wzd+6WOA/mGTS+oDK
-	8hfeGIrlSkbOuaOZWxiG2mF4EawayP/3IFK5MWfHGydjnYO7rmUX2igpzxeUgMElu6FH6y
-	+BmERYzpRPOYxObcWeuOnycDnkpH25XQqpwYIYy86+Q8aJ7EZzPpMH9KzwZ0q+K0INeATK
-	KtnNflcpBDmb6qWfH6HrTtTqGgOK0d7XDDUjW48AMAef9dA4F6mbxp9u1PMuJA==
-Date: Fri, 15 Sep 2023 08:57:06 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Sandor Yu <sandor.yu@nxp.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, dl-linux-imx
- <linux-imx@nxp.com>, "linux-phy@lists.infradead.org"
- <linux-phy@lists.infradead.org>, "devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "patchwork-lst@pengutronix.de"
- <patchwork-lst@pengutronix.de>, Richard Leitner
- <richard.leitner@skidata.com>
-Subject: Re: [EXT] Re: [PATCH v3 2/2] phy: freescale: add Samsung HDMI PHY
-Message-ID: <20230915085706.2452129e@booty>
-In-Reply-To: <PAXPR04MB9448947986184612E67E3E2DF4F6A@PAXPR04MB9448.eurprd04.prod.outlook.com>
-References: <20230906184211.1857585-1-l.stach@pengutronix.de>
-	<20230906184211.1857585-2-l.stach@pengutronix.de>
-	<20230914231610.2c339f7e@booty>
-	<PAXPR04MB9448947986184612E67E3E2DF4F6A@PAXPR04MB9448.eurprd04.prod.outlook.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 106816AB5
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 06:58:26 +0000 (UTC)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 285D52724
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 23:57:49 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9ad810be221so232974466b.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 23:57:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694761067; x=1695365867; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mrvfAiSK7JccK6gs6IrA/UaK6A3zG87gl/ONIil2/b0=;
+        b=nc6wOztqCVx5jBCxOXvLKPE5rUNbXbIYo47D3Mg2W4YQaFr5zwMHboksjkJm9/TdzD
+         KF58M/MDrXMth4r0igll4LuUbd5HyDawzgzhANUs6dfemXrzof2ALExx5haga7ThvFsR
+         2AyJeku+XCoFdL3/2w81XY+ZZrF2LwUz48CmwKQUXtSdBtp/KYPcDKvKHFapNl0DCPV+
+         pHh/sTbujyPAG6/itog6gXOQ/IH09xQB9PLt5322cT3glFBGfaAI9+h438FjKXoTV+Yv
+         1Z6u5qSxQFlsgdQ2470Xvc0IWJLCLoRmFnj6NCQG/kStSqPPdhEJNW1sUzMpRJYkrKeD
+         kkjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694761067; x=1695365867;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mrvfAiSK7JccK6gs6IrA/UaK6A3zG87gl/ONIil2/b0=;
+        b=GR+44DuF8TaQ7kRINO/3v9fnMp+KoUqoRdpVVER++tzDpzB5mb0Do9JEOX/wMHgZ8V
+         +/3LWO1FYlYU2lT4IBU9OXHgyamn3Mii15Dz/J/ZUeSY8lQtQes36fcMQiI/v69DHuG2
+         qDkU4tdFuothCOvZIGfQifqKsBeFtqhoHAvZcYo5agO8P8jLB90/cqw9TQJKMZHTEQG7
+         tXPQ2cSa2F7FGLf+AHyuBV0EfQPlFY+ANLNgQgZZ9Xm+law2M0ecYUEjU4tRBAOKkAYk
+         MXu5cJj+LMJe+cYd/TVDbSn8xXKbOMc6XelHHkVp3kiDRAXe+zbP1RT5oNneT3c2GGW4
+         uV7g==
+X-Gm-Message-State: AOJu0YwwYpP+20PHUV2azYNs9w2Fcq8AexlIwdOSrDssTsHjOifjtfpG
+	PjzYJVdHY5ijdAji6jfZGLHUnw==
+X-Google-Smtp-Source: AGHT+IFDv496DEo2AdsX7GvL+J7vxIAuslRk03h6wOUukiHEPzG08G0Z5i5cZZI0zrwf/suE26aasw==
+X-Received: by 2002:a17:907:1dd5:b0:9a1:bd82:de24 with SMTP id og21-20020a1709071dd500b009a1bd82de24mr598196ejc.12.1694761067550;
+        Thu, 14 Sep 2023 23:57:47 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id f26-20020a170906495a00b0099d45ed589csm1964473ejt.125.2023.09.14.23.57.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Sep 2023 23:57:47 -0700 (PDT)
+Message-ID: <6566084c-2a10-45bb-b016-b1810d137351@linaro.org>
+Date: Fri, 15 Sep 2023 08:57:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 1/2] usb: typec: tps6598x: add reset gpio support
+Content-Language: en-US
+To: Javier Carrasco <javier.carrasco@wolfvision.net>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20230912-topic-tps6598x_reset-v1-0-78dc0bf61790@wolfvision.net>
+ <20230912-topic-tps6598x_reset-v1-1-78dc0bf61790@wolfvision.net>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230912-topic-tps6598x_reset-v1-1-78dc0bf61790@wolfvision.net>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello Sandor, Lucas,
-
-On Fri, 15 Sep 2023 01:49:42 +0000
-Sandor Yu <sandor.yu@nxp.com> wrote:
-
-> Hi Luca, 
+On 15/09/2023 08:50, Javier Carrasco wrote:
+> The TPS6598x PD controller provides an active-high hardware reset input
+> that reinitializes all device settings. If it is not grounded by
+> design, the driver must be able to de-assert it in order to initialize
+> the device.
 > 
-> > 
-> > Hi Lucas,
-> > 
-> > [+Cc: Sandor]
-> > 
-> > On Wed,  6 Sep 2023 20:42:11 +0200
-> > Lucas Stach <l.stach@pengutronix.de> wrote:
-> >   
-> > > This adds the driver for the Samsung HDMI PHY found on the i.MX8MP
-> > > SoC. Based on downstream implementation from Sandor Yu
-> > > <Sandor.yu@nxp.com>.
-> > >
-> > > Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)  
-> > 
-> > Also for v3:
-> > [On custom board based on MSC SM2S-IMX8PLUS SMARC module]
-> > Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> > 
-> > I have a few notes however, see below.
-> >   
-> > > +#define PHY_REG_14           0x38
-> > > +#define  REG14_TOL_MASK              GENMASK(7, 4)
-> > > +#define  REG14_RP_CODE_MASK  GENMASK(2, 1)  
-> > 
-> > According to the latest reference manual currently available on the NXP
-> > website (Rev. 1, 06/2021), this should be GENMASK(3, 1). This is somewhat
-> > nitpicking as the only possible value documented is 2. But let's continue...
-> >   
-> I agree, according the RM it should be GENMASK(3, 1).
+> The PD controller is not ready for registration right after the reset
+> de-assertion and a delay must be introduced in that case. According to
+> TI, the delay can reach up to 1000 ms [1], which is in line with the
+> experimental results obtained with a TPS65987D.
 > 
-> > > +#define PHY_REG_33           0x84
-> > > +#define  REG33_MODE_SET_DONE BIT(7)
-> > > +#define  REG33_FIX_DA                BIT(1)  
-> > 
-> > Here the reference manual is very different:
-> > 
-> > MODE_SET_DONE BIT(4)
-> > TX_INV2       BIT(3)
-> > TX_INV1       BIT(2)
-> > TX_INV0       BIT(1)
-> > MON_RXD       BIT(0)
-> > bits 7-5 are reserved
-> > 
-> > ...which is strange: in the code you are always writing 0 in bit 4, which
-> > according to the docs means MODE_SET_DONE is always "Assert forced
-> > global reset". Thus I guess your definitions come from the downstream driver
-> > which, as it sadly happens, is more authoritative than the docs. :-/
-> > 
-> > Sandor, can you confirm this, or provide any clarifications?  
+> Add a GPIO descriptor for the reset signal and basic reset management
+> for initialization and suspend/resume.
 > 
-> There is a doc issue on the i.MX8MP latest RM, actually the fields for REG33 should be:
-> REG33 fields:
-> --------------------------------------------------------------------------------
-> |    Field	   |       Description
-> --------------------------------------------------------------------------------
-> |     7         | 0 - Assert forced global reset
-> |MODE_SET_DONE | 1 - Release forced global reset             
-> --------------------------------------------------------------------------------
-> |     6        | 0 - There are not any change in 20bit data from TXD2 port     
-> |TX_INV2	       | 1 Invert polarity of 10bit data of 20bit data from TXD2 port
-> --------------------------------------------------------------------------------
-> |     5        | 0 - There are not any change in 20bit data from TXD1 port     
-> |TX_INV1       | 1 - Invert polarity of 10bit data of 20bit data from TXD1 port
-> --------------------------------------------------------------------------------
-> |     4        | 0 - There are not any change in 20bit data from TXD0 port      
-> |TX_INV0       | 1 - Invert polarity of 10bit data of 20bit data from TXD0 port 
-> --------------------------------------------------------------------------------
-> |    3         | 0 : TESTOUT[0] - BIST_ON                                    
-> |MON_RXD     | TESTOUT[1] - BIST_ERROR                                     
-> |              | TESTOUT[2] - DES_CLK_SEL[0]                                 
-> |              | TESTOUT[3] - DES_CLK_SEL[1]                                 
-> |              | TESTOUT[4] - TX_CLK_SEL[0]                                  
-> |              | TESTOUT[5] - TX_CLK_SEL[1]                                  
-> |              | TESTOUT[6] - TX_CLK_SEL[2]                                  
-> |              | TESTOUT[7] - TX_CLK_SEL[3]                                  
-> |              | TESTOUT[8] - PLL_COARSE_LOCK_DONE                           
-> |              | TESTOUT[9] - PLL_FINE_LOCK_DONE                             
-> |              | TESTOUT[10] - Divided by 10 clock (source clock : PIXEL_CLK)
-> |              | TESTOUT[11] - Divided by 10 clock (source clock : TMDS_CLK) 
-> |              | 1 : TESTOUT[0:9] - 10bit of RXDATA                          
-> |              | TESTOUT[10] - Divided by 10 clock (source clock : PIXEL_CLK)
-> |              | TESTOUT[11] - Divided by 10 clock (source clock : TMDS_CLK) 
-> --------------------------------------------------------------------------------
-> |    2         |
-> |FIX_DB        | Disable de-skew function 1 - Select fixed phase 2
-> --------------------------------------------------------------------------------
-> |    1         |
-> |FIX_DA        | Disable de-skew function 1 - Select fixed phase 1
-> --------------------------------------------------------------------------------
-> |    0         | 0 : There are not any change in 20bit data from TESTIN port    
-> |ALTER         | 1: Invert polarity of 10bit data of 20bit data from TESTIN port
-> --------------------------------------------------------------------------------
+> [1] https://e2e.ti.com/support/power-management-group/power-management/
+> f/power-management-forum/1269856/tps65987d-tps65987d-reset-de-assert-
+> to-normal-operation/4809389#4809389
 > 
-> The issue will be fixed in the next i.MX8MP RM release, sorry for the inconvenience.
+> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
+> ---
+>  drivers/usb/typec/tipd/core.c | 21 ++++++++++++++++++++-
+>  1 file changed, 20 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
+> index 37b56ce75f39..550f5913e985 100644
+> --- a/drivers/usb/typec/tipd/core.c
+> +++ b/drivers/usb/typec/tipd/core.c
+> @@ -8,6 +8,7 @@
+>  
+>  #include <linux/i2c.h>
+>  #include <linux/acpi.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/power_supply.h>
+> @@ -43,6 +44,9 @@
+>  /* TPS_REG_SYSTEM_CONF bits */
+>  #define TPS_SYSCONF_PORTINFO(c)		((c) & 7)
+>  
+> +/* reset de-assertion to ready for operation */
+> +#define SETUP_MS			1000
 
-Thanks for the prompt clarification!
+1 second? That's a bit a lot. Does it come from datasheet?
 
-I'm not sure whether this should deserve a comment such as "/*
-Reference manual Rev. 1, 06/2021 has incorrect documentation of this
-register */". It depends on the time the fixed RM will take before it's
-public, so up to you Lucas.
+> +
+>  enum {
+>  	TPS_PORTINFO_SINK,
+>  	TPS_PORTINFO_SINK_ACCESSORY,
+> @@ -86,6 +90,7 @@ struct tps6598x {
+>  	struct mutex lock; /* device lock */
+>  	u8 i2c_protocol:1;
+>  
+> +	struct gpio_desc *reset;
+>  	struct typec_port *port;
+>  	struct typec_partner *partner;
+>  	struct usb_pd_identity partner_identity;
+> @@ -717,6 +722,13 @@ static int tps6598x_probe(struct i2c_client *client)
+>  	mutex_init(&tps->lock);
+>  	tps->dev = &client->dev;
+>  
+> +	tps->reset = devm_gpiod_get_optional(tps->dev, "reset", GPIOD_OUT_LOW);
+> +	if (IS_ERR(tps->reset))
+> +		return dev_err_probe(tps->dev, PTR_ERR(tps->reset),
+> +				     "failed to get reset GPIO\n");
+> +	if (tps->reset)
+> +		msleep(SETUP_MS);
+> +
+>  	tps->regmap = devm_regmap_init_i2c(client, &tps6598x_regmap_config);
+>  	if (IS_ERR(tps->regmap))
+>  		return PTR_ERR(tps->regmap);
+> @@ -892,6 +904,9 @@ static void tps6598x_remove(struct i2c_client *client)
+>  	tps6598x_disconnect(tps, 0);
+>  	typec_unregister_port(tps->port);
+>  	usb_role_switch_put(tps->role_sw);
+> +
+> +	if (tps->reset)
+> +		gpiod_set_value_cansleep(tps->reset, 1);
+>  }
+>  
+>  static int __maybe_unused tps6598x_suspend(struct device *dev)
+> @@ -902,7 +917,8 @@ static int __maybe_unused tps6598x_suspend(struct device *dev)
+>  	if (tps->wakeup) {
+>  		disable_irq(client->irq);
+>  		enable_irq_wake(client->irq);
+> -	}
+> +	} else if (tps->reset)
+> +		gpiod_set_value_cansleep(tps->reset, 1);
 
-Bottom line, I think only the PHY_REG_14 fix is needed to this patch.
+Missing {} (see Linux coding style).
 
-Luca
+>  
+>  	if (!client->irq)
+>  		cancel_delayed_work_sync(&tps->wq_poll);
+> @@ -918,6 +934,9 @@ static int __maybe_unused tps6598x_resume(struct device *dev)
+>  	if (tps->wakeup) {
+>  		disable_irq_wake(client->irq);
+>  		enable_irq(client->irq);
+> +	} else if (tps->reset) {
+> +		gpiod_set_value_cansleep(tps->reset, 0);
+> +		msleep(SETUP_MS);
+>  	}
+>  
+>  	if (!client->irq)
+> 
 
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Best regards,
+Krzysztof
+
 
