@@ -1,73 +1,151 @@
-Return-Path: <devicetree+bounces-654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B528D7A27F5
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 22:20:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 553927A2841
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 22:38:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8ED961C20E0F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 20:20:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F5B9282629
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 20:38:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C0721B274;
-	Fri, 15 Sep 2023 20:20:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 088681805C;
+	Fri, 15 Sep 2023 20:38:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26F5B18E09
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 20:20:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FBD0C433C7;
-	Fri, 15 Sep 2023 20:20:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 000BB11CA0
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 20:38:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35890C433C7;
+	Fri, 15 Sep 2023 20:38:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694809204;
-	bh=+pZKuROLmBdIrfo491pE/sQfj9kOoSQEDuZxmmaZMuY=;
-	h=From:To:Cc:Subject:Date:From;
-	b=pLIVKgF4dnRVJLeCqx8HYhHUY8SvSrIXIlPr7f47FMgsP0kEtUjfk18z2d64X5aA9
-	 hsMUFqw/E+wJRjGSBFKA0Z4SsbvhvBlLGFxPRI4rZEXPAKqoIhNyI4cMsI4k3zMDVt
-	 +UwrH+gWKrI9VGHWH4ME8qqnwVyj26I750hiwNzIayYdenFvazGKdWFKRx8nNiCNLT
-	 OvOCZ7niYRmduAyapBZt/nFg3cbk4FPzF7Og+VkH3ATNbr2HCTruw/TJTvvC+bHgxT
-	 8ugq+sbEaBMmqWPuknw6UpgxLNKXs0O6qgXmW8D+8+qoLXA985FF3VeRiIHygwT7Dc
-	 lYKBGYj+eyqaQ==
-Received: (nullmailer pid 4184984 invoked by uid 1000);
-	Fri, 15 Sep 2023 20:20:00 -0000
-From: Rob Herring <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: riscv: cpus: Add missing additionalProperties on interrupt-controller node
-Date: Fri, 15 Sep 2023 15:19:36 -0500
-Message-Id: <20230915201946.4184468-1-robh@kernel.org>
-X-Mailer: git-send-email 2.40.1
+	s=k20201202; t=1694810312;
+	bh=6Q5uD+Zu8AqpFSr7DdUZmiNzQVx8ArnIRoKFeBRbrQQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=qQ2iyLjwa7dvCYxKHf2pb1xYmjUKk31qUJTGag1QN09CHOP4ctdyYN9gCl+v1QvYY
+	 niCKla3y+gP0W69WjI3Q/wYqj2nZFcltdDlDYPh+9Nf0uvN10a5CABsdORmk4IlC8q
+	 +wpFBM+txR2+IvVsJmH3R+AJZEu31glf4ve6NUCfJU8XjRdGegYxCSSseVCwyyFIH1
+	 DKkOkH7POk0SwA3MmpEDjqK5jQ9DxnPZ726i0FIlhn4B+w4stGpSNNz7OQ77Pd7Ukc
+	 OFIb2fbnQzLF42hmO+mSVQY4om9vb2b/ySY0eVIJ0/lkeR91SAHYSnZsjCA7Fizl7C
+	 2NuyeF9VrsGXw==
+Date: Fri, 15 Sep 2023 15:38:30 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+	"gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"kw@linux.com" <kw@linux.com>,
+	"manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	"kishon@kernel.org" <kishon@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+	"fancer.lancer@gmail.com" <fancer.lancer@gmail.com>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v20 16/19] PCI: rcar-gen4: Add R-Car Gen4 PCIe Host
+ support
+Message-ID: <20230915203830.GA105215@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <TYBPR01MB534112A636FAFB61A4038337D8F6A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
 
-The "interrupt-controller" CPU child node is missing constraints on
-extra properties. Add "additionalProperties: false" to fix this.
+On Fri, Sep 15, 2023 at 09:37:15AM +0000, Yoshihiro Shimoda wrote:
+> > From: Bjorn Helgaas, Sent: Friday, September 15, 2023 1:35 AM
+> > On Fri, Aug 25, 2023 at 06:32:16PM +0900, Yoshihiro Shimoda wrote:
+> > > Add R-Car Gen4 PCIe Host support. This controller is based on
+> > > Synopsys DesignWare PCIe, but this controller has vendor-specific
+> > > registers so that requires initialization code like mode setting
+> > > and retraining and so on.
+> > >
+> > > To reduce code delta, adds some helper functions which are used by
+> > > both the host driver and the endpoint driver (which is added
+> > > immediately afterwards) into a separate file.
+> > >
+> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > > Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+> > > ---
+> > >  drivers/pci/controller/dwc/Kconfig            |  10 +
+> > >  drivers/pci/controller/dwc/Makefile           |   2 +
+> > >  .../controller/dwc/pcie-rcar-gen4-host-drv.c  | 135 +++++++++++
+> > >  drivers/pci/controller/dwc/pcie-rcar-gen4.c   | 227 ++++++++++++++++++
+> > >  drivers/pci/controller/dwc/pcie-rcar-gen4.h   |  44 ++++
+> > >  5 files changed, 418 insertions(+)
+> > >  create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-host-drv.c
+> > 
+> > Is "pcie-rcar-gen4-host-drv.c" following some pattern?  I don't see
+> > "-drv" in any nearby filenames.  Typical names are "-host.c" for host
+> > driver and "-ep.c" for endpoint driver.
+> 
+> This is not following some pattern on pcie subsystem. But, some
+> other subsystems have "*drv.c" filenames. Manivannan suggested the
+> filenames to rename the module filenames [1].
+>
+> < Now >
+> The source code filenames : pcie-rcar-gen4-{host,ep}-drv.c
+> The module filenames : pcie-rcar-gen4-{host,ep}.ko
+> 
+> < Previous >
+> The source code filenames : pcie-rcar-gen4-{host,ep}.c
+> The module filenames : pcie-rcar-gen4-{host,ep}-drv.ko
+> 
+> [1]
+> https://lore.kernel.org/linux-pci/20230724122820.GM6291@thinkpad/
+> 
+> I don't have a strong opinion on which filenames are good.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
- 1 file changed, 1 insertion(+)
+I have an opinion :)  I think splitting this up into four files is way
+more complicated than it needs to be.  This is all for driving a
+single piece of hardware, and I don't think there's enough benefit to
+split it into separate files.
 
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-index 38c0b5213736..97e8441eda1c 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -91,6 +91,7 @@ properties:
- 
-   interrupt-controller:
-     type: object
-+    additionalProperties: false
-     description: Describes the CPU's local interrupt controller
- 
-     properties:
--- 
-2.40.1
+Most drivers, even those that support both host and endpoint mode, are
+in a single file, e.g., pcie-artpec6.c, pci-imx6.c, pcie-keembay.c,
+pcie-tegra194.c, pci-dra7xx.c, pci-keystone.c.
 
+That makes the Makefile very simple and there's only one module name
+to worry about.
+
+> > > +	msleep(100);	/* pe_rst requires 100msec delay */
+> > 
+> > Can we include a spec reference for this delay?  Ideally this would be
+> > a #define and likely shared across drivers.
+> 
+> I think so. Some other PCIe drivers also call "msleep(100)".
+> So, I'll add a #define into drivers/pci/pci.h.
+
+Yes.  I'm trying to move away from "msleep(100)" for everybody so we
+can make sure all the drivers include the appropriate delays and
+they're all based on the same reasoning.
+
+> > > +#define PCIEDMAINTSTSEN		0x0314
+> > > +#define PCIEDMAINTSTSEN_INIT	GENMASK(15, 0)
+> > 
+> > These register offsets are hard to decode whenthey'reallruntogether.
+> 
+> Unfortunately, these registers' offset names are from the datasheet.
+> Perhaps, adding full register names as comments like below are helpful:
+> -----
+> /* PCIe Interrupt Status 0 */
+> +#define PCIEINTSTS0		0x0084
+> 
+> /* PCIe DMA Interrupt Status Enable */
+> #define PCIEDMAINTSTSEN		0x0314
+> #define PCIEDMAINTSTSEN_INIT	GENMASK(15, 0)
+
+It's good to use names from the datasheet.  The comments should be
+enough.
+
+Bjorn
 
