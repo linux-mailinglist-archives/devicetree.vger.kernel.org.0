@@ -1,125 +1,191 @@
-Return-Path: <devicetree+bounces-642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AA877A257D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 20:21:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FED07A25D5
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 20:34:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24F08281BA4
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 18:21:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 568AE1C20AF1
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 18:34:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16A84182CA;
-	Fri, 15 Sep 2023 18:21:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4D49362;
+	Fri, 15 Sep 2023 18:34:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0391F1097E
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 18:21:08 +0000 (UTC)
-Received: from smtp38.i.mail.ru (smtp38.i.mail.ru [95.163.41.79])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57B721FD6;
-	Fri, 15 Sep 2023 11:21:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com
-	; s=mailru; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:From:Sender:Reply-To:To:Cc:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive:
-	X-Cloud-Ids:Disposition-Notification-To;
-	bh=yubnssaxfD0lbd6TG0d2P0qQq9sFqXjqlCWV5TqICCE=; t=1694802067; x=1694892067; 
-	b=QegiEaCWGBW+eyTJG+9pDLSYoPOMwfQ/CBQDX+V8Q7mqQchCKB/hQVjxm0rhrF99E0vlsOxhktu
-	IYDeu4Q+2Y/owzPJS8upGYKHGXUgUMe1NoAp38TcSvIqwUAIJXDRNaq1pNU6evZwqV6vHY4z6CE9D
-	27pcDnTwevztAz+v+qk=;
-Received: by smtp38.i.mail.ru with esmtpa (envelope-from <danila@jiaxyga.com>)
-	id 1qhDRA-00G5R8-2I; Fri, 15 Sep 2023 21:21:05 +0300
-From: Danila Tikhonov <danila@jiaxyga.com>
-To: agross@kernel.org,
-	andersson@kernel.org,
-	konrad.dybcio@linaro.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	ulf.hansson@linaro.org
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Danila Tikhonov <danila@jiaxyga.com>
-Subject: [PATCH 2/2] pmdomain: qcom: rpmhpd: Add support for SM7150 rpmh clocks
-Date: Fri, 15 Sep 2023 21:20:54 +0300
-Message-ID: <20230915182054.113839-3-danila@jiaxyga.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230915182054.113839-1-danila@jiaxyga.com>
-References: <20230915182054.113839-1-danila@jiaxyga.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B1F30CF6
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 18:34:09 +0000 (UTC)
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA5A1270E
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 11:34:05 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-d815a5eee40so2264034276.2
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 11:34:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694802845; x=1695407645; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=XAp4QGQYuiB0aBhykrwn9fuo1kSVZeoCYVkl9zEjWE8=;
+        b=ZRn2r1NhTF7RYpU9wxUTTfDNoPsm2sCTFXU1/SwBNv25DiPf06YThxVCMV4zUBKCO3
+         cRyQwzUXYv4n6sQXFoqqhqUpCcxXv8Nn7Uf9WvoZEiwCAAZ8FIUnap3XKbucbT57CAJF
+         rIXOxDqv6tUYiUr4p8YFl5KjPOuZ/rkmVNpWnAlE0w2Eo8bmA345EyQuL9VLWpO1VMVT
+         hXIBl0MdO6N1c144hAhtpiGJi5jXaaPE2g1MVc/DILwfFJLW+5h7tvFpOu9cLrpopNVd
+         BeMBNPf/5h5KjAjAo4JSTKrLSLN/HazLaTHgY6jyEpjZa2V2wU18gx7tDmfMmZilxyqE
+         ihbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694802845; x=1695407645;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XAp4QGQYuiB0aBhykrwn9fuo1kSVZeoCYVkl9zEjWE8=;
+        b=N7NxzBMPPVoGry6ekTObByBQlo/F3m3oeOCXB9rPG4qz0qDYhDpmfApqBzMaSzYrgP
+         vEvrqX3lBTPIeN6lOfRKSc9IDUqOff3WFabmWnJAM7Q/3+4Qas9h93VRkwoF84ll4i4c
+         vqkC9IVAuEcB2XDWoR/zipJcoBC9GSH0NfGeBzRR7cTwm0Tqhr1HYeMcqsbCun3zH7/Q
+         3ON+4/jz3YL9pDaIaekUlFl13H/++J4UYUWnRjJ2I32CkjmQCeJ4J+rwzQuPUkwhVGRX
+         gjYTQZ7ncXJhgNkSEb9yzniswpvjJurCk2Rl62dGpQQrPlyXjfwC7SSeECFHyufyuEEK
+         WxEA==
+X-Gm-Message-State: AOJu0Yx8kotcusU3OvzVWS38ETOu6AWEm8YyExa2Bog0Q/vL5J7PrAOU
+	B3rh+n1Xk2+FB1hsNa8zHSkrfnR77b92tTvm5OssmRrV5OFXlOZbncMQzQ==
+X-Google-Smtp-Source: AGHT+IGz/X+sLYorNmDn+iedwieWtRZ/y9HzEpRRT43OwE+qJPUPdVSjf4sOic9847CsYuYN7WCPMNDqcCWsxExcJ04=
+X-Received: by 2002:a25:820e:0:b0:d7b:9a4b:5a72 with SMTP id
+ q14-20020a25820e000000b00d7b9a4b5a72mr2312461ybk.31.1694802844944; Fri, 15
+ Sep 2023 11:34:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Authentication-Results: smtp38.i.mail.ru; auth=pass smtp.auth=danila@jiaxyga.com smtp.mailfrom=danila@jiaxyga.com
-X-Mailru-Src: smtp
-X-7564579A: B8F34718100C35BD
-X-77F55803: 4F1203BC0FB41BD9FD052C19707CBA10F74D70DBBC233CD7A016A66332CED23000894C459B0CD1B9E4554F032648D9D1018503546C2E8704F642992ABAB832B17078263AA6E0921D
-X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE71288D18ACA28B428EA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F79006371AB0416A4896C0B38638F802B75D45FF36EB9D2243A4F8B5A6FCA7DBDB1FC311F39EFFDF887939037866D6147AF826D8A34ED66D089961930177D5E1E9EB4410117882F4460429724CE54428C33FAD305F5C1EE8F4F765FC3A703B70628EAD7BA471835C12D1D9774AD6D5ED66289B52BA9C0B312567BB23117882F446042972877693876707352033AC447995A7AD186FD1C55BDD38FC3FD2E47CDBA5A96583BA9C0B312567BB2376E601842F6C81A19E625A9149C048EE140C956E756FBB7A985B8ACC81218E19D8FC6C240DEA76429C9F4D5AE37F343AA9539A8B242431040A6AB1C7CE11FEE36A1CB4668A9CA5FA040F9FF01DFDA4A8C4224003CC836476E2F48590F00D11D6E2021AF6380DFAD1A18204E546F3947CB11811A4A51E3B096D1867E19FE1407959CC434672EE6371089D37D7C0E48F6C8AA50765F7900637A8A59EE88DA1D479EFF80C71ABB335746BA297DBC24807EABDAD6C7F3747799A
-X-C1DE0DAB: 0D63561A33F958A5B3F8D1FD892A32236981EF852F3FB5769CA7FDC079330CF9F87CCE6106E1FC07E67D4AC08A07B9B0B355ED1E20F5346A9C5DF10A05D560A950611B66E3DA6D700B0A020F03D25A0997E3FB2386030E77
-X-C8649E89: 1C3962B70DF3F0ADE00A9FD3E00BEEDF77DD89D51EBB7742D3581295AF09D3DF87807E0823442EA2ED31085941D9CD0AF7F820E7B07EA4CF70D518CF6A9128C5C78D694F9CFB33F76FE01FB940F35304C33B8F024D1ADD11ABDA6BB679979B95B3573C328C294A3D3F86EB742601633B5426C164EAD7B9E921BEC6C0C71ED4F84C41F94D744909CE4BCAC77546666B612CC0CD5AA9A1B9887EE09F5AAA95A50543082AE146A756F3
-X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojwfkaTmrWlaxp7GRpC+hDSA==
-X-Mailru-Sender: 9EB879F2C80682A09F26F806C73949812E816679BFB18EEAC71EAD0F915E2FD0DF76B9B9158B2F3E643683D8C0F3ED1CA3C71A376745D86BBE86167304C7680C3980CE5AAA35C7CD60F22E8815EDE5EAEAB4BC95F72C04283CDA0F3B3F5B9367
-X-Mras: Ok
+References: <20230823091757.31311-1-quic_nitirawa@quicinc.com>
+ <20230823091757.31311-3-quic_nitirawa@quicinc.com> <24cff590-c71f-4a30-9b80-fa9a0bd27957@linaro.org>
+ <c9719d64-33c1-d13e-0ab6-289011282044@quicinc.com>
+In-Reply-To: <c9719d64-33c1-d13e-0ab6-289011282044@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 15 Sep 2023 21:33:53 +0300
+Message-ID: <CAA8EJppYD8Oq_fkOOKf8_x7RdbjBx7XzV_5y4sKE3ZDv_WV9_Q@mail.gmail.com>
+Subject: Re: [PATCH V3 2/2] phy: qcom-qmp-ufs: Add Phy Configuration support
+ for SC7280
+To: Nitin Rawat <quic_nitirawa@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
+	vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Manish Pandey <quic_mapa@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-This adds the RPMH clocks present in SM7150 SoC.
+On Fri, 15 Sept 2023 at 19:14, Nitin Rawat <quic_nitirawa@quicinc.com> wrote:
+>
+>
+>
+> On 9/6/2023 1:34 AM, Dmitry Baryshkov wrote:
+> > On 23/08/2023 12:17, Nitin Rawat wrote:
+> >> Add SC7280 specific register layout and table configs.
+> >>
+> >> Co-developed-by: Manish Pandey <quic_mapa@quicinc.com>
+> >> Signed-off-by: Manish Pandey <quic_mapa@quicinc.com>
+> >> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> >> ---
+> >>   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 142 ++++++++++++++++++++++++
+> >>   1 file changed, 142 insertions(+)
+> >>
+> >> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+> >> b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+> >> index 3927eba8e468..514fa14df634 100644
+> >> --- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+> >> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+> >
+> > [skipped tables programming]
+> >
+> > 4),
+> Sorry I quite didn't get this comment. what exactly is skipped ?Please
+> can you help explain?
 
-Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
----
- drivers/pmdomain/qcom/rpmhpd.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+I skipped them, as I didn't have comments for them.
 
-diff --git a/drivers/pmdomain/qcom/rpmhpd.c b/drivers/pmdomain/qcom/rpmhpd.c
-index a87e336d5e33..d48235aa024c 100644
---- a/drivers/pmdomain/qcom/rpmhpd.c
-+++ b/drivers/pmdomain/qcom/rpmhpd.c
-@@ -337,6 +337,23 @@ static const struct rpmhpd_desc sm6350_desc = {
- 	.num_pds = ARRAY_SIZE(sm6350_rpmhpds),
- };
- 
-+/* SM7150 RPMH powerdomains */
-+static struct rpmhpd *sm7150_rpmhpds[] = {
-+	[SM7150_CX] = &cx_w_mx_parent,
-+	[SM7150_CX_AO] = &cx_ao_w_mx_parent,
-+	[SM7150_GFX] = &gfx,
-+	[SM7150_LCX] = &lcx,
-+	[SM7150_LMX] = &lmx,
-+	[SM7150_MSS] = &mss,
-+	[SM7150_MX] = &mx,
-+	[SM7150_MX_AO] = &mx_ao,
-+};
-+
-+static const struct rpmhpd_desc sm7150_desc = {
-+	.rpmhpds = sm7150_rpmhpds,
-+	.num_pds = ARRAY_SIZE(sm7150_rpmhpds),
-+};
-+
- /* SM8150 RPMH powerdomains */
- static struct rpmhpd *sm8150_rpmhpds[] = {
- 	[SM8150_CX] = &cx_w_mx_parent,
-@@ -562,6 +579,7 @@ static const struct of_device_id rpmhpd_match_table[] = {
- 	{ .compatible = "qcom,sdx65-rpmhpd", .data = &sdx65_desc},
- 	{ .compatible = "qcom,sdx75-rpmhpd", .data = &sdx75_desc},
- 	{ .compatible = "qcom,sm6350-rpmhpd", .data = &sm6350_desc },
-+	{ .compatible = "qcom,sm7150-rpmhpd", .data = &sm7150_desc },
- 	{ .compatible = "qcom,sm8150-rpmhpd", .data = &sm8150_desc },
- 	{ .compatible = "qcom,sm8250-rpmhpd", .data = &sm8250_desc },
- 	{ .compatible = "qcom,sm8350-rpmhpd", .data = &sm8350_desc },
+>
+>
+> >> @@ -888,6 +993,40 @@ static const struct qmp_phy_cfg
+> >> sa8775p_ufsphy_cfg = {
+> >>       .regs            = ufsphy_v5_regs_layout,
+> >>   };
+> >>
+> >> +static const struct qmp_phy_cfg sc7280_ufsphy_cfg = {
+> >> +    .lanes                  = 2,
+> >> +
+> >> +    .offsets                = &qmp_ufs_offsets,
+> >> +
+> >> +    .tbls = {
+> >> +        .serdes         = sm8150_ufsphy_serdes,
+> >> +        .serdes_num     = ARRAY_SIZE(sm8150_ufsphy_serdes),
+> >> +        .tx             = sc7280_ufsphy_tx,
+> >> +        .tx_num         = ARRAY_SIZE(sc7280_ufsphy_tx),
+> >> +        .rx             = sc7280_ufsphy_rx,
+> >> +        .rx_num         = ARRAY_SIZE(sc7280_ufsphy_rx),
+> >> +        .pcs            = sc7280_ufsphy_pcs,
+> >> +        .pcs_num        = ARRAY_SIZE(sc7280_ufsphy_pcs),
+> >> +    },
+> >> +    .tbls_hs_b = {
+> >> +        .serdes         = sm8150_ufsphy_hs_b_serdes,
+> >> +        .serdes_num     = ARRAY_SIZE(sm8150_ufsphy_hs_b_serdes),
+> >> +    },
+> >> +    .tbls_hs_g4 = {
+> >> +        .tx             = sm8250_ufsphy_hs_g4_tx,
+> >> +        .tx_num         = ARRAY_SIZE(sm8250_ufsphy_hs_g4_tx),
+> >> +        .rx             = sc7280_ufsphy_hs_g4_rx,
+> >> +        .rx_num         = ARRAY_SIZE(sc7280_ufsphy_hs_g4_rx),
+> >> +        .pcs            = sm8150_ufsphy_hs_g4_pcs,
+> >> +        .pcs_num        = ARRAY_SIZE(sm8150_ufsphy_hs_g4_pcs),
+> >> +    },
+> >> +    .clk_list               = sm8450_ufs_phy_clk_l,
+> >> +    .num_clks               = ARRAY_SIZE(sm8450_ufs_phy_clk_l),
+> >
+> > This doesn't correspond to the bindings. This array has 3 enries, while
+> > in the bindings you have opted for two clocks for this PHY.
+> Sure. I'll update the bindings.
+
+Are you sure about the third clock? Neither sm8150 nor sm8250 used the
+qref clock. Or is that an omission on our side?
+
+>
+> >
+> >> +    .vreg_list              = qmp_phy_vreg_l,
+> >> +    .num_vregs              = ARRAY_SIZE(qmp_phy_vreg_l),
+> >> +    .regs                   = ufsphy_v4_regs_layout,
+> >> +};
+> >> +
+> >>   static const struct qmp_phy_cfg sc8280xp_ufsphy_cfg = {
+> >>       .lanes            = 2,
+> >>
+> >> @@ -1648,6 +1787,9 @@ static const struct of_device_id
+> >> qmp_ufs_of_match_table[] = {
+> >>       }, {
+> >>           .compatible = "qcom,sa8775p-qmp-ufs-phy",
+> >>           .data = &sa8775p_ufsphy_cfg,
+> >> +    }, {
+> >> +        .compatible = "qcom,sc7280-qmp-ufs-phy",
+> >> +        .data = &sc7280_ufsphy_cfg,
+> >>       }, {
+> >>           .compatible = "qcom,sc8180x-qmp-ufs-phy",
+> >>           .data = &sm8150_ufsphy_cfg,
+> >> --
+> >> 2.17.1
+> >>
+> >
+> Thanks,
+> Nitin
+
+
+
 -- 
-2.41.0
-
+With best wishes
+Dmitry
 
