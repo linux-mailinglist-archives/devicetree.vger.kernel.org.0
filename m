@@ -1,105 +1,299 @@
-Return-Path: <devicetree+bounces-423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50F217A17D0
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:52:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82B2B7A17FF
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 10:06:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C12F1C20AEF
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 07:52:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EE00281F9C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 08:06:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93F2DD2EC;
-	Fri, 15 Sep 2023 07:52:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA5FED2F3;
+	Fri, 15 Sep 2023 08:06:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1544FD295
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 07:52:37 +0000 (UTC)
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FFF7193
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 00:52:36 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-52a1ce529fdso2154398a12.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 00:52:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694764355; x=1695369155; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1DmNveiP8xHX58IAf7GJRRnmwEbVvFnwIttOiAgQ004=;
-        b=L4RaL8CdamXJ1n961ofptOQG6ridNxCCg5vq0sHVgSbBVHxurZNySoZqTjeKRBs/5H
-         TzR3JULwJo3R0RGeUhiNKjwtn20QYnTFfpRvQw22B9AclekwX7HaPirYX5u5EYxmK8tf
-         iyKTRDgjlO4m7eQt1c7bjHNnHvbxlXwPvD98TOn1GNXH/M6pWKUMKmfBiIJl7oTIwZvj
-         T9b9Mk9e835KG+DFnjpCXkWlMd4rhWMqn+LtWkd7GW1oJdIWaK3MVwc/VtcL047nrBIW
-         0mKKaS31UfhxiyzAPNwuO3i945KBDuWxyjzIYD7GctivBHf/QFQBBDBfxdYuaiwWZbm5
-         UEMg==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6F5A3FE4
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 08:06:43 +0000 (UTC)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CD9B1BC9;
+	Fri, 15 Sep 2023 01:06:42 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-59be6605e1dso21129647b3.3;
+        Fri, 15 Sep 2023 01:06:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694764355; x=1695369155;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1DmNveiP8xHX58IAf7GJRRnmwEbVvFnwIttOiAgQ004=;
-        b=KdgLtiU30hwNxSdktQegbZsyhdavJTisGodnK9dkAhxVivtYqP6ud+cziuMR0LDTai
-         tbuccRENX6Fdr7c01vRRpoz2qpf7kjC1H19K7U4Oqgln/zGu0bUdA61Ju0nKfQGT+tno
-         zUpl4rFgOjNpnOsUu7PBG3EaIr/9mzOH4BSAzVOktUegd0TloJU+XR/zw/mXtu6/Lpp2
-         /w7jAt1dJ1Qg/Ah4fs9Omcu1MKtXzaOw3cSdZQixmJg+2+NNwxt66doSK5+ysPhP9ddL
-         x8GJgnFGy3Wyj/RZZSQUR08UX7EyWydCfH2sy2TzozJQ7W/WljgOV4xU4e9ivFSnPPff
-         3QxQ==
-X-Gm-Message-State: AOJu0YwsPYvC+aigjk2vkt/8kFENAadeWx63xWdfsY8zJzzan2fDG7Yd
-	7LP9OtUGHTm4A1VaVpLdbi/NbQ==
-X-Google-Smtp-Source: AGHT+IG3viMjTUAP25MuwtYIdv3N1ev0u+/SYqVBSVH0BOrYl2RsGa4IaFywaU+81yE3KsWBeGeP+A==
-X-Received: by 2002:a05:6402:14c4:b0:52a:1c3c:2ecc with SMTP id f4-20020a05640214c400b0052a1c3c2eccmr687838edx.25.1694764355070;
-        Fri, 15 Sep 2023 00:52:35 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id dm6-20020a05640222c600b0053090e2afafsm328735edb.22.2023.09.15.00.52.33
+        d=1e100.net; s=20230601; t=1694765201; x=1695370001;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IDdF9uQczjRdjh5DltQ3Kf3WBzjSgTe8Pnr+O7KM1YE=;
+        b=wQByhZ9yaQmqn90fcbDfgmU6H9PY1niAWJb4O7fZLw3dawmdBvV04ULbvSPkyrofrI
+         8zGdLBFTyEj7GMp7uygIV87S2/wdjfGFk5wlQNf85RSL7YXtMJGxJKTP/QmpMyAdu8ER
+         ma8AC0JoQS6iwqFAp44pLo19wdDkc7CMbuSUCQPGQvoxC9ywSM4QnxD/RMEft0R+oD1i
+         K+VRQ+Pgk5UOgTUbAlQgqqeik4kHqAtWX2YSfFxWutmPzDKrBcT4cb9k6aBew6WQN7ee
+         M8HTfS2BEJEm+uyDajR4bC7v6LDjWD0GAUg2J7E5QSQd13TDKErj/l/zipO+E4q4bYaL
+         wJAw==
+X-Gm-Message-State: AOJu0YxpBLTueQgNQnCIb/H28w5K7gRqw8bZ5vbKGDgptolLvmgzUsoK
+	K7lyTUzfPL9RLnlGf4ANf/89BMN3WHUTVQ==
+X-Google-Smtp-Source: AGHT+IHfyHf84k81DafigIWjZ9cGVm1JY4apXsJzccQ9orBMQ+oG5wy+32Au3wIOh231/9ddGKBwnA==
+X-Received: by 2002:a0d:ebc6:0:b0:58f:a190:f6b with SMTP id u189-20020a0debc6000000b0058fa1900f6bmr1100118ywe.26.1694765201151;
+        Fri, 15 Sep 2023 01:06:41 -0700 (PDT)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
+        by smtp.gmail.com with ESMTPSA id p125-20020a0de683000000b0059b50f126fbsm747987ywe.114.2023.09.15.01.06.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 00:52:34 -0700 (PDT)
-Message-ID: <83142b6a-90da-b705-5170-5468175cf23d@linaro.org>
-Date: Fri, 15 Sep 2023 09:52:32 +0200
+        Fri, 15 Sep 2023 01:06:40 -0700 (PDT)
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-d81b803b09aso831568276.2;
+        Fri, 15 Sep 2023 01:06:40 -0700 (PDT)
+X-Received: by 2002:a25:e64d:0:b0:d80:1161:5ec1 with SMTP id
+ d74-20020a25e64d000000b00d8011615ec1mr867800ybh.20.1694765200505; Fri, 15 Sep
+ 2023 01:06:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v1 1/2] dt-bindings: soc: mediatek: add mt8188 svs
- dt-bindings
-Content-Language: en-US
-To: Mark Tseng <chun-jen.tseng@mediatek.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Roger Lu <roger.lu@mediatek.com>, Kevin Hilman <khilman@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230915075003.1552-1-chun-jen.tseng@mediatek.com>
- <20230915075003.1552-2-chun-jen.tseng@mediatek.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230915075003.1552-2-chun-jen.tseng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
+ <20230912045157.177966-19-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdX9PYdESi6OAFSUS1NsFs9oPPV7Cd+uMHTtFRhkaq3Xzw@mail.gmail.com> <1ef2d7d4-93d4-969d-6618-3b81926418d5@tuxon.dev>
+In-Reply-To: <1ef2d7d4-93d4-969d-6618-3b81926418d5@tuxon.dev>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 15 Sep 2023 10:06:27 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWvuP1M2vu9+Kptj-5AkxbtPVeymm5r_02JQbyXdA7F=g@mail.gmail.com>
+Message-ID: <CAMuHMdWvuP1M2vu9+Kptj-5AkxbtPVeymm5r_02JQbyXdA7F=g@mail.gmail.com>
+Subject: Re: [PATCH 18/37] clk: renesas: rzg2l: refactor sd mux driver
+To: claudiu beznea <claudiu.beznea@tuxon.dev>, mturquette@baylibre.com, sboyd@kernel.org
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
+	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
+	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
+	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 15/09/2023 09:50, Mark Tseng wrote:
-> Add mt8188 svs compatible in dt-bindings.
-> 
-> Signed-off-by: Mark Tseng <chun-jen.tseng@mediatek.com>
-> ---
+Hi Claudiu,
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Fri, Sep 15, 2023 at 9:30=E2=80=AFAM claudiu beznea <claudiu.beznea@tuxo=
+n.dev> wrote:
+> On 14.09.2023 18:18, Geert Uytterhoeven wrote:
+> > On Tue, Sep 12, 2023 at 6:52=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.d=
+ev> wrote:
+> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>
+> >> Refactor SD MUX driver to be able to reuse the same code on RZ/G3S.
+> >> RZ/G2{L, UL} has a limitation with regards to switching the clock sour=
+ce
+> >> for SD MUX (MUX clock source has to be switched to 266MHz before switc=
+hing
+> >> b/w 533MHz and 400MHz). This limitation has been introduced as a clock
+> >> notifier that is registered on platform based initialization data thus=
+ the
+> >> SD MUX code could be reused on RZ/G3S.
+> >>
+> >> As both RZ/G2{L, UL} and RZ/G3S has specific bits in specific register=
+s
+> >> to check if the clock switching has been done, this configuration (reg=
+ister
+> >> offset, register bits and bits width) is now passed though
+> >> struct cpg_core_clk::sconf (status configuration) from platform specif=
+ic
+> >> initialization code.
+> >>
+> >> Along with struct cpg_core_clk::sconf the mux table indexes is also
+> >
+> > indices are
+> >
+> >> passed from platform specific initialization code.
+> >
+> > Please also mention the passing of the mux flags, which is added so
+> > you can pass CLK_SET_PARENT_GATE for G3S_SEL_PLL4 later.
+>
+> Ok.
+>
+> >
+> >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >
+> >> --- a/drivers/clk/renesas/r9a07g043-cpg.c
+> >> +++ b/drivers/clk/renesas/r9a07g043-cpg.c
+> >> @@ -21,6 +21,10 @@
+> >>  #define G2UL_SEL_SDHI0         SEL_PLL_PACK(G2UL_CPG_PL2SDHI_DSEL, 0,=
+ 2)
+> >>  #define G2UL_SEL_SDHI1         SEL_PLL_PACK(G2UL_CPG_PL2SDHI_DSEL, 4,=
+ 2)
+> >>
+> >> +/* Clock status configuration. */
+> >> +#define G2UL_SEL_SDHI0_STS     SEL_PLL_PACK(CPG_CLKSTATUS, 28, 1)
+> >> +#define G2UL_SEL_SDHI1_STS     SEL_PLL_PACK(CPG_CLKSTATUS, 29, 1)
+> >
+> > Just like in [PATCH 17/37], there is no real need for the "G2UL_"-prefi=
+x.
+>
+> Ok, I ususlly tend to guard everything with a proper namespace.
 
-Best regards,
-Krzysztof
+Sure, in many cases, that makes good sense.
+In this case, not having the prefix makes it easier to compare clock tables=
+:
 
+    soc-dts-diff -b drivers/clk/renesas/r9a07g04[34]-cpg.c
+
+(soc-dts-diff ignores the SoC part number, and can be found at
+ https://github.com/geertu/linux-scripts)
+
+> >> +int rzg2l_cpg_sd_mux_clk_notifier(struct notifier_block *nb, unsigned=
+ long event,
+> >> +                                 void *data)
+> >> +{
+> >> +       struct clk_notifier_data *cnd =3D data;
+> >> +       struct clk_hw *hw =3D __clk_get_hw(cnd->clk);
+> >> +       struct clk_hw_data *clk_hw_data =3D to_clk_hw_data(hw);
+> >> +       struct rzg2l_cpg_priv *priv =3D clk_hw_data->priv;
+> >> +       u32 off =3D GET_REG_OFFSET(clk_hw_data->conf);
+> >> +       u32 shift =3D GET_SHIFT(clk_hw_data->conf);
+> >> +       const u32 clk_src_266 =3D 3;
+> >> +       unsigned long flags;
+> >> +       u32 bitmask;
+> >> +       int ret;
+> >> +
+> >> +       if (event !=3D PRE_RATE_CHANGE || (cnd->new_rate / MEGA =3D=3D=
+ 266))
+> >> +               return 0;
+> >> +
+> >> +       spin_lock_irqsave(&priv->rmw_lock, flags);
+> >> +
+> >> +       /*
+> >> +        * As per the HW manual, we should not directly switch from 53=
+3 MHz to
+> >> +        * 400 MHz and vice versa. To change the setting from 2=E2=80=
+=99b01 (533 MHz)
+> >> +        * to 2=E2=80=99b10 (400 MHz) or vice versa, Switch to 2=E2=80=
+=99b11 (266 MHz) first,
+> >> +        * and then switch to the target setting (2=E2=80=99b01 (533 M=
+Hz) or 2=E2=80=99b10
+> >> +        * (400 MHz)).
+> >> +        * Setting a value of '0' to the SEL_SDHI0_SET or SEL_SDHI1_SE=
+T clock
+> >> +        * switching register is prohibited.
+> >> +        * The clock mux has 3 input clocks(533 MHz, 400 MHz, and 266 =
+MHz), and
+> >> +        * the index to value mapping is done by adding 1 to the index=
+.
+> >> +        */
+> >> +       bitmask =3D (GENMASK(GET_WIDTH(clk_hw_data->conf) - 1, 0) << s=
+hift) << 16;
+> >> +       writel(bitmask | (clk_src_266 << shift), priv->base + off);
+> >> +
+> >> +       /* Wait for the update done. */
+> >> +       ret =3D rzg2l_cpg_wait_clk_update_done(priv->base, clk_hw_data=
+->sconf);
+> >> +
+> >> +       spin_unlock_irqrestore(&priv->rmw_lock, flags);
+> >> +
+> >> +       if (ret)
+> >> +               dev_err(priv->dev, "failed to switch to safe clk sourc=
+e\n");
+> >> +
+> >> +       return ret;
+> >> +}
+> >> +
+> >> +static int rzg2l_register_notifier(struct clk_hw *hw, const struct cp=
+g_core_clk *core,
+> >> +                                  struct rzg2l_cpg_priv *priv)
+> >> +{
+> >> +       struct notifier_block *nb;
+> >> +
+> >> +       if (!core->notifier)
+> >> +               return 0;
+> >> +
+> >> +       nb =3D devm_kzalloc(priv->dev, sizeof(*nb), GFP_KERNEL);
+> >> +       if (!nb)
+> >> +               return -ENOMEM;
+> >> +
+> >> +       nb->notifier_call =3D core->notifier;
+> >> +
+> >> +       return clk_notifier_register(hw->clk, nb);
+> >> +}
+> >
+> > I am not sure a notifier is the best solution.  Basically on RZ/G2L,
+> > when changing the parent clock, you need to switch to a fixed
+> > intermediate parent first.
+> > What about just replacing the fixed clk_src_266 in the old
+> > rzg2l_cpg_sd_mux_clk_set_parent() by a (signed) integer in
+> > sd_mux_hw_data (specified in DEF_SD_MUX()), representing the index
+> > of the intermediate clock?
+> > -1 would mean an intermediate parent is not needed.
+>
+> That should work too but .set_rate() will be bulky for both mux and div.
+>
+> The idea was to have the .set_rate() common to the mux and the platform
+> specificities implemented as notifiers and only the needed platforms to
+> instantiate the notifier. And the same approach to be used by the divider
+> (patch "[PATCH 19/37] clk: renesas: rzg2l: add a divider clock for RZ/G3S=
+")
+>
+> With this it looked to me that the final code is more compact .set_rate
+> being simple and platform specificities being implemented in notifier
+> (valid for both MUX and DIV). The infrastructure is already there for
+> notifier to be called before .set_rate().
+
+TBH, I am not that familiar with clock notifiers, so I could use some
+guidance from the clock maintainers.
+
+Mike/Stephen: Are clock notifiers the right approach, here and in
+              [PATCH 19.37]?
+
+> >> --- a/drivers/clk/renesas/rzg2l-cpg.h
+> >> +++ b/drivers/clk/renesas/rzg2l-cpg.h
+> >> @@ -272,4 +278,9 @@ extern const struct rzg2l_cpg_info r9a07g044_cpg_i=
+nfo;
+> >>  extern const struct rzg2l_cpg_info r9a07g054_cpg_info;
+> >>  extern const struct rzg2l_cpg_info r9a09g011_cpg_info;
+> >>
+> >> +int rzg2l_cpg_sd_mux_clk_notifier(struct notifier_block *nb, unsigned=
+ long event, void *data);
+> >> +
+> >> +/* Macros to be used in platform specific initialization code. */
+> >> +#define SD_MUX_NOTIF           (&rzg2l_cpg_sd_mux_clk_notifier)
+> >
+> > Any specific reason you are adding this macro?
+>
+> It looked to me like a better name to be used in platform specific driver=
+s.
+>
+> > What is wrong with using &rzg2l_cpg_sd_mux_clk_notifier directly?
+>
+> Nothing, just that it is a longer than SD_MUX_NOTIF.
+
+It adds another level of indirection for the casual reviewer, and needs
+replacement when an SoC arrives that needs a different SD mux notifier.
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
