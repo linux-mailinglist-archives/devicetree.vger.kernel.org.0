@@ -1,155 +1,192 @@
-Return-Path: <devicetree+bounces-372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 037207A16A3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 08:57:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 852687A16A6
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 08:57:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 096C51C211C4
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 06:57:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A958282699
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 06:57:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0C156AB6;
-	Fri, 15 Sep 2023 06:57:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECD4346AD;
+	Fri, 15 Sep 2023 06:57:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4335562A
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 06:57:12 +0000 (UTC)
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E8612717;
-	Thu, 14 Sep 2023 23:56:48 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-50079d148aeso3049415e87.3;
-        Thu, 14 Sep 2023 23:56:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694761007; x=1695365807; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=MeZKWp0Orf/6vVsLqOgOvydscuIuBOLwH+cYF7rvP0o=;
-        b=f8htH2mTb8Hs+66YwKL2Srb+DmYAIyVnk5Wos+UPTEFMyr4AZxCwjLHFozCTEzJTBn
-         HunLHYLaZlLHLTnCdR5TnMZicMvuew/Mz2bwts9ChuoQwAaZbaF85O6TszYHJR32QjLX
-         zt//SPttZmycKIWsJxN6HdocUHj12rn4+rYz0/DiCiXPoQkfZkzv8MKFYMI99vMQQI/l
-         iGd2OXNPYGsXolt/m8cR7CB5S6pEZyII2x/CTscd/X+6JopTQu3xmdvBntJ0n3csjhoA
-         LnSe91ozKju6eFp1YOryEh0I7buBhhgODPj9zC0r2ezbyO1KiGjmlQazrdulWq39+2/K
-         Jokw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694761007; x=1695365807;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MeZKWp0Orf/6vVsLqOgOvydscuIuBOLwH+cYF7rvP0o=;
-        b=G7yJImYOHG2L0DbrtumjsTxWwerE/tFnuG9OHmNRjbaSN3hfRv/GhjDtkZgA6EpTPg
-         BXQwk7BNX/VNExcfUxFaPG9xGGIC3GFM/+8/0gtERNeSly5T1Qa/0gadfMVFwRnl9Suk
-         JCsxjkKDZQvo9j/n+CGnYMrFurbIyE12HwGweRN4ZQLzw0W81Zu1CIJCAuqLhTcfoeuw
-         iAWfj1nuRnSPmDZg1iKnVfoyd7IWjMmSIOlu6Bx70DZepAf/rjDdMcKrlb2VME7sG+8N
-         fRKKT6KyYot7dMSJ3GwMNG71Odul6yxRCNc6Lxsq4oXfVAO4R841t0cGUAUzV2rJvtrZ
-         5X4g==
-X-Gm-Message-State: AOJu0Yy96Afa0uUJ92ncHGmTtfdN846de55w4RW9mXy838XpYX3GTY6E
-	2wJ/w+rmH8n90gC5Z3SJ+Jo=
-X-Google-Smtp-Source: AGHT+IE9Mjci7c4mVGoy3/H6Rx6GHAPNmnUB2GBHgeEo29EsfvSoDiFiFKhZVVOafIoDI0XKy0l1ZQ==
-X-Received: by 2002:ac2:4f16:0:b0:500:9d4a:8a02 with SMTP id k22-20020ac24f16000000b005009d4a8a02mr917943lfr.62.1694761006659;
-        Thu, 14 Sep 2023 23:56:46 -0700 (PDT)
-Received: from dc78bmyyyyyyyyyyyyybt-3.rev.dnainternet.fi (dc78bmyyyyyyyyyyyyybt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::3])
-        by smtp.gmail.com with ESMTPSA id d6-20020ac25446000000b004fb78959218sm535808lfn.200.2023.09.14.23.56.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Sep 2023 23:56:45 -0700 (PDT)
-Date: Fri, 15 Sep 2023 09:56:40 +0300
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Angel Iglesias <ang.iglesiasg@gmail.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Andreas Klinger <ak@it-klinger.de>,
-	Benjamin Bara <bbara93@gmail.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] MAINTAINERS: Add ROHM BM1390
-Message-ID: <64add46e9ac39e9d4a247eb70aeb25de8f399698.1694760170.git.mazziesaccount@gmail.com>
-References: <cover.1694760170.git.mazziesaccount@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 447D81379
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 06:57:45 +0000 (UTC)
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEAAA2723
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 23:57:11 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id C0D3D1C0006;
+	Fri, 15 Sep 2023 06:57:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1694761030;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=L2sqXGX4RhAKmchQsyxvig/E2PRZhb7DReGQK6xBbNU=;
+	b=k7twtjv6n8Xxz02Bp/gL0ujKol4nOUFVLl0MvEaDXFChS/iA1yTepQVk9WwaOLNPw2n1/r
+	yQSWeM/0zUiQ2/SpYtds6CKKXiyeuqwbYeXgY1A1LrNUCkARLCP23wzd+6WOA/mGTS+oDK
+	8hfeGIrlSkbOuaOZWxiG2mF4EawayP/3IFK5MWfHGydjnYO7rmUX2igpzxeUgMElu6FH6y
+	+BmERYzpRPOYxObcWeuOnycDnkpH25XQqpwYIYy86+Q8aJ7EZzPpMH9KzwZ0q+K0INeATK
+	KtnNflcpBDmb6qWfH6HrTtTqGgOK0d7XDDUjW48AMAef9dA4F6mbxp9u1PMuJA==
+Date: Fri, 15 Sep 2023 08:57:06 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Sandor Yu <sandor.yu@nxp.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, dl-linux-imx
+ <linux-imx@nxp.com>, "linux-phy@lists.infradead.org"
+ <linux-phy@lists.infradead.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "patchwork-lst@pengutronix.de"
+ <patchwork-lst@pengutronix.de>, Richard Leitner
+ <richard.leitner@skidata.com>
+Subject: Re: [EXT] Re: [PATCH v3 2/2] phy: freescale: add Samsung HDMI PHY
+Message-ID: <20230915085706.2452129e@booty>
+In-Reply-To: <PAXPR04MB9448947986184612E67E3E2DF4F6A@PAXPR04MB9448.eurprd04.prod.outlook.com>
+References: <20230906184211.1857585-1-l.stach@pengutronix.de>
+	<20230906184211.1857585-2-l.stach@pengutronix.de>
+	<20230914231610.2c339f7e@booty>
+	<PAXPR04MB9448947986184612E67E3E2DF4F6A@PAXPR04MB9448.eurprd04.prod.outlook.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="V4RmuZANNdioRVWF"
-Content-Disposition: inline
-In-Reply-To: <cover.1694760170.git.mazziesaccount@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: luca.ceresoli@bootlin.com
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hello Sandor, Lucas,
 
---V4RmuZANNdioRVWF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, 15 Sep 2023 01:49:42 +0000
+Sandor Yu <sandor.yu@nxp.com> wrote:
 
-Add myself as a maintainer for ROHM BM1390 pressure sensor driver.
+> Hi Luca, 
+> 
+> > 
+> > Hi Lucas,
+> > 
+> > [+Cc: Sandor]
+> > 
+> > On Wed,  6 Sep 2023 20:42:11 +0200
+> > Lucas Stach <l.stach@pengutronix.de> wrote:
+> >   
+> > > This adds the driver for the Samsung HDMI PHY found on the i.MX8MP
+> > > SoC. Based on downstream implementation from Sandor Yu
+> > > <Sandor.yu@nxp.com>.
+> > >
+> > > Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)  
+> > 
+> > Also for v3:
+> > [On custom board based on MSC SM2S-IMX8PLUS SMARC module]
+> > Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > 
+> > I have a few notes however, see below.
+> >   
+> > > +#define PHY_REG_14           0x38
+> > > +#define  REG14_TOL_MASK              GENMASK(7, 4)
+> > > +#define  REG14_RP_CODE_MASK  GENMASK(2, 1)  
+> > 
+> > According to the latest reference manual currently available on the NXP
+> > website (Rev. 1, 06/2021), this should be GENMASK(3, 1). This is somewhat
+> > nitpicking as the only possible value documented is 2. But let's continue...
+> >   
+> I agree, according the RM it should be GENMASK(3, 1).
+> 
+> > > +#define PHY_REG_33           0x84
+> > > +#define  REG33_MODE_SET_DONE BIT(7)
+> > > +#define  REG33_FIX_DA                BIT(1)  
+> > 
+> > Here the reference manual is very different:
+> > 
+> > MODE_SET_DONE BIT(4)
+> > TX_INV2       BIT(3)
+> > TX_INV1       BIT(2)
+> > TX_INV0       BIT(1)
+> > MON_RXD       BIT(0)
+> > bits 7-5 are reserved
+> > 
+> > ...which is strange: in the code you are always writing 0 in bit 4, which
+> > according to the docs means MODE_SET_DONE is always "Assert forced
+> > global reset". Thus I guess your definitions come from the downstream driver
+> > which, as it sadly happens, is more authoritative than the docs. :-/
+> > 
+> > Sandor, can you confirm this, or provide any clarifications?  
+> 
+> There is a doc issue on the i.MX8MP latest RM, actually the fields for REG33 should be:
+> REG33 fields:
+> --------------------------------------------------------------------------------
+> |    Field	   |       Description
+> --------------------------------------------------------------------------------
+> |     7         | 0 - Assert forced global reset
+> |MODE_SET_DONE | 1 - Release forced global reset             
+> --------------------------------------------------------------------------------
+> |     6        | 0 - There are not any change in 20bit data from TXD2 port     
+> |TX_INV2	       | 1 Invert polarity of 10bit data of 20bit data from TXD2 port
+> --------------------------------------------------------------------------------
+> |     5        | 0 - There are not any change in 20bit data from TXD1 port     
+> |TX_INV1       | 1 - Invert polarity of 10bit data of 20bit data from TXD1 port
+> --------------------------------------------------------------------------------
+> |     4        | 0 - There are not any change in 20bit data from TXD0 port      
+> |TX_INV0       | 1 - Invert polarity of 10bit data of 20bit data from TXD0 port 
+> --------------------------------------------------------------------------------
+> |    3         | 0 : TESTOUT[0] - BIST_ON                                    
+> |MON_RXD     | TESTOUT[1] - BIST_ERROR                                     
+> |              | TESTOUT[2] - DES_CLK_SEL[0]                                 
+> |              | TESTOUT[3] - DES_CLK_SEL[1]                                 
+> |              | TESTOUT[4] - TX_CLK_SEL[0]                                  
+> |              | TESTOUT[5] - TX_CLK_SEL[1]                                  
+> |              | TESTOUT[6] - TX_CLK_SEL[2]                                  
+> |              | TESTOUT[7] - TX_CLK_SEL[3]                                  
+> |              | TESTOUT[8] - PLL_COARSE_LOCK_DONE                           
+> |              | TESTOUT[9] - PLL_FINE_LOCK_DONE                             
+> |              | TESTOUT[10] - Divided by 10 clock (source clock : PIXEL_CLK)
+> |              | TESTOUT[11] - Divided by 10 clock (source clock : TMDS_CLK) 
+> |              | 1 : TESTOUT[0:9] - 10bit of RXDATA                          
+> |              | TESTOUT[10] - Divided by 10 clock (source clock : PIXEL_CLK)
+> |              | TESTOUT[11] - Divided by 10 clock (source clock : TMDS_CLK) 
+> --------------------------------------------------------------------------------
+> |    2         |
+> |FIX_DB        | Disable de-skew function 1 - Select fixed phase 2
+> --------------------------------------------------------------------------------
+> |    1         |
+> |FIX_DA        | Disable de-skew function 1 - Select fixed phase 1
+> --------------------------------------------------------------------------------
+> |    0         | 0 : There are not any change in 20bit data from TESTIN port    
+> |ALTER         | 1: Invert polarity of 10bit data of 20bit data from TESTIN port
+> --------------------------------------------------------------------------------
+> 
+> The issue will be fixed in the next i.MX8MP RM release, sorry for the inconvenience.
 
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+Thanks for the prompt clarification!
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 90f13281d297..91390f571a05 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18563,6 +18563,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/iio/light/bh1750.yaml
- F:	drivers/iio/light/bh1750.c
-=20
-+ROHM BM1390 PRESSURE SENSOR DRIVER
-+M:	Matti Vaittinen <mazziesaccount@gmail.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Supported
-+F:	drivers/iio/pressure/rohm-bm1390.c
-+
- ROHM BU270xx LIGHT SENSOR DRIVERs
- M:	Matti Vaittinen <mazziesaccount@gmail.com>
- L:	linux-iio@vger.kernel.org
---=20
-2.41.0
+I'm not sure whether this should deserve a comment such as "/*
+Reference manual Rev. 1, 06/2021 has incorrect documentation of this
+register */". It depends on the time the fixed RM will take before it's
+public, so up to you Lucas.
 
+Bottom line, I think only the PHY_REG_14 fix is needed to this patch.
 
---=20
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
+Luca
 
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =3D]=20
-
---V4RmuZANNdioRVWF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmUEACgACgkQeFA3/03a
-ocWDvAgAtJCKkEcpE5LcrXINzDOhkAB/yrqOvzUoyssQQZUF+4soeZ+Sz9cuWc/e
-wVU9ECKMF4b9hr9al0Ejyce99QN8q0gGuKg6kT8DvCxxffuvBUQkVi1UW2R16DYh
-i5VavgB4UQny6D32CCdGYO+Hof26Hyr/5S/Bmy0iwQXJpYeXCwzlumZooZ4iHe4e
-YSUQ3+yqtnuqR5qrrPwXbnfivz/x+6X7IuSuy4pLQP2CZ1sM4K7rP5l+FqoQSAdu
-nDFTaB9VCvzVBxJdvPYC6Sb8HMn5iiEa9EeMEFO9w/PjCxc7fpDlj20i4z5ahgM6
-sv/pfkixHvaDZUmHmqf/0O9psmKf9Q==
-=yLJN
------END PGP SIGNATURE-----
-
---V4RmuZANNdioRVWF--
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
