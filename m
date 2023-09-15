@@ -1,181 +1,148 @@
-Return-Path: <devicetree+bounces-543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 192B07A1E6E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:19:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CCCD7A1E7D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:20:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EBDB1C20FA7
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:19:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1703E282633
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:20:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E86CD101FF;
-	Fri, 15 Sep 2023 12:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BABD1078D;
+	Fri, 15 Sep 2023 12:20:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58C628485;
-	Fri, 15 Sep 2023 12:19:50 +0000 (UTC)
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA2852719;
-	Fri, 15 Sep 2023 05:18:35 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso257633266b.1;
-        Fri, 15 Sep 2023 05:18:35 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D985CDDA0
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:20:30 +0000 (UTC)
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C33D8273F
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:20:06 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2bceca8a41aso33586851fa.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:20:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694780314; x=1695385114; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Ymd4KNlOZU8aSyQl8RdaNXFFLMRuv3B/W9dK3PdwrAc=;
-        b=Qe5yvcctpK8hnDXGJ38jjgWhYV3v6RHDBdkO0nF+YfXq9PVr2coBoL1FC1m5/scEMy
-         kXZprRpqwBOBy9juoUxif8pQmYdS+3deoC/o6xWlVE2b9WX0rd/djE34sJbP30twJdX0
-         ThL3bCpth/VDFUywk9+StI7RWYrw8fZJNZ2bDhfUWuKaEL+qMHgw/q2LOu2RDxdSXJ0v
-         hCFQCMPO8MH1sJru57MCWGzLclxerTHHT+ohIpAoum6vVjNqlqYF6E2OcBdhnVdP2RCu
-         Wj+VwU2p0zurszdRvhzpcB5D9DEClPLYCQ8NLclB2EpM77LwiS1Ha1KvmDe9o+u7uy2o
-         tJlA==
+        d=linaro.org; s=google; t=1694780405; x=1695385205; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=52tjejpvxnE8EVFiMbyAusvH4BJALwybD9Pcm4LTKkU=;
+        b=oPX4L/hHHkRvPGad9Q1rYbcez0sv5sc/Q8IXU5t9YF2q/OMWHDS96L9AXIYxiVXl1j
+         d4IISqFLxHvdtvBHQEDRxYfblAmqnaiBNvll7hBHV6BoX6SY7LszjiH0gEq3U8Hqgt88
+         Wh0TrcP8ez7MivCMYSFKrXRWrJBpOLcxKBCnlbw38VKzZYhPF9VA2bRXiH6nHiRfEEDy
+         BBLCdQ8bU2wdpM/PjvsrKbIiH/kDhD4lR9rQHyOyTjq3+62xM9Vglk/MRSuoYhdPPe8B
+         u17WKgO4BZ9RVKFnRjBySYhVNd4hLlb3KWoU5OvaAnv4w4hhRCfZAPlg/yOmdGeGshq/
+         DypA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694780314; x=1695385114;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1694780405; x=1695385205;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ymd4KNlOZU8aSyQl8RdaNXFFLMRuv3B/W9dK3PdwrAc=;
-        b=k1/IAAqTulY0jt4i/1kr2oPXExlBqXGmc5ktHdKcSc+boXeR79Dpf5/Cb0IfYQY2fr
-         A9aR0VuAyOr5KWHeV5WfWC/EgCWVvSmvU+urk2fCvwUnixYtzqbVMkcMyE8f5PnpM5Xc
-         f14yXnBQq8yhkurkdZdIC/UAluBKfLyOe3mmMpb0BetEZ7cTtu4jCoinK3XHVox2087w
-         39imdzquJCjEYiDGH+SH7huBiNAKMokHsvkAMayyth/SQIpv//TalWVg14AlSoUxFdlu
-         o/KNIgqPVOZyZIJ5Kc0AsU3vV6NnOMs0eS8PiV+HSDsjdXBbY9jgSLyPkIkL/AE0MO1O
-         +iRA==
-X-Gm-Message-State: AOJu0Ywc402qpgR3Q++1GqVTulpHJJLtuuWq1xkmG9rjvxopW+V5tPyU
-	zOvqNC57T8Vi2692LyQ3OF0=
-X-Google-Smtp-Source: AGHT+IGIM8mfUCVD2aaq64c6QqJ77AiQF4lLWq19si18HJ2jdi75s8K70DPYuygwVCGIEpJnXsYbrA==
-X-Received: by 2002:a17:906:535d:b0:9a1:fb4c:3b65 with SMTP id j29-20020a170906535d00b009a1fb4c3b65mr1141593ejo.14.1694780313700;
-        Fri, 15 Sep 2023 05:18:33 -0700 (PDT)
-Received: from skbuf ([188.26.56.202])
-        by smtp.gmail.com with ESMTPSA id x7-20020a170906134700b009a0955a7ad0sm2335355ejb.128.2023.09.15.05.18.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Sep 2023 05:18:33 -0700 (PDT)
-Date: Fri, 15 Sep 2023 15:18:30 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	UNGLinuxDriver@microchip.com,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	mithat.guner@xeront.com, erkin.bozoglu@xeront.com,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
-Message-ID: <20230915121830.tmzuxthup7rzewhv@skbuf>
-References: <676d1a2b-6ffa-4aff-8bed-a749c373f5b3@arinc9.com>
- <87325ce9-595a-4dda-a6a1-b5927d25719b@arinc9.com>
- <20230911225126.rk23g3u3bzo3agby@skbuf>
- <036c0763-f1b2-49ff-bc82-1ff16eec27ab@arinc9.com>
- <20230912193450.h5s6miubag46z623@skbuf>
- <6cec079e-991e-4222-a76d-d6156de0daca@arinc9.com>
- <20230913074231.5azwxqjuv2wp5nik@skbuf>
- <ZQHcV5DUfcCYkkTi@shell.armlinux.org.uk>
- <ZQNLkiAt4jOjojRf@shell.armlinux.org.uk>
- <ZQNL0Vy3kMbWlNFl@shell.armlinux.org.uk>
+        bh=52tjejpvxnE8EVFiMbyAusvH4BJALwybD9Pcm4LTKkU=;
+        b=MbLi9v6pu3BvO7MKbjLDz/8QdqMd/zJdHUW/k6U8snrZsgDH1Vc9FypBaExZNmlULE
+         Q5g4Wp/g7mAn9dBY0jaukD8UnTgXmC6qQ/DkdrSWmZIVcpKG0YylM4wIupdyk/foTcTe
+         AgtSAkcBK7udHhBws0pKYe3b11lXipG6+STIKCv5ybXY38rvX6jG7KWKZXn5aYPPlqxK
+         g8ykcXD3e88P4Rwvh87+/sv43BPY4bpHWV1VDVo0pG4pt1mJ2kZ3eDxQZarDiB2NOXCi
+         GfihMVY029Z06BM1YCUS/lmPf8H8EehtGu25KQKjAcEWga+TeFB0wSnAjPOV2YPI5Hyp
+         +wPw==
+X-Gm-Message-State: AOJu0Yz74F94cpS2FSeVlqpEHR5F6jmMS+QjXd5bX3mLEzlGQgFWnr1t
+	zdOrSEWTyWLi5lslq/IBln5y/g==
+X-Google-Smtp-Source: AGHT+IEuaLoRu6BfkkK0RfPqU4MzcognEb/aFkTu1WQhdb96RMqVBnMjoxxbgnJqGTaec9hd0t0CDA==
+X-Received: by 2002:a2e:9f0a:0:b0:2bc:be3c:9080 with SMTP id u10-20020a2e9f0a000000b002bcbe3c9080mr1318797ljk.27.1694780404833;
+        Fri, 15 Sep 2023 05:20:04 -0700 (PDT)
+Received: from ?IPV6:2a00:f41:cbe:bc7d:62a6:5d09:5ba7:be5b? ([2a00:f41:cbe:bc7d:62a6:5d09:5ba7:be5b])
+        by smtp.gmail.com with ESMTPSA id y15-20020a2e978f000000b002bce38190a3sm696858lji.34.2023.09.15.05.19.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Sep 2023 05:20:04 -0700 (PDT)
+Message-ID: <76f3bc23-8677-42bd-a3a5-43b17cbe552e@linaro.org>
+Date: Fri, 15 Sep 2023 14:19:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 01/11] clk: qcom: ipq8074: drop the CLK_SET_RATE_PARENT
+ flag from PLL clocks
+Content-Language: en-US
+To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Sricharan Ramabadhran <quic_srichara@quicinc.com>,
+ Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>,
+ Varadarajan Narayanan <quic_varada@quicinc.com>,
+ Anusha Rao <quic_anusha@quicinc.com>, Devi Priya
+ <quic_devipriy@quicinc.com>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ stable@vger.kernel.org
+References: <20230913-gpll_cleanup-v2-0-c8ceb1a37680@quicinc.com>
+ <20230913-gpll_cleanup-v2-1-c8ceb1a37680@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230913-gpll_cleanup-v2-1-c8ceb1a37680@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZQNL0Vy3kMbWlNFl@shell.armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Russell,
-
-On Thu, Sep 14, 2023 at 07:07:13PM +0100, Russell King (Oracle) wrote:
-> On Thu, Sep 14, 2023 at 07:06:11PM +0100, Russell King (Oracle) wrote:
-> > On Wed, Sep 13, 2023 at 04:59:19PM +0100, Russell King (Oracle) wrote:
-> > > On Wed, Sep 13, 2023 at 10:42:31AM +0300, Vladimir Oltean wrote:
-> > > > On Wed, Sep 13, 2023 at 08:52:37AM +0300, Arınç ÜNAL wrote:
-> > > > > One more thing, I don't recall phy-mode being required to be defined for
-> > > > > user ports as it will default to GMII. I don't believe this is the same
-> > > > > case for shared ports so phy-mode is required only for them?
-> > > > 
-> > > > phy-mode is not strictly required, but I think there is a strong
-> > > > preference to set it. IIRC, when looking at the DSA device trees, there
-> > > > was no case where phy-mode would be absent on CPU/DSA ports if the other
-> > > > link properties were also present, so we required it too. There were no
-> > > > complaints in 1 year since dsa_shared_port_validate_of() is there. The
-> > > > requirement can be relaxed to just a warning and no error in the kernel,
-> > > > and the removal of "required" in the schema, if it helps making it
-> > > > common with user ports.
-> > > 
-> > > However, phylink pretty much requires phy-mode to be specified to be
-> > > something sane for shared ports, so I wouldn't be in favour of relaxing
-> > > the checkinng in dsa_shared_port_validate_of()... not unless you're
-> > > now going to accept the approach I originally proposed to have DSA
-> > > drivers tell the core (and thus phylink) what phy-mode and other link
-> > > parameters should be used when they are missing from DT.
-> > 
-> > You mean the approach that I picked up using software nodes that got
-> > thrown out by the software node people? That approach that I picked
-> > up from you and tried to get merged?
-> > 
-> > No, that's not going to happen, and it's not a question of whether
-> > _I_ am going to accept that approach or not. So don't throw that
-> > back on me, please.
-> > 
-> > If this is something that we want to solve, we need to stop being so
-> > devisive (your language above is so) and try to come up with a
-> > solution that is acceptable to everyone... the swnode approach
-> > doesn't seem to be it.
+On 14.09.2023 08:59, Kathiravan Thirumoorthy wrote:
+> GPLL, NSS crypto PLL clock rates are fixed and shouldn't be scaled based
+> on the request from dependent clocks. Doing so will result in the
+> unexpected behaviour. So drop the CLK_SET_RATE_PARENT flag from the PLL
+> clocks.
 > 
-> Oh dear. I must be going mad!
+> Cc: stable@vger.kernel.org
+> Fixes: b8e7e519625f ("clk: qcom: ipq8074: add remaining PLL’s")
+> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+> ---
+Stephen, do you think there should be some sort of error
+or at least warning thrown when SET_RATE_PARENT is used with
+RO ops?
 
-So first things first: I am not advocating for making phy-mode fully
-optional in the sense that you say (if absent, then write non-OF code
-through which DSA infers the phy-mode from drivers). I'm happy with the
-current form of the code.
-
-I was just trying to add some nuance to this bizarre aspect signalled by
-Arınç - phy-mode is not required for user ports, presumably because when
-it is absent, user ports will default to GMII. That isn't an intrinsic
-feature of user ports, but rather of having a phydev, and so, because
-DSA/CPU ports can also have a phydev, logically it means that phy-mode
-can also be omitted in that particular case, with the same result.
-
-Our missing_phy_mode check from dsa_shared_port_validate_of() is theoretically
-more restrictive than it needs to be, because it artificially prohibits
-that behavior, and it results in an inexplicable difference in the phylink
-dt-bindings for user vs shared ports. So that's where my relaxation
-proposal came from: we could make missing_phy_mode non-fatal, and that
-would permit the configurations which can work to work, and the ones
-which can't work will fail elsewhere. Just like for the user ports.
-
-Where I wasn't absolutely clear is that I don't want Arınç to change any
-of that. Right now, on DSA shared ports, phy-mode is required and on user
-ports it isn't. The difference is a bit strange (arbitrary considering
-the example above) and should maybe be settled at some point in the
-future, but for now, the dt-bindings should document it like that.
+Konrad
 
