@@ -1,125 +1,159 @@
-Return-Path: <devicetree+bounces-399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D08ED7A1744
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:25:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 678547A1745
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:25:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0D6E1C203DB
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 07:25:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92C3C1C2140B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 07:25:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30B2BD285;
-	Fri, 15 Sep 2023 07:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADF25D283;
+	Fri, 15 Sep 2023 07:25:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E5F2D279
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 07:24:52 +0000 (UTC)
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4F961BC9
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 00:24:46 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2bcb89b4767so27385851fa.3
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 00:24:46 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E12C5D27B
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 07:25:02 +0000 (UTC)
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AB8BA1;
+	Fri, 15 Sep 2023 00:25:01 -0700 (PDT)
+Received: by mail-oo1-xc29.google.com with SMTP id 006d021491bc7-57358a689d2so1089353eaf.2;
+        Fri, 15 Sep 2023 00:25:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694762685; x=1695367485; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BRVUxrzWSNf4X4G5XhrnO7+YTsERSGVJqcBKf82PDow=;
-        b=wuXq56X/7R0rorv4p7eJ18zrkwxBN4wVhb166mNFCxH5ra8veLmLUriAlJirjVMMTH
-         Kg67D6QY5YBdAzZTaOa7proveCJJKNCgl1XF0kD1EcY6gJP7gThwnFWVg3uUrLCTbdc3
-         RHnrCCHbiOdvoCZWJR1AlYREBWr330H8RaseikEaYZWvZL/OYmVAHkiFQQ4zWiP2zHBp
-         sq75EjgeL1NY9lljo8dbHnb/FHQWoMM36S8UzEkX3FTuYyBDqIr7bYWm78jrx2TDIycA
-         Anw4/OCOJL63f2R435dt3E3aRbBUb1GQq8zoySUCJ4ho8GsA4IeHhtoNVA430craQE4h
-         cFKQ==
+        d=gmail.com; s=20230601; t=1694762700; x=1695367500; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iVUDT6l1ChAeIi0RC+WcBnGHyj8AAnCtHrqteS2EV7o=;
+        b=V3MY1Ywpcabxzlg0aq6AwBESyDQjCHYHlzKYqG3IsobzCfFCGZpQtecpFH5VBo3psK
+         ak3Fb1MVuDrnledXuFEk1oqAwKJeV4ak+o63gFpDdfanmTKOgdFLTgZF7dKMGSdWNbVe
+         teDJHJO83/FBvTBxc8mevc+VBuRXCE2/S05k25GmTRi3VHe8PY4xrfANriLzd7vlQjqx
+         a/kw6iZUfgf8UsvO6pnEUno+EVKPZc0G2rbDaRXHrYUN88eKA2QtoW7a/ndaUcyAPiZ3
+         klR6wclQLxeVtopM045djYGnfTgz+NsVVOjO+7ZHze9rG06EqpUsHSauQnVXtotxMNXF
+         pUhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694762685; x=1695367485;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BRVUxrzWSNf4X4G5XhrnO7+YTsERSGVJqcBKf82PDow=;
-        b=Bpuuq/vCXxpuU3Zh2BixGpKfiQ4WGYW9dCKWZSXGp26chtuVhWL8GvugGN8+SXyEhX
-         aLtSBbq69V06cNuuJYdMwU+PrXBAe1GwK535btomtTTv77ylwUlXf7TBY3A1SbpwMynk
-         GVKSaw4pdW1vLq9C+qPdr1mthdsWU68MIB8pNaHRksU8gIoRFPPtps1wIJgCANXmAyO/
-         2XZwD1rVzMhr8KIwJrfKLkPeflJ2J7yLQ9nns39pROCrzijpJWdnp7VDhKCG5IOh7fbL
-         TEPaK5NeIcLUptY1/q8euIMU8Pcni+R4GFKv/t4F3E/htQpAxW1s3VWA5CIM/ynmNCAj
-         +CqA==
-X-Gm-Message-State: AOJu0YzXIt9R22/MnRWyNkAu7xbROQYVolcz/p+4ao+kat8Ut5Ev8AtO
-	f6BuYIGbVoW2WSIC6KTzRmTTYA==
-X-Google-Smtp-Source: AGHT+IGsyFGl3ShsoIVQDC6tL2uthtFYR1zLnmKmxUvMkJKuE45n7hu3NNEjQ1tFcwkD+8okp5gr2A==
-X-Received: by 2002:a2e:a285:0:b0:2bc:f4ee:ca57 with SMTP id k5-20020a2ea285000000b002bcf4eeca57mr704099lja.48.1694762685121;
-        Fri, 15 Sep 2023 00:24:45 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id fi26-20020a170906da1a00b0099bc8db97bcsm1995609ejb.131.2023.09.15.00.24.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 00:24:44 -0700 (PDT)
-Message-ID: <c199fb5e-927c-aa39-ff3a-3a7906fadec0@linaro.org>
-Date: Fri, 15 Sep 2023 09:24:41 +0200
+        d=1e100.net; s=20230601; t=1694762700; x=1695367500;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iVUDT6l1ChAeIi0RC+WcBnGHyj8AAnCtHrqteS2EV7o=;
+        b=BJMwAUKA+bguTPWOZGLkNLJ52LlRnRPPUfX/EGbuKHvvGOLga5iwfFT9VFLTlLnSlB
+         KLEvL22ZOuXFrx16u2dcfnE3aeNf3E0D4inLpBnFT6SNl64T13O3KwtUWBbT5jtS8KvA
+         BeCDJBi3NOGIzLzcy/GSGPDhPX1LS6xOjwO9kB0Zs5g7Mgqvq3SPoyebe+nqdVsFG8vU
+         nA1Md8+GXf4fr6eehBF0bbhJnAzuV3AsqMpMfqGLvtPySIz9QKhoQKACyFA+J0F7BeVb
+         OaupfHfU5/1NCsf++1wP4sPeP+LlpDB+H0Bebu+MU1C9aVMVtNrkPmLHtmEHXceYnWCi
+         dncw==
+X-Gm-Message-State: AOJu0YxMMXpxJk15E6twLTynUgsYgRdHBGCCDYzcEhLp1eJeLnPdW/mB
+	kZ+WjCoi7Xlf61X4r0wd4nuO3pKM3NJN3A==
+X-Google-Smtp-Source: AGHT+IGRLqRmoi2bf3u+M2EgyNuwEZFJdJ+tXdS9Q7q1+tkpKnPWtQYrlA1xI42427rGwp5xsUjCSg==
+X-Received: by 2002:a05:6870:5803:b0:1b3:8cfb:78c5 with SMTP id r3-20020a056870580300b001b38cfb78c5mr1029357oap.34.1694762700635;
+        Fri, 15 Sep 2023 00:25:00 -0700 (PDT)
+Received: from localhost.localdomain ([222.95.63.58])
+        by smtp.gmail.com with ESMTPSA id c10-20020a63a40a000000b0056b6d1ac949sm2131946pgf.13.2023.09.15.00.24.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Sep 2023 00:25:00 -0700 (PDT)
+From: Wang Chen <unicornxw@gmail.com>
+X-Google-Original-From: Wang Chen <wangchen20@iscas.ac.cn>
+To: linux-riscv@lists.infradead.org,
+	conor@kernel.org,
+	aou@eecs.berkeley.edu,
+	krzysztof.kozlowski+dt@linaro.org,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	robh+dt@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	jszhang@kernel.org,
+	guoren@kernel.org,
+	chao.wei@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	Wang Chen <wangchen20@iscas.ac.cn>,
+	Inochi Amaoto <inochiama@outlook.com>
+Subject: [PATCH 08/12] riscv: dts: sophgo: add Milk-V Pioneer board device tree
+Date: Fri, 15 Sep 2023 15:24:51 +0800
+Message-Id: <20230915072451.118209-1-wangchen20@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 21/37] dt-bindings: clock: add r9a08g045 CPG clocks and
- resets definitions
-Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>
-Cc: Claudiu <claudiu.beznea@tuxon.dev>, mturquette@baylibre.com,
- sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- ulf.hansson@linaro.org, linus.walleij@linaro.org,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, magnus.damm@gmail.com,
- catalin.marinas@arm.com, will@kernel.org,
- prabhakar.mahadev-lad.rj@bp.renesas.com, biju.das.jz@bp.renesas.com,
- quic_bjorande@quicinc.com, arnd@arndb.de, konrad.dybcio@linaro.org,
- neil.armstrong@linaro.org, nfraprado@collabora.com, rafal@milecki.pl,
- wsa+renesas@sang-engineering.com, linux-renesas-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
- <20230912045157.177966-22-claudiu.beznea.uj@bp.renesas.com>
- <20230912160330.GA864606-robh@kernel.org>
- <CAMuHMdWxKFrTi7c0Df0cHLrVFt3=a7UOy0jnKxsG8PEuD=15Pg@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMuHMdWxKFrTi7c0Df0cHLrVFt3=a7UOy0jnKxsG8PEuD=15Pg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
 	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 14/09/2023 17:26, Geert Uytterhoeven wrote:
-> Hi Rob,
-> 
-> On Tue, Sep 12, 2023 at 6:03 PM Rob Herring <robh@kernel.org> wrote:
->> On Tue, Sep 12, 2023 at 07:51:41AM +0300, Claudiu wrote:
->>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>
->>> Add RZ/G3S (R9A08G045) Clock Pulse Generator (CPG) core clocks, module
->>> clocks and resets.
->>
->> This is part of the binding, so it can be squashed with the previous
->> patch. The ack there still stands.
-> 
-> Usually we keep it as a separate patch, to be queued in an immutable
-> branch, as it is included by both the clock driver and by DTS, but
-> not by the yaml bindings file.
+Milk-V Pioneer [1] is a developer motherboard based on SOPHON
+SG2042 in a standard mATX form factor. It is a good
+choice for RISC-V developers and hardware pioneers to
+experience the cutting edge technology of RISC-V.
 
-Binding also should be shared, so you get compatible documented in both
-places (thus lack of checkpatch warnings). It still should be one patch.
+Currently only support booting into console with only uart
+enabled, other features will be added soon later.
 
-Best regards,
-Krzysztof
+[1]: https://milkv.io/pioneer
+
+Signed-off-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
+Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+Signed-off-by: Wang Chen <wangchen20@iscas.ac.cn>
+---
+ arch/riscv/boot/dts/Makefile                     |  1 +
+ arch/riscv/boot/dts/sophgo/Makefile              |  3 +++
+ .../boot/dts/sophgo/sg2042-milkv-pioneer.dts     | 16 ++++++++++++++++
+ 3 files changed, 20 insertions(+)
+ create mode 100644 arch/riscv/boot/dts/sophgo/Makefile
+ create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
+
+diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
+index f60a280abb15..94788486f13e 100644
+--- a/arch/riscv/boot/dts/Makefile
++++ b/arch/riscv/boot/dts/Makefile
+@@ -6,5 +6,6 @@ subdir-y += renesas
+ subdir-y += sifive
+ subdir-y += starfive
+ subdir-y += thead
++subdir-y += sophgo
+ 
+ obj-$(CONFIG_BUILTIN_DTB) := $(addsuffix /, $(subdir-y))
+diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/sophgo/Makefile
+new file mode 100644
+index 000000000000..5a471b19df22
+--- /dev/null
++++ b/arch/riscv/boot/dts/sophgo/Makefile
+@@ -0,0 +1,3 @@
++# SPDX-License-Identifier: GPL-2.0
++dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-milkv-pioneer.dtb
++
+diff --git a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
+new file mode 100644
+index 000000000000..4f480ff88fbd
+--- /dev/null
++++ b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
+@@ -0,0 +1,16 @@
++// SPDX-License-Identifier: GPL-2.0 OR MIT
++/*
++ * Copyright (C) 2022 Sophgo Technology Inc. All rights reserved.
++ */
++
++#include "sg2042.dtsi"
++
++/ {
++	model = "Milk-V Pioneer";
++	compatible = "milkv,pioneer", "sophgo,sg2042";
++
++	info {
++		file-name = "sg2042-milkv-pioneer.dts";
++	};
++};
++
+-- 
+2.25.1
 
 
