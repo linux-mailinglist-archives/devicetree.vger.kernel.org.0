@@ -1,395 +1,162 @@
-Return-Path: <devicetree+bounces-476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B26F7A1B9C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:01:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AEEB7A1B9F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:01:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5043B282686
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 10:01:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B93AB2826A6
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 10:01:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC75DDF55;
-	Fri, 15 Sep 2023 10:00:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB633FBFA;
+	Fri, 15 Sep 2023 10:00:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BF04DF51;
-	Fri, 15 Sep 2023 10:00:51 +0000 (UTC)
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E323C14;
-	Fri, 15 Sep 2023 02:57:25 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-502defbb0c3so3309920e87.0;
-        Fri, 15 Sep 2023 02:57:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694771843; x=1695376643; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rbpN2Ho6gZz+bg7rv1Ni5awvz2WgkEY58LCWW52O/G4=;
-        b=LT87BZc9RW2Egvti9Tesi1ouNE6XecN6h/Acm8DJp8qLeZWVmjf+zoSriISz9nDmVc
-         L/aDDOZmR7IGFnqxUI+NwRyAYrDvSg6P9ByKZ8i3hd+5rkPue3g+kxIzPjjHbL3TI5BB
-         jYo+6iIAsgJubrZkINfsTWNno4y//9gHurtCe/WKzweYlDrrHMPTmzWuXjd/TByO242K
-         8JiA2RVSBn3ABcg2YbGFSUnMgd586CfSW8r+e+tTcV1ObMqI+pghgkBfeD3KxW+JTBuL
-         JzouqOgEz3BTSboP6QWN4PSXH0LZAVeGxSRRceqTLRifjAaafOOWsFnEqTHlaBhjxMfo
-         jcUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694771843; x=1695376643;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rbpN2Ho6gZz+bg7rv1Ni5awvz2WgkEY58LCWW52O/G4=;
-        b=oEoaiepiqHtb9dlQZM1D1sUDoofxsT6cUefixCyMjEE/RJati+uHE/4Bq85jTZrG4X
-         wpSDRj8wyz8eSI2nRpqoW46PQVz6uBnIf1nSRjp8HfJsJ/6STnxCuxW5uD9gDulTMJB1
-         FCAwcHSDLokPbA6ClqAPf7pJ5h+m266IvN7fOLo8d8B15+UuFwKgXARUE4crWHig3CaP
-         pEijOJoXBYVMVVuqoDLhoqEiDGbVzn2hWx/H6l/W1HaI4Q8d3/nkm/j8uBOS5M2pzDA+
-         4Az/7LU0Y2FcfxwH6/la0oTLCssFm019A2DWBMD7b+NGgUbyIn/LQ3sTOyzCEKhoie7+
-         g9TA==
-X-Gm-Message-State: AOJu0YyD5vGSv4GekHTyXQg7A4eGLPTCx64U5LOkaQwVbtBpmYjyJd2Q
-	OPABVcZQZYOWB9F19ahJ2P4=
-X-Google-Smtp-Source: AGHT+IH15RoWDqQKC7/XFJYf4pZr+2QRb6MA8O/Rr033sqFSZ+UoHtgT2rNuzO5Ej35UpOpFnIVetg==
-X-Received: by 2002:a05:6512:3f11:b0:4ff:9bd9:f69a with SMTP id y17-20020a0565123f1100b004ff9bd9f69amr1214496lfa.65.1694771842514;
-        Fri, 15 Sep 2023 02:57:22 -0700 (PDT)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id n3-20020ac24903000000b005008f58228bsm579174lfi.190.2023.09.15.02.57.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Sep 2023 02:57:22 -0700 (PDT)
-Date: Fri, 15 Sep 2023 12:57:20 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Keguang Zhang <keguang.zhang@gmail.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Subject: Re: [PATCH v5 3/3] net: stmmac: Add glue layer for Loongson-1 SoC
-Message-ID: <ub3qzam3fyxghjcyxwwlmq6lbpqkohkjd2g6vlnovrtlwjovys@2n6iwa6ck2ms>
-References: <20230914114435.481900-1-keguang.zhang@gmail.com>
- <20230914114435.481900-4-keguang.zhang@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CF62DF56
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 10:00:54 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F12912D77;
+	Fri, 15 Sep 2023 02:58:17 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38F6fTpL022594;
+	Fri, 15 Sep 2023 09:58:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=O2ltSwAUi5DTn1NPduao40RCeYP4memzJu1C30yBptQ=;
+ b=YH7IvOSDzsMsza2FLr10/uDJBw6X8wymtZMwm4ezvv9UuPboK5N2adYYAFsdNCNVUW0d
+ /M+JDlVGRsqTBh5GRkNIykYFuyYvJ9H/YKANfNVohKkAgTcS4bM2ScF/AZZDmp3tC2Mg
+ kjpgfZ1MSK4EbEAgrmUNk6Xtfp1BCoOjIzw6jyuCtuHn3EGQ91o0myFVcHvAlRmPPJX7
+ bhpC8x3fBGLHH05cSVvVAtJ/3X11K5dY/bfONLKyl6AC4z8fSYEhBtYtZ2GMARv3Ln4/
+ 30/iFeRUQoanz07VdqgiYRxaXzM/OLG/LhYO91n9n8wj+yGYmwvrWguqJLPYvJQhdR3U gg== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t4g070rav-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Sep 2023 09:58:02 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38F9w2vq026994
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Sep 2023 09:58:02 GMT
+Received: from [10.253.32.174] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 15 Sep
+ 2023 02:57:58 -0700
+Message-ID: <a1bb3ba8-0e46-c266-2cac-a45ab478032e@quicinc.com>
+Date: Fri, 15 Sep 2023 17:57:54 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230914114435.481900-4-keguang.zhang@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v6 4/4] clk: qcom: add clock controller driver for
+ qca8386/qca8084
+Content-Language: en-US
+To: Stephen Boyd <sboyd@kernel.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <catalin.marinas@arm.com>,
+        <conor+dt@kernel.org>, <konrad.dybcio@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+        <p.zabel@pengutronix.de>, <robh+dt@kernel.org>, <will@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_srichara@quicinc.com>
+References: <20230901091823.30242-1-quic_luoj@quicinc.com>
+ <20230901091823.30242-5-quic_luoj@quicinc.com>
+ <27ae3297ad161fd67706db70b402db04.sboyd@kernel.org>
+ <16d09acf-7bdd-04ee-6faf-936c0366df03@quicinc.com>
+ <17681a9f756cc70a190c674c51b90140.sboyd@kernel.org>
+ <5a4805f7-f802-b1ba-9804-59c0fe6c7f26@quicinc.com>
+ <92058c25fb11b75ee0a2298a684825e9.sboyd@kernel.org>
+ <f67b354c-8a4b-49f5-6275-66b7d614301a@quicinc.com>
+ <82adb75659e0d278e25b65b0e81df99a.sboyd@kernel.org>
+ <9952fa20-a27f-3240-cc49-5c5109febfc1@quicinc.com>
+ <580f3934ab1171e27d785db7362c342d.sboyd@kernel.org>
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <580f3934ab1171e27d785db7362c342d.sboyd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: JOaKFwz-EPgPvmgH2Avg06GT5vGa4hU9
+X-Proofpoint-ORIG-GUID: JOaKFwz-EPgPvmgH2Avg06GT5vGa4hU9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-15_05,2023-09-14_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 clxscore=1015 phishscore=0 spamscore=0 mlxscore=0
+ adultscore=0 suspectscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309150087
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, Sep 14, 2023 at 07:44:35PM +0800, Keguang Zhang wrote:
-> This glue driver is created based on the arch-code
-> implemented earlier with the platform-specific settings.
-> 
-> Use syscon for SYSCON register access.
-> 
-> And modify MAINTAINERS to add a new F: entry for this driver.
-> 
-> Partially based on the previous work by Serge Semin.
-> 
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
 
-Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 
--Serge(y)
+On 9/15/2023 12:30 AM, Stephen Boyd wrote:
+> Quoting Jie Luo (2023-09-12 20:27:25)
+>>
+>>
+>> On 9/13/2023 1:18 AM, Stephen Boyd wrote:
+>>> Quoting Jie Luo (2023-09-12 05:07:02)
+>>>>
+>>>> and freq_tbl are necessary to this clock.
+>>>
+>>> I still don't see why the freq_tbl is necessary.
+>>
+>> Hi Stephen,
+>> For clk_rcg2_ops, freq_tbl is used to find the closest rate to decided
+>> the parent clock, the configuration of clock source and clock divider
+>> are saved in the freq_tbl to configure the RCG hardware register, the
+>> mapping of parent clock and hardware register value is decided by the
+>> freq_tbl for the RCG clock.
+> 
+> The divider is always 1. The frequency is the frequency of the parent.
+> The two pieces of information are already known without the frequency
+> table. Why is it needed?
 
-> ---
-> V4 -> V5: Replace stmmac_probe_config_dt() with devm_stmmac_probe_config_dt()
->           Replace stmmac_pltfr_probe() with devm_stmmac_pltfr_probe()
->           Add a new F: entry for this driver.
-> V3 -> V4: Drop ls1x_dwmac_syscon definition and its instances
->           Drop three redundant fields from the ls1x_dwmac structure
->           Drop the ls1x_dwmac_init() method.
->           Some minor improvements
-> V2 -> V3: Determine the device ID by physical
->           base address(suggested by Serge Semin)
->           Use regmap instead of regmap fields
->           Use syscon_regmap_lookup_by_phandle()
->           Some minor fixes
-> V1 -> V2: Fix the build errors due to CONFIG_OF being unset
->           Change struct reg_field definitions to const
->           Rename the syscon property to "loongson,dwmac-syscon"
->           Add MII PHY mode for LS1C
-> 
->  MAINTAINERS                                   |   1 +
->  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 +
->  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
->  .../ethernet/stmicro/stmmac/dwmac-loongson1.c | 209 ++++++++++++++++++
->  4 files changed, 222 insertions(+)
->  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e514b53fb225..b71aff479a8c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14383,6 +14383,7 @@ F:	Documentation/devicetree/bindings/*/loongson,ls1*.yaml
->  F:	arch/mips/include/asm/mach-loongson32/
->  F:	arch/mips/loongson32/
->  F:	drivers/*/*loongson1*
-> +F:	drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
->  
->  MIPS/LOONGSON2EF ARCHITECTURE
->  M:	Jiaxun Yang <jiaxun.yang@flygoat.com>
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> index 06c6871f8788..a2b9e289aa36 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> @@ -239,6 +239,17 @@ config DWMAC_INTEL_PLAT
->  	  the stmmac device driver. This driver is used for the Intel Keem Bay
->  	  SoC.
->  
-> +config DWMAC_LOONGSON1
-> +	tristate "Loongson1 GMAC support"
-> +	default MACH_LOONGSON32
-> +	depends on OF && (MACH_LOONGSON32 || COMPILE_TEST)
-> +	help
-> +	  Support for ethernet controller on Loongson1 SoC.
-> +
-> +	  This selects Loongson1 SoC glue layer support for the stmmac
-> +	  device driver. This driver is used for Loongson1-based boards
-> +	  like Loongson LS1B/LS1C.
-> +
->  config DWMAC_TEGRA
->  	tristate "NVIDIA Tegra MGBE support"
->  	depends on ARCH_TEGRA || COMPILE_TEST
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-> index 5b57aee19267..80e598bd4255 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-> +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-> @@ -29,6 +29,7 @@ obj-$(CONFIG_DWMAC_SUNXI)	+= dwmac-sunxi.o
->  obj-$(CONFIG_DWMAC_SUN8I)	+= dwmac-sun8i.o
->  obj-$(CONFIG_DWMAC_DWC_QOS_ETH)	+= dwmac-dwc-qos-eth.o
->  obj-$(CONFIG_DWMAC_INTEL_PLAT)	+= dwmac-intel-plat.o
-> +obj-$(CONFIG_DWMAC_LOONGSON1)	+= dwmac-loongson1.o
->  obj-$(CONFIG_DWMAC_GENERIC)	+= dwmac-generic.o
->  obj-$(CONFIG_DWMAC_IMX8)	+= dwmac-imx.o
->  obj-$(CONFIG_DWMAC_TEGRA)	+= dwmac-tegra.o
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
-> new file mode 100644
-> index 000000000000..3e86810717d3
-> --- /dev/null
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
-> @@ -0,0 +1,209 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Loongson-1 DWMAC glue layer
-> + *
-> + * Copyright (C) 2011-2023 Keguang Zhang <keguang.zhang@gmail.com>
-> + */
-> +
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#include "stmmac.h"
-> +#include "stmmac_platform.h"
-> +
-> +#define LS1B_GMAC0_BASE		(0x1fe10000)
-> +#define LS1B_GMAC1_BASE		(0x1fe20000)
-> +
-> +/* Loongson-1 SYSCON Registers */
-> +#define LS1X_SYSCON0		(0x0)
-> +#define LS1X_SYSCON1		(0x4)
-> +
-> +/* Loongson-1B SYSCON Register Bits */
-> +#define GMAC1_USE_UART1		BIT(4)
-> +#define GMAC1_USE_UART0		BIT(3)
-> +
-> +#define GMAC1_SHUT		BIT(13)
-> +#define GMAC0_SHUT		BIT(12)
-> +
-> +#define GMAC1_USE_TXCLK		BIT(3)
-> +#define GMAC0_USE_TXCLK		BIT(2)
-> +#define GMAC1_USE_PWM23		BIT(1)
-> +#define GMAC0_USE_PWM01		BIT(0)
-> +
-> +/* Loongson-1C SYSCON Register Bits */
-> +#define GMAC_SHUT		BIT(6)
-> +
-> +#define PHY_INTF_SELI		GENMASK(30, 28)
-> +#define PHY_INTF_MII		FIELD_PREP(PHY_INTF_SELI, 0)
-> +#define PHY_INTF_RMII		FIELD_PREP(PHY_INTF_SELI, 4)
-> +
-> +struct ls1x_dwmac {
-> +	struct plat_stmmacenet_data *plat_dat;
-> +	struct regmap *regmap;
-> +};
-> +
-> +static int ls1b_dwmac_syscon_init(struct platform_device *pdev, void *priv)
-> +{
-> +	struct ls1x_dwmac *dwmac = priv;
-> +	struct plat_stmmacenet_data *plat = dwmac->plat_dat;
-> +	struct regmap *regmap = dwmac->regmap;
-> +	struct resource *res;
-> +	unsigned long reg_base;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	if (!res) {
-> +		dev_err(&pdev->dev, "Could not get IO_MEM resources\n");
-> +		return -EINVAL;
-> +	}
-> +	reg_base = (unsigned long)res->start;
-> +
-> +	if (reg_base == LS1B_GMAC0_BASE) {
-> +		switch (plat->phy_interface) {
-> +		case PHY_INTERFACE_MODE_RGMII_ID:
-> +			regmap_update_bits(regmap, LS1X_SYSCON0,
-> +					   GMAC0_USE_TXCLK | GMAC0_USE_PWM01,
-> +					   0);
-> +			break;
-> +		case PHY_INTERFACE_MODE_MII:
-> +			regmap_update_bits(regmap, LS1X_SYSCON0,
-> +					   GMAC0_USE_TXCLK | GMAC0_USE_PWM01,
-> +					   GMAC0_USE_TXCLK | GMAC0_USE_PWM01);
-> +			break;
-> +		default:
-> +			dev_err(&pdev->dev, "Unsupported PHY mode %u\n",
-> +				plat->phy_interface);
-> +			return -EOPNOTSUPP;
-> +		}
-> +
-> +		regmap_update_bits(regmap, LS1X_SYSCON0, GMAC0_SHUT, 0);
-> +	} else if (reg_base == LS1B_GMAC1_BASE) {
-> +		regmap_update_bits(regmap, LS1X_SYSCON0,
-> +				   GMAC1_USE_UART1 | GMAC1_USE_UART0,
-> +				   GMAC1_USE_UART1 | GMAC1_USE_UART0);
-> +
-> +		switch (plat->phy_interface) {
-> +		case PHY_INTERFACE_MODE_RGMII_ID:
-> +			regmap_update_bits(regmap, LS1X_SYSCON1,
-> +					   GMAC1_USE_TXCLK | GMAC1_USE_PWM23,
-> +					   0);
-> +
-> +			break;
-> +		case PHY_INTERFACE_MODE_MII:
-> +			regmap_update_bits(regmap, LS1X_SYSCON1,
-> +					   GMAC1_USE_TXCLK | GMAC1_USE_PWM23,
-> +					   GMAC1_USE_TXCLK | GMAC1_USE_PWM23);
-> +			break;
-> +		default:
-> +			dev_err(&pdev->dev, "Unsupported PHY mode %u\n",
-> +				plat->phy_interface);
-> +			return -EOPNOTSUPP;
-> +		}
-> +
-> +		regmap_update_bits(regmap, LS1X_SYSCON1, GMAC1_SHUT, 0);
-> +	} else {
-> +		dev_err(&pdev->dev, "Invalid Ethernet MAC base address %lx",
-> +			reg_base);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int ls1c_dwmac_syscon_init(struct platform_device *pdev, void *priv)
-> +{
-> +	struct ls1x_dwmac *dwmac = priv;
-> +	struct plat_stmmacenet_data *plat = dwmac->plat_dat;
-> +	struct regmap *regmap = dwmac->regmap;
-> +
-> +	switch (plat->phy_interface) {
-> +	case PHY_INTERFACE_MODE_MII:
-> +		regmap_update_bits(regmap, LS1X_SYSCON1, PHY_INTF_SELI,
-> +				   PHY_INTF_MII);
-> +		break;
-> +	case PHY_INTERFACE_MODE_RMII:
-> +		regmap_update_bits(regmap, LS1X_SYSCON1, PHY_INTF_SELI,
-> +				   PHY_INTF_RMII);
-> +		break;
-> +	default:
-> +		dev_err(&pdev->dev, "Unsupported PHY-mode %u\n",
-> +			plat->phy_interface);
-> +		return -EOPNOTSUPP;
-> +	}
-> +
-> +	regmap_update_bits(regmap, LS1X_SYSCON0, GMAC0_SHUT, 0);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ls1x_dwmac_probe(struct platform_device *pdev)
-> +{
-> +	struct plat_stmmacenet_data *plat_dat;
-> +	struct stmmac_resources stmmac_res;
-> +	struct regmap *regmap;
-> +	struct ls1x_dwmac *dwmac;
-> +	int (*init)(struct platform_device *pdev, void *priv);
-> +	int ret;
-> +
-> +	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Probe syscon */
-> +	regmap = syscon_regmap_lookup_by_phandle(pdev->dev.of_node,
-> +						 "loongson,ls1-syscon");
-> +	if (IS_ERR(regmap))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(regmap),
-> +				     "Unable to find syscon\n");
-> +
-> +	init = of_device_get_match_data(&pdev->dev);
-> +	if (!init) {
-> +		dev_err(&pdev->dev, "No of match data provided\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac), GFP_KERNEL);
-> +	if (!dwmac)
-> +		return -ENOMEM;
-> +
-> +	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
-> +	if (IS_ERR(plat_dat))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(plat_dat),
-> +				     "dt configuration failed\n");
-> +
-> +	plat_dat->bsp_priv = dwmac;
-> +	plat_dat->init = init;
-> +	dwmac->plat_dat = plat_dat;
-> +	dwmac->regmap = regmap;
-> +
-> +	return devm_stmmac_pltfr_probe(pdev, plat_dat, &stmmac_res);
-> +}
-> +
-> +static const struct of_device_id ls1x_dwmac_match[] = {
-> +	{
-> +		.compatible = "loongson,ls1b-gmac",
-> +		.data = &ls1b_dwmac_syscon_init,
-> +	},
-> +	{
-> +		.compatible = "loongson,ls1c-emac",
-> +		.data = &ls1c_dwmac_syscon_init,
-> +	},
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, ls1x_dwmac_match);
-> +
-> +static struct platform_driver ls1x_dwmac_driver = {
-> +	.probe = ls1x_dwmac_probe,
-> +	.driver = {
-> +		.name = "loongson1-dwmac",
-> +		.of_match_table = ls1x_dwmac_match,
-> +	},
-> +};
-> +module_platform_driver(ls1x_dwmac_driver);
-> +
-> +MODULE_AUTHOR("Keguang Zhang <keguang.zhang@gmail.com>");
-> +MODULE_DESCRIPTION("Loongson-1 DWMAC glue layer");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.39.2
-> 
-> 
+Hi Stephen,
+For mac0 and mac5 RCG clock, it is true with divider 1, since these two 
+MACs are connected with CPU port, which is always the fix link speed, 
+the clock rate is always 312.5M or 125M, in this case with multiple 
+parent clocks and divider 1, it seems there is no special RCG clock ops 
+for it currently, so we leverage the clock ops clk_rcg2_ops.
+
+For other MACs(1-4), which are connected with physical port, the link 
+speed is dynamically changed, and the divider is different for the 
+different link speed, such as the mac1 clock freq table as below.
+
+static const struct freq_tbl ftbl_nss_cc_mac1_tx_clk_src[] = { 
+
+         F(25000000, P_UNIPHY1_TX312P5M, 12.5, 0, 0), 
+
+         F(25000000, P_UNIPHY1_RX312P5M, 12.5, 0, 0), 
+
+         F(50000000, P_XO, 1, 0, 0), 
+
+         F(125000000, P_UNIPHY1_TX312P5M, 2.5, 0, 0), 
+
+         F(125000000, P_UNIPHY1_RX312P5M, 2.5, 0, 0), 
+
+         F(312500000, P_UNIPHY1_TX312P5M, 1, 0, 0), 
+
+         F(312500000, P_UNIPHY1_RX312P5M, 1, 0, 0), 
+
+         { } 
+
+};
+
+Thanks,
+Jie.
 
