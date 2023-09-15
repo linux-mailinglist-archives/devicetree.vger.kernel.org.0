@@ -1,42 +1,42 @@
-Return-Path: <devicetree+bounces-439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F3F17A1859
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 10:14:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F7987A185A
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 10:14:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27A8E1C20C46
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 08:13:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2CEB51C20BC1
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 08:14:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCE23DDB8;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F13CEDDBB;
 	Fri, 15 Sep 2023 08:12:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A55AD532
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67D89D53A
 	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 08:12:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 365D5C433A9;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A4BABC43140;
 	Fri, 15 Sep 2023 08:12:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1694765530;
-	bh=q1y1LUFdDnGQH4qvwK5IKAkJkFhvkIczChaZ3J9onWg=;
+	bh=4OBBCt4I+OvckI2BXU4P/l9PgpZZNlxQSqX88I+eG3E=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=abES1oLuMvJhaI4UMZJwkMwPAar8ulduZBOqmCeVL9hh6fE11Bwzm5ComVH8dhwV9
-	 OY/NqFtCHGGDZgyoXCz2NwNDUkUAXO+TFhRz8qVNEu+6jkXIAuxd0kuheZAe7+a3Yp
-	 YXAluLjUPsI+dtQeBq8z0nqM3FO9O0DKbf8WW9NpkNxUpurloBgby+MY+ClZk/nPBv
-	 CoaP7/DoTIoV0nEwseSDUBo93sWhpWS8DxLRu2QJvr3mzmDfB2/xq8Ube60bLDjtQK
-	 tXfsCWSuF3urNNmQJVb5MKMVs1r30Dhxwye7tmFe34hGf0xoV7xStESVUTEoMFtw5E
-	 3OLDI3WlfWFhA==
+	b=G25uC/BNQBqiHbHdEeX8hjLflfzjVX72uq9q+eBp7mTGn8xQJgLneQDF7oqb00/Jx
+	 r3pGglo4J0xs9Sjn7uP/d6lJJXsKoiJbyqI7ZdSlOxWSzgdiaHdXCDu86XPHldcQfc
+	 MBBoAMarNKHEee/l8RtEODQ+ub9FwxekWR/0OzNkNA9ASU51tc4xEhDMo774mzA05F
+	 VEjX8mXkd655PHcmHRGQiW4EOpb3BB0a8jivkIyVicJJUxBouosKgx5LHyTywnP0br
+	 1wGvJ+KBIKSVmbhjrEdnXm7TJgBzhaRzB15yZcJli4HpaqV8dl10/y+pXgGjHaCWWB
+	 gZoEbOQGAk16g==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 21AEBEE643D;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 923CEEE6440;
 	Fri, 15 Sep 2023 08:12:10 +0000 (UTC)
 From:
  Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
-Date: Fri, 15 Sep 2023 11:11:17 +0300
-Subject: [PATCH v4 35/42] ARM: dts: ep93xx: add ts7250 board
+Date: Fri, 15 Sep 2023 11:11:23 +0300
+Subject: [PATCH v4 41/42] ARM: dts: ep93xx: Add EDB9302 DT
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -45,27 +45,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230915-ep93xx-v4-35-a1d779dcec10@maquefel.me>
+Message-Id: <20230915-ep93xx-v4-41-a1d779dcec10@maquefel.me>
 References: <20230915-ep93xx-v4-0-a1d779dcec10@maquefel.me>
 In-Reply-To: <20230915-ep93xx-v4-0-a1d779dcec10@maquefel.me>
 To: Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andre Przywara <andre.przywara@arm.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
  Nikita Shubin <nikita.shubin@maquefel.me>, 
- Enric Balletbo i Serra <eballetbo@gmail.com>, 
- Shawn Guo <shawnguo@kernel.org>, 
+ Andre Przywara <andre.przywara@arm.com>, 
+ Sudeep Holla <sudeep.holla@arm.com>, Paul Barker <paul.barker@sancloud.com>, 
  Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, 
- Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Arnd Bergmann <arnd@arndb.de>, 
+Cc: Romain Perier <romain.perier@gmail.com>, 
+ Baruch Siach <baruch@tkos.co.il>, Michal Simek <michal.simek@amd.com>, 
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, 
  Alexander Sverdlin <alexander.sverdlin@gmail.com>
 X-Mailer: b4 0.13-dev-e3e53
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1694765525; l=6121;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1694765525; l=4526;
  i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
- bh=Jbdn1Tqwn+Kh3MiS5Ji39W/t3yDfax1h4+VJeJOTvhA=; =?utf-8?q?b=3DIPznGepOUjIf?=
- =?utf-8?q?h4uDlyNok/pdebLcVpM7MeALgTK9l6K3bYh2HX3hbs9z+EDJcFqgK24h80MXAcZF?=
- 9dtdisvZC+qeDHgsEJWwH55sWIL1561cShVm2gcdCmA7nQDTV8je
+ bh=73gmNLvW0LNUJ0foVGmjVHptHZEdZdoADowgdUpteAY=; =?utf-8?q?b=3DR0uEntMs70jf?=
+ =?utf-8?q?42MkEhNnoA8tocTcvC+5q9GIEMMTg3t3Rf7U1XF6Get/RIJIAABNFjpl3ak9a86e?=
+ L+Uq5049CiRq8kq5ivibzgveZS1i6TkM8enUnsoJtSOvNH6iNw+J
 X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
  pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
 X-Endpoint-Received:
@@ -73,48 +73,47 @@ X-Endpoint-Received:
 X-Original-From: Nikita Shubin <nikita.shubin@maquefel.me>
 Reply-To: <nikita.shubin@maquefel.me>
 
-From: Nikita Shubin <nikita.shubin@maquefel.me>
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 
-Add device tree file for Technologic Systems ts7250 board and
-Liebherr bk3 board which have many in common, both are based on
-ep9302 SoC variant.
+Add device tree for Cirrus EDB9302.
 
+Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 ---
- arch/arm/boot/dts/cirrus/Makefile          |   3 +
- arch/arm/boot/dts/cirrus/ep93xx-bk3.dts    | 124 +++++++++++++++++++++++++
- arch/arm/boot/dts/cirrus/ep93xx-ts7250.dts | 143 +++++++++++++++++++++++++++++
- 3 files changed, 270 insertions(+)
+ arch/arm/boot/dts/cirrus/Makefile           |   1 +
+ arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts | 180 ++++++++++++++++++++++++++++
+ 2 files changed, 181 insertions(+)
 
 diff --git a/arch/arm/boot/dts/cirrus/Makefile b/arch/arm/boot/dts/cirrus/Makefile
-index e944d3e2129d..211a7e2f2115 100644
+index 211a7e2f2115..e6015983e464 100644
 --- a/arch/arm/boot/dts/cirrus/Makefile
 +++ b/arch/arm/boot/dts/cirrus/Makefile
-@@ -3,3 +3,6 @@ dtb-$(CONFIG_ARCH_CLPS711X) += \
- 	ep7211-edb7211.dtb
+@@ -4,5 +4,6 @@ dtb-$(CONFIG_ARCH_CLPS711X) += \
  dtb-$(CONFIG_ARCH_CLPS711X) += \
  	ep7211-edb7211.dtb
-+dtb-$(CONFIG_ARCH_EP93XX) += \
-+	ep93xx-bk3.dtb \
-+	ep93xx-ts7250.dtb
-diff --git a/arch/arm/boot/dts/cirrus/ep93xx-bk3.dts b/arch/arm/boot/dts/cirrus/ep93xx-bk3.dts
+ dtb-$(CONFIG_ARCH_EP93XX) += \
++	ep93xx-edb9302.dtb \
+ 	ep93xx-bk3.dtb \
+ 	ep93xx-ts7250.dtb
+diff --git a/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts b/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts
 new file mode 100644
-index 000000000000..35639fb58759
+index 000000000000..9fa932972300
 --- /dev/null
-+++ b/arch/arm/boot/dts/cirrus/ep93xx-bk3.dts
-@@ -0,0 +1,124 @@
-+// SPDX-License-Identifier: GPL-2.0
++++ b/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts
+@@ -0,0 +1,180 @@
++// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 +/*
-+ * Device Tree file for Liebherr controller BK3.1 based on Cirrus EP9302 SoC
++ * Device Tree file for Cirrus Logic EDB9302 board based on EP9302 SoC
 + */
 +/dts-v1/;
 +#include "ep93xx.dtsi"
++#include <dt-bindings/dma/cirrus,ep93xx-dma.h>
 +
 +/ {
-+	model = "Liebherr controller BK3.1";
-+	compatible = "liebherr,bk3", "cirrus,ep9301";
 +	#address-cells = <1>;
 +	#size-cells = <1>;
++	compatible = "cirrus,edb9302", "cirrus,ep9301";
++	model = "cirrus,edb9302";
 +
 +	chosen {
 +	};
@@ -122,8 +121,32 @@ index 000000000000..35639fb58759
 +	memory@0 {
 +		device_type = "memory";
 +		/* should be set from ATAGS */
-+		reg = <0x00000000 0x02000000>,
-+		      <0x000530c0 0x01fdd000>;
++		reg = <0x0000000 0x800000>,
++		      <0x1000000 0x800000>,
++		      <0x4000000 0x800000>,
++		      <0x5000000 0x800000>;
++	};
++
++	sound {
++		compatible = "simple-audio-card";
++		simple-audio-card,name = "EDB93XX";
++		simple-audio-card,format = "i2s";
++		simple-audio-card,mclk-fs = <256>;
++		simple-audio-card,convert-channels = <2>;
++		simple-audio-card,convert-sample-format = "s32_le";
++
++		simple-audio-card,cpu {
++			sound-dai = <&i2s>;
++			system-clock-direction-out;
++			frame-master;
++			bitclock-master;
++			dai-sample-format = "s32_le";
++			dai-channels = <2>;
++		};
++
++		simple-audio-card,codec {
++			sound-dai = <&cs4271>;
++		};
 +	};
 +
 +	leds {
@@ -143,43 +166,68 @@ index 000000000000..35639fb58759
 +	};
 +};
 +
++&adc {
++	status = "okay";
++};
++
 +&ebi {
-+	nand-controller@60000000 {
-+		compatible = "technologic,ts7200-nand";
-+		reg = <0x60000000 0x8000000>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		nand@0 {
-+			reg = <0>;
-+			partitions {
-+				compatible = "fixed-partitions";
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+
-+				partition@0 {
-+					label = "System";
-+					reg = <0x00000000 0x01e00000>;
-+					read-only;
-+				};
-+
-+				partition@1e00000 {
-+					label = "Data";
-+					reg = <0x01e00000 0x05f20000>;
-+				};
-+
-+				partition@7d20000 {
-+					label = "RedBoot";
-+					reg = <0x07d20000 0x002e0000>;
-+					read-only;
-+				};
-+			};
-+		};
++	flash@60000000 {
++		compatible = "cfi-flash";
++		reg = <0x60000000 0x1000000>;
++		bank-width = <2>;
 +	};
 +};
 +
 +&eth0 {
 +	phy-handle = <&phy0>;
++};
++
++&gpio0 {
++	gpio-ranges = <&pinctrl 0 153 1>,
++		      <&pinctrl 1 152 1>,
++		      <&pinctrl 2 151 1>,
++		      <&pinctrl 3 148 1>,
++		      <&pinctrl 4 147 1>,
++		      <&pinctrl 5 146 1>,
++		      <&pinctrl 6 145 1>,
++		      <&pinctrl 7 144 1>;
++};
++
++&gpio1 {
++	gpio-ranges = <&pinctrl 0 143 1>,
++		      <&pinctrl 1 142 1>,
++		      <&pinctrl 2 141 1>,
++		      <&pinctrl 3 140 1>,
++		      <&pinctrl 4 165 1>,
++		      <&pinctrl 5 164 1>,
++		      <&pinctrl 6 163 1>,
++		      <&pinctrl 7 160 1>;
++};
++
++&gpio2 {
++	gpio-ranges = <&pinctrl 0 115 1>;
++	status = "okay";
++};
++
++&gpio4 {
++	gpio-ranges = <&pinctrl 0 97 2>;
++	status = "okay";
++};
++
++&gpio5 {
++	gpio-ranges = <&pinctrl 1 170 1>,
++		      <&pinctrl 2 169 1>,
++		      <&pinctrl 3 168 1>;
++};
++
++&gpio6 {
++	gpio-ranges = <&pinctrl 0 87 2>;
++	status = "okay";
++};
++
++&gpio7 {
++	gpio-ranges = <&pinctrl 2 199 4>;
++	status = "okay";
 +};
 +
 +&i2s {
@@ -188,180 +236,36 @@ index 000000000000..35639fb58759
 +	status = "okay";
 +};
 +
-+&gpio1 {
-+	/* PWM */
-+	gpio-ranges = <&pinctrl 6 163 1>;
-+};
-+
-+&gpio4 {
-+	gpio-ranges = <&pinctrl 0 97 2>;
-+	status = "okay";
-+};
-+
-+&gpio6 {
-+	gpio-ranges = <&pinctrl 0 87 2>;
-+	status = "okay";
-+};
-+
-+&gpio7 {
-+	gpio-ranges = <&pinctrl 2 199 4>;
-+	status = "okay";
-+};
-+
 +&mdio0 {
 +	phy0: ethernet-phy@1 {
 +		reg = <1>;
 +		device_type = "ethernet-phy";
 +	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	status = "okay";
-+};
-+
-diff --git a/arch/arm/boot/dts/cirrus/ep93xx-ts7250.dts b/arch/arm/boot/dts/cirrus/ep93xx-ts7250.dts
-new file mode 100644
-index 000000000000..2a82e16c8ec4
---- /dev/null
-+++ b/arch/arm/boot/dts/cirrus/ep93xx-ts7250.dts
-@@ -0,0 +1,143 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree file for Technologic Systems ts7250 board based on Cirrus EP9302 SoC
-+ */
-+/dts-v1/;
-+#include "ep93xx.dtsi"
-+#include <dt-bindings/dma/cirrus,ep93xx-dma.h>
-+
-+/ {
-+	compatible = "technologic,ts7250", "cirrus,ep9301";
-+	model = "TS-7250 SBC";
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	chosen {
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		/* should be set from ATAGS */
-+		reg = <0x00000000 0x02000000>,
-+		      <0x000530c0 0x01fdd000>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		led-0 {
-+			label = "grled";
-+			gpios = <&gpio4 0 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			function = LED_FUNCTION_HEARTBEAT;
-+		};
-+
-+		led-1 {
-+			label = "rdled";
-+			gpios = <&gpio4 1 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_FAULT;
-+		};
-+	};
-+};
-+
-+&ebi {
-+	nand-controller@60000000 {
-+		compatible = "technologic,ts7200-nand";
-+		reg = <0x60000000 0x8000000>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		nand@0 {
-+			reg = <0>;
-+			partitions {
-+				compatible = "fixed-partitions";
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+
-+				partition@0 {
-+					label = "TS-BOOTROM";
-+					reg = <0x00000000 0x00020000>;
-+					read-only;
-+				};
-+
-+				partition@20000 {
-+					label = "Linux";
-+					reg = <0x00020000 0x07d00000>;
-+				};
-+
-+				partition@7d20000 {
-+					label = "RedBoot";
-+					reg = <0x07d20000 0x002e0000>;
-+					read-only;
-+				};
-+			};
-+		};
-+	};
-+
-+	rtc@10800000 {
-+		compatible = "st,m48t86";
-+		reg = <0x10800000 0x1>,
-+			<0x11700000 0x1>;
-+	};
-+
-+	watchdog@23800000 {
-+		compatible = "technologic,ts7200-wdt";
-+		reg = <0x23800000 0x01>,
-+			<0x23c00000 0x01>;
-+		timeout-sec = <30>;
-+	};
-+};
-+
-+&eth0 {
-+	phy-handle = <&phy0>;
-+};
-+
-+&gpio1 {
-+	/* PWM */
-+	gpio-ranges = <&pinctrl 6 163 1>;
-+};
-+
-+&gpio4 {
-+	gpio-ranges = <&pinctrl 0 97 2>;
-+	status = "okay";
-+};
-+
-+&gpio6 {
-+	gpio-ranges = <&pinctrl 0 87 2>;
-+	status = "okay";
-+};
-+
-+&gpio7 {
-+	gpio-ranges = <&pinctrl 2 199 4>;
-+	status = "okay";
 +};
 +
 +&spi0 {
-+	cs-gpios = <&gpio5 2 GPIO_ACTIVE_HIGH>;
++	cs-gpios = <&gpio0 6 GPIO_ACTIVE_LOW
++		    &gpio0 7 GPIO_ACTIVE_LOW>;
 +	dmas = <&dma1 EP93XX_DMA_SSP>;
 +	status = "okay";
 +
-+	tmp122: temperature-sensor@0 {
-+		compatible = "ti,tmp122";
++	cs4271: codec@0 {
++		compatible = "cirrus,cs4271";
 +		reg = <0>;
-+		spi-max-frequency = <2000000>;
++		#sound-dai-cells = <0>;
++		spi-max-frequency = <6000000>;
++		spi-cpol;
++		spi-cpha;
++		reset-gpio = <&gpio0 1 GPIO_ACTIVE_HIGH>;
 +	};
-+};
 +
-+&mdio0 {
-+	phy0: ethernet-phy@1 {
++	at25f1024: eeprom@1 {
++		compatible = "atmel,at25";
 +		reg = <1>;
-+		device_type = "ethernet-phy";
++		address-width = <8>;
++		size = <0x20000>;
++		pagesize = <256>;
++		spi-max-frequency = <20000000>;
 +	};
 +};
 +
@@ -376,6 +280,7 @@ index 000000000000..2a82e16c8ec4
 +&usb0 {
 +	status = "okay";
 +};
++
 
 -- 
 2.39.2
