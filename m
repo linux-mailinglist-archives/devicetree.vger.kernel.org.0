@@ -1,133 +1,330 @@
-Return-Path: <devicetree+bounces-561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1749B7A1F22
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:46:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D42A7A1F40
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:53:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9FF1282784
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:46:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28E161C20B00
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7565B107A6;
-	Fri, 15 Sep 2023 12:46:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74923107B8;
+	Fri, 15 Sep 2023 12:53:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2BCD107A1
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:46:44 +0000 (UTC)
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D18E2D5E
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:46:08 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-401187f8071so14297515e9.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:46:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694781966; x=1695386766; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nLYJMC+6NP26nnWPC1ohFPbvAKuqIM7PzgDWSXVur78=;
-        b=nHYg+WgDiLGz9pMXUYiXF6r7W3OIUiAYf6xq6HwADYsk+tW7OwrrPJst6zKs6+WqlD
-         7Y07nn7i+QhZutpVdohUEZ0Hz61JscML9MyS9FYqZWg4hCo7e4vlro3U77lLyA6RBSY8
-         Poy9ne6xIzmPRNcqIICs/fB/QNXYYdlFJLgx6HQCFgjpNotFwMI62Ro7WR2Wjw8+yW4w
-         x7QHdJ7gR9cYeszAMw6zBSuVR0nm9NaaVnnu9w3bNQ4MjdnGkvdIyi//sPVj/t47bNR9
-         VHW4LaCm3G6uAGDXtsnEOSlZjH6llsShQQONA4RQc8iWT/xAzEhOlZk/UNRPcazd5AZC
-         LRmQ==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AA5FCA70
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:53:17 +0000 (UTC)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB319173A;
+	Fri, 15 Sep 2023 05:53:15 -0700 (PDT)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-59c26aa19b7so1523647b3.2;
+        Fri, 15 Sep 2023 05:53:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694781966; x=1695386766;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nLYJMC+6NP26nnWPC1ohFPbvAKuqIM7PzgDWSXVur78=;
-        b=U78TNisKyHxOGjh5vqns0vc3hzq/oXWJepu/5lOpJghEP7BQQUYIJ8VPjmIiVgi6GN
-         Q4WpMNrzUp1qnrB8UAEZ/PVDSmcMv83s962Z+WRIsvjemeb/78hdeB+lE8LucCdmMQmS
-         1jE4jw5IEHyAwnq8wFBp/zjaz2aeSmgGcMrPLOjLa0jS9Xn7l5NdElYVhz5g9UhPmuVv
-         2yaC0HKNWrBZPXRuhlMrVWVlhikH0fRgEKVHSQRYZBvkACCC3Z0T0c4tO8AN74mY9WCM
-         /okSYFjM0mneIRh6dG4Ts57M5eGzDxhSv391I9x7LPhiDBBpiUMdmgfJUfKzyjVo8f1y
-         MXDA==
-X-Gm-Message-State: AOJu0Yz5WcVyNzZmJe5AI16wCdCaI+s9+oT9aM4v4B/JcDbDse2Knc/F
-	yTvIpAmCA0ag1S357VbgaCSfVw==
-X-Google-Smtp-Source: AGHT+IFrtQWRed5woEiP7OHw9z2/OjVdZwkPgM3Bm79oOPXqJYAs50d5rSrShOp61RLzy6A4eE0qdQ==
-X-Received: by 2002:a05:600c:248b:b0:401:b0f2:88d3 with SMTP id 11-20020a05600c248b00b00401b0f288d3mr1255513wms.19.1694781966308;
-        Fri, 15 Sep 2023 05:46:06 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id x12-20020adfdd8c000000b0031912c0ffebsm4366463wrl.23.2023.09.15.05.46.04
+        d=1e100.net; s=20230601; t=1694782395; x=1695387195;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=q9UOXsTHLtyILmXxjRADy8o2iP5tGoLsuD7drO9aP90=;
+        b=ImHuMK3vTld0WGRs09iR99nYrPlxaJDZiygs6osOeCU7AulSkqVpekt36AeYrswe4b
+         VF1Q1JvSWY32WnHJfOP5/KkYGcqmvDCkYgLmE+F8BXe69usWok0/VXriDrEATcNDx1wb
+         Vp7fAnrC6o7AUB9T2IPMb26s3kj/+ZN+6M6e1aNzcniN+2w2oj9cfA8JuQGUHKhAuXAJ
+         8FaK+QK/IZZXuNDtsdZhbfVpNv/HnHlNkloQMfab+kjXUqpFZvqHQCrDIZAXT7zjymsH
+         KhuFV6Jp/UerQ5GAM1ese5LC9nY7mGELbY1UGkEUBm9ocNxXhsTCwVVfhJcjeJkS4Bbo
+         xZPA==
+X-Gm-Message-State: AOJu0YwyUepJ8K16yxP5qgLvk8sdNqcNcFoIRVoQx3LgJFrU8vVvxRyP
+	Igk9aXLHhqW/jlxmM+zqdtKniwlbpG682A==
+X-Google-Smtp-Source: AGHT+IEiG+J/MtyiASFsbJojo/dOvWuNx/+PiFaaXKi5X4GHvaWkd+lh+nc5KJsxGZWrf6hpsbLd6g==
+X-Received: by 2002:a81:83d2:0:b0:586:9f6c:4215 with SMTP id t201-20020a8183d2000000b005869f6c4215mr1618500ywf.33.1694782394654;
+        Fri, 15 Sep 2023 05:53:14 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id m5-20020a817105000000b0058038e6609csm840043ywc.74.2023.09.15.05.53.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 05:46:05 -0700 (PDT)
-Message-ID: <b0fe17e4-e4d8-02af-4e09-06b3930b38fe@linaro.org>
-Date: Fri, 15 Sep 2023 14:46:03 +0200
+        Fri, 15 Sep 2023 05:53:14 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-d81afd5273eso1360503276.3;
+        Fri, 15 Sep 2023 05:53:13 -0700 (PDT)
+X-Received: by 2002:a25:cf06:0:b0:d74:6c9f:e734 with SMTP id
+ f6-20020a25cf06000000b00d746c9fe734mr1318086ybg.47.1694782393719; Fri, 15 Sep
+ 2023 05:53:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH V2 4/4] arm64: dts: qcom: ipq5018: Add tsens node
-Content-Language: en-US
-To: Sricharan Ramabadhran <quic_srichara@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org,
- srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- thara.gopinath@gmail.com, rafael@kernel.org, daniel.lezcano@linaro.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- dmitry.baryshkov@linaro.org
-References: <20230915121504.806672-1-quic_srichara@quicinc.com>
- <20230915121504.806672-5-quic_srichara@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230915121504.806672-5-quic_srichara@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=3.4.6
+References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com> <20230912045157.177966-23-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20230912045157.177966-23-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 15 Sep 2023 14:52:59 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUCpbPA3cDjNAq1irvr6z4Jux-5-tVDBuyr6nx_qOQGpg@mail.gmail.com>
+Message-ID: <CAMuHMdUCpbPA3cDjNAq1irvr6z4Jux-5-tVDBuyr6nx_qOQGpg@mail.gmail.com>
+Subject: Re: [PATCH 22/37] clk: renesas: add minimal boot support for RZ/G3S SoC
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
+	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
+	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
+	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 15/09/2023 14:15, Sricharan Ramabadhran wrote:
-> IPQ5018 has tsens V1.0 IP with 4 sensors.
-> There is no RPM, so tsens has to be manually enabled. Adding the tsens
-> and nvmem node and IPQ5018 has 4 thermal sensors (zones). With the
-> critical temperature being 120'C and action is to reboot. Adding all
-> the 4 zones here. 
-> 
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> ---
->  [v2] Fixed node names, order and added qfprom cells for points
->       seperately to use the calibrate_common and squashed thermal_zone
->       nodes here
-> 
->  arch/arm64/boot/dts/qcom/ipq5018.dtsi | 169 ++++++++++++++++++++++++++
->  1 file changed, 169 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> index 9f13d2dcdfd5..d53aea5342e2 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> @@ -93,6 +93,117 @@ soc: soc@0 {
->  		#size-cells = <1>;
->  		ranges = <0 0 0 0xffffffff>;
->  
-> +		qfprom: qfprom@a0000 {
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			compatible = "qcom,ipq5018-qfprom", "qcom,qfprom";
+Hi Claudiu,
 
-This is a friendly reminder during the review process.
+On Tue, Sep 12, 2023 at 6:53=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Add minimal clock and reset support for RZ/G3S SoC to be able to boot
+> Linux from SD Card/eMMC. This includes necessary core clocks for booting
+> and GIC, SCIF, GPIO, SD0 mod clocks and resets.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
+Thanks for your patch!
 
-Thank you.
+> --- /dev/null
+> +++ b/drivers/clk/renesas/r9a08g045-cpg.c
+> @@ -0,0 +1,217 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * RZ/G3S CPG driver
+> + *
+> + * Copyright (C) 2023 Renesas Electronics Corp.
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/device.h>
+> +#include <linux/init.h>
+> +#include <linux/kernel.h>
+> +
+> +#include <dt-bindings/clock/r9a08g045-cpg.h>
+> +
+> +#include "rzg2l-cpg.h"
+> +
+> +/* RZ/G3S Specific registers. */
+> +#define G3S_CPG_PL2_DDIV               (0x204)
+> +#define G3S_CPG_SDHI_DDIV              (0x218)
+> +#define G3S_CPG_PLL_DSEL               (0x240)
+> +#define G3S_CPG_SDHI_DSEL              (0x244)
+> +#define G3S_CLKSELSTATUS               (0x284)
+> +
+> +/* RZ/G3S Specific division configuration.  */
+> +#define G3S_DIVPL2B            DDIV_PACK(G3S_CPG_PL2_DDIV, 4, 3)
+> +#define G3S_DIV_SDHI0          DDIV_PACK(G3S_CPG_SDHI_DDIV, 0, 1)
+> +
+> +/* RZ/G3S Clock status configuration. */
+> +#define G3S_DIVPL1A_STS                DDIV_PACK(CPG_CLKSTATUS, 0, 1)
+> +#define G3S_DIVPL2B_STS                DDIV_PACK(CPG_CLKSTATUS, 5, 1)
+> +#define G3S_DIVPL3A_STS                DDIV_PACK(CPG_CLKSTATUS, 8, 1)
+> +#define G3S_DIVPL3B_STS                DDIV_PACK(CPG_CLKSTATUS, 9, 1)
+> +#define G3S_DIVPL3C_STS                DDIV_PACK(CPG_CLKSTATUS, 10, 1)
+> +#define G3S_DIV_SDHI0_STS      DDIV_PACK(CPG_CLKSTATUS, 24, 1)
 
-Best regards,
-Krzysztof
+The register at offset 0x280 is called CPG_CLKDIVSTATUS, so
+you probably want to add and use a G3S-specific definition.
 
+> +#define G3S_SEL_PLL4_STS       SEL_PLL_PACK(G3S_CLKSELSTATUS, 6, 1)
+> +#define G3S_SEL_SDHI0_STS      SEL_PLL_PACK(G3S_CLKSELSTATUS, 16, 1)
+> +
+> +/* RZ/G3S Specific clocks select. */
+> +#define G3S_SEL_PLL4           SEL_PLL_PACK(G3S_CPG_PLL_DSEL, 6, 1)
+> +#define G3S_SEL_SDHI0          SEL_PLL_PACK(G3S_CPG_SDHI_DSEL, 0, 2)
+> +
+> +/* PLL 1/4/6 configuration registers macro. */
+> +#define G3S_PLL146_CONF(clk1, clk2)    ((clk1) << 22 | (clk2) << 12)
+> +
+> +#define DEF_G3S_MUX(_name, _id, _conf, _parent_names, _mux_flags, _clk_f=
+lags) \
+> +       DEF_TYPE(_name, _id, CLK_TYPE_MUX, .conf =3D (_conf), \
+> +                .parent_names =3D (_parent_names), \
+> +                .num_parents =3D ARRAY_SIZE((_parent_names)), \
+> +                .mux_flags =3D CLK_MUX_HIWORD_MASK | (_mux_flags), \
+> +                .flag =3D (_clk_flags))
+> +
+> +enum clk_ids {
+> +       /* Core Clock Outputs exported to DT */
+> +       LAST_DT_CORE_CLK =3D R9A08G045_SWD,
+> +
+> +       /* External Input Clocks */
+> +       CLK_EXTAL,
+> +
+> +       /* Internal Core Clocks */
+> +       CLK_OSC_DIV1000,
+> +       CLK_PLL1,
+> +       CLK_PLL2,
+> +       CLK_PLL2_DIV2,
+> +       CLK_PLL2_DIV2_8,
+> +       CLK_PLL2_DIV6,
+> +       CLK_PLL3,
+> +       CLK_PLL3_DIV2,
+> +       CLK_PLL3_DIV2_2,
+
+Do you need CLK_PLL3_DIV2_2?
+When adding support for R9A07G043_CLK_AT later, you can define it
+as CLK_PLL3_DIV2 / 2.
+
+> +       CLK_PLL3_DIV2_4,
+> +       CLK_PLL3_DIV2_8,
+> +       CLK_PLL3_DIV6,
+> +       CLK_PLL4,
+> +       CLK_PLL6,
+> +       CLK_PLL6_DIV2,
+> +       CLK_SEL_SDHI0,
+> +       CLK_SEL_PLL4,
+> +       CLK_P1_DIV2,
+> +       CLK_P3_DIV2,
+
+Do you need CLK_P1_DIV2 and CLK_P3_DIV2?
+I don't see them in Figure 7.3 ("Clock System Diagram (2)").
+
+> +       CLK_SD0_DIV,
+
+CLK_SD0_DIV is unused.
+
+> +       CLK_SD0_DIV4,
+> +       CLK_S0_DIV2,
+
+CLK_S0_DIV2 is unused.
+
+> +
+> +       /* Module Clocks */
+> +       MOD_CLK_BASE,
+> +};
+> +
+> +/* Divider tables */
+> +static const struct clk_div_table dtable_1_2[] =3D {
+> +       {0, 1},
+
+"{ 0, 1 }," etc...
+
+> +       {1, 2},
+> +       {0, 0},
+> +};
+> +
+> +static const struct clk_div_table dtable_1_8[] =3D {
+> +       {0, 1},
+> +       {1, 2},
+> +       {2, 4},
+> +       {3, 8},
+> +       {0, 0},
+> +};
+> +
+> +static const struct clk_div_table dtable_1_32[] =3D {
+> +       {0, 1},
+> +       {1, 2},
+> +       {2, 4},
+> +       {3, 8},
+> +       {4, 32},
+> +       {0, 0},
+> +};
+> +
+> +/* Mux clock names tables. */
+> +static const char * const sel_sdhi[] =3D { ".pll2_div2", ".pll6", ".pll2=
+_div6" };
+> +static const char * const sel_pll4[] =3D { ".osc_div1000", ".pll4" };
+> +
+> +/* Mux clock indexes tables. */
+
+indices
+
+> +static const u32 mtable_sd[] =3D { 0, 2, 3 };
+> +static const u32 mtable_pll4[] =3D { 0, 1 };
+> +
+> +static const struct cpg_core_clk r9a08g045_core_clks[] __initconst =3D {
+> +       /* External Clock Inputs */
+> +       DEF_INPUT("extal", CLK_EXTAL),
+> +
+> +       /* Internal Core Clocks */
+> +       DEF_FIXED(".osc", R9A08G045_OSCCLK, CLK_EXTAL, 1, 1),
+
+"OSC", as this is not an internal core clock.
+
+> +       DEF_FIXED(".osc2", R9A08G045_OSCCLK2, CLK_EXTAL, 1, 3),
+
+"OSC2"
+
+> +       DEF_FIXED(".osc_div1000", CLK_OSC_DIV1000, CLK_EXTAL, 1, 1000),
+> +       DEF_G3S_SAMPLL(".pll1", CLK_PLL1, CLK_EXTAL, G3S_PLL146_CONF(0x4,=
+ 0x8)),
+> +       DEF_FIXED(".pll2", CLK_PLL2, CLK_EXTAL, 200, 3),
+> +       DEF_FIXED(".pll3", CLK_PLL3, CLK_EXTAL, 200, 3),
+> +       DEF_FIXED(".pll4", CLK_PLL4, CLK_EXTAL, 100, 3),
+> +       DEF_FIXED(".pll6", CLK_PLL6, CLK_EXTAL, 125, 6),
+> +       DEF_FIXED(".pll2_div2", CLK_PLL2_DIV2, CLK_PLL2, 1, 2),
+> +       DEF_FIXED(".pll2_div2_8", CLK_PLL2_DIV2_8, CLK_PLL2_DIV2, 1, 8),
+> +       DEF_FIXED(".pll2_div6", CLK_PLL2_DIV6, CLK_PLL2, 1, 6),
+> +       DEF_FIXED(".pll3_div2", CLK_PLL3_DIV2, CLK_PLL3, 1, 2),
+> +       DEF_FIXED(".pll3_div2_2", CLK_PLL3_DIV2_2, CLK_PLL3_DIV2, 1, 2),
+> +       DEF_FIXED(".pll3_div2_4", CLK_PLL3_DIV2_4, CLK_PLL3_DIV2, 1, 4),
+> +       DEF_FIXED(".pll3_div2_8", CLK_PLL3_DIV2_8, CLK_PLL3_DIV2, 1, 8),
+> +       DEF_FIXED(".pll3_div6", CLK_PLL3_DIV6, CLK_PLL3, 1, 6),
+> +       DEF_FIXED(".pll6_div2", CLK_PLL6_DIV2, CLK_PLL6, 1, 2),
+> +       DEF_SD_MUX(".sel_sd0", CLK_SEL_SDHI0, G3S_SEL_SDHI0, G3S_SEL_SDHI=
+0_STS, sel_sdhi,
+> +                  mtable_sd, 0, NULL),
+> +       DEF_SD_MUX(".sel_pll4", CLK_SEL_PLL4, G3S_SEL_PLL4, G3S_SEL_PLL4_=
+STS, sel_pll4,
+> +                  mtable_pll4, CLK_SET_PARENT_GATE, NULL),
+> +
+> +       /* Core output clk */
+> +       DEF_G3S_DIV("I", R9A08G045_CLK_I, CLK_PLL1, DIVPL1A, G3S_DIVPL1A_=
+STS, dtable_1_8,
+> +                   0, 0, NULL),
+> +       DEF_G3S_DIV("P0", R9A08G045_CLK_P0, CLK_PLL2_DIV2_8, G3S_DIVPL2B,=
+ G3S_DIVPL2B_STS,
+> +                   dtable_1_32, 0, 0, NULL),
+> +       DEF_G3S_DIV("SD0", R9A08G045_CLK_SD0, CLK_SEL_SDHI0, G3S_DIV_SDHI=
+0, G3S_DIV_SDHI0_STS,
+> +                   dtable_1_2, 800000000UL, CLK_SET_RATE_PARENT, DIV_NOT=
+IF),
+> +       DEF_FIXED("SD0_DIV4", CLK_SD0_DIV4, R9A08G045_CLK_SD0, 1, 4),
+
+".sd0_div4", as this is not a public core clock.
+
+> +       DEF_FIXED("M0", R9A08G045_CLK_M0, CLK_PLL3_DIV2_4, 1, 1),
+> +       DEF_G3S_DIV("P1", R9A08G045_CLK_P1, CLK_PLL3_DIV2_4, DIVPL3A, G3S=
+_DIVPL3A_STS,
+> +                   dtable_1_32, 0, 0, NULL),
+> +       DEF_FIXED("P1_DIV2", CLK_P1_DIV2, R9A08G045_CLK_P1, 1, 2),
+> +       DEF_G3S_DIV("P2", R9A08G045_CLK_P2, CLK_PLL3_DIV2_8, DIVPL3B, G3S=
+_DIVPL3B_STS,
+> +                   dtable_1_32, 0, 0, NULL),
+> +       DEF_G3S_DIV("P3", R9A08G045_CLK_P3, CLK_PLL3_DIV2_4, DIVPL3C, G3S=
+_DIVPL3C_STS,
+> +                   dtable_1_32, 0, 0, NULL),
+> +       DEF_FIXED("P3_DIV2", CLK_P3_DIV2, R9A08G045_CLK_P3, 1, 2),
+> +       DEF_FIXED("S0", R9A08G045_CLK_S0, CLK_SEL_PLL4, 1, 2),
+> +       DEF_FIXED("S0_DIV2", CLK_S0_DIV2, R9A08G045_CLK_S0, 1, 2),
+> +};
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
