@@ -1,143 +1,107 @@
-Return-Path: <devicetree+bounces-387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F00DE7A171D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:17:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ABB37A1721
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:17:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A39A92829D5
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 07:17:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5493B2829CA
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 07:17:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 679EDD274;
-	Fri, 15 Sep 2023 07:17:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45F5FD275;
+	Fri, 15 Sep 2023 07:17:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFD426AB7
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 07:17:03 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A53A7E0;
-	Fri, 15 Sep 2023 00:17:02 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38F58Rvj021498;
-	Fri, 15 Sep 2023 07:16:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=xgMCSBJy5ciFAOKy79/W9QJdxPnPPLDujFXV/zXmTDM=;
- b=a57xbHrUsm+niCo/WANk4LMzFtehxmxHmGnnZQh2tWowQLKfJ4slgwh5q0IfZgLtq8wD
- As0513+60d/ZfO7mmr8P0v4mJY7DmtMSyB4/4XwvY4a66d7DIYTYjCxprIfSuPMi2GjJ
- wd94WdxFiHGwtJ8Ns4xhTf1DABk+DTDbCHlQ2+qipbnmKH9RxlTnqld5HD9dXXUBW+5Y
- WIkC2SnOlDxMDp59ITtDkXV/ryDxC853GXBqGpOF5v5dWdiv+5f/aPyWWB3SjnxXYGo+
- GXxQB/Us9heysrnXcaWy2YNOI3mZR1v6Ra/IRB4r/rDtYn7cyDVV/Ww8HhOyUIBjFuzC Gg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t4f6v0gu3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Sep 2023 07:16:27 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38F7GQOc015870
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Sep 2023 07:16:26 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 15 Sep
- 2023 00:15:40 -0700
-Message-ID: <2c42d2b6-a838-4d8e-99f1-c08b0c8e4457@quicinc.com>
-Date: Fri, 15 Sep 2023 15:15:37 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D012F6AB7
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 07:17:40 +0000 (UTC)
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F5E0115
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 00:17:38 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40413ccdd4cso9599185e9.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 00:17:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694762257; x=1695367057; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nKlXZwcMYS0nRM5520Aq9RRDReEviWQWXfnNE3DisAk=;
+        b=zQUPEQ4TLLMfBDHiiOH9g+n5mpOaR37gNSRRzTXRpMH8KE+0VXzWplCuEgG4t3RUxq
+         thzUqs+ZvUievRu+WPmN8jz6LLhBmtj3MPKrF6EENYvztlLTmqgSfPCEGdio5ARh21GI
+         YW93WzFV+Bv/v2NFCTMm/DmhdOj2gb/UqiBDJ00+sUmmOP+iNbyp1JM2YDCwHQYjSAu0
+         4h7es5Zal1MxtWOPePo9k31PPghZ9QbWm3uDY3lSf6p3BKek3E6r40cBZdctNMLp2TEs
+         HKgYObh1/VlPP3g+dNl/VI4PeWOLPYFUkqNH4sO8oFUBZZKlBQ3yNKHYo0Uhnjfapgh7
+         JDaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694762257; x=1695367057;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nKlXZwcMYS0nRM5520Aq9RRDReEviWQWXfnNE3DisAk=;
+        b=WzmSI051AjJRWhtl948vL4kuDZZT1VXxYJpSUcmxn45m3tWylEiUACjpj1aqDrJoOw
+         9WxBJ1q96E2+5GZpl0KwlCZWXSVmjsPzs2k0RGWP55LVS+x3V4mLWYuclwLdDOWPc/Q5
+         CZhfm1tVcvpQhwIVhFKnLj1i9A8wQAJy1okOqv1/tCx9wn+dcvP57znq2NCUCY5Oa5ql
+         0H0/5kpjEf+HvVg9tAkstTGDScOxI9mYXx3BuUVBrPEkMJj4+QiiWygH0PHSfr1HcUzP
+         fi6pYdKptCR4aaYTjy0X+hE7gurVADC2M0hHgpQm27JEfEThuoEidEJkiiOv8tM2V/Fe
+         7oTQ==
+X-Gm-Message-State: AOJu0Yxd7Kq/GJZd3el8cll8YMIK9S6l35lhJi5/3ZCUfNyOeWsNwJxc
+	+63haGyqR3JamqjBdf5amK6w8Q==
+X-Google-Smtp-Source: AGHT+IFLPQoHUaGnhgNK8hVifo28q8Mg3P4hJPyPf8HjItYYBfnS1qR1isuRtxNCFzzz2hmRHqOfxw==
+X-Received: by 2002:a05:600c:28f:b0:402:e68f:8a4f with SMTP id 15-20020a05600c028f00b00402e68f8a4fmr557370wmk.0.1694762256675;
+        Fri, 15 Sep 2023 00:17:36 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id x7-20020a05600c2d0700b00404719b05b5sm3392964wmf.27.2023.09.15.00.17.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Sep 2023 00:17:36 -0700 (PDT)
+Message-ID: <a48d1d09-e967-3226-7173-4e2a58ffae1d@linaro.org>
+Date: Fri, 15 Sep 2023 09:17:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/8] dt-bindings: arm-smmu: Add compatible for SM4450
- SoC
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <will@kernel.org>,
-        <robin.murphy@arm.com>, <joro@8bytes.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <catalin.marinas@arm.com>
-CC: <geert+renesas@glider.be>, <arnd@arndb.de>, <neil.armstrong@linaro.org>,
-        <nfraprado@collabora.com>, <rafal@milecki.pl>, <peng.fan@nxp.com>,
-        <linux-arm-kernel@lists.infradead.org>, <iommu@lists.linux.dev>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <quic_tsoni@quicinc.com>,
-        <quic_shashim@quicinc.com>, <quic_kaushalk@quicinc.com>,
-        <quic_tdas@quicinc.com>, <quic_tingweiz@quicinc.com>,
-        <quic_aiquny@quicinc.com>, <kernel@quicinc.com>
-References: <20230915021509.25773-1-quic_tengfan@quicinc.com>
- <20230915021509.25773-3-quic_tengfan@quicinc.com>
- <5a386be4-facc-8aef-aad7-da6508aa0505@linaro.org>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <5a386be4-facc-8aef-aad7-da6508aa0505@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: A-RUaxeV0ZdfNKb3_vffFbfpcw_rsdli
-X-Proofpoint-ORIG-GUID: A-RUaxeV0ZdfNKb3_vffFbfpcw_rsdli
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-15_05,2023-09-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- lowpriorityscore=0 malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0
- clxscore=1015 mlxlogscore=631 spamscore=0 mlxscore=0 priorityscore=1501
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309150062
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: interconnect: Add Qualcomm SM4450
+Content-Language: en-US
+To: Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, djakov@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ quic_tsoni@quicinc.com, quic_shashim@quicinc.com, quic_kaushalk@quicinc.com,
+ quic_tdas@quicinc.com, quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com,
+ kernel@quicinc.com
+References: <20230915020129.19611-1-quic_tengfan@quicinc.com>
+ <20230915020129.19611-2-quic_tengfan@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230915020129.19611-2-quic_tengfan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On 15/09/2023 04:01, Tengfei Fan wrote:
+> The Qualcomm SM4450 SoC has several bus fabrics that could be controlled
+> and tuned dynamically according to the bandwidth demand.
+> 
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> ---
 
+qcom,sm4450-rpmh.example.dtb: interconnect@1700000: reg: [[0, 24117248],
+[0, 200832]] is too long
 
-在 9/15/2023 3:11 PM, Krzysztof Kozlowski 写道:
-> On 15/09/2023 04:15, Tengfei Fan wrote:
->> Add the SoC specific compatible for SM4450 implementing arm,mmu-500.
->>
->> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->> ---
->>   Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 3 +++
->>   1 file changed, 3 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> index cf29ab10501c..b57751c8ad90 100644
->> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> @@ -47,6 +47,7 @@ properties:
->>                 - qcom,sdx55-smmu-500
->>                 - qcom,sdx65-smmu-500
->>                 - qcom,sdx75-smmu-500
->> +              - qcom,sm4450-smmu-500
->>                 - qcom,sm6115-smmu-500
->>                 - qcom,sm6125-smmu-500
->>                 - qcom,sm6350-smmu-500
->> @@ -70,6 +71,7 @@ properties:
->>                 - qcom,sc8180x-smmu-500
->>                 - qcom,sc8280xp-smmu-500
->>                 - qcom,sdm845-smmu-500
->> +              - qcom,sm4450-smmu-500
-> 
-> Isn't there comment just few lines above your edit? Comment saying DON'T?
-yes, I saw this "DON'T" comment, but if I remove "qcom,sm4450-smmu-500" 
-from sm4450.dtsi and this arm,smmu.yaml, will get DT check warning about 
-this, this warning cannot be find after add "qcom,sm4450-smmu-500" from 
-sm4450.dtsi and this arm,smmu.yaml, so update this patch again.
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+Did you test it before sending? No, you did not. Eh :(
 
--- 
-Thx and BRs,
-Tengfei Fan
+Best regards,
+Krzysztof
+
 
