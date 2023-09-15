@@ -1,135 +1,109 @@
-Return-Path: <devicetree+bounces-656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ABEA7A288A
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 22:49:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4370D7A28FC
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 23:07:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8185282399
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 20:49:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CB921C20A96
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 21:07:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D4E21B278;
-	Fri, 15 Sep 2023 20:49:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2515F1B283;
+	Fri, 15 Sep 2023 21:07:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49C330CFF
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 20:49:43 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D1132D48;
-	Fri, 15 Sep 2023 13:49:18 -0700 (PDT)
-Received: from mercury (unknown [185.254.75.45])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 324126600B9D;
-	Fri, 15 Sep 2023 21:49:17 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1694810957;
-	bh=vLgY8rCiM5Qt+aHqvAkM8PPmsp9niBHALfFONENovW0=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CD161B280
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 21:07:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9AE6C433C8;
+	Fri, 15 Sep 2023 21:07:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1694812062;
+	bh=yWUk6FUlYOLjDYbRClgivGA5rBQf/ssbmNXyCcG5dBQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=L1wGH56Z0WS8OhEY8S0k8nySdlcbENukcNliDWh8ttwcqWmEaVn/UZpzQrt9TOFMB
-	 xgXzt2cnBNSf3pt2Ud+3nl7eGK0RUka5UroNLHx5ph8Bxw4fJM6DugVx+pcLV5Ktdv
-	 bdwqrBpLd0UmMTGWvmcW+yo25U+uc5Vwgtftgba5bRN3eyHDkLNyZ/kXzIXobP6cvZ
-	 2GtZTCDq3UfWsBVgakQbxy+hGirAjBuguuqxjtEfbQShqZ8RCKRMTKYPwPEGp6cbfW
-	 44P7hs8Yyns3MUP70SCqK/rPF/53qeGKjowW60z2g35szc+VRlCtVNLVkrmm7+vPsg
-	 tGqRYPkHOxsZA==
-Received: by mercury (Postfix, from userid 1000)
-	id 5B719106044B; Fri, 15 Sep 2023 22:49:14 +0200 (CEST)
-Date: Fri, 15 Sep 2023 22:49:14 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Varshini Rajendran <varshini.rajendran@microchip.com>
-Cc: claudiu.beznea@microchip.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 07/50] dt-bindings: power: reset: atmel,sama5d2-shdwc:
- add sam9x7
-Message-ID: <20230915204914.5ydicuwkiwmsuop4@mercury.elektranox.org>
-References: <20230728102407.265617-1-varshini.rajendran@microchip.com>
+	b=X8q+80RgmydYetEN7N0GuV/XpsFwFSajEX0D3KmsUTxIw9rvCQcWvk0fpEBDmsEYT
+	 vYIYaJV0uZ6gzsiMgLZUf9OpNnY3nMKS6M5RH2Qew5MZwU3Ksy/tuCdiyFjFhkc3mE
+	 aD4pM9bDK4eEddohaQrgLBJfveET1P97K+buMbvWtcuTUYQECsjTOjK0DYOmIIiamk
+	 yR9SBKszFgdOeAjPIjovoalbwt4nDjhrPu/ZUKe9rr+j6k0iiUMx1X4KGlUOrF2378
+	 44fTiEFhgPC7INW74fZwPuS76j7V/G/RkyQZcGCZwl/vRofGKuZAPJlAKA+GGi1DDL
+	 DU9nr+905/RsA==
+Date: Fri, 15 Sep 2023 22:07:38 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: riscv: cpus: Add missing
+ additionalProperties on interrupt-controller node
+Message-ID: <20230915-ethanol-doorframe-f500a5d9521e@spud>
+References: <20230915201946.4184468-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4rmbok64xucswjqi"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="064DYEBcFbFiNMAU"
 Content-Disposition: inline
-In-Reply-To: <20230728102407.265617-1-varshini.rajendran@microchip.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+In-Reply-To: <20230915201946.4184468-1-robh@kernel.org>
 
 
---4rmbok64xucswjqi
+--064DYEBcFbFiNMAU
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-On Fri, Jul 28, 2023 at 03:54:07PM +0530, Varshini Rajendran wrote:
-> Add shutdown controller DT bindings.
+On Fri, Sep 15, 2023 at 03:19:36PM -0500, Rob Herring wrote:
+> The "interrupt-controller" CPU child node is missing constraints on
+> extra properties. Add "additionalProperties: false" to fix this.
 >=20
-> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+
+Was wondering why I couldn't see this in my dt queue, guess
+get_maintainer.pl struggled with the multiple claims on the file :)
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
 > ---
-
-Acked-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-
--- Sebastian
-
->  .../devicetree/bindings/power/reset/atmel,sama5d2-shdwc.yaml   | 3 +++
->  1 file changed, 3 insertions(+)
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/power/reset/atmel,sama5d2-=
-shdwc.yaml b/Documentation/devicetree/bindings/power/reset/atmel,sama5d2-sh=
-dwc.yaml
-> index 8c58e12cdb60..0735ceb7c103 100644
-> --- a/Documentation/devicetree/bindings/power/reset/atmel,sama5d2-shdwc.y=
-aml
-> +++ b/Documentation/devicetree/bindings/power/reset/atmel,sama5d2-shdwc.y=
-aml
-> @@ -22,6 +22,9 @@ properties:
->        - enum:
->            - atmel,sama5d2-shdwc
->            - microchip,sam9x60-shdwc
-> +      - items:
-> +          - const: microchip,sam9x7-shdwc
-> +          - const: microchip,sam9x60-shdwc
+> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Document=
+ation/devicetree/bindings/riscv/cpus.yaml
+> index 38c0b5213736..97e8441eda1c 100644
+> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> @@ -91,6 +91,7 @@ properties:
 > =20
->    reg:
->      maxItems: 1
+>    interrupt-controller:
+>      type: object
+> +    additionalProperties: false
+>      description: Describes the CPU's local interrupt controller
+> =20
+>      properties:
 > --=20
-> 2.25.1
+> 2.40.1
 >=20
 
---4rmbok64xucswjqi
+--064DYEBcFbFiNMAU
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmUEw0oACgkQ2O7X88g7
-+pqMaQ//fRpW3IAmANjZp1vqMTaLUVucVuRl9o6bRdbKxWdE52Vb11f44Q27IkdK
-eBECNresd47jrMxzMc5I2GrUmQP31aAfr1gtAWO2tmIoctf1gEvoFWOPnLmrBN7U
-tlnHfAGkgKd9fZocN5J9r3QBGrb+y9wWDnjgdxMcU6pg0UnVZS6cbx765W1jjbTi
-exjLlh4k7BvIaqIrQg19gbbofVbsn0PeFCW7nFXiO5Fqux8Z2xxHTNTD9x+Jjnzw
-ISOHEy/2F1PvOk5Ih/Zr3mRr7FQBHAVTqj9BLriMTUc0xiJeycClc5olw5+hn7Aa
-MD/F2orU9U1lEUdAJrXfPBw3kxqjjUupDfP1+/866W0+/5JrnTCDNN15HSaCmfHV
-wjsSOtf3o0UTdjQbWlycomzGsh95DVUPfhy1J81dOlgPbX2newx8PeyXqPuDfB5/
-aVlllGqUi71J/FJnYNm3lkbvg2o5sz67fmvimj3T8vYQ27+rCiG+t6RTKyROrJx0
-9FrmxpybxpWkY4MIfuqsg+DAoZXn+ECa+t3+ScwClG0HY+61dk08XRA+ySe0mmk2
-XxV8ZI6VWlsratzwlcHJJQFNEgkEbWdh3gYTAx5EspcXd/EP7hApWTGeEavL1OIV
-vYqSNJAvPyV7+jBfW0xim6YsUjp+qM0XtbkpOxL7G9ePlImSb34=
-=deto
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQTHmgAKCRB4tDGHoIJi
+0g91AP0YiS0atHOPqWoysBPu+aFzJt8G+4W+Ng/yWcAqOg2rmAEAyWksUAWE2Blw
+L+/D+8Tq4OdxCfKJjDcWuW8QGTBZZQ8=
+=BkiN
 -----END PGP SIGNATURE-----
 
---4rmbok64xucswjqi--
+--064DYEBcFbFiNMAU--
 
