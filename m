@@ -1,152 +1,128 @@
-Return-Path: <devicetree+bounces-403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 833FF7A1751
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:26:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F53C7A174D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:26:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DF70280C7D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 07:26:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C30B1C213CA
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 07:26:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA325D286;
-	Fri, 15 Sep 2023 07:26:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDC7AD27B;
+	Fri, 15 Sep 2023 07:26:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D9D2D287
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 07:26:19 +0000 (UTC)
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC41A1BCC;
-	Fri, 15 Sep 2023 00:26:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1694762776; x=1726298776;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EyH0sB0gCaPFZjPgUffhDBAyq6GhY0/i50f+uPV8t/o=;
-  b=JhhE5lGA6V5KJi7ANF+Of93uWCgoHx+lcPZK29C9hKUDxS8F0z1pj4IV
-   O31P57jclKuUe5mJnnt1ukafHwCXTgDQVGiTL0QByvvdir97xrRGyO3T+
-   D2YHHaAxPuez/OHIZuqYhZygJE/WC2/M/qrKyZlZfo7fJ6Xjc8DPRaYK9
-   +/Ltcj61RicGzh/uG4IAt/DpM5YfC5kgUFiqkj7mgoi1Cb0E3QQA5c0ez
-   PsDu7voIOKI3sPp/OaLyEw+2nsmBbeMnENBOvXQJ88WblCn6zUfQMlUrE
-   nTtHLE/dpY5QRsHBzwENAWvODuWvGLD8VsEhhrTFb6V0ro9pv2+tS0JqF
-   A==;
-X-CSE-ConnectionGUID: V6gNLPcxR0GFNINxl3o+CQ==
-X-CSE-MsgGUID: oMXifhVTQ7CSEyR0Xd1ocQ==
-X-ThreatScanner-Verdict: Negative
-X-IronPort-AV: E=Sophos;i="6.02,148,1688454000"; 
-   d="asc'?scan'208";a="4993552"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 Sep 2023 00:26:16 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 15 Sep 2023 00:25:40 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Fri, 15 Sep 2023 00:25:37 -0700
-Date: Fri, 15 Sep 2023 08:25:21 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Wang Chen <unicornxw@gmail.com>
-CC: <linux-riscv@lists.infradead.org>, <conor@kernel.org>,
-	<aou@eecs.berkeley.edu>, <krzysztof.kozlowski+dt@linaro.org>,
-	<palmer@dabbelt.com>, <paul.walmsley@sifive.com>, <robh+dt@kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<jszhang@kernel.org>, <guoren@kernel.org>, <chao.wei@sophgo.com>,
-	<xiaoguang.xing@sophgo.com>, Wang Chen <wangchen20@iscas.ac.cn>
-Subject: Re: [PATCH 00/12] Add Milk-V Pioneer RISC-V board support
-Message-ID: <20230915-dill-gauze-922068730d7b@wendy>
-References: <20230915070856.117514-1-wangchen20@iscas.ac.cn>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 342D1D27E
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 07:26:18 +0000 (UTC)
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66C1319A5;
+	Fri, 15 Sep 2023 00:26:14 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1bf55a81eeaso14698665ad.0;
+        Fri, 15 Sep 2023 00:26:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1694762774; x=1695367574; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=L2LlgryffFXqAnsB0AaplLotGa39fDQAXZM7QJ4rjkg=;
+        b=Snl9Y5XHaZKMjP5OADSAZuSBJ5RqTWFsYoPiVOdg7FvjIMo/mBJ3IsMWEyrfU7OE0i
+         xDrzBxwRF2+iO7kh8MzGFkb/nzlh4Yyp3oqweDxiH8iMyByup/5pjXrmUjcKNpNco2N+
+         Jjej64Kqdrhe5beAa28R0pYgMBvd9Ujqo1ItGG4JGqMMIba14cIJaojHKwNNvN/XKW9J
+         FXHWjwrrx3wbX5HRXxhS+6Tug18rmgXxYEh8xNfSOEnbIFUf8I7xDhRPR1afz7ZgyVQi
+         V8D+Bvgj6D4Ooax9YhYABvAYoJH6kiA/wCUIAW3qXy8KToFM9wi3hItOvfqp76Zzkyfm
+         +9pA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694762774; x=1695367574;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=L2LlgryffFXqAnsB0AaplLotGa39fDQAXZM7QJ4rjkg=;
+        b=cwrS2KtgMe6vjY8iquiolgKk3d+rId7hg8qnEGA+01gZwIgsByFC7Gjnp5nR6nDe4B
+         kmEy8FbLvzUJCJSylraSafg5bBL0vmdOr4Y5mqyMg/72jfEKL3QN63D5z00pVrcUmf95
+         I1vEhRhkDoZrdqatplRvXaRFVkl4B4ykaRaoRSZczV45gkL6bskZFU21M4LSHCViMiEd
+         XEZ03oeuL7jjQz38FwsE3RBGX+zYGS34nJxFYrLyXk/dbjchv9aG2fE6EBXmLTEpRbyz
+         QcmW6huQwxIVdfmR5taNZKjAg/fZbjmyRO9X2khRjMCLQcMiPjhs/Ygj6018Qe1TgYhD
+         ORZw==
+X-Gm-Message-State: AOJu0YxjYeUODBHfsU2ZzN/6uJJugpOhKNffnL928uH8K0fCzDyTZZiK
+	2wgX6TPH2UOV4FMuL9aObnI=
+X-Google-Smtp-Source: AGHT+IHq5IsXi3VI2LJb1QmXm6E4DKx49u2LCFsrdNeRgmTzjAomgQYQ3nGiPLmT+k5b2KUOcIbwcw==
+X-Received: by 2002:a17:902:6903:b0:1bb:b855:db3c with SMTP id j3-20020a170902690300b001bbb855db3cmr667277plk.41.1694762773826;
+        Fri, 15 Sep 2023 00:26:13 -0700 (PDT)
+Received: from localhost.localdomain ([222.95.63.58])
+        by smtp.gmail.com with ESMTPSA id m2-20020a170902768200b001acae9734c0sm2752110pll.266.2023.09.15.00.26.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Sep 2023 00:26:13 -0700 (PDT)
+From: Wang Chen <unicornxw@gmail.com>
+X-Google-Original-From: Wang Chen <wangchen20@iscas.ac.cn>
+To: linux-riscv@lists.infradead.org,
+	conor@kernel.org,
+	aou@eecs.berkeley.edu,
+	krzysztof.kozlowski+dt@linaro.org,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	robh+dt@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	jszhang@kernel.org,
+	guoren@kernel.org,
+	chao.wei@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Subject: [PATCH 10/12] serial: 8250_dw: Add Sophgo SG2042 support
+Date: Fri, 15 Sep 2023 15:25:58 +0800
+Message-Id: <20230915072558.118325-1-wangchen20@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="IJenxqMWDwNwrYt0"
-Content-Disposition: inline
-In-Reply-To: <20230915070856.117514-1-wangchen20@iscas.ac.cn>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
---IJenxqMWDwNwrYt0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
-Hey,
+Add quirk to skip setting the input clock rate for the uarts on the
+Sophgo SG2042 SoC similar to the StarFive JH7100.
 
-On Fri, Sep 15, 2023 at 03:08:56PM +0800, Wang Chen wrote:
-> Milk-V Pioneer [1] is a developer motherboard based on SOPHON SG2042 [2]
-> in a standard mATX form factor. Add minimal device
-> tree files for the SG2042 SOC and the Milk-V Pioneer board.
+Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+---
+ drivers/tty/serial/8250/8250_dw.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-Cool, thanks for working on this.
+diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
+index f4cafca1a7da..6c344877a07f 100644
+--- a/drivers/tty/serial/8250/8250_dw.c
++++ b/drivers/tty/serial/8250/8250_dw.c
+@@ -770,7 +770,7 @@ static const struct dw8250_platform_data dw8250_renesas_rzn1_data = {
+ 	.quirks = DW_UART_QUIRK_IS_DMA_FC,
+ };
+ 
+-static const struct dw8250_platform_data dw8250_starfive_jh7100_data = {
++static const struct dw8250_platform_data dw8250_skip_set_rate_data = {
+ 	.usr_reg = DW_UART_USR,
+ 	.quirks = DW_UART_QUIRK_SKIP_SET_RATE,
+ };
+@@ -780,7 +780,8 @@ static const struct of_device_id dw8250_of_match[] = {
+ 	{ .compatible = "cavium,octeon-3860-uart", .data = &dw8250_octeon_3860_data },
+ 	{ .compatible = "marvell,armada-38x-uart", .data = &dw8250_armada_38x_data },
+ 	{ .compatible = "renesas,rzn1-uart", .data = &dw8250_renesas_rzn1_data },
+-	{ .compatible = "starfive,jh7100-uart", .data = &dw8250_starfive_jh7100_data },
++	{ .compatible = "sophgo,sg2042-uart", .data = &dw8250_skip_set_rate_data },
++	{ .compatible = "starfive,jh7100-uart", .data = &dw8250_skip_set_rate_data },
+ 	{ /* Sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, dw8250_of_match);
+-- 
+2.25.1
 
->=20
-> Now only support basic uart drivers to boot up into a basic console.
->=20
-> The patch series is based on v6.6-rc1. You can simply review or test=20
-> the patches at the link [3]. Hope this series will be merged soon.
->=20
-> Thanks
->=20
-> [1]: https://milkv.io/pioneer
-> [2]: https://en.sophgo.com/product/introduce/sg2042.html
-> [3]: https://github.com/unicornx/linux-riscv/commits/milkv-pioneer-minimal
->=20
-> Emil Renner Berthing (2):
->   dt-bindings: serial: snps-dw-apb-uart: Add Sophgo SG2042 uarts
->   serial: 8250_dw: Add Sophgo SG2042 support
->=20
-> Inochi Amaoto (1):
->   dt-bindings: timer: Add Sophgo sg2042 clint
->=20
-> Wang Chen (8):
->   dt-bindings: vendor-prefixes: add milkv/sophgo
->   dt-bindings: riscv: add sophgo sg2042 bindings
->   dt-bindings: riscv: Add T-HEAD C920 compatibles
->   dt-bindings: interrupt-controller: Add SOPHGO's SG2042 PLIC
->   riscv: dts: add initial SOPHGO SG2042 SoC device tree
->   riscv: dts: sophgo: add Milk-V Pioneer board device tree
->   riscv: dts: sophgo: Add sophgo,sg2024-uart compatibles
->   riscv: defconfig: enable SOPHGO SoC
->=20
-> xiaoguang.xing (1):
->   riscv: Add SOPHGO SOC family Kconfig support
-
-One thing on sending patchsets - you've not threaded this patchset,
-where each patch is a reply to the cover letter. This makes it more
-difficult to apply the series as a human & ~impossible for the
-automation to test correctly.
-Git should do this for you if run send-email on an entire directory,
-or you can pass the message-id of the cover letter with an argument.
-The first option is likely a lot easier for you...
-
-Thanks,
-Conor.
-
---IJenxqMWDwNwrYt0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQQG4QAKCRB4tDGHoIJi
-0mQUAP9WOBdSKZXk8ACK1UVixPMHRsarDWFDmAAa/uPxxRVXFgEA+jBK+Bq2J/xE
-MtSEfbB0WAs8zdV+l3VW3oVLXhciAw0=
-=lNkY
------END PGP SIGNATURE-----
-
---IJenxqMWDwNwrYt0--
 
