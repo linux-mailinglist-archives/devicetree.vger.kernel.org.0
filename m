@@ -1,89 +1,142 @@
-Return-Path: <devicetree+bounces-564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D55787A1F6C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 15:00:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF5A77A1F71
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 15:02:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AC622823C8
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 13:00:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9CD4282887
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 13:02:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7BAA10959;
-	Fri, 15 Sep 2023 13:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0177210950;
+	Fri, 15 Sep 2023 13:02:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4086E101DD;
-	Fri, 15 Sep 2023 13:00:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A9B86C433D9;
-	Fri, 15 Sep 2023 13:00:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694782826;
-	bh=xqj4QRqO55KywEoX85nsOwjXLp4zs8awExP+e9hTfw0=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=r2vvDkgOcTnfhCa6pwsvekB2TPv8uQQx1JSHYnKpR8+8dsFOOnZZ3SPJitEYx64ac
-	 /+ACzjUGYafLevq74JPFr/LIfkeKtlAIReWdBIG55dcIuCUrGE7dA131iB7lxNwnMs
-	 vY6iA0nujDJFXt1RRR6u8A6eo896sxSGl70uTTW+S4YC4M0lAIHB2XLTXbVqLfiXQb
-	 O4GMv/hzKsA3EIVPPSzdieAHGLjR97O0P43zrH8J5bj8jp/71P8NR89UW+YzMRtbBC
-	 pH9VqasJrdlqdx8MSHv3U+lcE3gvfyDyP5m+tCQtSXbYxkGDC5K40UpFhj+Z/ZSiXH
-	 ToaFP6ZWe76tQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 9643EE22AEE;
-	Fri, 15 Sep 2023 13:00:26 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40A73DDDE
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 13:02:35 +0000 (UTC)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A029FA8
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 06:02:34 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-500a8b2b73eso3439662e87.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 06:02:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ferroamp-se.20230601.gappssmtp.com; s=20230601; t=1694782953; x=1695387753; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W6UZffakOMwph92nd+kWC1xMQkck4fFTNUb9ro2z14A=;
+        b=Vav1nPGbT5GhyD7PHAGcSdmn+Hk0wFrIqM26hEPGFzQIxajzAo0BhikBve48ZtTpd5
+         yIU3iUu6mWSKp/4Ifk/seAfMBqLE1VXcRMuLRrYWfoLuxfUOdYgowhdej2c9zp+UGno+
+         LTn8Iibwa62xFDoHy0WE98HFPtldmgP8eH8GReW4TdOLru3nRjZ8SK0r7WHwlYT7fttv
+         lWRL+QLbksfz7o4Ta2TpnRaQRe6SJtY+bBvJr9/+bSjmq73zWc+V2LVGLfrP1L+IXb3S
+         xRh8+YL7h8R06YOIm8esWJKWPOR4dy3ckTr+Qz/r3YDXNZGBgnO1THIa7c2RZdlNMtuS
+         23/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694782953; x=1695387753;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=W6UZffakOMwph92nd+kWC1xMQkck4fFTNUb9ro2z14A=;
+        b=jOc5OE5pVcY5lSLzwZEQJrjRYFnxBG8xVoaR9DqYDDFnoTAku7mnqtq5FmQeuCSTtt
+         HFQtc2XiibhuJDaqCTLMicmB5Fowfxe+RQZevAKAEhCutt1eAlZf+QDc+GLH3Uz828wK
+         HGP0Dj0Z8uouvBZFYAhciH4zan7oOlF6W9KOfAFWMJ9MYvgeAXB7xnVQMyyaW07WAYfh
+         fcG98GmwoCMK5iz6UDtZJoHaEYtpwvkO73VUUJn4Av9W4dtdsyyy4W2T5R7VX1tp2+Ke
+         UoQgiNzTMbuqok26SYde7djwjltmiQzme5qC27GyKq8lDnTzVybXkuocTZpMQrQ+JM5L
+         Fqbg==
+X-Gm-Message-State: AOJu0Ywc79uivmJatMFTvML3QzKzpbynuN2mm4a+XtqI7rBVFXXvbc2m
+	RO5PRGdxFfcqLmYpfI5V+rpInw==
+X-Google-Smtp-Source: AGHT+IGjPyu7jb40b9QIC9voQV7XmcSDtVJwj9b+6ctkxoJV4zNkFeT6teRxdaReR4z9TzYi2xuDwA==
+X-Received: by 2002:a05:6512:3b21:b0:4fe:a2c:24b0 with SMTP id f33-20020a0565123b2100b004fe0a2c24b0mr1776729lfv.26.1694782952704;
+        Fri, 15 Sep 2023 06:02:32 -0700 (PDT)
+Received: from dwr-latitude-5400.. ([185.117.107.42])
+        by smtp.gmail.com with ESMTPSA id a15-20020a19f80f000000b004fe37339f8esm634600lff.149.2023.09.15.06.02.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Sep 2023 06:02:32 -0700 (PDT)
+From: David Wretman <david.wretman@ferroamp.se>
+To: parthiban.veerasooran@microchip.com
+Cc: Nicolas.Ferre@microchip.com,
+	Thorsten.Kummermehr@microchip.com,
+	UNGLinuxDriver@microchip.com,
+	Woojung.Huh@microchip.com,
+	andrew@lunn.ch,
+	casper.casan@gmail.com,
+	conor+dt@kernel.org,
+	corbet@lwn.net,
+	davem@davemloft.net,
+	devicetree@vger.kernel.org,
+	edumazet@google.com,
+	horatiu.vultur@microchip.com,
+	horms@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	kuba@kernel.org,
+	linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	pabeni@redhat.com,
+	rdunlap@infradead.org,
+	robh+dt@kernel.org,
+	steen.hegelund@microchip.com,
+	David Wretman <david.wretman@ferroamp.se>
+Subject: [RFC PATCH net-next 5/6] microchip: lan865x: add driver support for Microchip's LAN865X MACPHY
+Date: Fri, 15 Sep 2023 15:01:19 +0200
+Message-Id: <20230915130118.927821-1-david.wretman@ferroamp.se>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230908142919.14849-6-Parthiban.Veerasooran@microchip.com>
+References: <20230908142919.14849-6-Parthiban.Veerasooran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v3 0/2] Add Half Duplex support for ICSSG Driver
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <169478282660.10241.3855414468809647924.git-patchwork-notify@kernel.org>
-Date: Fri, 15 Sep 2023 13:00:26 +0000
-References: <20230913091011.2808202-1-danishanwar@ti.com>
-In-Reply-To: <20230913091011.2808202-1-danishanwar@ti.com>
-To: MD Danish Anwar <danishanwar@ti.com>
-Cc: andrew@lunn.ch, rogerq@ti.com, conor+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, pabeni@redhat.com,
- kuba@kernel.org, edumazet@google.com, davem@davemloft.net, vigneshr@ti.com,
- horms@kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- netdev@vger.kernel.org, srk@ti.com, r-gunasekaran@ti.com
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,T_SPF_PERMERROR
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-Hello:
-
-This series was applied to netdev/net-next.git (main)
-by David S. Miller <davem@davemloft.net>:
-
-On Wed, 13 Sep 2023 14:40:09 +0530 you wrote:
-> This series adds support for half duplex operation for ICSSG driver.
+---
+On Fri, Sep 08, 2023 at 07:59:18PM +0530, Parthiban Veerasooran wrote:
+> The LAN8650/1 is designed to conform to the OPEN Alliance 10BASE‑T1x
+> MAC‑PHY Serial Interface specification, Version 1.1. The IEEE Clause 4
+> MAC integration provides the low pin count standard SPI interface to any
+> microcontroller therefore providing Ethernet functionality without
+> requiring MAC integration within the microcontroller. The LAN8650/1
+> operates as an SPI client supporting SCLK clock rates up to a maximum of
+> 25 MHz. This SPI interface supports the transfer of both data (Ethernet
+> frames) and control (register access).
 > 
-> In order to support half-duplex operation at 10M and 100M link speeds, the
-> PHY collision detection signal (COL) should be routed to ICSSG GPIO pin
-> (PRGx_PRU0/1_GPI10) so that firmware can detect collision signal and apply
-> the CSMA/CD algorithm applicable for half duplex operation. A DT property,
-> "ti,half-duplex-capable" is introduced for this purpose in the first patch
-> of the series. If board has PHY COL pin conencted to PRGx_PRU1_GPIO10,
-> this DT property can be added to eth node of ICSSG, MII port to support
-> half duplex operation at that port.
+> By default, the chunk data payload is 64 bytes in size. A smaller payload
+> data size of 32 bytes is also supported and may be configured in the
+> Chunk Payload Size (CPS) field of the Configuration 0 (OA_CONFIG0)
+> register. Changing the chunk payload size requires the LAN8650/1 be reset
+> and shall not be done during normal operation.
 > 
-> [...]
+> The Ethernet Media Access Controller (MAC) module implements a 10 Mbps
+> half duplex Ethernet MAC, compatible with the IEEE 802.3 standard.
+> 10BASE-T1S physical layer transceiver integrated into the LAN8650/1. The
+> PHY and MAC are connected via an internal Media Independent Interface
+> (MII).
+> 
+> Signed-off-by: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
 
-Here is the summary with links:
-  - [net-next,v3,1/2] dt-bindings: net: Add documentation for Half duplex support.
-    https://git.kernel.org/netdev/net-next/c/927c568d6212
-  - [net-next,v3,2/2] net: ti: icssg-prueth: Add support for half duplex operation
-    https://git.kernel.org/netdev/net-next/c/0a205f0fe8dd
+Hi Parthiban,
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Thanks for these patches.
 
+One thing I am missing is settings for PLCA parameters. I feel that the
+driver is a bit lacking as long as this is missing.
+
+Adding support for the ethtool plca options would make this much more
+complete.
+
+Regards,
+David
 
 
