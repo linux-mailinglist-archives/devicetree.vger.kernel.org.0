@@ -1,116 +1,189 @@
-Return-Path: <devicetree+bounces-351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEC5C7A152F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 07:13:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 516777A1580
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 07:35:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A54B71C2101A
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 05:13:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09C3D282588
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 05:35:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 134153C05;
-	Fri, 15 Sep 2023 05:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01C9C3FDF;
+	Fri, 15 Sep 2023 05:35:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB267A52
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:13:48 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98B93269D;
-	Thu, 14 Sep 2023 22:13:47 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38F4k7O8030520;
-	Fri, 15 Sep 2023 05:13:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=aN/opL4qKVdKYHleCClCQCyml2zrljLvUse1Ya3lymo=;
- b=ZMkKLXSoSBjmfYL7ppANH0PrOzXqYIzaftGnz1pOXNxsZYKbKlWn50q7mtZslRrze7vD
- /ORe1avCdn3f3rltfpWEAWiMf8cWkNhZbq86M2atFt9pFrjH4C710FBGOoLr/atGpj9F
- j1jJfYdDvN8M+6vFUaFSRJSGGFQG+qt7kpcQtf3/rLZWDRkSljUEyO5uIuKDj4Hc4KOZ
- aXjV30oR62gc0450VfWagvwfEw9xEOUZZTtDjUciZbHSp42Qq5n3sPepZCYuu7pUbqkt
- Ilt4kECxaUpSx7Mo7/sUgOfvUCGAOdp/mL93LHMtee69mbxRRn5Ge5xIYU/AnV4Xu/+K YA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t4g0703mp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Sep 2023 05:13:42 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38F5Df53011374
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Sep 2023 05:13:41 GMT
-Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Thu, 14 Sep 2023 22:13:35 -0700
-Date: Fri, 15 Sep 2023 10:43:32 +0530
-From: Pavan Kondeti <quic_pkondeti@quicinc.com>
-To: Gaurav Kohli <quic_gkohli@quicinc.com>
-CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <kernel@quicinc.com>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: msm8916: Fix iommu local address range
-Message-ID: <f750dd62-5eca-4b1c-bb9f-ed54a24a01bc@quicinc.com>
-References: <20230915050611.30451-1-quic_gkohli@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77193809
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:35:23 +0000 (UTC)
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20DFD2718
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 22:35:20 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-31f71b25a99so1626097f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 22:35:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1694756118; x=1695360918; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jCFwLWQlvVlQiSU7UZdz9MimUN6oP0AbuVDIc/7fuZ0=;
+        b=aOBXzb4Y0TOR/laA9Eag4nyKqTZLC+hJ4q4xWnRB9kAEjnEH2NF5mvNhhyPDKz6/+B
+         NgaHZ5dHKmq5c1Jv/nokLyyZyUA+HZN6jpp83HqyfYgp6ZlJRpM85GBDjECmooCtT6SA
+         TrV0Bx52GGKET6qghcD+EXOv431IT/K3WATdrt0tTy/kSQ+DXd8hNWG4uybhKSMKBeZ3
+         MGOk0b1kFRD1HNSmq4abuWgYBsEB7j3Dsw+SYFIiJiEGyc7AIAhMUgHIW3HGcp+GYmZH
+         eZ83q4Q2AB/FW8OPNxR8Q3BYQVdm5Z3NlCassfOf0Y+wO8P2Q/Ns8uuvwUiv8xtGvQji
+         JggQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694756118; x=1695360918;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jCFwLWQlvVlQiSU7UZdz9MimUN6oP0AbuVDIc/7fuZ0=;
+        b=OejjGT6/vy5cTj8U6g5ernHfQkSY5JL4NnRcB0xkhUKtK7DxoQqMVvCmcN9B8H5Zbz
+         3p7kQnWqFrWoQ51ECAaH3gYSg6FbYB/zPD2BCWS1sd1i9qucakkosmJkK3hXES80QVkS
+         6kBp0KV6IPwr4pwNJJsBf/+V4XhOWYk1nEGYiTyT5g2GuAZILDLhXZjB5394hR/wWB2s
+         80LssghyJM9ZNL520yyTL0pHQSbu9CzbFJkAuClTKWO/zBQSWE00dmA7KKM4iVdeejRr
+         3x7Mtm5gkNt+Kaz0yH7OstvOy4WvIbD1eTC+IMBK8I/alwuViJZCVgg7bX8ESRgP7ZPD
+         RpJg==
+X-Gm-Message-State: AOJu0YzFHdpPLawyxeCWQgNEVqgI3XbOn0fOB1FdLeOFhoj7UcX3zQCW
+	RVaeuWo7s2XKosJCovCQl5o6Yg==
+X-Google-Smtp-Source: AGHT+IGL9oG9qxI8b+K2vqWLJ/uBYUSG/EAvdwsyp1zBwA32EpDfEXEXIjOzgvRHhIU/3erKMLaNJA==
+X-Received: by 2002:adf:dcd1:0:b0:31f:98c2:b384 with SMTP id x17-20020adfdcd1000000b0031f98c2b384mr517214wrm.30.1694756118266;
+        Thu, 14 Sep 2023 22:35:18 -0700 (PDT)
+Received: from [192.168.32.2] ([82.78.167.145])
+        by smtp.gmail.com with ESMTPSA id k8-20020a5d4288000000b00317a29af4b2sm3439064wrq.68.2023.09.14.22.35.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Sep 2023 22:35:17 -0700 (PDT)
+Message-ID: <94ae925c-6bd3-7253-9ac5-1d87280a1972@tuxon.dev>
+Date: Fri, 15 Sep 2023 08:35:14 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230915050611.30451-1-quic_gkohli@quicinc.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: K1YrkyXBzzxvGRX_pPMqxAodBx0e9ZWj
-X-Proofpoint-ORIG-GUID: K1YrkyXBzzxvGRX_pPMqxAodBx0e9ZWj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-15_05,2023-09-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 clxscore=1011 phishscore=0 spamscore=0 mlxscore=0
- adultscore=0 suspectscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
- mlxlogscore=770 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309150045
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 06/37] clk: renesas: rzg2l: wait for status bit of SD mux
+ before continuing
+Content-Language: en-US
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ ulf.hansson@linaro.org, linus.walleij@linaro.org,
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, magnus.damm@gmail.com,
+ catalin.marinas@arm.com, will@kernel.org,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, biju.das.jz@bp.renesas.com,
+ quic_bjorande@quicinc.com, arnd@arndb.de, konrad.dybcio@linaro.org,
+ neil.armstrong@linaro.org, nfraprado@collabora.com, rafal@milecki.pl,
+ wsa+renesas@sang-engineering.com, linux-renesas-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
+ <20230912045157.177966-7-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdXoq96ptmm+oU_yHdkSfN4+WCfABn98tXV5xfyvM66Eig@mail.gmail.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <CAMuHMdXoq96ptmm+oU_yHdkSfN4+WCfABn98tXV5xfyvM66Eig@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri, Sep 15, 2023 at 10:36:11AM +0530, Gaurav Kohli wrote:
-> Fix the apps iommu local address space range as per data sheet.
+Hi, Geert,
+
+On 14.09.2023 14:42, Geert Uytterhoeven wrote:
+> Hi Claudiu,
 > 
-> Fixes: 327c0f5f2510 ("arm64: dts: qcom: msm8916: Sort nodes")
-> Signed-off-by: Gaurav Kohli <quic_gkohli@quicinc.com>
+> On Tue, Sep 12, 2023 at 6:52 AM Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> Hardware user manual of RZ/G2L (r01uh0914ej0130-rzg2l-rzg2lc.pdf,
+>> chapter 7.4.7 Procedure for Switching Clocks by the Dynamic Switching
+>> Frequency Selectors) specifies that we need to check CPG_PL2SDHI_DSEL for
+>> SD clock switching status.
+>>
+>> Fixes: eaff33646f4cb ("clk: renesas: rzg2l: Add SDHI clk mux support")
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > 
+> Thanks for your patch!
+> 
+>> --- a/drivers/clk/renesas/rzg2l-cpg.c
+>> +++ b/drivers/clk/renesas/rzg2l-cpg.c
+>> @@ -188,7 +188,8 @@ static int rzg2l_cpg_sd_clk_mux_set_parent(struct clk_hw *hw, u8 index)
+>>         u32 off = GET_REG_OFFSET(hwdata->conf);
+>>         u32 shift = GET_SHIFT(hwdata->conf);
+>>         const u32 clk_src_266 = 2;
+>> -       u32 bitmask;
+>> +       u32 msk, val, bitmask;
+>> +       int ret;
+>>
+>>         /*
+>>          * As per the HW manual, we should not directly switch from 533 MHz to
+>> @@ -203,9 +204,6 @@ static int rzg2l_cpg_sd_clk_mux_set_parent(struct clk_hw *hw, u8 index)
+>>          */
+>>         bitmask = (GENMASK(GET_WIDTH(hwdata->conf) - 1, 0) << shift) << 16;
+>>         if (index != clk_src_266) {
+>> -               u32 msk, val;
+>> -               int ret;
+>> -
+>>                 writel(bitmask | ((clk_src_266 + 1) << shift), priv->base + off);
+>>
+>>                 msk = off ? CPG_CLKSTATUS_SELSDHI1_STS : CPG_CLKSTATUS_SELSDHI0_STS;
+>> @@ -221,7 +219,13 @@ static int rzg2l_cpg_sd_clk_mux_set_parent(struct clk_hw *hw, u8 index)
+>>
+>>         writel(bitmask | ((index + 1) << shift), priv->base + off);
+>>
+>> -       return 0;
+>> +       ret = readl_poll_timeout(priv->base + CPG_CLKSTATUS, val,
+>> +                                !(val & msk), 100,
+> 
+> "msk" may be uninitialized.
 
-The above quoted commit it Fixes tag did not introduce the problem. This
-is introduced in
+Indeed! I'll update it in next version.
 
-6a6729f38436("arm64: dts: qcom: msm8916: Add IOMMU support")
+> 
+>> +                                CPG_SDHI_CLK_SWITCH_STATUS_TIMEOUT_US);
+>> +       if (ret)
+>> +               dev_err(priv->dev, "failed to switch clk source\n");
+>> +
+>> +       return ret;
+> 
+> This is now (supposed to be) doing the same thing twice, once using
+> clk_src_266, and then again with the wanted index, so why not introduce
+> a small helper? That would have avoided the uninitialized variable, too.
 
-with that fixed, the change looks good to me.
+Initially I thought about it but I found it too much for this stage as it
+is only about the readl_poll_timeout() and the debug message. I may keep
+the debug message in a local variable if you think worth it (but FMPOV it
+the code will look a bit... unusual). Moreover, as the code is rewritten in
+patch "[PATCH 18/37] clk: renesas:
+rzg2l: refactor sd mux driver" I thought it doesn't worth introducing a new
+helper in this patch.
 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> index 33fb65d73104..3c934363368c 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> @@ -1813,7 +1813,7 @@
->  			#size-cells = <1>;
->  			#iommu-cells = <1>;
->  			compatible = "qcom,msm8916-iommu", "qcom,msm-iommu-v1";
-> -			ranges = <0 0x01e20000 0x40000>;
-> +			ranges = <0 0x01e20000 0x20000>;
->  			reg = <0x01ef0000 0x3000>;
->  			clocks = <&gcc GCC_SMMU_CFG_CLK>,
->  				 <&gcc GCC_APSS_TCU_CLK>;
+Thank you,
+Claudiu Beznea
 
-Thanks,
-Pavan
+> 
+> I know you're rewriting this code in "[PATCH 18/37] clk: renesas:
+> rzg2l: refactor sd mux driver", but even after that, you always do
+> a register write before calling rzg2l_cpg_wait_clk_update_done(),
+> so it may still be a net win.
+> 
+>>  }
+>>
+>>  static u8 rzg2l_cpg_sd_clk_mux_get_parent(struct clk_hw *hw)
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
 
