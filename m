@@ -1,274 +1,172 @@
-Return-Path: <devicetree+bounces-552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF80C7A1EC9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:34:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C010E7A1EDE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:38:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E06BE1C21504
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:34:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68874282A4C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:38:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6876310788;
-	Fri, 15 Sep 2023 12:34:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1401B10794;
+	Fri, 15 Sep 2023 12:37:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DC5EFC12
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:34:22 +0000 (UTC)
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B716DDD
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:34:20 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id 46e09a7af769-6c09f50ae00so188359a34.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:34:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694781260; x=1695386060; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=U3Gd4N15XLM3pKkHwOtx+4m6etCa6hBL791D2Ly7kXM=;
-        b=dN+ZGOI5gIM97d+TyURqPc+rk4+EANHOQvGduu4w21rAaBVIldiNUBpUtU6/zhm3OT
-         zSEdrDV62mg5E71Gbd1m7Zo6OZPZ0+OZURGQfCqifzTuqalthzmjlictcDHRHX/1gc7B
-         VfO+5oUfqX8XWSqeV2bJTankmlLVMKIX+zGvcG/p1ZpEzmAZxBi8EANO4/XKKAxyQOGM
-         zSk2xA6AG1WYIheyc5h+MAtTHwjI6PcVvVzRqghjxDIlCqeKIQC0s3NfPhEs+2g3Mgju
-         ROxPEN+bc2+ZswPaYbZCH1WBGn9uYiqn1VtMZ17SEi1gdg7k+sP9wHll/XAAExmhP6ly
-         euxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694781260; x=1695386060;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=U3Gd4N15XLM3pKkHwOtx+4m6etCa6hBL791D2Ly7kXM=;
-        b=DthwZFH6aJ6u4o8yTE8dJgWpoOzMnrKA0n3pUwzWsSP3l3nzIZGTw56pYEEBWpnp9n
-         AOA9C31gnaLimFsn+pyYObpgpTxYr78MhOZ5996XYc+yyqitpruChsiPT/1H6+Yp2DWk
-         PXE1dhNRkCb2+6+z5SQQWB4NYfPiy3xMqafytBho1D+aiJ7HhhXG82bBUz70X/Plxls8
-         08hCReEbZBRmu0BUM7SUXzhAcQhbIj0UPhin1WTNJOXdCs+DO3d7fUY4BuBETss9NTWo
-         9nbcAlznWWiiXlVsPSr9R9a6HdKHW5Vnh4oeNe9FODKlLtQYn/u7J2lAhMiNih6gdMuk
-         VLLg==
-X-Gm-Message-State: AOJu0YyS8Uy2dNMpSpqvsZdfUrFouGEpgWDbRx15En3vVS+Tm6p/R2Yw
-	sZbINdxVJtZDfeorJvzzj9LIScK4MCk=
-X-Google-Smtp-Source: AGHT+IEfTjLFkGfOMWFkH7xjm//GDL7MMQJCPHss+bD0vF3KAEyfuoGootPX7fZjTnm+MAQkNIj3Kg==
-X-Received: by 2002:a05:6830:4099:b0:6b1:9646:2ea0 with SMTP id x25-20020a056830409900b006b196462ea0mr1246919ott.1.1694781259808;
-        Fri, 15 Sep 2023 05:34:19 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:bb17:c38c:aa6:be85])
-        by smtp.gmail.com with ESMTPSA id a9-20020a056830008900b006b9b6aea237sm1567753oto.80.2023.09.15.05.34.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Sep 2023 05:34:19 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: shawnguo@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	marcel.ziswiler@toradex.com,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2] ARM: dts: imx6ull/7d-colibri: Fix compatible
-Date: Fri, 15 Sep 2023 09:33:50 -0300
-Message-Id: <20230915123350.2618476-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1BC510785
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:37:57 +0000 (UTC)
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DA21268A;
+	Fri, 15 Sep 2023 05:37:49 -0700 (PDT)
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38F7HPlw000981;
+	Fri, 15 Sep 2023 14:37:21 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=d54xQwFezSfKDhhyKZcu5xSLNpFhc3U0kDxKON1U7Vg=; b=nL
+	pW7x4pS1ygHUlyLu/YKibkUy7qBJ85Bmb8G/uIRQajn7ngQiek/RL9/0sPHU9joX
+	/I6GmOGw4cWebumHhmuSWoZcC7JJN1cBsGQh+PcyVas6CDuMMkd5EqcHtC44WqV+
+	qF160O1hdVhuF/7FrSJA0R0bAAD8EXR1n/pRVo2IiQfklQCrEZ0arOqCwAbeD4lG
+	8/8XiU4Pff4TBvjvGV0exfsykJrMoGXnbgBEkl6ITBQ1gVjEXnn3SU2Ai/OvZmav
+	GWxbsUbr6IX7lcHTrn/n95GaqvlewnUrekfTvdG8YWdMYluOh4HVpTrOAvurux/K
+	Pvfuykux0L6Dl28lnmLA==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3t2y7kn33c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Sep 2023 14:37:21 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BDEFD10004B;
+	Fri, 15 Sep 2023 14:37:19 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B47DD22F7AA;
+	Fri, 15 Sep 2023 14:37:19 +0200 (CEST)
+Received: from [10.201.20.32] (10.201.20.32) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 15 Sep
+ 2023 14:37:18 +0200
+Message-ID: <d7c9b1e9-b576-d564-d40f-f557853a414d@foss.st.com>
+Date: Fri, 15 Sep 2023 14:37:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 07/10] dt-bindings: rng: add st,rng-lock-conf
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring
+	<robh@kernel.org>
+CC: Olivia Mackall <olivia@selenic.com>,
+        Herbert Xu
+	<herbert@gondor.apana.org.au>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Lionel Debieve <lionel.debieve@foss.st.com>,
+        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20230908165120.730867-1-gatien.chevallier@foss.st.com>
+ <20230908165120.730867-8-gatien.chevallier@foss.st.com>
+ <20230911150958.GA1255978-robh@kernel.org>
+ <4819d89b-c2a4-0c75-27e1-d8122827ceca@foss.st.com>
+ <726e7f51-ce2c-5ac1-5347-21d6cf40c8c8@linaro.org>
+From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+In-Reply-To: <726e7f51-ce2c-5ac1-5347-21d6cf40c8c8@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.20.32]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-15_09,2023-09-14_01,2023-05-22_02
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Fabio Estevam <festevam@denx.de>
 
-Fix the imx6ull/7d-colibri devicetrees as per the rules defined
-at fsl.yaml.
+On 9/15/23 12:33, Krzysztof Kozlowski wrote:
+> On 15/09/2023 11:28, Gatien CHEVALLIER wrote:
+>> Hello Rob,
+>>
+>> On 9/11/23 17:09, Rob Herring wrote:
+>>> On Fri, Sep 08, 2023 at 06:51:17PM +0200, Gatien Chevallier wrote:
+>>>> If st,rng-lock-conf is set, the RNG configuration in RNG_CR, RNG_HTCR
+>>>> and RNG_NSCR will be locked. It is supported starting from the RNG
+>>>> version present in the STM32MP13
+>>>
+>>> This should be squashed into the prior binding patch.
+>>>
+>>>>
+>>>> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+>>>> ---
+>>>>    .../devicetree/bindings/rng/st,stm32-rng.yaml      | 14 ++++++++++++++
+>>>>    1 file changed, 14 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml b/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
+>>>> index 59abdc85a9fb..0055f14a8e3f 100644
+>>>> --- a/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
+>>>> +++ b/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
+>>>> @@ -37,6 +37,20 @@ required:
+>>>>      - reg
+>>>>      - clocks
+>>>>    
+>>>> +allOf:
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            enum:
+>>>> +              - st,stm32mp13-rng
+>>>> +    then:
+>>>> +      properties:
+>>>> +        st,rng-lock-conf:
+>>>> +          type: boolean
+>>>> +          description: If set, the RNG configuration in RNG_CR, RNG_HTCR and
+>>>> +                       RNG_NSCR will be locked.
+>>>
+>>> Define the property at the top-level and then restrict its presence in
+>>> a if/then schema.
+>>>
+>>
+>> Can you please point me to an example of such case. I can't find a way
+>> to define at the top-level the property then restrict it to specific
+>> compatibles.
+> 
+> You can check my slides from the talks about not reaching 10 iterations
+> of bindings patches.
+> 
+> Or open example-schema (this should be your starting point):
+> https://elixir.bootlin.com/linux/v5.19/source/Documentation/devicetree/bindings/example-schema.yaml#L212
+> 
+> 
+> Also:
+> https://elixir.bootlin.com/linux/v6.4-rc7/source/Documentation/devicetree/bindings/net/qcom,ipa.yaml#L174
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
-Reviewed-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
----
-Changes since v1:
-- Fixed the compatible strings of imx6ull-colibri-emmc-iris-v2.dts. (Marcel)
+Thank you for the links, it really helped me out.
 
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-aster.dts   | 1 -
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-eval-v3.dts | 1 -
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris-v2.dts | 3 +--
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris.dts    | 1 -
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-eval-v3.dts      | 2 +-
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-aster.dts   | 2 +-
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-eval-v3.dts | 2 +-
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris-v2.dts | 2 +-
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris.dts    | 2 +-
- arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-aster.dts     | 1 -
- arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-eval-v3.dts   | 1 -
- arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris-v2.dts   | 1 -
- arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris.dts      | 1 -
- 13 files changed, 6 insertions(+), 14 deletions(-)
-
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-aster.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-aster.dts
-index 919c0464d6cb..b2cdf4877718 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-aster.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-aster.dts
-@@ -12,6 +12,5 @@ / {
- 	model = "Toradex Colibri iMX6ULL 1GB (eMMC) on Colibri Aster";
- 	compatible = "toradex,colibri-imx6ull-emmc-aster",
- 		     "toradex,colibri-imx6ull-emmc",
--		     "toradex,colibri-imx6ull",
- 		     "fsl,imx6ull";
- };
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-eval-v3.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-eval-v3.dts
-index 61b93cb040c7..2dc16c54fc78 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-eval-v3.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-eval-v3.dts
-@@ -12,6 +12,5 @@ / {
- 	model = "Toradex Colibri iMX6ULL 1GB (eMMC) on Colibri Evaluation Board V3";
- 	compatible = "toradex,colibri-imx6ull-emmc-eval",
- 		     "toradex,colibri-imx6ull-emmc",
--		     "toradex,colibri-imx6ull",
- 		     "fsl,imx6ull";
- };
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris-v2.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris-v2.dts
-index b9060c2f7977..9bae08fb7f85 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris-v2.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris-v2.dts
-@@ -10,8 +10,7 @@
- 
- / {
- 	model = "Toradex Colibri iMX6ULL 1G (eMMC) on Colibri Iris V2";
--	compatible = "toradex,colibri-imx6ull-iris-v2",
-+	compatible = "toradex,colibri-imx6ull-emmc-iris-v2",
- 		     "toradex,colibri-imx6ull-emmc",
--		     "toradex,colibri-imx6ull",
- 		     "fsl,imx6ull";
- };
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris.dts
-index 0ab71f2f5daa..0b1603ff9420 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-iris.dts
-@@ -12,6 +12,5 @@ / {
- 	model = "Toradex Colibri iMX6ULL 1GB (eMMC) on Colibri Iris";
- 	compatible = "toradex,colibri-imx6ull-emmc-iris",
- 		     "toradex,colibri-imx6ull-emmc",
--		     "toradex,colibri-imx6ull",
- 		     "fsl,imx6ull";
- };
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-eval-v3.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-eval-v3.dts
-index d6da984e518d..c5bc255b21e1 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-eval-v3.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-eval-v3.dts
-@@ -10,7 +10,7 @@
- 
- / {
- 	model = "Toradex Colibri iMX6ULL 256/512MB on Colibri Evaluation Board V3";
--	compatible = "toradex,colibri-imx6ull-eval", "fsl,imx6ull";
-+	compatible = "toradex,colibri-imx6ull-eval", "toradex,colibri-imx6ull", "fsl,imx6ull";
- };
- 
- &ad7879_ts {
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-aster.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-aster.dts
-index c7da5b41966f..d3bbd05da293 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-aster.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-aster.dts
-@@ -11,7 +11,7 @@
- / {
- 	model = "Toradex Colibri iMX6ULL 512MB on Colibri Aster";
- 	compatible = "toradex,colibri-imx6ull-wifi-aster",
--		     "toradex,colibri-imx6ull",
-+		     "toradex,colibri-imx6ull-wifi",
- 		     "fsl,imx6ull";
- };
- 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-eval-v3.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-eval-v3.dts
-index 917f5dbe64ba..0ac306c9cef2 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-eval-v3.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-eval-v3.dts
-@@ -10,7 +10,7 @@
- 
- / {
- 	model = "Toradex Colibri iMX6ULL 512MB on Colibri Evaluation Board V3";
--	compatible = "toradex,colibri-imx6ull-wifi-eval", "fsl,imx6ull";
-+	compatible = "toradex,colibri-imx6ull-wifi-eval", "toradex,colibri-imx6ull-wifi", "fsl,imx6ull";
- };
- 
- &ad7879_ts {
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris-v2.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris-v2.dts
-index 488da6df56fa..38cd52c45496 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris-v2.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris-v2.dts
-@@ -11,7 +11,7 @@
- / {
- 	model = "Toradex Colibri iMX6ULL 512MB on Colibri Iris V2";
- 	compatible = "toradex,colibri-imx6ull-wifi-iris-v2",
--		     "toradex,colibri-imx6ull",
-+		     "toradex,colibri-imx6ull-wifi",
- 		     "fsl,imx6ull";
- };
- 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris.dts
-index e63253254754..5f60df64f173 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-wifi-iris.dts
-@@ -11,7 +11,7 @@
- / {
- 	model = "Toradex Colibri iMX6ULL 512MB on Colibri Iris";
- 	compatible = "toradex,colibri-imx6ull-wifi-iris",
--		     "toradex,colibri-imx6ull",
-+		     "toradex,colibri-imx6ull-wifi",
- 		     "fsl,imx6ull";
- };
- 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-aster.dts b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-aster.dts
-index d9c7045a55ba..212e0685585d 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-aster.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-aster.dts
-@@ -12,7 +12,6 @@ / {
- 	model = "Toradex Colibri iMX7D 1GB (eMMC) on Aster Carrier Board";
- 	compatible = "toradex,colibri-imx7d-emmc-aster",
- 		     "toradex,colibri-imx7d-emmc",
--		     "toradex,colibri-imx7d",
- 		     "fsl,imx7d";
- };
- 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-eval-v3.dts b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-eval-v3.dts
-index 96b599439dde..1deece7e7129 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-eval-v3.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-eval-v3.dts
-@@ -11,7 +11,6 @@ / {
- 	model = "Toradex Colibri iMX7D 1GB (eMMC) on Colibri Evaluation Board V3";
- 	compatible = "toradex,colibri-imx7d-emmc-eval-v3",
- 		     "toradex,colibri-imx7d-emmc",
--		     "toradex,colibri-imx7d",
- 		     "fsl,imx7d";
- };
- 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris-v2.dts b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris-v2.dts
-index 5eccb837b158..22e7863c2e80 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris-v2.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris-v2.dts
-@@ -11,7 +11,6 @@ / {
- 	model = "Toradex Colibri iMX7D 1GB on Iris V2 Carrier Board";
- 	compatible = "toradex,colibri-imx7d-emmc-iris-v2",
- 		     "toradex,colibri-imx7d-emmc",
--		     "toradex,colibri-imx7d",
- 		     "fsl,imx7d";
- };
- 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris.dts b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris.dts
-index ae10e8a66ff1..a3cf8f50e3dc 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-iris.dts
-@@ -11,7 +11,6 @@ / {
- 	model = "Toradex Colibri iMX7D 1GB on Iris Carrier Board";
- 	compatible = "toradex,colibri-imx7d-emmc-iris",
- 		     "toradex,colibri-imx7d-emmc",
--		     "toradex,colibri-imx7d",
- 		     "fsl,imx7d";
- };
- 
--- 
-2.34.1
-
+>>
+>> Else I'd change
+>> additionalProperties :false to
+>> unevaluatedProperties: false
+>>
+>> so the definition of the property is seen.
+> 
+> No, why? Definition is there when you move it to the top as asked.
+> 
+> Best regards,
+> Krzysztof
+> 
 
