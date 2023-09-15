@@ -1,142 +1,109 @@
-Return-Path: <devicetree+bounces-565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF5A77A1F71
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 15:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF75F7A1F93
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 15:14:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9CD4282887
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 13:02:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7E0E28230A
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 13:14:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0177210950;
-	Fri, 15 Sep 2023 13:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABC9510956;
+	Fri, 15 Sep 2023 13:14:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40A73DDDE
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 13:02:35 +0000 (UTC)
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A029FA8
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 06:02:34 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-500a8b2b73eso3439662e87.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 06:02:34 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6904510954
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 13:14:49 +0000 (UTC)
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FEED1BEB;
+	Fri, 15 Sep 2023 06:14:46 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id 41be03b00d2f7-56a8794b5adso1731275a12.2;
+        Fri, 15 Sep 2023 06:14:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ferroamp-se.20230601.gappssmtp.com; s=20230601; t=1694782953; x=1695387753; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1694783686; x=1695388486; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=W6UZffakOMwph92nd+kWC1xMQkck4fFTNUb9ro2z14A=;
-        b=Vav1nPGbT5GhyD7PHAGcSdmn+Hk0wFrIqM26hEPGFzQIxajzAo0BhikBve48ZtTpd5
-         yIU3iUu6mWSKp/4Ifk/seAfMBqLE1VXcRMuLRrYWfoLuxfUOdYgowhdej2c9zp+UGno+
-         LTn8Iibwa62xFDoHy0WE98HFPtldmgP8eH8GReW4TdOLru3nRjZ8SK0r7WHwlYT7fttv
-         lWRL+QLbksfz7o4Ta2TpnRaQRe6SJtY+bBvJr9/+bSjmq73zWc+V2LVGLfrP1L+IXb3S
-         xRh8+YL7h8R06YOIm8esWJKWPOR4dy3ckTr+Qz/r3YDXNZGBgnO1THIa7c2RZdlNMtuS
-         23/Q==
+        bh=YeXQAgEvCG5lWU7YEjnooq5zm07TURELH4onh5xtUHg=;
+        b=SF6/yCazStqz90JyRnf4bGTsvxmvNUL5qe+jxCom9j2QOvqvu62tTyruQtDyqFhskK
+         GMP6Prg7zpkMpACf9Vg88HyjADobrUbXdwD97fy/5TKrlZdzx7gyrYjJgcXHiV8Xp/Kv
+         ZNbBbwiX9PXMKwEyC+4Jp/+9sncNBT8JaZX9bwzoPJiADxZsQlDqM3+/C4wwKzk04NaI
+         QTSHzm1XBNGCM6x9fk0RcQAzU0w4jZ0/5Ws4MCAs3M8SoFu/D83y8rodDaORO5SScLad
+         J3h3l6TPnzH71ZxfazwtTUAhVcIvoB4UZw2Mx8aJiIqsSMbA2jP2ird01ZODQuXHUw0H
+         +tCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694782953; x=1695387753;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1694783686; x=1695388486;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=W6UZffakOMwph92nd+kWC1xMQkck4fFTNUb9ro2z14A=;
-        b=jOc5OE5pVcY5lSLzwZEQJrjRYFnxBG8xVoaR9DqYDDFnoTAku7mnqtq5FmQeuCSTtt
-         HFQtc2XiibhuJDaqCTLMicmB5Fowfxe+RQZevAKAEhCutt1eAlZf+QDc+GLH3Uz828wK
-         HGP0Dj0Z8uouvBZFYAhciH4zan7oOlF6W9KOfAFWMJ9MYvgeAXB7xnVQMyyaW07WAYfh
-         fcG98GmwoCMK5iz6UDtZJoHaEYtpwvkO73VUUJn4Av9W4dtdsyyy4W2T5R7VX1tp2+Ke
-         UoQgiNzTMbuqok26SYde7djwjltmiQzme5qC27GyKq8lDnTzVybXkuocTZpMQrQ+JM5L
-         Fqbg==
-X-Gm-Message-State: AOJu0Ywc79uivmJatMFTvML3QzKzpbynuN2mm4a+XtqI7rBVFXXvbc2m
-	RO5PRGdxFfcqLmYpfI5V+rpInw==
-X-Google-Smtp-Source: AGHT+IGjPyu7jb40b9QIC9voQV7XmcSDtVJwj9b+6ctkxoJV4zNkFeT6teRxdaReR4z9TzYi2xuDwA==
-X-Received: by 2002:a05:6512:3b21:b0:4fe:a2c:24b0 with SMTP id f33-20020a0565123b2100b004fe0a2c24b0mr1776729lfv.26.1694782952704;
-        Fri, 15 Sep 2023 06:02:32 -0700 (PDT)
-Received: from dwr-latitude-5400.. ([185.117.107.42])
-        by smtp.gmail.com with ESMTPSA id a15-20020a19f80f000000b004fe37339f8esm634600lff.149.2023.09.15.06.02.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Sep 2023 06:02:32 -0700 (PDT)
-From: David Wretman <david.wretman@ferroamp.se>
-To: parthiban.veerasooran@microchip.com
-Cc: Nicolas.Ferre@microchip.com,
-	Thorsten.Kummermehr@microchip.com,
-	UNGLinuxDriver@microchip.com,
-	Woojung.Huh@microchip.com,
-	andrew@lunn.ch,
-	casper.casan@gmail.com,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	davem@davemloft.net,
-	devicetree@vger.kernel.org,
-	edumazet@google.com,
-	horatiu.vultur@microchip.com,
-	horms@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	kuba@kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	pabeni@redhat.com,
-	rdunlap@infradead.org,
-	robh+dt@kernel.org,
-	steen.hegelund@microchip.com,
-	David Wretman <david.wretman@ferroamp.se>
-Subject: [RFC PATCH net-next 5/6] microchip: lan865x: add driver support for Microchip's LAN865X MACPHY
-Date: Fri, 15 Sep 2023 15:01:19 +0200
-Message-Id: <20230915130118.927821-1-david.wretman@ferroamp.se>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230908142919.14849-6-Parthiban.Veerasooran@microchip.com>
-References: <20230908142919.14849-6-Parthiban.Veerasooran@microchip.com>
+        bh=YeXQAgEvCG5lWU7YEjnooq5zm07TURELH4onh5xtUHg=;
+        b=IB0kVRYS9S/7+Thmm1zy1uOxtecuMQD3pnS8mz8IEYvlpZdAGGGaleFHjUJr13OAjw
+         iplalxMLsSy46B71/1Jt+cyr8NfyrXBm11qs5LVC+5pVvPu07JquO6B3IIlxRb0AaQ2U
+         tUydNsPQxi3F6q2awKggihSpTKENn4KF9YhsV1wxbJVyIUZ7lGQsKRQb697b75SKaZjP
+         K5zX9LSAIIU2L0QspwOXUSaQrDxyR/9tqefaYyXPZ4xSV+cfCJ9eXcK2XSHN1HPcnwqj
+         pqjR31Rjt/x5rvgt3CrFonl7886sHNaOeP46wFKb5+7Z2/BUg2Y85j0ad+Itd0jdTdnx
+         Jp4A==
+X-Gm-Message-State: AOJu0YxmIH4ut09bYNJFrXx2c7PHxv0kRQ63feJ/8TSC30/XU7LDZ3ii
+	Zj4UlY6fi8rt9h+H+DALWYJ3boAm0HODe+0sb9NqvKqv5RY=
+X-Google-Smtp-Source: AGHT+IGwQdOfBBcGiIToYcNqwva/3tvlNZxrGwwaqB/mVbsMDwp6XECrBHtfCJ1OyOlS/idai/gsl5ynbq923kvw+3Y=
+X-Received: by 2002:a17:90b:88f:b0:271:9e59:df28 with SMTP id
+ bj15-20020a17090b088f00b002719e59df28mr1287536pjb.29.1694783686026; Fri, 15
+ Sep 2023 06:14:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,T_SPF_PERMERROR
-	autolearn=ham autolearn_force=no version=3.4.6
+References: <20230911140959.2046340-1-longqi90@gmail.com> <f4f0ed21-1e3b-a7c5-79f8-3469c4cfc471@linaro.org>
+In-Reply-To: <f4f0ed21-1e3b-a7c5-79f8-3469c4cfc471@linaro.org>
+From: Zhang LongQi <longqi90@gmail.com>
+Date: Fri, 15 Sep 2023 21:14:34 +0800
+Message-ID: <CAC0WRTWr66kUnaTvdJXWP=hw1MmXB=5R+zqn0OgOqNqGr==BdQ@mail.gmail.com>
+Subject: Re: [PATCH] fixes the pin settings of two LEDs on board nanopi neo plus2
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"moderated list:ARM/Allwinner sunXi SoC support" <linux-arm-kernel@lists.infradead.org>, 
+	"open list:ARM/Allwinner sunXi SoC support" <linux-sunxi@lists.linux.dev>, open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
----
-On Fri, Sep 08, 2023 at 07:59:18PM +0530, Parthiban Veerasooran wrote:
-> The LAN8650/1 is designed to conform to the OPEN Alliance 10BASE‑T1x
-> MAC‑PHY Serial Interface specification, Version 1.1. The IEEE Clause 4
-> MAC integration provides the low pin count standard SPI interface to any
-> microcontroller therefore providing Ethernet functionality without
-> requiring MAC integration within the microcontroller. The LAN8650/1
-> operates as an SPI client supporting SCLK clock rates up to a maximum of
-> 25 MHz. This SPI interface supports the transfer of both data (Ethernet
-> frames) and control (register access).
-> 
-> By default, the chunk data payload is 64 bytes in size. A smaller payload
-> data size of 32 bytes is also supported and may be configured in the
-> Chunk Payload Size (CPS) field of the Configuration 0 (OA_CONFIG0)
-> register. Changing the chunk payload size requires the LAN8650/1 be reset
-> and shall not be done during normal operation.
-> 
-> The Ethernet Media Access Controller (MAC) module implements a 10 Mbps
-> half duplex Ethernet MAC, compatible with the IEEE 802.3 standard.
-> 10BASE-T1S physical layer transceiver integrated into the LAN8650/1. The
-> PHY and MAC are connected via an internal Media Independent Interface
-> (MII).
-> 
-> Signed-off-by: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
+Thanks Krzysztof, I will modify and submit.
 
-Hi Parthiban,
+sorry for the previous email which is the html format.
 
-Thanks for these patches.
 
-One thing I am missing is settings for PLCA parameters. I feel that the
-driver is a bit lacking as long as this is missing.
-
-Adding support for the ethtool plca options would make this much more
-complete.
-
-Regards,
-David
-
+On Mon, Sep 11, 2023 at 10:42=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 11/09/2023 16:09, longqi wrote:
+> > Signed-off-by: longqi <longqi90@gmail.com>
+>
+> Thank you for your patch. There is something to discuss/improve.
+>
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching.
+>
+> Your commit msg is missing. Please describe the bug or the problem thus
+> it will be obvious why this change is needed.
+>
+>
+> Best regards,
+> Krzysztof
+>
 
