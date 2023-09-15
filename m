@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D53577A2007
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 15:43:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10B567A2012
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 15:45:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B477282F12
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 13:43:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAD701C20AF0
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 13:45:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3E9C10A0B;
-	Fri, 15 Sep 2023 13:43:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8BC810A10;
+	Fri, 15 Sep 2023 13:45:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2F0F101EB
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 13:43:34 +0000 (UTC)
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FDAE2703
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 06:43:31 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-52e64bc7c10so2497595a12.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 06:43:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7A71101EB
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 13:45:31 +0000 (UTC)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC7C0268A
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 06:45:28 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-502a25ab777so3453791e87.2
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 06:45:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694785409; x=1695390209; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694785527; x=1695390327; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=nxUa3lcSOYCvMd3Uempcm0pEvmeb+dGRyDtftI7YkD4=;
-        b=Y29w6srkXEQOis2n/iOFQ0o+rQY8Y9WURsV1MVDEoGVNow4IgzC9Mrb3wGrBPCvDRD
-         EIwmnkpcZKp2cdEJPkBjcPU/Y3U9beLLBx/9OKilfkPzgCDXKftCZJnhLKkduVZFD558
-         wQx82Q72iYhR7wFlnAGtLV6YzdZwETTgyxiqTvsDqD6wle6ZFVlFi1CZyJ/KyvwAbxGP
-         R8airCOiWxOOFphMB/UX0P6evqsTEDkCCN7WIyF3bcmn2jTJEQhD1/Nve3G+4MsBlfph
-         82HrT7ELL4AnjPRSg8VutqcBF+v/wryVCPMf3clOPqpgiFwDIUdebh+t4tVdU6QaGRWj
-         5VYA==
+        bh=22rc4xSXxNri3c2ld6PXHtzNFnKZHFOJ5gQvW2KAyh0=;
+        b=lvRD8N2Myg6Si1bW+89m+0oDV9INzU5Yi9Wcr3PONIoRDG3LuO86DeRnSL2IOI5AKx
+         78IEUB6avucUJAx6w3Cke0F4UeKLMRR0t3FccKMaxug3Tq8wShnY+IwyxQEG9RyylSsO
+         U8urc4uS/VKz91p7/4oIVITC2Mj/U9oKxeXsOVReAhHFbG5GeDvKAHPKw/ZzI3OzjVVC
+         qanvFLY4AWyqD3gpRtHPeQ7Jd44Qo0YKciwoeR7oeXV4W4ebb6hRIG+HawK+/n+Bq9YX
+         1qjmSLHalLKmbIymT532touLmBSBiFZfq3TRClETN1Ke9FbHdqUsBC8vZ58NeuOyO6Ws
+         Qxvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694785409; x=1695390209;
+        d=1e100.net; s=20230601; t=1694785527; x=1695390327;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nxUa3lcSOYCvMd3Uempcm0pEvmeb+dGRyDtftI7YkD4=;
-        b=g+608KBuCAYvn/+VexYclnTvJy2Px+P1m79bO/R8hJvGEejZiXEvVW5q+RcCoc9tub
-         HKIMZoXNde3+a7DSCUc0miCr+0Mc8FmXoZZfa4+Kr1QFy6VwqORNYIXC+tmBGIxCTIrg
-         uC0gvUnJoKL12Oi4q4BV4mHfrfPTOpcwM7Pm25Ajv24AmKLSEDJJavZBp29gRrSAOQnF
-         +prQQZkZH1KNApy6tMXjzy9GmBkQaJ3MwsZhIdaghR0nDnSwmC9dzMztncR8sl4+OA9V
-         42xGjvafr9WCBmJNaMPJXhtYENzpKGOsoyLMm50ocyoHh/obyYlQfQT6w3a2JTaBQbA2
-         rz5Q==
-X-Gm-Message-State: AOJu0YxbAlnBHD420NZjT60kWCKurZF1HcyrJsi9aRm/AOT9Lot20HsS
-	9F5p1ObIXd+9ZjTsrIJs+bHxFE5nPJJ3uyrZe7Ljfg==
-X-Google-Smtp-Source: AGHT+IHoJNwEFYQp7rMPD1uinycu+15SOkdAgTmDGBrBxlvD7rjzpyl6ehYbqTcN1XpYAQKuSyAn2w==
-X-Received: by 2002:a05:6402:3c4:b0:526:9626:e37d with SMTP id t4-20020a05640203c400b005269626e37dmr1576947edw.37.1694785409513;
-        Fri, 15 Sep 2023 06:43:29 -0700 (PDT)
+        bh=22rc4xSXxNri3c2ld6PXHtzNFnKZHFOJ5gQvW2KAyh0=;
+        b=RMCot124KeQBzhUf4KJ3Pt3ArlCyL/AohAweCDw1A54wxf5VFXN2gc+a/DhRhtPITh
+         6zC6A/DZJBNe5xIeGTgPHn+pKPZpt4KVrjyYn8GO8eyZbwCht6mLAxVw9z8Xwrq4Epdm
+         lq4K9zhipx25J7+ehNIn6A++W6bn83fWheL98T2dLT03+ZCmsuegl/d/7wy3eaGKf98K
+         bo6n7XaPkPo5PS1j6JdpxTjVajX2CJFiKMk/6TfsBNeqEdqNaLrv8Uyqj0Wdsh3MD8MR
+         BbG1LISlSYy7QSS+SLDD8ivWS42fLaGoWcV/rmd2Lup4iD+Lj0xYaR04ka8VGUcNXaiE
+         WqJg==
+X-Gm-Message-State: AOJu0YxFhE8lV8FFspTuUCKr2wGn01Gl8GyohQg1B83VL6xfR1FfvyY8
+	xsw1nFh+gEY3tcdvs5H4XkLzpA==
+X-Google-Smtp-Source: AGHT+IEmjbRmRL+TdVdzYrNXX86AZ0+zOX6falRkpDGgSOmk+6WTz7/42A7LwMqlI780euSILtYMZA==
+X-Received: by 2002:a05:6512:31c7:b0:500:9d4a:89ff with SMTP id j7-20020a05651231c700b005009d4a89ffmr1790802lfe.62.1694785527190;
+        Fri, 15 Sep 2023 06:45:27 -0700 (PDT)
 Received: from [192.168.37.232] (178235177024.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.24])
-        by smtp.gmail.com with ESMTPSA id o7-20020aa7d3c7000000b005233deb30aesm2297964edr.10.2023.09.15.06.43.28
+        by smtp.gmail.com with ESMTPSA id n13-20020aa7db4d000000b005232ea6a330sm2316452edt.2.2023.09.15.06.45.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 06:43:28 -0700 (PDT)
-Message-ID: <978fd46d-8142-41e6-9c62-df678018d6c2@linaro.org>
-Date: Fri, 15 Sep 2023 15:43:27 +0200
+        Fri, 15 Sep 2023 06:45:26 -0700 (PDT)
+Message-ID: <999f5e61-9e47-41f2-a5de-5a8e70095f4c@linaro.org>
+Date: Fri, 15 Sep 2023 15:45:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,23 +65,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/53] icc-rpmh multi-RSC voting groundwork
+Subject: Re: [PATCH v3 2/2] interconnect: qcom: Add SDX75 interconnect
+ provider driver
 Content-Language: en-US
-To: Mike Tipton <quic_mdtipton@quicinc.com>
-Cc: Georgi Djakov <djakov@kernel.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230708-topic-rpmh_icc_rsc-v1-0-b223bd2ac8dd@linaro.org>
- <c067a45f-9629-d516-9e56-36538e4ff6db@kernel.org>
- <20230807215739.GA9621@hu-mdtipton-lv.qualcomm.com>
- <10520827-dc01-475c-b09a-35cefc9e0a62@linaro.org>
- <20230913012951.GA19284@hu-mdtipton-lv.qualcomm.com>
- <ffc58838-c306-49f3-a90a-95b2cf02ae3d@linaro.org>
- <20230914023239.GA25147@hu-mdtipton-lv.qualcomm.com>
+To: Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, djakov@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <1694614256-24109-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1694614256-24109-3-git-send-email-quic_rohiagar@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -118,7 +111,7 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230914023239.GA25147@hu-mdtipton-lv.qualcomm.com>
+In-Reply-To: <1694614256-24109-3-git-send-email-quic_rohiagar@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -128,54 +121,12 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 14.09.2023 04:32, Mike Tipton wrote:
-> On Wed, Sep 13, 2023 at 10:31:49AM +0200, Konrad Dybcio wrote:
->>> The applicable voters should likely be defined in the target-specific
->>> headers, rather than the common qcom,icc.h. The bit range used for them
->>> could be common, but each target may only support a small subset of the
->>> total set of possible voters across all targets.
->> I'm not sure how client drivers would then choose the
->> correct path other than
->>
->> switch (soc) {
->> case 8450:
->> 	tag = QCOM_ICC_TAG_VOTER_8450_HLOS;
->> 	break;
->> case 8550:
->> 	tag = QCOM_ICC_TAG_VOTER_8550_HLOS;
->> 	break;
->> ...
->> }
->>
->> which would be unacceptable.
+On 13.09.2023 16:10, Rohit Agarwal wrote:
+> Add driver for the Qualcomm interconnect buses found in SDX75.
 > 
-> The same general way it's handled for the endpoint bindings, which are
-> already target-specific. 
-> 
-> Any client drivers hardcoding the endpoint bindings in their driver
-> would have to include the appropriate, target-specific binding header
-> (e.g. qcom,sm8550-rpmh.h). That would only be possible if their driver
-> file is itself target-specific. Otherwise, it would have to pull the
-> endpoint bindings from devicetree. Or just use the recommended
-> of_icc_get() and let devicetree do everything for them. Same for the
-> target-specific voter tag bindings.
-> 
-> Clients can also specify their tags in devicetree. They don't actually
-> have to call icc_set_tag() directly. For example:
-> 
->     #include <dt-bindings/interconnect/qcom,sm8450.h>
-> 
->     interconnects = <&mmss_noc MASTER_MDP QCOM_ICC_TAG_VOTER_DISP
->                      &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_VOTER_DISP>;
-> 
-> Then when they call of_icc_get() for this path it'll automatically have
-> QCOM_ICC_TAG_VOTER_DISP set for them.
-I think I'd skew towards the "define everything in the DT" approach.
-
-One thing that makes me uneasy to go on with this approach is the
-question whether there is a case in which we would want to switch
-from e.g. voting through DISP to voting through APPS (or similar)
-from within a single device.
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
