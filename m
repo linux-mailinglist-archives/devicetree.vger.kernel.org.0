@@ -1,63 +1,45 @@
-Return-Path: <devicetree+bounces-463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D3BA7A1A2D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 11:16:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07C547A1A3F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 11:21:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C34A1C21032
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:16:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4E5E2828B7
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:20:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C58C0DDB4;
-	Fri, 15 Sep 2023 09:16:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 753E9D267;
+	Fri, 15 Sep 2023 09:20:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43B80DDB0
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 09:16:31 +0000 (UTC)
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A54669B
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 02:16:29 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-502d9ce31cbso3148455e87.3
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 02:16:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694769388; x=1695374188; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EUXWbJ4ry0MjQqU+b2Xypq/860rfFXK7seyaFzZwQFo=;
-        b=idxoJk2aK5nAR2PsRLdOPxBlgXkA4F+ADtTuv0SdMijgIG9nkqOFCJ/MrnUgZBU7kB
-         vT3d6f5xe4xuViszY+PrYoHCU/nEclwQIXOn4N3RMIAwYXBhRhXyphvdoMA3YlDTWClo
-         KR/GDeR7Pr0u6sEA1xigDTAH8s4F9Vs1UGIhsl34IHDlwmd57EDfhHCBJI4m4fP8FvT8
-         /03x63/wngN4kJOsYvpEFIYlFqveDqgwmNE+kzOl7+bhdAc7qInbuhYhFRZiro9dHH8D
-         MoBMu5vyeZhWnaNumPfTPDCeVeTabcV3dwvZ3KODIOvJIRh63pSolMyyHOnQgVq3IvhB
-         /UfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694769388; x=1695374188;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EUXWbJ4ry0MjQqU+b2Xypq/860rfFXK7seyaFzZwQFo=;
-        b=LUnfrj4CSNT52bn4Vqn4xHj1kMxIXo2EhB2SgGb8AqxYrmGevPBdCTIXCaNyM25+1r
-         k7yEf/TUYk4TVXKoeTkdmDIkBKZLGYLWTGMrk07NQFiSC9r79XmWsf0Xsesn0WCWlgTZ
-         O11RMsSaiLSniD0FyHmmpYQ30d5ZtkZfMc2bQ0mFwFY4yExX9pHX6Z/91QCWQtHNOrkM
-         ZIIrixE5K3uV73zwwWaN4x1O0OqVZywiuC7ODWtZD4VFEXROvbk0wnMQLry08+6OcFyM
-         xTmtwzer/44qbPQXoOjVxGO5W88ROglZR5QAFCx69OfGRV9+IO0n/v9TqbUtaMPvCAXQ
-         4oXg==
-X-Gm-Message-State: AOJu0Yxq99H8UtlOX0JUcpLrY///LkAwrfJGzjRY8RQ5W2wHzCq9PVcD
-	rh6HiK5KevsN6gBtv4ws6cUlng==
-X-Google-Smtp-Source: AGHT+IE0fPOgfbwzN3nitu1bZBFLNeMRYlfmhRr9TZwIrF9MGbKkf7r6lClZC0oOg77Z8EEuFoXdSQ==
-X-Received: by 2002:a05:6512:3d02:b0:501:bbbb:de1e with SMTP id d2-20020a0565123d0200b00501bbbbde1emr1233195lfv.6.1694769387852;
-        Fri, 15 Sep 2023 02:16:27 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id v13-20020a05600c214d00b003fc16ee2864sm4070589wml.48.2023.09.15.02.16.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 02:16:27 -0700 (PDT)
-Message-ID: <0a34dd35-7aea-4655-4cdd-e7196a1ba52b@linaro.org>
-Date: Fri, 15 Sep 2023 11:16:23 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A0AC6AD7
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 09:20:55 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A36FCD4;
+	Fri, 15 Sep 2023 02:20:53 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id C605666072F9;
+	Fri, 15 Sep 2023 10:20:51 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1694769652;
+	bh=4IgrSSEYd+jVIiU7JcF5y2Ow9YKQzmTU7HYlnL8vZDo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=k5mrsOZYjmk5g1JGGHwrN17c+/Dz4Jy7ll1I7zKWOG2PqEX3qlAqMW2qfliJkzgrK
+	 f35cev5i5xVfSKAPxvR8ZWsFPrVDNikqWv/x7z7MicQaZrwc0VkSpHHMsXboxtlRJ1
+	 M8NqGicKBpUBiXNwAnw/cqco+bKA1VEAKzRM2aO0l8019CiPDtrdWpfuphxVS5dGJ5
+	 i5e0XgOhCC9JYwKgq/vaSyxGvfFOdyhsumxmjUWFpeBmN1HzCCCOg5qVl20NLmtGLd
+	 xtLbGJbT+dcMbTBFbxY4rrjyGpUZHgfUBJGIF5doX3/HCW7rskGafrjPyzLQJmEaSF
+	 J+U/LmdSvZKCA==
+Message-ID: <a6ae9a08-d295-8c1a-840a-84a1b447421b@collabora.com>
+Date: Fri, 15 Sep 2023 11:20:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,28 +48,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH v2 8/8] arm64: defconfig: enable interconnect and pinctrl
- for SM4450
+Subject: Re: [PATCH v1 2/2] soc: mediatek: svs: add support for mt8188
 Content-Language: en-US
-To: Tengfei Fan <quic_tengfan@quicinc.com>, will@kernel.org,
- robin.murphy@arm.com, joro@8bytes.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, agross@kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, catalin.marinas@arm.com
-Cc: geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org,
- nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
- linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, quic_tsoni@quicinc.com,
- quic_shashim@quicinc.com, quic_kaushalk@quicinc.com, quic_tdas@quicinc.com,
- quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com, kernel@quicinc.com
-References: <20230915021509.25773-1-quic_tengfan@quicinc.com>
- <20230915021509.25773-10-quic_tengfan@quicinc.com>
- <8f2c9664-a2c8-50dc-8a1c-e50a071ebeb2@linaro.org>
- <e9ff05b3-2742-416e-b417-5e2414036008@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <e9ff05b3-2742-416e-b417-5e2414036008@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+To: Mark Tseng <chun-jen.tseng@mediatek.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Roger Lu <roger.lu@mediatek.com>,
+ Kevin Hilman <khilman@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230915075003.1552-1-chun-jen.tseng@mediatek.com>
+ <20230915075003.1552-3-chun-jen.tseng@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230915075003.1552-3-chun-jen.tseng@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
 	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -95,53 +71,189 @@ X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 15/09/2023 11:12, Tengfei Fan wrote:
+Il 15/09/23 09:50, Mark Tseng ha scritto:
+> MT8188 svs gpu uses 2-line high bank and low bank to optimize the
+> voltage of opp table for higher and lower frequency respectively.
 > 
+> Signed-off-by: Mark Tseng <chun-jen.tseng@mediatek.com>
+> ---
+>   drivers/soc/mediatek/mtk-svs.c | 177 ++++++++++++++++++++++++++++++++-
+>   1 file changed, 172 insertions(+), 5 deletions(-)
 > 
-> 在 9/15/2023 3:21 PM, Krzysztof Kozlowski 写道:
->> On 15/09/2023 04:15, Tengfei Fan wrote:
->>> Add the SM4450 interconnect and pinctrl drivers as built-in for
->>> support the Qualcomm SM4450 platform to boot to uart shell.
->>>
->>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->>> ---
->>>   arch/arm64/configs/defconfig | 2 ++
->>>   1 file changed, 2 insertions(+)
->>>
->>> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
->>> index ec59174b14db..e91993de865e 100644
->>> --- a/arch/arm64/configs/defconfig
->>> +++ b/arch/arm64/configs/defconfig
->>> @@ -598,6 +598,7 @@ CONFIG_PINCTRL_SC8280XP=y
->>>   CONFIG_PINCTRL_SDM660=y
->>>   CONFIG_PINCTRL_SDM670=y
->>>   CONFIG_PINCTRL_SDM845=y
->>> +CONFIG_PINCTRL_SM4450=y
->>>   CONFIG_PINCTRL_SM6115=y
->>>   CONFIG_PINCTRL_SM6125=y
->>>   CONFIG_PINCTRL_SM6350=y
->>> @@ -1500,6 +1501,7 @@ CONFIG_INTERCONNECT_QCOM_SC7280=y
->>>   CONFIG_INTERCONNECT_QCOM_SC8180X=y
->>>   CONFIG_INTERCONNECT_QCOM_SC8280XP=y
->>>   CONFIG_INTERCONNECT_QCOM_SDM845=y
->>> +CONFIG_INTERCONNECT_QCOM_SM4450=y
->>
->> Why it cannot be =m?
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> Hi Krzysztof,
-> Because system haven't capacity of loading ko files at this time on 
-> SM4450 platform, so setting to "Y".
+> diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
+> index 3a2f97cd5272..fafc72df99ee 100644
+> --- a/drivers/soc/mediatek/mtk-svs.c
+> +++ b/drivers/soc/mediatek/mtk-svs.c
+> @@ -407,6 +407,7 @@ struct svs_platform_data {
+>    * @dcbdet: svs efuse data
+>    * @dcmdet: svs efuse data
+>    * @turn_pt: 2-line turn point tells which opp_volt calculated by high/low bank
+> + * @vbin_turn_pt: voltage bin turn point helps know which svsb_volt should be overridden
+>    * @type: bank type to represent it is 2-line (high/low) bank or 1-line bank
+>    *
+>    * Svs bank will generate suitalbe voltages by below general math equation
+> @@ -469,6 +470,7 @@ struct svs_bank {
+>   	u32 dcbdet;
+>   	u32 dcmdet;
+>   	u32 turn_pt;
+> +	u32 vbin_turn_pt;
+>   	u32 type;
+>   };
+>   
+> @@ -751,11 +753,12 @@ static int svs_status_debug_show(struct seq_file *m, void *v)
+>   
+>   	ret = thermal_zone_get_temp(svsb->tzd, &tzone_temp);
+>   	if (ret)
+> -		seq_printf(m, "%s: temperature ignore, turn_pt = %u\n",
+> -			   svsb->name, svsb->turn_pt);
+> +		seq_printf(m, "%s: temperature ignore, vbin_turn_pt = %u, turn_pt = %u\n",
+> +			   svsb->name, svsb->vbin_turn_pt, svsb->turn_pt);
+>   	else
+> -		seq_printf(m, "%s: temperature = %d, turn_pt = %u\n",
+> -			   svsb->name, tzone_temp, svsb->turn_pt);
+> +		seq_printf(m, "%s: temperature = %d, vbin_turn_pt = %u, turn_pt = %u\n",
+> +			   svsb->name, tzone_temp, svsb->vbin_turn_pt,
+> +			   svsb->turn_pt);
+>   
+>   	for (i = 0; i < svsb->opp_count; i++) {
+>   		opp = dev_pm_opp_find_freq_exact(svsb->opp_dev,
+> @@ -952,6 +955,29 @@ static void svs_get_bank_volts_v3(struct svs_platform *svsp)
+>   	for (i = opp_start; i < opp_stop; i++)
+>   		if (svsb->volt_flags & SVSB_REMOVE_DVTFIXED_VOLT)
+>   			svsb->volt[i] -= svsb->dvt_fixed;
+> +
+> +	/* For voltage bin support */
+> +	if (svsb->opp_dfreq[0] > svsb->freq_base) {
+> +		svsb->volt[0] = svs_opp_volt_to_bank_volt(svsb->opp_dvolt[0],
+> +							  svsb->volt_step,
+> +							  svsb->volt_base);
+> +
+> +		/* Find voltage bin turn point */
+> +		for (i = 0; i < svsb->opp_count; i++) {
+> +			if (svsb->opp_dfreq[i] <= svsb->freq_base) {
+> +				svsb->vbin_turn_pt = i;
+> +				break;
+> +			}
+> +		}
+> +
+> +		/* Override svs bank voltages */
+> +		for (i = 1; i < svsb->vbin_turn_pt; i++)
+> +			svsb->volt[i] = interpolate(svsb->freq_pct[0],
+> +						    svsb->freq_pct[svsb->vbin_turn_pt],
+> +						    svsb->volt[0],
+> +						    svsb->volt[svsb->vbin_turn_pt],
+> +						    svsb->freq_pct[i]);
+> +	}
 
-Hm? System has this capability. All systems have. What is so different
-on SM4450 comparing to everything else we have here?
+This looks like being a new feature that applies to more than just MT8188?
+Goes into a different commit.
 
-No, this should be =m and you need to fix your system.
+>   }
+>   
+>   static void svs_set_bank_freq_pct_v3(struct svs_platform *svsp)
+> @@ -1808,6 +1834,80 @@ static bool svs_mt8192_efuse_parsing(struct svs_platform *svsp)
+>   	return true;
+>   }
+>   
+> +static bool svs_mt8188_efuse_parsing(struct svs_platform *svsp)
+> +{
+> +	struct svs_bank *svsb;
+> +	struct nvmem_cell *cell;
+> +	u32 idx, i, golden_temp;
+> +
+> +	for (i = 0; i < svsp->efuse_max; i++)
+> +		if (svsp->efuse[i])
+> +			dev_info(svsp->dev, "M_HW_RES%d: 0x%08x\n",
+> +				 i, svsp->efuse[i]);
+> +
+> +	if (!svsp->efuse[5]) {
+> +		dev_notice(svsp->dev, "svs_efuse[5] = 0x0?\n");
+> +		return false;
+> +	}
+> +
+> +	/* Svs efuse parsing */
+> +	for (idx = 0; idx < svsp->bank_max; idx++) {
+> +		svsb = &svsp->banks[idx];
+> +
+> +		if (svsb->type == SVSB_LOW) {
+> +			svsb->mtdes = svsp->efuse[5] & GENMASK(7, 0);
+> +			svsb->bdes = (svsp->efuse[5] >> 16) & GENMASK(7, 0);
+> +			svsb->mdes = (svsp->efuse[5] >> 24) & GENMASK(7, 0);
+> +			svsb->dcbdet = (svsp->efuse[15] >> 16) & GENMASK(7, 0);
+> +			svsb->dcmdet = (svsp->efuse[15] >> 24) & GENMASK(7, 0);
+> +		} else if (svsb->type == SVSB_HIGH) {
+> +			svsb->mtdes = svsp->efuse[4] & GENMASK(7, 0);
+> +			svsb->bdes = (svsp->efuse[4] >> 16) & GENMASK(7, 0);
+> +			svsb->mdes = (svsp->efuse[4] >> 24) & GENMASK(7, 0);
+> +			svsb->dcbdet = svsp->efuse[14] & GENMASK(7, 0);
+> +			svsb->dcmdet = (svsp->efuse[14] >> 8) & GENMASK(7, 0);
+> +		}
+> +
+> +		svsb->vmax += svsb->dvt_fixed;
+> +	}
 
-Best regards,
-Krzysztof
+The only change between mt8192, 8195 and 8188 is this for loop; can we please
+commonize the rest of the function?
+
+> +
+> +	/* Thermal efuse parsing */
+> +	cell = nvmem_cell_get(svsp->dev, "t-calibration-data");
+> +	if (IS_ERR_OR_NULL(cell)) {
+> +		dev_err(svsp->dev, "no \"t-calibration-data\"? %ld\n",
+> +			PTR_ERR(cell));
+> +		return false;
+> +	}
+> +
+> +	svsp->tefuse = nvmem_cell_read(cell, &svsp->tefuse_max);
+> +	if (IS_ERR(svsp->tefuse)) {
+> +		dev_err(svsp->dev, "cannot read thermal efuse: %ld\n",
+> +			PTR_ERR(svsp->tefuse));
+> +		nvmem_cell_put(cell);
+> +		return false;
+> +	}
+> +
+> +	svsp->tefuse_max /= sizeof(u32);
+> +	nvmem_cell_put(cell);
+> +
+> +	for (i = 0; i < svsp->tefuse_max; i++)
+> +		if (svsp->tefuse[i] != 0)
+> +			break;
+> +
+> +	if (i == svsp->tefuse_max)
+> +		golden_temp = 50; /* All thermal efuse data are 0 */
+> +	else
+> +		golden_temp = (svsp->tefuse[0] & GENMASK(31, 24)) >> 24;
+> +
+> +	for (idx = 0; idx < svsp->bank_max; idx++) {
+> +		svsb = &svsp->banks[idx];
+> +		svsb->mts = 500;
+> +		svsb->bts = (((500 * golden_temp + 250460) / 1000) - 25) * 4;
+> +	}
+> +
+> +	return true;
+> +}
+> +
+>   static bool svs_mt8183_efuse_parsing(struct svs_platform *svsp)
+>   {
+>   	struct svs_bank *svsb;
+> @@ -2052,7 +2152,7 @@ static int svs_mt8192_platform_probe(struct svs_platform *svsp)
+>   		return dev_err_probe(svsp->dev, PTR_ERR(svsp->rst),
+>   				     "cannot get svs reset control\n");
+>   
+> -	dev = svs_add_device_link(svsp, "lvts");
+> +	dev = svs_add_device_link(svsp, "thermal-sensor");
+
+This is a fix that must go in a different commit with a Fixes tag.
+
+>   	if (IS_ERR(dev))
+>   		return dev_err_probe(svsp->dev, PTR_ERR(dev),
+>   				     "failed to get lvts device\n");
+> @@ -2173,6 +2273,61 @@ static struct svs_bank svs_mt8192_banks[] = {
+>   	},
+>   };
+>   
+
+Regards,
+Angelo
 
 
