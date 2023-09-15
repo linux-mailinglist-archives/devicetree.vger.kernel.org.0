@@ -1,118 +1,92 @@
-Return-Path: <devicetree+bounces-649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55B047A26C5
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 21:01:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2EFF7A2738
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 21:33:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D4572817E8
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 19:01:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C84EE1C209D3
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 19:33:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED1518E25;
-	Fri, 15 Sep 2023 19:00:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A54B619BD3;
+	Fri, 15 Sep 2023 19:33:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD7B630D16
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 19:00:23 +0000 (UTC)
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3D082120
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:00:19 -0700 (PDT)
-Received: by mail-yb1-xb32.google.com with SMTP id 3f1490d57ef6-d81b42a3108so1588840276.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:00:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694804419; x=1695409219; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MA+IH6vFDWnj8CWBjAETZZSe18NWdBhZ5Y5deFFzGMI=;
-        b=L99HJwtiSHN98t1F8KNkQkA0O49wol0PE46W00Ae0kkcMhkacRR4q3flBqZpl1b4Cd
-         /3Z9dkuoCBg9OPrAo98chVHT2OnU4EoznuCn8HSpNJGHxNRII3ztyG6rQfpfD5GBSh3a
-         l7mXkkyEhYeJY2ss/ms6SvU1P94I2ZJ8hXqv9g3FI3aRPryg7DhlSB5Kq/n2YJ6C/CW/
-         1m6YFd9N/JloDi5nE2wb++PTZ+jS69OKoXc+e1ItOBgGpmySOkro0SfSsc1AOzYLJ/va
-         Vb9qlXiUGdoklbc6P566J2hqd5RdA7nshQiUlh45BKB4KL6VE6XlActlbkFYv4a2IoSm
-         vO8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694804419; x=1695409219;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MA+IH6vFDWnj8CWBjAETZZSe18NWdBhZ5Y5deFFzGMI=;
-        b=XT8efxQO6GDQTc082JqZI5KwSR9wzOIZ/9cctZ17dIzUw6RgJytj4xnQVgXp7cSteL
-         UYLXZgoEsT+Jw+kffRrKON2XA/37NYgdBoFk0NTY7+zpeE4vwCj4f/a9hGCzeJYw2ZM4
-         sfuiu69EpshkW+YoOjaB0O2+B61X8aNxMXzy+Xvw7HIV6dILcSk81ycvmBQe2ShqQ7wW
-         6aUNtKO7vXYOuJhHxxiCC/NS0DvN3ta0qpoaGxM8iCjrXobxrXF1sWkXPw7GcvFynDj3
-         jCF8opnmVqG8hOars5PuwHyMISSuSZtT6vvs3PYzdy3/fD6dxYINv7YDMESNax7lf14W
-         sWgQ==
-X-Gm-Message-State: AOJu0Yxzy22waZJN/zB2kwNse9SUgceibaX/GlIMXZm78ZxMaOYot2Zj
-	eoMK250Q2msiZPDIWw7p7FySbfpMwWHTrH86W6Qr8g==
-X-Google-Smtp-Source: AGHT+IHloveln5I1HrqkenFE7vzYh2eTD6d1bJyya94I6qr4dXlqjiJXzTSkEB8jv6T0Pz0Y9YYlZe8PfZm3J0clBh0=
-X-Received: by 2002:a25:2547:0:b0:d78:878d:e1e1 with SMTP id
- l68-20020a252547000000b00d78878de1e1mr2274459ybl.50.1694804418847; Fri, 15
- Sep 2023 12:00:18 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 398C318E09
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 19:33:05 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF1A419A9;
+	Fri, 15 Sep 2023 12:33:03 -0700 (PDT)
+Received: from mercury (unknown [185.209.196.239])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 7B32766072F6;
+	Fri, 15 Sep 2023 20:33:02 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1694806382;
+	bh=iSR+RPv5YIiANQT6etKaNwwRPfS7OeKIt4Bk3q/IhlI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=ChOBdnPEl8HNmTPu8KQr9oU4ckmynn4JcyidoZQIg7xPCOPjnPxnIRLSUzXzNTpya
+	 elxEYjIcKyn+vzDREtMTS1ggvHz8hCjOz2GGtpO8mrBwU28E66VpZ0xRw3Fh0zjgu4
+	 rktn7g893TtbPJb8cFxMBN8cDMfajMKEOkP3kg4gxUvGIs4mT311+iYQuOTfCIE8RW
+	 OlGvPj3dPBB39nn/bN4pfWvj1LKOhT8PbefZz6AUHgcSV7Vi7FeNkvvC25/yFhyuG+
+	 UAnPgWtp9w5aGPQKnV/AkS64Gqx48e8Nhae1nklvSM8bz7t1+EVqxUKRKJZh5L+0Km
+	 C0JIZYEQ9UWkw==
+Received: by mercury (Postfix, from userid 1000)
+	id EF5A5106044B; Fri, 15 Sep 2023 21:32:59 +0200 (CEST)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230621-topic-mm8013-v4-0-975aecd173ed@linaro.org>
+References: <20230621-topic-mm8013-v4-0-975aecd173ed@linaro.org>
+Subject: Re: [PATCH v4 0/3] MM8013 fg driver
+Message-Id: <169480637995.562542.1597166089132918555.b4-ty@collabora.com>
+Date: Fri, 15 Sep 2023 21:32:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230914065422.5452-1-otto.pflueger@abscue.de>
- <20230914065422.5452-3-otto.pflueger@abscue.de> <72e24711-f485-46ce-bbda-db3043d84bcc@linaro.org>
-In-Reply-To: <72e24711-f485-46ce-bbda-db3043d84bcc@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 15 Sep 2023 22:00:07 +0300
-Message-ID: <CAA8EJpq77L9aviGQ0hJRB9OxC2oswM0HjL6WwCUx7caYoepigw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] pmdomain: qcom: rpmpd: Add MSM8917 power domains
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: =?UTF-8?Q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
-	linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, devicetree@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri, 15 Sept 2023 at 16:41, Konrad Dybcio <konrad.dybcio@linaro.org> wro=
-te:
->
-> On 14.09.2023 08:54, Otto Pfl=C3=BCger wrote:
-> > MSM8917 uses the SMPA2 and LDOA3 regulators provided by the PM8937 PMIC
-> > for the VDDCX and VDDMX power domains in voltage level mode,
-> > respectively. These definitions should also work on MSM8937.
-> >
-> > Signed-off-by: Otto Pfl=C3=BCger <otto.pflueger@abscue.de>
-> > ---
-> Would you mind picking up the RPMPD part of [1] and integrating
-> QM215 and MSM8917 to use the new bindings?
 
-Please, no. That patch was dropped in favour of [2], which doesn't
-include RPMPD indices.
-And it's good, since we can introduce logical 'default' ones instead
-of the ones proposed in the [1].
-I started working at making generic RPMPD indices, but I haven't sent
-the patches yet.
-So, I think, this patch is fine.
+On Fri, 15 Sep 2023 14:45:14 +0200, Konrad Dybcio wrote:
+> This series brings support for the Mitsumi MM8013 Li-Ion fuel gauge.
+> 
+> 
 
->
-> Konrad
->
-> [1] https://lore.kernel.org/linux-arm-msm/1688647793-20950-2-git-send-ema=
-il-quic_rohiagar@quicinc.com/
+Applied, thanks!
 
-[2] https://lore.kernel.org/linux-arm-msm/1689744162-9421-2-git-send-email-=
-quic_rohiagar@quicinc.com/
+[1/3] dt-bindings: vendor-prefixes: Add Mitsumi Electric Co., Ltd.
+      commit: dc2dc941730438250a5c6567b8685f065ce1dd0f
+[2/3] dt-bindings: power: supply: Document Mitsumi MM8013 fuel gauge
+      commit: 9d15ff53398b4b21198ee6dec4f65a251de881dc
+[3/3] power: supply: Introduce MM8013 fuel gauge driver
+      commit: c75f4bf6800bde67df22ac95139279ec8764118a
 
+Best regards,
+-- 
+Sebastian Reichel <sebastian.reichel@collabora.com>
 
---=20
-With best wishes
-Dmitry
 
