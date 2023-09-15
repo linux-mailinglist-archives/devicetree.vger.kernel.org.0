@@ -1,172 +1,175 @@
-Return-Path: <devicetree+bounces-471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0BBE7A1AC5
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 11:38:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A0587A1B63
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 11:55:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6645F282477
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:38:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A16EC1C21122
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:55:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DC1CDDC9;
-	Fri, 15 Sep 2023 09:38:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3167BDF5B;
+	Fri, 15 Sep 2023 09:54:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9FF79D4
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 09:38:16 +0000 (UTC)
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2124.outbound.protection.outlook.com [40.107.114.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDE10270E;
-	Fri, 15 Sep 2023 02:38:01 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fCjMPfFTZPwWQCaFcWXayzgUI1hs/N+bZusoBVfnNao9PGqn0Flx67elyr1H9zdmqzYV0kgm/ohZKndmKogpom27pM63Fmtxf62k8MyQPp48VcVoScrIsD6K7UooC2z5/gnTkZEkovaJRrZkFA0xxLy0OtFXOqo1l6h0aRxCtLt2pDTKgDWuO+XSvnJaDNTYVsBhyHSQUvi6Q2GGlLZ5j7UYpCMCDWXDZ4Z7RkWkv2ffUavcwaULB2EnoHbKNP4MBoN/RGFsZMjB5qAWRhSe/6YWBXSv93gd2pnM14uKs+6dLocihtzEFukaS3RSOHp/rrOwXMdeQJkHfTuP+Aglpw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jajXXPi2RPeeJrnJfYTRCUu9/hVf/Xuk5xxm0WWBSzI=;
- b=D0tNSsKHyhFIYtj90EpBKYSd0fxtuKeYG8q59dBvzLVj+WBYSrbJpII9MOhKup7DGNktQCF4KslTxKmGAUqIL0UQvppPXxQfaLob2U6jE7VOI3pCME49sGSHiQBkMq+Rw9+rdxolM5VqupkyAm0S6Nr2YOJTG31FWtclliK7ErvrKuaAq78uf03mDDDVnah1gnTMtDKl1dVGT8+/JJXpjPtBRpiCHA9QfrV54nZybH1nfP4pjP0FSx5NnX7Ep84gIKrqSkHesP6UUA+dQoDAjsRM5rjWroPmIHs+aDo4TW8HrVevbhM/jKlRA/DgRMHjAQ5wXLwYZK9LY+HAL+desA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jajXXPi2RPeeJrnJfYTRCUu9/hVf/Xuk5xxm0WWBSzI=;
- b=iVrfFy52MYgVnvLAUjZ6ZMv1r37Q9mD1Bw+riFbDuLH9kZeHxXsDqeS5XHdhXZnqMB2IOf5oqv4XqsLQXZ30ex2b+ky9Gt+uRe93fyZPiXWluNk9SrR6CMr9oj8Gz9Jwx34VsACdhro52rKcGwZuAvKSXQB+WxIcc1gNH5DJ0uk=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by TYWPR01MB9608.jpnprd01.prod.outlook.com
- (2603:1096:400:19b::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.21; Fri, 15 Sep
- 2023 09:37:59 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::e5cd:66a0:248f:1d30]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::e5cd:66a0:248f:1d30%4]) with mapi id 15.20.6792.021; Fri, 15 Sep 2023
- 09:37:59 +0000
-From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-CC: "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-	"gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>, "robh+dt@kernel.org"
-	<robh+dt@kernel.org>, "kw@linux.com" <kw@linux.com>,
-	"manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
-	"bhelgaas@google.com" <bhelgaas@google.com>, "kishon@kernel.org"
-	<kishon@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "marek.vasut+renesas@gmail.com"
-	<marek.vasut+renesas@gmail.com>, "fancer.lancer@gmail.com"
-	<fancer.lancer@gmail.com>, "linux-pci@vger.kernel.org"
-	<linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v20 16/19] PCI: rcar-gen4: Add R-Car Gen4 PCIe Host
- support
-Thread-Topic: [PATCH v20 16/19] PCI: rcar-gen4: Add R-Car Gen4 PCIe Host
- support
-Thread-Index: AQHZ1zcPesbymzM/EkSeMq7i4076ZrAaqwsAgAEW/UA=
-Date: Fri, 15 Sep 2023 09:37:59 +0000
-Message-ID:
- <TYBPR01MB534155F5DDF8006909DB0EA2D8F6A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <20230825093219.2685912-17-yoshihiro.shimoda.uh@renesas.com>
- <20230914165852.GA37731@bhelgaas>
-In-Reply-To: <20230914165852.GA37731@bhelgaas>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|TYWPR01MB9608:EE_
-x-ms-office365-filtering-correlation-id: 5cff200f-05d2-4742-745a-08dbb5cf72ef
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- czGuspz7qnwQy1nmMqGmo5eqCZALwHJFHahocyjlJNrEFRWivELtq3q6y69/ZsoO7Egpd588no0DEjJKVAbivJm8kubykQkTkDlTB1Alr5N3i4f+u8Nb8RJVI2HUezcRlVZk/CDvItGkeWAqEQV2VSoGEw7yQ0Ajrj+itX6avVSDC1tABaSyL3iJHHHFVLpt4w73uMx4/qnGGE96blYCXpnxOLk6ofDW0q8U4gTM1scvdXKME0bDA2ySPxFvOa6/7Ag7mwOQaLtrJGebPMf2P70vxG5beqNv1xZNPhHBWMvRvm0wXQy3uE0lUKudfnj9uz8BT0Y7LBxUDSxbxN2KPgjDJCAPY11pmbDBPinTr1+lYRCZBi3UYG5FOvqNU2AjC0cf6HkBAEmaJfESn/w73C7FFpgWZdwYeUB0fkOjgBlAjtG3qw8lDy8sMRpOAeb6V7sQqTyGxjC8F4FExYieyfnT+UtuUPlwrWNT09TIMJHZpiBQkwFmxUir8g2+eBZcaKc6GiPdY/ZTAbOIPCcToHXQPx2BbyyL30dEEx8oLeRBQR+3RapEMzxO6iAbwoWtXjUJnQoiVVpSmR1vcDhJxGzS5z95MqD0g/5Oc7imv+B+T/+npWxVRIWlZ3qTOi4M
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(366004)(346002)(396003)(136003)(39860400002)(451199024)(1800799009)(186009)(122000001)(38070700005)(38100700002)(33656002)(86362001)(55016003)(9686003)(478600001)(7416002)(4744005)(2906002)(8676002)(8936002)(52536014)(4326008)(41300700001)(7696005)(5660300002)(71200400001)(6506007)(316002)(66556008)(6916009)(66946007)(64756008)(54906003)(66446008)(76116006)(66476007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?UeY/TuCioPfakeqjawiwHWQm2YktICTFpnWsLOnOUgbTIReoRt7C52IylovX?=
- =?us-ascii?Q?57/9ckoNwMkq1ul+RNqRbsHBdnBGk4Iwd7fHmf31KO1v9Dn4ZtT5WIC7TqAL?=
- =?us-ascii?Q?ehCDykU69BJcODlF02tIMn1PWmuc8UoTQk+7PBsnkqcxR792ibkf0mlRdsyX?=
- =?us-ascii?Q?TNlhwYNnDcE0DvMWpWh9+spZa5xXFJNbJfKw0Nomw0h4F32GqoeM31uEeBYe?=
- =?us-ascii?Q?QyWf6vkTjABvWzHOq9E33xfgL15lDMQlzxKM8LW9coaT+3rsuSUOCBZIgUzD?=
- =?us-ascii?Q?vRb1HCOcv7vb0Xo7ORoN4FMjaxR8HYYCF+q69l8A2Dug6dXNEubCDmCrPKJU?=
- =?us-ascii?Q?ShIl3ovnpE2++qKrE5DtOKmiNQGTO61czy9eCrwO/k/vH/JMThMYWKmlFKZ6?=
- =?us-ascii?Q?NDPuogT6FC4zHpMmZSLL+KRr1Ac1CoIubSyORDHistQ94I3f84FPzrvM0+eH?=
- =?us-ascii?Q?btal4kw3vUViJYGpLeDJbvrUTWhzWXhR8Wq62X6HtFYgnrMDXvLtfnibEHwz?=
- =?us-ascii?Q?9yg7U4yaFirWrDFbjXMhqUTRa70+hzeTjshJNF0A5ORA9yvXtwP3PEKQipdv?=
- =?us-ascii?Q?CpxlKAvARJW41rC1kWIwBcp8fw7U9bO8Hg1cwBXr5D/StF9sDkKjhCujZCBk?=
- =?us-ascii?Q?ZFgRMAlVZ+AkvPbI/+wPPuBcjtLSC2jHK2tobVVHGMLzdGQA/xkX7yDyS1Uv?=
- =?us-ascii?Q?AO6UszpIqfMJznsCOKVPKOCKAHJUkaa2dUb7tWFR90NLrWkPUqhAv1G40OwU?=
- =?us-ascii?Q?3yP4oiq37/VndmHF9gkivyqe5C0zcknSd4yOZVPjVq4NtN7PbBX82kiGiPR6?=
- =?us-ascii?Q?0y/c9F3Umv5QrRrQsLKemTQnBAJcXTlp762Ua/zZXNwZ03XxLNq6CWkQfagC?=
- =?us-ascii?Q?vNoytB+AJC5XmisehdGezU9W1o58INRhDa7Ri9AvM/fiU3ysBAyDTLV6sWFL?=
- =?us-ascii?Q?YTIvW3oTYj+amrBwoe4O9b2v1VzZwShoFCAo+gfyel3Q2ozdkfXFRQlmaw7F?=
- =?us-ascii?Q?DROlEiynwyBlrEJBKX5U33Ge3ctgMjoQ+/6olLrbOKu8nt3/ynK2uSp9Ak5c?=
- =?us-ascii?Q?2rvnwT4HfImdug1CHVNMutkAj3N2D0EleZpAdY0wfITnMN/Jydt0g0CTGoH3?=
- =?us-ascii?Q?8e+2Hl4SEUSm9AS1AljHSU63telk32F0rkwkDyci7UXVh1e0tCqhI+UHmFal?=
- =?us-ascii?Q?PZC2PwlL+4h74aUkOVpWalDkfQVGW4KQt108+m71cgtnSzf1AsruuGnHTnDb?=
- =?us-ascii?Q?WAK509aOrVdlxIgZDwsC1JGLNGFxUwc6vy+ewZ8rv5LCbHF4cwB7RsXU2BP1?=
- =?us-ascii?Q?aLRTGZwMwcjtUKo4FBIJZwq1EhI5msjcP/ynmlPW8rD2W66M0fFeEyBFGikT?=
- =?us-ascii?Q?nZBvRt026iADQsBUXwDlDcqL93q6iTPGgZj/7YIbeBxCkxHBCCnMTDqPVT5r?=
- =?us-ascii?Q?3UHX8Z8zKJujOvPzxrJdK+oQIpaeUlXhMTmNsYGchbtlk/950kjfq2qOpHyc?=
- =?us-ascii?Q?cG1VfLVjzcGBpHksvcDKzSKN0B/16t2flmkLXxUevEm6mksVwAxOMEDlYVhS?=
- =?us-ascii?Q?3zhIhPQIUCiGypvY/LIBh+w5it58SqzgCyzgLpQ6EO0vOYRjN/UikmCpgeXF?=
- =?us-ascii?Q?VoUNdNLCGjx2rFgY/hHPWVd4BmC3hznKtduPOmlncEOByDzdAMwxp06/CT7G?=
- =?us-ascii?Q?+IGL5A=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 326D6DF43
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 09:54:10 +0000 (UTC)
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A56BC30DF
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 02:52:56 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9a58dbd5daeso263876766b.2
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 02:52:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694771575; x=1695376375; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NDsOEvzMdfN45BN2wHh3BSnjcShqUj+1nKnRADTq9kg=;
+        b=tP4hH3dUA/lJgOpm+J3gr46lOFDcV7gBmd0izochaHSgmv0QNYglypNVidXXHILuFL
+         RI6ndubnP53fmoWm7dPLMEe4TZJa4on8qbq/A4FeeK44LN0Lt4s5TNuqg03UgKc0h9LX
+         yMq3Ddyq3vZw6NfBQesXfpq8squ1En4eymYlgMyv8coeA9+gjb7igzxVLI/dI2FivJi6
+         7r06TElDMddeMNnPbR1HkgLVZqeJO+w52mpvZtsIYtcm1cOWjZZiMy7cXBpzzw/xqJX2
+         NpLexGK9ZcUELh9posqFU0zlhZ1biPxnKbSFaX7nkhLRl+3F0ICGvb/IasWQL/Y0zEnZ
+         e/Rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694771575; x=1695376375;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NDsOEvzMdfN45BN2wHh3BSnjcShqUj+1nKnRADTq9kg=;
+        b=sHHg0BW/YIu/DAEnaeCcOsGQRJQBSmadGsxTK2gNGObCqwC/6DM372Tfb/PR1EIaqt
+         eKaBmJlwmjOZvlfdwV2Q53UQkP6hqNh712Ol/70S9p69nNgJmeNwrdOMS3QAEfL9ha5X
+         c3a5c8ZOF7T4OrhCWzYkir+6dqfBVXWqb/m1WVf8zzeB95XiiFvH5A87Kz/cy0nSA8kY
+         h+StrPvjRkY5Ohj2791dz1lhOJuZhXNG+6K2Cv/wNZ6N3dSD4NXqreLYDZgIMvhKIaps
+         M5outeX+itEwhSsse6lCXPXwkPKPnWANtZTwBxRRmNUigb0RUiZCyHwlYfZ+bS44kpBz
+         SSBw==
+X-Gm-Message-State: AOJu0Ywmn4YEUfKsalnt97D1kWzMor+XDX/IuGxTN8d3WCOQLkZhB+Sk
+	UUZ9+7EjKuzdxg/2NUr8CspU7A==
+X-Google-Smtp-Source: AGHT+IEyHoyb9BJwB5cKwuUb5J0gUjviPBraM53FhmXZ7ynAynY44X8lL3dyLbHDSdBrSx/FH4cLgA==
+X-Received: by 2002:a17:906:150:b0:9a5:cab0:b061 with SMTP id 16-20020a170906015000b009a5cab0b061mr959202ejh.51.1694771575119;
+        Fri, 15 Sep 2023 02:52:55 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id rp26-20020a170906d97a00b009ad829ed144sm2161019ejb.130.2023.09.15.02.52.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Sep 2023 02:52:54 -0700 (PDT)
+Message-ID: <ca9075db-de92-4545-8c47-d6c292d57ad9@linaro.org>
+Date: Fri, 15 Sep 2023 10:52:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5cff200f-05d2-4742-745a-08dbb5cf72ef
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Sep 2023 09:37:59.3968
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: SUYRbyjPEbBgpCT3fjJC78LWzu1xQjWiRkyruhq+Sd7+8nwewUyFskVUEdSQ2Sb1uL10UPqXxkBrAw7nGmg5ZW2f3T6Ab7raBknvrzdpeGDwk2/oGwS+fSdDjpRdXKnA
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB9608
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] usb: typec: tps6598x: add reset gpio support
+Content-Language: en-US
+To: Javier Carrasco <javier.carrasco@wolfvision.net>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20230912-topic-tps6598x_reset-v1-0-78dc0bf61790@wolfvision.net>
+ <20230912-topic-tps6598x_reset-v1-1-78dc0bf61790@wolfvision.net>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20230912-topic-tps6598x_reset-v1-1-78dc0bf61790@wolfvision.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Bjorn,
+On 15/09/2023 07:50, Javier Carrasco wrote:
+> The TPS6598x PD controller provides an active-high hardware reset input
+> that reinitializes all device settings. If it is not grounded by
+> design, the driver must be able to de-assert it in order to initialize
+> the device.
+> 
+> The PD controller is not ready for registration right after the reset
+> de-assertion and a delay must be introduced in that case. According to
+> TI, the delay can reach up to 1000 ms [1], which is in line with the
+> experimental results obtained with a TPS65987D.
+> 
+> Add a GPIO descriptor for the reset signal and basic reset management
+> for initialization and suspend/resume.
+> 
+> [1] https://e2e.ti.com/support/power-management-group/power-management/
+> f/power-management-forum/1269856/tps65987d-tps65987d-reset-de-assert-
+> to-normal-operation/4809389#4809389
+> 
+> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
+> ---
+>   drivers/usb/typec/tipd/core.c | 21 ++++++++++++++++++++-
+>   1 file changed, 20 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
+> index 37b56ce75f39..550f5913e985 100644
+> --- a/drivers/usb/typec/tipd/core.c
+> +++ b/drivers/usb/typec/tipd/core.c
+> @@ -8,6 +8,7 @@
+>   
+>   #include <linux/i2c.h>
+>   #include <linux/acpi.h>
+> +#include <linux/gpio/consumer.h>
+>   #include <linux/module.h>
+>   #include <linux/of.h>
+>   #include <linux/power_supply.h>
+> @@ -43,6 +44,9 @@
+>   /* TPS_REG_SYSTEM_CONF bits */
+>   #define TPS_SYSCONF_PORTINFO(c)		((c) & 7)
+>   
+> +/* reset de-assertion to ready for operation */
+> +#define SETUP_MS			1000
+> +
+>   enum {
+>   	TPS_PORTINFO_SINK,
+>   	TPS_PORTINFO_SINK_ACCESSORY,
+> @@ -86,6 +90,7 @@ struct tps6598x {
+>   	struct mutex lock; /* device lock */
+>   	u8 i2c_protocol:1;
+>   
+> +	struct gpio_desc *reset;
+>   	struct typec_port *port;
+>   	struct typec_partner *partner;
+>   	struct usb_pd_identity partner_identity;
+> @@ -717,6 +722,13 @@ static int tps6598x_probe(struct i2c_client *client)
+>   	mutex_init(&tps->lock);
+>   	tps->dev = &client->dev;
+>   
+> +	tps->reset = devm_gpiod_get_optional(tps->dev, "reset", GPIOD_OUT_LOW);
+> +	if (IS_ERR(tps->reset))
+> +		return dev_err_probe(tps->dev, PTR_ERR(tps->reset),
+> +				     "failed to get reset GPIO\n");
+> +	if (tps->reset)
+> +		msleep(SETUP_MS);
+> +
 
-> From: Bjorn Helgaas, Sent: Friday, September 15, 2023 1:59 AM
->=20
-> On Fri, Aug 25, 2023 at 06:32:16PM +0900, Yoshihiro Shimoda wrote:
-> > Add R-Car Gen4 PCIe Host support. This controller is based on
-> > Synopsys DesignWare PCIe, but this controller has vendor-specific
-> > registers so that requires initialization code like mode setting
-> > and retraining and so on.
->=20
-> > +config PCIE_RCAR_GEN4
-> > +	tristate "Renesas R-Car Gen4 PCIe Host controller"
->=20
-> The config prompt that matches the other drivers would be:
->=20
->   tristate "Renesas R-Car Gen4 PCIe controller (host mode)"
->=20
-> Similarly for the endpoint driver.
+This looks a bit odd to me, shouldn't you drive reset to zero ?
 
-I got it. I'll fix them.
+if (tps->reset) {
+     gpiod_set_value_cansleep(tps->reset, 0);
+     msleep(SETUP_MS);
+}
 
-Best regards,
-Yoshihiro Shimoda
+also wouldn't it make sense to functionally decompose that and reuse in 
+probe() and tps6598x_resume() ?
 
+tps6598x_reset() {
+     if (tps->reset) {
+         gpiod_set_value_cansleep(tps->reset, 0);
+         msleep(SETUP_MS);
+     }
+}
+
+---
+bod
 
