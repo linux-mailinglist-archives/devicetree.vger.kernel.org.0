@@ -1,127 +1,125 @@
-Return-Path: <devicetree+bounces-383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30D1F7A1703
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:12:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EBE17A1718
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:15:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 446A01C213EF
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 07:12:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD8F62829CB
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 07:15:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8AE3D26B;
-	Fri, 15 Sep 2023 07:12:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE43AD272;
+	Fri, 15 Sep 2023 07:15:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54CE76AB7
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 07:12:17 +0000 (UTC)
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC351BD3
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 00:12:07 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-502f3a06dc0so606170e87.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 00:12:07 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA92F6AB7
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 07:15:36 +0000 (UTC)
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60117115;
+	Fri, 15 Sep 2023 00:15:29 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1c06f6f98c0so16329175ad.3;
+        Fri, 15 Sep 2023 00:15:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694761926; x=1695366726; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=L+1MAm8CUnGgXuX6co+0aREskJOB2spO/R6IQZ493/g=;
-        b=nb4hkNhVBpz55nuhBksYMxXVm4INb4aJVBwb/pyC+/SslEwkCzD4QhqbokQYD8C9st
-         tmKDIpY22+hdp54GKae3z0f2Jj+FbDCqYu6u0LmZpWC3hRy5kwdRqi/K+FZf8UYaaxlX
-         BaKS5MnUK0/l4lcyHHrDbRdCynctBkFNcJN3qlRJvSid7ugX1lkmiX0GmvtxsEWLes7h
-         i/zSRuOcQCEe76zbRDv8vrwLEEw0PD4BAPDY1Gi3rUQ7JodaZ+3cKNEy2xwTmA/Q/voV
-         THw/fNS5XOl3vNeSObTFT5/OaBC9kMq73RCaQUjYwasvDrk9ZdHQ0hZKlE0nkfGGeYPI
-         KsRQ==
+        d=gmail.com; s=20230601; t=1694762129; x=1695366929; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xPt+lflGxmD7kew86V+AaK7Q6nPGEAHxfdx7vSqNo0w=;
+        b=ANaTPxcQofAhoSZo/2/yIQ6WSDH+xFZdb8dos3AtdWIArBZbslu1Lh5r4KqddMalPB
+         QVVZHQ15F0x3EFuKlJlXkcNSoCSmYNj7ejo7iczNd1VjkHB4zjobrfkLTdSKyUippwvw
+         E5Bvq+EIoNM+auX6L5vYu7YfY0jUq1+MOAkeIV119tZ/LEG9RsM4Hqm80494+B7ss+pI
+         O8NjrcpztaXoxbbIZNF+g9+h4mD8NRTQ3CGkQZYLzWuCtfJ/85oGkzXwFiJLcHOlO7nE
+         Ab2KJhvCHCEYHTsmbpapmSNDHTb6+tyT5Dxdnu295CKqaUgLRxr9tHzsRpPqVvC3Psv5
+         p+/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694761926; x=1695366726;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=L+1MAm8CUnGgXuX6co+0aREskJOB2spO/R6IQZ493/g=;
-        b=JDnvOPxIkMwfintsYsoxm3JXNXC5aSXncYkGRtiT6zD0hIZLDd+G/NKA1gWioUbKmF
-         RdmlA6ZxQUGyUypdw47EMEcdF6WvcD8CiZCYNr7Bo4DG2sDzRJiceoLbJ5iFg5kQDVzR
-         +EMRyaboMnUa4diiYGIkwGijHEEYzD3eFiBQQVJvD4ysUBo8vhgEADH8hSB/dcKdtQQU
-         kP2sCDdrToVwwO30v6Lj0H8y2ppNgpGez6uanpTuGb5yv+k+qfPbnRHxIw4aSLb9CIVB
-         mHxMxbYvmWTd9EnoMSYm+dVnZ9LCJ6X19glXkrPq4/v8rPpCPPs8gTycNXguNioFH1QL
-         LWFw==
-X-Gm-Message-State: AOJu0Ywqk/gRregK2y05Zys5g06Fzuh+UPqLthRA06PTf9swrttJ1kqq
-	Wm8FUu4WXYR/YX39VT8VOVBAng==
-X-Google-Smtp-Source: AGHT+IHECa1brdHbyZ+RRYmTLFGKg3RSF3pozRwZjz4PFeKi2aM/YBgZ+azN8FxCn8uEPW/fu+Melw==
-X-Received: by 2002:a19:f507:0:b0:502:acf2:88df with SMTP id j7-20020a19f507000000b00502acf288dfmr632313lfb.35.1694761925299;
-        Fri, 15 Sep 2023 00:12:05 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id e6-20020a056402088600b00528dc95ad4bsm1829422edy.95.2023.09.15.00.12.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 00:12:04 -0700 (PDT)
-Message-ID: <bab9dd29-9509-f724-bcba-040501851e5e@linaro.org>
-Date: Fri, 15 Sep 2023 09:12:00 +0200
+        d=1e100.net; s=20230601; t=1694762129; x=1695366929;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xPt+lflGxmD7kew86V+AaK7Q6nPGEAHxfdx7vSqNo0w=;
+        b=gc+eajuZTXFkUgqm1/a8K17T8Qn8X963vfF43pQdS6TScaKJ6fyXIHV5J3D6o9Tl8g
+         nZaU1xHVv0Bv7yPy6vdUOxThcwrrlbwH2rUwGr7sc9+Smj/C4hfw4O/1TROXVvpjEg0e
+         POjLAxynDCpDx4eZJXjQbT5eTfVVar3C3WBfBO1SKLFgXK5koF29ua3a5pLKVk8C5s0r
+         V+cHE9QE5Fnk2JhZj8rvLIxCnJpFL4TbE7ztb4fHN9LyQn0CK16/YyNCxfNbyyK8lvNX
+         lulVUegHa6ELqpdXqq5AXTt/eloWSqEB7TCoJyyMjfya1T1R1Wpzr9SVfouKgXHnC08a
+         8+CA==
+X-Gm-Message-State: AOJu0YyOom0J7tHcfzY6kMc3GOtGzgDT8xwFJOZ0ORBW+8HPJF/LkS3x
+	sGiB4Hu4VPPEK7hYkKQE6N0=
+X-Google-Smtp-Source: AGHT+IFCdr2RrtfYmIsOzqNUg5/c7ZTKK3DcpYDUDxfJxaRuGC+qz4+2B1LFXLrvhMSnOIofAHGA+g==
+X-Received: by 2002:a17:902:a3cc:b0:1b8:1bac:3782 with SMTP id q12-20020a170902a3cc00b001b81bac3782mr889683plb.6.1694762128648;
+        Fri, 15 Sep 2023 00:15:28 -0700 (PDT)
+Received: from localhost.localdomain ([222.95.63.58])
+        by smtp.gmail.com with ESMTPSA id q23-20020a170902789700b001bdc6e13665sm2723958pll.275.2023.09.15.00.15.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Sep 2023 00:15:28 -0700 (PDT)
+From: Wang Chen <unicornxw@gmail.com>
+X-Google-Original-From: Wang Chen <wangchen20@iscas.ac.cn>
+To: linux-riscv@lists.infradead.org,
+	conor@kernel.org,
+	aou@eecs.berkeley.edu,
+	krzysztof.kozlowski+dt@linaro.org,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	robh+dt@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	jszhang@kernel.org,
+	guoren@kernel.org,
+	chao.wei@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	Wang Chen <wangchen20@iscas.ac.cn>
+Subject: [PATCH 02/12] dt-bindings: vendor-prefixes: add milkv/sophgo
+Date: Fri, 15 Sep 2023 15:14:09 +0800
+Message-Id: <20230915071409.117692-1-wangchen20@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v2 4/8] dt-bindings: arm-smmu: Add compatible for SM4450
- SoC
-Content-Language: en-US
-To: Tengfei Fan <quic_tengfan@quicinc.com>, will@kernel.org,
- robin.murphy@arm.com, joro@8bytes.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, agross@kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, catalin.marinas@arm.com
-Cc: geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org,
- nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
- linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, quic_tsoni@quicinc.com,
- quic_shashim@quicinc.com, quic_kaushalk@quicinc.com, quic_tdas@quicinc.com,
- quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com, kernel@quicinc.com
-References: <20230915021509.25773-1-quic_tengfan@quicinc.com>
- <20230915021509.25773-6-quic_tengfan@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230915021509.25773-6-quic_tengfan@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 15/09/2023 04:15, Tengfei Fan wrote:
-> Add the SoC specific compatible for SM4450 implementing arm,mmu-500.
-> 
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> index cf29ab10501c..b57751c8ad90 100644
-> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> @@ -47,6 +47,7 @@ properties:
->                - qcom,sdx55-smmu-500
->                - qcom,sdx65-smmu-500
->                - qcom,sdx75-smmu-500
-> +              - qcom,sm4450-smmu-500
->                - qcom,sm6115-smmu-500
->                - qcom,sm6125-smmu-500
->                - qcom,sm6350-smmu-500
-> @@ -70,6 +71,7 @@ properties:
->                - qcom,sc8180x-smmu-500
->                - qcom,sc8280xp-smmu-500
->                - qcom,sdm845-smmu-500
-> +              - qcom,sm4450-smmu-500
+Add new vendor strings to dt bindings.
 
-Duplicated patch. Same problem.
+Signed-off-by: Wang Chen <wangchen20@iscas.ac.cn>
+Signed-off-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 573578db9509..fcca9e070a9a 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -863,6 +863,8 @@ patternProperties:
+     description: MikroElektronika d.o.o.
+   "^mikrotik,.*":
+     description: MikroTik
++  "^milkv,.*":
++    description: MilkV Technology Co., Ltd
+   "^miniand,.*":
+     description: Miniand Tech
+   "^minix,.*":
+@@ -1273,6 +1275,8 @@ patternProperties:
+     description: Solomon Systech Limited
+   "^sony,.*":
+     description: Sony Corporation
++  "^sophgo,.*":
++    description: Sophgo Technology Inc.
+   "^sourceparts,.*":
+     description: Source Parts Inc.
+   "^spansion,.*":
+-- 
+2.25.1
 
 
