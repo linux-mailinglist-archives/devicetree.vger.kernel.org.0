@@ -1,127 +1,220 @@
-Return-Path: <devicetree+bounces-644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B85F7A2673
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 20:44:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E9FC7A267B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 20:46:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 876AA1C2093C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 18:44:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D9C41C209BE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 18:46:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8F3A15E82;
-	Fri, 15 Sep 2023 18:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89E015EAE;
+	Fri, 15 Sep 2023 18:46:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C46C1097E
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 18:44:50 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 490374C0C
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 11:42:47 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9adc75f6f09so173756866b.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 11:42:47 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7528362
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 18:46:19 +0000 (UTC)
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3107949DC
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 11:45:11 -0700 (PDT)
+Received: by mail-yb1-xb36.google.com with SMTP id 3f1490d57ef6-d7ecdb99b7aso2384015276.3
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 11:45:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694803365; x=1695408165; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4ok5uPWgXZi45gaAZwMSQWfyEedhaDpchiYD0oWGYgM=;
-        b=STIXBiQmlyBPQJF2Wr2oGB+9q5Xz58anhpFW1Z+id33syW5QVCpNqrlt6PA0E5FL1i
-         Mkttsgpb27NWar6BCQeJqDNL26dg7mv3HXVmB7nCLbJfjL3X/ER9Y8R69LmtBzod2Nby
-         NoUzw5JTqpwhPkWgA9P5OzAprGLl99r5h5moW4tVbwhC+e2hYo7LUdGoyQjNWvye2xeD
-         XLcNwFyqYVnhT1QSSp5PCAhsn9hqTDhhKpYSeKmV2yvegozpccrH3cRdzFrJD5fiJ1pB
-         n++ZJ07wNyWlMxXfqhmCSOSsNjuvrQlT84UASSod+SwdzM95FkpBN8YYNHxzbIS9o9JC
-         WJpA==
+        d=linaro.org; s=google; t=1694803508; x=1695408308; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=mb/JbSxTOf6YSrodg1aYhJ0ml5QYx/b8sq5qwirE40g=;
+        b=rVYwpiEHoZUTb1RScl189CXIouKvFDbkstbiscDXabsDRCbOkQytbby89efW935GVw
+         Y7iB7bty48aTBdwfgSVDtMTpq67HjL+hX5phLgUhI4laX6oC1huweqVHOFr0oP0KxNqq
+         7bIe/ssZObIkQ2Lqbw3MfS7pu1fvw6+adj5tNUW6VaW3KAs4nbUQgRMWR25zr4MMsX7x
+         Krjss6t7VlOOJQsEjSxqa2n2EJwQqDLT4eflNwpbf/yLG9YE1ilfLItiQBQm5ybigNQT
+         ib961tpk2lBHMIDi1YxrT4dJZY8Aixjrpf54+p3GW7tuurNzBUOVn0hEL0yhEdNbk+RT
+         gT8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694803365; x=1695408165;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4ok5uPWgXZi45gaAZwMSQWfyEedhaDpchiYD0oWGYgM=;
-        b=UcuRd65FO/ZBPW49vNvlsLohXG1YjGQQNJ/gbRR9hDW3ieUGypctYDbSFZ7IU+QU11
-         XGdLYISkIArNbuMbflBfIhcHZoAc9VpXx8facgdkK0OQLzw3c3OTP437zeKGjphwiE1S
-         HxMCwoH5QjRq+jxgGGNaHnw3IEEeQdCXD1rybkLq3ol77OVMxUkYdNoP16AMpxkRC44X
-         RXsOJTjht6dZqkpB7ET6jVtpzmv5LyF9XXazwfd7M1WmYzYA64EqjDFAvFOGWV6k/AxV
-         bwKI0eI21uPO2YdnocriTAodDarUBiR+jPI7WXdMEyIGOuCVHy+dWAh+0D97FhFXCwTE
-         +hdA==
-X-Gm-Message-State: AOJu0YwOcLBM+58pfTORYNtZOt0zACTNxSv+shu2WxDW6VM+pnBNZXtx
-	lX2m0QKbw/ClmeUbllJx759RhQ==
-X-Google-Smtp-Source: AGHT+IEsOq+vG923T3c3It6wrdjLcEdiwkGg0B39VZPPbRcQsoDS9rx7I80uvGmFBfWm7trCovXHPA==
-X-Received: by 2002:a17:906:30cd:b0:9a9:f14a:22fa with SMTP id b13-20020a17090630cd00b009a9f14a22famr2176042ejb.16.1694803365168;
-        Fri, 15 Sep 2023 11:42:45 -0700 (PDT)
-Received: from [192.168.37.154] (178235177024.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.24])
-        by smtp.gmail.com with ESMTPSA id rv10-20020a17090710ca00b009932337747esm2746697ejb.86.2023.09.15.11.42.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 11:42:44 -0700 (PDT)
-Message-ID: <17aab34d-689c-4c27-b9de-f9ed6ee049c5@linaro.org>
-Date: Fri, 15 Sep 2023 20:42:42 +0200
+        d=1e100.net; s=20230601; t=1694803508; x=1695408308;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mb/JbSxTOf6YSrodg1aYhJ0ml5QYx/b8sq5qwirE40g=;
+        b=SOz9jgoC+e0GslpDnCWv/9bFDTWwyHYQcwDfOcH1GOgFgS1/ac6jjPOq25IFq6wx3R
+         y06+OvUp8yNcCPOsWUC1GeX50BBPf/jbv0P/Qy4o3ey4q+2fRSl7vmEWC75gql2FkaMg
+         cty3EyLIx3tQUhXWWymX59PwfgfgVBWRvsUsMFeWizJicUfd6rXvJItHwLfj6srNQo2L
+         IjB2FLzSnK0mHWIklmpv4MTdQPNrL/Oa1e5RAo7xUnDfdyCbWYsRRxZrOmbo/X48Qu/Y
+         XOapqBv8PTaUQB8rDbRqpo3YJVxGr2Dl/f/PlQ8C1GmJaQVVvNfC7FUxZGvgRHUzF7+k
+         9vQg==
+X-Gm-Message-State: AOJu0YzMjT58E9b2vFpWZEtJyX0iSm/ctMziJFp9tLdKRKOIzcJn7NSi
+	hk3GzJwTA0MC854twKgs9sPtk6SoKOr5w9eB1Sqjb9TpFr0zvdAvsSE+hQ==
+X-Google-Smtp-Source: AGHT+IEgvKwcttxHaal71JQerDkqCTheLo6v9lIh37KHgKPxJxzPu18/C942DDKEdzyC+RRK7Px6UodLsnRJQPamVkw=
+X-Received: by 2002:a25:cf09:0:b0:d0e:c8fb:986a with SMTP id
+ f9-20020a25cf09000000b00d0ec8fb986amr2587928ybg.42.1694803508490; Fri, 15 Sep
+ 2023 11:45:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: power: qcom,rpmpd: Add SM7150
-Content-Language: en-US
-To: Danila Tikhonov <danila@jiaxyga.com>, agross@kernel.org,
- andersson@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, ulf.hansson@linaro.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20230915182054.113839-1-danila@jiaxyga.com>
- <20230915182054.113839-2-danila@jiaxyga.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230915182054.113839-2-danila@jiaxyga.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20230915121504.806672-1-quic_srichara@quicinc.com> <20230915121504.806672-4-quic_srichara@quicinc.com>
+In-Reply-To: <20230915121504.806672-4-quic_srichara@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 15 Sep 2023 21:44:57 +0300
+Message-ID: <CAA8EJpqJaY3ocZYMxWyDhzoCvCrn6d-YyD=jtumAM7aXe_DEdg@mail.gmail.com>
+Subject: Re: [PATCH V2 3/4] thermal/drivers/tsens: Add support for IPQ5018 tsens
+To: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+Cc: krzysztof.kozlowski@linaro.org, agross@kernel.org, andersson@kernel.org, 
+	konrad.dybcio@linaro.org, srinivas.kandagatla@linaro.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	thara.gopinath@gmail.com, rafael@kernel.org, daniel.lezcano@linaro.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On 15.09.2023 20:20, Danila Tikhonov wrote:
-> Add a compatible for SM7150 platforms and relevant defines to the
-> include file.
-> 
-> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+On Fri, 15 Sept 2023 at 15:16, Sricharan Ramabadhran
+<quic_srichara@quicinc.com> wrote:
+>
+> IPQ5018 has tsens IP V1.0, 4 sensors and 1 interrupt.
+> The soc does not have a RPM, hence tsens has to be reset and
+> enabled in the driver init. Adding the driver support for same.
+>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 > ---
-Please redo this series with commit 7f31667d29f4 ("dt-bindings:
-power: qcom,rpmhpd: Add Generic RPMh PD indexes") in mind
+>  [v2] Used tsens_calibrate_common instead of legacy
+>       and addressed comments from Dmitry.
+>
+>  drivers/thermal/qcom/tsens-v1.c | 58 +++++++++++++++++++++++++++++++++
+>  drivers/thermal/qcom/tsens.c    |  3 ++
+>  drivers/thermal/qcom/tsens.h    |  2 +-
+>  3 files changed, 62 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/thermal/qcom/tsens-v1.c b/drivers/thermal/qcom/tsens-v1.c
+> index dc1c4ae2d8b0..ed5c017905ab 100644
+> --- a/drivers/thermal/qcom/tsens-v1.c
+> +++ b/drivers/thermal/qcom/tsens-v1.c
+> @@ -79,6 +79,18 @@ static struct tsens_features tsens_v1_feat = {
+>         .trip_max_temp  = 120000,
+>  };
+>
+> +static struct tsens_features tsens_v1_ipq5018_feat = {
+> +       .ver_major      = VER_1_X,
+> +       .crit_int       = 0,
+> +       .combo_int      = 0,
+> +       .adc            = 1,
+> +       .srot_split     = 1,
+> +       .max_sensors    = 11,
+> +       .trip_min_temp  = -40000,
+> +       .trip_max_temp  = 120000,
+> +       .ignore_enable  = 1,
+> +};
+> +
+>  static const struct reg_field tsens_v1_regfields[MAX_REGFIELDS] = {
+>         /* ----- SROT ------ */
+>         /* VERSION */
+> @@ -150,6 +162,39 @@ static int __init init_8956(struct tsens_priv *priv) {
+>         return init_common(priv);
+>  }
+>
+> +static int init_ipq5018(struct tsens_priv *priv)
+> +{
+> +       int ret;
+> +       u32 mask;
+> +
+> +       init_common(priv);
 
-Konrad
+Please take care of init_common()'s return code. Don't continue init
+if init_common() fails.
+
+> +       if (!priv->tm_map)
+> +               return -ENODEV;
+
+Why?
+
+> +
+> +       ret = regmap_field_write(priv->rf[TSENS_SW_RST], 1);
+> +       if (ret) {
+> +               dev_err(priv->dev, "Reset failed\n");
+> +               return ret;
+> +       }
+> +
+> +       mask = GENMASK(priv->num_sensors, 0);
+> +       ret = regmap_field_update_bits(priv->rf[SENSOR_EN], mask, mask);
+> +       if (ret) {
+> +               dev_err(priv->dev, "Sensor Enable failed\n");
+> +               return ret;
+> +       }
+> +
+> +       ret = regmap_field_write(priv->rf[TSENS_EN], 1);
+> +       if (ret) {
+> +               dev_err(priv->dev, "Enable failed\n");
+> +               return ret;
+> +       }
+> +
+> +       ret = regmap_field_write(priv->rf[TSENS_SW_RST], 0);
+> +
+> +       return ret;
+> +}
+> +
+>  static const struct tsens_ops ops_generic_v1 = {
+>         .init           = init_common,
+>         .calibrate      = calibrate_v1,
+> @@ -187,3 +232,16 @@ struct tsens_plat_data data_8976 = {
+>         .feat           = &tsens_v1_feat,
+>         .fields         = tsens_v1_regfields,
+>  };
+> +
+> +const struct tsens_ops ops_ipq5018 = {
+> +       .init           = init_ipq5018,
+> +       .calibrate      = tsens_calibrate_common,
+> +       .get_temp       = get_temp_tsens_valid,
+> +};
+> +
+> +struct tsens_plat_data data_ipq5018 = {
+> +       .num_sensors    = 5,
+> +       .ops            = &ops_ipq5018,
+> +       .feat           = &tsens_v1_ipq5018_feat,
+> +       .fields         = tsens_v1_regfields,
+> +};
+> diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
+> index 0a43ccf02ec4..c792b9dc6676 100644
+> --- a/drivers/thermal/qcom/tsens.c
+> +++ b/drivers/thermal/qcom/tsens.c
+> @@ -1101,6 +1101,9 @@ static SIMPLE_DEV_PM_OPS(tsens_pm_ops, tsens_suspend, tsens_resume);
+>
+>  static const struct of_device_id tsens_table[] = {
+>         {
+> +               .compatible = "qcom,ipq5018-tsens",
+> +               .data = &data_ipq5018,
+> +       }, {
+>                 .compatible = "qcom,ipq8064-tsens",
+>                 .data = &data_8960,
+>         }, {
+> diff --git a/drivers/thermal/qcom/tsens.h b/drivers/thermal/qcom/tsens.h
+> index e254cd2df904..b6594b546d11 100644
+> --- a/drivers/thermal/qcom/tsens.h
+> +++ b/drivers/thermal/qcom/tsens.h
+> @@ -645,7 +645,7 @@ extern struct tsens_plat_data data_8960;
+>  extern struct tsens_plat_data data_8226, data_8909, data_8916, data_8939, data_8974, data_9607;
+>
+>  /* TSENS v1 targets */
+> -extern struct tsens_plat_data data_tsens_v1, data_8976, data_8956;
+> +extern struct tsens_plat_data data_tsens_v1, data_8976, data_8956, data_ipq5018;
+>
+>  /* TSENS v2 targets */
+>  extern struct tsens_plat_data data_8996, data_ipq8074, data_tsens_v2;
+> --
+> 2.34.1
+>
+
+
+-- 
+With best wishes
+Dmitry
 
