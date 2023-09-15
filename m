@@ -1,138 +1,113 @@
-Return-Path: <devicetree+bounces-534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABC5B7A1DD0
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:00:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24D167A1DD4
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:01:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 853B91C20E39
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:00:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D25D51C20E2F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:01:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B34A5101F5;
-	Fri, 15 Sep 2023 12:00:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D495101F5;
+	Fri, 15 Sep 2023 12:01:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DB66DDB7
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:00:02 +0000 (UTC)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01E2D1FF1;
-	Fri, 15 Sep 2023 04:59:57 -0700 (PDT)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-59bebd5bdadso20485277b3.0;
-        Fri, 15 Sep 2023 04:59:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694779196; x=1695383996;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=n3w3Hc9oT+9ZccWQwVTHbvcVnVRL/HUfvJ1knY0q2Ic=;
-        b=QvdyYF7XWIEv80sdYY6EUpSVHSU/LFAaMJZ3D2+xk7UhXKvAQb7+m8qQh4c0+OFzmU
-         DnBTI0sFTVVdCCdyiIoN6I5pI6RznmlX6oYN6YOC74kgOxtM4RNb9vMUxmuPkA2kHITa
-         azl/pVvjpaN+T0Px8EkrWaZtuACKHj98Ue/idsYHXpVZKLgvq5wKEZ5ybLHhKw9K6zYX
-         Et1XaO4KO2SDuXR5llh72kNxHOkHsJaVTDj9uhT4QgFWVE9ScQ20SsjwlKSd0o1cXF2x
-         KPFzKKBS7ywyU24b+1D52gHbt8tZm8cQg257nSK5bbzEe3H6xAEfdWZL/dkuOKCp33tm
-         N0vQ==
-X-Gm-Message-State: AOJu0YxLd3xMyYCDly0SDA0xevtcc5RYbm1vV4FsiauDTQFpu30Xx+V+
-	HvBRCB69PT3ecBqDo8O71ZGoKQn4cwC+/w==
-X-Google-Smtp-Source: AGHT+IGu2Nx4aW4E+cePSYiOtC0ayVxYccNOTgkQKYTSdC/0cQKD2QCiezIjz7s0G+LmdHqX3R8bgw==
-X-Received: by 2002:a81:5fc2:0:b0:59b:4bb2:fc2c with SMTP id t185-20020a815fc2000000b0059b4bb2fc2cmr1598737ywb.48.1694779196081;
-        Fri, 15 Sep 2023 04:59:56 -0700 (PDT)
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
-        by smtp.gmail.com with ESMTPSA id r82-20020a815d55000000b0059b2be24f88sm812554ywb.143.2023.09.15.04.59.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 04:59:55 -0700 (PDT)
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-d7f0a60a159so1872051276.0;
-        Fri, 15 Sep 2023 04:59:55 -0700 (PDT)
-X-Received: by 2002:a25:2555:0:b0:d77:dcff:e7b2 with SMTP id
- l82-20020a252555000000b00d77dcffe7b2mr1234044ybl.39.1694779195344; Fri, 15
- Sep 2023 04:59:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1987CDF43
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:01:50 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C06B1CD8;
+	Fri, 15 Sep 2023 05:01:48 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38FAvu8n017595;
+	Fri, 15 Sep 2023 12:01:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : subject
+ : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=KneCxW+fsSm5iPKMXaWR7d8pfoct1Dtf5/CQtyzoB0s=;
+ b=ejcIUTgAo3wRGF9aIuu2a/3TYFeSf7dS1xSiHSDLjKCOGaYeWqs6WYOnRpJff+2JvmMh
+ kUqleIdKs4mYv+9ffPqxGTzDsYPIhNPaGclkVMlTvR16TbKQj2vPicOOmsFFiaOLBmC9
+ l2IQtuf1wtEDVa97S4+uoM+G8bMn6O98IldA4x2aWOu2X9wFNfoQ8moS7UV8lQyGIxVv
+ r+g1Kej870wNOUzghz1OAc2e4oy2HNDVjDoQRS1uYwGRX+G7pBUmBKZaest5eDZ9uqZV
+ wWBhHfA/A+a1OnWN+pPyU/8AhBlPm1Hr+ENOe/ZGRRlOcKzJknVvRfI3pFR463LurfHN kg== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t4g3grw02-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Sep 2023 12:01:39 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38FC1bP8020122
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Sep 2023 12:01:37 GMT
+Received: from win-platform-upstream01.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Fri, 15 Sep 2023 05:01:34 -0700
+From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+To: <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <srinivas.kandagatla@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_srichara@quicinc.com>
+Subject: [PATCH V2 1/1] dt-bindings: nvmem: Add compatible for IPQ5018
+Date: Fri, 15 Sep 2023 17:31:20 +0530
+Message-ID: <20230915120120.805317-1-quic_srichara@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com> <20230912045157.177966-22-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20230912045157.177966-22-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 15 Sep 2023 13:59:42 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWc6yy=oJDo4zMdvB-t8pjCuE1oJ_Y6Ck0aX_hPkfhPug@mail.gmail.com>
-Message-ID: <CAMuHMdWc6yy=oJDo4zMdvB-t8pjCuE1oJ_Y6Ck0aX_hPkfhPug@mail.gmail.com>
-Subject: Re: [PATCH 21/37] dt-bindings: clock: add r9a08g045 CPG clocks and
- resets definitions
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
-	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
-	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
-	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: qyyHGceH-G4dcabm3VP3xyGmrssdA_bv
+X-Proofpoint-ORIG-GUID: qyyHGceH-G4dcabm3VP3xyGmrssdA_bv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-15_08,2023-09-14_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
+ mlxlogscore=847 phishscore=0 impostorscore=0 suspectscore=0
+ priorityscore=1501 mlxscore=0 malwarescore=0 spamscore=0 bulkscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309150107
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Sep 12, 2023 at 6:53=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Add RZ/G3S (R9A08G045) Clock Pulse Generator (CPG) core clocks, module
-> clocks and resets.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Document the QFPROM on IPQ5018.
 
-Thanks for your patch!
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+---
+ [v2] Added Reviewed tag
 
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/r9a08g045-cpg.h
+ Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> +/* R9A08G045 Module Clocks */
+diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+index 8740938c32eb..e26621ac1ca7 100644
+--- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
++++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+@@ -18,6 +18,7 @@ properties:
+       - enum:
+           - qcom,apq8064-qfprom
+           - qcom,apq8084-qfprom
++          - qcom,ipq5018-qfprom
+           - qcom,ipq5332-qfprom
+           - qcom,ipq6018-qfprom
+           - qcom,ipq8064-qfprom
+-- 
+2.34.1
 
-> +#define R9A08G045_USB_U2H0_HCLK                65
-> +#define R9A08G045_USB_U2H1_HCLK                66
-> +#define R9A08G045_USB_U2P_EXR_CPUCLK   67
-> +#define R9A08G045_USB_PCLK             68
-> +#define R9A08G045_USB_SCLK             69
-
-There is no USB_SCLK bit in CPG_CLKON_USB, so please drop
-R9A08G045_USB_SCLK.
-
-> +/* R9A08G045 Resets */
-
-> +#define R9A08G045_SRAM_ACPU_ARESETN0   11
-> +#define R9A08G045_SRAM_ACPU_ARESETN1   12
-> +#define R9A08G045_SRAM_ACPU_ARESETN2   13
-
-There is no SRAM_ACPU_ARESETN2 bit in CPG_RST_SRAM_MCPU,
-so please drop R9A08G045_SRAM_ACPU_ARESETN2.
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
