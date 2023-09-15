@@ -1,143 +1,147 @@
-Return-Path: <devicetree+bounces-462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68D3C7A1A12
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 11:13:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D3BA7A1A2D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 11:16:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18956282470
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:13:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C34A1C21032
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:16:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12408DDA8;
-	Fri, 15 Sep 2023 09:13:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C58C0DDB4;
+	Fri, 15 Sep 2023 09:16:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 907E82F38
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 09:13:22 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2039DC1;
-	Fri, 15 Sep 2023 02:13:01 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38F7MuJh024975;
-	Fri, 15 Sep 2023 09:12:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=M8AcAOmpO2/N7p91G3xot8HpP2eNGiE59Sy1UTk9gHQ=;
- b=HeCDvm6tI4eyPVOv9jlsw1JOKFjuxSrrGjTex8+RUxdH2oF5zCC1uU/MooqzVISF4aMa
- 1kh2xTN9Zim+q2+fGYCB4koFGMbDXqjfbJppEe9HUDefW/Qa7sDDEWJtY75puBb5JqSc
- 81JLET+zFuVlaOtcqh8a/mRHtYfkbgPTY9/il5o2A+j5X/4dssaT5YvVmJYe8blYMeGD
- BMJYdS+vr2HDOXWzJX3vlRDIrQUkkDD2OWLrJs6Ql1cDjf0B4htNCD3SoX/J7SGp52yu
- siYiBa+tDdmBCuQT7evBSRjhsGbgQZYuUjQ3/GYsXSrtV1kcG+RORL82akuEw6rtrGsC 1w== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t4fsf8nep-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Sep 2023 09:12:27 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38F9CQXv016948
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Sep 2023 09:12:26 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 15 Sep
- 2023 02:12:17 -0700
-Message-ID: <e9ff05b3-2742-416e-b417-5e2414036008@quicinc.com>
-Date: Fri, 15 Sep 2023 17:12:13 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43B80DDB0
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 09:16:31 +0000 (UTC)
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A54669B
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 02:16:29 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-502d9ce31cbso3148455e87.3
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 02:16:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694769388; x=1695374188; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EUXWbJ4ry0MjQqU+b2Xypq/860rfFXK7seyaFzZwQFo=;
+        b=idxoJk2aK5nAR2PsRLdOPxBlgXkA4F+ADtTuv0SdMijgIG9nkqOFCJ/MrnUgZBU7kB
+         vT3d6f5xe4xuViszY+PrYoHCU/nEclwQIXOn4N3RMIAwYXBhRhXyphvdoMA3YlDTWClo
+         KR/GDeR7Pr0u6sEA1xigDTAH8s4F9Vs1UGIhsl34IHDlwmd57EDfhHCBJI4m4fP8FvT8
+         /03x63/wngN4kJOsYvpEFIYlFqveDqgwmNE+kzOl7+bhdAc7qInbuhYhFRZiro9dHH8D
+         MoBMu5vyeZhWnaNumPfTPDCeVeTabcV3dwvZ3KODIOvJIRh63pSolMyyHOnQgVq3IvhB
+         /UfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694769388; x=1695374188;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EUXWbJ4ry0MjQqU+b2Xypq/860rfFXK7seyaFzZwQFo=;
+        b=LUnfrj4CSNT52bn4Vqn4xHj1kMxIXo2EhB2SgGb8AqxYrmGevPBdCTIXCaNyM25+1r
+         k7yEf/TUYk4TVXKoeTkdmDIkBKZLGYLWTGMrk07NQFiSC9r79XmWsf0Xsesn0WCWlgTZ
+         O11RMsSaiLSniD0FyHmmpYQ30d5ZtkZfMc2bQ0mFwFY4yExX9pHX6Z/91QCWQtHNOrkM
+         ZIIrixE5K3uV73zwwWaN4x1O0OqVZywiuC7ODWtZD4VFEXROvbk0wnMQLry08+6OcFyM
+         xTmtwzer/44qbPQXoOjVxGO5W88ROglZR5QAFCx69OfGRV9+IO0n/v9TqbUtaMPvCAXQ
+         4oXg==
+X-Gm-Message-State: AOJu0Yxq99H8UtlOX0JUcpLrY///LkAwrfJGzjRY8RQ5W2wHzCq9PVcD
+	rh6HiK5KevsN6gBtv4ws6cUlng==
+X-Google-Smtp-Source: AGHT+IE0fPOgfbwzN3nitu1bZBFLNeMRYlfmhRr9TZwIrF9MGbKkf7r6lClZC0oOg77Z8EEuFoXdSQ==
+X-Received: by 2002:a05:6512:3d02:b0:501:bbbb:de1e with SMTP id d2-20020a0565123d0200b00501bbbbde1emr1233195lfv.6.1694769387852;
+        Fri, 15 Sep 2023 02:16:27 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id v13-20020a05600c214d00b003fc16ee2864sm4070589wml.48.2023.09.15.02.16.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Sep 2023 02:16:27 -0700 (PDT)
+Message-ID: <0a34dd35-7aea-4655-4cdd-e7196a1ba52b@linaro.org>
+Date: Fri, 15 Sep 2023 11:16:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
 Subject: Re: [PATCH v2 8/8] arm64: defconfig: enable interconnect and pinctrl
  for SM4450
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <will@kernel.org>,
-        <robin.murphy@arm.com>, <joro@8bytes.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <catalin.marinas@arm.com>
-CC: <geert+renesas@glider.be>, <arnd@arndb.de>, <neil.armstrong@linaro.org>,
-        <nfraprado@collabora.com>, <rafal@milecki.pl>, <peng.fan@nxp.com>,
-        <linux-arm-kernel@lists.infradead.org>, <iommu@lists.linux.dev>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <quic_tsoni@quicinc.com>,
-        <quic_shashim@quicinc.com>, <quic_kaushalk@quicinc.com>,
-        <quic_tdas@quicinc.com>, <quic_tingweiz@quicinc.com>,
-        <quic_aiquny@quicinc.com>, <kernel@quicinc.com>
+Content-Language: en-US
+To: Tengfei Fan <quic_tengfan@quicinc.com>, will@kernel.org,
+ robin.murphy@arm.com, joro@8bytes.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, catalin.marinas@arm.com
+Cc: geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org,
+ nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
+ linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, quic_tsoni@quicinc.com,
+ quic_shashim@quicinc.com, quic_kaushalk@quicinc.com, quic_tdas@quicinc.com,
+ quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com, kernel@quicinc.com
 References: <20230915021509.25773-1-quic_tengfan@quicinc.com>
  <20230915021509.25773-10-quic_tengfan@quicinc.com>
  <8f2c9664-a2c8-50dc-8a1c-e50a071ebeb2@linaro.org>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <8f2c9664-a2c8-50dc-8a1c-e50a071ebeb2@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+ <e9ff05b3-2742-416e-b417-5e2414036008@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e9ff05b3-2742-416e-b417-5e2414036008@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: _HUvVFVcgFkop8a71zbPlKCRzhCMNCKj
-X-Proofpoint-GUID: _HUvVFVcgFkop8a71zbPlKCRzhCMNCKj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-15_05,2023-09-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- lowpriorityscore=0 impostorscore=0 mlxlogscore=857 mlxscore=0
- malwarescore=0 priorityscore=1501 suspectscore=0 adultscore=0 bulkscore=0
- spamscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309150080
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-
-
-在 9/15/2023 3:21 PM, Krzysztof Kozlowski 写道:
-> On 15/09/2023 04:15, Tengfei Fan wrote:
->> Add the SM4450 interconnect and pinctrl drivers as built-in for
->> support the Qualcomm SM4450 platform to boot to uart shell.
+On 15/09/2023 11:12, Tengfei Fan wrote:
+> 
+> 
+> 在 9/15/2023 3:21 PM, Krzysztof Kozlowski 写道:
+>> On 15/09/2023 04:15, Tengfei Fan wrote:
+>>> Add the SM4450 interconnect and pinctrl drivers as built-in for
+>>> support the Qualcomm SM4450 platform to boot to uart shell.
+>>>
+>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>>> ---
+>>>   arch/arm64/configs/defconfig | 2 ++
+>>>   1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+>>> index ec59174b14db..e91993de865e 100644
+>>> --- a/arch/arm64/configs/defconfig
+>>> +++ b/arch/arm64/configs/defconfig
+>>> @@ -598,6 +598,7 @@ CONFIG_PINCTRL_SC8280XP=y
+>>>   CONFIG_PINCTRL_SDM660=y
+>>>   CONFIG_PINCTRL_SDM670=y
+>>>   CONFIG_PINCTRL_SDM845=y
+>>> +CONFIG_PINCTRL_SM4450=y
+>>>   CONFIG_PINCTRL_SM6115=y
+>>>   CONFIG_PINCTRL_SM6125=y
+>>>   CONFIG_PINCTRL_SM6350=y
+>>> @@ -1500,6 +1501,7 @@ CONFIG_INTERCONNECT_QCOM_SC7280=y
+>>>   CONFIG_INTERCONNECT_QCOM_SC8180X=y
+>>>   CONFIG_INTERCONNECT_QCOM_SC8280XP=y
+>>>   CONFIG_INTERCONNECT_QCOM_SDM845=y
+>>> +CONFIG_INTERCONNECT_QCOM_SM4450=y
 >>
->> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->> ---
->>   arch/arm64/configs/defconfig | 2 ++
->>   1 file changed, 2 insertions(+)
+>> Why it cannot be =m?
 >>
->> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
->> index ec59174b14db..e91993de865e 100644
->> --- a/arch/arm64/configs/defconfig
->> +++ b/arch/arm64/configs/defconfig
->> @@ -598,6 +598,7 @@ CONFIG_PINCTRL_SC8280XP=y
->>   CONFIG_PINCTRL_SDM660=y
->>   CONFIG_PINCTRL_SDM670=y
->>   CONFIG_PINCTRL_SDM845=y
->> +CONFIG_PINCTRL_SM4450=y
->>   CONFIG_PINCTRL_SM6115=y
->>   CONFIG_PINCTRL_SM6125=y
->>   CONFIG_PINCTRL_SM6350=y
->> @@ -1500,6 +1501,7 @@ CONFIG_INTERCONNECT_QCOM_SC7280=y
->>   CONFIG_INTERCONNECT_QCOM_SC8180X=y
->>   CONFIG_INTERCONNECT_QCOM_SC8280XP=y
->>   CONFIG_INTERCONNECT_QCOM_SDM845=y
->> +CONFIG_INTERCONNECT_QCOM_SM4450=y
+>> Best regards,
+>> Krzysztof
+>>
 > 
-> Why it cannot be =m?
-> 
-> Best regards,
-> Krzysztof
-> 
+> Hi Krzysztof,
+> Because system haven't capacity of loading ko files at this time on 
+> SM4450 platform, so setting to "Y".
 
-Hi Krzysztof,
-Because system haven't capacity of loading ko files at this time on 
-SM4450 platform, so setting to "Y".
+Hm? System has this capability. All systems have. What is so different
+on SM4450 comparing to everything else we have here?
 
--- 
-Thx and BRs,
-Tengfei Fan
+No, this should be =m and you need to fix your system.
+
+Best regards,
+Krzysztof
+
 
