@@ -1,97 +1,118 @@
-Return-Path: <devicetree+bounces-646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F02E57A26A0
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 20:55:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55B047A26C5
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 21:01:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 089671C20909
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 18:55:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D4572817E8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 19:01:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA63018AE7;
-	Fri, 15 Sep 2023 18:55:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED1518E25;
+	Fri, 15 Sep 2023 19:00:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A008B1774E
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 18:55:20 +0000 (UTC)
-Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FFC735B7
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 11:54:04 -0700 (PDT)
-Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-59b5484fbe6so27742267b3.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 11:54:04 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD7B630D16
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 19:00:23 +0000 (UTC)
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3D082120
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:00:19 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id 3f1490d57ef6-d81b42a3108so1588840276.1
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:00:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694804043; x=1695408843; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xc6N8q1gZ95xd8ZpHAufgS4nDSL1wE+rjEdZ65KQsuw=;
-        b=Y6QLEJ/Z5tHbuWGfWnpfmbpvFrNOQr+2Ld45uG2P6v/o2sw7rCmTkyt1NUxypT4K3k
-         /WZlYCVecODw8hTWkgjCHGaGcxUIbtWyEMVpxME2xRXykQteq284iC5XSYEL8skLtZpg
-         CSiUGcoFXo77u9hyZJyotKqWRYg075eKeUi1iDHNhKK69NbfC4I9sagCEUr4Omxi1W/s
-         JgQWiwBHu/CUyUF6Rv/+lT0oapb/GgdFnfUIYZm4ns3pez3yjhycdy+hTNprrI131WVs
-         vhNhBi30Gk8R0qZ6qpys6WdA0E03NeoxcCAIjUn1fJ45OVTzmelMWCouOeNAgKLibfRo
-         LbHQ==
+        d=linaro.org; s=google; t=1694804419; x=1695409219; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MA+IH6vFDWnj8CWBjAETZZSe18NWdBhZ5Y5deFFzGMI=;
+        b=L99HJwtiSHN98t1F8KNkQkA0O49wol0PE46W00Ae0kkcMhkacRR4q3flBqZpl1b4Cd
+         /3Z9dkuoCBg9OPrAo98chVHT2OnU4EoznuCn8HSpNJGHxNRII3ztyG6rQfpfD5GBSh3a
+         l7mXkkyEhYeJY2ss/ms6SvU1P94I2ZJ8hXqv9g3FI3aRPryg7DhlSB5Kq/n2YJ6C/CW/
+         1m6YFd9N/JloDi5nE2wb++PTZ+jS69OKoXc+e1ItOBgGpmySOkro0SfSsc1AOzYLJ/va
+         Vb9qlXiUGdoklbc6P566J2hqd5RdA7nshQiUlh45BKB4KL6VE6XlActlbkFYv4a2IoSm
+         vO8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694804043; x=1695408843;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Xc6N8q1gZ95xd8ZpHAufgS4nDSL1wE+rjEdZ65KQsuw=;
-        b=nRkoFxRewcB/HVRVfnYwbFSG+V4WSqdOSZZPYKYJNdSI4XYQ8MS/UXrM6lCeka5i5p
-         s4WUpVfHYNl1FHUsffyD3tUNEr83QhjZzxvbFNtM90r5S+MrKxC2VPH7/oybIYVm5Jl9
-         2Q+lI64+FbPYQ9ztH2mLX+ZkscBzrUgKlX3g9/iQd9CEI9iCLDbqVgBhSOX24z7seb3a
-         yXCIOLIPtP7LkXHWHHiT8Y4qQFlg7KmibQPhYX0ncFzNmAGEVbB6BU2LKyl/p50P44Xc
-         K7e/ocqOA8Z9n0jY/HFnNmL+oEyzat/Opr+6NTbJHV6+/SKT0BcF9g7xewiCppfwgTbz
-         FRWQ==
-X-Gm-Message-State: AOJu0YxLUeXCBNRCMjNC0qp6vVVKynhUGD9Js3i1C9DlgpymHDNuhhsS
-	P7vEDp1Ml2Nyi3vvlpnKzpbsDkROqMTdXvm+H8xN21v2Hxf9nsrOrkH7BQ==
-X-Google-Smtp-Source: AGHT+IHzJEqXtPBsPW5jLeFQcrS9Dk5aUh3URVKOBbbZYM9R7XAZ4gEp09I5Ct3eiDOjHZCwgOeYUuK9STXkvNcsKSs=
-X-Received: by 2002:a54:418a:0:b0:3a7:45e0:c0eb with SMTP id
- 10-20020a54418a000000b003a745e0c0ebmr2846439oiy.24.1694803544202; Fri, 15 Sep
- 2023 11:45:44 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1694804419; x=1695409219;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MA+IH6vFDWnj8CWBjAETZZSe18NWdBhZ5Y5deFFzGMI=;
+        b=XT8efxQO6GDQTc082JqZI5KwSR9wzOIZ/9cctZ17dIzUw6RgJytj4xnQVgXp7cSteL
+         UYLXZgoEsT+Jw+kffRrKON2XA/37NYgdBoFk0NTY7+zpeE4vwCj4f/a9hGCzeJYw2ZM4
+         sfuiu69EpshkW+YoOjaB0O2+B61X8aNxMXzy+Xvw7HIV6dILcSk81ycvmBQe2ShqQ7wW
+         6aUNtKO7vXYOuJhHxxiCC/NS0DvN3ta0qpoaGxM8iCjrXobxrXF1sWkXPw7GcvFynDj3
+         jCF8opnmVqG8hOars5PuwHyMISSuSZtT6vvs3PYzdy3/fD6dxYINv7YDMESNax7lf14W
+         sWgQ==
+X-Gm-Message-State: AOJu0Yxzy22waZJN/zB2kwNse9SUgceibaX/GlIMXZm78ZxMaOYot2Zj
+	eoMK250Q2msiZPDIWw7p7FySbfpMwWHTrH86W6Qr8g==
+X-Google-Smtp-Source: AGHT+IHloveln5I1HrqkenFE7vzYh2eTD6d1bJyya94I6qr4dXlqjiJXzTSkEB8jv6T0Pz0Y9YYlZe8PfZm3J0clBh0=
+X-Received: by 2002:a25:2547:0:b0:d78:878d:e1e1 with SMTP id
+ l68-20020a252547000000b00d78878de1e1mr2274459ybl.50.1694804418847; Fri, 15
+ Sep 2023 12:00:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230915121504.806672-1-quic_srichara@quicinc.com> <20230915121504.806672-3-quic_srichara@quicinc.com>
-In-Reply-To: <20230915121504.806672-3-quic_srichara@quicinc.com>
+References: <20230914065422.5452-1-otto.pflueger@abscue.de>
+ <20230914065422.5452-3-otto.pflueger@abscue.de> <72e24711-f485-46ce-bbda-db3043d84bcc@linaro.org>
+In-Reply-To: <72e24711-f485-46ce-bbda-db3043d84bcc@linaro.org>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 15 Sep 2023 21:45:33 +0300
-Message-ID: <CAA8EJpo6hb=cxJ8wTLf+fEc8B30dhT67XWbqiNrMoRfUxUnqSw@mail.gmail.com>
-Subject: Re: [PATCH V2 2/4] thermal/drivers/qcom: Add new feat for soc without rpm
-To: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-Cc: krzysztof.kozlowski@linaro.org, agross@kernel.org, andersson@kernel.org, 
-	konrad.dybcio@linaro.org, srinivas.kandagatla@linaro.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	thara.gopinath@gmail.com, rafael@kernel.org, daniel.lezcano@linaro.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Date: Fri, 15 Sep 2023 22:00:07 +0300
+Message-ID: <CAA8EJpq77L9aviGQ0hJRB9OxC2oswM0HjL6WwCUx7caYoepigw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] pmdomain: qcom: rpmpd: Add MSM8917 power domains
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: =?UTF-8?Q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
+	linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri, 15 Sept 2023 at 15:15, Sricharan Ramabadhran
-<quic_srichara@quicinc.com> wrote:
+On Fri, 15 Sept 2023 at 16:41, Konrad Dybcio <konrad.dybcio@linaro.org> wro=
+te:
 >
-> In IPQ5018, Tsens IP doesn't have RPM. Hence the early init to
-> enable tsens would not be done. So add a flag for that in feat
-> and skip enable checks. Without this, tsens probe fails.
+> On 14.09.2023 08:54, Otto Pfl=C3=BCger wrote:
+> > MSM8917 uses the SMPA2 and LDOA3 regulators provided by the PM8937 PMIC
+> > for the VDDCX and VDDMX power domains in voltage level mode,
+> > respectively. These definitions should also work on MSM8937.
+> >
+> > Signed-off-by: Otto Pfl=C3=BCger <otto.pflueger@abscue.de>
+> > ---
+> Would you mind picking up the RPMPD part of [1] and integrating
+> QM215 and MSM8917 to use the new bindings?
+
+Please, no. That patch was dropped in favour of [2], which doesn't
+include RPMPD indices.
+And it's good, since we can introduce logical 'default' ones instead
+of the ones proposed in the [1].
+I started working at making generic RPMPD indices, but I haven't sent
+the patches yet.
+So, I think, this patch is fine.
+
 >
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> Konrad
+>
+> [1] https://lore.kernel.org/linux-arm-msm/1688647793-20950-2-git-send-ema=
+il-quic_rohiagar@quicinc.com/
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+[2] https://lore.kernel.org/linux-arm-msm/1689744162-9421-2-git-send-email-=
+quic_rohiagar@quicinc.com/
 
 
--- 
+--=20
 With best wishes
 Dmitry
 
