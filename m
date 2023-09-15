@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C89C57A21B8
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 17:03:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 560F37A21E4
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 17:04:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E3E21C20DA1
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 15:03:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10D34280F4E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 15:04:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49D8510940;
-	Fri, 15 Sep 2023 15:03:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F005B1094D;
+	Fri, 15 Sep 2023 15:04:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDC0C30CE0
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 15:03:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFAC4C433C8;
-	Fri, 15 Sep 2023 15:03:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EBD030CF0
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 15:04:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B063CC433C7;
+	Fri, 15 Sep 2023 15:04:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694790215;
-	bh=UtY3Y7r9znKWxNJDaZ5ltW/b+hC2P2B8V/VhuUu8pkc=;
+	s=k20201202; t=1694790276;
+	bh=tVYfV/FQ4TuHJ0bVqoaP+aOcfUDlOtABzOf5hv1Hfg4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ne/aH+FqERho8uP8TYtT4xl5rClVk1+AgqInqI+Ngw9OWuKsmalkSvAGsGsxXanSl
-	 PCQBMZwKUde2FomJm48t9Ez3yWTDkTmPiYFc+h5vAVraAPNj3OAUIraTovluJKwjkg
-	 HW3SP1ed4Mruwi1rL2mZbGJD0PnM+pQ08LJf2csDZ3SlHK/a7G15lvkO69a/4acByr
-	 t/w/S6eknf7CjRaD5I0aB9bnU0QLlfBjS7Oeu84QQ86ng9BawZKApuv2+R8ELgg1G8
-	 YIJ9AJdSuGgLJEXQj/tEpz7Z/dJbo2uwho5Ywf5VbCCywZU71eZi+qWR4RUTtYpXGK
-	 HPvytPLGspJOQ==
-Received: (nullmailer pid 3729895 invoked by uid 1000);
-	Fri, 15 Sep 2023 15:03:32 -0000
-Date: Fri, 15 Sep 2023 10:03:32 -0500
+	b=EweW9D8o+n+9qE2ej+Iyg7KegRJ6h600oZdgnpuS3nogKT+8Ut0LB0udvbKp6URtf
+	 VgVYssOyUxBbRyhE71kNoUVm6UCDS/603L0nJ9DEy2bIlm+V3nG9OmsujAHEBvlRhC
+	 Ea+BlYnS9B33UbSfpwh4/Msl3vJldpvv2Di+FlIGh4Ry7ts6CzrVTuaoy4B8wYt0vd
+	 ug0tcUtN9OHnPNf3gThuKKmRkQtGyqSc7gi71J0rxrh0ibcjtv/+SteUsAzh7JT2k6
+	 /u8hetHcSXSHqusB854BDIpUb+uuMsm/oh17XBRGdGbijdHV8T4MCv2PBn7qDFVeOo
+	 rcA/SQTj3ug+w==
+Received: (nullmailer pid 3731047 invoked by uid 1000);
+	Fri, 15 Sep 2023 15:04:33 -0000
+Date: Fri, 15 Sep 2023 10:04:33 -0500
 From: Rob Herring <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Wang Chen <unicornxw@gmail.com>, linux-riscv@lists.infradead.org, aou@eecs.berkeley.edu, krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com, paul.walmsley@sifive.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, jszhang@kernel.org, guoren@kernel.org, chao.wei@sophgo.com, xiaoguang.xing@sophgo.com, Wang Chen <wangchen20@iscas.ac.cn>
-Subject: Re: [PATCH 04/12] dt-bindings: riscv: Add T-HEAD C920 compatibles
-Message-ID: <20230915150332.GA3719864-robh@kernel.org>
-References: <20230915072333.117991-1-wangchen20@iscas.ac.cn>
- <20230915-muster-viability-93d7d4ec2b49@spud>
+To: Wang Chen <unicornxw@gmail.com>
+Cc: linux-riscv@lists.infradead.org, conor@kernel.org, aou@eecs.berkeley.edu, krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com, paul.walmsley@sifive.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, jszhang@kernel.org, guoren@kernel.org, chao.wei@sophgo.com, xiaoguang.xing@sophgo.com, Wang Chen <wangchen20@iscas.ac.cn>
+Subject: Re: [PATCH 05/12] dt-bindings: interrupt-controller: Add SOPHGO's
+ SG2042 PLIC
+Message-ID: <20230915150433.GA3730052-robh@kernel.org>
+References: <20230915072358.118045-1-wangchen20@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,50 +48,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230915-muster-viability-93d7d4ec2b49@spud>
+In-Reply-To: <20230915072358.118045-1-wangchen20@iscas.ac.cn>
 
-On Fri, Sep 15, 2023 at 03:11:43PM +0100, Conor Dooley wrote:
-> On Fri, Sep 15, 2023 at 03:23:33PM +0800, Wang Chen wrote:
-> > The C920 is RISC-V CPU cores from T-HEAD Semiconductor.
-> > Notably, the C920 core is used in the SOPHGO SG2042 SoC.
-> > 
-> > Signed-off-by: Wang Chen <wangchen20@iscas.ac.cn>
-> > Signed-off-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
+On Fri, Sep 15, 2023 at 03:23:58PM +0800, Wang Chen wrote:
+> Add compatible string for SOPHGO SG2042 plic.
 > 
-> I figure this is missing a From: or Co-developed-by line.
+> Signed-off-by: Wang Chen <wangchen20@iscas.ac.cn>
+> Signed-off-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
 
-From: (author) as 2 authors for 1 line change is questionable.
+Same problem with authorship and S-o-b order here.
 
-The sender's email should be the last S-o-b. So like this:
-
-From: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
-
-...
-
-Signed-off-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
-Signed-off-by: Wang Chen <wangchen20@iscas.ac.cn>
-
-
+> ---
+>  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml         | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> > ---
-> >  Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > index 38c0b5213736..185a0191bad6 100644
-> > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > @@ -47,6 +47,7 @@ properties:
-> >                - sifive,u74-mc
-> >                - thead,c906
-> >                - thead,c910
-> > +              - thead,c920
-> >            - const: riscv
-> >        - items:
-> >            - enum:
-> > -- 
-> > 2.25.1
-> > 
-
-
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> index dc1f28e55266..3abb1f68ea62 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> @@ -66,6 +66,7 @@ properties:
+>            - enum:
+>                - allwinner,sun20i-d1-plic
+>                - thead,th1520-plic
+> +              - sophgo,sg2042-plic
+>            - const: thead,c900-plic
+>        - items:
+>            - const: sifive,plic-1.0.0
+> -- 
+> 2.25.1
+> 
 
