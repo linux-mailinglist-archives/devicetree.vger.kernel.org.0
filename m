@@ -1,114 +1,204 @@
-Return-Path: <devicetree+bounces-568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4F347A1FAA
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 15:18:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13D907A1FC8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 15:25:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF70F1C2118E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 13:18:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35B391C21216
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 13:25:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18C9110963;
-	Fri, 15 Sep 2023 13:18:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99B9F1095C;
+	Fri, 15 Sep 2023 13:24:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 248DF1094B
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 13:18:13 +0000 (UTC)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D07651FF5;
-	Fri, 15 Sep 2023 06:18:07 -0700 (PDT)
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-d818d4230f6so1883641276.1;
-        Fri, 15 Sep 2023 06:18:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694783887; x=1695388687;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PeKCNpXC9U5SuiucQeYE4o7+yLWv2iuRbCuYbucPsys=;
-        b=HhbARRwG6pGLenRsfRVK1DRsXInO90Y+uHuh1dXtG4kFM54k8E9SAAZBnLOC4fEd5i
-         yFLGNPqUiLxEsT/1AHD5QCGe/69VK6zyEVUrEtvgQcNnW+oAB71b6yljRj5hY1YhLTby
-         /bl6MJQhOt0HGKFrppRhcIZuOQLI/0/LjW7xWzb21jUGtNUDkPkVH+qu8KHvTkNJPi7h
-         Ms6o93R66j2zRD6iOb99RycCtuqt/4Os5XnG2xwe8IDk05K3Qwf1bg5qnfo04nBQft4k
-         xBNNUsiNQ+xFYx7LD8YfHxfZSD2BlJkwJj4hzmCLq4qJUzebCysreg6WmK0BjA0OSRNC
-         xoHg==
-X-Gm-Message-State: AOJu0YwgLstFz1WzWSLUKQkpWI8mvo8bW2Ns78qmehJ8vebjNxFIk8OE
-	rhCfpcj929GdrSpGbHL15wvG8hX3U74TZA==
-X-Google-Smtp-Source: AGHT+IHi5NwStPEFiXr2DeAA/8mmuRjTvMQrnR5xW0xK38OM2hoNnXPktwr+VZoh+xqC8Iz6C+oWsg==
-X-Received: by 2002:a25:29c3:0:b0:cec:81af:cf92 with SMTP id p186-20020a2529c3000000b00cec81afcf92mr1560066ybp.36.1694783886700;
-        Fri, 15 Sep 2023 06:18:06 -0700 (PDT)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id m18-20020a259e12000000b00d7badcab84esm779931ybq.9.2023.09.15.06.18.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 06:18:06 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-d8168d08bebso2122326276.0;
-        Fri, 15 Sep 2023 06:18:06 -0700 (PDT)
-X-Received: by 2002:a25:adc2:0:b0:d04:fc64:350 with SMTP id
- d2-20020a25adc2000000b00d04fc640350mr1727370ybe.2.1694783886095; Fri, 15 Sep
- 2023 06:18:06 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EC4D107BA;
+	Fri, 15 Sep 2023 13:24:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7BA41FF1;
+	Fri, 15 Sep 2023 06:24:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1694784295; x=1726320295;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xhawzRG3TJlJdNBVQGus4/qbVTl5JLFakyWXXMvo36U=;
+  b=Cd9C3N27LDJ5yjcAGo/07VP1pGuLUWZLNm9liTtx0CX3Z4kKWGJI5JIZ
+   R8icJhzDPtQP6WTUcZV/ErXyFC6EyX1YmEDTcfewXGwMAjfJZPgDElDNr
+   jwhDmPmbhz75IYWvWuNhQLrygt/iJ0Obval+YauMmsBfhcHnkmwG9PKhu
+   7Q3RwHgtvoLpLzxwwrGXvq3FEBAMwZ6wC9zbLvmwzNxwY4Osr1/0bIev9
+   W682JVIgv+qn0gUnqujtpD1LvQW9DcPdtrpWl0eaJhGencfh0kNph5Lpi
+   jARH2pUxtJP9an77tdqv3tvW8LhFyrmX8lLdV7c6ho/2cENrh82J6j63Q
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="443307482"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; 
+   d="scan'208";a="443307482"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2023 06:23:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="780091501"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; 
+   d="scan'208";a="780091501"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by orsmga001.jf.intel.com with SMTP; 15 Sep 2023 06:23:22 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 15 Sep 2023 16:23:21 +0300
+Date: Fri, 15 Sep 2023 16:23:21 +0300
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Javier Carrasco <javier.carrasco@wolfvision.net>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] usb: typec: tps6598x: add reset gpio support
+Message-ID: <ZQRayaqdtrqYl4AT@kuha.fi.intel.com>
+References: <20230912-topic-tps6598x_reset-v2-0-02a12e2ec50a@wolfvision.net>
+ <20230912-topic-tps6598x_reset-v2-1-02a12e2ec50a@wolfvision.net>
+ <ZQRUsD1QLke70VG2@kuha.fi.intel.com>
+ <8937c928-1938-4864-08e1-25f88caadb9a@wolfvision.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com> <20230912045157.177966-33-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20230912045157.177966-33-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 15 Sep 2023 15:17:53 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVv3uL+cF5YYNAmJ7wMoT4HuyaOYndndZZ-jPuVE3fQqQ@mail.gmail.com>
-Message-ID: <CAMuHMdVv3uL+cF5YYNAmJ7wMoT4HuyaOYndndZZ-jPuVE3fQqQ@mail.gmail.com>
-Subject: Re: [PATCH 32/37] arm64: dts: renesas: add initial DTSI for RZ/G3S SoC
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
-	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
-	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
-	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8937c928-1938-4864-08e1-25f88caadb9a@wolfvision.net>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+	SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Sep 12, 2023 at 6:53=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Add initial DTSI for RZ/G3S SoC. Files in commit has the following
-> meaning:
-> r9a08g045.dtsi          RZ/G3S family SoC common parts
-> r9a08g045s33.dtsi       RZ/G3S R0A08G045S33 SoC specific parts
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Hi,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Fri, Sep 15, 2023 at 03:17:28PM +0200, Javier Carrasco wrote:
+> On 15.09.23 14:57, Heikki Krogerus wrote:
+> > On Fri, Sep 15, 2023 at 02:23:48PM +0200, Javier Carrasco wrote:
+> >> The TPS6598x PD controller provides an active-high hardware reset input
+> >> that reinitializes all device settings. If it is not grounded by
+> >> design, the driver must be able to de-assert it in order to initialize
+> >> the device.
+> >>
+> >> The PD controller is not ready for registration right after the reset
+> >> de-assertion and a delay must be introduced in that case. According to
+> >> TI, the delay can reach up to 1000 ms [1], which is in line with the
+> >> experimental results obtained with a TPS65987D.
+> >>
+> >> Add a GPIO descriptor for the reset signal and basic reset management
+> >> for initialization and suspend/resume.
+> >>
+> >> [1] https://e2e.ti.com/support/power-management-group/power-management/
+> >> f/power-management-forum/1269856/tps65987d-tps65987d-reset-de-assert-
+> >> to-normal-operation/4809389#4809389
+> >>
+> >> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
+> >> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
-Gr{oetje,eeting}s,
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 
-                        Geert
+> >> ---
+> >>  drivers/usb/typec/tipd/core.c | 20 ++++++++++++++++++++
+> >>  1 file changed, 20 insertions(+)
+> >>
+> >> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
+> >> index 37b56ce75f39..3068ef300073 100644
+> >> --- a/drivers/usb/typec/tipd/core.c
+> >> +++ b/drivers/usb/typec/tipd/core.c
+> >> @@ -8,6 +8,7 @@
+> >>  
+> >>  #include <linux/i2c.h>
+> >>  #include <linux/acpi.h>
+> >> +#include <linux/gpio/consumer.h>
+> >>  #include <linux/module.h>
+> >>  #include <linux/of.h>
+> >>  #include <linux/power_supply.h>
+> >> @@ -43,6 +44,9 @@
+> >>  /* TPS_REG_SYSTEM_CONF bits */
+> >>  #define TPS_SYSCONF_PORTINFO(c)		((c) & 7)
+> >>  
+> >> +/* reset de-assertion to ready for operation */
+> >> +#define SETUP_MS			1000
+> >> +
+> >>  enum {
+> >>  	TPS_PORTINFO_SINK,
+> >>  	TPS_PORTINFO_SINK_ACCESSORY,
+> >> @@ -86,6 +90,7 @@ struct tps6598x {
+> >>  	struct mutex lock; /* device lock */
+> >>  	u8 i2c_protocol:1;
+> >>  
+> >> +	struct gpio_desc *reset;
+> >>  	struct typec_port *port;
+> >>  	struct typec_partner *partner;
+> >>  	struct usb_pd_identity partner_identity;
+> >> @@ -717,6 +722,13 @@ static int tps6598x_probe(struct i2c_client *client)
+> >>  	mutex_init(&tps->lock);
+> >>  	tps->dev = &client->dev;
+> >>  
+> >> +	tps->reset = devm_gpiod_get_optional(tps->dev, "reset", GPIOD_OUT_LOW);
+> >> +	if (IS_ERR(tps->reset))
+> >> +		return dev_err_probe(tps->dev, PTR_ERR(tps->reset),
+> >> +				     "failed to get reset GPIO\n");
+> >> +	if (tps->reset)
+> >> +		msleep(SETUP_MS);
+> >> +
+> >>  	tps->regmap = devm_regmap_init_i2c(client, &tps6598x_regmap_config);
+> >>  	if (IS_ERR(tps->regmap))
+> >>  		return PTR_ERR(tps->regmap);
+> >> @@ -892,6 +904,9 @@ static void tps6598x_remove(struct i2c_client *client)
+> >>  	tps6598x_disconnect(tps, 0);
+> >>  	typec_unregister_port(tps->port);
+> >>  	usb_role_switch_put(tps->role_sw);
+> >> +
+> >> +	if (tps->reset)
+> >> +		gpiod_set_value_cansleep(tps->reset, 1);
+> > 
+> > Do you need that "if (tps->reset)" in this case? That function is NULL safe,
+> > right?
+> > 
+> The function makes use of the VALIDATE_DESC_VOID macro to make it NULL
+> safe, but this macro also calls pr_warn if the descriptor is NULL and I
+> do not want to add warnings for an optional property that did not exist
+> before because it could be confusing. But if that is the desired
+> behavior, I will remove the checks.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+No, I don't want noise either.
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> >>  }
+> >>  
+> >>  static int __maybe_unused tps6598x_suspend(struct device *dev)
+> >> @@ -902,6 +917,8 @@ static int __maybe_unused tps6598x_suspend(struct device *dev)
+> >>  	if (tps->wakeup) {
+> >>  		disable_irq(client->irq);
+> >>  		enable_irq_wake(client->irq);
+> >> +	} else if (tps->reset) {
+> >> +		gpiod_set_value_cansleep(tps->reset, 1);
+> >>  	}
+> >>  
+> >>  	if (!client->irq)
+> >> @@ -918,6 +935,9 @@ static int __maybe_unused tps6598x_resume(struct device *dev)
+> >>  	if (tps->wakeup) {
+> >>  		disable_irq_wake(client->irq);
+> >>  		enable_irq(client->irq);
+> >> +	} else if (tps->reset) {
+> >> +		gpiod_set_value_cansleep(tps->reset, 0);
+> >> +		msleep(SETUP_MS);
+> >>  	}
+> >>  
+> >>  	if (!client->irq)
+> >>
+> >> -- 
+> >> 2.39.2
+
+thanks,
+
+-- 
+heikki
 
