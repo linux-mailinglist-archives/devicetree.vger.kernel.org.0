@@ -1,288 +1,146 @@
-Return-Path: <devicetree+bounces-440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F7987A185A
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 10:14:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3C157A1871
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 10:15:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2CEB51C20BC1
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 08:14:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB58D1C21017
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 08:15:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F13CEDDBB;
-	Fri, 15 Sep 2023 08:12:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDBFDD2FE;
+	Fri, 15 Sep 2023 08:12:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67D89D53A
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 08:12:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A4BABC43140;
-	Fri, 15 Sep 2023 08:12:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694765530;
-	bh=4OBBCt4I+OvckI2BXU4P/l9PgpZZNlxQSqX88I+eG3E=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=G25uC/BNQBqiHbHdEeX8hjLflfzjVX72uq9q+eBp7mTGn8xQJgLneQDF7oqb00/Jx
-	 r3pGglo4J0xs9Sjn7uP/d6lJJXsKoiJbyqI7ZdSlOxWSzgdiaHdXCDu86XPHldcQfc
-	 MBBoAMarNKHEee/l8RtEODQ+ub9FwxekWR/0OzNkNA9ASU51tc4xEhDMo774mzA05F
-	 VEjX8mXkd655PHcmHRGQiW4EOpb3BB0a8jivkIyVicJJUxBouosKgx5LHyTywnP0br
-	 1wGvJ+KBIKSVmbhjrEdnXm7TJgBzhaRzB15yZcJli4HpaqV8dl10/y+pXgGjHaCWWB
-	 gZoEbOQGAk16g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 923CEEE6440;
-	Fri, 15 Sep 2023 08:12:10 +0000 (UTC)
-From:
- Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
-Date: Fri, 15 Sep 2023 11:11:23 +0300
-Subject: [PATCH v4 41/42] ARM: dts: ep93xx: Add EDB9302 DT
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0A27D2E6
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 08:12:36 +0000 (UTC)
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DA6D2D71;
+	Fri, 15 Sep 2023 01:12:30 -0700 (PDT)
+X-UUID: 9a7165ba539f11eea33bb35ae8d461a2-20230915
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=LAKMG6uB4XgSWM5980hEv1iFhTPZbK1VjP997k8//RI=;
+	b=ilQ9C45opWTjSumFSoKQ6lz10by6KfIOghvMkeVhgEgla/k5ruP7EenNHSFaGuFqzegqJw36xUI5mT5TbDbMp8pt5hFHWgHFKF+ff54H4qxYV7rzZBzUUDDgcyBOCOE/uO2V0LxCOZVNCTaO3bX8UhmFKFwKOluEGcmLLvsf27E=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:be698eb1-e58d-4d2e-8e35-237c463f164d,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:0ad78a4,CLOUDID:3ca6dfbe-14cc-44ca-b657-2d2783296e72,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 9a7165ba539f11eea33bb35ae8d461a2-20230915
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 280428301; Fri, 15 Sep 2023 16:12:25 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 15 Sep 2023 16:12:23 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Fri, 15 Sep 2023 16:12:23 +0800
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Macpaul Lin
+	<macpaul.lin@mediatek.com>, =?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?=
+	<bero@baylibre.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>
+CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+	Macpaul Lin <macpaul@gmail.com>
+Subject: [PATCH v4 1/2] dt-bindings: arm64: mediatek: add mt8390-evk board
+Date: Fri, 15 Sep 2023 16:12:11 +0800
+Message-ID: <20230915081212.13959-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230915-ep93xx-v4-41-a1d779dcec10@maquefel.me>
-References: <20230915-ep93xx-v4-0-a1d779dcec10@maquefel.me>
-In-Reply-To: <20230915-ep93xx-v4-0-a1d779dcec10@maquefel.me>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Nikita Shubin <nikita.shubin@maquefel.me>, 
- Andre Przywara <andre.przywara@arm.com>, 
- Sudeep Holla <sudeep.holla@arm.com>, Paul Barker <paul.barker@sancloud.com>, 
- Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: Romain Perier <romain.perier@gmail.com>, 
- Baruch Siach <baruch@tkos.co.il>, Michal Simek <michal.simek@amd.com>, 
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, 
- Alexander Sverdlin <alexander.sverdlin@gmail.com>
-X-Mailer: b4 0.13-dev-e3e53
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1694765525; l=4526;
- i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
- bh=73gmNLvW0LNUJ0foVGmjVHptHZEdZdoADowgdUpteAY=; =?utf-8?q?b=3DR0uEntMs70jf?=
- =?utf-8?q?42MkEhNnoA8tocTcvC+5q9GIEMMTg3t3Rf7U1XF6Get/RIJIAABNFjpl3ak9a86e?=
- L+Uq5049CiRq8kq5ivibzgveZS1i6TkM8enUnsoJtSOvNH6iNw+J
-X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
- pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
-X-Endpoint-Received:
- by B4 Relay for nikita.shubin@maquefel.me/20230718 with auth_id=65
-X-Original-From: Nikita Shubin <nikita.shubin@maquefel.me>
-Reply-To: <nikita.shubin@maquefel.me>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+1. Add compatible for MT8390.
+2. Add bindings for the MediaTek mt8390-evk board, also known
+as the "Genio 700-EVK".
 
-Add device tree for Cirrus EDB9302.
+The MT8390 and MT8188 belong to the same SoC family,
+with only minor differences in their physical characteristics.
+They utilize unique efuse values for differentiation.
 
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+The booting process and configurations are managed by boot
+loaders, firmware, and TF-A. Consequently, the part numbers
+and procurement channels vary.
+
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- arch/arm/boot/dts/cirrus/Makefile           |   1 +
- arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts | 180 ++++++++++++++++++++++++++++
- 2 files changed, 181 insertions(+)
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm/boot/dts/cirrus/Makefile b/arch/arm/boot/dts/cirrus/Makefile
-index 211a7e2f2115..e6015983e464 100644
---- a/arch/arm/boot/dts/cirrus/Makefile
-+++ b/arch/arm/boot/dts/cirrus/Makefile
-@@ -4,5 +4,6 @@ dtb-$(CONFIG_ARCH_CLPS711X) += \
- dtb-$(CONFIG_ARCH_CLPS711X) += \
- 	ep7211-edb7211.dtb
- dtb-$(CONFIG_ARCH_EP93XX) += \
-+	ep93xx-edb9302.dtb \
- 	ep93xx-bk3.dtb \
- 	ep93xx-ts7250.dtb
-diff --git a/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts b/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts
-new file mode 100644
-index 000000000000..9fa932972300
---- /dev/null
-+++ b/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts
-@@ -0,0 +1,180 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/*
-+ * Device Tree file for Cirrus Logic EDB9302 board based on EP9302 SoC
-+ */
-+/dts-v1/;
-+#include "ep93xx.dtsi"
-+#include <dt-bindings/dma/cirrus,ep93xx-dma.h>
-+
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+	compatible = "cirrus,edb9302", "cirrus,ep9301";
-+	model = "cirrus,edb9302";
-+
-+	chosen {
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		/* should be set from ATAGS */
-+		reg = <0x0000000 0x800000>,
-+		      <0x1000000 0x800000>,
-+		      <0x4000000 0x800000>,
-+		      <0x5000000 0x800000>;
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "EDB93XX";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,mclk-fs = <256>;
-+		simple-audio-card,convert-channels = <2>;
-+		simple-audio-card,convert-sample-format = "s32_le";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&i2s>;
-+			system-clock-direction-out;
-+			frame-master;
-+			bitclock-master;
-+			dai-sample-format = "s32_le";
-+			dai-channels = <2>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&cs4271>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		led-0 {
-+			label = "grled";
-+			gpios = <&gpio4 0 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			function = LED_FUNCTION_HEARTBEAT;
-+		};
-+
-+		led-1 {
-+			label = "rdled";
-+			gpios = <&gpio4 1 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_FAULT;
-+		};
-+	};
-+};
-+
-+&adc {
-+	status = "okay";
-+};
-+
-+&ebi {
-+	flash@60000000 {
-+		compatible = "cfi-flash";
-+		reg = <0x60000000 0x1000000>;
-+		bank-width = <2>;
-+	};
-+};
-+
-+&eth0 {
-+	phy-handle = <&phy0>;
-+};
-+
-+&gpio0 {
-+	gpio-ranges = <&pinctrl 0 153 1>,
-+		      <&pinctrl 1 152 1>,
-+		      <&pinctrl 2 151 1>,
-+		      <&pinctrl 3 148 1>,
-+		      <&pinctrl 4 147 1>,
-+		      <&pinctrl 5 146 1>,
-+		      <&pinctrl 6 145 1>,
-+		      <&pinctrl 7 144 1>;
-+};
-+
-+&gpio1 {
-+	gpio-ranges = <&pinctrl 0 143 1>,
-+		      <&pinctrl 1 142 1>,
-+		      <&pinctrl 2 141 1>,
-+		      <&pinctrl 3 140 1>,
-+		      <&pinctrl 4 165 1>,
-+		      <&pinctrl 5 164 1>,
-+		      <&pinctrl 6 163 1>,
-+		      <&pinctrl 7 160 1>;
-+};
-+
-+&gpio2 {
-+	gpio-ranges = <&pinctrl 0 115 1>;
-+	status = "okay";
-+};
-+
-+&gpio4 {
-+	gpio-ranges = <&pinctrl 0 97 2>;
-+	status = "okay";
-+};
-+
-+&gpio5 {
-+	gpio-ranges = <&pinctrl 1 170 1>,
-+		      <&pinctrl 2 169 1>,
-+		      <&pinctrl 3 168 1>;
-+};
-+
-+&gpio6 {
-+	gpio-ranges = <&pinctrl 0 87 2>;
-+	status = "okay";
-+};
-+
-+&gpio7 {
-+	gpio-ranges = <&pinctrl 2 199 4>;
-+	status = "okay";
-+};
-+
-+&i2s {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2s_on_ac97_pins>;
-+	status = "okay";
-+};
-+
-+&mdio0 {
-+	phy0: ethernet-phy@1 {
-+		reg = <1>;
-+		device_type = "ethernet-phy";
-+	};
-+};
-+
-+&spi0 {
-+	cs-gpios = <&gpio0 6 GPIO_ACTIVE_LOW
-+		    &gpio0 7 GPIO_ACTIVE_LOW>;
-+	dmas = <&dma1 EP93XX_DMA_SSP>;
-+	status = "okay";
-+
-+	cs4271: codec@0 {
-+		compatible = "cirrus,cs4271";
-+		reg = <0>;
-+		#sound-dai-cells = <0>;
-+		spi-max-frequency = <6000000>;
-+		spi-cpol;
-+		spi-cpha;
-+		reset-gpio = <&gpio0 1 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	at25f1024: eeprom@1 {
-+		compatible = "atmel,at25";
-+		reg = <1>;
-+		address-width = <8>;
-+		size = <0x20000>;
-+		pagesize = <256>;
-+		spi-max-frequency = <20000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	status = "okay";
-+};
-+
+dependencies for v1:
+ - This patch should be applied after the following patch set
+  - mt8365's bindings
+   - https://lore.kernel.org/linux-arm-kernel/20230912092444.31635-1-macpaul.lin@mediatek.com/T/
+  - mt8395's bindings: v6
+   - https://lore.kernel.org/lkml/20230911115717.26184-1-macpaul.lin@mediatek.com/T/
+  - mt8188's bindings
+   - https://lore.kernel.org/lkml/a4e1a80ebd19896410f50b0297e05dce06fb47cc.camel@mediatek.com/T/
 
+Changes for v2:
+ - drop description for multiple boards
+ - update dependencies with the following patch sets
+  - mt8395's bindings: v7
+   - https://lore.kernel.org/linux-arm-kernel/20230913032057.3197-1-macpaul.lin@mediatek.com/T/  
+
+Changes for v3:
+ - drop "dts: " in $subject by Conor's suggestion.
+ - Update "Reviewed-by" and "Acked-by" tags, Thanks.  
+ - update dependencies with the following patch sets
+  - mt8395's bindings: v8
+   - https://lore.kernel.org/lkml/20230914055145.16801-1-macpaul.lin@mediatek.com/T/
+
+Changes for v4:
+ - add more "Reviewed-by" tag, Thanks.
+
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index 0248bb458180..3968d5934fa2 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -252,6 +252,11 @@ properties:
+           - enum:
+               - mediatek,mt8365-evk
+           - const: mediatek,mt8365
++      - items:
++          - enum:
++              - mediatek,mt8390-evk
++          - const: mediatek,mt8390
++          - const: mediatek,mt8188
+       - items:
+           - enum:
+               - mediatek,mt8395-evk
 -- 
-2.39.2
+2.18.0
 
 
