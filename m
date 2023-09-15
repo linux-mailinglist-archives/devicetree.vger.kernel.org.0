@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C8807A1C50
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:33:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D16C7A1C5C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:36:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20F782822EB
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 10:33:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B4481C210CC
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 10:36:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26C71DF5E;
-	Fri, 15 Sep 2023 10:33:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83492DF67;
+	Fri, 15 Sep 2023 10:36:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C40DDB4
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 10:33:29 +0000 (UTC)
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A386FC1
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 03:33:27 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-99357737980so259092266b.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 03:33:27 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D20446125
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 10:36:09 +0000 (UTC)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D53B2A8
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 03:36:07 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9ada2e6e75fso264006466b.2
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 03:36:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694774006; x=1695378806; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694774166; x=1695378966; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AHNXmBxDw1apCLxAkHOvDRkSwOFlN5lNz8sn0ic2gIM=;
-        b=VPsVL5xRkvbuvEgWP0ER5qiuhLMWxCjPNEeFcFdGl/JkhtMlJaYfpRkkzH6Di2OMNm
-         aByN0vvnplJuNI9Ezt322xJasx7pkndsOn1z1DaLi3XC2O38SC3CR/GS0vj2NgG5l5Vw
-         gyuVJhFFDBQbP0+COl2imyqZF1HW6D2ZCm2jx8zKl+jSLTKywCrBFC49t70UPkhVpMZI
-         AhfTbClL6fjWnptS/eDw0WD3vviUrWcg7PEdavIBlK5txrIjWL5oG2ER9AKPp0/MZA5y
-         Jvul2gadtuS+FNmfkwZsCD7oqlPoAKdJJy4gPkS6Fwy3/UTKOOJBcKrSsNhlIwHgUbQ+
-         0HPQ==
+        bh=YOGuQvyKIEvGatIdgqwwx1vnmFxyP0QzDb7QKoox0rU=;
+        b=KNW3zmZj4hD//4GOVtgSBq9/ON/12lATBn4v7X+qDLZNpbBS9ILJA7AKfYlYGQrZUT
+         Zn2MUSJxIMkUyxp7tMs0MjMICJ15iGhgJAvKSJgKC7HhrN6kxLT0qTrnTrr+qkheYbZw
+         XT8uKLgqZ2yiy96Isoki+I/H0IoFG1CoWDypvZwTEVNQLw2A2i9VXM21C1nVOU5XAs6l
+         DnkOc+PdvTkULUg5oOEdyjxAob2lJjvCUgW//83MN4NsQSNm9xqcQdY3EsbK+MBx8iKU
+         //vONQUxhODriVqVjeY7XZcl25tMAkFFIKmT9H63gOFxBz9WY/ntha+aMFeWyp4UH/Bi
+         YeJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694774006; x=1695378806;
+        d=1e100.net; s=20230601; t=1694774166; x=1695378966;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AHNXmBxDw1apCLxAkHOvDRkSwOFlN5lNz8sn0ic2gIM=;
-        b=iQSSKHfk3JQrddbTdikSOtujalwxXcVLyw6uIaN+dzf3KljwP7ct+qzmHmBvvKv27d
-         L30hTwYH2ppAraP3cu+ffjwJDHXhzOM4rqWiUx4Vy1+lDkxsfF9cJ5TfXOv4WR1bqYof
-         Mv/F9Bz8EbfCF7NznY1MYVIMcGXTeRycatepTCvCBsClyYlxPHyr5XOPvzjNw9SnsTB6
-         YLO1ArIYUqGTRrEBV4w6WWkqdsYTjSgPO0s8O1kiLt/P+MakDELg3XfUy8p+tF9JjjwT
-         XD/z0hoYRgZ3+JwXi6r20evaMKZy7H/+pEAEcvR0jk/X0qcK+OXjVQ7ZqB398Yn6w2T9
-         QwcQ==
-X-Gm-Message-State: AOJu0YzUeec4kUAGHtPWc19fhNPX5kVXQbmZDOBykcXFAS6z+iP/7/p8
-	8C4HiqR3iBzVB7Hh2h41PvAHXw==
-X-Google-Smtp-Source: AGHT+IHJvOEsaBTHM8g8l1b4WaIw/WLvZKGU9znyrRyylohvQ/GtYWnnh3DUhsMGba8RbxKv1HP+iw==
-X-Received: by 2002:a17:906:18aa:b0:9a5:d657:47e1 with SMTP id c10-20020a17090618aa00b009a5d65747e1mr1032731ejf.43.1694774006100;
-        Fri, 15 Sep 2023 03:33:26 -0700 (PDT)
+        bh=YOGuQvyKIEvGatIdgqwwx1vnmFxyP0QzDb7QKoox0rU=;
+        b=ouVtuAxOqXpttwYZxkQ8h7EO2dUz/TSFLuGTk24vIaqV5rqr0Y+kbW/qwmUOuSjFWo
+         PIutySigiaAnsU3607NOZQ+lY3qWI0u2Xd7rpWjs5oFD0ooBfOb48AIeVxhldLVqLcL8
+         6vVv82mIljj0E5DWmd+27MK2VOpIfJgUV79E3IlQxgQhwDvsgCgikYfFnuFhONK5orHy
+         Zlrd/7cZu3J4oXYZ8Op+HR3qCUOREVXIyC8UglsWiZQIjMHHEZIjQG1CRiAlzsEOlHcn
+         ytItpAkvsriKO1CYuVPLYVyTebFNHDgpoYJTuTg8gZoWQ0b29B5kYkTSwv3BerWq/US8
+         XlOw==
+X-Gm-Message-State: AOJu0Yw+JZ4ym/5L+Ahn0UA75E2UspAdtlzvIxys9q4cbjMaam0uQq9U
+	tv8Br56iC8AvvkxYXGKo6zEpRQ==
+X-Google-Smtp-Source: AGHT+IGS0jKR8/GziN8CPYCaB+oKHmwOUHJOR8LOLDNfKE1g71vzGMk2ygtAxDqrZgORxBrUTqjoxg==
+X-Received: by 2002:a17:906:3019:b0:9a9:f14f:7e3b with SMTP id 25-20020a170906301900b009a9f14f7e3bmr1169368ejz.16.1694774166327;
+        Fri, 15 Sep 2023 03:36:06 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id n4-20020a170906088400b009928b4e3b9fsm2232224eje.114.2023.09.15.03.33.24
+        by smtp.gmail.com with ESMTPSA id z15-20020a17090655cf00b00997d7aa59fasm2274540ejp.14.2023.09.15.03.36.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 03:33:25 -0700 (PDT)
-Message-ID: <726e7f51-ce2c-5ac1-5347-21d6cf40c8c8@linaro.org>
-Date: Fri, 15 Sep 2023 12:33:23 +0200
+        Fri, 15 Sep 2023 03:36:05 -0700 (PDT)
+Message-ID: <aa15d41e-c05b-7fc5-77fb-9416f4f190b5@linaro.org>
+Date: Fri, 15 Sep 2023 12:36:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,24 +66,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH 07/10] dt-bindings: rng: add st,rng-lock-conf
+Subject: Re: [PATCH v4 03/42] dt-bindings: clock: Add Cirrus EP93xx
 Content-Language: en-US
-To: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
- Rob Herring <robh@kernel.org>
-Cc: Olivia Mackall <olivia@selenic.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
+To: nikita.shubin@maquefel.me, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Lionel Debieve <lionel.debieve@foss.st.com>, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230908165120.730867-1-gatien.chevallier@foss.st.com>
- <20230908165120.730867-8-gatien.chevallier@foss.st.com>
- <20230911150958.GA1255978-robh@kernel.org>
- <4819d89b-c2a4-0c75-27e1-d8122827ceca@foss.st.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>
+References: <20230915-ep93xx-v4-0-a1d779dcec10@maquefel.me>
+ <20230915-ep93xx-v4-3-a1d779dcec10@maquefel.me>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4819d89b-c2a4-0c75-27e1-d8122827ceca@foss.st.com>
+In-Reply-To: <20230915-ep93xx-v4-3-a1d779dcec10@maquefel.me>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -93,70 +88,69 @@ X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 15/09/2023 11:28, Gatien CHEVALLIER wrote:
-> Hello Rob,
+On 15/09/2023 10:10, Nikita Shubin via B4 Relay wrote:
+> From: Nikita Shubin <nikita.shubin@maquefel.me>
 > 
-> On 9/11/23 17:09, Rob Herring wrote:
->> On Fri, Sep 08, 2023 at 06:51:17PM +0200, Gatien Chevallier wrote:
->>> If st,rng-lock-conf is set, the RNG configuration in RNG_CR, RNG_HTCR
->>> and RNG_NSCR will be locked. It is supported starting from the RNG
->>> version present in the STM32MP13
->>
->> This should be squashed into the prior binding patch.
->>
->>>
->>> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
->>> ---
->>>   .../devicetree/bindings/rng/st,stm32-rng.yaml      | 14 ++++++++++++++
->>>   1 file changed, 14 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml b/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
->>> index 59abdc85a9fb..0055f14a8e3f 100644
->>> --- a/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
->>> +++ b/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
->>> @@ -37,6 +37,20 @@ required:
->>>     - reg
->>>     - clocks
->>>   
->>> +allOf:
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - st,stm32mp13-rng
->>> +    then:
->>> +      properties:
->>> +        st,rng-lock-conf:
->>> +          type: boolean
->>> +          description: If set, the RNG configuration in RNG_CR, RNG_HTCR and
->>> +                       RNG_NSCR will be locked.
->>
->> Define the property at the top-level and then restrict its presence in
->> a if/then schema.
->>
-> 
-> Can you please point me to an example of such case. I can't find a way
-> to define at the top-level the property then restrict it to specific
-> compatibles.
 
-You can check my slides from the talks about not reaching 10 iterations
-of bindings patches.
-
-Or open example-schema (this should be your starting point):
-https://elixir.bootlin.com/linux/v5.19/source/Documentation/devicetree/bindings/example-schema.yaml#L212
+Thank you for your patch. There is something to discuss/improve.
 
 
-Also:
-https://elixir.bootlin.com/linux/v6.4-rc7/source/Documentation/devicetree/bindings/net/qcom,ipa.yaml#L174
-> 
-> Else I'd change
-> additionalProperties :false to
-> unevaluatedProperties: false
-> 
-> so the definition of the property is seen.
+> diff --git a/include/dt-bindings/clock/cirrus,ep9301-clk.h b/include/dt-bindings/clock/cirrus,ep9301-clk.h
+> new file mode 100644
+> index 000000000000..3cd053c0fdea
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/cirrus,ep9301-clk.h
+> @@ -0,0 +1,41 @@
+> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> +#ifndef DT_BINDINGS_CIRRUS_EP93XX_CLOCK_H
+> +#define DT_BINDINGS_CIRRUS_EP93XX_CLOCK_H
+> +
+> +#define EP93XX_CLK_UART1	0
+> +#define EP93XX_CLK_UART2	1
+> +#define EP93XX_CLK_UART3	2
+> +
+> +#define EP93XX_CLK_ADC		3
+> +#define EP93XX_CLK_ADC_EN	4
+> +
+> +#define EP93XX_CLK_KEYPAD   5
 
-No, why? Definition is there when you move it to the top as asked.
+Wrong indentation - use tab instead of spaces, just like in other places.
+
+> +
+> +#define EP93XX_CLK_VIDEO	6
+> +
+> +#define EP93XX_CLK_I2S_MCLK	7
+> +#define EP93XX_CLK_I2S_SCLK	8
+> +#define EP93XX_CLK_I2S_LRCLK	9
+> +
+> +#define EP93XX_CLK_UART		10
+> +#define EP93XX_CLK_SPI		11
+> +#define EP93XX_CLK_PWM		12
+> +#define EP93XX_CLK_USB		13
+> +
+> +#define EP93XX_CLK_M2M0		14
+> +#define EP93XX_CLK_M2M1		15
+> +
+> +#define EP93XX_CLK_M2P0		16
+> +#define EP93XX_CLK_M2P1		17
+> +#define EP93XX_CLK_M2P2		18
+> +#define EP93XX_CLK_M2P3		19
+> +#define EP93XX_CLK_M2P4		20
+> +#define EP93XX_CLK_M2P5		21
+> +#define EP93XX_CLK_M2P6		22
+> +#define EP93XX_CLK_M2P7		23
+> +#define EP93XX_CLK_M2P8		24
+> +#define EP93XX_CLK_M2P9		25
+> +
+> +#define EP93XX_CLK_END      26
+
+Here as well... except I propose to drop it. Number of clocks should not
+be part of bindings, because then you cannot grow it.
+
+With indentation fixed and CLK_END dropped:
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
