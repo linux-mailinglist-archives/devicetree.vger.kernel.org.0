@@ -1,135 +1,82 @@
-Return-Path: <devicetree+bounces-599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D73127A213D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 16:43:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1C917A2155
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 16:46:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91DAD2832A0
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:43:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4915282947
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:46:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EC3C30D08;
-	Fri, 15 Sep 2023 14:43:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59CE230D0C;
+	Fri, 15 Sep 2023 14:46:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA65430CE1
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 14:43:11 +0000 (UTC)
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.170])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D42D1BC7;
-	Fri, 15 Sep 2023 07:43:10 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1694788988; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=VeiQ4c8U3muKvH3uogNgB1EwN9z+dyrdJkVZpRXMNWcYWhFQrQyjwBdmNOasRnTTGp
-    RM3WNaPvbszckR+1xVIZKu4equXWCrcurdbYeDyM8cnU0nyLYV/6PiWw2Z1dP8LYQxcX
-    o3lTq2b2PTJZVeEsCSKNqqvvoGbhdC+ESsP8e4PZJsYV1+PFExyzAQzx/PATEv65TNvn
-    PHbjcXxjOrJUJGZLckEl9bp7AbX4Yb27S0/BPaUE1hLPzjEMDkzhwkGOA3Rm/8zOJA6b
-    TxlrDSE3bN2BC+XMT/ygu4jTfGY+3iQIIgyw2RM+a4Wa2OTpCjXz9xuHweOZ56jyR9aR
-    IrAA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1694788988;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=JQDerBwPFpdX+huluqMekIVv5H0FEkeTLnS+oe23mNE=;
-    b=BTVRorL1HtkG+R9/o9oN1jNXB3lZUvF3f94qrrE7sHLsmTB5fyk5aOjWgUEYBv71na
-    O2R16j0YnozRkABga5faDUA/JQ5MaumNbwCRt7FOUmHiKPpqBKFuu3XBUWZPosbM1Xxb
-    SCbHrH+tPN2nGQtqZL1AM6khzDKBfxh32j/XFPEMFmMA1x8XjsmiDhqEDNihq6DuLb+p
-    K/SXIltg3CD0Rs2XUDgowRZPFfaa+uydPPw4f7S1OlulasLOVBCiN0RKCF4SGZj/RRRn
-    ebpVwzcjGPRZqqI8HtKmJsTggnIKj6w8qI/kerVv+38vITZU6HFfYdnKsl0lOUrcaZeg
-    hvIw==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1694788988;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=JQDerBwPFpdX+huluqMekIVv5H0FEkeTLnS+oe23mNE=;
-    b=Iqm+/odgJBZYGNNv40zYdPmyViEzvQYrKVwNfevyXBW7kNx8iSNnT8hX81LkdbYV52
-    TZYMY6/ehns3E5mVl4tjD4d5cQRDC9n0Yc+81C4iON3vqewnySgUk1p6czuFijQxj1Gr
-    sLYIGFMvvHYnaModGyVxHj0ORvw49UByufLU3j8TprxmZqaIA04ds7TIOGYXaCHhb944
-    8Z/p+STdaJ3Of5HQeeYurDxfFDUTMkwJcpnZrDkcFVidD0DC6eg57JKMEQz06zLXdRZ/
-    lrmCPyzxzoBRTYrj97Lx6TrMDkt1f0G2YjK6mEnbzp9ISX5gIY7syfmmQ8125XQ4SIpG
-    l01w==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1694788988;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=JQDerBwPFpdX+huluqMekIVv5H0FEkeTLnS+oe23mNE=;
-    b=xOklVqVdCXbaubQ8rrkuq15K58DwYJ9wvgXRUxhwgsbN2+ZD7ugHIHBPVY7MmAd9pn
-    OWSTCZqZWxd/FRvZ+0DA==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA8piJ1A=="
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.8.2 DYNA|AUTH)
-    with ESMTPSA id R04c57z8FEh7871
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Fri, 15 Sep 2023 16:43:07 +0200 (CEST)
-Date: Fri, 15 Sep 2023 16:42:58 +0200
-From: Stephan Gerhold <stephan@gerhold.net>
-To: Gaurav Kohli <quic_gkohli@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	kernel@quicinc.com
-Subject: Re: [PATCH v1] arm64: dts: qcom: msm8916: Fix iommu local address
- range
-Message-ID: <ZQRtchQ0HqmgkvIa@gerhold.net>
-References: <20230915143304.477-1-quic_gkohli@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3998D30CE0
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 14:46:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14FD2C433C8;
+	Fri, 15 Sep 2023 14:46:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1694789162;
+	bh=vmWJjbUV9feQTNnTRpzFcWDL7EDviII2F9crbfYB6XI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CvLP61L5Srj5bBexjD3yccDBzkb0QAHF22eelHc/2Ww0BT7WfYu/CSZ56X9/nE6qu
+	 5EU6lXh59ctX45FlSf8ZO+l5lfoUDbvLTbKUk8urSmWJYPCjlrJa0HJYtGmscey7ud
+	 JJmR6bUhBJys4Y9sX0ySY9uue2XHYEWg5OvQFTSeO+jfS66qitFwy0wFjUWg/5/z74
+	 9d3l/Fz1Yb6hGNZ7AjPBZshOdhPbebdTpEA6sHyVjyMFcZAq5qCKdqOF2CmiFix6c9
+	 ewzUL0rCnYYgYX1/pLDH+43J//2ZUuVUySuu5a+FGUq8F9mxRS36J01YP5sVQX3st7
+	 DbM/UIq8Yz2Cw==
+Received: (nullmailer pid 3702987 invoked by uid 1000);
+	Fri, 15 Sep 2023 14:45:59 -0000
+Date: Fri, 15 Sep 2023 09:45:59 -0500
+From: Rob Herring <robh@kernel.org>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Chen-Yu Tsai <wens@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Saravana Kannan <saravanak@google.com>, linux-rockchip@lists.infradead.org, Heiko Stuebner <heiko@sntech.de>, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, kernel@pengutronix.de, Quentin Schulz <quentin.schulz@theobroma-systems.com>, Michael Riesch <michael.riesch@wolfvision.net>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 1/3] pinctrl: rockchip: add support for io-domain
+ dependency
+Message-ID: <20230915144559.GA3696959-robh@kernel.org>
+References: <20230904115816.1237684-1-s.hauer@pengutronix.de>
+ <20230904115816.1237684-2-s.hauer@pengutronix.de>
+ <CACRpkdYxRdToUM3JcEeNK_K87D5WDzzSLvVEbtqqdQEhz3k_Ow@mail.gmail.com>
+ <CAGb2v65G-8EECNjqnpKCxqAD5nATAb0S7AA_WMiGXYOR1avrvg@mail.gmail.com>
+ <20230913065843.GF637806@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230915143304.477-1-quic_gkohli@quicinc.com>
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230913065843.GF637806@pengutronix.de>
 
-On Fri, Sep 15, 2023 at 08:03:04PM +0530, Gaurav Kohli wrote:
-> Fix the apps iommu local address space range as per data sheet.
+On Wed, Sep 13, 2023 at 08:58:43AM +0200, Sascha Hauer wrote:
+> On Wed, Sep 13, 2023 at 12:37:54PM +0800, Chen-Yu Tsai wrote:
+> > On Tue, Sep 12, 2023 at 4:07 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > >
+> > > Top posting to bring Saravana Kannan into this discussion.
+> > >
+> > > This looks like a big hack to me, Saravana has been working
+> > > tirelessly to make the device tree probe order "sort itself out"
+> > > and I am pretty sure this issue needs to be fixed at the DT
+> > > core level and not in a driver.
+> > 
+> > We could merge all the IO domain stuff into the pinctrl node/driver,
+> > like is done for Allwinner? Maybe that would simplify things a bit?
 > 
-> Fixes: 6a6729f38436 ("arm64: dts: qcom: msm8916: Add IOMMU support")
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Gaurav Kohli <quic_gkohli@quicinc.com>
+> I thought about this as well. On Rockchip the pinctrl driver and the IO
+> domain driver even work on the same register space, so putting these
+> into a single node/driver would even feel more natural than what we have
+> now.
 
-Aside from the minor things Konrad mentioned (v1 -> v2) FWIW:
+DT should reflect the hardware. If this is in fact 1 block, then it 
+should be 1 DT node. How you want to split the driver or not is up to 
+you.
 
-Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
-
-Although I can kind of understand that starting to count at 0 often
-feels more intuitive, especially for Linux kernel things. :-)
-
-> ---
-> Changes since v0:
-> -Update Fixes tag.
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> index 33fb65d73104..3c934363368c 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> @@ -1813,7 +1813,7 @@
->  			#size-cells = <1>;
->  			#iommu-cells = <1>;
->  			compatible = "qcom,msm8916-iommu", "qcom,msm-iommu-v1";
-> -			ranges = <0 0x01e20000 0x40000>;
-> +			ranges = <0 0x01e20000 0x20000>;
->  			reg = <0x01ef0000 0x3000>;
->  			clocks = <&gcc GCC_SMMU_CFG_CLK>,
->  				 <&gcc GCC_APSS_TCU_CLK>;
-> -- 
-> 2.17.1
-> 
+Rob
 
