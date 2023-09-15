@@ -1,138 +1,231 @@
-Return-Path: <devicetree+bounces-582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22D1A7A206F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 16:05:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C199E7A2076
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 16:06:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DB5F1C20DF3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:05:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFE1B1C20AAE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:06:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4907D10A35;
-	Fri, 15 Sep 2023 14:05:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A6121119A;
+	Fri, 15 Sep 2023 14:05:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81C6F10A31;
-	Fri, 15 Sep 2023 14:05:23 +0000 (UTC)
-X-Greylist: delayed 450 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 15 Sep 2023 07:05:20 PDT
-Received: from mail.thorsis.com (mail.thorsis.com [92.198.35.195])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C12052724;
-	Fri, 15 Sep 2023 07:05:20 -0700 (PDT)
-Date: Fri, 15 Sep 2023 15:56:59 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=default;
-	t=1694786268;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:content-type:content-type:in-reply-to:in-reply-to:
-	 references:references; bh=Ux5xZRDiOjiMz+hImc9jtfpq/h9ISkG9PxE6ObbWyIw=;
-	b=IpNjFulOG7+2aIpsDgLTFB3n7bccNHyZIC2aJjCR7MV1ivDTikTmWi9LDt+4UocDr+xEEA
-	QnxUg3mDCdux39o7o0g9NE5mcpoilHi4B2DvgzoVuQCBZWF2Jy3GBkfR53q7ZOQmKsl5JX
-	sy9jsMSVZRMUQIONQyq2OvjrM6QO6jHQObK0nBMnwCfa5p/cAraDqW/nCnfJ14NgpAep9O
-	J8iOP/8fMyn+/Ml1zS4Ldom/Fh9a7UGyhkMzxyOKc56hKB+MOa5mS2/JPknDsFL1AJ0OJT
-	83IhqCAeZYREp5MfOj74yVaM8WxUm1kaerde9Cs988ac7qUdnKt7aPDwXiH+2w==
-From: Alexander Dahl <ada@thorsis.com>
-To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	corbet@lwn.net, steen.hegelund@microchip.com, rdunlap@infradead.org,
-	horms@kernel.org, casper.casan@gmail.com, andrew@lunn.ch,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	horatiu.vultur@microchip.com, Woojung.Huh@microchip.com,
-	Nicolas.Ferre@microchip.com, UNGLinuxDriver@microchip.com,
-	Thorsten.Kummermehr@microchip.com,
-	Alexandru Tachici <alexandru.tachici@analog.com>
-Subject: Re: [RFC PATCH net-next 0/6] Add support for OPEN Alliance
- 10BASE-T1x MACPHY Serial Interface
-Message-ID: <20230915-wizard-junction-b58f2aad64c5@ifak-system.com>
-Mail-Followup-To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	corbet@lwn.net, steen.hegelund@microchip.com, rdunlap@infradead.org,
-	horms@kernel.org, casper.casan@gmail.com, andrew@lunn.ch,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	horatiu.vultur@microchip.com, Woojung.Huh@microchip.com,
-	Nicolas.Ferre@microchip.com, UNGLinuxDriver@microchip.com,
-	Thorsten.Kummermehr@microchip.com,
-	Alexandru Tachici <alexandru.tachici@analog.com>
-References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAE4311196
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 14:05:26 +0000 (UTC)
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2054.outbound.protection.outlook.com [40.107.6.54])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D0DD1FCC;
+	Fri, 15 Sep 2023 07:05:24 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=byxp5s74KzQpULehQgGzu49lSYOadqYhIFLBqkXp6HLN9axa6iSETvfAKCe4PCdN+E9GOeXMPZ4ISA1wUf3+cViaGbP7OUXZI/NKFTtOirCVcKMw8NnHa5kA4UL8F/0/7Bq9ZAyU8ljrvamg3SSc2IET8MYwh1w/W6e9JKtDam7EzUULybAmYszBuc+k6p4Hoq+FQYnnTIyHOTXfHHt8NugGNzthqUsC+vTwTSWG577h9RfCv6yT4Y729/xf5zcseZzmgwOtRRgEBVOF+x62fPbU2LIP3N+Mt/H+8xzLerpE/DZa/saq2kLQ3Uy8gc9c9DNOF4wSImyghsjfIGkeIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=py9fIa4DYNUu9u5VEoQ5z5bqAm59jnw+4sHK1LITt0E=;
+ b=cFAR+wvXvPq1XqJdQksdi6/fyAVVx0B4YZC/j/S960nirYis60Jzxe1svtVpERk4G1f1Nva52rlqGK2o3vf3NFZb4aGNcAzIuQwVWdRiOALu6ws0r6IiCC/c5c1YYsLPkzdl6eXVTCuzM5a5yx2OjAnsvQwmKnCUS9th1lVCDkIvp9kg5ubBHH+tkOxDh9E0mbEY+6Aq3mVvZIiS8eb49n9NjQnml+fAsEbm+iDKf/0eN/jSYdYMMHw8PUHMmWrTawXalSj2qoSiOLuORfVAw6HSdbbuW5caEK66qQ6GujWMaW9iHK8g5gldgo28nEhhFgaefC3LMO0QKyYCaqvxVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 151.1.184.193) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=asem.it;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=asem.it;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=asem.it; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=py9fIa4DYNUu9u5VEoQ5z5bqAm59jnw+4sHK1LITt0E=;
+ b=l/e2Gk1z8sTHGQKPVWPf4QpyiYZ5eu8k7zlLv0ML2nT5SZTpQie0Gtr+JWOU9gJu0Df9bhKHvhkDiKeqMChVnjpoccFhw9MrCo8YYdqL2a5D+POOLZf0CeIy2c1L4A/CrZiL5dItjK+aaXDOvY2KH6CxcX51VI8ec7H+YQUmU0g=
+Received: from AM0PR04CA0095.eurprd04.prod.outlook.com (2603:10a6:208:be::36)
+ by AS8PR01MB8603.eurprd01.prod.exchangelabs.com (2603:10a6:20b:44b::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.7; Fri, 15 Sep
+ 2023 14:05:21 +0000
+Received: from AM4PEPF00025F99.EURPRD83.prod.outlook.com
+ (2603:10a6:208:be:cafe::74) by AM0PR04CA0095.outlook.office365.com
+ (2603:10a6:208:be::36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.21 via Frontend
+ Transport; Fri, 15 Sep 2023 14:05:21 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
+ 151.1.184.193) smtp.mailfrom=asem.it; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=asem.it;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ asem.it discourages use of 151.1.184.193 as permitted sender)
+Received: from asas054.asem.intra (151.1.184.193) by
+ AM4PEPF00025F99.mail.protection.outlook.com (10.167.16.8) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6838.0 via Frontend Transport; Fri, 15 Sep 2023 14:05:20 +0000
+Received: from flavio-x.asem.intra ([172.16.18.47]) by asas054.asem.intra with Microsoft SMTPSVC(10.0.14393.4169);
+	 Fri, 15 Sep 2023 16:05:20 +0200
+From: Flavio Suligoi <f.suligoi@asem.it>
+To: Lee Jones <lee@kernel.org>,
+	Daniel Thompson <daniel.thompson@linaro.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Helge Deller <deller@gmx.de>,
+	Pavel Machek <pavel@ucw.cz>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-fbdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Flavio Suligoi <f.suligoi@asem.it>
+Subject: [PATCH v2 1/2] dt-bindings: backlight: Add MPS MP3309C
+Date: Fri, 15 Sep 2023 16:05:15 +0200
+Message-Id: <20230915140516.1294925-1-f.suligoi@asem.it>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 15 Sep 2023 14:05:20.0279 (UTC) FILETIME=[A9912270:01D9E7DD]
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM4PEPF00025F99:EE_|AS8PR01MB8603:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: a7d04cf5-8ae5-4f69-7cfb-08dbb5f4cc93
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	D5Dl+jch3IoJzEVXlELOpfLsFJuCEgkQsowD7rDcgFQWoywZZWe8mz+9vNxjtqCrYjOPdtVGDlPG1/ksPsg4Nx4qw948RjB0tvQ6DMDpaAd8copdYhWjSZGmad6uoEkpfFcVN+1EEGvo837jvxWze115Q7J0Dwmu4wU/bUO3C3BCQziRVCOSxbcmQZAElqQBpqfCW8TNxUkNoYGmB7fB5f8d8AcFcN7JTFVLN0OoVx3ecE21GSnkHGCiU8eu2B6qQU7Nbg/RC/vSwCz/3pGpfD0FQcaMfrJdjRZHa9s8yCi3q8vu6wvXN1RtPX2LX2jrH7Yg2OP+gYWSIaz9kEttbHcGUXYVqwWFOKBA6yGAXSO6XgK5iYRTya0uXTLnbH8S1E/wCP+6qH1pvASoS+dADU4OXpirJtVjfWmi4h6Wu+wqyaBbpRMnVZfjzGg9BG72CpoRAClqCioa1yltLM4kAdqGY+Bhb+Afew6vvGhymkoEaMbNd4fkou3J/bIIW06m1Sy21q7Bwqcvy8MvkqXUcuHC3ajxAaBnB6edYmLEysk1ULuPDNtHoB5iHIExaTUPf6saHrK5DeunJUNyQKNeKSCFjST6A4tn1My8LuY+tBEiuQwTsY9UjHcmiR/VV9A3+yKL09o+he6R+muQ3ovYEMZwzB4ogQcOQVTauaBNCuyFFvDO36jRzIa+3rF86Eek36fCz1z6MB5VE2vae/0PbpbF0HlO6/tTGoEJxrqzx6s=
+X-Forefront-Antispam-Report:
+	CIP:151.1.184.193;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:asas054.asem.intra;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(136003)(346002)(396003)(376002)(39850400004)(1800799009)(82310400011)(186009)(451199024)(46966006)(36840700001)(36756003)(8936002)(110136005)(5660300002)(86362001)(36860700001)(40480700001)(8676002)(450100002)(41300700001)(82740400003)(6666004)(2616005)(26005)(336012)(1076003)(107886003)(356005)(47076005)(4326008)(70206006)(70586007)(81166007)(478600001)(2906002)(966005)(316002)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: asem.it
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2023 14:05:20.9735
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a7d04cf5-8ae5-4f69-7cfb-08dbb5f4cc93
+X-MS-Exchange-CrossTenant-Id: d0a766c6-7992-4344-a4a2-a467a7bb1ed2
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d0a766c6-7992-4344-a4a2-a467a7bb1ed2;Ip=[151.1.184.193];Helo=[asas054.asem.intra]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AM4PEPF00025F99.EURPRD83.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR01MB8603
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-Hello,
+The Monolithic Power (MPS) MP3309C is a WLED step-up converter, featuring a
+programmable switching frequency to optimize efficiency.
+The brightness can be controlled either by I2C commands (called "analog"
+mode) or by a PWM input signal (PWM mode).
+This driver supports both modes.
 
-this is interesting, by chance I just looked at a chip claiming
-similar features today, which already has a driver in kernel: Analog
-Devices ADIN1110.
+For device driver details, please refer to:
+- drivers/video/backlight/mp3309c_bl.c
 
-Am Fri, Sep 08, 2023 at 07:59:13PM +0530 schrieb Parthiban Veerasooran:
-> This patch series contain the below updates,
-> - Adds support for OPEN Alliance 10BASE-T1x MACPHY Serial Interface in the
->   net/ethernet/oa_tc6.c.
+The datasheet is available at:
+- https://www.monolithicpower.com/en/mp3309c.html
 
-So this implements the "10BASE-T1x MAC-PHY Serial Interface
-Specification" which is Ethernet over SPI if I understand correctly?
-The above mentioned chip claims do use the same interface and the same
-standard.  How does its driver work then?  Do you add code for a thing
-already present in the kernel or does the other driver do something
-completely different and I just misunderstood?
+Signed-off-by: Flavio Suligoi <f.suligoi@asem.it>
+---
 
-Can the drivers for ADIN1110 and for LAN865X share code because they
-use the same specified interface?  The patch set does not look like
-it?
+v2:
+ - remove useless properties (dimming-mode, pinctrl-names, pinctrl-0,
+   switch-on-delay-ms, switch-off-delay-ms, reset-gpios, reset-on-delay-ms,
+   reset-on-length-ms)
+ - add common.yaml#
+ - remove already included properties (default-brightness, max-brightness)
+ - substitute three boolean properties, used for the overvoltage-protection
+   values, with a single enum property
+ - remove some conditional definitions
+ - remove the 2nd example
+v1:
+ - first version
 
-(Added the other driver author to Cc.)
+ .../bindings/leds/backlight/mps,mp3309c.yaml  | 73 +++++++++++++++++++
+ 1 file changed, 73 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
 
-Greets
-Alex
+diff --git a/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml b/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
+new file mode 100644
+index 000000000000..99ccdba2c08f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
+@@ -0,0 +1,73 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/backlight/mps,mp3309c.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MPS MP3309C backlight
++
++maintainers:
++  - Flavio Suligoi <f.suligoi@asem.it>
++
++description: |
++  The Monolithic Power (MPS) MP3309C is a WLED step-up converter, featuring a
++  programmable switching frequency to optimize efficiency.
++  It supports two different dimming modes:
++
++  - analog mode, via I2C commands (default)
++  - PWM controlled mode.
++
++  The datasheet is available at:
++  https://www.monolithicpower.com/en/mp3309c.html
++
++allOf:
++  - $ref: common.yaml#
++
++properties:
++  compatible:
++    const: mps,mp3309c
++
++  reg:
++    maxItems: 1
++
++  pwms:
++    description: if present, the backlight is controlled in PWM mode.
++    maxItems: 1
++
++  enable-gpios:
++    description: GPIO used to enable the backlight in "analog-i2c" dimming mode.
++    maxItems: 1
++
++  mps,overvoltage-protection-microvolt:
++    description: Overvoltage protection (13.5V, 24V or 35.5V). If missing, the
++      hardware default of 35.5V is used.
++    enum: [ 13500000, 24000000, 35500000 ]
++
++  mps,no-sync-mode:
++    description: disable synchronous rectification mode
++    type: boolean
++
++required:
++  - compatible
++  - reg
++  - max-brightness
++  - default-brightness
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        /* Backlight with PWM control */
++        backlight_pwm: backlight@17 {
++            compatible = "mps,mp3309c-backlight";
++            reg = <0x17>;
++            pwms = <&pwm1 0 3333333 0>; /* 300 Hz --> (1/f) * 1*10^9 */
++            max-brightness = <100>;
++            default-brightness = <80>;
++            overvoltage-protection-microvolt = <24000000>;
++        };
++    };
+-- 
+2.34.1
 
-> - Adds driver support for Microchip LAN8650/1 Rev.B0 10BASE-T1S MACPHY
->   Ethernet driver in the net/ethernet/microchip/lan865x.c.
-> 
-> Parthiban Veerasooran (6):
->   net: ethernet: implement OPEN Alliance control transaction interface
->   net: ethernet: add mac-phy interrupt support with reset complete
->     handling
->   net: ethernet: implement OA TC6 configuration function
->   net: ethernet: implement data transaction interface
->   microchip: lan865x: add driver support for Microchip's LAN865X MACPHY
->   microchip: lan865x: add device-tree support for Microchip's LAN865X
->     MACPHY
-> 
->  .../bindings/net/microchip,lan865x.yaml       |  54 ++
->  Documentation/networking/oa-tc6-framework.rst | 231 +++++
->  MAINTAINERS                                   |  15 +
->  drivers/net/ethernet/microchip/Kconfig        |  10 +
->  drivers/net/ethernet/microchip/Makefile       |   3 +
->  drivers/net/ethernet/microchip/lan865x.c      | 589 +++++++++++++
->  drivers/net/ethernet/oa_tc6.c                 | 807 ++++++++++++++++++
->  include/linux/oa_tc6.h                        | 130 +++
->  8 files changed, 1839 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/microchip,lan865x.yaml
->  create mode 100644 Documentation/networking/oa-tc6-framework.rst
->  create mode 100644 drivers/net/ethernet/microchip/lan865x.c
->  create mode 100644 drivers/net/ethernet/oa_tc6.c
->  create mode 100644 include/linux/oa_tc6.h
-> 
-> -- 
-> 2.34.1
-> 
-> 
 
