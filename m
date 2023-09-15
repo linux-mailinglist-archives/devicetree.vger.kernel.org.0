@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 492EE7A1D61
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 13:25:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF09A7A1D75
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 13:29:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 733251C20FD7
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 11:25:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 242191C20D2B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 11:29:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440C9101E4;
-	Fri, 15 Sep 2023 11:25:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDB54101E9;
+	Fri, 15 Sep 2023 11:29:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47B1CDF43
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 11:24:58 +0000 (UTC)
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F083A1AB
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 04:24:56 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-401d10e3e54so21744865e9.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 04:24:56 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 329DDDDB7
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 11:29:23 +0000 (UTC)
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A57B91BF
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 04:29:21 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-404773f2501so12296205e9.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 04:29:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694777095; x=1695381895; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694777360; x=1695382160; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gFNlM3sm9Ceqs9hdL9w4nzExbwDQwcXHrGj5mJ6Ls3Q=;
-        b=lIgTSNBNQPdkrZvyOtrSolZGcTCnmy/NZNdzUpCuKwzU3n3ik8ab28nougEFRBBpsh
-         xP5UtFP/FnntnNKuDdnnctGrO2/RTwGsH6m/bx/xqCaBuGXzL2SXKfvowOxzE9oClbAp
-         grEeiVIBS0DRlJOicu88jW6v2o1ViyH96tcqFFyLqGB2P6AWKc1gK6mzZYfPw0+fbmkN
-         CgUweOwlEIw9hiYlDdUjIhwJaO+uo5qSI4HQs0XLtasLMckdhqxEWZiKmfjBHy4NkBuy
-         Tk2TCUs6k9XCasr2mRR8LsJWc3v0DeTc3a/FSzv09WAtIvncyf/yxH0vcyCFJ5N/Oj93
-         DoFQ==
+        bh=DOKPrQtwKxSzhyF/0RrIr5RFzt3C+vCUzllNvO9L9aU=;
+        b=j74KRIxPmlG0EEMIS6nGU8IQndATjhvnajcUwjvjSp3/u2uhRWE/Y5wsK4yuR+khyq
+         pHCVGIPtlicBnYy7/Jblgg4FC8VqrYcefRaPvcNzZGi9si/e+n/7bbF3vb4y5a4xm2Af
+         XGESiFDyRxvlCVeCHpkMN3UKZq7WvGk/8zFs2FvSix+Zj33SbWfP1YTe0UHfKJastzTm
+         R6JbDZIbu8/EfRxhsDNgzkdwQP5QkLHcDzXTOSjEVl5oUK4iap2NoUjJKbyk8u1FTa9c
+         aGN6sDWbxKeFxcN8RTcOfBNeJy+UpMyr8Eu0LGI5jfsEEPW1mHdvcC9xLlaT97dJmZTB
+         pUmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694777095; x=1695381895;
+        d=1e100.net; s=20230601; t=1694777360; x=1695382160;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gFNlM3sm9Ceqs9hdL9w4nzExbwDQwcXHrGj5mJ6Ls3Q=;
-        b=mwyHjP0tkC7cxjg8FZ7r7bX2bsS/p6NXjyNKolVGKD6RclrLhK3uJY2R3J1l5GVRa6
-         CZfBGhW3TInN2UYjcfqohQqLFxiKM7viJgPVip0aBG0Jr9UpiJrgYB7q+CsaUVtNdz4i
-         eA6IVHOkYvicMjhEt+C3IBS4GUMgJU+C0UpTl6uQJoqEKqXEAxNxhZnHeNmVUxyMxIt6
-         5B8C8RlTdyHwShVOQWwyOo4zXP3FXzOQB7OPtIXbEwt9q+RKHT14YmwfDVtXCfAbzZHW
-         wxLeQaVEeyCZV0Y+zepoK1rw86BnOEj1VXxwtXu8PB7o/crqJ4vmUdzau0WLMAvxyF59
-         QIGg==
-X-Gm-Message-State: AOJu0YzDS9yOWuIZy1MHS8ZTP64agCVZgbf1W82GQKTNRsCYolYMk7bh
-	8UbfZJd4cfHGRUxKLLGYFfDRjg==
-X-Google-Smtp-Source: AGHT+IEf6WeL52jnQQ1+MYaZgOfT8hieasvQCrs9Rbs5A49yq5aTxUtst9ngawLorznka78ivHN6MA==
-X-Received: by 2002:a05:600c:c5:b0:3fe:d852:7ff9 with SMTP id u5-20020a05600c00c500b003fed8527ff9mr1235045wmm.5.1694777095305;
-        Fri, 15 Sep 2023 04:24:55 -0700 (PDT)
+        bh=DOKPrQtwKxSzhyF/0RrIr5RFzt3C+vCUzllNvO9L9aU=;
+        b=C8DqNxW9JiOg4DQ8SRCVTjTeHO5zNL0BNBU4OOwnH7wmT7G01NCy7G9qxaU56K+Evb
+         BiFq5CNXf/aZyKtAMZZ8CrFkvHntptWF5zXB4+YtR/Amig+WuSFeT1AATfloZ6RrSKao
+         W1cGZRgs1qwh8BCQoAD3dCz/Uh9kUWPf8762abX5JZmZpORkxqL8InmAgXx8ZlrBlbor
+         hUKG/rR0s/6bWuOM4dq7sdhjDrFUfDCQJlZkp6ggICTMMohC+nXXiJc4PKLiX1N8js9t
+         mFvr2QbseQ3V9FAsI5CMhfk3k6OxeBF3gA0UdH4TDRtZOlsgwtFWJTNpV0LXqcPANly2
+         7HCg==
+X-Gm-Message-State: AOJu0YzGkOOXT27Gc2c1MdvXtG+gQKrQcpps6JsAZ1J5a0MPcHTG/l+L
+	+mDhnGsRwDD4MEYQYldX5pBf+w==
+X-Google-Smtp-Source: AGHT+IEr38/mWh5mpLtWDFh75MFd/hOiBed0DnDtLaMt/qeG5SkPrc/bmhTeLtAB2RW6MNldvvzfpA==
+X-Received: by 2002:a1c:721a:0:b0:3fc:1a6:7764 with SMTP id n26-20020a1c721a000000b003fc01a67764mr1374584wmc.16.1694777359704;
+        Fri, 15 Sep 2023 04:29:19 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id 7-20020a05600c230700b003fefcbe7fa8sm4399498wmo.28.2023.09.15.04.24.53
+        by smtp.gmail.com with ESMTPSA id m10-20020a7bcb8a000000b003fed7fa6c00sm7338300wmi.7.2023.09.15.04.29.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 04:24:54 -0700 (PDT)
-Message-ID: <a1922840-75dc-ad19-d001-9718d73891a2@linaro.org>
-Date: Fri, 15 Sep 2023 13:24:52 +0200
+        Fri, 15 Sep 2023 04:29:18 -0700 (PDT)
+Message-ID: <b7398390-23bc-467c-5b83-411110d60f43@linaro.org>
+Date: Fri, 15 Sep 2023 13:29:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,284 +66,103 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH v4 34/42] ARM: dts: add Cirrus EP93XX SoC .dtsi
+Subject: Re: [PATCH v2 8/8] arm64: defconfig: enable interconnect and pinctrl
+ for SM4450
 Content-Language: en-US
-To: nikita.shubin@maquefel.me, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Arnd Bergmann <arnd@arndb.de>
-References: <20230915-ep93xx-v4-0-a1d779dcec10@maquefel.me>
- <20230915-ep93xx-v4-34-a1d779dcec10@maquefel.me>
+To: Tengfei Fan <quic_tengfan@quicinc.com>, will@kernel.org,
+ robin.murphy@arm.com, joro@8bytes.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, catalin.marinas@arm.com
+Cc: geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org,
+ nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
+ linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, quic_tsoni@quicinc.com,
+ quic_shashim@quicinc.com, quic_kaushalk@quicinc.com, quic_tdas@quicinc.com,
+ quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com, kernel@quicinc.com
+References: <20230915021509.25773-1-quic_tengfan@quicinc.com>
+ <20230915021509.25773-10-quic_tengfan@quicinc.com>
+ <8f2c9664-a2c8-50dc-8a1c-e50a071ebeb2@linaro.org>
+ <e9ff05b3-2742-416e-b417-5e2414036008@quicinc.com>
+ <0a34dd35-7aea-4655-4cdd-e7196a1ba52b@linaro.org>
+ <f76e1cc8-fc48-4208-bbe4-9204d9d28363@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230915-ep93xx-v4-34-a1d779dcec10@maquefel.me>
+In-Reply-To: <f76e1cc8-fc48-4208-bbe4-9204d9d28363@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 15/09/2023 10:11, Nikita Shubin via B4 Relay wrote:
-> From: Nikita Shubin <nikita.shubin@maquefel.me>
+On 15/09/2023 13:18, Tengfei Fan wrote:
 > 
-> Add support for Cirrus Logic EP93XX SoC's family.
 > 
-> Co-developed-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
-> ---
->  arch/arm/boot/dts/cirrus/ep93xx.dtsi | 454 +++++++++++++++++++++++++++++++++++
->  1 file changed, 454 insertions(+)
+> 在 9/15/2023 5:16 PM, Krzysztof Kozlowski 写道:
+>> On 15/09/2023 11:12, Tengfei Fan wrote:
+>>>
+>>>
+>>> 在 9/15/2023 3:21 PM, Krzysztof Kozlowski 写道:
+>>>> On 15/09/2023 04:15, Tengfei Fan wrote:
+>>>>> Add the SM4450 interconnect and pinctrl drivers as built-in for
+>>>>> support the Qualcomm SM4450 platform to boot to uart shell.
+>>>>>
+>>>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>>>>> ---
+>>>>>    arch/arm64/configs/defconfig | 2 ++
+>>>>>    1 file changed, 2 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+>>>>> index ec59174b14db..e91993de865e 100644
+>>>>> --- a/arch/arm64/configs/defconfig
+>>>>> +++ b/arch/arm64/configs/defconfig
+>>>>> @@ -598,6 +598,7 @@ CONFIG_PINCTRL_SC8280XP=y
+>>>>>    CONFIG_PINCTRL_SDM660=y
+>>>>>    CONFIG_PINCTRL_SDM670=y
+>>>>>    CONFIG_PINCTRL_SDM845=y
+>>>>> +CONFIG_PINCTRL_SM4450=y
+>>>>>    CONFIG_PINCTRL_SM6115=y
+>>>>>    CONFIG_PINCTRL_SM6125=y
+>>>>>    CONFIG_PINCTRL_SM6350=y
+>>>>> @@ -1500,6 +1501,7 @@ CONFIG_INTERCONNECT_QCOM_SC7280=y
+>>>>>    CONFIG_INTERCONNECT_QCOM_SC8180X=y
+>>>>>    CONFIG_INTERCONNECT_QCOM_SC8280XP=y
+>>>>>    CONFIG_INTERCONNECT_QCOM_SDM845=y
+>>>>> +CONFIG_INTERCONNECT_QCOM_SM4450=y
+>>>>
+>>>> Why it cannot be =m?
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>>
+>>>
+>>> Hi Krzysztof,
+>>> Because system haven't capacity of loading ko files at this time on
+>>> SM4450 platform, so setting to "Y".
+>>
+>> Hm? System has this capability. All systems have. What is so different
+>> on SM4450 comparing to everything else we have here?
+>>
+>> No, this should be =m and you need to fix your system.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> Hi Krzysztof,
+> Find new way which can load ko files on SM4450 platform, still need use 
+> "Y", because of some other modules have dependence to these two config, 
+> like scm, smmu module drivers, uart shell console cannot be got if set 
+> to "m".
+
+That's what I am asking, which device exactly needs it.
+
 > 
-> diff --git a/arch/arm/boot/dts/cirrus/ep93xx.dtsi b/arch/arm/boot/dts/cirrus/ep93xx.dtsi
-> new file mode 100644
-> index 000000000000..11ca6d6a190d
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/cirrus/ep93xx.dtsi
-> @@ -0,0 +1,454 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree file for Cirrus Logic systems EP93XX SoC
-> + */
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/clock/cirrus,ep9301-clk.h>
-> +/ {
-> +	soc: soc {
-> +		compatible = "simple-bus";
-> +		ranges;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +
-> +		syscon: syscon@80930000 {
-> +			compatible = "cirrus,ep9301-syscon",
-> +						 "syscon", "simple-mfd";
+> Also do test for setting these two config to "m" on SM8450 platform, get 
+> uart shell consle failed if so setting.
 
-Odd indentation. Please align with opening "
-
-> +			reg = <0x80930000 0x1000>;
-> +
-> +			eclk: clock-controller {
-> +				compatible = "cirrus,ep9301-clk";
-> +				#clock-cells = <1>;
-> +				clocks = <&xtali>;
-> +			};
-> +
-> +			pinctrl: pinctrl {
-> +				compatible = "cirrus,ep9301-pinctrl";
-> +
-> +				spi_default_pins: pins-spi {
-> +					function = "spi";
-> +					groups = "ssp";
-
-Please include one such entry in your bindings example, so it will be
-validated. It would also help you in review - you would not get a
-comment that pinctrl node is not used :/
-
-> +				};
-> +
-> +				ac97_default_pins: pins-ac97 {
-> +					function = "ac97";
-> +					groups = "ac97";
-> +				};
-> +
-> +				i2s_on_ssp_pins: pins-i2sonssp {
-> +					function = "i2s";
-> +					groups = "i2s_on_ssp";
-> +				};
-> +
-> +				i2s_on_ac97_pins: pins-i2sonac97 {
-> +					function = "i2s";
-> +					groups = "i2s_on_ac97";
-> +				};
-> +
-> +				gpio1_default_pins: pins-gpio1 {
-> +					function = "gpio";
-> +					groups = "gpio1agrp";
-> +				};
-> +
-> +				pwm1_default_pins: pins-pwm1 {
-> +					function = "pwm";
-> +					groups = "pwm1";
-> +				};
-> +
-> +				gpio2_default_pins: pins-gpio2 {
-> +					function = "gpio";
-> +					groups = "gpio2agrp";
-> +				};
-> +
-> +				gpio3_default_pins: pins-gpio3 {
-> +					function = "gpio";
-> +					groups = "gpio3agrp";
-> +				};
-> +
-> +				keypad_default_pins: pins-keypad {
-> +					function = "keypad";
-> +					groups = "keypadgrp";
-> +				};
-> +
-> +				gpio4_default_pins: pins-gpio4 {
-> +					function = "gpio";
-> +					groups = "gpio4agrp";
-> +				};
-> +
-> +				gpio6_default_pins: pins-gpio6 {
-> +					function = "gpio";
-> +					groups = "gpio6agrp";
-> +				};
-> +
-> +				gpio7_default_pins: pins-gpio7 {
-> +					function = "gpio";
-> +					groups = "gpio7agrp";
-> +				};
-> +
-> +				ide_default_pins: pins-ide {
-> +					function = "pata";
-> +					groups = "idegrp";
-> +				};
-> +
-> +				lcd_on_dram0_pins: pins-rasteronsdram0 {
-> +					function = "lcd";
-> +					groups = "rasteronsdram0grp";
-> +				};
-> +
-> +				lcd_on_dram3_pins: pins-rasteronsdram3 {
-> +					function = "lcd";
-> +					groups = "rasteronsdram3grp";
-> +				};
-> +			};
-> +
-> +			reboot {
-> +				compatible = "cirrus,ep9301-reboot";
-> +			};
-> +		};
-> +
-> +		adc: adc@80900000 {
-> +			compatible = "cirrus,ep9301-adc";
-> +			reg = <0x80900000 0x28>;
-> +			clocks = <&eclk EP93XX_CLK_ADC>;
-> +			interrupt-parent = <&vic0>;
-> +			interrupts = <30>;
-> +			status = "disabled";
-> +		};
-> +
-> +		/*
-> +		 * The EP93XX expansion bus is a set of up to 7 each up to 16MB
-> +		 * windows in the 256MB space from 0x50000000 to 0x5fffffff.
-> +		 * But since we don't require to setup it in any way, we can
-> +		 * represent it as a simple-bus.
-> +		 */
-> +		ebi: bus@80080000 {
-> +			compatible = "simple-bus";
-> +			reg = <0x80080000 0x20>;
-> +			native-endian;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges;
-> +		};
-> +
-> +		dma0: dma-controller@80000000 {
-> +			compatible = "cirrus,ep9301-dma-m2p";
-> +			reg = <0x80000000 0x0040>,
-> +			      <0x80000040 0x0040>,
-> +			      <0x80000080 0x0040>,
-> +			      <0x800000c0 0x0040>,
-> +			      <0x80000240 0x0040>,
-> +			      <0x80000200 0x0040>,
-> +			      <0x800002c0 0x0040>,
-> +			      <0x80000280 0x0040>,
-> +			      <0x80000340 0x0040>,
-> +			      <0x80000300 0x0040>;
-> +			clocks = <&eclk EP93XX_CLK_M2P0>,
-> +				 <&eclk EP93XX_CLK_M2P1>,
-> +				 <&eclk EP93XX_CLK_M2P2>,
-> +				 <&eclk EP93XX_CLK_M2P3>,
-> +				 <&eclk EP93XX_CLK_M2P4>,
-> +				 <&eclk EP93XX_CLK_M2P5>,
-> +				 <&eclk EP93XX_CLK_M2P6>,
-> +				 <&eclk EP93XX_CLK_M2P7>,
-> +				 <&eclk EP93XX_CLK_M2P8>,
-> +				 <&eclk EP93XX_CLK_M2P9>;
-> +			clock-names = "m2p0", "m2p1",
-> +				      "m2p2", "m2p3",
-> +				      "m2p4", "m2p5",
-> +				      "m2p6", "m2p7",
-> +				      "m2p8", "m2p9";
-> +			interrupt-parent = <&vic0>;
-> +			interrupts = <7>, <8>, <9>, <10>, <11>,
-> +				<12>, <13>, <14>, <15>, <16>;
-> +			#dma-cells = <1>;
-> +		};
-> +
-> +		dma1: dma-controller@80000100 {
-> +			compatible = "cirrus,ep9301-dma-m2m";
-> +			reg = <0x80000100 0x0040>,
-> +			      <0x80000140 0x0040>;
-> +			clocks = <&eclk EP93XX_CLK_M2M0>,
-> +				 <&eclk EP93XX_CLK_M2M1>;
-> +			clock-names = "m2m0", "m2m1";
-> +			interrupt-parent = <&vic0>;
-> +			interrupts = <17>, <18>;
-> +			#dma-cells = <1>;
-> +		};
-> +
-> +		eth0: ethernet@80010000 {
-> +			compatible = "cirrus,ep9301-eth";
-> +			reg = <0x80010000 0x10000>;
-> +			interrupt-parent = <&vic1>;
-> +			interrupts = <7>;
-> +			mdio0: mdio {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +		};
-> +
-> +		gpio0: gpio@80840000 {
-> +			compatible = "cirrus,ep9301-gpio";
-> +			reg = <0x80840000 0x04>,
-> +			      <0x80840010 0x04>,
-> +			      <0x80840090 0x1c>;
-> +			reg-names = "data", "dir", "intr";
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			interrupt-parent = <&vic1>;
-> +			interrupts = <27>;
-> +		};
-> +
-> +		gpio1: gpio@80840004 {
-> +			compatible = "cirrus,ep9301-gpio";
-> +			reg = <0x80840004 0x04>,
-> +			      <0x80840014 0x04>,
-> +			      <0x808400ac 0x1c>;
-> +			reg-names = "data", "dir", "intr";
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			interrupt-parent = <&vic1>;
-> +			interrupts = <27>;
-> +		};
-> +
-> +		gpio2: gpio@80840008 {
-> +			compatible = "cirrus,ep9301-gpio";
-> +			reg = <0x80840008 0x04>,
-> +			      <0x80840018 0x04>;
-> +			reg-names = "data", "dir";
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&gpio2_default_pins>;
-> +			status = "disabled";
-
-Why this node is disabled? Any dependencies/resources missing? Similar
-questions to other gpio nodes.
-
-
+Yeah, this we know, I did this. I am asking about SM4450.
 
 Best regards,
 Krzysztof
