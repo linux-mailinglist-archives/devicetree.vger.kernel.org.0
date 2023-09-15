@@ -1,175 +1,142 @@
-Return-Path: <devicetree+bounces-555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C4C17A1EFB
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:44:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DF807A1F0D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:45:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9EF12826D1
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:44:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9EE72826E8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:45:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A92181079D;
-	Fri, 15 Sep 2023 12:43:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 596E1107A6;
+	Fri, 15 Sep 2023 12:45:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28DC5D53B
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:43:58 +0000 (UTC)
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6A7B1AA
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:43:55 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-502a4f33440so3395013e87.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:43:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDD2C107A1
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:45:21 +0000 (UTC)
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E55F115
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:45:20 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b962c226ceso33101631fa.3
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:45:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694781834; x=1695386634; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AFljp9E8gsOJ/1p6IiKTImrdTZUSwDHU/eK5zLOImj4=;
-        b=UHgBhviFEdgNddmEN7dnJIThVlvYYB1hOl50g5DOZzSSRG/wBcbuthyOb9/ZMTEeUu
-         b7V9a5SVaBAAuxYYnqRhTcYJSgdJdxl3RIyIGvvwF8iDPxkggdAh+4E+146lDMsjM0wP
-         DgvwVCg4ZxNaG7VSIsb03V/EYg1iENYe1WlODKg2K2xD1xSh7sDCV+RTYy05531eutiP
-         r5/FK9oMqEm1jAgoGFjGCXfWW8iRCJ3QAxJQf+Y3OjugGb9CRy/MHg7okhPbhFm8f8qC
-         K1NtejFfxlAygt6aUibMj1hLnt01AGlLquAoeuL7iUCijD9ZQqTUTBQQtvVyQIeUQ3b+
-         9k9w==
+        d=linaro.org; s=google; t=1694781919; x=1695386719; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oTnoDjXgLFTKf4cq2qJGKU+HAQuadX7y4b7vlp63yRY=;
+        b=NPpKiRkAmbqkwzHu4t1KswJuTT/x4QWhuJz2dDGQykNeLqFtlcghxKmbJA9Jo12+pv
+         ZekXa//DaXT1+1UUm1Hgz7WyGM+ZgfUoHUfZpr58Tx3+WcmbICLE2rP13DXm401ekArC
+         2lntiOxa4sRMKCfYCcMMHdVZEz3idGRVLh8M1w0ehps4yWNIGZ1O8L0kiKiy8uIGfTIU
+         11WvVOwUx9oy5CwJCCHBxuCEGnnwMQtg8jX+TWKZ4Tge0jAImufctlk9EX21Px/NY7A/
+         Z8hYuN+J0MffaFSiMwbRTgzKeGKlnlFMrqkrvlUvG59v0sxKNlm3bhmzLh4Cp20gduQH
+         p1EA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694781834; x=1695386634;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AFljp9E8gsOJ/1p6IiKTImrdTZUSwDHU/eK5zLOImj4=;
-        b=kgtL8/fpi/HL7opAk+Ex15BsviSc9Ty4nNfonlEzWqx/VVwC8Rmtuz5EnntGSOliJ7
-         crA5IV12cHYlDUUYqFS64akldF9+9mOoLSJOxwnAAo7pimfYSiJaDzrlMpNbBY/9CIBj
-         ExPi3xOmtBoNsdRiR40jgnNcQSUQQRqRc8lk+7MhEAs8hlB7BsC5SjH+hC9pqQ5N222p
-         piNX6+SYDbtrFCB5gQP28d0DCLM4s77PLtjbbTsttw46DuQZaA712eVvf0ZjfxY5Wb1z
-         afmnpw9s1OU0Qq7EsVjCWa8ACQFUz65RwQe1GgAaNSUKe3FhAi7a6EUcl2oi7gLnfbo7
-         4f4w==
-X-Gm-Message-State: AOJu0Ywe1jkx4hnu3nF1kph1vjKHoc5MYxEOK/qBvsenqMz/FHUoBOKw
-	jrscyNAwFEbHw3aDbQuiEnOF40wH5+EFS81hTptKhw==
-X-Google-Smtp-Source: AGHT+IGwlUdYQGRipw08GY0WtxSkYDl6R15YdguhB/awRKjc+aS5WFLY0Mno/es7gzGOxAnPhLbxmw==
-X-Received: by 2002:a05:6512:eaa:b0:500:99e8:573e with SMTP id bi42-20020a0565120eaa00b0050099e8573emr1618758lfb.7.1694781833829;
-        Fri, 15 Sep 2023 05:43:53 -0700 (PDT)
-Received: from ?IPV6:2a00:f41:cbe:bc7d:62a6:5d09:5ba7:be5b? ([2a00:f41:cbe:bc7d:62a6:5d09:5ba7:be5b])
-        by smtp.gmail.com with ESMTPSA id o8-20020a056512050800b004fb757bd429sm633300lfb.96.2023.09.15.05.43.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 05:43:53 -0700 (PDT)
-Message-ID: <dc209ac7-7a06-449b-a198-ce6fb3ba7ff7@linaro.org>
-Date: Fri, 15 Sep 2023 14:43:51 +0200
+        d=1e100.net; s=20230601; t=1694781919; x=1695386719;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oTnoDjXgLFTKf4cq2qJGKU+HAQuadX7y4b7vlp63yRY=;
+        b=MfXWUZfqFwsUfdea/ppc+dd8ZbIYRk9SdTcVt0c2QsQwwthleVfjqKIjYQbmrwJazf
+         dcIlA0B5KEpylgCrYT90OcKeIWVMKZ+ryztCTQ0TQN8P5WLZbWlmUfiCONy3z7tz93lk
+         sQy6+yVk/+JTOtm3pq4Cfjr2/ufmK4bdXhNKEMyZmCSEgonGPq37RASQPvnqc4ivNJBl
+         OxYwofWxPt/jp24Xto3DPuTvvjJjU836u2qg2sCrAIIJHNaShx/ZxQJfqvmZy32FHfyV
+         D46xVv0Gajk8C7wfe+GUGeI6tauIeyvDlI1iex+Xi9rDvpWTjR+491hHMB9yYG0U4yCK
+         Teaw==
+X-Gm-Message-State: AOJu0Yxc436PPUa/mdB/coRuq6G6YqYnQDEPHOrkml6IRBjR/D5e/zRZ
+	Ah5fK9lhKL5Gackgs+lcdykmLg==
+X-Google-Smtp-Source: AGHT+IEIhep0b5NH0jnu+TqG0GJXxOXKbUnUd6PPYLIWPh5+Td3XG0+pIX9XvTqlui71/MvOe82tkQ==
+X-Received: by 2002:a05:6512:3e11:b0:502:d86d:6b26 with SMTP id i17-20020a0565123e1100b00502d86d6b26mr1653998lfv.50.1694781918701;
+        Fri, 15 Sep 2023 05:45:18 -0700 (PDT)
+Received: from [10.167.154.1] ([2a00:f41:cbe:bc7d:62a6:5d09:5ba7:be5b])
+        by smtp.gmail.com with ESMTPSA id f19-20020ac25333000000b004fe37199b87sm624752lfh.156.2023.09.15.05.45.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Sep 2023 05:45:18 -0700 (PDT)
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v4 0/3] MM8013 fg driver
+Date: Fri, 15 Sep 2023 14:45:14 +0200
+Message-Id: <20230621-topic-mm8013-v4-0-975aecd173ed@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] interconnect: qcom: Add SM4450 interconnect
- provider driver
-Content-Language: en-US
-To: Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, djakov@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_tsoni@quicinc.com, quic_shashim@quicinc.com, quic_kaushalk@quicinc.com,
- quic_tdas@quicinc.com, quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com,
- kernel@quicinc.com
-References: <20230915020129.19611-1-quic_tengfan@quicinc.com>
- <20230915020129.19611-3-quic_tengfan@quicinc.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230915020129.19611-3-quic_tengfan@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANpRBGUC/33NwW7DIBAE0F+xOIdqWTDgnPofVQ+A1zGSAxGkV
+ qvI/16cU6uqPs5Ib+bBKpVIlZ27Byu0xhpzakGdOhZmly7E49gyQ0AJGgW/51sM/Hq1ICSXRpt
+ +oMF6tKwR7ypxX1wKc0PpY1laeSs0xc/nx9t7y3Os91y+nper2Nt/1lfBgSsFJmjUAL18XWJyJ
+ b/kcmH70opHGnftSSPK3ho3/tSn7kgNk/BKTMoH0H8+5dGnbNpYMTqpBQUNv/S2bd/+XekMcAE
+ AAA==
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1694781917; l=1579;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=MhLWYhlsgWjrrAQjXdxmmKcqg9TDemaldksf0wIoqfQ=;
+ b=Yv611wxqWHSWLVClX9U+/xp5KSTXDWqUVqd9Dr2nxJ5RjyGXSDXWoCzsjTJGBsGytirY0yyfk
+ PwrPKRKApmiDzsM4d2m8xuCy/ktk67lPJ7ZBJr/z2NG2ceUSi7sVRr6
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 15.09.2023 04:01, Tengfei Fan wrote:
-> Add driver for the Qualcomm interconnect buses found in SM4450 based
-> platforms. The topology consists of several NoCs that are controlled
-> by a remote processor that collects the aggregated bandwidth for each
-> master-slave pairs.
-> 
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
-> ---
-[...]
+This series brings support for the Mitsumi MM8013 Li-Ion fuel gauge.
 
-> +static struct qcom_icc_bcm bcm_acv_disp = {
-> +	.name = "ACV",
-> +	.num_nodes = 1,
-> +	.nodes = { &ebi_disp },
-> +};
-> +
-> +static struct qcom_icc_bcm bcm_mc0_disp = {
-> +	.name = "MC0",
-> +	.num_nodes = 1,
-> +	.nodes = { &ebi_disp },
-> +};
-> +
-> +static struct qcom_icc_bcm bcm_mm0_disp = {
-> +	.name = "MM0",
-> +	.num_nodes = 1,
-> +	.nodes = { &qns_mem_noc_hf_disp },
-> +};
-> +
-> +static struct qcom_icc_bcm bcm_sh0_disp = {
-> +	.name = "SH0",
-> +	.num_nodes = 1,
-> +	.nodes = { &qns_llcc_disp },
-> +};
-> +
-> +static struct qcom_icc_bcm bcm_sh1_disp = {
-> +	.name = "SH1",
-> +	.num_nodes = 1,
-> +	.nodes = { &qnm_pcie_disp },
-> +};
-"""
-v1 -> v2:
-  - remove DISP related paths
-"""
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
 
-you sure?
+Changes in v4:
+- Use regmap
+- Fix units for some properties
+- Return retval of mm8013_checkdevice if it fails instead of -ENODEV
+- Minor style fixes
+- Link to v3: https://lore.kernel.org/r/20230621-topic-mm8013-v3-0-781da361ec60@linaro.org
 
-+ I still see _disp nodes..
+Changes in v3:
+- Reference power-supply.yaml in bindings
+- Link to v2: https://lore.kernel.org/r/20230621-topic-mm8013-v2-0-9f1b41f4bc06@linaro.org
 
-Konrad
+Changes in v2:
+- Fix typo in patch 2 commit message
+- Drop driver.owner in patch 3
+- Add PRESENT psy property
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20230621-topic-mm8013-v1-0-4407c6260053@linaro.org
+
+---
+Konrad Dybcio (3):
+      dt-bindings: vendor-prefixes: Add Mitsumi Electric Co., Ltd.
+      dt-bindings: power: supply: Document Mitsumi MM8013 fuel gauge
+      power: supply: Introduce MM8013 fuel gauge driver
+
+ .../bindings/power/supply/mitsumi,mm8013.yaml      |  38 +++
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ MAINTAINERS                                        |   5 +
+ drivers/power/supply/Kconfig                       |   9 +
+ drivers/power/supply/Makefile                      |   1 +
+ drivers/power/supply/mm8013.c                      | 274 +++++++++++++++++++++
+ 6 files changed, 329 insertions(+)
+---
+base-commit: dfa449a58323de195773cf928d99db4130702bf7
+change-id: 20230621-topic-mm8013-376759e98b28
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
 
