@@ -1,250 +1,111 @@
-Return-Path: <devicetree+bounces-450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 174267A18EF
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 10:34:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70A127A1886
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 10:22:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A97EB281F32
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 08:34:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A9BF282205
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 08:22:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70C6A6119;
-	Fri, 15 Sep 2023 08:34:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3D6ED50C;
+	Fri, 15 Sep 2023 08:22:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDC7C2F38
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 08:34:26 +0000 (UTC)
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 949FCEB;
-	Fri, 15 Sep 2023 01:34:24 -0700 (PDT)
-X-UUID: 261b03f053a011eea33bb35ae8d461a2-20230915
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=YqF0GmXW7u/0GMyc/k7hirQHe/I8GeaepW/dVu/If4I=;
-	b=NRlUpoN/dAcBVWAT4ykIIf6TKuvyGpdvwk7QektWns6fbhiAMoJ13JVfjfJ/c9lS+Br3mCIMncapVmJz0ofp6mU0ASKIhLNRYXifp2D4UxNBf2tbr8ykYT1iWVZYGPTNWObuHPEeYRnI0YlH1WyoIy98t9HQxhsx/HtRYwMgFcc=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:40004a28-fa81-4d41-83cc-050a6c8edf33,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:0ad78a4,CLOUDID:047210c3-1e57-4345-9d31-31ad9818b39f,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
-X-UUID: 261b03f053a011eea33bb35ae8d461a2-20230915
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 2025219946; Fri, 15 Sep 2023 16:16:19 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 15 Sep 2023 16:16:18 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Fri, 15 Sep 2023 16:16:17 +0800
-Message-ID: <0f34d997-5464-f924-5f8a-b158ab13e7da@mediatek.com>
-Date: Fri, 15 Sep 2023 16:16:15 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25B04D510
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 08:22:39 +0000 (UTC)
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29A354211
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 01:19:25 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40413ccdd4cso9961035e9.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 01:19:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694765963; x=1695370763; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JiFcpf2wLcf/YIfsCPE49E87uqZdxujW2soFuaVwGVg=;
+        b=gnfkUaKzRQXL7IycvJpD2Otuqp6an+/+gne9ObRAQOaqwhgYBZYsWrPKKS1VoCAoCV
+         JBBbP4+kgBvjbASDUSQpOnYF2HbJYTWTrfBpD2SBEaID72SgORrz37yznohvdFF8syU2
+         QrguegbigvnzbDQLDwwJTIG33vuDiPJOsjkkyLZZhJWN9Sk+42br/yt5DiptPyXDmkWd
+         pxeyzHRe1FbeQaa5XaE0S1aZv5Brg/s9lG+Sliavy0DYgWVV2J9pEOSqTDkA1OoO3HiJ
+         AV24RylOYosEZlAlDT5s4EB0sG2c2/aw1pEdLljo+MDn7qpGcZFediPoVJe/m/JiDUL8
+         isQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694765963; x=1695370763;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JiFcpf2wLcf/YIfsCPE49E87uqZdxujW2soFuaVwGVg=;
+        b=T6ci1rGMEugLOfCl+KzM5gRWOqeQ/XolSMn4Oy6mr4YXtPTzya6GiWilSQhhF8+DZo
+         rm7UfyHxx0qgAg9bgdk6gnMn6A/Oba2rsWJhketVJQMrDeefH1X0OusjjkziGCnT5DiD
+         PdLVz4OM1YwbR+i3NufdfrZk2e7S8rnfxjvuqHvBrD9S4EfWoUEkMxIVVGxoYhWJ0VY3
+         Zd0gHXn/5Z8+w5LsdFBqbmwfxx1sBUM9pXrzJ00ms6wBbZXBhyJJjaidWWdroALcu5N4
+         RxQ0k68PjIg2UFpwTiRL4g/Kn7phlfqVitoNISCjlAN7VzR1mPg6iiBWajook8rUbFVN
+         2pmQ==
+X-Gm-Message-State: AOJu0YwCPegjnm1LZ85c1x+pYBvpXSw6PD0KCLcu4qwDawJ8hnK/odju
+	ugqR/o4Hb99Nnceh0O0vgpCwjA==
+X-Google-Smtp-Source: AGHT+IFXzNFNR749dSovFhgKLlWMgw4PZnj0RueOlEVM+d1kUCki23FYGgz8dPsbomfUaXNFUXtojA==
+X-Received: by 2002:a05:600c:895:b0:401:b393:da18 with SMTP id l21-20020a05600c089500b00401b393da18mr3232700wmp.6.1694765962718;
+        Fri, 15 Sep 2023 01:19:22 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id c4-20020a05600c0ac400b004030c778396sm6878763wmr.4.2023.09.15.01.19.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Sep 2023 01:19:22 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@aj.id.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] ARM: dts: aspeed: greatlakes: use proper "mellanox" DT vendor prefix
+Date: Fri, 15 Sep 2023 10:19:15 +0200
+Message-Id: <20230915081917.22368-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v3 2/2] arm64: dts: mediatek: add device-tree for Genio
- 700 EVK board
-Content-Language: en-US
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	=?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul@gmail.com>, Chris-QJ Chen <chris-qj.chen@mediatek.com>
-References: <20230914061833.32288-1-macpaul.lin@mediatek.com>
- <20230914061833.32288-2-macpaul.lin@mediatek.com>
- <8596fd5e-035b-b7be-3588-c07f27d1f38f@collabora.com>
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <8596fd5e-035b-b7be-3588-c07f27d1f38f@collabora.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY
-	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 9/14/23 18:02, AngeloGioacchino Del Regno wrote:
-> Il 14/09/23 08:18, Macpaul Lin ha scritto:
->> Add basic device-tree for the Genio 700 EVK board. The
->> Genio 700 EVK is based on MediaTek MT8390 SoC.
->> MT8390 hardware register maps are identical to MT8188.
->>
->> The Genio 700 EVK has following features:
->>
->> - MT8390 SoC
->> - MT6365 PMIC
->> - MT6319 Buck IC
->> - 12V DC Jack
->> - 2x4GB LPDDR4X
->> - 64GB eMMC 5.1
->> - 64Mb SPI NOR
->> - M.2 Key A-E slot with PCIe Gen2 and USB 2.0
->> - 2x DSI LCM ports
->> - 2x touch sensor ports
->> - 2x MIPI-CSI, as camera daughter board slots
->> - USB 2 micro USB connector
->> - USB 3 with 1 to 2 hub:
->>    - M.2 Key B slot
->>    - Type-C connector, with DisplayPort over Type-C
->> - HDMI 2.0 TX port with Type A HDMI connector
->> - eDP port
->> - Gigabit Ethernet with RJ45 connector
->> - SD card slot
->> - Earphone Jack
->> - Analog Microphone
->> - 2x Digital Microphone
->> - 3x UART with serial-to-usb converters and micro USB connectors
->>
->> Signed-off-by: Chris-QJ Chen <chris-qj.chen@mediatek.com>
->> Signed-off-by: Pablo Sun <pablo.sun@mediatek.com>
->> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
->> ---
->>   arch/arm64/boot/dts/mediatek/Makefile         |   1 +
->>   .../dts/mediatek/mt8390-genio-700-evk.dts     | 880 ++++++++++++++++++
->>   2 files changed, 881 insertions(+)
->>   create mode 100644 
->> arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
->>
->> dependencies for v1:
->>   - This patch should be applied after the following patch set
->>    - mt8365-gneio-350-evk's dts change (v4)
->>     - 
->> https://lore.kernel.org/linux-arm-kernel/20230912092444.31635-1-macpaul.lin@mediatek.com/T/ 
->>
->>    - mt8395-genio-1200-evk's dts basic support (v6)
->>     - 
->> https://lore.kernel.org/lkml/20230911115717.26184-1-macpaul.lin@mediatek.com/T/ 
->>
->>    - mt8188 platform's basic support
->>     - 
->> https://lore.kernel.org/lkml/a4e1a80ebd19896410f50b0297e05dce06fb47cc.camel@mediatek.com/T/ 
->>
->>
->> changes for v2:
->>   - Fix gpio defines '0' to 'GPIO_ACTIVE_HIGH'.
->>   - Drop duplicate name: 'default' for I2C4.
->>   - Update dependencies
->>    - mt8365-gneio-350-evk's dts change (v5)
->>     - 
->> https://lore.kernel.org/lkml/20230913032226.4092-1-macpaul.lin@mediatek.com/ 
->>
->>    - mt8395-genio-1200-evk's dts basic support (v7)
->>     - 
->> https://lore.kernel.org/linux-arm-kernel/20230913032057.3197-1-macpaul.lin@mediatek.com/T/ 
->>
->>    - mt8188 platform's basic support (v4)
->>     - 
->> https://lore.kernel.org/lkml/a4e1a80ebd19896410f50b0297e05dce06fb47cc.camel@mediatek.com/T/ 
->>
->>
->> changes for v3:
->>   - No change.
->>   - Update dependencies
->>    - mt8365-gneio-350-evk's dts change (v5)
->>     - 
->> https://lore.kernel.org/lkml/20230913032226.4092-1-macpaul.lin@mediatek.com/ 
->>
->>    - mt8395-genio-1200-evk's dts basic support (v8)
->>     - 
->> https://lore.kernel.org/lkml/20230914055145.16801-1-macpaul.lin@mediatek.com/T/ 
->>
->>    - mt8188 platform's basic support (v4)
->>     - 
->> https://lore.kernel.org/lkml/a4e1a80ebd19896410f50b0297e05dce06fb47cc.camel@mediatek.com/T/ 
->>
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/Makefile 
->> b/arch/arm64/boot/dts/mediatek/Makefile
->> index 22f362bbbdac..3262849c0f6b 100644
->> --- a/arch/arm64/boot/dts/mediatek/Makefile
->> +++ b/arch/arm64/boot/dts/mediatek/Makefile
->> @@ -54,5 +54,6 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += 
->> mt8195-cherry-tomato-r3.dtb
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-demo.dtb
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-genio-350-evk.dtb
->> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8390-genio-700-evk.dtb
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-genio-1200-evk.dtb
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts 
->> b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
->> new file mode 100644
->> index 000000000000..ed6bbf0c15cc
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
->> @@ -0,0 +1,880 @@
->> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->> +/*
->> + * Copyright (C) 2023 MediaTek Inc.
->> + * Author: Chris Chen <chris-qj.chen@mediatek.com>
->> + *       Pablo Sun <pablo.sun@mediatek.com>
->> + *       Macpaul Lin <macpaul.lin@mediatek.com>
->> + */
->> +/dts-v1/;
->> +
->> +#include "mt8188.dtsi"
->> +#include "mt6359.dtsi"
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/input/input.h>
->> +#include <dt-bindings/interrupt-controller/irq.h>
->> +#include <dt-bindings/pinctrl/mediatek,mt8188-pinfunc.h>
->> +#include <dt-bindings/regulator/mediatek,mt6360-regulator.h>
->> +#include <dt-bindings/spmi/spmi.h>
->> +#include <dt-bindings/usb/pd.h>
->> +
->> +/ {
->> +    model = "MediaTek Genio-700 EVK";
->> +    compatible = "mediatek,mt8390-evk", "mediatek,mt8390",
->> +             "mediatek,mt8188";
->> +
-> 
-> ..snip..
-> 
->> +
->> +&i2c0 {
->> +    pinctrl-names = "default";
->> +    pinctrl-0 = <&i2c0_pins>;
->> +    clock-frequency = <400000>;
->> +    status = "okay";
->> +
->> +    touchscreen@5d {
->> +        compatible = "goodix,gt9271";
->> +        reg = <0x5d>;
->> +        interrupt-parent = <&pio>;
->> +        interrupts = <6 IRQ_TYPE_EDGE_RISING>;
-> 
-> interrupts-extended = <&pio 7 IRQ_TYPE_EDGE_RISING>;
-> 
-> after which:
-> 
-> Reviewed-by: AngeloGioacchino Del Regno 
-> <angelogioacchino.delregno@collabora.com>
-> 
+"mlx" Devicetree vendor prefix is not documented and instead "mellanox"
+should be used.
 
-Line 'interrupts-extended = <&pio 6 IRQ_TYPE_EDGE_RISING>;'
-has been fixed in v4 patch.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-greatlakes.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks!
-Macpaul Lin
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-greatlakes.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-greatlakes.dts
+index 7a53f54833a0..9a6757dd203f 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-greatlakes.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-greatlakes.dts
+@@ -66,7 +66,7 @@ &mac3 {
+ 	pinctrl-0 = <&pinctrl_rmii4_default>;
+ 	no-hw-checksum;
+ 	use-ncsi;
+-	mlx,multi-host;
++	mellanox,multi-host;
+ 	ncsi-ctrl,start-redo-probe;
+ 	ncsi-ctrl,no-channel-monitor;
+ 	ncsi-package = <1>;
+-- 
+2.34.1
+
 
