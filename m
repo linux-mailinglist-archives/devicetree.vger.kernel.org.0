@@ -1,114 +1,131 @@
-Return-Path: <devicetree+bounces-591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36C037A20AF
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 16:18:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 444CB7A20B8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 16:20:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC34F28301C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:18:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A1CE1C20A1E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:20:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA04610A38;
-	Fri, 15 Sep 2023 14:18:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F4551119B;
+	Fri, 15 Sep 2023 14:19:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6772E101EB
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 14:18:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33293C433C8;
-	Fri, 15 Sep 2023 14:18:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694787510;
-	bh=NGHyNfngYAoRYPFTNCehZc9kQqdxb/OpDzME1uzZLxg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LqAfXzb/dZXYaiwskKA5YNGfPCbSuNQl9f66a8h27Cnuou+XHGq+dQvzv8g4NNZT5
-	 zEjBpJqXz1wZqeffS2g5wIEztBcFRqcZIfdnO15tx31hFIr4ykCeErVMV+L83UO+f8
-	 joyEDx1yenRjihRF0LyDocrmppGqqzPIJDQzevhtAwsZ6lXrcIleAXn3cAwrQCxZFN
-	 RBZhlA6cz5bA15WjjBG8NZxY9LFbCfy8CUu/yZNcTI6vgHZ32v2+foXOqTQwXM0QdV
-	 18bQzJfdDRvdcQgemwwVf8UH1Aarlczb5rVpVJt9s8x6hccEDObhT+ju9CELH6yIrq
-	 TgKhairxl/eHQ==
-Date: Fri, 15 Sep 2023 15:18:25 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Wang Chen <unicornxw@gmail.com>
-Cc: linux-riscv@lists.infradead.org, aou@eecs.berkeley.edu,
-	krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
-	paul.walmsley@sifive.com, robh+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	jszhang@kernel.org, guoren@kernel.org, chao.wei@sophgo.com,
-	xiaoguang.xing@sophgo.com, Wang Chen <wangchen20@iscas.ac.cn>
-Subject: Re: [PATCH 03/12] dt-bindings: riscv: add sophgo sg2042 bindings
-Message-ID: <20230915-reoccupy-clustered-231e58a00f3c@spud>
-References: <20230915072242.117935-1-wangchen20@iscas.ac.cn>
- <20230915-boxing-emporium-669d2715a347@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 289C833ED;
+	Fri, 15 Sep 2023 14:19:55 +0000 (UTC)
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A75E71FCE;
+	Fri, 15 Sep 2023 07:19:53 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b9338e4695so33779291fa.2;
+        Fri, 15 Sep 2023 07:19:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1694787592; x=1695392392; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=9p1y/dHKWZ4mldBm4B4C2rsKuH8pDG1nwww6AtIwFhc=;
+        b=S55yFmX9FkgupeoDzmLQsFhYECFXPAPyXlVzrqvOBCbkrinGZZ2WUVj2MrtRWKICEs
+         qdLYdYb6iO3bktSn9ocUfX6yM7zTD8ODoOfzk3+ALd9IuACWpUBVTzZxGmmmWR3l11A0
+         20XNEUNwKMKCpJceqsh0ChI/xV+4Zgx4j0PyvdskAsm/81uGrz5etlwKPP1Np9rRrCZ4
+         Fc/hRyc41U+oAD1r4CfkAMWjkd8Xl0xIXszEZilSjV3AMAtTgz/8OSXrx/mXdbhmiVRB
+         KE5ICLV1qqJVg9hKRC071h0SWuvC5Sx+F1wfr8CmQZfUthOz9IGJNvadjAyxbFR3tIzF
+         eFQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694787592; x=1695392392;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9p1y/dHKWZ4mldBm4B4C2rsKuH8pDG1nwww6AtIwFhc=;
+        b=ZLcHW7B7cgBMWiwC4sQLJf9GF+9FFTPjVCNMmsE8NiKRi68qsgGf7S8gsJSTjD2S3V
+         eIsE9sTLJOtekmAJHkYnYYM04yvtUoDPFUwdCJklOmg3bnUdL3SIEUoVwokiwBxdnhIS
+         THUkgGTO4pKoWkZhX2wTYbmjtSRJRM5GJZzCCZCSkeZqxug9yD/o7fKwlfyMbHIWUdUp
+         YOsSJ+mZGOUpAbTQ/P+3QrohumpXVetvinnGGC084ewsnTIe8tLcQ4od/G/3d6PivxsC
+         KjysS4KzUPzGyssk7jvjRdgugi9I9eihh/Y/uHaYIpZrPIp74chgGJuxdBb7mtP/9zfI
+         TbEQ==
+X-Gm-Message-State: AOJu0YwILZxV3t9+kGDcOAbMxIYynSJAGpUuMX+SfqZpvWeLVlCiYNcB
+	ZIOrkV4sIREE5cE+g8dNXUE=
+X-Google-Smtp-Source: AGHT+IHmpAzcVMy9/mTX5cEnVsuC3NbKv+46JVCvmYw71ilIB49LnenXkrLGAxFC5kVwaYrjAoW6Xg==
+X-Received: by 2002:a05:651c:cc:b0:2b6:e2c1:6cda with SMTP id 12-20020a05651c00cc00b002b6e2c16cdamr1625717ljr.46.1694787591541;
+        Fri, 15 Sep 2023 07:19:51 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id x18-20020a2e9c92000000b002b6cb25e3f1sm696566lji.108.2023.09.15.07.19.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Sep 2023 07:19:51 -0700 (PDT)
+Date: Fri, 15 Sep 2023 17:19:48 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Philippe =?utf-8?Q?Mathieu-Daud=C3=A9?= <philmd@linaro.org>
+Cc: Keguang Zhang <keguang.zhang@gmail.com>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
+	Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Subject: Re: [PATCH v5 0/3] Move Loongson1 MAC arch-code to the driver dir
+Message-ID: <bwwxpczznbfaqpzuzvtgbkmluk6wfxfp25coy6t7mjq3axjnvs@5pvgxumiyjkd>
+References: <20230914114435.481900-1-keguang.zhang@gmail.com>
+ <ueevvju7i42wik6fevdmvbtypm4su77guyo4zizhrfreexken7@nrcovxfnyuvq>
+ <f69ac27a-943c-3966-385a-e12ecd71d33a@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5kwtB/G/oIJ2SyNw"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230915-boxing-emporium-669d2715a347@spud>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f69ac27a-943c-3966-385a-e12ecd71d33a@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+On Fri, Sep 15, 2023 at 03:23:44PM +0200, Philippe Mathieu-Daudé wrote:
+> On 15/9/23 11:55, Serge Semin wrote:
+> > Hi Keguang
+> > 
+> > On Thu, Sep 14, 2023 at 07:44:32PM +0800, Keguang Zhang wrote:
+> > > In order to convert Loongson1 MAC platform devices to the devicetree
+> > > nodes, Loongson1 MAC arch-code should be moved to the driver dir.
+> > > Add dt-binding document and update MAINTAINERS file accordingly.
+> > > In other words, this patchset is a preparation for converting
+> > > Loongson1 platform devices to devicetree.
+> > 
+> > No more comments from my side. Thank you for the patches and
+> > especially for the patience in the review process.
+> > 
+> > For the entire series:
+> > Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+> > 
+> > * I'll also send individual Rb tags to each patch so b4 would be able
+> > * to take it into account.
+> 
 
---5kwtB/G/oIJ2SyNw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Maintainers using b4 should use the '-t' option, then you don't need
+> to do that:
+> 
+>  -t, --apply-cover-trailers
+> 
+>  By default, b4 will not apply any code review trailers sent to
+>  the cover letter (but will let you know when it finds those).
+>  This lets you automatically apply these trailers to all commits
+>  in the series. This will become the default in a future version
+>  of b4.
+> 
+> https://b4.docs.kernel.org/en/latest/maintainer/am-shazam.html#common-flags
 
-On Fri, Sep 15, 2023 at 03:11:04PM +0100, Conor Dooley wrote:
-> On Fri, Sep 15, 2023 at 03:22:42PM +0800, Wang Chen wrote:
-> > Add DT binding documentation for the Sophgo SG2042 Soc [1] and the
-> > Milk-V Pioneer board [2].
-> >=20
-> > [1]: https://en.sophgo.com/product/introduce/sg2042.html
-> > [2]: https://milkv.io/pioneer
-> >=20
-> > Signed-off-by: Wang Chen <wangchen20@iscas.ac.cn>
-> > Signed-off-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 90f13281d297..0e0d477dab38 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -20063,6 +20063,12 @@ F:	drivers/char/sonypi.c
-> >  F:	drivers/platform/x86/sony-laptop.c
-> >  F:	include/linux/sony-laptop.h
-> > =20
-> > +SOPHGO DEVICETREES
-> > +M:	Xiaoguang Xing <xiaoguang.xing@sophgo.com>
-> > +M:	Chao Wei <chao.wei@sophgo.com>
-> > +S:	Maintained
-> > +F:	Documentation/devicetree/bindings/riscv/sophgo.yaml
->=20
-> I would like to see an Ack from those you are volunteering here.
+Oh, got it. Can't believe I didn't figure out to take a closer look at
+the help-page. Thanks for pointing it out to me.
 
-I'm going to assume that you also add coverage here for the dts files
-later in the series, but since the thing isnt't threaded it is hard to
-check easily. If not, then a MAINTAINERS entry covering them should be
-added, featuring a person that is going to monitor the lists, apply
-patches and send PRs to the soc maintainers.
-
-As a last resort, I can do that, but I don't have this hardware and
-would rather someone that specifically cares for this hardware does it.
-
-Thanks,
-Conor.
-
-
---5kwtB/G/oIJ2SyNw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQRnsQAKCRB4tDGHoIJi
-0milAQDChQzQ2fACthHIoqVBo61pfNxHONif3TV7/ItXZYpXmgD+KlVm9OHBkyJ2
-QkzEmFmLHELmhoQTeGYPQPnb/MjeuwA=
-=CP99
------END PGP SIGNATURE-----
-
---5kwtB/G/oIJ2SyNw--
+-Serge(y)
 
