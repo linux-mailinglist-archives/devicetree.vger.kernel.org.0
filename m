@@ -1,263 +1,114 @@
-Return-Path: <devicetree+bounces-567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C063E7A1FA2
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 15:17:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4F347A1FAA
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 15:18:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9E2B1C20B83
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 13:17:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF70F1C2118E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 13:18:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3041510960;
-	Fri, 15 Sep 2023 13:17:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18C9110963;
+	Fri, 15 Sep 2023 13:18:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10FAF107BA;
-	Fri, 15 Sep 2023 13:17:34 +0000 (UTC)
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2060.outbound.protection.outlook.com [40.107.20.60])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 189CD10D;
-	Fri, 15 Sep 2023 06:17:33 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jZw+NkBSTbMZfKyVUmQZFzhdD+KVBSwJGWJysQvNXPiJ0g8b9x0l0FGfwwgriMQGR5xb/uvEHar2WYk+P/yMp0/xSowL8yvCnMwWK3wiQX8/oRbvuqZb+w4F6HicVarF1iGscOFGYO3hp5mAtJULg9ofEDzvm8XKhkwm41x4QrMMSyaMyd1dXWiyaQtr4M4XwHau7gGEI173CALORNbEFREVXMZrmTLsrhc3vslhUTGoR/HCNUP38MfUdrWpUMwryazmfBA+EUgLZZrBZ/+X9XG8fvVw0IioOPU4sQpfyDzDp8AKshvNGJUMOU9ujAI+dJultZ+02k9fH26tlspxyA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QRujAxNgKGtASDIdUlxWlt0JJj4j2BXHs5/v6E2CRoI=;
- b=NV5Qd1PfTw18QAPMH+Iu1HMer8WVcg6LEGbj14+F6FDhU7pqcn1PWLtTPwfmDwb5jVpOKxUQtrE31E/ops+b4Og2HALOjDLPrzzzO2H4TF6OrZxQE+lR7Bde9Vkp8XGAwe2bS24HFeLsoJag3jaoINZNg/IhJjOAV1OlIdZ8X+ujmbk5htgEgtpMXmsauZRaSk7/JdCt86/YgAHgj40EdN0TseAvlyNkjpGpHYUO72EW4QwiZNg7czKVqMK/aKNjeb8efQX1Sa7fvxFq+KvSvImmYAjQTj7iXPmbAx8QSXcIMnsFRoT6e2GyhsXdzMzSVbLDqURgJAIlpYGPzFO+SQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QRujAxNgKGtASDIdUlxWlt0JJj4j2BXHs5/v6E2CRoI=;
- b=UA6Zwitp6Dg60SSnwZfveP3OhLgiog4/lhEj0NJoOSzuarKqJgJsK1CckxJAN77+1ozHeGEGe4tlQbmDIHNhQAA9nAZ1hShvpQ+Oc93wgXD5NctZ1HZaIRklNhoP9JQNi8XxYDRFxVSU4ha+0Yo98vR+LtoLZrOIq6aSayFp5R8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
- by AS2PR08MB9450.eurprd08.prod.outlook.com (2603:10a6:20b:5ea::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.31; Fri, 15 Sep
- 2023 13:17:30 +0000
-Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
- ([fe80::bc92:216b:11ed:db63]) by VE1PR08MB4974.eurprd08.prod.outlook.com
- ([fe80::bc92:216b:11ed:db63%6]) with mapi id 15.20.6792.020; Fri, 15 Sep 2023
- 13:17:30 +0000
-Message-ID: <8937c928-1938-4864-08e1-25f88caadb9a@wolfvision.net>
-Date: Fri, 15 Sep 2023 15:17:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v2 1/2] usb: typec: tps6598x: add reset gpio support
-Content-Language: en-US
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230912-topic-tps6598x_reset-v2-0-02a12e2ec50a@wolfvision.net>
- <20230912-topic-tps6598x_reset-v2-1-02a12e2ec50a@wolfvision.net>
- <ZQRUsD1QLke70VG2@kuha.fi.intel.com>
-From: Javier Carrasco <javier.carrasco@wolfvision.net>
-In-Reply-To: <ZQRUsD1QLke70VG2@kuha.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
-X-ClientProxiedBy: VI1P194CA0048.EURP194.PROD.OUTLOOK.COM
- (2603:10a6:803:3c::37) To VE1PR08MB4974.eurprd08.prod.outlook.com
- (2603:10a6:803:111::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 248DF1094B
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 13:18:13 +0000 (UTC)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D07651FF5;
+	Fri, 15 Sep 2023 06:18:07 -0700 (PDT)
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-d818d4230f6so1883641276.1;
+        Fri, 15 Sep 2023 06:18:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694783887; x=1695388687;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PeKCNpXC9U5SuiucQeYE4o7+yLWv2iuRbCuYbucPsys=;
+        b=HhbARRwG6pGLenRsfRVK1DRsXInO90Y+uHuh1dXtG4kFM54k8E9SAAZBnLOC4fEd5i
+         yFLGNPqUiLxEsT/1AHD5QCGe/69VK6zyEVUrEtvgQcNnW+oAB71b6yljRj5hY1YhLTby
+         /bl6MJQhOt0HGKFrppRhcIZuOQLI/0/LjW7xWzb21jUGtNUDkPkVH+qu8KHvTkNJPi7h
+         Ms6o93R66j2zRD6iOb99RycCtuqt/4Os5XnG2xwe8IDk05K3Qwf1bg5qnfo04nBQft4k
+         xBNNUsiNQ+xFYx7LD8YfHxfZSD2BlJkwJj4hzmCLq4qJUzebCysreg6WmK0BjA0OSRNC
+         xoHg==
+X-Gm-Message-State: AOJu0YwgLstFz1WzWSLUKQkpWI8mvo8bW2Ns78qmehJ8vebjNxFIk8OE
+	rhCfpcj929GdrSpGbHL15wvG8hX3U74TZA==
+X-Google-Smtp-Source: AGHT+IHi5NwStPEFiXr2DeAA/8mmuRjTvMQrnR5xW0xK38OM2hoNnXPktwr+VZoh+xqC8Iz6C+oWsg==
+X-Received: by 2002:a25:29c3:0:b0:cec:81af:cf92 with SMTP id p186-20020a2529c3000000b00cec81afcf92mr1560066ybp.36.1694783886700;
+        Fri, 15 Sep 2023 06:18:06 -0700 (PDT)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id m18-20020a259e12000000b00d7badcab84esm779931ybq.9.2023.09.15.06.18.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Sep 2023 06:18:06 -0700 (PDT)
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-d8168d08bebso2122326276.0;
+        Fri, 15 Sep 2023 06:18:06 -0700 (PDT)
+X-Received: by 2002:a25:adc2:0:b0:d04:fc64:350 with SMTP id
+ d2-20020a25adc2000000b00d04fc640350mr1727370ybe.2.1694783886095; Fri, 15 Sep
+ 2023 06:18:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|AS2PR08MB9450:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6d336bbc-e889-49f2-8be4-08dbb5ee1d51
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	qpi1aaXVHvQQsrwvoXsqD81wvctKCQUn3y48jETRk7rdleFe68tC7ODvo2rggDPmbPxnSQE5tDq+nhL4ZcX5EhHStaxDdsjHLFSVnp/Z3vsyLJX0vjo4wpY7qtpgwmzqXNtaZbsvj4aMmW485bKxcADB0gXYBrLKiSTXzVwcR1nISifwkCG3cy0Hg431yUn8j+B3YwMPFkfoQo2ckoVuzGanoasQNBvWaw5wwwJcbCABdS9kMHizqXvVbbuD2f2tSSMxJDe6WKnokpMUiV/fbVLVcQrb+9XAXL4r2YWyY6gV+7aI9eA+o8jSBZif4Il8jyL/imIRcUEUhY16PIh1ODtErBvIi1/aBjS7eN43i/+XMs6qujVHSdFnY2PigDxUF2MHi649T+mfYINi7GrcnYeyZbz/Li2soRgWJB0SUDuu7+eEsAEqM3/3XBliWd2ftshfPetqWMAhSyItpDBHg8cnUsnbckAzn8W4M5uR8h8Z+M6fqCDk5AWAYh3FFojEXwaKkdN63TYpP/UpCznPqEO5qkzliArmECajpCYJubB+9CcbEvKHfGGQVUjEQ3zMI/EpfsoC3XZA1SszfNtAy+ItTLmPkyKMO5YO4DUe0eYD0fA69dpCty+U1WvyxG8vSZc8vs4hqAsJ7kUb5eB3BA==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(346002)(396003)(376002)(39850400004)(186009)(1800799009)(451199024)(26005)(53546011)(2616005)(38100700002)(6512007)(36756003)(31696002)(83380400001)(86362001)(44832011)(966005)(5660300002)(2906002)(45080400002)(66556008)(478600001)(31686004)(41300700001)(8676002)(4326008)(316002)(6486002)(6506007)(8936002)(66946007)(6916009)(54906003)(66476007)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?cldJV3YySStJejNrOUM0a0FPZlF3QlIvSmp3Sy9aQzJoYmc3TTZDbDlQVGZj?=
- =?utf-8?B?NkJtUnFwZ3hDc3J6NTJ6bHIyK2RFd3BkQzhEcmJxV1F3NGk5cE9xWVFyTE5y?=
- =?utf-8?B?MzM2c0xRcEx2WXdtUWVFL2RmNHcyb0VwRkhRbVJoNHZhbXBPQTJ4eWV6YzlZ?=
- =?utf-8?B?cGhtN3Q4dUR4dGNJNHJCL0p6MVhldmRtZlZGMGo1WmhiUVFlQVBlUEhTcnlQ?=
- =?utf-8?B?WUhkaHVtQU0yL1ZPT2p5OWlFRXNoZm96V29sV3NtbGdlRVN2YWY5ODFBNUMx?=
- =?utf-8?B?eE42RDUrS1ZCOUVBR0ozalczRnd5ZjN6bTU1c1Y3VU9WekcvRHA4ZG1rTEtF?=
- =?utf-8?B?Ri90WTFkL1F1S3NnZ054cXNzbWpjeU8rbGRPL2NmUVpEbFNYV0xBRnhSMGl5?=
- =?utf-8?B?K0NZc0tWUHhUK0MrZlN2RTdybXNnY09mWDFWMDFQSlRwSS95SU1mS1EwNEFI?=
- =?utf-8?B?YklXb21CZ0drVWNoVTZlQzQzUi9Jd0c3UENPdkR2d3FJOEtZMm9pbW8yanFT?=
- =?utf-8?B?K3E1SHV0WFF6K25xYnN6SDAwRDFRYzV2RFcvOVR2eklIak5JcTl1QXZvNzg2?=
- =?utf-8?B?RHBKU3ByTk41SFhUcE9kZDhpcEZKbmo5eXUzWklzSDhPWlUyeXBVMnE3WlBE?=
- =?utf-8?B?T2ljYnBCUlFGWWxHc3VsQ3RaOEkxUUhKTmdDbG9hVGxjaHdhSm13WXRJMEJU?=
- =?utf-8?B?Q2dUVENoQVppSjRhTmUvbjZxMXZ1b0RpbzFRMktvK2ptMHB5Y0lUYkFma0Jk?=
- =?utf-8?B?Z2dXSXZMOVVWUnVxTjQ3K2kveVRZM0s3bWZVTTUxT0RlT2syNUZ5K1Q1MzJs?=
- =?utf-8?B?b3lYamFjOEF0ZjVyZndHRHBGejlzSFJUb3l1aUZjdmFDbzVuUE94VFhmMHg1?=
- =?utf-8?B?eFg4TUJrTVZDU21ITjQ5TDFzNDlsZmptS2FkTmVINEI1Z3d0dllDN0lPemN3?=
- =?utf-8?B?b3VGdy96TWJ4ckxISnBXQlpuYkdvcXVhb21jK2pwdmk5aDJicVo3bjBzOXV1?=
- =?utf-8?B?bDEwakdVVjdUYllHc0t3dzN5V24rcGtCNUJ6MHdaNGVCTzB0WmVrMGNEVVhy?=
- =?utf-8?B?VUhGekgveDdhWjIzSjVlMmJuNlNBMWxENmFkam1mWkprYS93ejRISGhldWFj?=
- =?utf-8?B?d24yOCt2RUZRdDg1c3MzRjcyS1A2ME5qMExEWVg1TU15Vk9IbjBUTm1sNGxh?=
- =?utf-8?B?RURpOHVKbEhQWlZZSG5QSyswWDI5UDRtV0NENEFvSzBmZGwvNDJLVHQ2bWlp?=
- =?utf-8?B?RzdRSjVOdGx3SXZ3UkV2end3V25UOTdnNmVoRGFqWlhKRHpZODlUdVMzZDh1?=
- =?utf-8?B?SWVwcW8wUWd6Sy9MMWwrMkJVZGlSZ0xHQVpnZlJqTmUzTmFwT1hVM2RLSXRJ?=
- =?utf-8?B?T3VrWWtFb1huNk94MnFLOWdkWWV1WEVhWnNoRzJxUE5kRmwzcmNMb3I1MVRn?=
- =?utf-8?B?UFBqWGt1ZElBeEk4VDErUllDdjQwc3N6ZFJnbit1ZTJGUkxvcEZoUHdLR0R0?=
- =?utf-8?B?cG5IQ0RBemRmM1BoanF6b2FkaitUd2lVd0JDSWpsVWtYNis3eEhQTmd1WXFs?=
- =?utf-8?B?UUd0UUhpL1ptNUkvckxMdWtuWGE3Rmd2bGJrd1VZYm5mcGtrNWhUTXpTRGtq?=
- =?utf-8?B?bDZoTE5HRDBpVU9vWFppVi9rYmdoTzZqbWhXZHdCYkJTc1dDZy9BZFJ1RWxo?=
- =?utf-8?B?UFZ6OFhFcUtxVi8xOFlqZWZBUTBwdHd1TFFvQ3dObExLeXh4R1RjRjdzVlBj?=
- =?utf-8?B?MndrWEF4dVorSUEzZ0FoYUJINFhtWmREL09vaW1yR01yTXlESUpyVFlYQ0Zx?=
- =?utf-8?B?by91ajNYTWFOSTBtcjAwbmllNTBqUk5aNW5UTGM1aXpaM1d6SGlHWCt2OHdj?=
- =?utf-8?B?ZlBtaVRQcG11bFc4c3JhaFRhaWpWK3Z4dUFsN3lSaWRyUHJTaE1JSEZ5enY5?=
- =?utf-8?B?OWdDN2ZPVmRmbXhRR2ZMczdoejNXMXZoWVozd1JGeHNuNTlMQWx5WHpaczVj?=
- =?utf-8?B?ZjRzMCtKbFdDOHEyM0wxY0xLSk1kTW1HZDVDL3Y3ajZMaU9ZbGE1TXE2bEh3?=
- =?utf-8?B?QXYzdWxFRktYNVRWbUUwTTBNczBDOVFXZCsyQnBFM3RyZTBFQmdlK0FNcm9R?=
- =?utf-8?B?MmJBeGYySXg4RkFSZ292MHU5aE1hYlNnL0pPckFDVEV0RVBXWWpDNHE3MGZi?=
- =?utf-8?Q?KVvPVob+hTJ/JkT8IBkSdGU=3D?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6d336bbc-e889-49f2-8be4-08dbb5ee1d51
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2023 13:17:30.3522
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8GcU+1FKFWcXJP0bLRXJ3CYfgcgq26IWGbViNUjAp9e4kdDKQtCBeufROgslXPDx0CIjUDTQZfffFRSnIV2ipw9yjSdFcZWmcFP9xRo2Q3Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR08MB9450
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com> <20230912045157.177966-33-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20230912045157.177966-33-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 15 Sep 2023 15:17:53 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVv3uL+cF5YYNAmJ7wMoT4HuyaOYndndZZ-jPuVE3fQqQ@mail.gmail.com>
+Message-ID: <CAMuHMdVv3uL+cF5YYNAmJ7wMoT4HuyaOYndndZZ-jPuVE3fQqQ@mail.gmail.com>
+Subject: Re: [PATCH 32/37] arm64: dts: renesas: add initial DTSI for RZ/G3S SoC
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
+	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
+	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
+	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On Tue, Sep 12, 2023 at 6:53=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Add initial DTSI for RZ/G3S SoC. Files in commit has the following
+> meaning:
+> r9a08g045.dtsi          RZ/G3S family SoC common parts
+> r9a08g045s33.dtsi       RZ/G3S R0A08G045S33 SoC specific parts
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-On 15.09.23 14:57, Heikki Krogerus wrote:
-> On Fri, Sep 15, 2023 at 02:23:48PM +0200, Javier Carrasco wrote:
->> The TPS6598x PD controller provides an active-high hardware reset input
->> that reinitializes all device settings. If it is not grounded by
->> design, the driver must be able to de-assert it in order to initialize
->> the device.
->>
->> The PD controller is not ready for registration right after the reset
->> de-assertion and a delay must be introduced in that case. According to
->> TI, the delay can reach up to 1000 ms [1], which is in line with the
->> experimental results obtained with a TPS65987D.
->>
->> Add a GPIO descriptor for the reset signal and basic reset management
->> for initialization and suspend/resume.
->>
->> [1] https://e2e.ti.com/support/power-management-group/power-management/
->> f/power-management-forum/1269856/tps65987d-tps65987d-reset-de-assert-
->> to-normal-operation/4809389#4809389
->>
->> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
->> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> ---
->>  drivers/usb/typec/tipd/core.c | 20 ++++++++++++++++++++
->>  1 file changed, 20 insertions(+)
->>
->> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
->> index 37b56ce75f39..3068ef300073 100644
->> --- a/drivers/usb/typec/tipd/core.c
->> +++ b/drivers/usb/typec/tipd/core.c
->> @@ -8,6 +8,7 @@
->>  
->>  #include <linux/i2c.h>
->>  #include <linux/acpi.h>
->> +#include <linux/gpio/consumer.h>
->>  #include <linux/module.h>
->>  #include <linux/of.h>
->>  #include <linux/power_supply.h>
->> @@ -43,6 +44,9 @@
->>  /* TPS_REG_SYSTEM_CONF bits */
->>  #define TPS_SYSCONF_PORTINFO(c)		((c) & 7)
->>  
->> +/* reset de-assertion to ready for operation */
->> +#define SETUP_MS			1000
->> +
->>  enum {
->>  	TPS_PORTINFO_SINK,
->>  	TPS_PORTINFO_SINK_ACCESSORY,
->> @@ -86,6 +90,7 @@ struct tps6598x {
->>  	struct mutex lock; /* device lock */
->>  	u8 i2c_protocol:1;
->>  
->> +	struct gpio_desc *reset;
->>  	struct typec_port *port;
->>  	struct typec_partner *partner;
->>  	struct usb_pd_identity partner_identity;
->> @@ -717,6 +722,13 @@ static int tps6598x_probe(struct i2c_client *client)
->>  	mutex_init(&tps->lock);
->>  	tps->dev = &client->dev;
->>  
->> +	tps->reset = devm_gpiod_get_optional(tps->dev, "reset", GPIOD_OUT_LOW);
->> +	if (IS_ERR(tps->reset))
->> +		return dev_err_probe(tps->dev, PTR_ERR(tps->reset),
->> +				     "failed to get reset GPIO\n");
->> +	if (tps->reset)
->> +		msleep(SETUP_MS);
->> +
->>  	tps->regmap = devm_regmap_init_i2c(client, &tps6598x_regmap_config);
->>  	if (IS_ERR(tps->regmap))
->>  		return PTR_ERR(tps->regmap);
->> @@ -892,6 +904,9 @@ static void tps6598x_remove(struct i2c_client *client)
->>  	tps6598x_disconnect(tps, 0);
->>  	typec_unregister_port(tps->port);
->>  	usb_role_switch_put(tps->role_sw);
->> +
->> +	if (tps->reset)
->> +		gpiod_set_value_cansleep(tps->reset, 1);
-> 
-> Do you need that "if (tps->reset)" in this case? That function is NULL safe,
-> right?
-> 
-The function makes use of the VALIDATE_DESC_VOID macro to make it NULL
-safe, but this macro also calls pr_warn if the descriptor is NULL and I
-do not want to add warnings for an optional property that did not exist
-before because it could be confusing. But if that is the desired
-behavior, I will remove the checks.
+Gr{oetje,eeting}s,
 
->>  }
->>  
->>  static int __maybe_unused tps6598x_suspend(struct device *dev)
->> @@ -902,6 +917,8 @@ static int __maybe_unused tps6598x_suspend(struct device *dev)
->>  	if (tps->wakeup) {
->>  		disable_irq(client->irq);
->>  		enable_irq_wake(client->irq);
->> +	} else if (tps->reset) {
->> +		gpiod_set_value_cansleep(tps->reset, 1);
->>  	}
->>  
->>  	if (!client->irq)
->> @@ -918,6 +935,9 @@ static int __maybe_unused tps6598x_resume(struct device *dev)
->>  	if (tps->wakeup) {
->>  		disable_irq_wake(client->irq);
->>  		enable_irq(client->irq);
->> +	} else if (tps->reset) {
->> +		gpiod_set_value_cansleep(tps->reset, 0);
->> +		msleep(SETUP_MS);
->>  	}
->>  
->>  	if (!client->irq)
->>
->> -- 
->> 2.39.2
-> 
-> thanks,
-> 
-Thanks and best regards,
-Javier Carrasco
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
