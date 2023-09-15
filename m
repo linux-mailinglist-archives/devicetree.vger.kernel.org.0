@@ -1,175 +1,173 @@
-Return-Path: <devicetree+bounces-472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A0587A1B63
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 11:55:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B17F7A1B73
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 11:57:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A16EC1C21122
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:55:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26FE21C2115E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:57:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3167BDF5B;
-	Fri, 15 Sep 2023 09:54:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0042ADDD9;
+	Fri, 15 Sep 2023 09:57:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 326D6DF43
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 09:54:10 +0000 (UTC)
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A56BC30DF
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 02:52:56 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9a58dbd5daeso263876766b.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 02:52:56 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B3B263A5;
+	Fri, 15 Sep 2023 09:57:05 +0000 (UTC)
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E6F735B8;
+	Fri, 15 Sep 2023 02:55:49 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2bfc14e6d03so23533191fa.1;
+        Fri, 15 Sep 2023 02:55:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694771575; x=1695376375; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NDsOEvzMdfN45BN2wHh3BSnjcShqUj+1nKnRADTq9kg=;
-        b=tP4hH3dUA/lJgOpm+J3gr46lOFDcV7gBmd0izochaHSgmv0QNYglypNVidXXHILuFL
-         RI6ndubnP53fmoWm7dPLMEe4TZJa4on8qbq/A4FeeK44LN0Lt4s5TNuqg03UgKc0h9LX
-         yMq3Ddyq3vZw6NfBQesXfpq8squ1En4eymYlgMyv8coeA9+gjb7igzxVLI/dI2FivJi6
-         7r06TElDMddeMNnPbR1HkgLVZqeJO+w52mpvZtsIYtcm1cOWjZZiMy7cXBpzzw/xqJX2
-         NpLexGK9ZcUELh9posqFU0zlhZ1biPxnKbSFaX7nkhLRl+3F0ICGvb/IasWQL/Y0zEnZ
-         e/Rg==
+        d=gmail.com; s=20230601; t=1694771744; x=1695376544; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=R7zkJukNUYSEGarsHRiRBGtJZPGffpcT+jlk9LRKGkg=;
+        b=QdDGbNqwhEhBBx55vCpuZUUqgRtMPj0DEuYY06Q1cc2zPr1YJA8e4Hdw9vHiLzjRI5
+         6ViwJGJ74DKMuM2tFeqwF48JJA9fsDikXiOxF3XE33md+61WcupXWq25Ysx2BCvLwpvR
+         H7R4W03PaD+uGD7io/NIGKFUw4rY7wpbtMZ+kOOvmEUbGr26ofcNwlm9BfdT2Riueb1v
+         FNUmGe8F5HO7IBFQwkyuablKbdqexwmwk1+S3/iixuIC2s5UNP3MuUnbUD3G/lbb+DZ7
+         AYXyiNFu0DrUL3k4lhr/5T8XhuIJtBLUYyspBVoNsLWDc1722jOwJH1QPEy82x5zmRJg
+         WQ5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694771575; x=1695376375;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NDsOEvzMdfN45BN2wHh3BSnjcShqUj+1nKnRADTq9kg=;
-        b=sHHg0BW/YIu/DAEnaeCcOsGQRJQBSmadGsxTK2gNGObCqwC/6DM372Tfb/PR1EIaqt
-         eKaBmJlwmjOZvlfdwV2Q53UQkP6hqNh712Ol/70S9p69nNgJmeNwrdOMS3QAEfL9ha5X
-         c3a5c8ZOF7T4OrhCWzYkir+6dqfBVXWqb/m1WVf8zzeB95XiiFvH5A87Kz/cy0nSA8kY
-         h+StrPvjRkY5Ohj2791dz1lhOJuZhXNG+6K2Cv/wNZ6N3dSD4NXqreLYDZgIMvhKIaps
-         M5outeX+itEwhSsse6lCXPXwkPKPnWANtZTwBxRRmNUigb0RUiZCyHwlYfZ+bS44kpBz
-         SSBw==
-X-Gm-Message-State: AOJu0Ywmn4YEUfKsalnt97D1kWzMor+XDX/IuGxTN8d3WCOQLkZhB+Sk
-	UUZ9+7EjKuzdxg/2NUr8CspU7A==
-X-Google-Smtp-Source: AGHT+IEyHoyb9BJwB5cKwuUb5J0gUjviPBraM53FhmXZ7ynAynY44X8lL3dyLbHDSdBrSx/FH4cLgA==
-X-Received: by 2002:a17:906:150:b0:9a5:cab0:b061 with SMTP id 16-20020a170906015000b009a5cab0b061mr959202ejh.51.1694771575119;
-        Fri, 15 Sep 2023 02:52:55 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id rp26-20020a170906d97a00b009ad829ed144sm2161019ejb.130.2023.09.15.02.52.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 02:52:54 -0700 (PDT)
-Message-ID: <ca9075db-de92-4545-8c47-d6c292d57ad9@linaro.org>
-Date: Fri, 15 Sep 2023 10:52:53 +0100
+        d=1e100.net; s=20230601; t=1694771744; x=1695376544;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=R7zkJukNUYSEGarsHRiRBGtJZPGffpcT+jlk9LRKGkg=;
+        b=jcc3msjCUTFScJoSXvAGYBE09pZKtDtZoz0ucEKzC6TC50TH4HkOfK4HSZVrFMNglw
+         51+X4cn1ANFnn4x2BmSMRwVMUJ3fzuNmQaABdnF3H6cVjgb1kuL5B93d9aj40fd1y0D8
+         GYsjpCymzfc4lVALzji5oJXs+XxEAfUb/K2evL7ouwIzmJ6bKGwZJddej0Xx2gc1IkUp
+         WW0+N3LQCNa18dy9whCMQddFcpvCACI5GaBH/9kmeNjJPFfTHRA740rD+ikf2sh1lfn/
+         /ys+vuAlyQWsLOjlM9lPyzAIboBX7RGa+M0UNpZQg+c5OWLB+KYlc/l7UYVJqQRWxhHC
+         qynQ==
+X-Gm-Message-State: AOJu0Yzt4QdoJlyuJDer9JinfYIZ03Gd2e2zzWAk6eDjj3gxoLWVjdrc
+	fX2L/QCFEX+fltMlrsk0ZDeUxj/nMFd9tQ==
+X-Google-Smtp-Source: AGHT+IHZLNXpdRzn2IhV8455COBFdw8gXQ4ZUbGrFWe4r4mMAp2BwvIbfoiDIKVm4dVnely/apypdg==
+X-Received: by 2002:a2e:3019:0:b0:2bd:a67:e8c with SMTP id w25-20020a2e3019000000b002bd0a670e8cmr494625ljw.3.1694771743907;
+        Fri, 15 Sep 2023 02:55:43 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id a20-20020a2eb174000000b002b9a1e9ba68sm654548ljm.136.2023.09.15.02.55.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Sep 2023 02:55:43 -0700 (PDT)
+Date: Fri, 15 Sep 2023 12:55:41 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Keguang Zhang <keguang.zhang@gmail.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Subject: Re: [PATCH v5 0/3] Move Loongson1 MAC arch-code to the driver dir
+Message-ID: <ueevvju7i42wik6fevdmvbtypm4su77guyo4zizhrfreexken7@nrcovxfnyuvq>
+References: <20230914114435.481900-1-keguang.zhang@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] usb: typec: tps6598x: add reset gpio support
-Content-Language: en-US
-To: Javier Carrasco <javier.carrasco@wolfvision.net>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20230912-topic-tps6598x_reset-v1-0-78dc0bf61790@wolfvision.net>
- <20230912-topic-tps6598x_reset-v1-1-78dc0bf61790@wolfvision.net>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230912-topic-tps6598x_reset-v1-1-78dc0bf61790@wolfvision.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230914114435.481900-1-keguang.zhang@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 15/09/2023 07:50, Javier Carrasco wrote:
-> The TPS6598x PD controller provides an active-high hardware reset input
-> that reinitializes all device settings. If it is not grounded by
-> design, the driver must be able to de-assert it in order to initialize
-> the device.
-> 
-> The PD controller is not ready for registration right after the reset
-> de-assertion and a delay must be introduced in that case. According to
-> TI, the delay can reach up to 1000 ms [1], which is in line with the
-> experimental results obtained with a TPS65987D.
-> 
-> Add a GPIO descriptor for the reset signal and basic reset management
-> for initialization and suspend/resume.
-> 
-> [1] https://e2e.ti.com/support/power-management-group/power-management/
-> f/power-management-forum/1269856/tps65987d-tps65987d-reset-de-assert-
-> to-normal-operation/4809389#4809389
-> 
-> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
-> ---
->   drivers/usb/typec/tipd/core.c | 21 ++++++++++++++++++++-
->   1 file changed, 20 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
-> index 37b56ce75f39..550f5913e985 100644
-> --- a/drivers/usb/typec/tipd/core.c
-> +++ b/drivers/usb/typec/tipd/core.c
-> @@ -8,6 +8,7 @@
->   
->   #include <linux/i2c.h>
->   #include <linux/acpi.h>
-> +#include <linux/gpio/consumer.h>
->   #include <linux/module.h>
->   #include <linux/of.h>
->   #include <linux/power_supply.h>
-> @@ -43,6 +44,9 @@
->   /* TPS_REG_SYSTEM_CONF bits */
->   #define TPS_SYSCONF_PORTINFO(c)		((c) & 7)
->   
-> +/* reset de-assertion to ready for operation */
-> +#define SETUP_MS			1000
-> +
->   enum {
->   	TPS_PORTINFO_SINK,
->   	TPS_PORTINFO_SINK_ACCESSORY,
-> @@ -86,6 +90,7 @@ struct tps6598x {
->   	struct mutex lock; /* device lock */
->   	u8 i2c_protocol:1;
->   
-> +	struct gpio_desc *reset;
->   	struct typec_port *port;
->   	struct typec_partner *partner;
->   	struct usb_pd_identity partner_identity;
-> @@ -717,6 +722,13 @@ static int tps6598x_probe(struct i2c_client *client)
->   	mutex_init(&tps->lock);
->   	tps->dev = &client->dev;
->   
-> +	tps->reset = devm_gpiod_get_optional(tps->dev, "reset", GPIOD_OUT_LOW);
-> +	if (IS_ERR(tps->reset))
-> +		return dev_err_probe(tps->dev, PTR_ERR(tps->reset),
-> +				     "failed to get reset GPIO\n");
-> +	if (tps->reset)
-> +		msleep(SETUP_MS);
-> +
+Hi Keguang
 
-This looks a bit odd to me, shouldn't you drive reset to zero ?
+On Thu, Sep 14, 2023 at 07:44:32PM +0800, Keguang Zhang wrote:
+> In order to convert Loongson1 MAC platform devices to the devicetree
+> nodes, Loongson1 MAC arch-code should be moved to the driver dir.
+> Add dt-binding document and update MAINTAINERS file accordingly. 
+>     
+> In other words, this patchset is a preparation for converting
+> Loongson1 platform devices to devicetree.
 
-if (tps->reset) {
-     gpiod_set_value_cansleep(tps->reset, 0);
-     msleep(SETUP_MS);
-}
+No more comments from my side. Thank you for the patches and
+especially for the patience in the review process.
 
-also wouldn't it make sense to functionally decompose that and reuse in 
-probe() and tps6598x_resume() ?
+For the entire series:
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 
-tps6598x_reset() {
-     if (tps->reset) {
-         gpiod_set_value_cansleep(tps->reset, 0);
-         msleep(SETUP_MS);
-     }
-}
+* I'll also send individual Rb tags to each patch so b4 would be able
+* to take it into account.
 
----
-bod
+-Serge(y)
+
+> 
+> Changelog
+> V4 -> V5: Replace stmmac_probe_config_dt() with devm_stmmac_probe_config_dt()
+>           Replace stmmac_pltfr_probe() with devm_stmmac_pltfr_probe()
+>           Squash patch 4 into patch 2 and 3
+> V3 -> V4: Add Acked-by tag from Krzysztof Kozlowski
+>           Add "|" to description part
+>           Amend "phy-mode" property
+>           Drop ls1x_dwmac_syscon definition and its instances
+>           Drop three redundant fields from the ls1x_dwmac structure
+>           Drop the ls1x_dwmac_init() method.
+>           Update the dt-binding document entry of Loongson1 Ethernet
+>           Some minor improvements
+> V2 -> V3: Split the DT-schema file into loongson,ls1b-gmac.yaml
+>           and loongson,ls1c-emac.yaml (suggested by Serge Semin)
+>           Change the compatibles to loongson,ls1b-gmac and loongson,ls1c-emac
+>           Rename loongson,dwmac-syscon to loongson,ls1-syscon
+>           Amend the title
+>           Add description
+>           Add Reviewed-by tag from Krzysztof Kozlowski
+>           Change compatibles back to loongson,ls1b-syscon
+>           and loongson,ls1c-syscon
+>           Determine the device ID by physical
+>           base address(suggested by Serge Semin)
+>           Use regmap instead of regmap fields
+>           Use syscon_regmap_lookup_by_phandle()
+>           Some minor fixes
+>           Update the entries of MAINTAINERS
+> V1 -> V2: Leave the Ethernet platform data for now
+>           Make the syscon compatibles more specific
+>           Fix "clock-names" and "interrupt-names" property
+>           Rename the syscon property to "loongson,dwmac-syscon"
+>           Drop "phy-handle" and "phy-mode" requirement
+>           Revert adding loongson,ls1b-dwmac/loongson,ls1c-dwmac
+>           to snps,dwmac.yaml
+>           Fix the build errors due to CONFIG_OF being unset
+>           Change struct reg_field definitions to const
+>           Rename the syscon property to "loongson,dwmac-syscon"
+>           Add MII PHY mode for LS1C
+>           Improve the commit message
+> 
+> Keguang Zhang (3):
+>   dt-bindings: mfd: syscon: Add compatibles for Loongson-1 syscon
+>   dt-bindings: net: Add Loongson-1 Ethernet Controller
+>   net: stmmac: Add glue layer for Loongson-1 SoC
+> 
+>  .../devicetree/bindings/mfd/syscon.yaml       |   2 +
+>  .../bindings/net/loongson,ls1b-gmac.yaml      | 114 ++++++++++
+>  .../bindings/net/loongson,ls1c-emac.yaml      | 113 ++++++++++
+>  MAINTAINERS                                   |   2 +
+>  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 +
+>  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+>  .../ethernet/stmicro/stmmac/dwmac-loongson1.c | 209 ++++++++++++++++++
+>  7 files changed, 452 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/loongson,ls1b-gmac.yaml
+>  create mode 100644 Documentation/devicetree/bindings/net/loongson,ls1c-emac.yaml
+>  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
+> 
+> 
+> base-commit: 98897dc735cf6635f0966f76eb0108354168fb15
+> -- 
+> 2.39.2
+> 
+> 
 
