@@ -1,99 +1,131 @@
-Return-Path: <devicetree+bounces-523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67E037A1D0E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 13:03:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DB267A1D11
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 13:05:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 963341C20CDC
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 11:03:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 548731C20D82
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 11:05:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E393A101C8;
-	Fri, 15 Sep 2023 11:03:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEC22101D2;
+	Fri, 15 Sep 2023 11:05:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65F5963F
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 11:03:09 +0000 (UTC)
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D7FB2126
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 04:00:44 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-31ff2ce9d4cso469893f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 04:00:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694775643; x=1695380443; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tn60yuwsayKteemX+yt8gQbT1B0GE4xqlU7FtFJOVyI=;
-        b=pHjVyAdlE/UnfKmeakTcOQK5uisN2JPLdKyTTYA7+LEQUOKHl/VahJNxLVrjqbJ80G
-         SlerwynD9v53IvMggO91FcvzsD4LoYQe/e9kOeBfGzjB8Jct7BBiZojv0xyKUuwhw8Ks
-         JKTN7mFMYa3NcQoS3O7LsWp7/XLCeb8U+tq+ubtZZP+46PrYyE6doZlxRkJ6eokBHT4c
-         pZpf/Glar2MdxndByT8aG0p5HV6dNvDBBosYom+7GlsScHOzW5+sI41STWCinKSo/lXd
-         2HNUbDO334rf6B3+006cYh1rCbxGn4RIcCOM+ic4aXY6JDt7TpLqz7ALg+e7EMjsW5TM
-         HkCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694775643; x=1695380443;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tn60yuwsayKteemX+yt8gQbT1B0GE4xqlU7FtFJOVyI=;
-        b=tfTfnMFOWz2h21PzUv59JxWmKv1JMMpqowScu9QTebM77TtGcP9RmBOy4LIFSvYRY5
-         gG1hF3yjKHYhzt5oNGTcz6aRIAmunvkDfMCSOwj/sk1JrIujw0RgcpXfu9kTchzhlGTe
-         uMtZzTGvLOC4D67rMKB8FET0rdzsuGXZ5NbN2adl43rRu4mS3nlnlaFAPtUXSqdP/0Td
-         /fJwcWby5KRSvDztMu+0H47+A/f0G9curZz1S68NS2MlZKhxqx35bmI5VUrWLPxjlZl9
-         ABa4qNv41BfBqCcL+SRBn2gI4cYEI8qOzUdyaRAs0hxh5vrMXtTSiVkUK/hci7JMYQqN
-         rgrA==
-X-Gm-Message-State: AOJu0YzwuRcIMgAwUhyMUzdx0PxWbZcJfQXAewT/hA383C4pGe9iMqZq
-	zaTntHJX/DAMJlKPFOZmcqfh9ejFNDUlEFAg3YI=
-X-Google-Smtp-Source: AGHT+IF2SgxJ6JGOtiwKnxlhWSHGpIPuG1WwYWykJZPi/uWFBQSqGjYzCnn6sFTt4SrDQ0mUPVvqCw==
-X-Received: by 2002:a5d:4dc4:0:b0:31f:a256:4bbb with SMTP id f4-20020a5d4dc4000000b0031fa2564bbbmr1093708wru.71.1694775642865;
-        Fri, 15 Sep 2023 04:00:42 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id i11-20020a0560001acb00b0031fa870d4b3sm3358133wry.60.2023.09.15.04.00.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 04:00:42 -0700 (PDT)
-Message-ID: <82261cdd-3db9-c79f-9286-d49a81338b22@linaro.org>
-Date: Fri, 15 Sep 2023 13:00:40 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7D9963F
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 11:05:04 +0000 (UTC)
+Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4BCEE71;
+	Fri, 15 Sep 2023 04:04:38 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (82-181-192-243.bb.dnainternet.fi [82.181.192.243])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by meesny.iki.fi (Postfix) with ESMTPSA id 4RnBCh4v2zzybD;
+	Fri, 15 Sep 2023 14:04:32 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+	t=1694775874;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9FSsWmQrFC61n5NQWQhh9aHTyg8StbZKmyWn6br55MY=;
+	b=Nsv+XqPgW9Hg/IL03sk/hZ3lbGPNtlHJPILaltkPc7bZ1dp0wjTAyRGBjcL1MA/z3IXLaP
+	pAMtNmgFTI3SYI9cGlxwq25wiK+OUgcR3IKauA3twiFqb96R4tEJL3RLcqw/nxgzEZd2MM
+	t615J4xFtVgHpURlDY/cKIaQ7EDHd94=
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1694775874; a=rsa-sha256; cv=none;
+	b=wUgC7akW+qVkfjaE+gpHUmBnhZRBY+6UQ8XkikcMzsQ/VnhcJALEvh64U7tKMmMhql+bd6
+	grQYbeThSvREQKmqxz2JsaHAixoqLVgnCBFrs+jLqXLhhWLx+e+2dFPW+LlXAjuPm8eY3P
+	Ey7MvY4gcGBeot5c0mpp33SAUH7XPZw=
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=meesny; t=1694775874;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9FSsWmQrFC61n5NQWQhh9aHTyg8StbZKmyWn6br55MY=;
+	b=nbDppxZS3lRPtMjrcX611fM+bsNt3ywvvLNx5u+AXE3025cj5yAUYdQEoX+MP0CNJwDdqf
+	36lB73k06ISQhxkvakd1wUyIJn7FOPEJ1LKmvvmnlS4puOFkKeoEhVgf6wA29n3+KTJlgs
+	yOzrQDkWQicxx4ApBV/1uQEtEOte1ig=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id B7CE6634C93;
+	Fri, 15 Sep 2023 14:04:31 +0300 (EEST)
+Date: Fri, 15 Sep 2023 11:04:31 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Rob Herring <robh@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH v4] media: dt-bindings: Add OV5642
+Message-ID: <ZQQ6PwO27Qq28KEn@valkosipuli.retiisi.eu>
+References: <20230913192811.1946423-1-festevam@gmail.com>
+ <20230914145935.GA1276539-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v4 27/42] dt-bindings: ata: Add Cirrus EP93xx
-Content-Language: en-US
-To: nikita.shubin@maquefel.me, Damien Le Moal <dlemoal@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
- Alexander Sverdlin <alexander.sverdlin@gmail.com>
-References: <20230915-ep93xx-v4-0-a1d779dcec10@maquefel.me>
- <20230915-ep93xx-v4-27-a1d779dcec10@maquefel.me>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230915-ep93xx-v4-27-a1d779dcec10@maquefel.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230914145935.GA1276539-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On 15/09/2023 10:11, Nikita Shubin via B4 Relay wrote:
-> From: Nikita Shubin <nikita.shubin@maquefel.me>
+Hi Rob,
+
+On Thu, Sep 14, 2023 at 09:59:35AM -0500, Rob Herring wrote:
+> On Wed, Sep 13, 2023 at 04:28:11PM -0300, Fabio Estevam wrote:
+> > From: Fabio Estevam <festevam@denx.de>
+> > 
+> > As explained in the description text from trivial-devices.yaml:
+> > 
+> > "This is a list of trivial I2C and SPI devices that have simple device tree
+> > bindings, consisting only of a compatible field, an address and possibly an
+> > interrupt line."
+> > 
+> > A camera device does not fall into this category as it needs other
+> > properties such as regulators, reset and powerdown GPIOs, clocks,
+> > media endpoint.
+> > 
+> > Remove the OV5642 entry from trivial-devices.yaml and add its own
+> > ovti,ov5642.yaml.
 > 
-> Add YAML bindings for ep93xx SoC PATA.
+> Many of these Omnivision sensors have the same supplies and same GPIO 
+> connections, so why can't they share the binding? There are some 
+> differences I've seen that boil down to just what the driver decided to 
+> require or not, but that shouldn't really vary. See commit 44ade291b77c 
+> ("media: dt-bindings: Merge OV5695 into OV5693 binding") for example.
 > 
-> Acked-by: Damien Le Moal <dlemoal@kernel.org>
-> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
-> ---
+> In any case, the binding looks fine and any merging can be done after.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The sensors differ from interface capabilities (one or more of parallel,
+CSI-2 D-PHY and CSI-2 C-PHY), number of lanes / data lines etc. For
+historical reasons, many have different defaults for vsync and hsync
+polarities, for instance.
 
-Best regards,
-Krzysztof
+I suppose some of these would reasonably be taken into account, if not in a
+single file, in a couple of files. CSI-2 connected sensors are the most
+common these days.
 
+The device for which this patch added the bindings appears to be 15 years
+old.
+
+-- 
+Regards,
+
+Sakari Ailus
 
