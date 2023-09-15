@@ -1,152 +1,141 @@
-Return-Path: <devicetree+bounces-536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7935B7A1DDB
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:02:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8360D7A1E31
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:12:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88B941C20CC4
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:02:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C347282245
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:12:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04856101F9;
-	Fri, 15 Sep 2023 12:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6904E101FF;
+	Fri, 15 Sep 2023 12:12:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 273FFDF43
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:01:57 +0000 (UTC)
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 379602102
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:01:55 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id 5614622812f47-3aca5c85a34so1224980b6e.3
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:01:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02AC3101FE
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:12:47 +0000 (UTC)
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF2202126
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:12:45 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2bfbd7d49e7so33135531fa.1
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:12:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694779314; x=1695384114; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zuzQxwfRLuYYkwxb5IQRfayhhE4ZirTH79+QLFntvNk=;
-        b=CEfMEXmsbyIuGqvbygabO1En6V4IMycikaWkDvggkARLODvpenZvEei+kpmVgDZRvo
-         gfWiz9WoC9844HvNOsmw50cosh2esFnCWLBNHIP62ag6DH0R3qaLTmB+xxQg79ThAPhz
-         5WV9bw2ekwhlDl6MyDnKFEvnYSqpHbnvWizVJVDqQzVctUP6MiUcn70yzslw5qLkQVnJ
-         Y4VuTGGBnAAVwVlInKQKG+cmuHA8uGRqeRTvpXvN4eoX9YmgdS9Pxa+iAatUdAyUxdek
-         B4+IzR7dIrEQjYZ/tQnB4c3BPTNu3J1LxfdCMxDfpC9ECDKY8xHRYJIioP8XzRp1pr89
-         Dalw==
+        d=linaro.org; s=google; t=1694779964; x=1695384764; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=w3hxeDElfx0VxqnBapCeZ5PdAdkvv/ZSAzqIOyu7ugk=;
+        b=bz2NDhD/G3RKjbOKOdhLU0xt/2tx6BNFI7QZRoh0n9vuANWOaHNprzXoTUiswWdYcF
+         S4zlpGMoSNB4HiVWc1VC+K58ol+0HH8lekFjmy8Y5calgJ+dcUDskJjgA0ekg5cBk1bv
+         mW7vqpIhSKXfRieEVRn5eLyMn07IniqxVRI084ylSNIFV6fh8oRKmFLPb68lhhYOiLMP
+         40lWgQB5wYsV3ByphEgNh3qsE03QT6krlsR02fJ/wwndsi532sMWLtW5Rv833QezeaaE
+         w1F7QxZPmYki6VXieDlVA2QiQW+uavk8BkaL9bSN1d1TnqnlvUOQgKkjjAU2jovxeEWX
+         cFUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694779314; x=1695384114;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zuzQxwfRLuYYkwxb5IQRfayhhE4ZirTH79+QLFntvNk=;
-        b=qXd+dWDESxQs+SL7WvDPNjYi+fqi2Lp4gptHhoVBhPnvCeZDxIQQSat9ORXBkl7+se
-         V20pmHEViYuLNTRPzrjj/gG5niw6HBZzRjW7G89vHtStTLzsC+evZrw1zIX5ItOjNJCd
-         wH4bcirMsWg1JBNKsjXz+/uKpYUFcStEhJie21xQInou4L17+3YBXZ7yRp38pK4y5bbU
-         WZiMKcnIC36EAfeTxd8Z2GSVzPu6EtXgXf1AlqwYIRZIVLMerbzC+pdJVevyo24vfGh7
-         pmksSvgJL6yyL+PdIytnT7IP+G7HkTkZyoVI8nL5iGgM8o07j25eZUhuVo3h93CpFcVD
-         /XoQ==
-X-Gm-Message-State: AOJu0YxLonb7BoJxCJVu6KuoSVMoAiECVxu9L/qGPu1jcYJZChhliWmu
-	Dc7rBeNZj7Kj+NqmBN/qUvOt6dwhQTvK4WZopAqc0Q==
-X-Google-Smtp-Source: AGHT+IHXYWlChyP+R5UJVlYYmmHJCl+tnMgAPu0WP9s+/l6g32qgvo20rfSpiMfxlQu/zTy0jBjRr2rZGTClg3uns3M=
-X-Received: by 2002:a05:6808:182:b0:3a3:6e43:e681 with SMTP id
- w2-20020a056808018200b003a36e43e681mr1497539oic.58.1694779314420; Fri, 15 Sep
- 2023 05:01:54 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1694779964; x=1695384764;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=w3hxeDElfx0VxqnBapCeZ5PdAdkvv/ZSAzqIOyu7ugk=;
+        b=JGjj5FPFcf1lzZGiq1i7Sg6IwEMYT2Xjt43dA20Fydk/k8oRpOwBl3sptBz7q/cg5N
+         Z862m+hyoeYNf+z8S8LlXc4R2tNeN87w1nEAtyqJU3sWCPlyoMbUcao5YD6h05Mert0H
+         ASDN//t39dOF6T0nkDspoaxmXB0NIH+YFOCXswDDgG/6THa6167b+szQlN7u7yz/Nir6
+         +muZz9wa2+KNNqMAjodk0hWiQWfe1N4rUvwyL3OoM3B6e5/r7rIkarMMOMEMD5f8aM7P
+         NFxxv9FCDvzth/dNI2eFlEOKIOp0z8K66i44+l8BeMGuThhW3MLbr7GGxJqwyHcIN4aC
+         KDpg==
+X-Gm-Message-State: AOJu0Yw1kKcLV97OMJLm6MGFC58iRdvQmZW9oS45zUzAhRdJdgddgsYO
+	ykS4suTQaWlsaZKJ7ob70ucyJw==
+X-Google-Smtp-Source: AGHT+IEVRtsUoOtnh382Qtc+HUxvK7YjqgbsQebXPWPMFM5h4WMWQ+NU7SoEZDzb87g003GCRH8IbQ==
+X-Received: by 2002:a2e:854a:0:b0:2bc:bb3e:1abe with SMTP id u10-20020a2e854a000000b002bcbb3e1abemr1351738ljj.41.1694779964133;
+        Fri, 15 Sep 2023 05:12:44 -0700 (PDT)
+Received: from ?IPV6:2a00:f41:cbe:bc7d:62a6:5d09:5ba7:be5b? ([2a00:f41:cbe:bc7d:62a6:5d09:5ba7:be5b])
+        by smtp.gmail.com with ESMTPSA id n21-20020a2e7215000000b002bcc303bbffsm662827ljc.104.2023.09.15.05.12.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Sep 2023 05:12:43 -0700 (PDT)
+Message-ID: <f1795027-cbb5-44fe-83ac-dd2b079d65ad@linaro.org>
+Date: Fri, 15 Sep 2023 14:12:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230912-gpio-led-trigger-dt-v1-0-1b50e3756dda@linaro.org>
- <20230912-gpio-led-trigger-dt-v1-1-1b50e3756dda@linaro.org>
- <20230913133451.GA2841610-robh@kernel.org> <CACRpkdb72f9WFeEGo-tXscZaBmFH04WiePM+tJSmuuXQxxy=3A@mail.gmail.com>
- <CAL_Jsq+PizSdqJ5Yc4TpNscy5e3gBP4vjQF+ka6SRwnJhSt-0w@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+PizSdqJ5Yc4TpNscy5e3gBP4vjQF+ka6SRwnJhSt-0w@mail.gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 15 Sep 2023 14:01:42 +0200
-Message-ID: <CACRpkdZeCjRrQ1iKQhYzhWgQOXH8nQ=TN5AsdoQm2jr7wtdPQQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: leds: Mention GPIO triggers
-To: Rob Herring <robh@kernel.org>
-Cc: =?UTF-8?B?SmFuIEt1bmRyw6F0?= <jan.kundrat@cesnet.cz>, 
-	Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 7/8] arm64: dts: qcom: add uart console support for
+ SM4450
+Content-Language: en-US
+To: Tengfei Fan <quic_tengfan@quicinc.com>, will@kernel.org,
+ robin.murphy@arm.com, joro@8bytes.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, agross@kernel.org,
+ andersson@kernel.org, catalin.marinas@arm.com
+Cc: geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org,
+ nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
+ linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, quic_tsoni@quicinc.com,
+ quic_shashim@quicinc.com, quic_kaushalk@quicinc.com, quic_tdas@quicinc.com,
+ quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com, kernel@quicinc.com
+References: <20230915021509.25773-1-quic_tengfan@quicinc.com>
+ <20230915021509.25773-9-quic_tengfan@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230915021509.25773-9-quic_tengfan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
 	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, Sep 14, 2023 at 4:27=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
-> On Thu, Sep 14, 2023 at 3:40=E2=80=AFAM Linus Walleij <linus.walleij@lina=
-ro.org> wrote:
-> > On Wed, Sep 13, 2023 at 3:34=E2=80=AFPM Rob Herring <robh@kernel.org> w=
-rote:
-> > > On Tue, Sep 12, 2023 at 03:44:30PM +0200, Linus Walleij wrote:
-> > > > We reuse the trigger-sources phandle to just point to
-> > > > GPIOs we may want to use as LED triggers.
-> > > >
-> > > > Example:
-> > > >
-> > > > gpio: gpio@0 {
-> > > >     compatible "my-gpio";
-> > > >     gpio-controller;
-> > > >     #gpio-cells =3D <2>;
-> > > >     interrupt-controller;
-> > > >     #interrupt-cells =3D <2>;
-> > > >     #trigger-source-cells =3D <2>;
-> > >
-> > > BTW, this is not documented for any GPIO binding. If we want to speci=
-fy
-> > > the cell size, then it has to be added to every GPIO controller bindi=
-ng.
-> > > If not, we then need to reference gpio.yaml in every GPIO controller
-> > > binding (along with unevaluatedProperties). Doesn't have to be done f=
-or
-> > > this patch to go in though.
-> >
-> > Yeah I mean this trigger-sources =3D <...>; one-size-fits-all is a bit
-> > weird in a way.
-> >
-> > My other idea was to simply add trigger-gpios to the normal way
-> > and be done with it, but now the trigger binding has this weird
-> > thing.
-> >
-> > Would trigger-gpios be better?
->
-> Then GPIOs are different than everyone else. I think we have to think
-> about other bindings too. While we could standardize the naming here
-> with trigger-gpios, that won't work with the foos/foo-names style of
-> bindings.
->
-> trigger-sources is not widely used as it is just USB ATM and a few
-> platforms. We could come up with something different.
-> "trigger-sources-<cellname>" is the only idea I have. Then the
-> property name gives you the cell name to read. But variable property
-> names have their own challenges. We would need to look at all the
-> current trigger sources (i.e. the linux,default-trigger ones) and see
-> what else might need this.
+On 15.09.2023 04:15, Tengfei Fan wrote:
+> Add base description of UART, TLMM, interconnect, TCSRCC and SMMU nodes
+> which helps SM4450 boot to shell with console on boards with this SoC.
+> 
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> ---
+You're adding multiple independent hardware blocks at once.
+This is impossible to bisect if anyone ever encounters an
+issue with one of them.
 
-I think it in a way is elegant with the trigger-sources phandle as it
-is so I would stick with this.
-
-I can just add '#trigger-source-cells' to the existing GPIO
-bindings and it's a bit tedious since we don't have a common file
-for the GPIO chip stuff, but it's just lots of lines.
-
-I guess it would be better to break out gpio-common.yaml and
-gpio-common-irq.yaml for GPIO controllers with or without
-interrupt support and then add '#trigger-source-cells' to just
-those supporting IRQs because I think only that makes sense,
-polling for a line to change isn't quite a "trigger".
-
-Yours,
-Linus Walleij
+Konrad
 
