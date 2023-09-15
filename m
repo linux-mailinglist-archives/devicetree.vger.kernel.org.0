@@ -1,141 +1,122 @@
-Return-Path: <devicetree+bounces-537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8360D7A1E31
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:12:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 954947A1E64
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:17:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C347282245
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:12:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A80E1C20F69
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:17:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6904E101FF;
-	Fri, 15 Sep 2023 12:12:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A4EE101DB;
+	Fri, 15 Sep 2023 12:15:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02AC3101FE
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:12:47 +0000 (UTC)
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF2202126
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:12:45 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2bfbd7d49e7so33135531fa.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 05:12:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694779964; x=1695384764; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=w3hxeDElfx0VxqnBapCeZ5PdAdkvv/ZSAzqIOyu7ugk=;
-        b=bz2NDhD/G3RKjbOKOdhLU0xt/2tx6BNFI7QZRoh0n9vuANWOaHNprzXoTUiswWdYcF
-         S4zlpGMoSNB4HiVWc1VC+K58ol+0HH8lekFjmy8Y5calgJ+dcUDskJjgA0ekg5cBk1bv
-         mW7vqpIhSKXfRieEVRn5eLyMn07IniqxVRI084ylSNIFV6fh8oRKmFLPb68lhhYOiLMP
-         40lWgQB5wYsV3ByphEgNh3qsE03QT6krlsR02fJ/wwndsi532sMWLtW5Rv833QezeaaE
-         w1F7QxZPmYki6VXieDlVA2QiQW+uavk8BkaL9bSN1d1TnqnlvUOQgKkjjAU2jovxeEWX
-         cFUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694779964; x=1695384764;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w3hxeDElfx0VxqnBapCeZ5PdAdkvv/ZSAzqIOyu7ugk=;
-        b=JGjj5FPFcf1lzZGiq1i7Sg6IwEMYT2Xjt43dA20Fydk/k8oRpOwBl3sptBz7q/cg5N
-         Z862m+hyoeYNf+z8S8LlXc4R2tNeN87w1nEAtyqJU3sWCPlyoMbUcao5YD6h05Mert0H
-         ASDN//t39dOF6T0nkDspoaxmXB0NIH+YFOCXswDDgG/6THa6167b+szQlN7u7yz/Nir6
-         +muZz9wa2+KNNqMAjodk0hWiQWfe1N4rUvwyL3OoM3B6e5/r7rIkarMMOMEMD5f8aM7P
-         NFxxv9FCDvzth/dNI2eFlEOKIOp0z8K66i44+l8BeMGuThhW3MLbr7GGxJqwyHcIN4aC
-         KDpg==
-X-Gm-Message-State: AOJu0Yw1kKcLV97OMJLm6MGFC58iRdvQmZW9oS45zUzAhRdJdgddgsYO
-	ykS4suTQaWlsaZKJ7ob70ucyJw==
-X-Google-Smtp-Source: AGHT+IEVRtsUoOtnh382Qtc+HUxvK7YjqgbsQebXPWPMFM5h4WMWQ+NU7SoEZDzb87g003GCRH8IbQ==
-X-Received: by 2002:a2e:854a:0:b0:2bc:bb3e:1abe with SMTP id u10-20020a2e854a000000b002bcbb3e1abemr1351738ljj.41.1694779964133;
-        Fri, 15 Sep 2023 05:12:44 -0700 (PDT)
-Received: from ?IPV6:2a00:f41:cbe:bc7d:62a6:5d09:5ba7:be5b? ([2a00:f41:cbe:bc7d:62a6:5d09:5ba7:be5b])
-        by smtp.gmail.com with ESMTPSA id n21-20020a2e7215000000b002bcc303bbffsm662827ljc.104.2023.09.15.05.12.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 05:12:43 -0700 (PDT)
-Message-ID: <f1795027-cbb5-44fe-83ac-dd2b079d65ad@linaro.org>
-Date: Fri, 15 Sep 2023 14:12:41 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4692B10792
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:15:51 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6630F268E;
+	Fri, 15 Sep 2023 05:15:43 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38FAA7Pj030278;
+	Fri, 15 Sep 2023 12:15:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : subject
+ : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=GygQ/u2fnwhNWv//DRS3iWa9bJQ4jyMvttmcZQRrUJg=;
+ b=DdtCcGLs8TKoe/KOIvsB1ZfgOgVOOBAdBOAep0EsPgU21Yf5Pja5owrONHSiA5qrxxsj
+ vllQSYAAXQ5NZ/xgQtJyXrriIi38alYxp3H9S/k8ZfwEghIz1RAAuCp8ulMaTHuC3EPT
+ bA2x6f5CiFDO0XR1BlvtiAnLus/jswrMZIXVwysBHUPnUUYnHgdNTTpdRb12AHpleQeZ
+ 2t6cDr/yi0ph3D/SlPPMXyT+PyDI0zvted6m4H5j/UEa2czDRcPqacJ+BTwwvK1Cc0FZ
+ /9432VfgopUICnqQvKz3KGYwMDU7LIZ5Ep5aQC/3dPI00u6zXiKGiXna9Ejv5NwsGPvr sg== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t4g5tgvw0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Sep 2023 12:15:37 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38FCFZTV004488
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Sep 2023 12:15:35 GMT
+Received: from win-platform-upstream01.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Fri, 15 Sep 2023 05:15:31 -0700
+From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+To: <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <srinivas.kandagatla@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <thara.gopinath@gmail.com>, <rafael@kernel.org>,
+        <daniel.lezcano@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <dmitry.baryshkov@linaro.org>,
+        <quic_srichara@quicinc.com>
+Subject: [PATCH V2 0/4] Add support for IPQ5018 tsens
+Date: Fri, 15 Sep 2023 17:45:00 +0530
+Message-ID: <20230915121504.806672-1-quic_srichara@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 7/8] arm64: dts: qcom: add uart console support for
- SM4450
-Content-Language: en-US
-To: Tengfei Fan <quic_tengfan@quicinc.com>, will@kernel.org,
- robin.murphy@arm.com, joro@8bytes.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, agross@kernel.org,
- andersson@kernel.org, catalin.marinas@arm.com
-Cc: geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org,
- nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
- linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, quic_tsoni@quicinc.com,
- quic_shashim@quicinc.com, quic_kaushalk@quicinc.com, quic_tdas@quicinc.com,
- quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com, kernel@quicinc.com
-References: <20230915021509.25773-1-quic_tengfan@quicinc.com>
- <20230915021509.25773-9-quic_tengfan@quicinc.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230915021509.25773-9-quic_tengfan@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 05c275zDFas4SN5Locq7WA02D42AB1JN
+X-Proofpoint-GUID: 05c275zDFas4SN5Locq7WA02D42AB1JN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-15_08,2023-09-14_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
+ suspectscore=0 lowpriorityscore=0 impostorscore=0 phishscore=0
+ mlxlogscore=644 priorityscore=1501 adultscore=0 mlxscore=0 spamscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309150108
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 15.09.2023 04:15, Tengfei Fan wrote:
-> Add base description of UART, TLMM, interconnect, TCSRCC and SMMU nodes
-> which helps SM4450 boot to shell with console on boards with this SoC.
-> 
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
-> ---
-You're adding multiple independent hardware blocks at once.
-This is impossible to bisect if anyone ever encounters an
-issue with one of them.
+IPQ5018 has tsens V1.0 IP with 4 sensors and 1 interrupt.
+There is no RPM present in the soc to do tsens early enable.
+Adding support for the same here.
 
-Konrad
+[v2]
+	*) Sorted the compatible and removed example
+	*) Fixed the name for new tsens_feature
+	*) Used tsend_calibrate_common instead of legacy
+	   and addressed comments from Dmitry.
+	*) Squashed patch 3 & 4
+	*) Fixed node names, order and added qfprom cells
+            for points seprately
+	*) Squashed patch 6 & 7 
+
+Sricharan Ramabadhran (4):
+  dt-bindings: thermal: qcom-tsens: Add ipq5018 compatible
+  thermal/drivers/qcom: Add new feat for soc without rpm
+  thermal/drivers/tsens: Add support for IPQ5018 tsens
+  arm64: dts: qcom: ipq5018: Add tsens node
+
+ .../bindings/nvmem/qcom,qfprom.yaml           |   1 +
+ .../bindings/thermal/qcom-tsens.yaml          |   1 +
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi         | 169 ++++++++++++++++++
+ drivers/thermal/qcom/tsens-v1.c               |  58 ++++++
+ drivers/thermal/qcom/tsens.c                  |   5 +-
+ drivers/thermal/qcom/tsens.h                  |   5 +-
+ 6 files changed, 237 insertions(+), 2 deletions(-)
+
+-- 
+2.34.1
+
 
