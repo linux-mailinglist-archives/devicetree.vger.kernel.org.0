@@ -1,68 +1,68 @@
-Return-Path: <devicetree+bounces-533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A566A7A1DC5
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 13:58:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABC5B7A1DD0
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:00:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 666142821AF
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 11:58:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 853B91C20E39
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:00:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BD02101F4;
-	Fri, 15 Sep 2023 11:58:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B34A5101F5;
+	Fri, 15 Sep 2023 12:00:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCFF6DF43
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 11:58:34 +0000 (UTC)
-Received: from mail-yw1-f193.google.com (mail-yw1-f193.google.com [209.85.128.193])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBB671FE5;
-	Fri, 15 Sep 2023 04:58:31 -0700 (PDT)
-Received: by mail-yw1-f193.google.com with SMTP id 00721157ae682-58dce1f42d6so43345167b3.0;
-        Fri, 15 Sep 2023 04:58:31 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DB66DDB7
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 12:00:02 +0000 (UTC)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01E2D1FF1;
+	Fri, 15 Sep 2023 04:59:57 -0700 (PDT)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-59bebd5bdadso20485277b3.0;
+        Fri, 15 Sep 2023 04:59:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694779111; x=1695383911;
+        d=1e100.net; s=20230601; t=1694779196; x=1695383996;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=IhoLa0IXdX3TaWf8YmV+AYUsXgMaohKowkvp3aA0P+I=;
-        b=nlw9XbPDsFV/RqCjMx20OpBo9VNByN/YeoLg0bO0HA4HZCg0pnxrhrnC3k3R8ek3o3
-         fAg8pk0KMQIyfi3f1bJuJ5CKd1+Y00aZP4vyozUvuSwQ6t/EyE8h1oHd1tRtHTSAzXTS
-         DUcCajOBUijf1RyE1tkCxScQ/5QUYJZaJtOF/Wx+ir9DD5Jy7in03p+NhCfHYkwJ8QRa
-         2ojlFYBm6xDg2/DT/cwdr0HYb469NgShFuNscklpyoUpdAbzkZ+oS1SpsvQv0GyoLiUT
-         GQsGqhi8dd57L1rPPrMPSUFN4k16zRAt07rz8rRG5n+6je9i/nDRwTJwkCq3S0/XjgQo
-         syIw==
-X-Gm-Message-State: AOJu0Yw0M1GKB7wZcMi8hmdnFxv2PkeYaY105aiInVRJEV3exG8rahE5
-	E6XKCa1vUYImHO8eBTML6kadyycFYF6BLL/O
-X-Google-Smtp-Source: AGHT+IH49B71wpV06DDzaQrTvbIXqVRze07xbxbfDuEd47ROOpIoLqNZyXllMtZVtNOsiiBkWAxxUw==
-X-Received: by 2002:a81:a04b:0:b0:56f:fd0a:588d with SMTP id x72-20020a81a04b000000b0056ffd0a588dmr4525175ywg.8.1694779111162;
-        Fri, 15 Sep 2023 04:58:31 -0700 (PDT)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id m128-20020a0de386000000b00595394ba941sm828551ywe.81.2023.09.15.04.58.31
+        bh=n3w3Hc9oT+9ZccWQwVTHbvcVnVRL/HUfvJ1knY0q2Ic=;
+        b=QvdyYF7XWIEv80sdYY6EUpSVHSU/LFAaMJZ3D2+xk7UhXKvAQb7+m8qQh4c0+OFzmU
+         DnBTI0sFTVVdCCdyiIoN6I5pI6RznmlX6oYN6YOC74kgOxtM4RNb9vMUxmuPkA2kHITa
+         azl/pVvjpaN+T0Px8EkrWaZtuACKHj98Ue/idsYHXpVZKLgvq5wKEZ5ybLHhKw9K6zYX
+         Et1XaO4KO2SDuXR5llh72kNxHOkHsJaVTDj9uhT4QgFWVE9ScQ20SsjwlKSd0o1cXF2x
+         KPFzKKBS7ywyU24b+1D52gHbt8tZm8cQg257nSK5bbzEe3H6xAEfdWZL/dkuOKCp33tm
+         N0vQ==
+X-Gm-Message-State: AOJu0YxLd3xMyYCDly0SDA0xevtcc5RYbm1vV4FsiauDTQFpu30Xx+V+
+	HvBRCB69PT3ecBqDo8O71ZGoKQn4cwC+/w==
+X-Google-Smtp-Source: AGHT+IGu2Nx4aW4E+cePSYiOtC0ayVxYccNOTgkQKYTSdC/0cQKD2QCiezIjz7s0G+LmdHqX3R8bgw==
+X-Received: by 2002:a81:5fc2:0:b0:59b:4bb2:fc2c with SMTP id t185-20020a815fc2000000b0059b4bb2fc2cmr1598737ywb.48.1694779196081;
+        Fri, 15 Sep 2023 04:59:56 -0700 (PDT)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
+        by smtp.gmail.com with ESMTPSA id r82-20020a815d55000000b0059b2be24f88sm812554ywb.143.2023.09.15.04.59.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 04:58:31 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-d819b185e74so2150221276.0;
-        Fri, 15 Sep 2023 04:58:31 -0700 (PDT)
-X-Received: by 2002:a25:d252:0:b0:d81:987f:989c with SMTP id
- j79-20020a25d252000000b00d81987f989cmr1869824ybg.3.1694779110814; Fri, 15 Sep
- 2023 04:58:30 -0700 (PDT)
+        Fri, 15 Sep 2023 04:59:55 -0700 (PDT)
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-d7f0a60a159so1872051276.0;
+        Fri, 15 Sep 2023 04:59:55 -0700 (PDT)
+X-Received: by 2002:a25:2555:0:b0:d77:dcff:e7b2 with SMTP id
+ l82-20020a252555000000b00d77dcffe7b2mr1234044ybl.39.1694779195344; Fri, 15
+ Sep 2023 04:59:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com> <20230912045157.177966-21-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20230912045157.177966-21-claudiu.beznea.uj@bp.renesas.com>
+References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com> <20230912045157.177966-22-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20230912045157.177966-22-claudiu.beznea.uj@bp.renesas.com>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 15 Sep 2023 13:58:18 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVzX6fM5OSEONngii13uzbG0tUgM-ZVYstKw6JoV=g1OQ@mail.gmail.com>
-Message-ID: <CAMuHMdVzX6fM5OSEONngii13uzbG0tUgM-ZVYstKw6JoV=g1OQ@mail.gmail.com>
-Subject: Re: [PATCH 20/37] dt-bindings: clock: renesas,rzg2l-cpg: document
- RZ/G3S SoC
+Date: Fri, 15 Sep 2023 13:59:42 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWc6yy=oJDo4zMdvB-t8pjCuE1oJ_Y6Ck0aX_hPkfhPug@mail.gmail.com>
+Message-ID: <CAMuHMdWc6yy=oJDo4zMdvB-t8pjCuE1oJ_Y6Ck0aX_hPkfhPug@mail.gmail.com>
+Subject: Re: [PATCH 21/37] dt-bindings: clock: add r9a08g045 CPG clocks and
+ resets definitions
 To: Claudiu <claudiu.beznea@tuxon.dev>
 Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
 	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
@@ -86,28 +86,45 @@ X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Sep 12, 2023 at 6:52=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
+On Tue, Sep 12, 2023 at 6:53=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
 wrote:
 > From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >
-> Add documentation for RZ/G3S CPG. RZ/G3S CPG module is almost identical
-> with the one available in RZ/G2{L, UL} the exception being some core
-> clocks as follows:
-> - SD clock is composed by a mux and a divider and the divider
->   has some limitation (div =3D 1 cannot be set if mux rate is 800MHz).
-> - there are 3 SD clocks
-> - OCTA and TSU clocks are specific to RZ/G3S
-> - PLL1/4/6 are specific to RZ/G3S with its own computation formula
-> Even with this RZ/G3S could use the same bindings as RZ/G2L.
+> Add RZ/G3S (R9A08G045) Clock Pulse Generator (CPG) core clocks, module
+> clocks and resets.
 >
 > Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Thanks for your patch!
+
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/r9a08g045-cpg.h
+
+> +/* R9A08G045 Module Clocks */
+
+> +#define R9A08G045_USB_U2H0_HCLK                65
+> +#define R9A08G045_USB_U2H1_HCLK                66
+> +#define R9A08G045_USB_U2P_EXR_CPUCLK   67
+> +#define R9A08G045_USB_PCLK             68
+> +#define R9A08G045_USB_SCLK             69
+
+There is no USB_SCLK bit in CPG_CLKON_USB, so please drop
+R9A08G045_USB_SCLK.
+
+> +/* R9A08G045 Resets */
+
+> +#define R9A08G045_SRAM_ACPU_ARESETN0   11
+> +#define R9A08G045_SRAM_ACPU_ARESETN1   12
+> +#define R9A08G045_SRAM_ACPU_ARESETN2   13
+
+There is no SRAM_ACPU_ARESETN2 bit in CPG_RST_SRAM_MCPU,
+so please drop R9A08G045_SRAM_ACPU_ARESETN2.
+
+The rest LGTM.
 
 Gr{oetje,eeting}s,
 
                         Geert
-
 
 --
 Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
