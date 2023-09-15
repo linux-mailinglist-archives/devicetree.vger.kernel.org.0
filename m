@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91C9D7A1737
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:23:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3E6C7A1739
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:24:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B65661C213C2
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 07:23:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD89F282999
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 07:24:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3609AD27E;
-	Fri, 15 Sep 2023 07:23:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D268D27B;
+	Fri, 15 Sep 2023 07:24:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99364D278
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 07:23:45 +0000 (UTC)
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80A1CA1;
-	Fri, 15 Sep 2023 00:23:44 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-68fe39555a0so1641225b3a.3;
-        Fri, 15 Sep 2023 00:23:44 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CED8CD27C
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 07:24:08 +0000 (UTC)
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECD81A1;
+	Fri, 15 Sep 2023 00:24:07 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-1c3d8fb23d9so15436115ad.0;
+        Fri, 15 Sep 2023 00:24:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694762624; x=1695367424; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1694762647; x=1695367447; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=i5DdN2I9qJnXX8fUomCodux5qyyadXgZyIqOEcUZz9g=;
-        b=AnGHV8XHKtQMwHNm5+nWFoWc488eEmN3iAvPh/uK6nerq9TjGTJ95MVr2MItXURO8v
-         F/34S+HmfwrH2rtckV6Nrn5FvGLvqm1FEpY8b/fYNeMhSJCb9oYxVRqnlLzT5X8sLnJp
-         JM+nMRSs76h7fOyhUKGH6N6WZcVuvQe/lfmX3RN4AzVZxSYo65Bp5FLu4VMUifn7+FFL
-         03QOjz5vGodpkwwM20SAuZ4RF11GRlt+sPOgLSqWdQzPIMkb7ynsM9mO/jpImN5aoKYz
-         Szf52Yui/S10LVTb1u5lL5O3AgFmLcS8C8LT46gl92k+GKw+OoBRSoYc9PBgbrHcMQks
-         jdZA==
+        bh=QaNp6vd76nBX4EIgc/17q2XiC73X4sxuT4uDWwfKOL4=;
+        b=HWq8sVN8aYaLeJ3nafT1MCwehOldEydiURAYtaD7EPJo0ZFOk1n90ktUZ6xwe5RW3B
+         KhSNtpu8Ic65K5WxHyae8G85riEyF+hbDfDf8CPFzyIApgcDD5hTGt+jJQSu8EfHqr7i
+         gLvNrDMqxbGxM8CJEDeTTeF3EzRS3H6RutxPip+xyr8cuBFT6rQ9PqXQUC71eoNw8kpa
+         /PW5aOzDMBKPo3LDpHhCZRS4QXqW5pmlKX9VSzkMCeg03hP8DlNYA/xzG0lbS66tCoi9
+         qImuQWzONYeMPI2DxiyFU13brY0omDzpMunEf4nMd6JF09i1LsBpHXVvlLHHqIcw+r5G
+         THcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694762624; x=1695367424;
+        d=1e100.net; s=20230601; t=1694762647; x=1695367447;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=i5DdN2I9qJnXX8fUomCodux5qyyadXgZyIqOEcUZz9g=;
-        b=CpK7Chr5WqVcJgVCTX+kOS0l7bzNiBYIm38AZtUYLpE6q9lW0sQEiTHKcwVKYdr0+L
-         tehZ1aaKlSv6h7GxuBTV0MZNsFo1lBKl2TupGMriAn+YTptxuo/DJUJAx7/K9lCCKZ5A
-         gymBLEEyOQpo7pBNQa7XA6MY0kYRCySWIzOt9YgM0eMnQs5Cy+lm2XVzC3nbykYiNANk
-         HcCWCT+EZdsuLqt/iuSgqmCozPL1e3yl93jTnUax7Ez4wUrMxOgDSWhcAvRFdZkUS9aH
-         28pAFYUalEF6o4E8lOmc//Zinu1dondpueuSe7IpCQTjHtN6z2P/qstEzcXWrYHDcSLV
-         XwPQ==
-X-Gm-Message-State: AOJu0Yw47ggqnSb27m8DuGQ+jgMgnC4EEAtpOolwRPpKa0zIzqjQ7Vnx
-	+pCmSNxcJ1l2fbJV0GtWhi8=
-X-Google-Smtp-Source: AGHT+IHU/Iq9TuJy2Xn7NgZhqVwjAOkxxb1R/8UU167fw9+wSqRSNrFOKa8keUomAiOjbu+XfSshGA==
-X-Received: by 2002:a05:6a00:2d21:b0:68c:3f2:6000 with SMTP id fa33-20020a056a002d2100b0068c03f26000mr1149644pfb.6.1694762623573;
-        Fri, 15 Sep 2023 00:23:43 -0700 (PDT)
+        bh=QaNp6vd76nBX4EIgc/17q2XiC73X4sxuT4uDWwfKOL4=;
+        b=sfJqectffRrqCTHTFrRAIuAI+6l5loLsyYpofW/R9MhJYwykdkywJy8R07y+6l5FVI
+         GaH7+Co8osTUsODQgYVKallEhNyRN4XD3VsAoKvYg31mzLAEbu11+GMB5X3YxNyb8GCD
+         pPVaObVU8B2ek2SGFHstirssY+6cd7xgz+ijj5IU3iZqOXD1NOIHnNbAAQGIq6JB/7H6
+         LEtBGmyxXIcwgKoXIBJcAlg0238lrEqwf5K74Omf/cve9zKMywT04UbIw/OcpN4PDpas
+         P1DkPv1zrI2+HF/LWf4NCZp6y90B81u7HzvvIMG6Nyk8s/EeK0O+G20W//2fuqqapWSf
+         XqAw==
+X-Gm-Message-State: AOJu0YyO/Amag3zhXpLzSmRzAea4o8hicqSIScguH6/px5jlGaUbxqsG
+	+qmkmDdDl8hPw39eJEg4c50=
+X-Google-Smtp-Source: AGHT+IHyv/ddLA7MSNkIAr2jiHyMnYSlV0XYvR0QP7EyYs9q3c9bwg8H3ZjmKsWw+CfJpBwlz9L5jA==
+X-Received: by 2002:a17:902:7081:b0:1bc:7001:6e62 with SMTP id z1-20020a170902708100b001bc70016e62mr740375plk.35.1694762647382;
+        Fri, 15 Sep 2023 00:24:07 -0700 (PDT)
 Received: from localhost.localdomain ([222.95.63.58])
-        by smtp.gmail.com with ESMTPSA id e23-20020a62ee17000000b006889081281bsm2338738pfi.138.2023.09.15.00.23.37
+        by smtp.gmail.com with ESMTPSA id bd12-20020a170902830c00b001b86dd825e7sm717590plb.108.2023.09.15.00.24.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Sep 2023 00:23:43 -0700 (PDT)
+        Fri, 15 Sep 2023 00:24:07 -0700 (PDT)
 From: Wang Chen <unicornxw@gmail.com>
 X-Google-Original-From: Wang Chen <wangchen20@iscas.ac.cn>
 To: linux-riscv@lists.infradead.org,
@@ -71,9 +71,9 @@ Cc: devicetree@vger.kernel.org,
 	chao.wei@sophgo.com,
 	xiaoguang.xing@sophgo.com,
 	Wang Chen <wangchen20@iscas.ac.cn>
-Subject: [PATCH 04/12] dt-bindings: riscv: Add T-HEAD C920 compatibles
-Date: Fri, 15 Sep 2023 15:23:33 +0800
-Message-Id: <20230915072333.117991-1-wangchen20@iscas.ac.cn>
+Subject: [PATCH 05/12] dt-bindings: interrupt-controller: Add SOPHGO's SG2042 PLIC
+Date: Fri, 15 Sep 2023 15:23:58 +0800
+Message-Id: <20230915072358.118045-1-wangchen20@iscas.ac.cn>
 X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -89,27 +89,26 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The C920 is RISC-V CPU cores from T-HEAD Semiconductor.
-Notably, the C920 core is used in the SOPHGO SG2042 SoC.
+Add compatible string for SOPHGO SG2042 plic.
 
 Signed-off-by: Wang Chen <wangchen20@iscas.ac.cn>
 Signed-off-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
 ---
- Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
+ .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml         | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-index 38c0b5213736..185a0191bad6 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -47,6 +47,7 @@ properties:
-               - sifive,u74-mc
-               - thead,c906
-               - thead,c910
-+              - thead,c920
-           - const: riscv
-       - items:
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+index dc1f28e55266..3abb1f68ea62 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+@@ -66,6 +66,7 @@ properties:
            - enum:
+               - allwinner,sun20i-d1-plic
+               - thead,th1520-plic
++              - sophgo,sg2042-plic
+           - const: thead,c900-plic
+       - items:
+           - const: sifive,plic-1.0.0
 -- 
 2.25.1
 
