@@ -1,155 +1,152 @@
-Return-Path: <devicetree+bounces-481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C4E87A1BB3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:05:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AFD67A1BAF
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:05:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 381781C21165
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 10:05:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 356872815A3
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 10:05:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0889DF61;
-	Fri, 15 Sep 2023 10:05:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26738DF58;
+	Fri, 15 Sep 2023 10:04:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EC35DF58;
-	Fri, 15 Sep 2023 10:05:15 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81BB4268A;
-	Fri, 15 Sep 2023 03:02:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1694772178; x=1726308178;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=dlwnheLHWrheCZf+0lnqyF5y1gAk0XJDuzApxL+C0IU=;
-  b=gI3engqurk/g/497fI/CT66pBwFbuwP1ckNDl9K2h2Uy2QkoNG0CwqNJ
-   dYUpHTZbDlP4VueUD0xrGldn52YsMKtzD2NyJAY3FwL/TCI2y4qwMath2
-   CNDkw8G/Grkp0XCDg4cPL4W9RKYojpbup0TNYvjZypnYax3JpJ4yNmOeB
-   EN1iNesEl3AT/9Ann9Dkgj4uEJm8cWVHyyRAEZmLSzFRQh0EXyLz/ryA9
-   Z7xhOW36Fw2rgkt4UL7MgGM5NWDIP/T+zAsRH19yXFqDm7FQc7tTce9Ee
-   0i8KvbKa3a5vzIklEItn0c570dG4m/e62VxuTooHwnM+SUZzEongmdns1
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="381938741"
-X-IronPort-AV: E=Sophos;i="6.02,148,1688454000"; 
-   d="scan'208";a="381938741"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2023 02:54:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="744916324"
-X-IronPort-AV: E=Sophos;i="6.02,148,1688454000"; 
-   d="scan'208";a="744916324"
-Received: from pglc00032.png.intel.com ([10.221.207.52])
-  by orsmga002.jf.intel.com with ESMTP; 15 Sep 2023 02:54:33 -0700
-From: Rohan G Thomas <rohan.g.thomas@intel.com>
-To: "David S . Miller" <davem@davemloft.net>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	fancer.lancer@gmail.com
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Rohan G Thomas <rohan.g.thomas@intel.com>
-Subject: [PATCH net-next v6 2/2] net: stmmac: Tx coe sw fallback
-Date: Fri, 15 Sep 2023 17:54:17 +0800
-Message-Id: <20230915095417.1949-3-rohan.g.thomas@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230915095417.1949-1-rohan.g.thomas@intel.com>
-References: <20230915095417.1949-1-rohan.g.thomas@intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E418DF45
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 10:04:41 +0000 (UTC)
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4D7835A5
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 03:02:55 -0700 (PDT)
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id F10B73F665
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 10:02:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1694772167;
+	bh=QkyFp7kf2CVO2Ub+8zdfAbl+jurBUvZ+r3KzB+EtSOE=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=IWNX+0XFHPRbrVwvDNh04s3QpFX04ULlixQ93AzQH3wOE0UZxlDBOT3B/7Ze2ynV6
+	 34NdDFB5FPBPcMEwIjuw8PBaVe70O8fHx5sZfOAIBgnty8QhGxEhFyoL8lNmVujqhA
+	 Vr08rM7kwFLnaqLA/DftF0HpdxEtMTjBvsv44Ii3auCkj4MKbyvO+bSAcyyH2KBA52
+	 6YDlvy3f9YIcuWBysHZNKvpOdtwMSsL5ZV4PrRVf6QvXaTBoiETJ5efn15XoKEZ0lM
+	 787+2cYxoCGsZR1snXWnwAaS0uyotyraGKQHSlnSl65ufCSB/l5Gtvr+vvpwaYhRB4
+	 ogky6hv0QnVnQ==
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-41360d145b1so22139931cf.1
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 03:02:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694772166; x=1695376966;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QkyFp7kf2CVO2Ub+8zdfAbl+jurBUvZ+r3KzB+EtSOE=;
+        b=oet1rYTh2BvqYRUs5qB/z6xyL5FoPazmEkeo17Wr9PsA7U1LZWJb57i8Dd6XheB67l
+         UOjf3RXggacIgAY4zwahdrPbDV/aUatbiCjLLJ+fWiJ3Ippy5vLCNwW3zcgs2ThdkSV2
+         cv1ULVOXCtgKgXPAJtuq2HREfKUUAw2OHl1EaUyjygIVQzkDbm8AxKlboAwcLYizl8id
+         lEPRLBMZIon14KwVgxSUZP/YqitggMTvj8WswoyJ937mgXwg3jEf/yB2yz5QIOMUzIn3
+         bsZnBoPiFjNyKOqoYsR9+jyhyYGgDn/us2XtzbCzxq8a2wiTkBoZV1XcM6Fb+iRd3KPV
+         +PuQ==
+X-Gm-Message-State: AOJu0YwDMQExTcxwNcQGq0blyik7ydlYplhNx9q/TtDRVkauZHgsMQt2
+	P9wcD1ZD+FVV5MZ4i9J6Jf3NnRDP7FgoruJa6kxykhd/bUEa1VgstXqZQZSZ3Ub4jbzTH1UfXap
+	fxh4SDZDzaY7Osii4iexG5lFYB+QHzhdjLjnztGRT/t8MuVtvYUqt7Yw=
+X-Received: by 2002:a05:622a:50f:b0:413:3384:d43f with SMTP id l15-20020a05622a050f00b004133384d43fmr1205914qtx.11.1694772166711;
+        Fri, 15 Sep 2023 03:02:46 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHcuEVbIaKxRfintolzQeQEqh1KYU8VcadUoiPE32/xiQVSV3jCFDSTK9K4fjz4v/l2KVtOBfxlhc7L+2IchGU=
+X-Received: by 2002:a05:622a:50f:b0:413:3384:d43f with SMTP id
+ l15-20020a05622a050f00b004133384d43fmr1205890qtx.11.1694772166482; Fri, 15
+ Sep 2023 03:02:46 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 15 Sep 2023 03:02:46 -0700
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <803daa8f-f4bd-34b7-f826-89e1db5f24f6@linaro.org>
+References: <20230915072558.118325-1-wangchen20@iscas.ac.cn> <803daa8f-f4bd-34b7-f826-89e1db5f24f6@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Mime-Version: 1.0
+Date: Fri, 15 Sep 2023 03:02:45 -0700
+Message-ID: <CAJM55Z-GMm5Hmk7-QWt8Prvp7qyFzOrQVjOjB7jfoX-oiT_C1A@mail.gmail.com>
+Subject: Re: [PATCH 10/12] serial: 8250_dw: Add Sophgo SG2042 support
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Wang Chen <unicornxw@gmail.com>, 
+	linux-riscv@lists.infradead.org, conor@kernel.org, aou@eecs.berkeley.edu, 
+	krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com, 
+	paul.walmsley@sifive.com, robh+dt@kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	jszhang@kernel.org, guoren@kernel.org, chao.wei@sophgo.com, 
+	xiaoguang.xing@sophgo.com, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add sw fallback of tx checksum calculation for those tx queues that
-don't support tx checksum offloading. DW xGMAC IP can be synthesized
-such that it can support tx checksum offloading only for a few
-initial tx queues. Also as Serge pointed out, for the DW QoS IP, tx
-coe can be individually configured for each tx queue.
+Krzysztof Kozlowski wrote:
+> On 15/09/2023 09:25, Wang Chen wrote:
+> > From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> >
+> > Add quirk to skip setting the input clock rate for the uarts on the
+> > Sophgo SG2042 SoC similar to the StarFive JH7100.
+> >
+> > Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+>
+> Missing SoB.
+>
+> > ---
+> >  drivers/tty/serial/8250/8250_dw.c | 5 +++--
+> >  1 file changed, 3 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
+> > index f4cafca1a7da..6c344877a07f 100644
+> > --- a/drivers/tty/serial/8250/8250_dw.c
+> > +++ b/drivers/tty/serial/8250/8250_dw.c
+> > @@ -770,7 +770,7 @@ static const struct dw8250_platform_data dw8250_renesas_rzn1_data = {
+> >  	.quirks = DW_UART_QUIRK_IS_DMA_FC,
+> >  };
+> >
+> > -static const struct dw8250_platform_data dw8250_starfive_jh7100_data = {
+> > +static const struct dw8250_platform_data dw8250_skip_set_rate_data = {
+>
+> Why? What is wrong with old name?
+>
+> >  	.usr_reg = DW_UART_USR,
+> >  	.quirks = DW_UART_QUIRK_SKIP_SET_RATE,
+> >  };
+> > @@ -780,7 +780,8 @@ static const struct of_device_id dw8250_of_match[] = {
+> >  	{ .compatible = "cavium,octeon-3860-uart", .data = &dw8250_octeon_3860_data },
+> >  	{ .compatible = "marvell,armada-38x-uart", .data = &dw8250_armada_38x_data },
+> >  	{ .compatible = "renesas,rzn1-uart", .data = &dw8250_renesas_rzn1_data },
+> > -	{ .compatible = "starfive,jh7100-uart", .data = &dw8250_starfive_jh7100_data },
+> > +	{ .compatible = "sophgo,sg2042-uart", .data = &dw8250_skip_set_rate_data },
+> > +	{ .compatible = "starfive,jh7100-uart", .data = &dw8250_skip_set_rate_data },
+>
+> So devices are fully compatible? Then use compatibility and drop this
+> patch entirely.
 
-So when tx coe is enabled, for any tx queue that doesn't support
-tx coe with 'coe-unsupported' flag set will have a sw fallback
-happen in the driver for tx checksum calculation when any packets to
-be transmitted on these tx queues.
+I'm fine with this, but these are two different companies and SoCs that just
+happens to have both implemented the Designware UART with an inflexible input
+clock. So if fx. a real quirk is found on the JH7110 then we'd need to either
+change the compatible on an unrelated SoC or change compatible on the JH7110 to
+something like "starfive,jh7100-uart-with-quirk" and "starfive,jh7100-uart" will
+forever be a quirky way to spell "dw8250 with inflexible input clock".
+Is that how device trees are supposed to work?
 
-Signed-off-by: Rohan G Thomas <rohan.g.thomas@intel.com>
----
- drivers/net/ethernet/stmicro/stmmac/stmmac_main.c     | 10 ++++++++++
- drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c |  3 +++
- include/linux/stmmac.h                                |  1 +
- 3 files changed, 14 insertions(+)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-index 2206789802bf..9201ed778ebc 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -4401,6 +4401,16 @@ static netdev_tx_t stmmac_xmit(struct sk_buff *skb, struct net_device *dev)
- 	WARN_ON(tx_q->tx_skbuff[first_entry]);
- 
- 	csum_insertion = (skb->ip_summed == CHECKSUM_PARTIAL);
-+	/* DWMAC IPs can be synthesized to support tx coe only for a few tx
-+	 * queues. In that case, checksum offloading for those queues that don't
-+	 * support tx coe needs to fallback to software checksum calculation.
-+	 */
-+	if (csum_insertion &&
-+	    priv->plat->tx_queues_cfg[queue].coe_unsupported) {
-+		if (unlikely(skb_checksum_help(skb)))
-+			goto dma_map_err;
-+		csum_insertion = !csum_insertion;
-+	}
- 
- 	if (likely(priv->extend_desc))
- 		desc = (struct dma_desc *)(tx_q->dma_etx + entry);
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-index 0f28795e581c..a09014c9e7d0 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-@@ -276,6 +276,9 @@ static int stmmac_mtl_setup(struct platform_device *pdev,
- 			plat->tx_queues_cfg[queue].use_prio = true;
- 		}
- 
-+		plat->tx_queues_cfg[queue].coe_unsupported =
-+			of_property_read_bool(q_node, "snps,coe-unsupported");
-+
- 		queue++;
- 	}
- 	if (queue != plat->tx_queues_to_use) {
-diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
-index ce89cc3e4913..c0079a7574ae 100644
---- a/include/linux/stmmac.h
-+++ b/include/linux/stmmac.h
-@@ -139,6 +139,7 @@ struct stmmac_rxq_cfg {
- 
- struct stmmac_txq_cfg {
- 	u32 weight;
-+	bool coe_unsupported;
- 	u8 mode_to_use;
- 	/* Credit Base Shaper parameters */
- 	u32 send_slope;
--- 
-2.25.1
-
+/Emil
+>
+> Best regards,
+> Krzysztof
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
