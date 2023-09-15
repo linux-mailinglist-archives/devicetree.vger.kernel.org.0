@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21EFD7A1C9F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:45:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0FCE7A1CAE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 12:47:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32D631C2112F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 10:45:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BAAC28263C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 10:47:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81B9AFC12;
-	Fri, 15 Sep 2023 10:45:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A6CBFC12;
+	Fri, 15 Sep 2023 10:47:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F34672F5A
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 10:45:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7179DF67
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 10:47:09 +0000 (UTC)
 Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB7C7DD
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 03:45:12 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9ad810be221so257936466b.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 03:45:12 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A88F8189
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 03:47:07 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-99c136ee106so261353066b.1
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 03:47:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694774711; x=1695379511; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694774826; x=1695379626; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/SID5oDKY4NJAlRPFZ69oTx9l6P/13bI038tsRW9LUo=;
-        b=OfEHIPm8BNCrS9Lm+oU7dVRjeQ+r+TRR5tSsDJJXgASjpbEvq7jAMXHNl8OkRsC4lz
-         104B8wOr5IUtH9jy+sjSnZTKUuBQKHdiDH67UrW//WAml8UqB1MCXcIrrD7pE6WBMEYS
-         JrXR/UAW54IB8LyCu8zzy4dv23NcIW9nVUAHlbyjFjkBe4JX9V2VUwAVvH3oFy4K6EKE
-         5gZrKRRq9TF3QFJotYkRP6l4bE/70tG8FgEsF9k8N0SGICE+3de7fZQ876LdizB89FmX
-         2IEPs16+UgTeRovvmkd759XFNTJdfgh0T0EsMvez8zv6t1ySgmJSMHb3bMfjO3z8drgR
-         NKaA==
+        bh=K/o4N+rJdDvPOkHZP4rGeji09Be+GMTp3ncXx+q6uC0=;
+        b=icG5iIDZbs+c41vEqRqwJCd2yZhBnHjuWRpAGvFzCVGt1LybTXZIJnG5IyVWedUCsu
+         A3l1kbET70LN0DcPv7u97MkPJ0KjmsN1D92X47rb49tnmWT37ByXSlP1BbtSM11JInTX
+         MF1K6rnHPcFuaOHkHVxUNQBe8PhUFCL6L/HL0cCcJGshExeIFsP95CeWS/Fqv5FClh2S
+         fIW3/iGywh+JEf9gZ/Z82dEjqNHyuDq4MFTUOssybK8sgixh/1G1b0wbGL82rK5rwDcg
+         NqVmKnqSct8EXVgxB7XGHWt4/5EFN3boSG/cVCx8mDnWQUQi8w4gElQCiT7E8HrqZL0k
+         vUdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694774711; x=1695379511;
+        d=1e100.net; s=20230601; t=1694774826; x=1695379626;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/SID5oDKY4NJAlRPFZ69oTx9l6P/13bI038tsRW9LUo=;
-        b=i4QxNMrj/RU8B4JOPWc8FqnNfz6l0Y6RB1JS05NA1tgyi/vGxchno3dbBrkaowMFDj
-         XYkIfajCd4roOGhGipicEsFa7auazgD+5h8qqSI2v/fTMKn/ClK3gma25nRskEK10bY4
-         9h+7IbpZGl2ickHrBDF3RGD/jPsCPs81TDWSYO1xJMkF2/GPP7rMKAtZ1+xm+oKnCedK
-         vtXwnsP/vI+ByhTOXe/0CRJuW0/qa0lONsd1ZJtebbqxlaxeFaeJ6odvU9ZlWP4A7bAi
-         2/7Ur/7eSCXw2tQyPbyfQmnoThxWK0vZr2CQj2nyJWqWdWDESpn3xagPl1BzcZnsbjtT
-         N+HA==
-X-Gm-Message-State: AOJu0YyRcGD5Q5mCUqz9J76zj17voegAT7jxHL9hNaw4Be1lPbqlm3i4
-	7xcd7B4GFcdrL1+P5EwCnPxo8A==
-X-Google-Smtp-Source: AGHT+IH11YBMU4QUnpcqSRlEVLJOYHut97zbieeCJa0wwpsQlPg5PGGsIsgtpUlwTjxuMdQKDv9Dag==
-X-Received: by 2002:a17:906:844a:b0:9a2:225a:8d01 with SMTP id e10-20020a170906844a00b009a2225a8d01mr1167891ejy.7.1694774711278;
-        Fri, 15 Sep 2023 03:45:11 -0700 (PDT)
+        bh=K/o4N+rJdDvPOkHZP4rGeji09Be+GMTp3ncXx+q6uC0=;
+        b=kb7kYAY7sw2/KBLuBzsob5/45pdGJLaB0xvcChl7TLUzakRZAnik7sjehpdK9ADyqN
+         IhYIPuADV5AUeu9m/wd75ZL/hYbgamt1uPkYpzNAyB90xvY4iXPd3TaGBH/LnwgNdLOk
+         Bj6jWAyuIiaRa8mXRaRfsB7q8tonoaBsr8+ZG+rppsXYZWz8Ypdjef0+eo+ets9DET4e
+         203leTeLxBksRW5Le/kZcQaN9t2fF7cs1YUxbbZv5YhsciZIGHkPQoHaQ+SPSLGsdWNW
+         NO3vn+lDUNilT6fTTQPjeqv0krM8YGF+JTc2zCy7oaVMUTxlkdFi0LxAhW8ufGxqKcv/
+         oyjQ==
+X-Gm-Message-State: AOJu0YzjplKv8cy1SLjpatWHAUInkWQlQNVPdvHNGFCJc9XW3cNApbmw
+	JM0mqzOtEzCObuyzy8YIAPtO/A==
+X-Google-Smtp-Source: AGHT+IHVOd/ddryjn2v0lhERAAcKk6mQCZCf4sdk9KrpW6+CUqWi6F4ZfilyAWQn9jSB9zOV0NnX8g==
+X-Received: by 2002:a17:906:311b:b0:9a1:c352:b6a5 with SMTP id 27-20020a170906311b00b009a1c352b6a5mr1069106ejx.69.1694774826009;
+        Fri, 15 Sep 2023 03:47:06 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id vl3-20020a170907b60300b009adc77fe164sm1139726ejc.66.2023.09.15.03.45.09
+        by smtp.gmail.com with ESMTPSA id a18-20020a170906191200b0098e42bef736sm2224043eje.176.2023.09.15.03.47.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 03:45:10 -0700 (PDT)
-Message-ID: <68abb9ea-37cc-df7a-d557-39b4c83c2e0c@linaro.org>
-Date: Fri, 15 Sep 2023 12:45:08 +0200
+        Fri, 15 Sep 2023 03:47:05 -0700 (PDT)
+Message-ID: <d334267f-38dd-bf70-4246-263de1a4747f@linaro.org>
+Date: Fri, 15 Sep 2023 12:47:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,91 +66,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH v4 17/42] dt-bindings: pwm: Add Cirrus EP93xx
+Subject: Re: [PATCH v4 19/42] dt-bindings: spi: Add Cirrus EP93xx
 Content-Language: en-US
-To: nikita.shubin@maquefel.me, Thierry Reding <thierry.reding@gmail.com>,
- =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+To: nikita.shubin@maquefel.me, Mark Brown <broonie@kernel.org>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>,
  Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>
 References: <20230915-ep93xx-v4-0-a1d779dcec10@maquefel.me>
- <20230915-ep93xx-v4-17-a1d779dcec10@maquefel.me>
+ <20230915-ep93xx-v4-19-a1d779dcec10@maquefel.me>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230915-ep93xx-v4-17-a1d779dcec10@maquefel.me>
+In-Reply-To: <20230915-ep93xx-v4-19-a1d779dcec10@maquefel.me>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 15/09/2023 10:10, Nikita Shubin via B4 Relay wrote:
+On 15/09/2023 10:11, Nikita Shubin via B4 Relay wrote:
 > From: Nikita Shubin <nikita.shubin@maquefel.me>
 > 
-> Add YAML bindings for ep93xx SoC PWM.
+> Add YAML bindings for ep93xx SoC SPI.
 > 
 > Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
-> Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 > ---
->  .../devicetree/bindings/pwm/cirrus,ep9301-pwm.yaml | 46 ++++++++++++++++++++++
->  1 file changed, 46 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/cirrus,ep9301-pwm.yaml b/Documentation/devicetree/bindings/pwm/cirrus,ep9301-pwm.yaml
-> new file mode 100644
-> index 000000000000..198b9a40f756
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/cirrus,ep9301-pwm.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/cirrus,ep9301-pwm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cirrus Logick ep93xx PWM controller
-> +
-> +maintainers:
-> +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
-> +  - Nikita Shubin <nikita.shubin@maquefel.me>
-> +
 
-$ref to pwm.yaml
-
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: cirrus,ep9301-pwm
-> +      - items:
-> +          - enum:
-> +              - cirrus,ep9302-pwm
-> +              - cirrus,ep9307-pwm
-> +              - cirrus,ep9312-pwm
-> +              - cirrus,ep9315-pwm
-> +          - const: cirrus,ep9301-pwm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: SoC PWM clock
-
-No pwm-cells?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +
-> +additionalProperties: false
-
-and then unevaluatedProperties: false instead
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
