@@ -1,126 +1,189 @@
-Return-Path: <devicetree+bounces-601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 126D97A2165
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 16:49:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D95B7A2170
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 16:50:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6947282959
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:49:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EC641C212D1
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 14:50:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1918330D12;
-	Fri, 15 Sep 2023 14:49:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D21B30D14;
+	Fri, 15 Sep 2023 14:50:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1671330CE0
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 14:48:58 +0000 (UTC)
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A20F1BE6;
-	Fri, 15 Sep 2023 07:48:57 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1694789334; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=BqrFLvcfCv7X7IHwBCzX2oP+K89RPBdwmATUMEA2wCSVbfjOJ0Qbh4NAhp5z7uk7dN
-    go29IkLJnUFneWYsCDNjvtC8VXXBLQwV0fznztJg3x3nW4FQQJoTUWOV458B24lALRUm
-    2lRoQ6U7nakSHQHDoPfA3Nh+VcQb/1+1YJllrsX5E0Rky63lFyZwQFL8/arW94moZntV
-    tn4pto3CFo/Sx0wYwmhu1sW0Z/vsmjy63nu0PTNGTxVJENIAQNj/BPyoi2ymBOvSnW+s
-    7ItbhQn0f7aT4A/I9jlqOsJOxR1sKRn+h7ow6vzm+HgM5nuUmRBrroiSD370+EpsM/+7
-    I6iw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1694789334;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=DmrH1Y1uu5a9ntgfPpGKbpjnT1F1jyR1nz4MQOqV/5o=;
-    b=FcOowJZjgrlqTMUUq0gFJpLmFLfHQLR8Xt6lhMjs5xaSKMW9GN5A+bUo+wfYzv9won
-    7gLAZDFsg2DMnc3lIgZRAZjbK/dDOF+kQVMbQDwgDbmbk2DwU9JWOkDPC0cnhOKUUBW2
-    Lgf4tTAy8WJ4DSXTqsRrO++6sDzPckLRWu0EJiC0yiI4meIxomqy95gLFo4Y9HJvri7D
-    cQa8Vqx4ConZ5cgWlCaUpQHv8MpgVSjW1ZRWXpfNf7BMXKYBFdDTzfoUTbx+OMKPetjh
-    bIobwcqYhtzcvQqB8O3SBAzw4Sj1xvmcQMXGpAlCAeq434xOjdv3tVAvpV+xzJvJ1PqG
-    wbnQ==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1694789334;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=DmrH1Y1uu5a9ntgfPpGKbpjnT1F1jyR1nz4MQOqV/5o=;
-    b=SuM1C4efoeabT6jDxTioH1hEab3jlv6azyVoWSdTxymXQtW7ByLN2hbQ56CBFn7osj
-    9+6PbTWcNPvTt1w59mecT5fAA6rVRPC8kvFINQuYn5aqJZIUvVlUvukjOgOfPufQoq85
-    HpPsKmYg6jSyDIHDQuXK1amsTjpUAv3oz6Hka68/eOOP7E9GxkJrmwevy1A+PMGW76fx
-    qQ+puMQSPRWobLTaOTrObftO0Keo9nZBnIKqfQjFFdxYuiUTKy5BGEsH3mUleEoSv3HF
-    cibK46LhLBY+gtUpsGWgi10S4ZcTshaCWwWVqeulxxZ7Ha8BdIQkI85nd6UzxXKm9i5Q
-    ryNg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1694789334;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=DmrH1Y1uu5a9ntgfPpGKbpjnT1F1jyR1nz4MQOqV/5o=;
-    b=jV4IIdZDzLsNpCzmUWSDZ3lvl0aJ1PteSc9Uq6badEshFIZASufGe1OQ/AbRHLZEUM
-    5Cv25p70rbxkcnHBdIAg==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA8piJ1A=="
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.8.2 DYNA|AUTH)
-    with ESMTPSA id R04c57z8FEms881
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Fri, 15 Sep 2023 16:48:54 +0200 (CEST)
-Date: Fri, 15 Sep 2023 16:48:47 +0200
-From: Stephan Gerhold <stephan@gerhold.net>
-To: Gaurav Kohli <quic_gkohli@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	kernel@quicinc.com
-Subject: Re: [PATCH v1] arm64: dts: qcom: msm8916: Fix iommu local address
- range
-Message-ID: <ZQRuzzC7i1kyNqAm@gerhold.net>
-References: <20230915143304.477-1-quic_gkohli@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15EEF30CE1
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 14:50:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F84DC433C8;
+	Fri, 15 Sep 2023 14:50:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1694789431;
+	bh=+7a/yilTLV3BMiTCUiFOpBcqKwXaHi/uJzXAg9+YPtQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NwpEnu7H/3Yo77ctlj+KSVShzHRotD5z4emCwm2QBSN0l8eFaqEk5iFeAE/Q7kNwG
+	 7QY7O7QpiyMGsgi/21vOWy8FLlOrvw1XbCO5kWdp8sk48gXvhME8PIOhiwahTs4LDg
+	 o3PBuISTzKbilibvTjOtXzUfiSkGSkZqHs+dSlQMqbzbpUEOcvzmmMNj1O6DuvLzB/
+	 KA3p0HRCYWvMoJHBNYWWh2oGyct8Ygv/p+vhER6EZlg7b1mqUasuBxlW7hixy9Lypv
+	 cbjVEqtXAQ/nX+il78lIg2QeF4Hz2M/2XRU+fCmFVlW9FMFkABmw46/VCxZHD+gGC+
+	 ZoqKPqnOP27xg==
+Date: Fri, 15 Sep 2023 15:50:27 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+Cc: patrick@stwcx.xyz, Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: hwmon: add MAX31790
+Message-ID: <20230915-quench-left-8fbc1ca3b1da@spud>
+References: <20230915062926.2460502-1-Delphine_CC_Chiu@wiwynn.com>
+ <20230915062926.2460502-3-Delphine_CC_Chiu@wiwynn.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="j20GgGeCJk1fE9k9"
 Content-Disposition: inline
-In-Reply-To: <20230915143304.477-1-quic_gkohli@quicinc.com>
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+In-Reply-To: <20230915062926.2460502-3-Delphine_CC_Chiu@wiwynn.com>
 
-On Fri, Sep 15, 2023 at 08:03:04PM +0530, Gaurav Kohli wrote:
-> Fix the apps iommu local address space range as per data sheet.
-> 
-> Fixes: 6a6729f38436 ("arm64: dts: qcom: msm8916: Add IOMMU support")
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Gaurav Kohli <quic_gkohli@quicinc.com>
+
+--j20GgGeCJk1fE9k9
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Yo,
+
+On Fri, Sep 15, 2023 at 02:29:24PM +0800, Delphine CC Chiu wrote:
+> Add dt-bindings for the MAXIM MAX31790.
+>=20
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
 > ---
-> Changes since v0:
-> -Update Fixes tag.
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> index 33fb65d73104..3c934363368c 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> @@ -1813,7 +1813,7 @@
->  			#size-cells = <1>;
->  			#iommu-cells = <1>;
->  			compatible = "qcom,msm8916-iommu", "qcom,msm-iommu-v1";
-> -			ranges = <0 0x01e20000 0x40000>;
-> +			ranges = <0 0x01e20000 0x20000>;
+> Changelog:
+> v2 - Add dt-bindings for the MAXIM MAX31790.
+> ---
+>  .../bindings/hwmon/maxim,max31790.yaml        | 59 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 ++
+>  2 files changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max3179=
+0.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max31790.yaml =
+b/Documentation/devicetree/bindings/hwmon/maxim,max31790.yaml
+> new file mode 100644
+> index 000000000000..2bd455b36b3f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max31790.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim max31790
+> +
+> +maintainers:
+> +  - Delphine CC Chiu  <Delphine_CC_Chiu@wiwynn.com>
+> +
+> +description: |
+> +  The MAX31790 controls the speeds of up to six fans using
+> +  six independent PWM outputs. The desired fan speeds (or PWM duty cycle=
+s)
+> +  are written through the I2C	interface.
+> +  The outputs drive =E2=80=9C4-wire=E2=80=9D fans directly, or can be us=
+ed to modulate
+> +  the fan=E2=80=99s power terminals using an external pass transistor.
+> +
+> +  Datasheets:
+> +    https://datasheets.maximintegrated.com/en/ds/MAX31790.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max31790
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  pwm-as-tach:
 
-Please also submit another patch to fix this in msm8939.dtsi. It has the
-same mistake.
+I don't see any other users of this in-tree, so you'd need a vendor
+prefix. That said, I'm once bitten, twice shy about fan related
+properties in hwmon, so I would definitely like Rob to comment on this
+whole binding.
+
+> +    description: |
+> +      There are 6 PWM output channel in MAX31790 that allows to be confi=
+gured
+> +      as a TACH input by setting the Fan Configuration register.
+> +      Config PWM output channels in the array as tachometer inputs.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 6
+> +    items:
+> +      enum: [1, 2, 3, 4, 5, 6]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      pwm@20 {
+> +        compatible =3D "maxim,max31790";
+> +        reg =3D <0x20>;
+> +        pwm-as-tach =3D <2 5>;
+
+This would be <2>, <5>; no?
+
+> +      };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index c8fdd0d03907..97e13b6bf51d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1371,6 +1371,12 @@ F:	Documentation/devicetree/bindings/hwmon/adi,max=
+31760.yaml
+>  F:	Documentation/hwmon/max31760.rst
+>  F:	drivers/hwmon/max31760.c
+> =20
+> +ANALOG DEVICES INC MAX31790 DRIVER
+> +M:	Delphine CC Chiu  <Delphine_CC_Chiu@wiwynn.com>
+> +S:	Odd Fixes
+
+This is a pretty odd status for something you're newly adding.
+How come it's not going to be maintained?
 
 Thanks,
-Stephan
+Conor.
+
+
+--j20GgGeCJk1fE9k9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQRvMwAKCRB4tDGHoIJi
+0i3ZAP98nZfLp3xX8XszvOrnl9Qt3XVP8P1i2pSLZPHZs0B3TAD/XGC0hnOt22Oj
+sm+07JZPIK/YS2QOTChE8LW5bR5NlAM=
+=iyxw
+-----END PGP SIGNATURE-----
+
+--j20GgGeCJk1fE9k9--
 
