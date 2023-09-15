@@ -1,128 +1,217 @@
-Return-Path: <devicetree+bounces-323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADAB77A11F7
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 01:43:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B7207A12FD
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 03:33:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EDC4281C8C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Sep 2023 23:43:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62D631C21121
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 01:33:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22E49D314;
-	Thu, 14 Sep 2023 23:43:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B0E662D;
+	Fri, 15 Sep 2023 01:33:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BF9E33F2
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 23:43:06 +0000 (UTC)
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FE881FE8
-	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 16:43:05 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-5029e4bfa22so2598686e87.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 16:43:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1694734981; x=1695339781; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ffsw5m1PXl5CYPaF5hVOzi1zPkWams0dilWKJC5stN8=;
-        b=DjfdP2fDy33pXGkF8w8hzVoBxQ784Goq5gZH/8csHrwMP/lJzY0/rFVCkvz5P03Juu
-         rLyh0gQmDE6O1Fn2Sqdgjnf+k1tqBy4tbKhedLL5ZfTzEMFmvlc1NY7y6CMtKG7VkZKX
-         JbEK3g/UPh2MjAdXeypR3OAkkvLibsXgImDWw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694734981; x=1695339781;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ffsw5m1PXl5CYPaF5hVOzi1zPkWams0dilWKJC5stN8=;
-        b=OwdBtb1i4ERshSEAHIJ0H1RPp5mGx2isBijEZUe8FH0PKZQjvCXsf74ewYf4Y9VA1r
-         2jKGu6auwrcFh2CNlxMOOmv+XC38JTIoCWeo6UidH7IXZBndxxAGMPcwDhNiDFpRaijt
-         kGZTVsn/vFrVA7+y+LviP30nSV4vq0YXOzi6ZBFfAyQqvcIx2wS5Oi2wiA+uP6e+f8za
-         FGdFQxYKv321RWzzqwFCpt253XlVZNMEBvl1igA0I4fjscBBdjMAZdN9jcpHh5kU+e5H
-         Swl5UnC4EaizAlBQvNitFAccYAebb1AUK8Y/YLVho621auc4z09P9QzN73v7bIQJuycN
-         f5KQ==
-X-Gm-Message-State: AOJu0YyzEF92Eh2yRt9w2BSm7Kina1Qqca+CkBE/2cXGJCuuoafjsygq
-	oxfXM3KVtY9e8yT/YBf77u93KH1QORcdMDvxxibQmQ==
-X-Google-Smtp-Source: AGHT+IHy/41EzzRWaFnc+OW/PJBtduBHS/oKcanuPM/6v+gMM5mhUgxTQAch3wiIdojuOcycR1QnCw==
-X-Received: by 2002:a05:6512:1089:b0:4ff:7e80:4f1d with SMTP id j9-20020a056512108900b004ff7e804f1dmr148183lfg.57.1694734980977;
-        Thu, 14 Sep 2023 16:43:00 -0700 (PDT)
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com. [209.85.128.43])
-        by smtp.gmail.com with ESMTPSA id ox11-20020a170907100b00b00997c1d125fasm1650890ejb.170.2023.09.14.16.42.59
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Sep 2023 16:42:59 -0700 (PDT)
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4047c6ec21dso1255e9.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 16:42:59 -0700 (PDT)
-X-Received: by 2002:a05:600c:1daa:b0:3fe:f32f:c57f with SMTP id
- p42-20020a05600c1daa00b003fef32fc57fmr70422wms.0.1694734979632; Thu, 14 Sep
- 2023 16:42:59 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490EF36A
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 01:33:13 +0000 (UTC)
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2085.outbound.protection.outlook.com [40.107.20.85])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 438D32100
+	for <devicetree@vger.kernel.org>; Thu, 14 Sep 2023 18:33:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dvnPNrfpEEgchy9baBLLPBu7QbMYYlEcAz3LHoqYrjtNWDaJr6tLHAJe/ZntOpbDaqtJsBBbMriO7BPu9RUR2k+McfVjM2mmBjwmHSfIAc+MmRs5ZXdC5LNfr8/RV3Z5IxU3XvoDqeVBLVnzmts/a25QTVhUx9bQ1az39JvG4HoUSVz3YERnq37CWwKLH2Pbq1UZMYcjIEchgcnOZXQi69Ir+3rtSiKL3ElqHv1B5DnU+luHYevbSRt/j6pmprNeGTFO5T/nN83Q1BFwPSVfMYLi4WyckfcO9bs54mDfNCtBKeb/tdckOEGPDpb8+4vUElYNMYNi92Uc4k7PryLxGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EcHIgzWeAZOla/tr6N3N6wq+up8T1UZapHOjOol+mgE=;
+ b=aB+i4Ve7HPgvPT5MaSTHMTRYTWOoBDOaFB578k0AhtwiHmaP/bTC405Qg0K+EAowUBhFweHLyTmIipg6pV3CB6TXLya7f54qYpi3/Z5+UesqXWKEPkIVCaGu91ylVXeqqwUHePW4CE/L6+KfChW3EAY5639H+51HHVgXwAzrlJ+3npkjs5gEEGKB90GTMQylobQBgYlCEzhMn7zfpKpIXRhTpoVJcNepLwKA9E9kRANNrN8dBUUkRg4SvEgyfddVhLdERclyW9ggbyTeD2kOyQm8LjCLKS1ATLf9I/WL+fcTTBp3koIuuX62hnAyB5SyqulXQ3chajsTtzVvf8+UkA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EcHIgzWeAZOla/tr6N3N6wq+up8T1UZapHOjOol+mgE=;
+ b=sjaa757ozHbjMKNrETXKmTCUVLBmPZvkDjvMaDvp1NUr7TRW8w87sZ51x5pedMm0MRSdu8KOeL8x/7MExa0Nu0BRN0CrhFpNp2+hljIWmQDB9BMiTaq8Nt2bXlJ2JkiJSQEyAoVgtHpV/r2Yvn+yOiIT09LTZddZ1SaVoZ81nUA=
+Received: from AM6PR04MB5302.eurprd04.prod.outlook.com (2603:10a6:20b:7::20)
+ by DBAPR04MB7477.eurprd04.prod.outlook.com (2603:10a6:10:1a9::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.21; Fri, 15 Sep
+ 2023 01:33:09 +0000
+Received: from AM6PR04MB5302.eurprd04.prod.outlook.com
+ ([fe80::ac1c:e9c5:e219:989d]) by AM6PR04MB5302.eurprd04.prod.outlook.com
+ ([fe80::ac1c:e9c5:e219:989d%7]) with mapi id 15.20.6792.021; Fri, 15 Sep 2023
+ 01:33:09 +0000
+From: Ye Li <ye.li@nxp.com>
+To: Frank Li <frank.li@nxp.com>, Xu Yang <xu.yang_2@nxp.com>,
+	"will@kernel.org" <will@kernel.org>, "mark.rutland@arm.com"
+	<mark.rutland@arm.com>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>
+CC: "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, dl-linux-imx
+	<linux-imx@nxp.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>
+Subject: RE: [EXT] [PATCH 2/2] arm64: dts: imx93: add DDR controller node
+Thread-Topic: [EXT] [PATCH 2/2] arm64: dts: imx93: add DDR controller node
+Thread-Index: AQHZ5vR611xed1VXvkS7b2eO1cPwPbAaX2iAgAC6r4A=
+Date: Fri, 15 Sep 2023 01:33:09 +0000
+Message-ID:
+ <AM6PR04MB5302537166858D0F84CDCACBE4F6A@AM6PR04MB5302.eurprd04.prod.outlook.com>
+References: <20230914102038.2944844-1-xu.yang_2@nxp.com>
+ <20230914102038.2944844-2-xu.yang_2@nxp.com>
+ <AM6PR04MB4838810FDC93B54DE774BC4488F7A@AM6PR04MB4838.eurprd04.prod.outlook.com>
+In-Reply-To:
+ <AM6PR04MB4838810FDC93B54DE774BC4488F7A@AM6PR04MB4838.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM6PR04MB5302:EE_|DBAPR04MB7477:EE_
+x-ms-office365-filtering-correlation-id: 02265d3a-08c9-48b6-40bd-08dbb58bb7f7
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ tyRhc2iJ6UhsfFJa+X5FdBn9xwR4U259BRWjkPmwK3XjZEQOM63lbV/t7ieBTh4yBtiHSpVENSttJX8tnaMwZ9K6xRNkJsMcYMWxRijbWPVKO+n9H9HGZtpmqws+doQmbCPXOHhY7FvoxXEQZERF9Y98LIKTt1U+QJt10WpXNesVnNPtSJIwXEcvKcEHeeBofcWeL6gA3tr96ITC9o9+LbkjT+JOONM6iqqc0/FOkUo0JLm3R7mq7fc6q77Y1FeEmSKCUJ70uReHu+8Pc4DDtKhvSem7VgiMTQv07NjuMmnavmCAHUbqoVCfDsrXmghco0l/feBTCfgw0GoRM3BtxcOZAZ1mPOWHM5zvWEg064ZbO96Z5sokFc/wr8GAuN4aqbZ2kNPniKahpnG3FH+zIR1xC8HRM2/dsZ4PohokcsyPV0ruF+pClpfJDcelQXRynCeSUVoRPkBVOh7jOJjQh2MP1vEBeh+UWqWl0dfuMUibkiQ0NAAm5C9ieFAi74vTlgirUgzq3EuyS9HCTaxyBHTx5WJF071kHzcaH07F1m1831T4JrHSPgQTQbqFng9uJaa+i3lmJQeyiaYeJj4/HmFh0ibsvohDt/DqPkb6TE8=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB5302.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(39860400002)(376002)(366004)(396003)(346002)(451199024)(186009)(1800799009)(38100700002)(38070700005)(122000001)(41300700001)(86362001)(76116006)(110136005)(66946007)(4326008)(66556008)(66476007)(2906002)(55016003)(8936002)(66446008)(54906003)(64756008)(316002)(26005)(8676002)(53546011)(83380400001)(5660300002)(6506007)(7696005)(9686003)(44832011)(71200400001)(478600001)(52536014)(33656002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?1Ukwa27N69dr6e80jgWfysu9yDaOXfuhOGuLcArnw5HNHnZeXGgJJ4C/6uZR?=
+ =?us-ascii?Q?fDWVFYHlOujp6W8eXlhL8IXWnhQWCvVMRlz9eSo9sX90mt8uk4VUKXRrO6tj?=
+ =?us-ascii?Q?902c10qhBpKeTHM/0YMc5VZtwt/o8UddxCGm7KmirQ/Ipv+G/963LoQwjhlU?=
+ =?us-ascii?Q?HB7Vv+lvHoQUoD96QlNMzwYDy5HEu3KFF+Sl0VJCPrXzu1Qiinf7Bzui+ML8?=
+ =?us-ascii?Q?jcPj0iAhiIZjLfPB2zGmaAEBnY93ibUX7bH0ZkbNpGvmXEmWGVEz07mHR+8V?=
+ =?us-ascii?Q?qPRpUWoLMyA8OqcOAyNk1ee7SUV10w7LZmsZGvfPWVLZ03kh+2vuFNpnmQHQ?=
+ =?us-ascii?Q?6G7cEsmU5Cw4nVYfF7j8l+N24gk4Tsna+LJ1JLPhYsPNV81eOWIdSA9f4+pf?=
+ =?us-ascii?Q?Z2CRBAz7yfhRtgV5OA1op19KitPfvqGntkQpMhkgWtzl1MWFQO85Ob7Wvv6g?=
+ =?us-ascii?Q?S7xsKCSJzjTFqrBphmWu5wK44tXbPBmV7IkygeqNOCZbgJvGfrVIExbG+KOr?=
+ =?us-ascii?Q?F87mWB7hM6oNo5vIBCRm7L4Ol5gNGPHclw6NO7pK3QGVvyRgqunmD3aMrQUL?=
+ =?us-ascii?Q?9TW8XlOmKs8oxnRYAjQl8e0j2U6qmnhU7vlXg6of302sm6XCUrZSVQbxGFya?=
+ =?us-ascii?Q?nXuZub/MtxG0IeUtAIAuB7EJ3O88jaeYXRMosgOTxp4H8kMr3N0vebeU9e6e?=
+ =?us-ascii?Q?TisGYgwJ3Wlqc4vX4IX/XXbL0/jKoKikDQC45iowtyEue+b+rkkIBJvyVpZr?=
+ =?us-ascii?Q?C/hq9EjbxUk7AL2/GG7btSbgYUqHg18LA/UA981JblK3a+g++BxjtwzE37RW?=
+ =?us-ascii?Q?9bkhax9zaczEscz4FGXGY7d64RvUjTc89kMmamAHMnvyu92Rjo/iqH8uh5BT?=
+ =?us-ascii?Q?VAz6AKbCK1VfvNLB/QvHXPDSYs8mHql0UXxUuoajNqHtsCrScgq54JKT193M?=
+ =?us-ascii?Q?ITBpiYYDeJbdSw6jWfC8ehjJcpqZN4VDaAED5IapthVNBTF4XiAKKXlAg2Nw?=
+ =?us-ascii?Q?ZrYWCVg9fjlyz779TD92ysHXHyattfve8PoRFr/CGKaKzJEeBAYGI8RwWj9J?=
+ =?us-ascii?Q?sJRo6/4iUK1ebxavNdleeUclPYHoGpX+Zlx+8IkqnDSzlrT44b5l9SL8B/6Q?=
+ =?us-ascii?Q?0CU+H54l2tZfE2/ZQ4qCl9T1u+XTGV9ZzFFIzxOLoct+lsthWUlURFn6Rq4F?=
+ =?us-ascii?Q?1LCf3tiDRf6tQTXutL1aBRImyCl6a12d/gdFJUZSj5kGUVZ9r/3QERZHCDVl?=
+ =?us-ascii?Q?dTFZGHM6Dcfywcz1Afn8eCKGqX9DTMEF54KfrXt0CgQGbdmemETNb9hPOFzn?=
+ =?us-ascii?Q?TkaYZXHXHMNWPKpJOES0G5IvaSkwJbWxStrhuhd7NAdMrRxH1TjBxHDaK+dV?=
+ =?us-ascii?Q?ol3Pl5VJKHcNLRrUNzbDHm7XH1Abm2t7c5jkRGYozncL3TgSo+Ygfv6qXoav?=
+ =?us-ascii?Q?dmW4ffmf730q/buj1CTDZcfGvfyJWGkGiO2/0YFCeXCCNlvArOqefl4XtbLF?=
+ =?us-ascii?Q?MrMGhpITzf6zR4SCYZ+zxkDBQNAOUIVGSCiNrxOIO1cOMWO/XAu8sivh3YsO?=
+ =?us-ascii?Q?UHAX4x52mUS7Tz9O0p8=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230727171750.633410-1-dianders@chromium.org> <20230727101636.v4.11.Ia06c340e3482563e6bfd3106ecd0d3139f173ca4@changeid>
-In-Reply-To: <20230727101636.v4.11.Ia06c340e3482563e6bfd3106ecd0d3139f173ca4@changeid>
-From: Doug Anderson <dianders@chromium.org>
-Date: Thu, 14 Sep 2023 16:42:47 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Ued9suf95ub1-rftO2Ffx_Rwv7XvAf7yX-s7djO889+Q@mail.gmail.com>
-Message-ID: <CAD=FV=Ued9suf95ub1-rftO2Ffx_Rwv7XvAf7yX-s7djO889+Q@mail.gmail.com>
-Subject: Re: [PATCH v4 11/11] arm64: dts: qcom: sc7180: Link trogdor
- touchscreens to the panels
-To: Jiri Kosina <jikos@kernel.org>, Benjamin Tissoires <benjamin.tissoires@redhat.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Sam Ravnborg <sam@ravnborg.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>
-Cc: linux-arm-msm@vger.kernel.org, yangcong5@huaqin.corp-partner.google.com, 
-	devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>, hsinyi@google.com, 
-	Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org, 
-	cros-qcom-dts-watchers@chromium.org, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB5302.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 02265d3a-08c9-48b6-40bd-08dbb58bb7f7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Sep 2023 01:33:09.4069
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Wej3rtieF3khMWIp9eCBAewLlp8D9He3rOZbxO4u7Vy0oR+9ZLiSC2MYjK08gRH8
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7477
 
-Hi,
+Hi Frank,
 
-On Thu, Jul 27, 2023 at 10:19=E2=80=AFAM Douglas Anderson <dianders@chromiu=
-m.org> wrote:
->
-> Let's provide the proper link from the touchscreen to the panel on
-> trogdor devices where the touchscreen support it. This allows the OS
-> to power sequence the touchscreen more properly.
->
-> For the most part, this is just expected to marginally improve power
-> consumption while the screen is off. However, in at least one trogdor
-> model (wormdingler) it's suspected that this will fix some behavorial
-> corner cases when the panel power cycles (like for a modeset) without
-> the touchscreen power cycling.
->
-> NOTE: some trogdor variants use touchscreens that don't (yet) support
-> linking the touchscreen and the panel. Those variants are left alone.
->
-> Reviewed-by: Maxime Ripard <mripard@kernel.org>
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
->
-> (no changes since v1)
->
->  arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi        | 1 +
->  arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi      | 1 +
->  arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi         | 1 +
->  arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi        | 1 +
->  arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi | 1 +
->  arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi   | 1 +
->  6 files changed, 6 insertions(+)
+> -----Original Message-----
+> From: Frank Li <frank.li@nxp.com>
+> Sent: Thursday, September 14, 2023 10:21 PM
+> To: Xu Yang <xu.yang_2@nxp.com>; will@kernel.org; mark.rutland@arm.com;
+> robh+dt@kernel.org; shawnguo@kernel.org
+> Cc: krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org; dl-linux-imx
+> <linux-imx@nxp.com>; devicetree@vger.kernel.org;
+> linux-arm-kernel@lists.infradead.org; Ye Li <ye.li@nxp.com>
+> Subject: RE: [EXT] [PATCH 2/2] arm64: dts: imx93: add DDR controller node
+>=20
+>=20
+>=20
+> > -----Original Message-----
+> > From: Xu Yang <xu.yang_2@nxp.com>
+> > Sent: Thursday, September 14, 2023 5:21 AM
+> > To: will@kernel.org; mark.rutland@arm.com; robh+dt@kernel.org;
+> > shawnguo@kernel.org
+> > Cc: krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+> > dl-linux-imx <linux-imx@nxp.com>; devicetree@vger.kernel.org;
+> > linux-arm- kernel@lists.infradead.org; Ye Li <ye.li@nxp.com>
+> > Subject: [EXT] [PATCH 2/2] arm64: dts: imx93: add DDR controller node
+> >
+> > Caution: This is an external email. Please take care when clicking
+> > links or opening attachments. When in doubt, report the message using
+> > the 'Report this email' button
+> >
+> >
+> > Add DDR controller node which will be used by EDAC driver later, also
+> > move the DDR PMU node as the subnode of the DDR controller.
+> >
+> > Signed-off-by: Ye Li <ye.li@nxp.com>
+> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx93.dtsi | 18 ++++++++++++++----
+> >  1 file changed, 14 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> > b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> > index 6f85a05ee7e1..992bdeef70cd 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> > @@ -917,10 +917,20 @@ media_blk_ctrl: system-controller@4ac10000 {
+> >                         status =3D "disabled";
+> >                 };
+> >
+> > -               ddr-pmu@4e300dc0 {
+> > -                       compatible =3D "fsl,imx93-ddr-pmu";
+> > -                       reg =3D <0x4e300dc0 0x200>;
+> > -                       interrupts =3D <GIC_SPI 90
+> IRQ_TYPE_LEVEL_HIGH>;
+> > +               ddr: memory-controller@4e300000 {
+> > +                       compatible =3D "simple-mfd";
+> > +                       reg =3D <0x4e300000 0x2000>;
+>=20
+> [Frank Li] Can you just use EDAC register space size?
+> I suppose EDAC and PMU's register space is not over lapped.
+>=20
+We will re-use layerscape EDAC driver which needs DDR controller's base add=
+ress.
 
-FWIW, this old patch could land any time. All the earlier patches in
-the series have landed.
+Best regards,
+Ye Li
+> > +                       interrupts =3D <GIC_SPI 91
+> IRQ_TYPE_LEVEL_HIGH>;
+> > +                       little-endian;
+> > +                       #address-cells =3D <1>;
+> > +                       #size-cells =3D <1>;
+> > +                       ranges;
+> > +
+> > +                       ddr-pmu@4e300dc0 {
+> > +                               compatible =3D "fsl,imx93-ddr-pmu";
+> > +                               reg =3D <0x4e300dc0 0x200>;
+> > +                               interrupts =3D <GIC_SPI 90
+> IRQ_TYPE_LEVEL_HIGH>;
+> > +                       };
+> >                 };
+> >         };
+> >  };
+> > --
+> > 2.34.1
+> >
 
--Doug
 
