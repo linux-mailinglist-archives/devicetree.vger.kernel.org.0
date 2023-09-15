@@ -1,130 +1,164 @@
-Return-Path: <devicetree+bounces-624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A4B27A2307
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 17:58:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB9737A2334
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 18:05:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0741281F8C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 15:58:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94E9528267E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 16:05:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 757D611CA0;
-	Fri, 15 Sep 2023 15:58:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48B5E11CB0;
+	Fri, 15 Sep 2023 16:05:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F46F11C8D
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 15:58:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B89EC433C7;
-	Fri, 15 Sep 2023 15:58:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694793497;
-	bh=rHPOWSi7ajq/kQXPUpK+1+DizBbjV6FvUrJCRMYwJxQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rkgZXP7EvoPYQ//HjY99w5xFtAmxtvjMDOeP1+7oGYQd3hC+DDUm+/G/yDr0LJPFq
-	 7pMN4plHAvsLMhWTooH/VAfydyrzfRHOdEpsfk1BsB6wILO9WQRhqg012ZdhCSSjHo
-	 XbEx5O3/1oLDKu52PWRNkTv627AlJYCbzya81B7Lf+1l/ve9Jj06wgp4PH7zbH9LfK
-	 tYwt/K4Tvmwf2l5mTTZG0F43RTIcMlEqlG4h2hsJYOlyKNKMVvhoDmmsjTKt9TbWiS
-	 CxN6BMmYnkAUphrNPZfMYhNLW+Lcjo+SDinkWaGiSh9GjnO1zPmrtfOfNq8YKrGywg
-	 9RfwfOU3An2yA==
-Date: Fri, 15 Sep 2023 16:58:12 +0100
-From: Conor Dooley <conor@kernel.org>
-To: "Matyas, Daniel" <Daniel.Matyas@analog.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH v3 2/5] dt-bindings: hwmon: Add possible new properties
- to max31827 bindings
-Message-ID: <20230915-battle-shrouded-9d7e9e3cd6c0@spud>
-References: <20230914075948.208046-1-daniel.matyas@analog.com>
- <20230914075948.208046-2-daniel.matyas@analog.com>
- <20230914-qualify-ragweed-b06b7b7923c9@spud>
- <PH0PR03MB677168B3D2689B4D553443E089F6A@PH0PR03MB6771.namprd03.prod.outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F8FD30D00
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 16:05:42 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0795101;
+	Fri, 15 Sep 2023 09:05:40 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38FD4qp8030120;
+	Fri, 15 Sep 2023 16:05:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=hZOSoryLz/oMKtxYiMHTGbPDAmJb4iqKx9FAwvaOf7c=;
+ b=Q0Wc1UutUxoIDs5I8uunYXHNwMbqJuoq/hGJi2RLLki22wUzOBysRiJry/WR/90hWk9R
+ pq32oRkMaGMoOOzyFFsQ3MfMpdwYgf31DzwQ/SEuYHjgujH5tHYZfst6C3sYiIAV/T98
+ 15pWZLmLC0by28BfB7ZJ3c88rdjeXcukI6l9+u2ejIwiXfTgzFkCo5CLSahEHok1Vbc4
+ AxEggKkGu0MBugLhPNYNfb8xLXTF46stULU9ImHpG5iqDRv2LG45qGgem7v0CimFAMWa
+ yv+0uL+SzLnYXcopOrlP62d1SauFmTvLFFm2HSg13rujm/6CSAbIhWh1M9YU93hPj0zE /A== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t4g2ssmrd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Sep 2023 16:05:28 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38FG5R24008298
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Sep 2023 16:05:27 GMT
+Received: from hu-mdtipton-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Fri, 15 Sep 2023 09:05:27 -0700
+Date: Fri, 15 Sep 2023 09:05:25 -0700
+From: Mike Tipton <quic_mdtipton@quicinc.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+CC: Georgi Djakov <djakov@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn
+ Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        <cros-qcom-dts-watchers@chromium.org>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 00/53] icc-rpmh multi-RSC voting groundwork
+Message-ID: <20230915160525.GA14240@hu-mdtipton-lv.qualcomm.com>
+References: <20230708-topic-rpmh_icc_rsc-v1-0-b223bd2ac8dd@linaro.org>
+ <c067a45f-9629-d516-9e56-36538e4ff6db@kernel.org>
+ <20230807215739.GA9621@hu-mdtipton-lv.qualcomm.com>
+ <10520827-dc01-475c-b09a-35cefc9e0a62@linaro.org>
+ <20230913012951.GA19284@hu-mdtipton-lv.qualcomm.com>
+ <ffc58838-c306-49f3-a90a-95b2cf02ae3d@linaro.org>
+ <20230914023239.GA25147@hu-mdtipton-lv.qualcomm.com>
+ <978fd46d-8142-41e6-9c62-df678018d6c2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="fu/FZ+WQJsjjwQ/a"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <PH0PR03MB677168B3D2689B4D553443E089F6A@PH0PR03MB6771.namprd03.prod.outlook.com>
+In-Reply-To: <978fd46d-8142-41e6-9c62-df678018d6c2@linaro.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: FdqQz3_f9hM-uonH0jWnPsjr7s9Yizxs
+X-Proofpoint-ORIG-GUID: FdqQz3_f9hM-uonH0jWnPsjr7s9Yizxs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-15_12,2023-09-15_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 impostorscore=0 priorityscore=1501 malwarescore=0
+ mlxlogscore=999 clxscore=1015 adultscore=0 mlxscore=0 spamscore=0
+ phishscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309150143
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+On Fri, Sep 15, 2023 at 03:43:27PM +0200, Konrad Dybcio wrote:
+> On 14.09.2023 04:32, Mike Tipton wrote:
+> > On Wed, Sep 13, 2023 at 10:31:49AM +0200, Konrad Dybcio wrote:
+> >>> The applicable voters should likely be defined in the target-specific
+> >>> headers, rather than the common qcom,icc.h. The bit range used for them
+> >>> could be common, but each target may only support a small subset of the
+> >>> total set of possible voters across all targets.
+> >> I'm not sure how client drivers would then choose the
+> >> correct path other than
+> >>
+> >> switch (soc) {
+> >> case 8450:
+> >> 	tag = QCOM_ICC_TAG_VOTER_8450_HLOS;
+> >> 	break;
+> >> case 8550:
+> >> 	tag = QCOM_ICC_TAG_VOTER_8550_HLOS;
+> >> 	break;
+> >> ...
+> >> }
+> >>
+> >> which would be unacceptable.
+> > 
+> > The same general way it's handled for the endpoint bindings, which are
+> > already target-specific. 
+> > 
+> > Any client drivers hardcoding the endpoint bindings in their driver
+> > would have to include the appropriate, target-specific binding header
+> > (e.g. qcom,sm8550-rpmh.h). That would only be possible if their driver
+> > file is itself target-specific. Otherwise, it would have to pull the
+> > endpoint bindings from devicetree. Or just use the recommended
+> > of_icc_get() and let devicetree do everything for them. Same for the
+> > target-specific voter tag bindings.
+> > 
+> > Clients can also specify their tags in devicetree. They don't actually
+> > have to call icc_set_tag() directly. For example:
+> > 
+> >     #include <dt-bindings/interconnect/qcom,sm8450.h>
+> > 
+> >     interconnects = <&mmss_noc MASTER_MDP QCOM_ICC_TAG_VOTER_DISP
+> >                      &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_VOTER_DISP>;
+> > 
+> > Then when they call of_icc_get() for this path it'll automatically have
+> > QCOM_ICC_TAG_VOTER_DISP set for them.
+> I think I'd skew towards the "define everything in the DT" approach.
+> 
+> One thing that makes me uneasy to go on with this approach is the
+> question whether there is a case in which we would want to switch
+> from e.g. voting through DISP to voting through APPS (or similar)
+> from within a single device.
 
---fu/FZ+WQJsjjwQ/a
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It shouldn't be common. But it could be done fairly simply by listing
+paths for each different voter in the dt properties. 
 
-On Fri, Sep 15, 2023 at 03:31:13PM +0000, Matyas, Daniel wrote:
-> > -----Original Message-----
-> > From: Conor Dooley <conor@kernel.org>
-> > On Thu, Sep 14, 2023 at 10:59:45AM +0300, Daniel Matyas wrote:
+    interconnects = <&mmss_noc MASTER_MDP QCOM_ICC_TAG_VOTER_APPS
+                     &mc_virt SLAVE_EBI1  QCOM_ICC_TAG_VOTER_APPS>,
+                    <&mmss_noc MASTER_MDP QCOM_ICC_TAG_VOTER_DISP
+                     &mc_virt SLAVE_EBI1  QCOM_ICC_TAG_VOTER_DISP>,
+    interconnect-names = "path-apps-voter",
+                         "path-disp-voter";
 
-> > > +  adi,alrm-pol:
-> >=20
-> > Characters are not at a premium, is there a reason not to use the full
-> > words? "flt-q" in particular would be quite cryptic if I saw it in a dt=
-s.
-> >=20
-> > > +    description:
-> > > +      Sets the alarms active state.
-> > > +            - 0 =3D active low
-> > > +            - 1 =3D active high
-> > > +      For max31827 and max31828 the default alarm polarity is low. F=
-or
-> > max31829
-> > > +      it is high.
-> >=20
-> > This constraint can be expressed in the binding, rather than in free fo=
-rm
-> > text like done here. Ditto below.
-
-> Ok, but how? The default values are different depending on the compatible=
- string. I searched for similar examples, but I found nothing...
->=20
-> Some bindings use 'default: ' to declare the default values, but this is =
-the default for every chip.
-
-Something like
-allOf:
-  - if:
-      properties:
-        compatible:
-          contains:
-            const: adi,max31829
-    then:
-      properties:
-        adi,alrm-pol:
-          default: 1
-    else:
-      properties:
-        adi,alrm-pol:
-          default: 0
-
-Cheers,
-Conor.
-
---fu/FZ+WQJsjjwQ/a
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQR/FAAKCRB4tDGHoIJi
-0jsgAP4jkMxSLKa4saLHIsoqeAjgLQaDQ1jseRxF06yoFniMZAEA8vhX/6PTOojt
-+Hlpg9H2JENwURZ0ZmJL1RBWpL5nUQ8=
-=MgnR
------END PGP SIGNATURE-----
-
---fu/FZ+WQJsjjwQ/a--
 
