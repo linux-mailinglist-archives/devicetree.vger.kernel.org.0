@@ -1,339 +1,299 @@
-Return-Path: <devicetree+bounces-675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 470167A2AF6
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 01:26:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C22F7A2B18
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 01:54:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F6D21C20B26
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 23:26:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F7B52822AB
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 23:54:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 338211BDCF;
-	Fri, 15 Sep 2023 23:26:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 972881BDD1;
+	Fri, 15 Sep 2023 23:54:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5271805C
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 23:26:09 +0000 (UTC)
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B490F1FE0;
-	Fri, 15 Sep 2023 16:26:07 -0700 (PDT)
-Received: by mail-io1-xd31.google.com with SMTP id ca18e2360f4ac-79536bc6697so93107839f.1;
-        Fri, 15 Sep 2023 16:26:07 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23BA618E27
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 23:54:19 +0000 (UTC)
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A8662102;
+	Fri, 15 Sep 2023 16:54:18 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-68fb5bd8f02so2647575b3a.0;
+        Fri, 15 Sep 2023 16:54:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694820367; x=1695425167; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=VveHYG4t+Sx71RsJ49uoEqzBEzyROBRkGjZT0OajziQ=;
-        b=REhjnIxBkYrZH9BK/pNDgzZvKYwEZJMN9EbFj2kaq9b7rwO6Ut9AVlBZQ82jjfgG6S
-         iz8JWY9MjH46i1exAh8KG3QDadORWviEnzxwZiqecOsnSAPnC/xo+CwD9WwZlpx0KAn3
-         EJp2vXlbv9sY8plo07oH6H/MYgSF3piyct+6yMmfwkxnJ3yM3TrqIie8/Vji5jqBa8Fp
-         i0EJ/vBntlxwq+gINoiTAzRQSSqhSVeSu856TsLfm0jHTdCLM2uf9NYJILL58IZ6TRz7
-         ZRL/R4ORUTwFzizl69kgzodVXpvyvJnzv8UIi2rftRsJc8LvqOzL5Lg7viBsFlHEEGkS
-         wSzg==
+        d=gmail.com; s=20230601; t=1694822058; x=1695426858; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bKA9abMjC7sW4LBR9fGk0XQEXTIvl1CB0HpqC1ijf7s=;
+        b=DKstLab5FBHVgb1LbjR/vjug1a+BCby1v7+hP1+fCxPusyGnuA9Xu70AMeiyvntC7W
+         FaeNO+b0TBGoAoNJTNysleXYynVSE888BxO9iSA8z4oLj1E0giYUI306cjGkq9DgQODa
+         PJMP6atQPdCnV7QqfJq/M4QWklx5drWvl+YHaAZhG0Heu3ny2Zc9MY4cMLid8U1m8uTb
+         dCdKJ9IAp/A1tJ+ZW5m9MI22U1ws65tXs16Zjya9Rk4TDiqAJNzR7XyzvZF4dQ7BfBMd
+         4pXGDeGudADnibALyjwEWXsX3Q4x3ZvRtFL0qJgrFf5UclYGvF3rU6nz4qo3m+pChk6n
+         Viuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694820367; x=1695425167;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VveHYG4t+Sx71RsJ49uoEqzBEzyROBRkGjZT0OajziQ=;
-        b=b2ch7A39HRYtV2bgRi+wux3EdyBXGjffaKPiKf/8wt9JyvsjHRl5Y5qqwkMCpvn0j1
-         qj92ysvw5kVl1WdQ/Dgxpj0sTsUUCm5pwcAPdE+OepOSKVMMaMJyUE4gRlYQIzehW2YS
-         tAxqUiBSZuNH0bIAPYlKB0xhfKY7luqf2mubp+xiCanAzRPF0iM1qsCXzAgIgQAcvB4L
-         HE3uNx11ahsbtfX6UhHQDrbI5gCjZg597ql58E7TBnWzIXIDKW4KdvHUY+gTd427ZRze
-         LNZLUOCFMlyQXjPUd/8B4gUXIlMXXyITuY0Gq+IVxgzTXVGBX/RPv8gOnl8eCTxtoAtP
-         XioQ==
-X-Gm-Message-State: AOJu0YyqTcx8ulxF+cRDtVW3UeisuMTWiWClIL8W+3fVelUh/JkpALj+
-	3C11qSh1zZ+Kb2DjpHz4m4Q=
-X-Google-Smtp-Source: AGHT+IH7cvbGJLUli9sUi4RsxsbXBXezLfY6sKB0FuM1UIIbvYyqaLF/F4P3ivWVXeOm6baUGDlU1g==
-X-Received: by 2002:a5d:9c46:0:b0:794:e11c:d8c3 with SMTP id 6-20020a5d9c46000000b00794e11cd8c3mr3548695iof.16.1694820366928;
-        Fri, 15 Sep 2023 16:26:06 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id t24-20020a02ab98000000b004312e5c9b0dsm1286277jan.139.2023.09.15.16.26.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 16:26:06 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <44e84cb8-b573-0e1a-91e5-cdee0441d0f9@roeck-us.net>
-Date: Fri, 15 Sep 2023 16:26:04 -0700
+        d=1e100.net; s=20230601; t=1694822058; x=1695426858;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bKA9abMjC7sW4LBR9fGk0XQEXTIvl1CB0HpqC1ijf7s=;
+        b=iCLA4PHN8N3982fGufgGGpb2zqfgs+YKJxm3qQOAYWFSs2GtSeLkSesk8Vp7ZHHGmd
+         3lWujLnJ1EMLoG0PpzurjpD/82MbnTIiTKMhswp5bU1T/x1TNSmEmfxN9jyIX/tRIWab
+         JaemiI6fqVvnK5znal3FdO/hFk15N711feRW4kYBMhRvpzXZGeNZQvLuWErsPADvlpBq
+         v5Tis16oXWqvtb8DVdIPompv/qgwPXM950Z8NwkDs/tu2Lvlprg+wX1TFeO67wS9SfdD
+         HgkpPj2dOVGLdRN3NDRUf7uFtMuEghIn2WDGKG6B8kollqI9pRmYo2JLqFKh5JfQGlOC
+         VriQ==
+X-Gm-Message-State: AOJu0Yzw/YiO4DU9II+KdrbMu5+4zrl8uukf4XgBceoYrdJmDD9DlyOz
+	+cJOcVaB3ZoBzgV/sP+Ax82mejDd+Cjp8r3Szk4=
+X-Google-Smtp-Source: AGHT+IHgVUtldsOtaUsIGxCHFBt0zxYCSScNWymvy6s5gqnqKSyzuSQwXCwkNSVTVYPufAKo6Y3GUGQtOEY3IpkurE8=
+X-Received: by 2002:a05:6a20:394c:b0:125:f3d8:e65b with SMTP id
+ r12-20020a056a20394c00b00125f3d8e65bmr3235376pzg.18.1694822057804; Fri, 15
+ Sep 2023 16:54:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v3 1/5] hwmon: max31827: Make code cleaner
-Content-Language: en-US
-To: Daniel Matyas <daniel.matyas@analog.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20230914075948.208046-1-daniel.matyas@analog.com>
-From: Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <20230914075948.208046-1-daniel.matyas@analog.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+References: <20230913211449.668796-1-jcmvbkbc@gmail.com> <20230913211449.668796-5-jcmvbkbc@gmail.com>
+ <6f95d492-2f5e-42e8-acdd-210d6a03b14c@kernel.org>
+In-Reply-To: <6f95d492-2f5e-42e8-acdd-210d6a03b14c@kernel.org>
+From: Max Filippov <jcmvbkbc@gmail.com>
+Date: Fri, 15 Sep 2023 16:54:06 -0700
+Message-ID: <CAMo8BfJM4p5icMo1EFB+0gYVeyPSNi8nKUH=PCuBUWcd_ONGdg@mail.gmail.com>
+Subject: Re: [PATCH 4/4] drivers/tty/serial: add ESP32S3 ACM device driver
+To: Jiri Slaby <jirislaby@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+	devicetree@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	FROM_LOCAL_NOVOWEL,HK_RANDOM_ENVFROM,HK_RANDOM_FROM,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 9/14/23 00:59, Daniel Matyas wrote:
-> Now the wait time for one-shot is 140ms, instead of the old 141
-> (removed the 1ms error).
-> 
+On Thu, Sep 14, 2023 at 12:16=E2=80=AFAM Jiri Slaby <jirislaby@kernel.org> =
+wrote:
+>
+> On 13. 09. 23, 23:14, Max Filippov wrote:
+> > Add driver for the ACM  controller of the Espressif ESP32S3 Soc.
+> > Hardware specification is available at the following URL:
+> >
+> >    https://www.espressif.com/sites/default/files/documentation/esp32-s3=
+_technical_reference_manual_en.pdf
+> >    (Chapter 33 USB Serial/JTAG Controller)
+> ...
+>
+> > +static void esp32s3_acm_put_char_sync(struct uart_port *port, unsigned=
+ char c)
+> > +{
+> > +     while (!esp32s3_acm_tx_fifo_free(port))
+> > +             cpu_relax();
+>
+> No limits...
 
-It was explicitly documented that the wait time was 140 + 1 milli-seconds,
-presumably to be sure that the conversion is really complete.
+Fixed.
 
-Why was this an error ? It was _documented_ that way.
+> > +     esp32s3_acm_put_char(port, c);
+> > +     esp32s3_acm_push(port);
+> > +}
+> > +
+> > +static void esp32s3_acm_transmit_buffer(struct uart_port *port)
+> > +{
+>
+> tx helper.
 
-Guenter
+Ok.
 
-> Used enums and while loops to replace switch for selecting and getting
-> update interval from conversion rate bits.
-> 
-> Divided the write_alarm_val function into 2 functions. The new function
-> is more generic: it can be used not only for alarm writes, but for any
-> kind of writes which require the device to be in shutdown mode.
-> 
-> Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
-> ---
-> 
-> v2 -> v3: No change.
-> 
-> v2: Added patch.
-> 
->   Documentation/hwmon/max31827.rst |   4 +-
->   drivers/hwmon/max31827.c         | 127 ++++++++++++++-----------------
->   2 files changed, 58 insertions(+), 73 deletions(-)
-> 
-> diff --git a/Documentation/hwmon/max31827.rst b/Documentation/hwmon/max31827.rst
-> index b0971d05b8a4..9a1055a007cf 100644
-> --- a/Documentation/hwmon/max31827.rst
-> +++ b/Documentation/hwmon/max31827.rst
-> @@ -73,8 +73,8 @@ the conversion frequency to 1 conv/s. The conversion time varies depending on
->   the resolution. The conversion time doubles with every bit of increased
->   resolution. For 10 bit resolution 35ms are needed, while for 12 bit resolution
->   (default) 140ms. When chip is in shutdown mode and a read operation is
-> -requested, one-shot is triggered, the device waits for 140 (conversion time) + 1
-> -(error) ms, and only after that is the temperature value register read.
-> +requested, one-shot is triggered, the device waits for 140 (conversion time) ms,
-> +and only after that is the temperature value register read.
->   
->   The LSB of the temperature values is 0.0625 degrees Celsius, but the values of
->   the temperatures are displayed in milli-degrees. This means, that some data is
-> diff --git a/drivers/hwmon/max31827.c b/drivers/hwmon/max31827.c
-> index 602f4e4f81ff..f05762219995 100644
-> --- a/drivers/hwmon/max31827.c
-> +++ b/drivers/hwmon/max31827.c
-> @@ -25,20 +25,32 @@
->   #define MAX31827_CONFIGURATION_U_TEMP_STAT_MASK	BIT(14)
->   #define MAX31827_CONFIGURATION_O_TEMP_STAT_MASK	BIT(15)
->   
-> -#define MAX31827_12_BIT_CNV_TIME	141
-> -
-> -#define MAX31827_CNV_1_DIV_64_HZ	0x1
-> -#define MAX31827_CNV_1_DIV_32_HZ	0x2
-> -#define MAX31827_CNV_1_DIV_16_HZ	0x3
-> -#define MAX31827_CNV_1_DIV_4_HZ		0x4
-> -#define MAX31827_CNV_1_HZ		0x5
-> -#define MAX31827_CNV_4_HZ		0x6
-> -#define MAX31827_CNV_8_HZ		0x7
-> +#define MAX31827_12_BIT_CNV_TIME	140
->   
->   #define MAX31827_16_BIT_TO_M_DGR(x)	(sign_extend32(x, 15) * 1000 / 16)
->   #define MAX31827_M_DGR_TO_16_BIT(x)	(((x) << 4) / 1000)
->   #define MAX31827_DEVICE_ENABLE(x)	((x) ? 0xA : 0x0)
->   
-> +enum max31827_cnv {
-> +	MAX31827_CNV_1_DIV_64_HZ = 1,
-> +	MAX31827_CNV_1_DIV_32_HZ,
-> +	MAX31827_CNV_1_DIV_16_HZ,
-> +	MAX31827_CNV_1_DIV_4_HZ,
-> +	MAX31827_CNV_1_HZ,
-> +	MAX31827_CNV_4_HZ,
-> +	MAX31827_CNV_8_HZ,
-> +};
-> +
-> +static const u16 max31827_conversions[] = {
-> +	[MAX31827_CNV_1_DIV_64_HZ] = 64000,
-> +	[MAX31827_CNV_1_DIV_32_HZ] = 32000,
-> +	[MAX31827_CNV_1_DIV_16_HZ] = 16000,
-> +	[MAX31827_CNV_1_DIV_4_HZ] = 4000,
-> +	[MAX31827_CNV_1_HZ] = 1000,
-> +	[MAX31827_CNV_4_HZ] = 250,
-> +	[MAX31827_CNV_8_HZ] = 125,
-> +};
-> +
->   struct max31827_state {
->   	/*
->   	 * Prevent simultaneous access to the i2c client.
-> @@ -54,15 +66,13 @@ static const struct regmap_config max31827_regmap = {
->   	.max_register = 0xA,
->   };
->   
-> -static int write_alarm_val(struct max31827_state *st, unsigned int reg,
-> -			   long val)
-> +static int shutdown_write(struct max31827_state *st, unsigned int reg,
-> +			  unsigned int val)
->   {
->   	unsigned int cfg;
-> -	unsigned int tmp;
-> +	unsigned int cnv_rate;
->   	int ret;
->   
-> -	val = MAX31827_M_DGR_TO_16_BIT(val);
-> -
->   	/*
->   	 * Before the Temperature Threshold Alarm and Alarm Hysteresis Threshold
->   	 * register values are changed over I2C, the part must be in shutdown
-> @@ -82,9 +92,10 @@ static int write_alarm_val(struct max31827_state *st, unsigned int reg,
->   	if (ret)
->   		goto unlock;
->   
-> -	tmp = cfg & ~(MAX31827_CONFIGURATION_1SHOT_MASK |
-> +	cnv_rate = MAX31827_CONFIGURATION_CNV_RATE_MASK & cfg;
-> +	cfg = cfg & ~(MAX31827_CONFIGURATION_1SHOT_MASK |
->   		      MAX31827_CONFIGURATION_CNV_RATE_MASK);
-> -	ret = regmap_write(st->regmap, MAX31827_CONFIGURATION_REG, tmp);
-> +	ret = regmap_write(st->regmap, MAX31827_CONFIGURATION_REG, cfg);
->   	if (ret)
->   		goto unlock;
->   
-> @@ -92,13 +103,23 @@ static int write_alarm_val(struct max31827_state *st, unsigned int reg,
->   	if (ret)
->   		goto unlock;
->   
-> -	ret = regmap_write(st->regmap, MAX31827_CONFIGURATION_REG, cfg);
-> +	ret = regmap_update_bits(st->regmap, MAX31827_CONFIGURATION_REG,
-> +				 MAX31827_CONFIGURATION_CNV_RATE_MASK,
-> +				 cnv_rate);
->   
->   unlock:
->   	mutex_unlock(&st->lock);
->   	return ret;
->   }
->   
-> +static int write_alarm_val(struct max31827_state *st, unsigned int reg,
-> +			   long val)
-> +{
-> +	val = MAX31827_M_DGR_TO_16_BIT(val);
-> +
-> +	return shutdown_write(st, reg, val);
-> +}
-> +
->   static umode_t max31827_is_visible(const void *state,
->   				   enum hwmon_sensor_types type, u32 attr,
->   				   int channel)
-> @@ -243,32 +264,7 @@ static int max31827_read(struct device *dev, enum hwmon_sensor_types type,
->   
->   			uval = FIELD_GET(MAX31827_CONFIGURATION_CNV_RATE_MASK,
->   					 uval);
-> -			switch (uval) {
-> -			case MAX31827_CNV_1_DIV_64_HZ:
-> -				*val = 64000;
-> -				break;
-> -			case MAX31827_CNV_1_DIV_32_HZ:
-> -				*val = 32000;
-> -				break;
-> -			case MAX31827_CNV_1_DIV_16_HZ:
-> -				*val = 16000;
-> -				break;
-> -			case MAX31827_CNV_1_DIV_4_HZ:
-> -				*val = 4000;
-> -				break;
-> -			case MAX31827_CNV_1_HZ:
-> -				*val = 1000;
-> -				break;
-> -			case MAX31827_CNV_4_HZ:
-> -				*val = 250;
-> -				break;
-> -			case MAX31827_CNV_8_HZ:
-> -				*val = 125;
-> -				break;
-> -			default:
-> -				*val = 0;
-> -				break;
-> -			}
-> +			*val = max31827_conversions[uval];
->   		}
->   		break;
->   
-> @@ -284,6 +280,7 @@ static int max31827_write(struct device *dev, enum hwmon_sensor_types type,
->   			  u32 attr, int channel, long val)
->   {
->   	struct max31827_state *st = dev_get_drvdata(dev);
-> +	int res = 1;
->   	int ret;
->   
->   	switch (type) {
-> @@ -333,39 +330,27 @@ static int max31827_write(struct device *dev, enum hwmon_sensor_types type,
->   			if (!st->enable)
->   				return -EINVAL;
->   
-> -			switch (val) {
-> -			case 125:
-> -				val = MAX31827_CNV_8_HZ;
-> -				break;
-> -			case 250:
-> -				val = MAX31827_CNV_4_HZ;
-> -				break;
-> -			case 1000:
-> -				val = MAX31827_CNV_1_HZ;
-> -				break;
-> -			case 4000:
-> -				val = MAX31827_CNV_1_DIV_4_HZ;
-> -				break;
-> -			case 16000:
-> -				val = MAX31827_CNV_1_DIV_16_HZ;
-> -				break;
-> -			case 32000:
-> -				val = MAX31827_CNV_1_DIV_32_HZ;
-> -				break;
-> -			case 64000:
-> -				val = MAX31827_CNV_1_DIV_64_HZ;
-> -				break;
-> -			default:
-> -				return -EINVAL;
-> -			}
-> +			/*
-> +			 * Convert the desired conversion rate into register
-> +			 * bits. res is already initialized with 1.
-> +			 *
-> +			 * This was inspired by lm73 driver.
-> +			 */
-> +			while (res < ARRAY_SIZE(max31827_conversions) &&
-> +			       val < max31827_conversions[res])
-> +				res++;
-> +
-> +			if (res == ARRAY_SIZE(max31827_conversions) ||
-> +			    val != max31827_conversions[res])
-> +				return -EOPNOTSUPP;
->   
-> -			val = FIELD_PREP(MAX31827_CONFIGURATION_CNV_RATE_MASK,
-> -					 val);
-> +			res = FIELD_PREP(MAX31827_CONFIGURATION_CNV_RATE_MASK,
-> +					 res);
->   
->   			return regmap_update_bits(st->regmap,
->   						  MAX31827_CONFIGURATION_REG,
->   						  MAX31827_CONFIGURATION_CNV_RATE_MASK,
-> -						  val);
-> +						  res);
->   		}
->   		break;
->   
+> > +     struct circ_buf *xmit =3D &port->state->xmit;
+> > +     u32 tx_fifo_used =3D esp32s3_acm_tx_fifo_cnt(port);
+> > +
+> > +     if (esp32s3_acm_tx_fifo_free(port)) {
+> > +             while (!uart_circ_empty(xmit) && tx_fifo_used < ESP32S3_A=
+CM_TX_FIFO_SIZE) {
+> > +                     esp32s3_acm_put_char(port, xmit->buf[xmit->tail])=
+;
+> > +                     xmit->tail =3D (xmit->tail + 1) & (UART_XMIT_SIZE=
+ - 1);
+> > +                     port->icount.tx++;
+> > +                     ++tx_fifo_used;
+> > +             }
+> > +     }
+> > +
+> > +     if (uart_circ_chars_pending(xmit) < WAKEUP_CHARS)
+> > +             uart_write_wakeup(port);
+> > +
+> > +     if (uart_circ_empty(xmit)) {
+> > +             esp32s3_acm_stop_tx(port);
+> > +     } else {
+> > +             u32 int_ena;
+> > +
+> > +             int_ena =3D esp32s3_acm_read(port, USB_SERIAL_JTAG_INT_EN=
+A_REG);
+> > +             esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG,
+> > +                               int_ena | USB_SERIAL_JTAG_SERIAL_IN_EMP=
+TY_INT_ENA_MASK);
+> > +     }
+> > +
+> > +     if (tx_fifo_used > 0 && tx_fifo_used < ESP32S3_ACM_TX_FIFO_SIZE)
+> > +             esp32s3_acm_write(port, USB_SERIAL_JTAG_EP1_CONF_REG,
+> > +                               USB_SERIAL_JTAG_WR_DONE_MASK);
+> > +}
+>
+>
+> > +static irqreturn_t esp32s3_acm_int(int irq, void *dev_id)
+> > +{
+> > +     struct uart_port *port =3D dev_id;
+> > +     u32 status;
+> > +
+> > +     status =3D esp32s3_acm_read(port, USB_SERIAL_JTAG_INT_ST_REG);
+> > +     esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_CLR_REG, status);
+> > +
+> > +     if (status & USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ST_MASK)
+> > +             esp32s3_acm_rxint(port);
+> > +     if (status & USB_SERIAL_JTAG_SERIAL_IN_EMPTY_INT_ST_MASK)
+> > +             esp32s3_acm_txint(port);
+> > +
+> > +     return IRQ_HANDLED;
+>
+> IRQ_STATUS()
 
+Ok.
+
+> > +}
+>
+> > +static int esp32s3_acm_startup(struct uart_port *port)
+> > +{
+> > +     int ret =3D 0;
+> > +
+> > +     esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG,
+> > +                       USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ENA_MAS=
+K);
+> > +     ret =3D devm_request_irq(port->dev, port->irq, esp32s3_acm_int, 0=
+,
+> > +                            DRIVER_NAME, port);
+> > +     return ret;
+>
+> No need for ret. Or not, you don't handle the failure properly again
+> (disable ints). And the order appears to be switched too.
+
+Fixed.
+
+> > +static void
+> > +esp32s3_acm_console_write(struct console *co, const char *s, unsigned =
+int count)
+> > +{
+> > +     struct uart_port *port =3D esp32s3_acm_ports[co->index];
+> > +     unsigned long flags;
+> > +     int locked =3D 1;
+>
+> bool? ANd in the otrher driver too.
+
+Ok.
+
+> > +
+> > +     if (port->sysrq)
+> > +             locked =3D 0;
+> > +     else if (oops_in_progress)
+> > +             locked =3D spin_trylock_irqsave(&port->lock, flags);
+> > +     else
+> > +             spin_lock_irqsave(&port->lock, flags);
+> > +
+> > +     esp32s3_acm_string_write(port, s, count);
+> > +
+> > +     if (locked)
+> > +             spin_unlock_irqrestore(&port->lock, flags);
+> > +}
+>
+>
+> > +#ifdef CONFIG_CONSOLE_POLL
+> > +static int esp32s3_acm_earlycon_read(struct console *con, char *s, uns=
+igned int n)
+> > +{
+> > +     struct earlycon_device *dev =3D con->data;
+> > +     int num_read =3D 0;
+>
+> num looks like should be unsigned?
+
+Ok.
+
+> > +
+> > +     while (num_read < n) {
+> > +             int c =3D esp32s3_acm_poll_get_char(&dev->port);
+> > +
+> > +             if (c =3D=3D NO_POLL_CHAR)
+> > +                     break;
+> > +             s[num_read++] =3D c;
+> > +     }
+> > +     return num_read;
+> > +}
+> > +#endif
+>
+>
+> > +static int esp32s3_acm_probe(struct platform_device *pdev)
+> > +{
+> > +     struct device_node *np =3D pdev->dev.of_node;
+> > +     struct uart_port *port;
+> > +     struct resource *res;
+> > +     int ret;
+> > +
+> > +     port =3D devm_kzalloc(&pdev->dev, sizeof(*port), GFP_KERNEL);
+> > +     if (!port)
+> > +             return -ENOMEM;
+> > +
+> > +     ret =3D of_alias_get_id(np, "serial");
+> > +     if (ret < 0) {
+> > +             dev_err(&pdev->dev, "failed to get alias id, errno %d\n",=
+ ret);
+> > +             return ret;
+> > +     }
+> > +     if (ret >=3D UART_NR) {
+> > +             dev_err(&pdev->dev, "driver limited to %d serial ports\n"=
+,
+> > +                     UART_NR);
+> > +             return -ENOMEM;
+> > +     }
+> > +
+> > +     port->line =3D ret;
+> > +
+> > +     res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> > +     if (!res)
+> > +             return -ENODEV;
+> > +
+> > +     port->mapbase =3D res->start;
+> > +     port->membase =3D devm_ioremap_resource(&pdev->dev, res);
+> > +     if (IS_ERR(port->membase))
+> > +             return PTR_ERR(port->membase);
+> > +
+> > +     port->dev =3D &pdev->dev;
+> > +     port->type =3D PORT_ESP32ACM;
+> > +     port->iotype =3D UPIO_MEM;
+> > +     port->irq =3D platform_get_irq(pdev, 0);
+> > +     port->ops =3D &esp32s3_acm_pops;
+> > +     port->flags =3D UPF_BOOT_AUTOCONF;
+> > +     port->has_sysrq =3D 1;
+> > +     port->fifosize =3D ESP32S3_ACM_TX_FIFO_SIZE;
+> > +
+> > +     esp32s3_acm_ports[port->line] =3D port;
+> > +
+> > +     platform_set_drvdata(pdev, port);
+> > +
+> > +     ret =3D uart_add_one_port(&esp32s3_acm_reg, port);
+> > +     return ret;
+>
+> return imm.
+
+Ok.
+
+--=20
+Thanks.
+-- Max
 
