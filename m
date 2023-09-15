@@ -1,161 +1,144 @@
-Return-Path: <devicetree+bounces-417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E40AB7A178F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:35:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9294E7A17BE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 09:46:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05B391C2110F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 07:35:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 479DE1C21365
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 07:46:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FFE2D295;
-	Fri, 15 Sep 2023 07:35:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DFB7D29E;
+	Fri, 15 Sep 2023 07:46:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B30DED292
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 07:35:00 +0000 (UTC)
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 148E7B8
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 00:34:59 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-31c3df710bdso1649584f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 00:34:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694763297; x=1695368097; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qOhwwySDKn21smjpOk6dEq+GSuFI63bl1UFYi1EKI04=;
-        b=S2ajIbeYZYyTxsEYGmgWJPM9xwmLu7ijk0YL49umjAtFn8R8WN+895HHJGC7MxEpNd
-         s1doNM5/JqYzgFoG6nikIaGseeQnNZc9NsoCebUdusj982F2A+kO7Zxm8xb3xAgxulFD
-         FV7mvoCWhy/hIrtDHWEhmVkOABcJE5e4dnyWaxSE9yiz/iugtAq3ALnZJ5IGoyxElwR/
-         tW12+tyKNEbUurCBdC1Oc4ionblUfISkB9wuZdfmy7A4aQ/K/idxPd6aUO+wUkLF1ell
-         fWZiK0urWXkfTA1GQAvUQyI3SDZTc/TY0SjwvL2E5ViPsZ/UXYvDgslhWMsoxPKY8rKb
-         uX3Q==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF0633FEF
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 07:46:33 +0000 (UTC)
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E1751724;
+	Fri, 15 Sep 2023 00:46:32 -0700 (PDT)
+Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-6bc9c01e154so1552326a34.0;
+        Fri, 15 Sep 2023 00:46:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694763297; x=1695368097;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qOhwwySDKn21smjpOk6dEq+GSuFI63bl1UFYi1EKI04=;
-        b=dbhR7+SgdZTbMZ8z7mO6p8n+mx7Wyj1GhDIZGLninlMHvsXYNcbmOMzxz38Aoh9SAS
-         Y19CA2KEHlLtAWCw9FcKKPXeO1shUEXM7qCP9XDUqcKUQ4U0gxW0UhL+BGOg0wyHKzUu
-         2fA51m7z+dTwfvohLlgimaJcTUyU9tmDDNRGQ0/LAqDXKyoElbjMLiPgEs8syskPcH19
-         tR2mKQfRSSuRe+r1rYZ0SCsdK7DKqh0hWsr2nvfsk5oS6MJbEXeMzG2XJFEDDNXtKcIW
-         rcMuVvtaanMEqDK/kDn/f9p6LXmpFHN6e+EE8dwCDahJhvx6Nh/ITT1GTjh3zf0J1dD+
-         ijnw==
-X-Gm-Message-State: AOJu0YwESQnY8ZEs3f7edEzgGOj0xE3IAKQOSdSeuYYwkYhRMo2WgCnr
-	PoKZ+mfnq7Kn6bDtAaB/IrH4hQ==
-X-Google-Smtp-Source: AGHT+IExuGBnRGeiPUMGNEcpJuC9JYDa0ARcsc3STMPxBsCsHrtn9sUbxB+m5v9Cwhl0shqQDvwc+g==
-X-Received: by 2002:adf:eec5:0:b0:31f:9860:2325 with SMTP id a5-20020adfeec5000000b0031f98602325mr610529wrp.67.1694763297409;
-        Fri, 15 Sep 2023 00:34:57 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id u8-20020a5d6ac8000000b0031416362e23sm3731001wrw.3.2023.09.15.00.34.55
+        d=1e100.net; s=20230601; t=1694763991; x=1695368791;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LlbDJ1qD3XxXTi41UC3S2BlvV/2SQ/t6iNEBcbR7qLI=;
+        b=aiuL7fpsv0tnBSe7fAemXaIzjoblR1Riy7l58iQtM+Jk/MV6KIqabBHpw/5eTP68SW
+         XYE/IEwrucS2f0HyCZdRi0USb2yj/kwszQAZXOjoZ/pviSstKNseaPluufLT1950Sv79
+         9037GTQEyG+0/SAPJOeXXhCUhG0AIvH2/89G7KbI4DTu2zDxg9vaOJld8V8BkYP+b0yM
+         Zt7DlCXOI4paetfZyg92cA0S13VOKI5eKsVR0QhdFGJOo4mRP+MH2nsQP4ZRSMw6klqS
+         0VqnHvjsR+4lJUGNFB4lmd4o/6suuyVYw/ruz5UeCU3pYHOhiGHalkL7OL05WdpvZV0z
+         GV8w==
+X-Gm-Message-State: AOJu0Yx85kHoQOEHgelRO6HwXqsvuKsmy1BP8RXmzcJmpWTZkVz2XkGP
+	WQw3RvAi36KrTJSdRzS9x5ZQ8OcoU3V/mw==
+X-Google-Smtp-Source: AGHT+IGEnDpC9B5m9B6LcLfFhO7Fw46r+1mX05cdGH7KIAitVPxvYKi70sEXSP5fT1vSBCkgWFSLHg==
+X-Received: by 2002:a05:6870:d1cf:b0:1d5:a22d:3020 with SMTP id b15-20020a056870d1cf00b001d5a22d3020mr2810004oac.3.1694763991248;
+        Fri, 15 Sep 2023 00:46:31 -0700 (PDT)
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com. [209.85.161.43])
+        by smtp.gmail.com with ESMTPSA id ed23-20020a056870b79700b001cd14c60b35sm1663538oab.5.2023.09.15.00.46.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 00:34:56 -0700 (PDT)
-Message-ID: <fa554890-7315-97cb-a9d3-d0acf18d0ff2@linaro.org>
-Date: Fri, 15 Sep 2023 09:34:54 +0200
+        Fri, 15 Sep 2023 00:46:31 -0700 (PDT)
+Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-5739965a482so1021534eaf.0;
+        Fri, 15 Sep 2023 00:46:31 -0700 (PDT)
+X-Received: by 2002:a25:cf55:0:b0:d7a:c85c:7254 with SMTP id
+ f82-20020a25cf55000000b00d7ac85c7254mr937969ybg.21.1694763526785; Fri, 15 Sep
+ 2023 00:38:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 08/12] riscv: dts: sophgo: add Milk-V Pioneer board device
- tree
-Content-Language: en-US
-To: Wang Chen <unicornxw@gmail.com>, linux-riscv@lists.infradead.org,
- conor@kernel.org, aou@eecs.berkeley.edu, krzysztof.kozlowski+dt@linaro.org,
- palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- jszhang@kernel.org, guoren@kernel.org, chao.wei@sophgo.com,
- xiaoguang.xing@sophgo.com, Wang Chen <wangchen20@iscas.ac.cn>,
- Inochi Amaoto <inochiama@outlook.com>
-References: <20230915072451.118209-1-wangchen20@iscas.ac.cn>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230915072451.118209-1-wangchen20@iscas.ac.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
+ <20230912045157.177966-22-claudiu.beznea.uj@bp.renesas.com>
+ <20230912160330.GA864606-robh@kernel.org> <CAMuHMdWxKFrTi7c0Df0cHLrVFt3=a7UOy0jnKxsG8PEuD=15Pg@mail.gmail.com>
+ <c199fb5e-927c-aa39-ff3a-3a7906fadec0@linaro.org>
+In-Reply-To: <c199fb5e-927c-aa39-ff3a-3a7906fadec0@linaro.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 15 Sep 2023 09:38:33 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWwFnirDL7=06YofG5ON5U+eMUfe=JGAoU+X8rZWokS4g@mail.gmail.com>
+Message-ID: <CAMuHMdWwFnirDL7=06YofG5ON5U+eMUfe=JGAoU+X8rZWokS4g@mail.gmail.com>
+Subject: Re: [PATCH 21/37] dt-bindings: clock: add r9a08g045 CPG clocks and
+ resets definitions
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Claudiu <claudiu.beznea@tuxon.dev>, mturquette@baylibre.com, 
+	sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
+	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
+	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
+	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 15/09/2023 09:24, Wang Chen wrote:
-> Milk-V Pioneer [1] is a developer motherboard based on SOPHON
-> SG2042 in a standard mATX form factor. It is a good
-> choice for RISC-V developers and hardware pioneers to
-> experience the cutting edge technology of RISC-V.
-> 
-> Currently only support booting into console with only uart
-> enabled, other features will be added soon later.
-> 
-> [1]: https://milkv.io/pioneer
-> 
-> Signed-off-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> Signed-off-by: Wang Chen <wangchen20@iscas.ac.cn>
-> ---
->  arch/riscv/boot/dts/Makefile                     |  1 +
->  arch/riscv/boot/dts/sophgo/Makefile              |  3 +++
->  .../boot/dts/sophgo/sg2042-milkv-pioneer.dts     | 16 ++++++++++++++++
->  3 files changed, 20 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/sophgo/Makefile
->  create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-> 
-> diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-> index f60a280abb15..94788486f13e 100644
-> --- a/arch/riscv/boot/dts/Makefile
-> +++ b/arch/riscv/boot/dts/Makefile
-> @@ -6,5 +6,6 @@ subdir-y += renesas
->  subdir-y += sifive
->  subdir-y += starfive
->  subdir-y += thead
-> +subdir-y += sophgo
->  
->  obj-$(CONFIG_BUILTIN_DTB) := $(addsuffix /, $(subdir-y))
-> diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/sophgo/Makefile
-> new file mode 100644
-> index 000000000000..5a471b19df22
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/sophgo/Makefile
-> @@ -0,0 +1,3 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-milkv-pioneer.dtb
-> +
-> diff --git a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-> new file mode 100644
-> index 000000000000..4f480ff88fbd
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-> @@ -0,0 +1,16 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (C) 2022 Sophgo Technology Inc. All rights reserved.
-> + */
-> +
-> +#include "sg2042.dtsi"
-> +
-> +/ {
-> +	model = "Milk-V Pioneer";
-> +	compatible = "milkv,pioneer", "sophgo,sg2042";
-> +
-> +	info {
+Hi Krzysztof,
 
-Drop, there is no such node. Otherwise, please point me where are the
-bindings for it?
+On Fri, Sep 15, 2023 at 9:24=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 14/09/2023 17:26, Geert Uytterhoeven wrote:
+> > On Tue, Sep 12, 2023 at 6:03=E2=80=AFPM Rob Herring <robh@kernel.org> w=
+rote:
+> >> On Tue, Sep 12, 2023 at 07:51:41AM +0300, Claudiu wrote:
+> >>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>>
+> >>> Add RZ/G3S (R9A08G045) Clock Pulse Generator (CPG) core clocks, modul=
+e
+> >>> clocks and resets.
+> >>
+> >> This is part of the binding, so it can be squashed with the previous
+> >> patch. The ack there still stands.
+> >
+> > Usually we keep it as a separate patch, to be queued in an immutable
+> > branch, as it is included by both the clock driver and by DTS, but
+> > not by the yaml bindings file.
+>
+> Binding also should be shared, so you get compatible documented in both
+> places (thus lack of checkpatch warnings). It still should be one patch.
 
-Anyway your submissions is incomplete. Your DTS should enable some
-peripherals, like serials etc.
+Hmm, I see your point...
 
-Best regards,
-Krzysztof
+For core Renesas SoCs components where I am (sub)maintainer for both
+the driver subsystem and the DTS, I can take care of that.
+For the generic case, that will need a lot of cooperation with subsystem
+maintainers, to create lots of small immutable branches with DT bindings
+and DT binding definition updates.
 
+Alternatively, are you (the DT maintainers) prepared to handle all
+DT bindings and DT binding definition updates, and create immutable
+branches for all of them (in a timely manner, of course)?
+Then we can start enforcing the rule that driver and DTS updates must
+not cause checkpatch warnings for missing compatible values, and must
+not be applied without merging the corresponding immutable branch first.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
