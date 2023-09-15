@@ -1,53 +1,63 @@
-Return-Path: <devicetree+bounces-527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AFC47A1D3D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 13:16:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 483DF7A1D4B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 13:18:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1B581C20A1F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 11:16:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C5781C20E53
+	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 11:18:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A53F101DE;
-	Fri, 15 Sep 2023 11:16:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE45E101D3;
+	Fri, 15 Sep 2023 11:18:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA65DDB7
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 11:16:48 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C444C189;
-	Fri, 15 Sep 2023 04:16:45 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38FBGFs9004976;
-	Fri, 15 Sep 2023 06:16:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1694776575;
-	bh=3iyqIz1bm5Ap2Jx3eiz+CK/eHKTJuDer271I8mtLQW4=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=fySl1bYcuuZcNdtLhm3qG6VVnnfKnzPiwSsKR6xj/1Cb7tbQ4f1olro5Ywh/ZX8kL
-	 MbCo+BM1+iw70FeDNB3LULf0w22Wj9HPIjM3FMQGUZ0aZ9yN684MBUbs3Ah7GQniBD
-	 y3PTl88X5EDTqnwvwe5M1SJJQWihaIln7Pu4rWbg=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38FBGFcL013382
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 15 Sep 2023 06:16:15 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 15
- Sep 2023 06:16:14 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 15 Sep 2023 06:16:14 -0500
-Received: from [10.250.135.44] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38FBG75X022097;
-	Fri, 15 Sep 2023 06:16:08 -0500
-Message-ID: <0994c10b-8805-7ce3-dc1b-13410b3a959c@ti.com>
-Date: Fri, 15 Sep 2023 14:16:06 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7781C101C4
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 11:18:31 +0000 (UTC)
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C2601B2
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 04:18:25 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-31dca134c83so1982090f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 04:18:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694776703; x=1695381503; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ziVc+rtn+8qCfab0pW6dHdwsWNPjZ4WKT9IYLhgHUbs=;
+        b=Qr4PENK69EPGv/oguyeWKmN26fML2ukFJwolGFuTw8S0zD46EU+ANjPv1ZbXKWb43q
+         B7PUIgeSxHj+fHNkvC/9yyaoGv6JyCPZ1mCKJ0JYCcCS7DW6ekqKA2BFkrPIt6QAFd4t
+         2FY4oB/6bOJkKquva2Qr/wscao6g9yoJ27PgSMNoVd35lQcvBLTCRZMAn0qN6ZfMtr6C
+         r5n8U14mE5gvlY5wzXLlAwpEpPFMeB87c7tckg5atxFdwHUQNV5iZ/4ZCxYvQb203+91
+         hkDAha0kp8ZxAjbBKkKUvZPBBkczP2CEQHts5IhGig7gvkg/HiUvcNs8klNTH/xZrXXT
+         5awA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694776703; x=1695381503;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ziVc+rtn+8qCfab0pW6dHdwsWNPjZ4WKT9IYLhgHUbs=;
+        b=vuGst9ByOBk0YM0eUfnTWxWe45byy2wAlU89JKQ2ixzZdlvvepQq8bi3zR2ihFivK/
+         ClRlagbBUHa6xH7etdVCyTZBfcVirImflFEiiPq6K9RNY+KMbbmx+eK14V7j4zRVgF6V
+         OS4FkqUECeT+Cgkj7HCmGILuz0TVhelQ1aVvh5WizBNslNI4Zgg4i9nyNREOM9NRFb4R
+         e+XWTAFZF9wm0ESS6WzwzRBHVeHsyo1dcNaCPmdiP1k/s7RSIa/NrUmjjVar1ptd0lD8
+         fh/SulJIUXWVcWVuozHbGmzXdGpuo3yIxZrfsnLAHMjmSB5pyTEuZOuTriZXOUd1SB0l
+         8/TQ==
+X-Gm-Message-State: AOJu0YzBn7CFFe3guArhxSWyPwcf+8mXYw00Vvr2xExOzvBPHIQLDNfc
+	RZW1SH/mU/keVChqfXmKAzkByA==
+X-Google-Smtp-Source: AGHT+IEKQn+nZjBWSB3TGQyOP/D1nrIbfCnlJO1lZ0KeXdDZvnXyjSj7LFWoSMjG2My6gei9PoYuCQ==
+X-Received: by 2002:adf:f842:0:b0:31f:e19e:a2c with SMTP id d2-20020adff842000000b0031fe19e0a2cmr1180771wrq.32.1694776703692;
+        Fri, 15 Sep 2023 04:18:23 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id e17-20020adffc51000000b0031435731dfasm4159793wrs.35.2023.09.15.04.18.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Sep 2023 04:18:23 -0700 (PDT)
+Message-ID: <880d17f8-ee9b-fc7a-114f-542962022b2a@linaro.org>
+Date: Fri, 15 Sep 2023 13:18:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,96 +66,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH 1/3] arm64: dts: ti: Add GPMC NAND support
-To: Nitin Yadav <n-yadav@ti.com>, <nm@ti.com>, <vigneshr@ti.com>
-CC: <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230913114711.2937844-1-n-yadav@ti.com>
- <20230913114711.2937844-2-n-yadav@ti.com>
+Subject: Re: [PATCH v4 31/42] dt-bindings: wdt: Add ts72xx
 Content-Language: en-US
-From: Roger Quadros <rogerq@ti.com>
-In-Reply-To: <20230913114711.2937844-2-n-yadav@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: nikita.shubin@maquefel.me, Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+ Alexander Sverdlin <alexander.sverdlin@gmail.com>
+References: <20230915-ep93xx-v4-0-a1d779dcec10@maquefel.me>
+ <20230915-ep93xx-v4-31-a1d779dcec10@maquefel.me>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230915-ep93xx-v4-31-a1d779dcec10@maquefel.me>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Nitin,
-
-On 13.9.2023 14.47, Nitin Yadav wrote:
-> Add support for AM62Q NAND card: X8 NAND EXPANSION
-> BOARD card (PROC143E1) for AM62x LP SK board.
-
-This patch is not adding NAND support but GPMC and ELM nodes.
-
+On 15/09/2023 10:11, Nikita Shubin via B4 Relay wrote:
+> From: Nikita Shubin <nikita.shubin@maquefel.me>
 > 
-> Signed-off-by: Nitin Yadav <n-yadav@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 29 ++++++++++++++++++++++++
->   arch/arm64/boot/dts/ti/k3-am62.dtsi      |  2 ++
->   2 files changed, 31 insertions(+)
+> Add DT binding for Technologic Systems TS-72xx watchdog.
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> index 284b90c94da8..e93e79d8083f 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> @@ -955,4 +955,33 @@ mcasp2: audio-controller@2b20000 {
->   		power-domains = <&k3_pds 192 TI_SCI_PD_EXCLUSIVE>;
->   		status = "disabled";
->   	};
-> +	gpmc0: memory-controller@3b000000 {
-> +		status = "disabled";
-> +		compatible = "ti,am64-gpmc";
-> +		power-domains = <&k3_pds 80 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks = <&k3_clks 80 0>;
-> +		clock-names = "fck";
-> +		reg = <0x00 0x03b000000 0x00 0x400>,
-> +		      <0x00 0x050000000 0x00 0x8000000>;
-> +		reg-names = "cfg", "data";
-> +		interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
-> +		gpmc,num-cs = <3>;
-> +		gpmc,num-waitpins = <2>;
-> +		#address-cells = <2>;
-> +		#size-cells = <1>;
-> +		interrupt-controller;
-> +		#interrupt-cells = <2>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +	};
-> +
-> +	elm0: ecc@25010000 {
-> +		status = "disabled";
-> +		compatible = "ti,am3352-elm";
-> +		reg = <0x00 0x25010000 0x00 0x2000>;
-> +		interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&k3_pds 54 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks = <&k3_clks 54 0>;
-> +		clock-names = "fck";
-> +	};
->   };
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62.dtsi b/arch/arm64/boot/dts/ti/k3-am62.dtsi
-> index 11f14eef2d44..f7d8aad0a016 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62.dtsi
-> @@ -76,6 +76,8 @@ cbass_main: bus@f0000 {
->   			 <0x00 0x70000000 0x00 0x70000000 0x00 0x00010000>, /* OCSRAM */
->   			 <0x01 0x00000000 0x01 0x00000000 0x00 0x00310000>, /* A53 PERIPHBASE */
->   			 <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>, /* FSS0 DAT3 */
-> +			 <0x00 0x3b000000 0x00 0x3b000000 0x00 0x00000400>, /* GPMC0_CFG */
-> +			 <0x00 0x50000000 0x00 0x50000000 0x00 0x08000000>, /* GPMC0 DATA */
->   
->   			 /* MCU Domain Range */
->   			 <0x00 0x04000000 0x00 0x04000000 0x00 0x01ff1400>,
+> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 
--- 
-cheers,
--roger
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
