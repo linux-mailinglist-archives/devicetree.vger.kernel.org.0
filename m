@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AFB37A2EDB
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 10:31:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3E857A2EE8
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 10:59:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93B591C20BFB
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 08:31:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5A881C20B64
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 08:59:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3137E11CA8;
-	Sat, 16 Sep 2023 08:31:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B816125B8;
+	Sat, 16 Sep 2023 08:59:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 975807E
-	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 08:31:13 +0000 (UTC)
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D601197
-	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 01:31:11 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2bfc1d8f2d2so34694681fa.0
-        for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 01:31:11 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B7F07E
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 08:59:06 +0000 (UTC)
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FC69CF8
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 01:59:04 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-50078eba7afso4721963e87.0
+        for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 01:59:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694853070; x=1695457870; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1694854742; x=1695459542; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5LGYWdB0DEixM6I5ZcVz5gZM0npJ3BPYjJVK1vjDgg0=;
-        b=MA3vWfGycraBzv9feHVmay/sW6ewXYDIRovBniIL/IskzM6OcjiqbgXmseT7aZ7/n2
-         CLhozTOk/nWqo2ED+apAAPbeqOdi5E330upQ1m9ZL0inhM/zNyd9CrpfJGB3UA6BZF+4
-         zFCRuismXDH/Xs93iBkdMsUkr1GQn4e/0gZeVyqQr73jS3sthrKKDPwt9nU1nYR+Zsj0
-         YrQS8kyMxqDYpKQHslGl7jkkz92YQtzztsRv/7ttHripVpJNZ4JpxnjfH8rrsMRbLqE5
-         ETjJZtLcyMoxnnPh3v9OMqCks7LVWaMXUoWIQoi5XID70TPxC1mmm1XdtcvRHPmm5yhK
-         Mtcg==
+        bh=3u2vbto1umek1f24RIrtSGDaz5f+TY32is7IlWxMZj8=;
+        b=Oi9yLyQ6AiFsoCHwy1CAaQPiB/7eNavHB2nJKUQGnN1I/HGfGch+QKAMY0d4Z6U1qa
+         bs57227Ym5cRLdJXpxMuzF12Qkl1NxQH6ngw/haH8zKzh0ht2+ANtvB/THfq13SdwjXb
+         qAiU1Nl1bRF3MBymlxvRQsNhA22vZtPKhwJrksgs3GYxuJV3nx9gttwe5fiiBq+vhXir
+         0xTadJ77F/7oF0k3R2kZl7+k0PThY2M9P6dhNla1D7AU27cs+jZhIjYL9mdldxvVU4/D
+         VySv4BYzRyPALndm7TT7k08Z15rsxzSRkddNLupejNc9w3aK/VvzbdhJXE4riJ6IqWCc
+         5u6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694853070; x=1695457870;
+        d=1e100.net; s=20230601; t=1694854742; x=1695459542;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5LGYWdB0DEixM6I5ZcVz5gZM0npJ3BPYjJVK1vjDgg0=;
-        b=nUGZL2F4QRymlhkV+ckE9rApSKrNB63SMRm1JWFJEhdsXJw6RnUlPCzqAbT6tVpzqY
-         aWvwLwOYjq4nfbZZz5xKPd2SeFGGEIa+RrXuvaPdu0UKv2T7cnSzo07UuASSUDfFtcGx
-         YkhNbDGNr9be9hYOCMAK3qJxLBzlUej6sjsesI25g8WSGvPjWnlIqHwLfIJ4Use6ndaS
-         FerR238dG80FucCxPKsm7nmL/TZe5fw0ZUEwdTqkAZfzqVhjN3o+TTJZZp70zu6XDw5o
-         wxOQkYtKaHekQX0miAAnlAaVAZU8QxoNPxIphJduxmUl5cQ+cMO5xdzMdrM4fsvI09Lj
-         TOoQ==
-X-Gm-Message-State: AOJu0YylxG+u+bjqMvs1LHnJc2lxhXJvN1vecLGrzWSi2sErvHt+jyWW
-	FseYxOWG1KPJYwZX6F3jyAg=
-X-Google-Smtp-Source: AGHT+IFeh2Tb0/CZmyVB8jlMqM01qQ3nX9Qp2zY5TBQ+AGZHmfYMsTgFbGUummMX51uR/nxk3jlJ2g==
-X-Received: by 2002:a05:651c:19ab:b0:2bf:f348:9f96 with SMTP id bx43-20020a05651c19ab00b002bff3489f96mr251848ljb.8.1694853069479;
-        Sat, 16 Sep 2023 01:31:09 -0700 (PDT)
+        bh=3u2vbto1umek1f24RIrtSGDaz5f+TY32is7IlWxMZj8=;
+        b=Bk5i0vikSisxgPne81z/K0JTBe87VQsxnkzDZxad44xY+XSCsLEYZ43+CznUjbadQI
+         gvX1Ane5tj+ehuJ2Sq1OOeptlNnIQEcX3IDsqQgdoRTUGvQlSRiqEw1hH/qeQRdfJBCJ
+         VSGdJzXssxvVcZPJmWojR8lIYvE5uDniG0ZuwKIVfJAjk7dl2xFqLnvlqd5sX+HerGh8
+         xbaoj24XYZ8ajIm2a1LdlzEsHeKDtQQPwk6GsNUY4o+2aaw3VdOM70Mjr/AMkesAYjX6
+         OigTsdeUOc2nBF8RojSAvq9yWWG9vWY05N75Fhpp9rJNr7mwbkALiiXGDT5fFM0I6yum
+         b2LA==
+X-Gm-Message-State: AOJu0Yy6AICrBXR973FAbLRu11ftQlSWLWWjic6NzL/aM76f7r5kEvPK
+	cbxb7tGXw9ophmoP5OOwv+M=
+X-Google-Smtp-Source: AGHT+IHrEkmigwtbLJ+2r8gOCe1tW24WBREnf2iuZz+emRztSCYED7QoueakO09oGbXaqq+qFx42kw==
+X-Received: by 2002:a05:6512:318f:b0:503:3cc:cd39 with SMTP id i15-20020a056512318f00b0050303cccd39mr1129268lfe.8.1694854742075;
+        Sat, 16 Sep 2023 01:59:02 -0700 (PDT)
 Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id o10-20020a2e0c4a000000b002b962ee0c14sm1059188ljd.23.2023.09.16.01.31.08
+        by smtp.gmail.com with ESMTPSA id b23-20020ac25637000000b004ff96c09b47sm942843lff.260.2023.09.16.01.59.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 Sep 2023 01:31:09 -0700 (PDT)
+        Sat, 16 Sep 2023 01:59:01 -0700 (PDT)
 From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
 To: Florian Fainelli <florian.fainelli@broadcom.com>
 Cc: Hauke Mehrtens <hauke@hauke-m.de>,
@@ -65,10 +65,10 @@ Cc: Hauke Mehrtens <hauke@hauke-m.de>,
 	devicetree@vger.kernel.org,
 	bcm-kernel-feedback-list@broadcom.com,
 	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	Felix Fietkau <nbd@nbd.name>
-Subject: [PATCH] ARM: dts: BCM5301X: Relicense Felix's code to the GPL 2.0+ / MIT
-Date: Sat, 16 Sep 2023 10:30:57 +0200
-Message-Id: <20230916083057.10458-1-zajec5@gmail.com>
+	Vivek Unune <npcomplete13@gmail.com>
+Subject: [PATCH] ARM: dts: BCM5301X: Relicense Vivek's code to the GPL 2.0+ / MIT
+Date: Sat, 16 Sep 2023 10:58:55 +0200
+Message-Id: <20230916085855.28375-1-zajec5@gmail.com>
 X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -80,66 +80,111 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 From: Rafał Miłecki <rafal@milecki.pl>
 
-Move code added by Felix to the bcm-ns.dtsi which uses dual licensing.
+Move code added by Vivek to the bcm-ns.dtsi which uses dual licensing.
 That syncs more Northstar code to be based on the same licensing schema.
 
-This code was added in the commit 1ff80363524c ("ARM: BCM5301X: Add
-profiling support").
+This code was added in the commit 37f6130ec39f ("ARM: dts: BCM5301X:
+Make USB 3.0 PHY use MDIO PHY driver").
 
-Cc: Felix Fietkau <nbd@nbd.name>
+Cc: Vivek Unune <npcomplete13@gmail.com>
 Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
-Felix: can I get your Acked-by for this, please?
-
-I managed to cleanup most of Northstar licensing already.
+Vivek: can you send your Acked-by for this patch, please?
 ---
- arch/arm/boot/dts/broadcom/bcm-ns.dtsi   | 7 +++++++
- arch/arm/boot/dts/broadcom/bcm5301x.dtsi | 7 -------
- 2 files changed, 7 insertions(+), 7 deletions(-)
+ arch/arm/boot/dts/broadcom/bcm-ns.dtsi   | 27 ++++++++++++++++++++++++
+ arch/arm/boot/dts/broadcom/bcm5301x.dtsi | 27 ------------------------
+ 2 files changed, 27 insertions(+), 27 deletions(-)
 
 diff --git a/arch/arm/boot/dts/broadcom/bcm-ns.dtsi b/arch/arm/boot/dts/broadcom/bcm-ns.dtsi
-index 88fda18af1f8..f0f3a718c413 100644
+index f0f3a718c413..d0d5f7e52a91 100644
 --- a/arch/arm/boot/dts/broadcom/bcm-ns.dtsi
 +++ b/arch/arm/boot/dts/broadcom/bcm-ns.dtsi
-@@ -14,6 +14,13 @@ / {
- 	#address-cells = <1>;
- 	#size-cells = <1>;
+@@ -327,6 +327,29 @@ mdio: mdio@18003000 {
+ 		#address-cells = <1>;
+ 	};
  
-+	pmu {
-+		compatible = "arm,cortex-a9-pmu";
-+		interrupts =
-+			<GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
++	mdio-mux@18003000 {
++		compatible = "mdio-mux-mmioreg", "mdio-mux";
++		mdio-parent-bus = <&mdio>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x18003000 0x4>;
++		mux-mask = <0x200>;
++
++		mdio@0 {
++			reg = <0x0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			usb3_phy: usb3-phy@10 {
++				compatible = "brcm,ns-ax-usb3-phy";
++				reg = <0x10>;
++				usb3-dmp-syscon = <&usb3_dmp>;
++				#phy-cells = <0>;
++				status = "disabled";
++			};
++		};
 +	};
 +
- 	chipcommon-a-bus@18000000 {
- 		compatible = "simple-bus";
- 		ranges = <0x00000000 0x18000000 0x00001000>;
+ 	rng: rng@18004000 {
+ 		compatible = "brcm,bcm5301x-rng";
+ 		reg = <0x18004000 0x14>;
+@@ -467,6 +490,10 @@ nand_controller: nand-controller@18028000 {
+ 		brcm,nand-has-wp;
+ 	};
+ 
++	usb3_dmp: syscon@18105000 {
++		reg = <0x18105000 0x1000>;
++	};
++
+ 	thermal-zones {
+ 		cpu_thermal: cpu-thermal {
+ 			polling-delay-passive = <0>;
 diff --git a/arch/arm/boot/dts/broadcom/bcm5301x.dtsi b/arch/arm/boot/dts/broadcom/bcm5301x.dtsi
-index 600a1b54f2ae..de46dbd5b876 100644
+index de46dbd5b876..f06a178a9240 100644
 --- a/arch/arm/boot/dts/broadcom/bcm5301x.dtsi
 +++ b/arch/arm/boot/dts/broadcom/bcm5301x.dtsi
-@@ -26,13 +26,6 @@ watchdog@20620 {
+@@ -62,33 +62,6 @@ periph_clk: periph_clk {
  		};
  	};
  
--	pmu {
--		compatible = "arm,cortex-a9-pmu";
--		interrupts =
--			<GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
--			<GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+-	mdio-mux@18003000 {
+-		compatible = "mdio-mux-mmioreg", "mdio-mux";
+-		mdio-parent-bus = <&mdio>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		reg = <0x18003000 0x4>;
+-		mux-mask = <0x200>;
+-
+-		mdio@0 {
+-			reg = <0x0>;
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			usb3_phy: usb3-phy@10 {
+-				compatible = "brcm,ns-ax-usb3-phy";
+-				reg = <0x10>;
+-				usb3-dmp-syscon = <&usb3_dmp>;
+-				#phy-cells = <0>;
+-				status = "disabled";
+-			};
+-		};
 -	};
 -
- 	clocks {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
+-	usb3_dmp: syscon@18105000 {
+-		reg = <0x18105000 0x1000>;
+-	};
+-
+ 	i2c0: i2c@18009000 {
+ 		compatible = "brcm,iproc-i2c";
+ 		reg = <0x18009000 0x50>;
 -- 
 2.35.3
 
