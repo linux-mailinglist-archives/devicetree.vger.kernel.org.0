@@ -1,205 +1,205 @@
-Return-Path: <devicetree+bounces-727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7C657A2D21
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 03:49:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4718F7A2D2D
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 03:59:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E02DF1C213AC
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 01:49:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D348F28102D
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 01:59:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1F5F36E;
-	Sat, 16 Sep 2023 01:49:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F27E2109;
+	Sat, 16 Sep 2023 01:59:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5926D46BC
-	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 01:49:49 +0000 (UTC)
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2C381FE0;
-	Fri, 15 Sep 2023 18:49:47 -0700 (PDT)
-Received: by mail-oi1-x22f.google.com with SMTP id 5614622812f47-3a9e89fa553so527932b6e.1;
-        Fri, 15 Sep 2023 18:49:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694828987; x=1695433787; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8ryaascUldLoAOMrQPhkWv4qVjJ1v1YO4kQEKKPJFhA=;
-        b=lO0mKFihOkabIUaWxpRkIOR3V8hAuf7ZQrPCI6PM8tHSObJK8G6wPUOH+gpp53JwlE
-         a/6QrRzMkW1ggKtxfooYWbAJm8ZaZvT79ijYNr34/Xik4r7baQOVQmvY0NjXI/doWWWn
-         NQXucYBwDRWsQdKctE0yPis+0CpJ6CnJLZKCnbAKlwKi1nuNnDfzqlbJfoDC1gvyJACZ
-         T9sl1WUg6xxq7w81FVbIQYr6chZK5DAf6QjPBVVjtzEKJegbiIKArfkhaD0B/ePLjcIA
-         QHM/rCmsddK5FaTUsKh8hwISyO9dQp1vHIYELlzZfOZmpGrhSMIxKgwvN4st4iC3+WbI
-         gGuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694828987; x=1695433787;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8ryaascUldLoAOMrQPhkWv4qVjJ1v1YO4kQEKKPJFhA=;
-        b=qViLB48Z87M9dN6AXdMjGHfq0CavJv8wyrBu7so6YxD/r4XWNf90efFq3P0G6Pri4F
-         PmX1lRMNDM1do2Mr7VGWdp0U2tCw4nlW8R9aOpnMJNtS58ezMG5KYlmbhHFQeAtY6hjD
-         eF1URK6HdKPky+TXGkIJ0abixSEFzvvS3V8kRCaIhajGcEQvvwcIs5WN/l2r4kL9mbR7
-         6KxrZBccRjMOTCLAiHzSe2knALtnWXMJq7nIljYwGJvK4uvLWK+OB2i1fSjiEyn2KExu
-         F6QbJMrBHnmwBUWbkQh4j89IkfwkCWLAy4Yu4MtfkXVuVft36/jvuzP7T+pfNuNhZKlJ
-         9kuQ==
-X-Gm-Message-State: AOJu0YybpXb4NEwu4TZLN2yW/1ckqWZmcdGxkyHRjfhzVdJSUM/y9aGW
-	YZd5mxmYMhWetTa3OzXtHJY=
-X-Google-Smtp-Source: AGHT+IFcAUQhaxv+LcXcq6oSqNf2OMuO3SZhklar+CrKheDOh5TQEBr3Gpor0PjrQF3WfedxbXz5hQ==
-X-Received: by 2002:a05:6870:e393:b0:1b7:613c:2e30 with SMTP id x19-20020a056870e39300b001b7613c2e30mr3417770oad.2.1694828987210;
-        Fri, 15 Sep 2023 18:49:47 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:bb17:c38c:aa6:be85])
-        by smtp.gmail.com with ESMTPSA id eg38-20020a05687098a600b001c4b473581fsm2519986oab.12.2023.09.15.18.49.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Sep 2023 18:49:46 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: rafael@kernel.org
-Cc: daniel.lezcano@linaro.org,
-	amitk@kernel.org,
-	rui.zhang@intel.com,
-	linux-pm@vger.kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v8 3/3] thermal: thermal_core: Allow rebooting after critical temp
-Date: Fri, 15 Sep 2023 22:49:28 -0300
-Message-Id: <20230916014928.2848737-3-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230916014928.2848737-1-festevam@gmail.com>
-References: <20230916014928.2848737-1-festevam@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24E1E36E
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 01:59:32 +0000 (UTC)
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2065.outbound.protection.outlook.com [40.107.105.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE5861BF2;
+	Fri, 15 Sep 2023 18:59:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jlBh49j3/OsZcyYtoQ2Ehf9QPR+bcsRvfxzj0nl1gcNWFBlhUc8x5XbA+MGkP7TUfVXIzti4fTxSrmqNTzEsHaBBBvl3bhv2pVFroJ2UWEhjOo8+fEQJG2YzEoatanstj+5bqPStqyQDnaq2YyyOLialiqP9Sj4bp7JQsC31hR5yJK+OOXW7fiiQU68GLOAyGN1iwc1eTRZB1KXcLQqYCAXC/vjr2d7GuarWUG6JKocLjeTxNBUkMV2hAVqgRshVUkyl5hLVS9Nh+6Mb8X3tutHxlyEY/pkYdCJAR+guA7IL6zxtfJGQIdLs+gYhSoplY/XpkRpwtq7yYDdoY5pljg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VDn4jOH2g5yfmqfvlcFfEWe8iuP434PkpGXzbFbO53c=;
+ b=SnjzO6P/BhxJBLMgrfUuC92RPnnAHCq2Cie1mdpD2YUfP87ElEAndfAI+RmxOl5l/5FInvsFZs6qy86+LBzB/orLJI3UCuM9sPojKwDWgl41RtI/WUpbEfcc3RPTUtU05eWtbz5jUMEzi3Owybxba03ZBD0oQUV37kUqVyjLyHrp6hq3ypGWg5JKXypzVXiXyOYL/L0VuVoQ3P64qlpznS9WChhm9+L5Z7M0Dn5EdNU9A6+xbkWTQXLSpU6XAjN45CZrM0IUBLn539wYt9/+db3v4WpkygY/t8Uv2snp7GrtfSMLB3h8HHX0YFtYIn4baRV84J1yQVIx6nnV+GUQgQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VDn4jOH2g5yfmqfvlcFfEWe8iuP434PkpGXzbFbO53c=;
+ b=Of/kzjwIkIHBImJ48KkhKLfn+pLlqb+4siVgdwwZlgjUCR0gjzIS0In/2+s05+1ToZNBb7/jD6TBTBx9EHhXnLYSO4NAtPaEDyb1fG+2LIEO1Dh6MhiG3v3cz+X2EQ/QSQRUA8Wx8XQsv3PR9EmNzDb527hR+jhlKV0ibTrN7zo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AS8PR04MB9142.eurprd04.prod.outlook.com (2603:10a6:20b:449::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.23; Sat, 16 Sep
+ 2023 01:59:28 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::2b3:d8de:95c8:b28b]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::2b3:d8de:95c8:b28b%3]) with mapi id 15.20.6792.023; Sat, 16 Sep 2023
+ 01:59:27 +0000
+From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Subject: [PATCH v2 0/6] gpio: update i.MX93/8ULP and support i.MX95
+Date: Sat, 16 Sep 2023 10:03:56 +0800
+Message-Id: <20230916-vf610-gpio-v2-0-40823da788d7@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAwNBWUC/23MQQ6CMBCF4auQWTumU7BBV97DsKjtALOwJa1pM
+ IS7W1m7/F/yvg0yJ+EMt2aDxEWyxFBDnxpwsw0To/jaoJVu1ZU6LKMhhdMiETvD3jqvnxdqoR6
+ WxKOsB/YYas+S3zF9DrvQb/3LFEKFLfuOeuq1NfYe1uXs4guGfd+/ZDEgYqIAAAA=
+To: Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Stefan Agner <stefan@agner.ch>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Peng Fan <peng.fan@nxp.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1694829858; l=1999;
+ i=peng.fan@nxp.com; s=20230812; h=from:subject:message-id;
+ bh=qrzfoZZ8Iyf3O65G1OyMKkFexcYDUMlv43NsC6vXnhs=;
+ b=LjJAB5AoFYZ9Zdnw1uJwC+sNGFgwPZXK6WVGwwGafemwJwOMIdTPeE8tYvnOyBws9kXmHeeHN
+ Bomc9QZ73HhAjS7s8CvtwlxDsOj4ep9LJjwOn+dqFl2MvzasF8jcACU
+X-Developer-Key: i=peng.fan@nxp.com; a=ed25519;
+ pk=I4sJg7atIT1g63H7bb5lDRGR2gJW14RKDD0wFL8TT1g=
+X-ClientProxiedBy: SI2PR06CA0004.apcprd06.prod.outlook.com
+ (2603:1096:4:186::20) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|AS8PR04MB9142:EE_
+X-MS-Office365-Filtering-Correlation-Id: fa3dae11-c14a-4a6f-5eda-08dbb6588ee0
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	9gVeNQG7wuSPAwF/B908CnD2Qfh2SZLc6qZxNSJu8shxI+ppcr+78LB82+ebR8W5KbmgHpvt+RIGJjt3fCgUDqucqnmcAXDumJSnN3KoupTDfUcJbNbA8EoPuRn+WWsBR5ChV9+PE3GmOT2EAczI0Ra2XnMXFguOvHSil1vXwE6RekqEuZBKGcs8zxFd1qi1lAFwq12Zn78dAJw4nxgulVlFPXDlM8mn+ZDWYl4G5+IA3x34zRUmgf+u9Me1ePCi/xI8GMVCpgiIHjoX+HDDYc9wBWs2wgrF5yzyoZthZirxlnwc+lFkAEQMDOzWaU9zeX2Y0Q7aYuLpLbCHZMcObdU83UVAucNFaCIks/bBxG91ykqypuuWwIBaPIWUeP0qs68myv4Mtl1NrUn1ff6x0oso5cLFfRa879QWKSDLOVJ+HyIGzN5Tj0hv+5lRW0DsH50P+vKDTV4KJu7s+DkZz2c6kbSuhaBgQrVOHSeZ3DW8OQa9cA4RHKAb3Zhz2WBzXbNi5S282rz2ipbHKlr8T0dx+zURxc50w7lRKMfHDvBpH6TdMjxhZSNHi18NT2iL9NxyeANYPDlYB7+D7+jUcTdu4bJa5QLzmHj/3+WY0+cUxTZm/yzcupl+1ZLq+UAf
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(376002)(396003)(136003)(346002)(39860400002)(451199024)(186009)(1800799009)(6666004)(6512007)(6506007)(6486002)(5660300002)(66476007)(66556008)(66946007)(110136005)(316002)(26005)(52116002)(9686003)(41300700001)(921005)(8936002)(8676002)(966005)(4326008)(478600001)(83380400001)(15650500001)(2906002)(86362001)(7416002)(36756003)(38100700002)(38350700002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?OHE0ajR5QTQxZTloOWhmMUZmbytBNGVSOWM0WTdCQzBrSEQ3T0t0dzN3eGRH?=
+ =?utf-8?B?YkpUOXhSbEY3NGFIRU0waHBJQWlzYS9JUDRJckJOdDZOKzNPSFpxTk41YWRh?=
+ =?utf-8?B?ZHJzY0sxQ1ZvUzgwMDQ1V21nOGd0ZE92MkZPQVAwektkMDlSR09GV3k2UjZD?=
+ =?utf-8?B?VFNzYi94UHpyWCtzVmVvRThXREsyRFNIR0dSVCtkbWcrVWc0WTd0dEhVOEFv?=
+ =?utf-8?B?RjkrTDNKU0REMjN3SDMzTUZHZk12bzlWSEl3blFOVmdrUVFOYkRNVndvS0pE?=
+ =?utf-8?B?V0RvVmVrdFpuV3BTVytvdWpINStMV3ovRmtUaVJ4NTUvS1BjTjdUMk9pV3Nw?=
+ =?utf-8?B?dnVOZ0Q3R29pckx6UzdHV1FTVUF5SytHdnJnWk1GRng3KzIveFB6QUhSeTIz?=
+ =?utf-8?B?elZxaW1XTUxZSkNUU01QS3FFcHZ4T2tWeVdlc0NiUS9qejREQnpQbVJISmJz?=
+ =?utf-8?B?d0lPWUdrWjZKMWNmWVJldlA1aDE3YnZORVdmVUFDaTJWOVJqZUJSZzFWMEg1?=
+ =?utf-8?B?M1BOTWFLOXJlYnBxUTh5NDF3MU15WVpVWUR5MTdsejNNVXhYNEduMDEvSEZM?=
+ =?utf-8?B?bnRiLy8zVzZvVDBRN1Y4MmhoRFNsM3ZJNW9pWndjUys2UlFqMDU5WkJjNHBU?=
+ =?utf-8?B?cmkzczNCSEVYVkYxbThsRzFlNWkydE1BamUybXRhbVEvZE1EVTV1d1dOYjNY?=
+ =?utf-8?B?cFR4bWxqMFJ0enZHQ3pZQ2ovVWkvK05NbTVKWmFQQkZTY010VTJ1eXA1VlJn?=
+ =?utf-8?B?SFovdWl0Z2toek9yMzFGS29HMDFRTnh1MEZyWXVpdktOcXlrYk9NeE8rSWFJ?=
+ =?utf-8?B?S29ydjhaYjdnQnhpYzZaSm95Nk1ZTStUeWtOVXpoSllaMTRvTmdQcG1iRGNX?=
+ =?utf-8?B?U1dqYjV1Q2tFMnpSQ3Q4T2RpR055dWoyWjRlanBWK2RIQ2ZJN0JrY1g5UjFp?=
+ =?utf-8?B?SHdYZndMUlRneXNBWTh1K3l1UUNkZ1VNY2htWmpvUnZzUUludVRha0xsMkpM?=
+ =?utf-8?B?NWxLb2NFbHRGMEtoNURNd3BWczVkWWNjUVluQndRbHNsQTR6bnFhQ2Z3ZlZD?=
+ =?utf-8?B?OTVsNXR1VStSZDlZZmMvK3RWNmo1UkNYRzFicWY4djBUV1ZScTNjSU43T1hj?=
+ =?utf-8?B?MG9UVGNsbVYrMEJhcVdKTXVrMjNvbC9xa1hocy9BSS85MXNGeGRRVFhOL3hi?=
+ =?utf-8?B?L1MrOEZPTjI1VXFQNFczQjl6MHFzVXFpME5xL1B4cDVhdUZXT0VjVXNtYXFO?=
+ =?utf-8?B?MHZTYWdYQS9YTXRKZyttN1k3TU9pTlgzUHpxQmJDakxOSlcyQ2tNcDFMN0J3?=
+ =?utf-8?B?eXJhU1QySW14VEk3UC9XeiswdkFSVEExS3BSMUh1cHVDY1NKVWh5Z1VVd045?=
+ =?utf-8?B?V2JnRFpaNDdYZ1gxRFF2eFNvMXJIS1d2ZVU1RUgvazQ1emcxSHU4QndibjM3?=
+ =?utf-8?B?UnhiSGdTUTlBNkZvRFplTkJTZ1duK0c4THhYbDNBclVMNlQ4bWF5QlZrUmJM?=
+ =?utf-8?B?MnJHZUhtdVc5b1pCcklxWTJHcy9PUGw3cUZlWVltY1NEYnk2dVV5SEZZRzd4?=
+ =?utf-8?B?b0MrUWJETW04aHh6T2hzK3c3QWlza3E5YlBQTVZ3ak16YmpKMi9KeWcrN1Az?=
+ =?utf-8?B?cU1laUh4Yjc0MFdpb09YVDJIK2Q2dzFJRXIvcWx2b2VuZVdzQnVVR21pQ05L?=
+ =?utf-8?B?eDBzUVB1UnFNRGhLNWx4U3MxUm1HMU5pOUd0YkJHMGp2aVVEc3lyZlU5S1h1?=
+ =?utf-8?B?Wmphb1Z1N1E0ODcweEc5RkJIN0ZVVzFpSDJ1YmJ4bTQ0Vlp2VzlZR1VvQVRP?=
+ =?utf-8?B?V1htVzdNQjhiR0tvcTFsRUdSUk1oM2YzQ1NFL0k5U1RzSlVVYmxvQ0V0TVVV?=
+ =?utf-8?B?bkZEdGpnVy9sanpycGkyRStUS0VwVEI5V1lNWHRSOHl0blVNS01hTVlnbXU0?=
+ =?utf-8?B?TEV0MlpJSUJmYy9NL1JjTkczWTZHM0NaaHdSOXpMVzFQNkZjWFU0TlU2d2ht?=
+ =?utf-8?B?SWY3OC9kNVppYy8vMlR0NXZUMFM3c1ZuSnFrZlVlQlZEU3ZMWE8yWFVpejEx?=
+ =?utf-8?B?YXJ0LzNFb2xOU0VqV3dFYnBKWXJjNmJGM3FoVVFtaUtUSEs2My9US0Z3dmQv?=
+ =?utf-8?Q?ujpavLtsFqywizdUxYxWmfUs9?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa3dae11-c14a-4a6f-5eda-08dbb6588ee0
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2023 01:59:27.6541
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DyR8yJtrmXL2c047toCw9/U/sUtRw5XkUreIZoFaoOFonEW3nq2vHHlxLoAL4iZ4xEbMGkiN4nZLqfzoFrcgsA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9142
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Fabio Estevam <festevam@denx.de>
+From hardware perspective:
+- i.MX8ULP/93 GPIO supports two interrupts, 1st for Trustzone non-secure irq,
+  2nd for Trustzone secure irq.
+- i.MX8ULP/93 only has one register base
 
-Currently, the default mechanism is to trigger a shutdown after the
-critical temperature is reached.
+The current linux gpio-vf610.c could work with i.MX8ULP/i.MX93, it is
+because some trick did in device tree node with offset added to base:
+  reg = <0x2d010080 0x1000>, <0x2d010040 0x40>;
+But actually the register base should be 0x2d010000.
 
-In some embedded cases, such behavior does not suit well, as the board may
-be unattended in the field and rebooting may be a better approach.
+So i.MX8ULP/93 is not HW compatible with i.MX7ULP.
 
-The bootloader may also check the temperature and only allow the boot to
-proceed when the temperature is below a certain threshold.
+i.MX93 GPIO is directly derived from i.MX8ULP, so make i.MX93 compatible
+with i.MX8ULP. i.MX95 GPIO is same as i.MX93, so also compatible with
+i.MX8ULP
 
-Introduce support for allowing a reboot to be triggered after the
-critical temperature is reached.
+There maybe dtbs_check failure if only test the 1st patch. After
+the patchset applied, no failure.
 
-If the "critical-action" devicetree property is not found, fall back to
-the shutdown action to preserve the existing default behavior.
+To make avoid break old bindings from work, update the driver
+to support both old/new bindings.
 
-Tested on a i.MX8MM board with the following devicetree changes:
-
-	thermal-zones {
-		critical-action = "reboot";
-	};
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
-Changes since v7:
-- Search for the 'critical-action' property in the parent thermal-zone node. (Rafael)
+Changes in v2:
+- Update bindings with describe items, add one reg base for i.MX8ULP/93
+- Update driver to support one reg base, support both new/old bindings
+- Add a new patch 1 to update gpio-ranges found in dtbs_check
+- Link to v1: https://lore.kernel.org/r/20230914-vf610-gpio-v1-0-3ed418182a6a@nxp.com
 
- drivers/thermal/thermal_core.c |  6 +++++-
- drivers/thermal/thermal_of.c   | 16 ++++++++++++++++
- include/linux/thermal.h        |  6 ++++++
- 3 files changed, 27 insertions(+), 1 deletion(-)
+---
+Peng Fan (6):
+      dt-bindings: gpio: vf610: update gpio-ranges
+      dt-bindings: gpio: vf610: correct i.MX8ULP and i.MX93
+      dt-bindings: gpio: vf610: add i.MX95 compatible
+      gpio: vf610: add i.MX8ULP of_device_id entry
+      arm64: dts: imx8ulp: update gpio node
+      arm64: dts: imx93: update gpio node
 
-diff --git a/drivers/thermal/thermal_core.c b/drivers/thermal/thermal_core.c
-index 0bdde1ab5d8b..bfa704516957 100644
---- a/drivers/thermal/thermal_core.c
-+++ b/drivers/thermal/thermal_core.c
-@@ -320,11 +320,15 @@ void thermal_zone_device_critical(struct thermal_zone_device *tz)
- 	 * Its a must for forced_emergency_poweroff_work to be scheduled.
- 	 */
- 	int poweroff_delay_ms = CONFIG_THERMAL_EMERGENCY_POWEROFF_DELAY_MS;
-+	static const char *msg = "Temperature too high";
- 
- 	dev_emerg(&tz->device, "%s: critical temperature reached, "
- 		  "shutting down\n", tz->type);
- 
--	hw_protection_shutdown("Temperature too high", poweroff_delay_ms);
-+	if (tz->action == THERMAL_CRITICAL_ACTION_REBOOT)
-+		hw_protection_reboot(msg, poweroff_delay_ms);
-+	else
-+		hw_protection_shutdown(msg, poweroff_delay_ms);
- }
- EXPORT_SYMBOL(thermal_zone_device_critical);
- 
-diff --git a/drivers/thermal/thermal_of.c b/drivers/thermal/thermal_of.c
-index 4ca905723429..a1472a1965eb 100644
---- a/drivers/thermal/thermal_of.c
-+++ b/drivers/thermal/thermal_of.c
-@@ -218,6 +218,20 @@ static struct device_node *of_thermal_zone_find(struct device_node *sensor, int
- 	return tz;
- }
- 
-+static void thermal_of_get_critical_action(struct device_node *np,
-+					   enum thermal_action *action)
-+{
-+	const char *action_string;
-+	int ret;
-+
-+	ret = of_property_read_string(np->parent, "critical-action", &action_string);
-+	if (ret < 0)
-+		*action = THERMAL_CRITICAL_ACTION_SHUTDOWN;
-+
-+	if (!strcasecmp(action_string, "reboot"))
-+		*action = THERMAL_CRITICAL_ACTION_REBOOT;
-+}
-+
- static int thermal_of_monitor_init(struct device_node *np, int *delay, int *pdelay)
- {
- 	int ret;
-@@ -516,6 +530,8 @@ static struct thermal_zone_device *thermal_of_zone_register(struct device_node *
- 		goto out_kfree_trips;
- 	}
- 
-+	thermal_of_get_critical_action(np, &tz->action);
-+
- 	ret = thermal_zone_device_enable(tz);
- 	if (ret) {
- 		pr_err("Failed to enabled thermal zone '%s', id=%d: %d\n",
-diff --git a/include/linux/thermal.h b/include/linux/thermal.h
-index eb17495c8acc..8ea761bead79 100644
---- a/include/linux/thermal.h
-+++ b/include/linux/thermal.h
-@@ -34,6 +34,11 @@ struct thermal_cooling_device;
- struct thermal_instance;
- struct thermal_attr;
- 
-+enum thermal_action {
-+	THERMAL_CRITICAL_ACTION_SHUTDOWN = 0, /* shutdown when crit temperature is reached */
-+	THERMAL_CRITICAL_ACTION_REBOOT, /* reboot when crit temperature is reached */
-+};
-+
- enum thermal_trend {
- 	THERMAL_TREND_STABLE, /* temperature is stable */
- 	THERMAL_TREND_RAISING, /* temperature is raising */
-@@ -183,6 +188,7 @@ struct thermal_zone_device {
- 	struct list_head node;
- 	struct delayed_work poll_queue;
- 	enum thermal_notify_event notify_event;
-+	enum thermal_action action;
- };
- 
- /**
+ .../devicetree/bindings/gpio/gpio-vf610.yaml       | 45 ++++++++++++++++--
+ arch/arm64/boot/dts/freescale/imx8ulp.dtsi         | 21 +++++----
+ arch/arm64/boot/dts/freescale/imx93.dtsi           | 28 ++++++-----
+ drivers/gpio/gpio-vf610.c                          | 55 +++++++++++++++++++---
+ 4 files changed, 117 insertions(+), 32 deletions(-)
+---
+base-commit: e143016b56ecb0fcda5bb6026b0a25fe55274f56
+change-id: 20230914-vf610-gpio-46edacd2b513
+
+Best regards,
 -- 
-2.34.1
+Peng Fan <peng.fan@nxp.com>
 
 
