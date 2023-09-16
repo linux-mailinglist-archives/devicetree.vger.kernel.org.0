@@ -1,39 +1,77 @@
-Return-Path: <devicetree+bounces-774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBE867A304A
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 14:50:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BC4F7A30AE
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 15:42:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C3202822CD
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 12:50:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E269E281E4E
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 13:41:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C90B13AE6;
-	Sat, 16 Sep 2023 12:50:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6FA913FE2;
+	Sat, 16 Sep 2023 13:41:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1289A13AE2;
-	Sat, 16 Sep 2023 12:50:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C1F67C433C8;
-	Sat, 16 Sep 2023 12:50:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694868625;
-	bh=is763Roi5ov/kMNn626EbxklsD+DxMGwEaaeBVrFqco=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=tPoK2KD8Fm7XkcJhxu92PANpJplpWgdqVnxJRQ4ejRLlxH7B5ACMxlp1VfLFXpe8h
-	 g2wi15walmPvn0U06nRufqyRBdA8UlTfECVvHyurPDTFEwhir2sljByMdbEzotePVn
-	 3UZFR8GHhCH0qjrlg4n4KUXFBxV5b7jG0hURIUtwE+WXu0xcldycp9XkhLk4jTDlyf
-	 WdN5VNO+QrrfWCFtQq1fVKc5WymOigSV+Z/VvULPrFQ45Rb7Re1u6ts4Fw2BAfp7Ib
-	 Bzd8HlbZNZd/DVJY9nxnW6XkhGifYE9CPxprVFKN4mWBz89owTz4P/k+i0PrRtokTT
-	 dDe4dyMT5Hc8A==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id A40E9E26887;
-	Sat, 16 Sep 2023 12:50:25 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93399134C7
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 13:41:55 +0000 (UTC)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5B3719F
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 06:41:52 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-40413ccdd4cso17112185e9.0
+        for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 06:41:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=aceart.de; s=google; t=1694871711; x=1695476511; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dq5MVWHSLDa3ue2z16rOjOH4TMxsojWJwYBj2T0FxCo=;
+        b=QqAl+beqTosvZVcMPPmHACOVO1wqf0WgkFbKp6YylEB+2UNoUmGOZyTlhd1geG0Jmx
+         g4cistb/dXZdmYFPFj0dEVv2eiogWHJEsuJALO5YCcug9N5f3wQGKgHLaHqAkPLum8D8
+         b6J2+bY2DHAA3iZhrehIrlOVQAT+Ij3lkt22ZXqGhYihPOdMz9JwQzFBCaob0LcSUrvj
+         J5fXwL/imBJc64vYuO7A9FM7jgZgU3OPJvKCMM8ABrCRS/OztFnIs++jd150xsaX06lh
+         ax04HRPxPAOIrehIduOri9kRrz8oc1CV/YEfKn+FljR9So0nldzinLJmkqsxlz7Cd83P
+         J8qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694871711; x=1695476511;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dq5MVWHSLDa3ue2z16rOjOH4TMxsojWJwYBj2T0FxCo=;
+        b=sTqOF7jY1+QGOLjkIC05Glw79aFPLhEtDS0YWo/EMYwH+wahN2RnT+AVFFPQC2nYtt
+         XZKI/dsN4lmBjQoM+aKEmu1bMF1hyH2a+VpS5uDNnI1KSHbU95H0OmexXD/AZJ8SWUPx
+         +J4DnuFa+HRFp53Vyx4+vo1Yf6ZKFdGaFT8BNRIL1cEhtS20UHD+H/eE9fovpq8Fe6Oa
+         ePtpxBq5WFUy/f9RwrsEOeYz606yj5Bw6GUM/5tdM14UXjIt9egrVK1nG+F6zzSbaw5w
+         5jG2sVCsPw1ElI8sPTGwJ/c7VUkBixxst/C9SOdaEv39iK5bcS1+u2zfm1ohguS/hqW6
+         Ps9Q==
+X-Gm-Message-State: AOJu0YwRG1pGcHOXHAH/uTriYYWfXkXnl4CU6uNVzWyfdYvsGFsvbCa7
+	oYfY06LvBX1vzp58Ro2ZnTZbig==
+X-Google-Smtp-Source: AGHT+IFl7ojvB+vli8z8CIemz0JnDFCyKUAaw6oHAfDopUyuChUSPIE5Zs0Zep4Z2vR1CrcPWYSgHQ==
+X-Received: by 2002:a5d:65cc:0:b0:314:3e96:bd7e with SMTP id e12-20020a5d65cc000000b003143e96bd7emr6029919wrw.4.1694871710815;
+        Sat, 16 Sep 2023 06:41:50 -0700 (PDT)
+Received: from localhost.localdomain ([2a02:8070:d84:9160:acd3:26fc:724e:a2dd])
+        by smtp.gmail.com with ESMTPSA id f13-20020a5d568d000000b0031fd849e797sm7144278wrv.105.2023.09.16.06.41.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 16 Sep 2023 06:41:50 -0700 (PDT)
+From: Lukas Walter <lukas.walter@aceart.de>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
+	Lukas Walter <lukas.walter@aceart.de>
+Subject: [PATCH 1/2] dt-bindings: arm: qcom: Add Huawei Honor 5X / GR5 (2016)
+Date: Sat, 16 Sep 2023 15:41:46 +0200
+Message-ID: <20230916134147.163764-1-lukas.walter@aceart.de>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,51 +79,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v5 0/2] net: dsa: microchip: add drive strength
- support
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <169486862566.28624.11679449629469023987.git-patchwork-notify@kernel.org>
-Date: Sat, 16 Sep 2023 12:50:25 +0000
-References: <20230914075107.2239886-1-o.rempel@pengutronix.de>
-In-Reply-To: <20230914075107.2239886-1-o.rempel@pengutronix.de>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: davem@davemloft.net, andrew@lunn.ch, edumazet@google.com,
- f.fainelli@gmail.com, kuba@kernel.org, pabeni@redhat.com, olteanv@gmail.com,
- woojung.huh@microchip.com, arun.ramadoss@microchip.com, conor+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, kernel@pengutronix.de,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- UNGLinuxDriver@microchip.com, linux@armlinux.org.uk,
- devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-Hello:
+Add a compatible for Huawei Honor 5X / GR5 (2016).
 
-This series was applied to netdev/net-next.git (main)
-by David S. Miller <davem@davemloft.net>:
+Signed-off-by: Lukas Walter <lukas.walter@aceart.de>
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-On Thu, 14 Sep 2023 09:51:05 +0200 you wrote:
-> changes v5:
-> - rename milliamp to microamp
-> - do not expect negative error code on snprintf
-> - set coma after last struct element
-> - rename found to have_any_prop
-> 
-> changes v4:
-> - integrate microchip feedback to the ksz9477_drive_strengths comment.
-> - add Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> [...]
-
-Here is the summary with links:
-  - [net-next,v5,1/2] dt-bindings: net: dsa: microchip: Update ksz device tree bindings for drive strength
-    https://git.kernel.org/netdev/net-next/c/e26f40a60f17
-  - [net-next,v5,2/2] net: dsa: microchip: Add drive strength configuration
-    https://git.kernel.org/netdev/net-next/c/d67d7247f641
-
-You are awesome, thank you!
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index adbfaea32343..eabd7f6af07f 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -189,6 +189,7 @@ properties:
+ 
+       - items:
+           - enum:
++              - huawei,kiwi
+               - samsung,a7
+               - sony,kanuti-tulip
+               - square,apq8039-t2
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.42.0
 
 
