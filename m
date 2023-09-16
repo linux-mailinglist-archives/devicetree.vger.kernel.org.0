@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8AC97A327A
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 22:37:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FEB87A327C
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 22:38:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6F451C208B2
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 20:37:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C3A7281256
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 20:38:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08EBA1B27A;
-	Sat, 16 Sep 2023 20:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326031C286;
+	Sat, 16 Sep 2023 20:38:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EC86134DE
-	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 20:37:29 +0000 (UTC)
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B6D9CE1
-	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 13:37:26 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-52eed139ec2so3837125a12.2
-        for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 13:37:26 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58AD3134DE
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 20:38:19 +0000 (UTC)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B14AFCE3
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 13:38:16 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-530e180ffcbso351074a12.1
+        for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 13:38:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694896645; x=1695501445; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694896695; x=1695501495; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gu0xrBA9e/3ScWNP+chjeCPq60bSd7X+az9Hsey0nCA=;
-        b=Sf2yd5X504hJGjQ+aFJH0JoHFcQq66u7Zgj9Irc0orNF7LHRdzhgeFOSuRjI+E7Xp4
-         vDQ8H1E29di59p0TCgChxBIB39Hhj8Sd7KYpLqGEmBYZTdDwGprZSpOo1B4aY0Fn/xPX
-         qmZWKOFd1Gyo7hrsRKhrH9lTwWFD2hlAvrP4Q7PjYlkSRvSgxn3z64xrPhKTJOzik6+f
-         oyQkuPQnfoIDa5uWRhNvWW7dwchvC41Hx+g2lhD9vZRjKdnZ/MdHWa2B7NTE+oWc5Zo4
-         IKsEiy6a8fIlcubDS/ShQcbHMq23FrOa9gSWgmhWcQQ6Kmr/V0BOhG5uAuv4WnKR/iW7
-         7yCA==
+        bh=M5mtdsABJYkZ37qC2C38/N7zHZsWwIrfw/Qhh3bbiuw=;
+        b=fZkprpac8Xgd50UnERGh/62V0LjoPca569fSU/oAHN2mYMyeficxFY3MdBJjZsDAuv
+         3rAHM5OzEvxU2vb/lCPsJr4k2R0zEVGk1F4KAiixzY/VPBIKiHWRZRVIZFL/vE57NzG3
+         R4Dq0kEygYPy41OcOjAc6OTdeFUFQeaxFJCEfyrvtMLCwnu7Mg4KwkUy2mm+QgEhBpqs
+         V9hBoT6l4e4R3rr6kjLMDXITxoYH04Xf1ybflyU0t4oi5ON0PcQJoNXgdxpbGM3vS0RK
+         YBT9ONVNFgs8lLxYwjjSuM8l4JVpuBUvE12NQirxk+ZTanTnANMrV9rV7WKIaT0nONYp
+         fBMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694896645; x=1695501445;
+        d=1e100.net; s=20230601; t=1694896695; x=1695501495;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gu0xrBA9e/3ScWNP+chjeCPq60bSd7X+az9Hsey0nCA=;
-        b=lHoM+ZGBouwJ8MDG9hv8FeeyrBphV0LRy44lax6XDPVBCPsa27aL085ZWnxlvAdQjr
-         7fhn+HIP9Lcscs2GTGWItQvd6o6r4f2lk+NI5jcI3HW0MyQGYw4P3t3Cx1LrPm3Bz3bi
-         vp5j5HJZ3S6xWtQjEQE9MtQLAf51h4GIImZX0DX/LIfI9Z7u2SCnKUwJW27d6pmm0Reo
-         PN+TmtVJWDW6LWiKXHAv7p7qDkkp5EfZ3kq6Gx/QFLDdr5OtB6nJvCIsJlF97QbSAY9q
-         mNtFr0buMS0pQc6znmZzlYmyR2gakPV2uoJXEF+fcqjFfI5u1sk/ef8suZGUNZKOQXmY
-         jVqg==
-X-Gm-Message-State: AOJu0YwaLE82Xccr9CN12vy4hkSUbFD4DPR0aPjkoVnQ/M5fP2tW5c/M
-	XRBAjK4A5z9XnaUtuMNlLaK0NA==
-X-Google-Smtp-Source: AGHT+IGb4kvGpJuIns3F9diBWd8z81LQpMGK9ZxmAGDOsFhjAZlsKWa9Z6zF37x/Y3GeHA2cPPqcEQ==
-X-Received: by 2002:a17:906:2001:b0:9ad:e20f:142b with SMTP id 1-20020a170906200100b009ade20f142bmr2940270ejo.51.1694896644686;
-        Sat, 16 Sep 2023 13:37:24 -0700 (PDT)
+        bh=M5mtdsABJYkZ37qC2C38/N7zHZsWwIrfw/Qhh3bbiuw=;
+        b=J0vz9iiJ0x4tPSHu4MHsy8JAaP6h/qXzIJbSm5eFKkXlHWhPCtpUaduC3jLE9OmOOU
+         AMMqLqTalLPWlLTHwcx66Lw6b5Eu13eBj8Q9FWI+7jznZjbKg9tIpb8ZZUaLP6WtRl91
+         hG7lIAlYVACV7cOaSRs18TFLC8UWAGOYdQXGKqct4H5ebP5HkINgLqm2nPi3JrHC263l
+         yNGUrHg8ieYAiIp1xd2/Xeb2J/hikPXXOp3m3n447RlGVquZBwCbL7h+kta9d3dFF7sC
+         tuVkByU/jDkit5qUWk/5XfWxtJR7xpstP2EfekkHCkEmpTvx2WGAUhf4RpF+WhEY8cvy
+         v1bg==
+X-Gm-Message-State: AOJu0Yzb+gKdhWErQAezg/YrS0jNppyZgb2asnOWyUyBmcR5MuvIjy/i
+	Tpy9OX6++pm15+1L7jeySRSdRQ==
+X-Google-Smtp-Source: AGHT+IHbchk3PUwrMNToUoM+pJOEkNiQ+H/1dUMlTy+kuUA3vXvlD49RNngPnzeYAHP3oG9NtQoigQ==
+X-Received: by 2002:a05:6402:409:b0:525:4c2b:b87b with SMTP id q9-20020a056402040900b005254c2bb87bmr4286627edv.22.1694896695225;
+        Sat, 16 Sep 2023 13:38:15 -0700 (PDT)
 Received: from [192.168.1.77] (150-140-187-31.ftth.glasoperator.nl. [31.187.140.150])
-        by smtp.gmail.com with ESMTPSA id u26-20020a170906c41a00b00989828a42e8sm4142097ejz.154.2023.09.16.13.37.23
+        by smtp.gmail.com with ESMTPSA id fd14-20020a056402388e00b005307e75d24dsm2625322edb.17.2023.09.16.13.38.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 16 Sep 2023 13:37:24 -0700 (PDT)
-Message-ID: <c42f1653-caa8-731c-e4ef-2d5fe47adc8c@linaro.org>
-Date: Sat, 16 Sep 2023 22:37:23 +0200
+        Sat, 16 Sep 2023 13:38:14 -0700 (PDT)
+Message-ID: <8c46b45e-2127-346c-0584-54b06a8a343a@linaro.org>
+Date: Sat, 16 Sep 2023 22:38:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,28 +92,10 @@ On 16/09/2023 17:48, Nik Bune wrote:
 > Convert txt file to yaml. 
 > Add reg to the list of required properties.
 > Add mainteiners from ./scripts/get_maintainer.pl output.
-> 
-> Signed-off-by: Nik Bune <n3q5u8@yahoo.com>
-> ---
->  .../watchdog/atmel,at91rm9200-wdt.yaml        | 31 +++++++++++++++++++
->  .../watchdog/atmel-at91rm9200-wdt.txt         |  9 ------
->  2 files changed, 31 insertions(+), 9 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml b/Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
-> new file mode 100644
-> index 000000000000..e9706b9c1e6b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
-> @@ -0,0 +1,31 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
 
-How this copyright appeared here? Why are you adding some 2022
-copyrights of someone else?
 
-> +%YAML 1.2
+...
+
 > +---
 > +$id: http://devicetree.org/schemas/watchdog/atmel,at91rm9200-wdt.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
@@ -123,30 +105,8 @@ copyrights of someone else?
 > +maintainers:
 > +  - Wim Van Sebroeck <wim@linux-watchdog.org>
 > +  - Guenter Roeck <linux@roeck-us.net>
-> +
 
-Missing ref to watchdog.yaml. Please open existing files and take a look
-how it is done.
-
-
-> +properties:
-> +  compatible:
-> +    const: atmel,at91sam9260-wdt
-
-Missing blank line
-
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-
-This would not make sense without $ref...
-
-Anyway, you need to also test the DTS.
+No, these should be maintainer of device or subarch, not subsystem.
 
 Best regards,
 Krzysztof
