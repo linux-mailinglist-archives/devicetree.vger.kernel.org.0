@@ -1,281 +1,147 @@
-Return-Path: <devicetree+bounces-707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED58E7A2BDD
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 02:22:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4A4C7A2C01
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 02:31:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F04EB1C225F3
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 00:22:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E38D61C22512
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 00:31:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B52C13AC0;
-	Sat, 16 Sep 2023 00:11:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A583FEC0;
+	Sat, 16 Sep 2023 00:31:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75AE8134DF
-	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 00:11:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 077AEC43395;
-	Sat, 16 Sep 2023 00:11:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694823095;
-	bh=dq0gRhkJrXoyD7UZPSlpp03O/GEcsop/t6dIUGgIroQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=K73BPAb1o1Q5WMT1Brwxt2fC0w5ujmXrmozlmjmsdA94dt42YoAz8e1DVamkVGIGg
-	 832FY7FOq4XLoA32MiQGkadv0D4WLK81VXGw2PvIaMMzO10SNsGjJ622zIqL25m5t5
-	 9nf1a0zNW9vX4IYJxFKxYpyyGk+1/D7H8n5zL9V7f1UgCxWN8SOapz0kAIpwO3bdoy
-	 UooVVZ41ohMz4ixF7j2McO8ycbBh1Y3sXBZDicANkKem6nKc+Kx9wV7py729GYMcXj
-	 OtzmKpt0ksny08DA0wyAl3YKfIwiheS1TezeD/4oSpg28N4FtoaIQe2Q0/b19TV4zz
-	 CJ9xA0S44INeA==
-Date: Sat, 16 Sep 2023 01:11:29 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Minda Chen <minda.chen@starfivetech.com>
-Cc: Daire McNamara <daire.mcnamara@microchip.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-	Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mason Huo <mason.huo@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v6 08/19] PCI: plda: Add event interrupt codes and IRQ
- domain ops
-Message-ID: <20230916-rescuer-enroll-dd4fb1320676@spud>
-References: <20230915102243.59775-1-minda.chen@starfivetech.com>
- <20230915102243.59775-9-minda.chen@starfivetech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C05F10EC
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 00:31:11 +0000 (UTC)
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 649E73ABF;
+	Fri, 15 Sep 2023 17:20:11 -0700 (PDT)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-1a28de15c8aso1560452fac.2;
+        Fri, 15 Sep 2023 17:20:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1694823584; x=1695428384; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=335yQJsLhz9gpnjnvQNZ790fUhzVlFLLc9Gmojq1KMc=;
+        b=U1qNzW8yf16hGsjZ6dpG013cHYgvcECzszgB97y4tvpB3v4MPn2YatUE93Fm/HNFUD
+         HVba0C/fDhva4TPHgA7ZGwfNlVt8FxYDH1PVExEOKjaRW3AaI19/ppKzF0w+mNOYCaIU
+         iHnRw238A8Ym7blL/4vJXj/6M+SiSXlgabGBen/dshVWK6otPOp0gMoQbDel/V+jPIZ3
+         0WjNIv9Z5vQz+a5U7hOQhHkXQxBnzcTkoYr8LGfohqyV8M+4XbTavpq3iFTjU7IYg92C
+         ss0rt5Qw/iFXrDO34XlDd2XWZ9EZQijyNTfPx9X6xqYkSn0cPzqMlf8kwJuHQbb56kGr
+         +96Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694823584; x=1695428384;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=335yQJsLhz9gpnjnvQNZ790fUhzVlFLLc9Gmojq1KMc=;
+        b=d5356egWK8G4KbCBAV3katXcqkXV74qIT9v+NkkAxilIt/n2bYwgGB85yJ/uhbCIoz
+         lAO1wiv09bjRqN/SA2Th/3tbYZxd/DJfLBDkKbi1n9pGPmiImIE+Ws59KZv03XuNnQAO
+         5GepMvWN5mDx/zpW75xsonjW28LW+2by+lcfvK3RFYvA4zfkD+Bo3v7ytFNlVOjGMZ9b
+         ajCIafjRR6AiPdiw2Mf0vL20MZGXe2cPh4y2L8l85d3pIbEnbZuQpCyEfkdC/Pg2/Mnt
+         SJACdqDaSev1h+xCKxXTQYT36fMVrbeOciN/h7Yfny4FMIFMtmEVi8Hu8MzjQcwLZOH/
+         NCjg==
+X-Gm-Message-State: AOJu0YzFrvKNOIUJ2WGH4xeOVC8YGFfhT194Fp07ONtphRPuOMlY0aXo
+	jktFnHLTvA20IWgFKViUG309amfYGKCAOyyJWTg=
+X-Google-Smtp-Source: AGHT+IE2qjYAtR6WucRzD4AoFdh957k5jPWnQdwAzSB18i2L6V+pD2Cf5pqk0qes8jxrU0yVcey63mfQibw0ohFigV8=
+X-Received: by 2002:a05:6871:206:b0:1bb:583a:db4a with SMTP id
+ t6-20020a056871020600b001bb583adb4amr3531688oad.44.1694823584531; Fri, 15 Sep
+ 2023 17:19:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="MF1vEsgt7mymeqoW"
-Content-Disposition: inline
-In-Reply-To: <20230915102243.59775-9-minda.chen@starfivetech.com>
-
-
---MF1vEsgt7mymeqoW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20230915070856.117514-1-wangchen20@iscas.ac.cn> <20230915-dill-gauze-922068730d7b@wendy>
+In-Reply-To: <20230915-dill-gauze-922068730d7b@wendy>
+From: Chen Wang <unicornxw@gmail.com>
+Date: Sat, 16 Sep 2023 08:19:33 +0800
+Message-ID: <CAHAQgRDjwai448hC8EATDDFX6aBcmfWvv+2huJoywxan1qYPcA@mail.gmail.com>
+Subject: Re: [PATCH 00/12] Add Milk-V Pioneer RISC-V board support
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: linux-riscv@lists.infradead.org, conor@kernel.org, aou@eecs.berkeley.edu, 
+	krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com, 
+	paul.walmsley@sifive.com, robh+dt@kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, jszhang@kernel.org, guoren@kernel.org, 
+	chao.wei@sophgo.com, xiaoguang.xing@sophgo.com, 
+	Wang Chen <wangchen20@iscas.ac.cn>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Fri, Sep 15, 2023 at 06:22:32PM +0800, Minda Chen wrote:
-> For PolarFire implements non-PLDA local interrupt events, most of
-> event interrupt process codes can not be re-used. PLDA implements
-> new codes and IRQ domain ops like PolarFire.
->=20
-> plda_get_events() adds a new IRQ num to event num mapping codes for
-> PLDA local event except DMA engine interrupt events. The DMA engine
-> interrupt events are implemented by vendors.
->=20
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+Regards,
 
-Perhaps not important as they will go away in the next patch, but for
-this patch the riscv patchwork stuff noticed:
-drivers/pci/controller/plda/pcie-plda-host.c:114:36: warning: unused variab=
-le 'plda_evt_dom_ops' [-Wunused-const-variable]
-drivers/pci/controller/plda/pcie-plda-host.c:118:36: warning: unused variab=
-le 'plda_event_ops' [-Wunused-const-variable]
+unicornx
 
-Cheers,
-Conor.
+Conor Dooley <conor.dooley@microchip.com> =E4=BA=8E2023=E5=B9=B49=E6=9C=881=
+5=E6=97=A5=E5=91=A8=E4=BA=94 15:26=E5=86=99=E9=81=93=EF=BC=9A
+>
+> Hey,
+>
+> On Fri, Sep 15, 2023 at 03:08:56PM +0800, Wang Chen wrote:
+> > Milk-V Pioneer [1] is a developer motherboard based on SOPHON SG2042 [2=
+]
+> > in a standard mATX form factor. Add minimal device
+> > tree files for the SG2042 SOC and the Milk-V Pioneer board.
+>
+> Cool, thanks for working on this.
+>
+> >
+> > Now only support basic uart drivers to boot up into a basic console.
+> >
+> > The patch series is based on v6.6-rc1. You can simply review or test
+> > the patches at the link [3]. Hope this series will be merged soon.
+> >
+> > Thanks
+> >
+> > [1]: https://milkv.io/pioneer
+> > [2]: https://en.sophgo.com/product/introduce/sg2042.html
+> > [3]: https://github.com/unicornx/linux-riscv/commits/milkv-pioneer-mini=
+mal
+> >
+> > Emil Renner Berthing (2):
+> >   dt-bindings: serial: snps-dw-apb-uart: Add Sophgo SG2042 uarts
+> >   serial: 8250_dw: Add Sophgo SG2042 support
+> >
+> > Inochi Amaoto (1):
+> >   dt-bindings: timer: Add Sophgo sg2042 clint
+> >
+> > Wang Chen (8):
+> >   dt-bindings: vendor-prefixes: add milkv/sophgo
+> >   dt-bindings: riscv: add sophgo sg2042 bindings
+> >   dt-bindings: riscv: Add T-HEAD C920 compatibles
+> >   dt-bindings: interrupt-controller: Add SOPHGO's SG2042 PLIC
+> >   riscv: dts: add initial SOPHGO SG2042 SoC device tree
+> >   riscv: dts: sophgo: add Milk-V Pioneer board device tree
+> >   riscv: dts: sophgo: Add sophgo,sg2024-uart compatibles
+> >   riscv: defconfig: enable SOPHGO SoC
+> >
+> > xiaoguang.xing (1):
+> >   riscv: Add SOPHGO SOC family Kconfig support
+>
+> One thing on sending patchsets - you've not threaded this patchset,
+> where each patch is a reply to the cover letter. This makes it more
+> difficult to apply the series as a human & ~impossible for the
+> automation to test correctly.
+> Git should do this for you if run send-email on an entire directory,
+> or you can pass the message-id of the cover letter with an argument.
+> The first option is likely a lot easier for you...
+>
+> Thanks,
+> Conor.
 
-> ---
->  drivers/pci/controller/plda/pcie-plda-host.c | 99 ++++++++++++++++++++
->  drivers/pci/controller/plda/pcie-plda.h      | 33 +++++++
->  2 files changed, 132 insertions(+)
->=20
-> diff --git a/drivers/pci/controller/plda/pcie-plda-host.c b/drivers/pci/c=
-ontroller/plda/pcie-plda-host.c
-> index f0c7636f1f64..f29ff0f00dda 100644
-> --- a/drivers/pci/controller/plda/pcie-plda-host.c
-> +++ b/drivers/pci/controller/plda/pcie-plda-host.c
-> @@ -20,6 +20,105 @@
-> =20
->  #include "pcie-plda.h"
-> =20
-> +irqreturn_t plda_event_handler(int irq, void *dev_id)
-> +{
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static u32 plda_get_events(struct plda_pcie_rp *port)
-> +{
-> +	u32 events, val, origin;
-> +
-> +	origin =3D readl_relaxed(port->bridge_addr + ISTATUS_LOCAL);
-> +
-> +	/* Error events and doorbell events */
-> +	events =3D (origin >> A_ATR_EVT_POST_ERR_SHIFT) & 0xff;
-> +
-> +	/* INTx events */
-> +	if (origin & PM_MSI_INT_INTX_MASK)
-> +		events |=3D BIT(EVENT_PM_MSI_INT_INTX);
-> +
-> +	/* MSI event and sys events */
-> +	val =3D (origin >> PM_MSI_INT_MSI_SHIFT) & 0xf;
-> +	events |=3D val << EVENT_PM_MSI_INT_MSI;
-> +
-> +	return events;
-> +}
-> +
-> +static u32 plda_hwirq_to_mask(int hwirq)
-> +{
-> +	u32 mask;
-> +
-> +	if (hwirq < EVENT_PM_MSI_INT_INTX)
-> +		mask =3D BIT(hwirq + A_ATR_EVT_POST_ERR_SHIFT);
-> +	else if (hwirq =3D=3D EVENT_PM_MSI_INT_INTX)
-> +		mask =3D PM_MSI_INT_INTX_MASK;
-> +	else
-> +		mask =3D BIT(hwirq + PM_MSI_TO_MASK_OFFSET);
-> +
-> +	return mask;
-> +}
-> +
-> +static void plda_ack_event_irq(struct irq_data *data)
-> +{
-> +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(data);
-> +
-> +	writel_relaxed(plda_hwirq_to_mask(data->hwirq),
-> +		       port->bridge_addr + ISTATUS_LOCAL);
-> +}
-> +
-> +static void plda_mask_event_irq(struct irq_data *data)
-> +{
-> +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(data);
-> +	u32 mask, val;
-> +
-> +	mask =3D plda_hwirq_to_mask(data->hwirq);
-> +
-> +	raw_spin_lock(&port->lock);
-> +	val =3D readl_relaxed(port->bridge_addr + IMASK_LOCAL);
-> +	val &=3D ~mask;
-> +	writel_relaxed(val, port->bridge_addr + IMASK_LOCAL);
-> +	raw_spin_unlock(&port->lock);
-> +}
-> +
-> +static void plda_unmask_event_irq(struct irq_data *data)
-> +{
-> +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(data);
-> +	u32 mask, val;
-> +
-> +	mask =3D plda_hwirq_to_mask(data->hwirq);
-> +
-> +	raw_spin_lock(&port->lock);
-> +	val =3D readl_relaxed(port->bridge_addr + IMASK_LOCAL);
-> +	val |=3D mask;
-> +	writel_relaxed(val, port->bridge_addr + IMASK_LOCAL);
-> +	raw_spin_unlock(&port->lock);
-> +}
-> +
-> +static struct irq_chip plda_event_irq_chip =3D {
-> +	.name =3D "PLDA PCIe EVENT",
-> +	.irq_ack =3D plda_ack_event_irq,
-> +	.irq_mask =3D plda_mask_event_irq,
-> +	.irq_unmask =3D plda_unmask_event_irq,
-> +};
-> +
-> +static int plda_pcie_event_map(struct irq_domain *domain, unsigned int i=
-rq,
-> +			       irq_hw_number_t hwirq)
-> +{
-> +	irq_set_chip_and_handler(irq, &plda_event_irq_chip, handle_level_irq);
-> +	irq_set_chip_data(irq, domain->host_data);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct irq_domain_ops plda_evt_dom_ops =3D {
-> +	.map =3D plda_pcie_event_map,
-> +};
-> +
-> +static const struct plda_event_ops plda_event_ops =3D {
-> +	.get_events =3D plda_get_events,
-> +};
-> +
->  void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
->  			    phys_addr_t axi_addr, phys_addr_t pci_addr,
->  			    size_t size)
-> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/contro=
-ller/plda/pcie-plda.h
-> index 3deefd35fa5a..32a913d4101f 100644
-> --- a/drivers/pci/controller/plda/pcie-plda.h
-> +++ b/drivers/pci/controller/plda/pcie-plda.h
-> @@ -102,6 +102,38 @@
->  #define EVENT_PM_MSI_INT_SYS_ERR		12
->  #define NUM_PLDA_EVENTS				13
-> =20
-> +/*
-> + * PLDA local interrupt register
-> + *
-> + * 31         27     23              15           7          0
-> + * +--+--+--+-+------+-+-+-+-+-+-+-+-+-----------+-----------+
-> + * |12|11|10|9| intx |7|6|5|4|3|2|1|0| DMA error | DMA end   |
-> + * +--+--+--+-+------+-+-+-+-+-+-+-+-+-----------+-----------+
-> + * 0:  AXI post error
-> + * 1:  AXI fetch error
-> + * 2:  AXI discard error
-> + * 3:  AXI doorbell
-> + * 4:  PCIe post error
-> + * 5:  PCIe fetch error
-> + * 6:  PCIe discard error
-> + * 7:  PCIe doorbell
-> + * 8:  4 INTx interruts
-> + * 9:  MSI interrupt
-> + * 10: AER event
-> + * 11: PM/LTR/Hotplug
-> + * 12: System error
-> + * DMA error : reserved for vendor implement
-> + * DMA end : reserved for vendor implement
-> + */
-> +
-> +#define PM_MSI_TO_MASK_OFFSET			19
-> +
-> +struct plda_pcie_rp;
-> +
-> +struct plda_event_ops {
-> +	u32 (*get_events)(struct plda_pcie_rp *pcie);
-> +};
-> +
->  struct plda_msi {
->  	struct mutex lock;		/* Protect used bitmap */
->  	struct irq_domain *msi_domain;
-> @@ -120,6 +152,7 @@ struct plda_pcie_rp {
->  	void __iomem *bridge_addr;
->  };
-> =20
-> +irqreturn_t plda_event_handler(int irq, void *dev_id);
->  void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
->  			    phys_addr_t axi_addr, phys_addr_t pci_addr,
->  			    size_t size);
-> --=20
-> 2.17.1
->=20
-
---MF1vEsgt7mymeqoW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQTysQAKCRB4tDGHoIJi
-0uu+AP4/FNnCefKntlXj3FGco54xkVXHnqAR+caTOE3c45xdSQEAtxTTb9CrXcVb
-hw4PndW9LMDpYwZZc5tsXxenKVWDtwM=
-=aNcC
------END PGP SIGNATURE-----
-
---MF1vEsgt7mymeqoW--
+Conor, thanks for your input, I will correct the sending of patchsets
+in next revision.
 
