@@ -1,89 +1,142 @@
-Return-Path: <devicetree+bounces-754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C259A7A2F50
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 12:50:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8F477A2F70
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 13:09:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2F1B1C208FA
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 10:50:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6346D280DAF
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 11:09:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDD7C134A2;
-	Sat, 16 Sep 2023 10:50:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEA0B134AD;
+	Sat, 16 Sep 2023 11:09:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2A80134A1;
-	Sat, 16 Sep 2023 10:50:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 48FD8C43391;
-	Sat, 16 Sep 2023 10:50:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694861424;
-	bh=QT2lWqyg+MtX/ZEh6qrZXyyEC1jXOKlLGV4I3Csj5p8=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=Cnw3hPoLHy5+H9pNocaiEkrHbnOrwWT8sE/94QhWxEI/lybZzLLnueZZGttuB6JpF
-	 GCGfuLTGtp9B+jeLR56LJQivqDsKaoy2ESOFpOijMbpzsb0bYB/62p0gTGAwgEXCUa
-	 scO0Pag6tRymrTZmIq+tywuyN6TCgJnwyA4Bw8pPk8tcfEkN7rgrHrcSKwXH7inf+A
-	 sNV/c6JZJsnYZWWPrzYvpXII0Q0MSdilNRDYY9vHkppmBXYaPGb92HUL64qzLT19u6
-	 yyydUT6rEkzwdALwNIC4D3Ae31w0SSoatTXmVFmZnHLUecvxBX2NGwP9nwDWiEj5ZC
-	 3bXTKBmTRAf0Q==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 33AF2E26883;
-	Sat, 16 Sep 2023 10:50:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A8EC12B87;
+	Sat, 16 Sep 2023 11:09:34 +0000 (UTC)
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E604919A;
+	Sat, 16 Sep 2023 04:09:31 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 563A6240002;
+	Sat, 16 Sep 2023 11:09:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+	t=1694862570;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=CLnt81HC2PDi8+eg097J5b0q3LjbSM2hFWX7ICGCp5g=;
+	b=SivAsr92jUS2r0D2NuCC/Bjn/qkCXjinijlFQKJE8l4HdVRs2nX5x9qJC/rV/xc5w1WPyo
+	LSAm0IcgnIiv/+lpVRPws2MMxkAtbwAcvYX7sL1pKBJMHExKnLRYmMXwDjwhOXY6hxbpHQ
+	DjJ/V+d5/Dv29SXYRMJHsBOklcA2MVm8LHIQ8YC2GRAo9tcHoWSFVTKc9tP0fuIevUbwWH
+	QNgAw5TIo+pETaj4Y9aa6UJBCf2xDfZTpNeCMp6TuU7etbvdZPGsKdcZDSX2ynFbjuLim0
+	i63MG9ODlAa6pGVyT8kJELfj03IJuqB/2aO1Hrb9yvU8a+hEndME6rWnKUcHBw==
+From: =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+To: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	George McCollister <george.mccollister@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Kurt Kanzenbach <kurt@linutronix.de>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	UNGLinuxDriver@microchip.com,
+	Linus Walleij <linus.walleij@linaro.org>,
+	=?UTF-8?q?Alvin=20=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+	=?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
+	Marcin Wojtas <mw@semihalf.com>,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+	=?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Landen Chao <Landen.Chao@mediatek.com>,
+	DENG Qingfang <dqfext@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@microchip.com>,
+	Marek Vasut <marex@denx.de>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	John Crispin <john@phrozen.org>,
+	Madalin Bucur <madalin.bucur@nxp.com>,
+	Ioana Ciornei <ioana.ciornei@nxp.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Felix Fietkau <nbd@nbd.name>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Oleksij Rempel <linux@rempel-privat.de>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Grygorii Strashko <grygorii.strashko@ti.com>,
+	Sekhar Nori <nsekhar@ti.com>,
+	Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+Cc: Woojung Huh <Woojung.Huh@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	mithat.guner@xeront.com,
+	erkin.bozoglu@xeront.com,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH net-next v2 00/10] define and enforce phylink bindings
+Date: Sat, 16 Sep 2023 14:08:52 +0300
+Message-Id: <20230916110902.234273-1-arinc.unal@arinc9.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v5 0/3] Move Loongson1 MAC arch-code to the driver dir
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <169486142420.3496.7382362425660916712.git-patchwork-notify@kernel.org>
-Date: Sat, 16 Sep 2023 10:50:24 +0000
-References: <20230914114435.481900-1-keguang.zhang@gmail.com>
-In-Reply-To: <20230914114435.481900-1-keguang.zhang@gmail.com>
-To: Keguang Zhang <keguang.zhang@gmail.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org, lee@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- tsbogend@alpha.franken.de, peppe.cavallaro@st.com,
- alexandre.torgue@foss.st.com, joabreu@synopsys.com,
- Sergey.Semin@baikalelectronics.ru
+X-GND-Sasl: arinc.unal@arinc9.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-Hello:
+Hello there.
 
-This series was applied to netdev/net-next.git (main)
-by David S. Miller <davem@davemloft.net>:
+This patch series defines phylink bindings and enforces them for the
+ethernet controllers that need them.
 
-On Thu, 14 Sep 2023 19:44:32 +0800 you wrote:
-> In order to convert Loongson1 MAC platform devices to the devicetree
-> nodes, Loongson1 MAC arch-code should be moved to the driver dir.
-> Add dt-binding document and update MAINTAINERS file accordingly.
-> 
-> In other words, this patchset is a preparation for converting
-> Loongson1 platform devices to devicetree.
-> 
-> [...]
+Some schemas had to be changed to properly enforce phylink bindings for all
+of the affected ethernet controllers. Some of the documents of these
+ethernet controllers were non json-schema, which had to be converted.
 
-Here is the summary with links:
-  - [v5,1/3] dt-bindings: mfd: syscon: Add compatibles for Loongson-1 syscon
-    https://git.kernel.org/netdev/net-next/c/7e10088bc4e4
-  - [v5,2/3] dt-bindings: net: Add Loongson-1 Ethernet Controller
-    https://git.kernel.org/netdev/net-next/c/2af21077fa9f
-  - [v5,3/3] net: stmmac: Add glue layer for Loongson-1 SoC
-    https://git.kernel.org/netdev/net-next/c/d301c66b35b4
+I will convert the remaining documents to json-schema while this patch
+series receives reviews.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Cheers.
+Arınç
+
+v2:
+After many discussions on v1, the concept of the patch series changed a lot
+to document the changes from v1.
+
+Link to v1:
+https://lore.kernel.org/netdev/20230812091708.34665-1-arinc.unal@arinc9.com/
 
 
 
