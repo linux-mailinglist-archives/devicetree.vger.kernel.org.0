@@ -1,57 +1,39 @@
-Return-Path: <devicetree+bounces-751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95A867A2F1A
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 12:05:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C259A7A2F50
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 12:50:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51470282088
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 10:05:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2F1B1C208FA
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 10:50:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B4B812B90;
-	Sat, 16 Sep 2023 10:05:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDD7C134A2;
+	Sat, 16 Sep 2023 10:50:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D2212B7C
-	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 10:05:30 +0000 (UTC)
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68A84CDE;
-	Sat, 16 Sep 2023 03:05:28 -0700 (PDT)
-Received: from p200300ccff1003001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff10:300:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andreas@kemnade.info>)
-	id 1qhSB1-003pjl-Tb; Sat, 16 Sep 2023 12:05:23 +0200
-Received: from andi by aktux with local (Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1qhSB1-006vL4-0d;
-	Sat, 16 Sep 2023 12:05:23 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: dmitry.torokhov@gmail.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	lee@kernel.org,
-	bcousson@baylibre.com,
-	tony@atomide.com,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	andreas@kemnade.info,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: [PATCH v4 5/5] ARM: dts: omap4-embt2ws: enable 32K clock on WLAN
-Date: Sat, 16 Sep 2023 12:05:15 +0200
-Message-Id: <20230916100515.1650336-6-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230916100515.1650336-1-andreas@kemnade.info>
-References: <20230916100515.1650336-1-andreas@kemnade.info>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2A80134A1;
+	Sat, 16 Sep 2023 10:50:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 48FD8C43391;
+	Sat, 16 Sep 2023 10:50:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1694861424;
+	bh=QT2lWqyg+MtX/ZEh6qrZXyyEC1jXOKlLGV4I3Csj5p8=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=Cnw3hPoLHy5+H9pNocaiEkrHbnOrwWT8sE/94QhWxEI/lybZzLLnueZZGttuB6JpF
+	 GCGfuLTGtp9B+jeLR56LJQivqDsKaoy2ESOFpOijMbpzsb0bYB/62p0gTGAwgEXCUa
+	 scO0Pag6tRymrTZmIq+tywuyN6TCgJnwyA4Bw8pPk8tcfEkN7rgrHrcSKwXH7inf+A
+	 sNV/c6JZJsnYZWWPrzYvpXII0Q0MSdilNRDYY9vHkppmBXYaPGb92HUL64qzLT19u6
+	 yyydUT6rEkzwdALwNIC4D3Ae31w0SSoatTXmVFmZnHLUecvxBX2NGwP9nwDWiEj5ZC
+	 3bXTKBmTRAf0Q==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 33AF2E26883;
+	Sat, 16 Sep 2023 10:50:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,54 +41,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Subject: Re: [PATCH v5 0/3] Move Loongson1 MAC arch-code to the driver dir
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <169486142420.3496.7382362425660916712.git-patchwork-notify@kernel.org>
+Date: Sat, 16 Sep 2023 10:50:24 +0000
+References: <20230914114435.481900-1-keguang.zhang@gmail.com>
+In-Reply-To: <20230914114435.481900-1-keguang.zhang@gmail.com>
+To: Keguang Zhang <keguang.zhang@gmail.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org, lee@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+ tsbogend@alpha.franken.de, peppe.cavallaro@st.com,
+ alexandre.torgue@foss.st.com, joabreu@synopsys.com,
+ Sergey.Semin@baikalelectronics.ru
 
-WLAN did only work if clock was left enabled by the original system,
-so make it fully enable the needed resources itself.
+Hello:
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+This series was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-index ee86981b2e448..9d2f2d8639496 100644
---- a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-+++ b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-@@ -69,6 +69,12 @@ unknown_supply: unknown-supply {
- 		regulator-name = "unknown";
- 	};
- 
-+	wl12xx_pwrseq: wl12xx-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		clocks = <&twl 1>;
-+		clock-names = "ext_clock";
-+	};
-+
-        /* regulator for wl12xx on sdio2 */
- 	wl12xx_vmmc: wl12xx-vmmc {
- 		pinctrl-names = "default";
-@@ -92,6 +98,7 @@ &i2c1 {
- 	twl: pmic@48 {
- 		compatible = "ti,twl6032";
- 		reg = <0x48>;
-+		#clock-cells = <1>;
- 		/* IRQ# = 7 */
- 		interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>; /* IRQ_SYS_1N cascaded to gic */
- 		interrupt-controller;
-@@ -316,6 +323,7 @@ &mmc3 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&wl12xx_pins>;
- 	vmmc-supply = <&wl12xx_vmmc>;
-+	mmc-pwrseq = <&wl12xx_pwrseq>;
- 	interrupts-extended = <&wakeupgen GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH
- 			       &omap4_pmx_core 0x12e>;
- 	non-removable;
+On Thu, 14 Sep 2023 19:44:32 +0800 you wrote:
+> In order to convert Loongson1 MAC platform devices to the devicetree
+> nodes, Loongson1 MAC arch-code should be moved to the driver dir.
+> Add dt-binding document and update MAINTAINERS file accordingly.
+> 
+> In other words, this patchset is a preparation for converting
+> Loongson1 platform devices to devicetree.
+> 
+> [...]
+
+Here is the summary with links:
+  - [v5,1/3] dt-bindings: mfd: syscon: Add compatibles for Loongson-1 syscon
+    https://git.kernel.org/netdev/net-next/c/7e10088bc4e4
+  - [v5,2/3] dt-bindings: net: Add Loongson-1 Ethernet Controller
+    https://git.kernel.org/netdev/net-next/c/2af21077fa9f
+  - [v5,3/3] net: stmmac: Add glue layer for Loongson-1 SoC
+    https://git.kernel.org/netdev/net-next/c/d301c66b35b4
+
+You are awesome, thank you!
 -- 
-2.39.2
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
