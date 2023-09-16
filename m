@@ -1,280 +1,127 @@
-Return-Path: <devicetree+bounces-808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 157537A328D
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 22:55:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CC2F7A3349
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 00:55:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B877F28189C
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 20:55:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0F7C281943
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 22:55:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 785661C28F;
-	Sat, 16 Sep 2023 20:55:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D93E11C2A1;
+	Sat, 16 Sep 2023 22:55:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F110312B80
-	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 20:55:53 +0000 (UTC)
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71741194;
-	Sat, 16 Sep 2023 13:55:51 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2bffa8578feso4375121fa.2;
-        Sat, 16 Sep 2023 13:55:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694897749; x=1695502549; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OtXy98myC9Xeki202X9z45U3TYQHZBLtWJzwGTAcxHE=;
-        b=lqaMUcTF/w2pd8V7QfC5ZyBCt2sokvGp4sOH9SFAW+nlrw1H1tvWa+Kr3z7C8vrOv1
-         MnImkk8Stx+dBh16eBRlwerZJsoeyBwaGeF/hxaZotO6Jn2Djs2cRdW3lXnuDLSbTWK3
-         /KJeuQHT/n317fdWWZrs4ex6fvBiemMgIulaEOcJG9RV2LWkPCjdEtyvEiTO6Hs0/Drf
-         bELoY5ha5Xj2w/29/pFxCkZaLZMk3HkBXH9gonkISdtKhwAA/Xj05i5ZzxmB36zoDO+E
-         Q1nS0Wz87fzTSQjOw1u5PBxSaxECseoWiC85qN2VnDkNShtB4l2PENm2+bVjxIpQfQFz
-         NXuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694897749; x=1695502549;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OtXy98myC9Xeki202X9z45U3TYQHZBLtWJzwGTAcxHE=;
-        b=mLNr39E4ssQOCnL+V0J9AaeM+m+96kuEIdHC5aS2H82IuVVaUhxFSeL48D1EiGWzNT
-         C74qz07Ofyz0VlSaMfDdAgGJjBSOji/MqE+Pz+nMUpzJps6oYRDQ7Q672xahMh6OK7sL
-         kxZPa31B7+4EFtPV97KbuInXq+AWpTESecqMHkeLJo221IBKpB+zV9zsUgeYFWAEMAh3
-         QRlqhAwnl7+xofUhkURHeZ2ZaIIQJ7lJb2cEWtl69m7IHim9lBwX6u9p8T6ArU79A0W1
-         wo8ObbUosPrQsNF8Sl2QgV7LAnP47VRfX+EqlLdQc1zg996I7YX7DnwvKZkDLxVQ1Kgi
-         d36A==
-X-Gm-Message-State: AOJu0YyeZqXQWGJklCUUuXUTXUKy0KCu0RnbyW473nlFMYDLXzrFPUBQ
-	4Y089Xdhx6EU/gS7CVCQJmc=
-X-Google-Smtp-Source: AGHT+IHLF2BDHMY5EQ2cLRGY88cc4GRtF1HNeGRvKmupJtgipgh1Tp2VYUmzRaB1Rid1OduuxyxRJA==
-X-Received: by 2002:a05:6512:2fc:b0:4f8:77db:1d9e with SMTP id m28-20020a05651202fc00b004f877db1d9emr4255346lfq.12.1694897749352;
-        Sat, 16 Sep 2023 13:55:49 -0700 (PDT)
-Received: from localhost.localdomain ([78.37.168.140])
-        by smtp.gmail.com with ESMTPSA id br19-20020a056512401300b00502fd9110ffsm454504lfb.294.2023.09.16.13.55.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 Sep 2023 13:55:48 -0700 (PDT)
-From: Ivan Bornyakov <brnkv.i1@gmail.com>
-To: sebastian.fricke@collabora.com
-Cc: Ivan Bornyakov <brnkv.i1@gmail.com>,
-	bob.beckett@collabora.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	festevam@gmail.com,
-	hverkuil@xs4all.nl,
-	jackson.lee@chipsnmedia.com,
-	kernel@collabora.com,
-	kernel@pengutronix.de,
-	krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-imx@nxp.com,
-	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	mchehab@kernel.org,
-	nas.chung@chipsnmedia.com,
-	nicolas.dufresne@collabora.com,
-	p.zabel@pengutronix.de,
-	robh+dt@kernel.org,
-	s.hauer@pengutronix.de,
-	shawnguo@kernel.org
-Subject: Re: [PATCH v12 5/7] media: chips-media: wave5: Add the v4l2 layer
-Date: Sat, 16 Sep 2023 23:55:40 +0300
-Message-ID: <20230916205542.9410-1-brnkv.i1@gmail.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230915-wave5_v12_on_media_master-v12-5-92fc66cd685d@collabora.com>
-References: 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEF1D1BDEF;
+	Sat, 16 Sep 2023 22:55:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A53FDC433C7;
+	Sat, 16 Sep 2023 22:55:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1694904943;
+	bh=H0ZrldvnfeVZPHSa0DBgUu2f3ukwWSY37W0/p+0tIhI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ag8IiPH8W7OwjdVeYpesBaJoyAXRmOIXJsXTFpoE84VDbGPNGyQudghhqjzq8K/dZ
+	 pxIHoAR4vlb8pjKRfMUyQniHI9jjgQiJ5nANkzKYlPwKYHrKVyiRjGStasWKtMM+5B
+	 YmLkFcNo5/FE+yu1NxYgmrXMQ8DqkR3tR1OxIrmgpfsWFavLSVLJPWjiAYwuaVlh6Q
+	 qoCOie//ELyq9T+xs7ykm6MQ22C5QzigIEpIl5VRzN9H7V5tZITybEiixX8nkpTGxO
+	 HFbpAqnyJ7h1Il7U5zqisyM3YazGtwlMbXHciwmks725eksyLHFjYuHlz+ElTZ9h5v
+	 IAlgLCQukcYjQ==
+Message-ID: <c11fd3c2-770a-4d40-8cf3-d8bc81f7c480@kernel.org>
+Date: Sun, 17 Sep 2023 01:55:34 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,HK_RANDOM_ENVFROM,HK_RANDOM_FROM,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 8/8] arm64: defconfig: enable interconnect and pinctrl
+ for SM4450
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Trilok Soni <quic_tsoni@quicinc.com>, Tengfei Fan
+ <quic_tengfan@quicinc.com>, will@kernel.org, robin.murphy@arm.com,
+ joro@8bytes.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org,
+ konrad.dybcio@linaro.org, catalin.marinas@arm.com
+Cc: geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org,
+ nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
+ linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, quic_shashim@quicinc.com,
+ quic_kaushalk@quicinc.com, quic_tdas@quicinc.com, quic_tingweiz@quicinc.com,
+ quic_aiquny@quicinc.com, kernel@quicinc.com
+References: <20230915021509.25773-1-quic_tengfan@quicinc.com>
+ <20230915021509.25773-10-quic_tengfan@quicinc.com>
+ <8f2c9664-a2c8-50dc-8a1c-e50a071ebeb2@linaro.org>
+ <e9ff05b3-2742-416e-b417-5e2414036008@quicinc.com>
+ <0a34dd35-7aea-4655-4cdd-e7196a1ba52b@linaro.org>
+ <f76e1cc8-fc48-4208-bbe4-9204d9d28363@quicinc.com>
+ <b7398390-23bc-467c-5b83-411110d60f43@linaro.org>
+ <01c020ae-a019-e4eb-14cb-64503bde05a6@quicinc.com>
+ <212f9bfa-6d4c-bba2-60d2-272c001a4322@quicinc.com>
+ <e30870d5-a0cc-4210-a2b0-c7621ea5ecfa@kernel.org>
+ <accb4814-4826-ff97-3527-4e3fbadcd4ff@linaro.org>
+From: Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <accb4814-4826-ff97-3527-4e3fbadcd4ff@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi, Sebastian,
+Hi Krzysztof,
 
-On Fri, Sep 15, 2023 at 23:11:34 +0200, Sebastian Fricke wrote:
-> From: Nas Chung <nas.chung@chipsnmedia.com>
+On 16.09.23 23:32, Krzysztof Kozlowski wrote:
+> On 16/09/2023 17:13, Georgi Djakov wrote:
+>>
+>>>
+>>> Complete list here, and it is inconsistent. Latest 8550 is also =y. Do we document
+>>> the reasons somewhere on why they are added as =y?
+>>>
+>>> CONFIG_INTERCONNECT_QCOM=y
+>>> CONFIG_INTERCONNECT_QCOM_MSM8916=m
+>>> CONFIG_INTERCONNECT_QCOM_MSM8996=m
+>>> CONFIG_INTERCONNECT_QCOM_OSM_L3=m
+>>> CONFIG_INTERCONNECT_QCOM_QCM2290=m
+>>> CONFIG_INTERCONNECT_QCOM_QCS404=m
+>>> CONFIG_INTERCONNECT_QCOM_SA8775P=y
+>>> CONFIG_INTERCONNECT_QCOM_SC7180=y
+>>> CONFIG_INTERCONNECT_QCOM_SC7280=y
+>>> CONFIG_INTERCONNECT_QCOM_SC8180X=y
+>>> CONFIG_INTERCONNECT_QCOM_SC8280XP=y
+>>> CONFIG_INTERCONNECT_QCOM_SDM845=y
+>>> CONFIG_INTERCONNECT_QCOM_SM8150=m
+>>> CONFIG_INTERCONNECT_QCOM_SM8250=m
+>>> CONFIG_INTERCONNECT_QCOM_SM8350=m
+>>> CONFIG_INTERCONNECT_QCOM_SM8450=y
+>>> CONFIG_INTERCONNECT_QCOM_SM8550=y
+>>
+>> If the device can boot (to console/initramfs) with =m, we go with that.
+>> But if something critical like the UART depends on the interconnect
+>> provider, then we make it built-in.
+>>
+>> On SM8550 for example, we have enabled bandwidth scaling support for QUP
+>> and that's why it needs to be =y.
+>>
+>> It looks like on SM4450 this should be =y too.
 > 
-> Add the decoder and encoder implementing the v4l2
-> API. This patch also adds the Makefile and the VIDEO_WAVE_VPU config
-> 
-> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
-> Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
-> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-> Signed-off-by: Nas Chung <nas.chung@chipsnmedia.com>
+> I asked why SM4450 has to be =y and there was no answer. The argument
+> that SM8450 is a module, is not applicable.
 
-[...]
+ From the hardware description i see in patch 7, the serial engine depends
+on some interconnect provider. But as the serial console driver is only
+available as built-in, the interconnect provider also needs be built-in
+for the UART device to probe and register the console.
 
-> diff --git a/drivers/media/platform/chips-media/wave5/wave5-vpu.c b/drivers/media/platform/chips-media/wave5/wave5-vpu.c
-> new file mode 100644
-> index 000000000000..a13d968f5d04
-> --- /dev/null
-> +++ b/drivers/media/platform/chips-media/wave5/wave5-vpu.c
+So the answer to your question should be that this is needed by the UART
+device (at least).
 
-[...]
+Such details of course deserve to be mentioned in the commit message of
+this patch.
 
-> +static void wave5_vpu_get_interrupt_for_inst(struct vpu_instance *inst, u32 status)
-> +{
-> +	struct vpu_device *dev = inst->dev;
-> +	u32 seq_done;
-> +	u32 cmd_done;
-> +	int val;
-> +
-> +	seq_done = wave5_vdi_read_register(dev, W5_RET_SEQ_DONE_INSTANCE_INFO);
-> +	cmd_done = wave5_vdi_read_register(dev, W5_RET_QUEUE_CMD_DONE_INST);
-> +
-> +	if (status & BIT(INT_WAVE5_INIT_SEQ)) {
-> +		if (seq_done & BIT(inst->id)) {
-> +			seq_done &= ~BIT(inst->id);
-> +			wave5_vdi_write_register(dev, W5_RET_SEQ_DONE_INSTANCE_INFO, seq_done);
-> +			val = BIT(INT_WAVE5_INIT_SEQ);
-> +			kfifo_in(&inst->irq_status, &val, sizeof(int));
-> +		}
-> +	}
-> +	if (status & BIT(INT_WAVE5_ENC_SET_PARAM)) {
-> +		if (seq_done & BIT(inst->id)) {
-> +			seq_done &= ~BIT(inst->id);
-> +			wave5_vdi_write_register(dev, W5_RET_SEQ_DONE_INSTANCE_INFO, seq_done);
-> +			val = BIT(INT_WAVE5_ENC_SET_PARAM);
-> +			kfifo_in(&inst->irq_status, &val, sizeof(int));
-> +		}
-> +	}
-> +	if (status & BIT(INT_WAVE5_DEC_PIC) ||
-> +	    status & BIT(INT_WAVE5_ENC_PIC)) {
-> +		if (cmd_done & BIT(inst->id)) {
-> +			cmd_done &= ~BIT(inst->id);
-> +			wave5_vdi_write_register(dev, W5_RET_QUEUE_CMD_DONE_INST, cmd_done);
-> +			val = BIT(INT_WAVE5_DEC_PIC);
-> +			kfifo_in(&inst->irq_status, &val, sizeof(int));
-> +		}
-> +	}
-> +}
-> +
-> +static irqreturn_t wave5_vpu_irq(int irq, void *dev_id)
-> +{
-> +	struct vpu_device *dev = dev_id;
-> +
-> +	if (wave5_vdi_read_register(dev, W5_VPU_VPU_INT_STS)) {
-> +		struct vpu_instance *inst;
-> +		u32 irq_status = wave5_vdi_read_register(dev, W5_VPU_VINT_REASON);
-> +
-> +		list_for_each_entry(inst, &dev->instances, list) {
-> +			wave5_vpu_get_interrupt_for_inst(inst, irq_status);
-> +		}
-> +
-> +		wave5_vdi_write_register(dev, W5_VPU_VINT_REASON_CLR, irq_status);
-> +		wave5_vdi_write_register(dev, W5_VPU_VINT_CLEAR, 0x1);
-> +
-> +		return IRQ_WAKE_THREAD;
-> +	}
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static irqreturn_t wave5_vpu_irq_thread(int irq, void *dev_id)
-> +{
-> +	struct vpu_device *dev = dev_id;
-> +	struct vpu_instance *inst;
-> +	int irq_status, ret;
-> +
-> +	list_for_each_entry(inst, &dev->instances, list) {
-> +		while (kfifo_len(&inst->irq_status)) {
-> +			ret = kfifo_out(&inst->irq_status, &irq_status, sizeof(int));
-> +			if (!ret)
-> +				break;
-> +
-> +			if (irq_status == BIT(INT_WAVE5_INIT_SEQ) ||
-> +			    irq_status == BIT(INT_WAVE5_ENC_SET_PARAM))
-> +				complete(&inst->irq_done);
-> +			else /* DEC/ENC_PIC */
-> +				inst->ops->finish_process(inst);
-> +
-> +			wave5_vpu_clear_interrupt(inst, irq_status);
-> +		}
-> +	}
-> +
-> +	return IRQ_HANDLED;
-> +}
-
-I believe, instead of
-wave5_vpu_irq() + wave5_vpu_get_interrupt_for_inst() + wave5_vpu_irq_thread()
-you can reduce interrupt handling to only threaded part with something like this:
-
-static irqreturn_t wave5_vpu_irq_thread(int irq, void *dev_id)
-{
-	u32 irq_status, seq_done, cmd_done;
-	struct vpu_device *dev = dev_id;
-	struct vpu_instance *inst;
-
-	while (wave5_vdi_read_register(dev, W5_VPU_VPU_INT_STS)) {
-		irq_status = wave5_vdi_read_register(dev, W5_VPU_VINT_REASON);
-		seq_done = wave5_vdi_read_register(dev, W5_RET_SEQ_DONE_INSTANCE_INFO);
-		cmd_done = wave5_vdi_read_register(dev, W5_RET_QUEUE_CMD_DONE_INST);
-
-		list_for_each_entry(inst, &dev->instances, list) {
-			if (irq_status & BIT(INT_WAVE5_INIT_SEQ) ||
-			    irq_status & BIT(INT_WAVE5_ENC_SET_PARAM)) {
-				if (seq_done & BIT(inst->id)) {
-					seq_done &= ~BIT(inst->id);
-					wave5_vdi_write_register(dev,
-								 W5_RET_SEQ_DONE_INSTANCE_INFO,
-								 seq_done);
-					complete(&inst->irq_done);
-				}
-			}
-
-			if (status & BIT(INT_WAVE5_DEC_PIC) ||
-			    status & BIT(INT_WAVE5_ENC_PIC)) {
-				if (cmd_done & BIT(inst->id)) {
-					cmd_done &= ~BIT(inst->id);
-					wave5_vdi_write_register(dev,
-								 W5_RET_QUEUE_CMD_DONE_INST,
-								 cmd_done);
-					inst->ops->finish_process(inst);
-				}
-			}
-
-			wave5_vpu_clear_interrupt(inst, irq_status);
-		}
-			
-		wave5_vdi_write_register(dev, W5_VPU_VINT_REASON_CLR, irq_status);
-		wave5_vdi_write_register(dev, W5_VPU_VINT_CLEAR, 0x1);
-	}
-
-	return IRQ_HANDLED;
-}
-
-Is it better?
-
-[...]
-
-> +static int wave5_vpu_probe(struct platform_device *pdev)
-> +{
-> +	int ret;
-> +	struct vpu_device *dev;
-> +	const struct wave5_match_data *match_data;
-> +	u32 fw_revision;
-> +
-> +	match_data = device_get_match_data(&pdev->dev);
-> +	if (!match_data) {
-> +		dev_err(&pdev->dev, "missing device match data\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* physical addresses limited to 32 bits */
-> +	dma_set_mask(&pdev->dev, DMA_BIT_MASK(32));
-> +	dma_set_coherent_mask(&pdev->dev, DMA_BIT_MASK(32));
-
-dma_set_mask_and_coherent()? Also error check?
+BR,
+Georgi
 
 
