@@ -1,108 +1,75 @@
-Return-Path: <devicetree+bounces-765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 939A07A2F9E
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 13:15:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C33CD7A3029
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 14:39:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 491AD282305
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 11:15:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 555BE2822C4
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 12:39:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D31E813AE2;
-	Sat, 16 Sep 2023 11:14:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54D43134DF;
+	Sat, 16 Sep 2023 12:39:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 127A513AD8;
-	Sat, 16 Sep 2023 11:14:13 +0000 (UTC)
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12A031BD;
-	Sat, 16 Sep 2023 04:14:04 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 89478240005;
-	Sat, 16 Sep 2023 11:13:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1694862843;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HAZCgeoh9KUduxxc51sEyaD/Ww3GnyAUx/PFLTVQyPc=;
-	b=hKK2Wuk79GoaUo/hY/fuO5GNEsYpXvHQTmZHzkmUu1psjYgV5XTyUjTmWeR3yNV65L4Ghz
-	kQB0p3rthYgY0/1iJ1iTHdBtt3XqWLfmGTwb2cQTywTU4YqVAi5uQYhbNk7NK/b0s7wch5
-	o3R6bt5DMAyUXaAkMcviVr7aHL8KquFNdxeplIiYsZKYMMVXrxtHkocr3elHkU4mPcuJqK
-	21vBYwU+gVEk/OLBULj3WcOF61OeP3y7yC+8z+plp1vHHwnnZbaTiVNcvxSGNrMqFtf+FM
-	p6uiuukzlQvtFjbmaBTjXA7kM9QiyQdGrD7nVsUCHlmLE9UgQKwalLOkDla9Pw==
-From: =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-To: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	George McCollister <george.mccollister@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Kurt Kanzenbach <kurt@linutronix.de>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	UNGLinuxDriver@microchip.com,
-	Linus Walleij <linus.walleij@linaro.org>,
-	=?UTF-8?q?Alvin=20=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-	=?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
-	Marcin Wojtas <mw@semihalf.com>,
-	"Russell King (Oracle)" <linux@armlinux.org.uk>,
-	Lars Povlsen <lars.povlsen@microchip.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
-	=?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@microchip.com>,
-	Marek Vasut <marex@denx.de>,
-	Claudiu Manoil <claudiu.manoil@nxp.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	John Crispin <john@phrozen.org>,
-	Madalin Bucur <madalin.bucur@nxp.com>,
-	Ioana Ciornei <ioana.ciornei@nxp.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Felix Fietkau <nbd@nbd.name>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Oleksij Rempel <linux@rempel-privat.de>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Grygorii Strashko <grygorii.strashko@ti.com>,
-	Sekhar Nori <nsekhar@ti.com>,
-	Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-Cc: Woojung Huh <Woojung.Huh@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	mithat.guner@xeront.com,
-	erkin.bozoglu@xeront.com,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB5457462
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 12:39:03 +0000 (UTC)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7AC1CEF;
+	Sat, 16 Sep 2023 05:39:01 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-502984f5018so4972452e87.3;
+        Sat, 16 Sep 2023 05:39:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1694867940; x=1695472740; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=deTi1Guggd/Xlo7tslrIxsKkXafXPX/y4YTeng0/oLo=;
+        b=Gumd6iygLLsDtSalHMAVsOEtC/anQ2sBz4NSeaSGBp9iHbgU7AfSBgvJul0xYchOD5
+         Rb0f7Ihe+Evim0kFkbhP1bNvbhVJjDUykZfAZamhilYKZzfTDODw63gucF/IKUeygsKR
+         RIj0y9uDd6bmqotR24Un7bbcQMfxoZ78rAEQin0LVLGRocdljvKSmZq8rB6WmAVPcQYD
+         P9akuT9Mv81EqJE0aBo0egwkJWWeGjMzWXcGKTBM7mKecpNFAXivdHZKeLagCugoxJWd
+         1RBz28V9cpZh+D54QbIs4ov5vpDoe/eBKJAV+ont0fmbh7+stM7f0My3VJWncYyY5WR6
+         Rsuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694867940; x=1695472740;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=deTi1Guggd/Xlo7tslrIxsKkXafXPX/y4YTeng0/oLo=;
+        b=OQiLKF+S9MLgUgxp4d4ivuwxJS2fu7SztmhG8FXLrcfymZ8GUVnEpKZM87dQH+PB9O
+         aKDX9uZB0ssty7rXOulMy+QlQFkN6LNYAzz0Qt8wWSySxTM5H5av/6axIcFlzo8skj3C
+         Qr/7xWkPoIyW7/e29XkLjPoUa6uKIBaaho/2lkmPl/e2gDTpEq57nIsnt9OZfQqQQp5r
+         XiUIB45eVZFBdro4B1FTtQRwNp2nTJ9vAGgdo/jI7E47QXZtv20QmLwHTBXr+hc9c9qH
+         n++5fcGcAYlpL5WHJZ9Y+B+IU1Z6StiV6YCImfF9vEIQ9GpNnxNI8skUHkHYUT3SMgUt
+         7l5w==
+X-Gm-Message-State: AOJu0YyB1e7nhC8c1FmmhGanB6yl9hF6FnXtxmbr/BZeO5shnybu2Squ
+	/0tp9F3+5tx6bs8FCUxnL88=
+X-Google-Smtp-Source: AGHT+IH6bkTERuW1huhfAqQ5KLQ5M8x89qgmlo3RJKhHK2TjK3O01jblUwAp2m16jRYxx30F9nyNGw==
+X-Received: by 2002:a19:6750:0:b0:4fe:82a7:814f with SMTP id e16-20020a196750000000b004fe82a7814fmr3117739lfj.37.1694867939654;
+        Sat, 16 Sep 2023 05:38:59 -0700 (PDT)
+Received: from localhost.localdomain ([77.134.181.150])
+        by smtp.gmail.com with ESMTPSA id bo6-20020a0564020b2600b0052284228e3bsm3474064edb.8.2023.09.16.05.38.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 16 Sep 2023 05:38:59 -0700 (PDT)
+From: Mehdi Djait <mehdi.djait.k@gmail.com>
+To: jic23@kernel.org,
+	mazziesaccount@gmail.com
+Cc: krzysztof.kozlowski+dt@linaro.org,
+	andriy.shevchenko@linux.intel.com,
+	robh+dt@kernel.org,
+	lars@metafoo.de,
+	linux-iio@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH net-next v2 10/10] dt-bindings: net: marvell-armada-370-neta: convert to json-schema
-Date: Sat, 16 Sep 2023 14:09:02 +0300
-Message-Id: <20230916110902.234273-11-arinc.unal@arinc9.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230916110902.234273-1-arinc.unal@arinc9.com>
-References: <20230916110902.234273-1-arinc.unal@arinc9.com>
+	devicetree@vger.kernel.org,
+	Mehdi Djait <mehdi.djait.k@gmail.com>
+Subject: [PATCH v9 0/7] iio: accel: Add support for Kionix/ROHM KX132-1211 accelerometer
+Date: Sat, 16 Sep 2023 14:38:46 +0200
+Message-Id: <cover.1694867379.git.mehdi.djait.k@gmail.com>
+X-Mailer: git-send-email 2.30.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -111,190 +78,95 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Convert the document for Marvell Armada 370 / Armada XP / Armada 3700
-Ethernet Controller (NETA) to json-schema.
+Hello everyone,
 
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
----
- .../bindings/net/marvell-armada-370-neta.txt  |  50 ---------
- .../bindings/net/marvell-armada-370-neta.yaml | 102 ++++++++++++++++++
- 2 files changed, 102 insertions(+), 50 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/net/marvell-armada-370-neta.txt
- create mode 100644 Documentation/devicetree/bindings/net/marvell-armada-370-neta.yaml
+Version 9 for adding support for the kx132-1211 accelerometer
 
-diff --git a/Documentation/devicetree/bindings/net/marvell-armada-370-neta.txt b/Documentation/devicetree/bindings/net/marvell-armada-370-neta.txt
-deleted file mode 100644
-index 2bf31572b08d..000000000000
---- a/Documentation/devicetree/bindings/net/marvell-armada-370-neta.txt
-+++ /dev/null
-@@ -1,50 +0,0 @@
--* Marvell Armada 370 / Armada XP / Armada 3700 Ethernet Controller (NETA)
--
--Required properties:
--- compatible: could be one of the following:
--	"marvell,armada-370-neta"
--	"marvell,armada-xp-neta"
--	"marvell,armada-3700-neta"
--	"marvell,armada-ac5-neta"
--- reg: address and length of the register set for the device.
--- interrupts: interrupt for the device
--- phy: See ethernet.txt file in the same directory.
--- phy-mode: See ethernet.txt file in the same directory
--- clocks: List of clocks for this device. At least one clock is
--  mandatory for the core clock. If several clocks are given, then the
--  clock-names property must be used to identify them.
--
--Optional properties:
--- tx-csum-limit: maximum mtu supported by port that allow TX checksum.
--  Value is presented in bytes. If not used, by default 1600B is set for
--  "marvell,armada-370-neta" and 9800B for others.
--- clock-names: List of names corresponding to clocks property; shall be
--  "core" for core clock and "bus" for the optional bus clock.
--- phys: comphy for the ethernet port, see ../phy/phy-bindings.txt
--
--Optional properties (valid only for Armada XP/38x):
--
--- buffer-manager: a phandle to a buffer manager node. Please refer to
--  Documentation/devicetree/bindings/net/marvell-neta-bm.txt
--- bm,pool-long: ID of a pool, that will accept all packets of a size
--  higher than 'short' pool's threshold (if set) and up to MTU value.
--  Obligatory, when the port is supposed to use hardware
--  buffer management.
--- bm,pool-short: ID of a pool, that will be used for accepting
--  packets of a size lower than given threshold. If not set, the port
--  will use a single 'long' pool for all packets, as defined above.
--
--Example:
--
--ethernet@70000 {
--	compatible = "marvell,armada-370-neta";
--	reg = <0x70000 0x2500>;
--	interrupts = <8>;
--	clocks = <&gate_clk 4>;
--	tx-csum-limit = <9800>
--	phy = <&phy0>;
--	phy-mode = "rgmii-id";
--	buffer-manager = <&bm>;
--	bm,pool-long = <0>;
--	bm,pool-short = <1>;
--};
-diff --git a/Documentation/devicetree/bindings/net/marvell-armada-370-neta.yaml b/Documentation/devicetree/bindings/net/marvell-armada-370-neta.yaml
-new file mode 100644
-index 000000000000..9283ab74cdb2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/marvell-armada-370-neta.yaml
-@@ -0,0 +1,102 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/marvell-armada-370-neta.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvell Armada 370 / Armada XP / Armada 3700 Ethernet Controller (NETA)
-+
-+allOf:
-+  - $ref: ethernet-controller.yaml#
-+  - $ref: ethernet-controller.yaml#/$defs/phylink
-+
-+maintainers:
-+  - Arınç ÜNAL <arinc.unal@arinc9.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - marvell,armada-370-neta
-+      - marvell,armada-xp-neta
-+      - marvell,armada-3700-neta
-+      - marvell,armada-ac5-neta
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    description:
-+      List of clocks for this device. At least one clock is mandatory for the
-+      core clock. If several clocks are given, then the clock-names property
-+      must be used to identify them.
-+
-+  tx-csum-limit:
-+    description:
-+      Maximum mtu supported by port that allow TX checksum. Value is presented
-+      in bytes. If not used, by default 1600B is set for
-+      "marvell,armada-370-neta" and 9800B for others.
-+
-+  clock-names:
-+    description:
-+      List of names corresponding to clocks property; shall be "core" for core
-+      clock and "bus" for the optional bus clock.
-+
-+  phys:
-+    description:
-+      comphy for the ethernet port, see ../phy/phy-bindings.txt.
-+
-+if:
-+  properties:
-+    compatible:
-+      enum:
-+        - marvell,armada-370-neta
-+        - marvell,armada-xp-neta
-+then:
-+  properties:
-+    buffer-manager:
-+      description:
-+        A phandle to a buffer manager node. Please refer to
-+        Documentation/devicetree/bindings/net/marvell-neta-bm.txt.
-+
-+    bm,pool-long:
-+      description:
-+        ID of a pool, that will accept all packets of a size higher than 'short'
-+        pool's threshold (if set) and up to MTU value. Obligatory, when the port
-+        is supposed to use hardware buffer management.
-+
-+    bm,pool-short:
-+      description:
-+        ID of a pool, that will be used for accepting packets of a size lower
-+        than given threshold. If not set, the port will use a single 'long' pool
-+        for all packets, as defined above.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - phy-mode
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    ethernet@70000 {
-+        compatible = "marvell,armada-370-neta";
-+        reg = <0x70000 0x2500>;
-+        interrupts = <8>;
-+        clocks = <&gate_clk 4>;
-+        tx-csum-limit = <9800>;
-+        phy-mode = "rgmii-id";
-+        buffer-manager = <&bm>;
-+        bm,pool-long = <0>;
-+        bm,pool-short = <1>;
-+
-+        fixed-link {
-+            speed = <1000>;
-+            full-duplex;
-+        };
-+    };
+KX132-1211 accelerometer is a sensor which:
+	- supports G-ranges of (+/-) 2, 4, 8, and 16G
+	- can be connected to I2C or SPI
+	- has internal HW FIFO buffer
+	- supports various ODRs (output data rates)
+
+The KX132-1211 accelerometer is very similar to the KX022A. 
+One key difference is number of bits to report the number of data bytes that 
+have been stored in the buffer: 8 bits for KX022A vs 10 bits for
+KX132-1211.
+
+Changes in v9:
+- used i2c_get_match_data
+- changed the name and description of the function to get available data
+  in HW fifo buffer
+- changed the description in the Kconfig file
+
+Changes in v8:
+- replaced min_t by min and kmalloc by kmalloc_array as suggested by Andy
+
+Changes in v7:
+- added a min_t in kx132_get_fifo_bytes to ensure that we don't that the
+  fifo_bytes is never bigger than the 
+  fifo_length * KX022A_FIFO_SAMPLES_SIZE_BYTES - no matter what we read from I2C
+  as suggested by Matti
+
+Changes in v6:
+- check for availability of chip_info for the SPI case
+- changed the order of elements in the kx022a_data struct to save memory
+
+Changes in v5:
+- moved the "kfree" call to match the reverse of what happens in 
+  kx022a_fifo_enable() as suggested by Matti and Jonathan
+- used min_t, checked for availability of chip_info and moved the
+  position of u16 buf_smp_lvl_mask as suggested by Andy
+- introduced buf_smp_lvl_mask in Patch 7 as suggested by Jonathan
+
+Changes in v4:
+- moved the allocation of the fifo_buffer to kx022a_fifo_enable and
+  kx022a_fifo_disable
+- some fixes to the regmap ranges of kx132-1211 
+
+Changes in v3:
+- added two new patches by separating the addition of the 
+  i2c_device_id table and the removal of blank lines from other
+  unrelated changes
+- fixes a warning detected by the kernel test robot
+- made all the changes related the chip_info in one patch
+
+Changes in v2:
+- added a new patch for warning when the device_id match fails in the
+  probe function
+- added a new patch for the function that retrieves the number of bytes
+  in the buffer
+- added a change to the Kconfig file in the patch adding the support
+  for the kx132-1211
+- various fixes and modifications listed under each patch
+
+Mehdi Djait (7):
+  dt-bindings: iio: Add KX132-1211 accelerometer
+  iio: accel: kionix-kx022a: Remove blank lines
+  iio: accel: kionix-kx022a: Warn on failed matches and assume
+    compatibility
+  iio: accel: kionix-kx022a: Add an i2c_device_id table
+  iio: accel: kionix-kx022a: Refactor driver and add chip_info structure
+  iio: accel: kionix-kx022a: Add a function to retrieve number of bytes
+    in buffer
+  iio: accel: Add support for Kionix/ROHM KX132-1211 accelerometer
+
+ .../bindings/iio/accel/kionix,kx022a.yaml     |  12 +-
+ drivers/iio/accel/Kconfig                     |  10 +-
+ drivers/iio/accel/kionix-kx022a-i2c.c         |  20 +-
+ drivers/iio/accel/kionix-kx022a-spi.c         |  15 +-
+ drivers/iio/accel/kionix-kx022a.c             | 315 ++++++++++++++----
+ drivers/iio/accel/kionix-kx022a.h             | 112 ++++++-
+ 6 files changed, 409 insertions(+), 75 deletions(-)
+
 -- 
-2.39.2
+2.30.2
 
 
