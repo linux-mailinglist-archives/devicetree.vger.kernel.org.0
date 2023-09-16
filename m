@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61F167A2C91
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 02:39:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8C667A2CA2
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 02:45:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13B17285A33
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 00:39:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B0772848E7
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 00:45:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E79EA10F1;
-	Sat, 16 Sep 2023 00:39:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 181E615AF;
+	Sat, 16 Sep 2023 00:45:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0F56805
-	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 00:39:13 +0000 (UTC)
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DA6430DC
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 17:36:26 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9ada6b0649fso351742066b.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 17:36:26 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D04AA44
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 00:45:08 +0000 (UTC)
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BCB4272E
+	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 17:41:18 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-31c5c06e8bbso2552970f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 17:41:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694824539; x=1695429339; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694824651; x=1695429451; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=iXuRcmz9wFRVf0opm5Y/r1mXGp6VsOD0Ok9XbCh2sOc=;
-        b=YWXD7iCTpvJA2fu4UbmEkHJZLe58UGx2rhu+XBmQnVUexKHQ3QCk2EBjZvG+xBd7ie
-         JaPVoqWuYM2PMHlouVoLCsqjgoy0yOWZXbYimuNi1AbcTwKbyJeJUQbHtGKHXwC30vO5
-         /FthlHOq1dFZYiHKywCXNuPtuYfFmm7U2i5jIhwQq5IN/QcYHGpr32L8WsqcJi9hmYCf
-         sTFC7Rti/hcBxDwQpfhs8ksYM8aswoW12YkWuTcHeSU+y0x028gsouMNqUeVa0WbuG6+
-         /onwz4Pz/nZekqMf/pd+RbSvNRbxkszjEdklYysgfCJpV6ux4Ig/+IszmgzOZ0P49xTz
-         1miA==
+        bh=cs8ffVpaEJyCfU4sBIS3Iatn3H0nM+QmhyXAWCxFGXs=;
+        b=CoCJwcXt1gX6dPyJTorsOPE9cq3vKXPjFs6jt5ElxXflB7dxxUur3LzINx2y2YrYVO
+         6yiMXo/lpcFflNTRvTF3x8lDMBL/pgJvqEQT9nuIZBNx4G/I9mQgzWh2FUqDZkqK8yNt
+         ZtXv41axRr2tvoh/6Lszl4iWHNQoSJHDVLWOk1kULzwfpW8RUZMpcpVRMO1cLwbOdXLz
+         2iOLnAx7/21cfYSnm7UcJEczqqzj2fMIxVwY37W6VJlRlV6hXwpD4YlkiMEVITqnvkPo
+         Vdj9n86dm/eb5Ji7VSwa7WoccjWqvPNG6Rae2bQpUBqP57AVNVDtd9zvzANxOysUTaZn
+         JNfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694824539; x=1695429339;
+        d=1e100.net; s=20230601; t=1694824651; x=1695429451;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iXuRcmz9wFRVf0opm5Y/r1mXGp6VsOD0Ok9XbCh2sOc=;
-        b=PGuFiG5oPt9EdgL1mN2WSpOIPtpR6btIKK5nHeLosTtKP6Rp+J0j5ga/0HPMLzDGqS
-         BkK//UG/uwAvi/PkmHqKD8GSPfmRYFxv+aQCVGzfwKzOk6j4RcLFeso6FKy047URvXeg
-         zDdAT1VTyimH22kTk10mMsjJC2yM4W8hebM/2AKGycmY7EMHyC0Z8tf/W/wQ9TKSRvas
-         8H4gzrk1NxeORVYSoyH2nPRwxnlBFthmpFjNkVTv8fa9EZGK/YBmH9BDlrFJ3qP9p2PY
-         6MznwhOkaIWFKcS0diJOmJEzSitMeRakpXxLQRaK+hsZk/NBESylOPoCKtE8iJToKx3u
-         9w7Q==
-X-Gm-Message-State: AOJu0Yw/wcaeXipdPOyDsAe+8D3YT/M4AHmqbEKtP9a+xW4fQ/tRqNQk
-	mrxjcbvmr9952QdLUunwBRl89A==
-X-Google-Smtp-Source: AGHT+IHzn5BzHsdnc6mQ+RCTL/g/12pdzqDKmc1xZslP3PEa2jUU9guE2A4T1Uy2y3QYG3d9gswQ8w==
-X-Received: by 2002:a17:906:3099:b0:9a1:d5de:5e3 with SMTP id 25-20020a170906309900b009a1d5de05e3mr2686078ejv.54.1694824538825;
-        Fri, 15 Sep 2023 17:35:38 -0700 (PDT)
+        bh=cs8ffVpaEJyCfU4sBIS3Iatn3H0nM+QmhyXAWCxFGXs=;
+        b=WkQ1i3VuCnP6avQidiZw019QCmeqRSgWKq6prmPnwkV7SBO46Y4rbtyGkzDfe2sQte
+         BjxbzyMiW+THZGhsg5heisJgcNrU+vESORh2/fYo/O+XgZwVmiYZr3NAffFkaAfaZLvB
+         eZzi9TcCpI62G1IAFFjts10a9huNgHS0GRgXcxQ47vw7eoIs5XiwU+M/dpNXR0sIQ8Yn
+         3hith66TNIzHumoFw5h33zKbNTJiVnbg82WMv5Tm/f7u+ZbsTrXptyLshEGbjdNnyjBW
+         0I5QBd0NClH9dfSY2CfUwHUIGhVfozzP5HcC7CN0wqBBo3mxlgfdSl8ktPKs0jmxW44L
+         akUg==
+X-Gm-Message-State: AOJu0YwwzvDO377iev7n8I1aGrMtZmlkC7LmNubQFwaIX9O0okGapngx
+	F3IedLBk6TQJvKeSn4v5P4VCSg==
+X-Google-Smtp-Source: AGHT+IFHMldYMcm0cwNSdiXdqEx/c5pov89rhv5UGqSedaK5wqsQkTq6rI3RCsnIK45uZyRUwMHc6Q==
+X-Received: by 2002:a5d:4acb:0:b0:313:eb09:c029 with SMTP id y11-20020a5d4acb000000b00313eb09c029mr2701367wrs.43.1694824651092;
+        Fri, 15 Sep 2023 17:37:31 -0700 (PDT)
 Received: from [192.168.37.154] (178235177186.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.186])
-        by smtp.gmail.com with ESMTPSA id jw24-20020a17090776b800b009a168ab6ee2sm3035669ejc.164.2023.09.15.17.35.36
+        by smtp.gmail.com with ESMTPSA id d17-20020aa7ce11000000b0052568bf9411sm2816951edv.68.2023.09.15.17.37.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Sep 2023 17:35:38 -0700 (PDT)
-Message-ID: <6e66d821-1275-4830-a898-bb82c333dcc5@linaro.org>
-Date: Sat, 16 Sep 2023 02:35:38 +0200
+        Fri, 15 Sep 2023 17:37:30 -0700 (PDT)
+Message-ID: <9144cb67-9606-4b17-b760-a6d3e8e346cc@linaro.org>
+Date: Sat, 16 Sep 2023 02:37:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,8 +65,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 13/33] dt-bindings: usb: dwc3: Add
- snps,num-hc-interrupters definition
+Subject: Re: [PATCH v6 23/33] ASoC: dt-bindings: Add Q6USB backend
 Content-Language: en-US
 To: Wesley Cheng <quic_wcheng@quicinc.com>, mathias.nyman@intel.com,
  gregkh@linuxfoundation.org, lgirdwood@gmail.com, broonie@kernel.org,
@@ -78,7 +77,7 @@ Cc: linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
  alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org
 References: <20230916001026.315-1-quic_wcheng@quicinc.com>
- <20230916001026.315-14-quic_wcheng@quicinc.com>
+ <20230916001026.315-24-quic_wcheng@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -115,27 +114,74 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230916001026.315-14-quic_wcheng@quicinc.com>
+In-Reply-To: <20230916001026.315-24-quic_wcheng@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 16.09.2023 02:10, Wesley Cheng wrote:
-> Add a new definition for specifying how many XHCI secondary interrupters
-> can be allocated.  XHCI in general can potentially support up to 1024
-> interrupters, which some uses may want to limit depending on how many
-> users utilize the interrupters.
+> Add a dt-binding to describe the definition of enabling the Q6 USB backend
+> device for audio offloading.  The node carries information, which is passed
+> along to the QC USB SND class driver counterpart.  These parameters will be
+> utilized during QMI stream enable requests.
 > 
 > Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
 > ---
-Any reason for a DWC3-specific property? Why not just
-use the XHCI-common one from patch 14 and error out if
-a value of more than 8 is found?
+>  .../devicetree/bindings/sound/qcom,q6usb.yaml | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6usb.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,q6usb.yaml b/Documentation/devicetree/bindings/sound/qcom,q6usb.yaml
+> new file mode 100644
+> index 000000000000..51ff0b1ffa2d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/qcom,q6usb.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/qcom,q6usb-dais.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm ASoC DPCM USB backend DAI
+> +
+> +maintainers:
+> +  - Wesley Cheng <quic_wcheng@quicinc.com>
+> +
+> +description:
+> +  The USB port is a supported AFE path on the Q6 DSP.  This ASoC DPCM
+> +  backend DAI will communicate the required settings to initialize the
+> +  XHCI host controller properly for enabling the offloaded audio stream.
+> +  Parameters defined under this node will carry settings, which will be
+> +  passed along during the QMI stream enable request and configuration of
+> +  the XHCI host controller.
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,q6usb
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  "#sound-dai-cells":
+> +    const: 1
+> +
+> +  qcom,usb-audio-intr-num:
+> +    description:
+> +      Desired XHCI interrupter number to use.  Depending on the audio DSP
+> +      on the platform, it will operate on a specific XHCI interrupter.
+So is this the number of interrupters to be used or the index of
+a single interrupter? If the latter, then "num" is definitely way
+too ambiguous.
 
 Konrad
 
