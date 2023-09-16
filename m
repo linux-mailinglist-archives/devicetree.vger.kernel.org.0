@@ -1,299 +1,97 @@
-Return-Path: <devicetree+bounces-676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C22F7A2B18
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 01:54:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 352EA7A2B2C
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 02:07:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F7B52822AB
-	for <lists+devicetree@lfdr.de>; Fri, 15 Sep 2023 23:54:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 487921C20BDF
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 00:07:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 972881BDD1;
-	Fri, 15 Sep 2023 23:54:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4834936F;
+	Sat, 16 Sep 2023 00:07:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23BA618E27
-	for <devicetree@vger.kernel.org>; Fri, 15 Sep 2023 23:54:19 +0000 (UTC)
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A8662102;
-	Fri, 15 Sep 2023 16:54:18 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-68fb5bd8f02so2647575b3a.0;
-        Fri, 15 Sep 2023 16:54:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694822058; x=1695426858; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bKA9abMjC7sW4LBR9fGk0XQEXTIvl1CB0HpqC1ijf7s=;
-        b=DKstLab5FBHVgb1LbjR/vjug1a+BCby1v7+hP1+fCxPusyGnuA9Xu70AMeiyvntC7W
-         FaeNO+b0TBGoAoNJTNysleXYynVSE888BxO9iSA8z4oLj1E0giYUI306cjGkq9DgQODa
-         PJMP6atQPdCnV7QqfJq/M4QWklx5drWvl+YHaAZhG0Heu3ny2Zc9MY4cMLid8U1m8uTb
-         dCdKJ9IAp/A1tJ+ZW5m9MI22U1ws65tXs16Zjya9Rk4TDiqAJNzR7XyzvZF4dQ7BfBMd
-         4pXGDeGudADnibALyjwEWXsX3Q4x3ZvRtFL0qJgrFf5UclYGvF3rU6nz4qo3m+pChk6n
-         Viuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694822058; x=1695426858;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bKA9abMjC7sW4LBR9fGk0XQEXTIvl1CB0HpqC1ijf7s=;
-        b=iCLA4PHN8N3982fGufgGGpb2zqfgs+YKJxm3qQOAYWFSs2GtSeLkSesk8Vp7ZHHGmd
-         3lWujLnJ1EMLoG0PpzurjpD/82MbnTIiTKMhswp5bU1T/x1TNSmEmfxN9jyIX/tRIWab
-         JaemiI6fqVvnK5znal3FdO/hFk15N711feRW4kYBMhRvpzXZGeNZQvLuWErsPADvlpBq
-         v5Tis16oXWqvtb8DVdIPompv/qgwPXM950Z8NwkDs/tu2Lvlprg+wX1TFeO67wS9SfdD
-         HgkpPj2dOVGLdRN3NDRUf7uFtMuEghIn2WDGKG6B8kollqI9pRmYo2JLqFKh5JfQGlOC
-         VriQ==
-X-Gm-Message-State: AOJu0Yzw/YiO4DU9II+KdrbMu5+4zrl8uukf4XgBceoYrdJmDD9DlyOz
-	+cJOcVaB3ZoBzgV/sP+Ax82mejDd+Cjp8r3Szk4=
-X-Google-Smtp-Source: AGHT+IHgVUtldsOtaUsIGxCHFBt0zxYCSScNWymvy6s5gqnqKSyzuSQwXCwkNSVTVYPufAKo6Y3GUGQtOEY3IpkurE8=
-X-Received: by 2002:a05:6a20:394c:b0:125:f3d8:e65b with SMTP id
- r12-20020a056a20394c00b00125f3d8e65bmr3235376pzg.18.1694822057804; Fri, 15
- Sep 2023 16:54:17 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4293E367
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 00:07:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBBAEC433C8;
+	Sat, 16 Sep 2023 00:07:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1694822826;
+	bh=8Yu+GwYPHDePl3LqNlzEzfrFvMmCmV66DDHEshoQFPs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CNH6CLgxFzU1zRS0ABaVNSmRwjWQmVfC7I+QNZrLanrYn2S10zMTqneXnbPwIx8U+
+	 9+DYbJCYWmEjSRJLFUD0KnU4SrTfH4U70goBTEtWJYYgE+3CDQj+S3xahTybXlvnI8
+	 4+hXbVGzT3NrhxXoS7XMOoswH8SBrs7wuJAcOF/OO9C3feM3vkPLoLdSn2ljVt86RK
+	 5e7cGHkB2Lxc38+DNvVOM9w4WpQtgBzaL7RK4nBiIaLc/XKkVS+PdQE+h/FYgT5qjw
+	 v+xWeWSrzk26/qThAn9dkn6BUyKeIP3f7IuSP+BCNnVyKI4KQN3Z7AGLxQNSa/LO+P
+	 g8EQp9/9wUiPw==
+Date: Sat, 16 Sep 2023 01:07:00 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Minda Chen <minda.chen@starfivetech.com>
+Cc: Daire McNamara <daire.mcnamara@microchip.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
+	Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Mason Huo <mason.huo@starfivetech.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+Subject: Re: [PATCH v6 19/19] riscv: dts: starfive: add PCIe dts
+ configuration for JH7110
+Message-ID: <20230916-monitor-idiom-86d6894b1e88@spud>
+References: <20230915102243.59775-1-minda.chen@starfivetech.com>
+ <20230915102243.59775-20-minda.chen@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230913211449.668796-1-jcmvbkbc@gmail.com> <20230913211449.668796-5-jcmvbkbc@gmail.com>
- <6f95d492-2f5e-42e8-acdd-210d6a03b14c@kernel.org>
-In-Reply-To: <6f95d492-2f5e-42e8-acdd-210d6a03b14c@kernel.org>
-From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Fri, 15 Sep 2023 16:54:06 -0700
-Message-ID: <CAMo8BfJM4p5icMo1EFB+0gYVeyPSNi8nKUH=PCuBUWcd_ONGdg@mail.gmail.com>
-Subject: Re: [PATCH 4/4] drivers/tty/serial: add ESP32S3 ACM device driver
-To: Jiri Slaby <jirislaby@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	devicetree@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="+RcYDkBcBEoWjbZf"
+Content-Disposition: inline
+In-Reply-To: <20230915102243.59775-20-minda.chen@starfivetech.com>
+
+
+--+RcYDkBcBEoWjbZf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	FROM_LOCAL_NOVOWEL,HK_RANDOM_ENVFROM,HK_RANDOM_FROM,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-On Thu, Sep 14, 2023 at 12:16=E2=80=AFAM Jiri Slaby <jirislaby@kernel.org> =
-wrote:
->
-> On 13. 09. 23, 23:14, Max Filippov wrote:
-> > Add driver for the ACM  controller of the Espressif ESP32S3 Soc.
-> > Hardware specification is available at the following URL:
-> >
-> >    https://www.espressif.com/sites/default/files/documentation/esp32-s3=
-_technical_reference_manual_en.pdf
-> >    (Chapter 33 USB Serial/JTAG Controller)
-> ...
->
-> > +static void esp32s3_acm_put_char_sync(struct uart_port *port, unsigned=
- char c)
-> > +{
-> > +     while (!esp32s3_acm_tx_fifo_free(port))
-> > +             cpu_relax();
->
-> No limits...
+On Fri, Sep 15, 2023 at 06:22:43PM +0800, Minda Chen wrote:
+> Add PCIe dts configuraion for JH7110 SoC platform.
+>=20
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
 
-Fixed.
+Not really important, but checkpatch whinges about the double signoff
+here, since both are you"
 
-> > +     esp32s3_acm_put_char(port, c);
-> > +     esp32s3_acm_push(port);
-> > +}
-> > +
-> > +static void esp32s3_acm_transmit_buffer(struct uart_port *port)
-> > +{
->
-> tx helper.
+--+RcYDkBcBEoWjbZf
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Ok.
+-----BEGIN PGP SIGNATURE-----
 
-> > +     struct circ_buf *xmit =3D &port->state->xmit;
-> > +     u32 tx_fifo_used =3D esp32s3_acm_tx_fifo_cnt(port);
-> > +
-> > +     if (esp32s3_acm_tx_fifo_free(port)) {
-> > +             while (!uart_circ_empty(xmit) && tx_fifo_used < ESP32S3_A=
-CM_TX_FIFO_SIZE) {
-> > +                     esp32s3_acm_put_char(port, xmit->buf[xmit->tail])=
-;
-> > +                     xmit->tail =3D (xmit->tail + 1) & (UART_XMIT_SIZE=
- - 1);
-> > +                     port->icount.tx++;
-> > +                     ++tx_fifo_used;
-> > +             }
-> > +     }
-> > +
-> > +     if (uart_circ_chars_pending(xmit) < WAKEUP_CHARS)
-> > +             uart_write_wakeup(port);
-> > +
-> > +     if (uart_circ_empty(xmit)) {
-> > +             esp32s3_acm_stop_tx(port);
-> > +     } else {
-> > +             u32 int_ena;
-> > +
-> > +             int_ena =3D esp32s3_acm_read(port, USB_SERIAL_JTAG_INT_EN=
-A_REG);
-> > +             esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG,
-> > +                               int_ena | USB_SERIAL_JTAG_SERIAL_IN_EMP=
-TY_INT_ENA_MASK);
-> > +     }
-> > +
-> > +     if (tx_fifo_used > 0 && tx_fifo_used < ESP32S3_ACM_TX_FIFO_SIZE)
-> > +             esp32s3_acm_write(port, USB_SERIAL_JTAG_EP1_CONF_REG,
-> > +                               USB_SERIAL_JTAG_WR_DONE_MASK);
-> > +}
->
->
-> > +static irqreturn_t esp32s3_acm_int(int irq, void *dev_id)
-> > +{
-> > +     struct uart_port *port =3D dev_id;
-> > +     u32 status;
-> > +
-> > +     status =3D esp32s3_acm_read(port, USB_SERIAL_JTAG_INT_ST_REG);
-> > +     esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_CLR_REG, status);
-> > +
-> > +     if (status & USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ST_MASK)
-> > +             esp32s3_acm_rxint(port);
-> > +     if (status & USB_SERIAL_JTAG_SERIAL_IN_EMPTY_INT_ST_MASK)
-> > +             esp32s3_acm_txint(port);
-> > +
-> > +     return IRQ_HANDLED;
->
-> IRQ_STATUS()
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQTxpAAKCRB4tDGHoIJi
+0lj9AQDNWfMti/9mi01vMJjKM7GVM2xrI3XaabEtUXwy9R9NmAD7BHYTvEI4JQ/I
++ECDoV1Pnxx67atTC+kUEC0W38scYQw=
+=uVmt
+-----END PGP SIGNATURE-----
 
-Ok.
-
-> > +}
->
-> > +static int esp32s3_acm_startup(struct uart_port *port)
-> > +{
-> > +     int ret =3D 0;
-> > +
-> > +     esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG,
-> > +                       USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ENA_MAS=
-K);
-> > +     ret =3D devm_request_irq(port->dev, port->irq, esp32s3_acm_int, 0=
-,
-> > +                            DRIVER_NAME, port);
-> > +     return ret;
->
-> No need for ret. Or not, you don't handle the failure properly again
-> (disable ints). And the order appears to be switched too.
-
-Fixed.
-
-> > +static void
-> > +esp32s3_acm_console_write(struct console *co, const char *s, unsigned =
-int count)
-> > +{
-> > +     struct uart_port *port =3D esp32s3_acm_ports[co->index];
-> > +     unsigned long flags;
-> > +     int locked =3D 1;
->
-> bool? ANd in the otrher driver too.
-
-Ok.
-
-> > +
-> > +     if (port->sysrq)
-> > +             locked =3D 0;
-> > +     else if (oops_in_progress)
-> > +             locked =3D spin_trylock_irqsave(&port->lock, flags);
-> > +     else
-> > +             spin_lock_irqsave(&port->lock, flags);
-> > +
-> > +     esp32s3_acm_string_write(port, s, count);
-> > +
-> > +     if (locked)
-> > +             spin_unlock_irqrestore(&port->lock, flags);
-> > +}
->
->
-> > +#ifdef CONFIG_CONSOLE_POLL
-> > +static int esp32s3_acm_earlycon_read(struct console *con, char *s, uns=
-igned int n)
-> > +{
-> > +     struct earlycon_device *dev =3D con->data;
-> > +     int num_read =3D 0;
->
-> num looks like should be unsigned?
-
-Ok.
-
-> > +
-> > +     while (num_read < n) {
-> > +             int c =3D esp32s3_acm_poll_get_char(&dev->port);
-> > +
-> > +             if (c =3D=3D NO_POLL_CHAR)
-> > +                     break;
-> > +             s[num_read++] =3D c;
-> > +     }
-> > +     return num_read;
-> > +}
-> > +#endif
->
->
-> > +static int esp32s3_acm_probe(struct platform_device *pdev)
-> > +{
-> > +     struct device_node *np =3D pdev->dev.of_node;
-> > +     struct uart_port *port;
-> > +     struct resource *res;
-> > +     int ret;
-> > +
-> > +     port =3D devm_kzalloc(&pdev->dev, sizeof(*port), GFP_KERNEL);
-> > +     if (!port)
-> > +             return -ENOMEM;
-> > +
-> > +     ret =3D of_alias_get_id(np, "serial");
-> > +     if (ret < 0) {
-> > +             dev_err(&pdev->dev, "failed to get alias id, errno %d\n",=
- ret);
-> > +             return ret;
-> > +     }
-> > +     if (ret >=3D UART_NR) {
-> > +             dev_err(&pdev->dev, "driver limited to %d serial ports\n"=
-,
-> > +                     UART_NR);
-> > +             return -ENOMEM;
-> > +     }
-> > +
-> > +     port->line =3D ret;
-> > +
-> > +     res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > +     if (!res)
-> > +             return -ENODEV;
-> > +
-> > +     port->mapbase =3D res->start;
-> > +     port->membase =3D devm_ioremap_resource(&pdev->dev, res);
-> > +     if (IS_ERR(port->membase))
-> > +             return PTR_ERR(port->membase);
-> > +
-> > +     port->dev =3D &pdev->dev;
-> > +     port->type =3D PORT_ESP32ACM;
-> > +     port->iotype =3D UPIO_MEM;
-> > +     port->irq =3D platform_get_irq(pdev, 0);
-> > +     port->ops =3D &esp32s3_acm_pops;
-> > +     port->flags =3D UPF_BOOT_AUTOCONF;
-> > +     port->has_sysrq =3D 1;
-> > +     port->fifosize =3D ESP32S3_ACM_TX_FIFO_SIZE;
-> > +
-> > +     esp32s3_acm_ports[port->line] =3D port;
-> > +
-> > +     platform_set_drvdata(pdev, port);
-> > +
-> > +     ret =3D uart_add_one_port(&esp32s3_acm_reg, port);
-> > +     return ret;
->
-> return imm.
-
-Ok.
-
---=20
-Thanks.
--- Max
+--+RcYDkBcBEoWjbZf--
 
