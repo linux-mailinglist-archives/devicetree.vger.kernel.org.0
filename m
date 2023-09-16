@@ -1,176 +1,139 @@
-Return-Path: <devicetree+bounces-780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43DF87A30BD
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 15:57:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C85917A30CE
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 16:06:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 719321C20B78
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 13:57:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02C381C20B3E
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 14:06:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13FA514014;
-	Sat, 16 Sep 2023 13:57:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E264F1400A;
+	Sat, 16 Sep 2023 14:06:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BC1B14003
-	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 13:57:37 +0000 (UTC)
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF1C8CEA;
-	Sat, 16 Sep 2023 06:57:35 -0700 (PDT)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	by box.trvn.ru (Postfix) with ESMTPSA id 9159D42498;
-	Sat, 16 Sep 2023 18:57:29 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-	t=1694872650; bh=4hf9NDkSjXIiEDRF/oTd87ONW933mcqoFz4BE59iyKY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=O2X0OmxK3DHH70+wCsefFAaVmGbwaPuAKMV/tDqsLXzVjVyKalk0DbPKd6nlDsZbT
-	 wS2NaBhSAca2FIVtC+Rerib9hSYFK2LVV0B57KJriC+5ktRZdDk+QFFmcukRcHXp+g
-	 wIbU33hcomGbbJQWemjPX9cXt9M6AGLKnudab+KDc9dqngW6XbzAA6ctD+QLOdZDRd
-	 A1Pl/vhnGdfZxFJW4xeMFdWfKvnQe1vW7aC29l35831hflI895iR3LWq8vlL/IdV6F
-	 tLnjPlIDyj0iBzneFGUqVi02QGv9rh/1+gvoXDALCt2weqrKb/N3Nr7XtENeXvgmFi
-	 7PaO85BCx6h5w==
-From: Nikita Travkin <nikita@trvn.ru>
-Date: Sat, 16 Sep 2023 18:57:06 +0500
-Subject: [PATCH 3/3] arm64: dts: qcom: msm8916-longcheer-l8150: Add battery
- and charger
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B94B134D8;
+	Sat, 16 Sep 2023 14:06:17 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C55F5B3;
+	Sat, 16 Sep 2023 07:06:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=gyJXrV2FBaJt5av+urMDvCRwP7rvah/NV7MA4qmSXFg=; b=u9f5w5Fn8ttIDhKg1E3O8+bt5e
+	Wurr44B24wGxlE/Sdq5Woyxu8FbDDcx8uxsC48IwsfOvw1o8zY2WFK4qMXbd8/dxV8EPT28Ste7Vc
+	qtpRHSHHvWZIA2cBax8dfMesckkr/Z8BPJq7r9r5gJv5kKRlZ0Mw5MOjKf3gdxKR6Gxc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qhVvB-006dhI-Ev; Sat, 16 Sep 2023 16:05:17 +0200
+Date: Sat, 16 Sep 2023 16:05:17 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	George McCollister <george.mccollister@gmail.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Kurt Kanzenbach <kurt@linutronix.de>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	UNGLinuxDriver@microchip.com,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+	Marcin Wojtas <mw@semihalf.com>,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Landen Chao <Landen.Chao@mediatek.com>,
+	DENG Qingfang <dqfext@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@microchip.com>,
+	Marek Vasut <marex@denx.de>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	John Crispin <john@phrozen.org>,
+	Madalin Bucur <madalin.bucur@nxp.com>,
+	Ioana Ciornei <ioana.ciornei@nxp.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Oleksij Rempel <linux@rempel-privat.de>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Grygorii Strashko <grygorii.strashko@ti.com>,
+	Sekhar Nori <nsekhar@ti.com>,
+	Shyam Pandey <radhey.shyam.pandey@xilinx.com>,
+	mithat.guner@xeront.com, erkin.bozoglu@xeront.com,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH net-next v2 08/10] dt-bindings: net: dsa: marvell:
+ convert to json-schema
+Message-ID: <63cc4c3c-5cac-4d54-99be-7f05e98406ba@lunn.ch>
+References: <20230916110902.234273-1-arinc.unal@arinc9.com>
+ <20230916110902.234273-9-arinc.unal@arinc9.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230916-pm8916-dtsi-bms-lbc-v1-3-7db0b42f9fb1@trvn.ru>
-References: <20230916-pm8916-dtsi-bms-lbc-v1-0-7db0b42f9fb1@trvn.ru>
-In-Reply-To: <20230916-pm8916-dtsi-bms-lbc-v1-0-7db0b42f9fb1@trvn.ru>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- Nikita Travkin <nikita@trvn.ru>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2453; i=nikita@trvn.ru;
- h=from:subject:message-id; bh=4hf9NDkSjXIiEDRF/oTd87ONW933mcqoFz4BE59iyKY=;
- b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBlBbQ8BNlnZPYaTsGrRi3gzuGx+ikU9W0eOJm+o
- qE4NQTu52WJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCZQW0PAAKCRBDHOzuKBm/
- dZTeEACEw58WEI8ogGUTMLa2uBApWvK7ZnseHAogy6bvt7D4FGX7bpO3b3rqMbzMgF5DiFyyjau
- AHNe80OsUFIR9/OUba8TAMwin9DtHVbzNo/Ja/J8maUeK45Wnq9pbOIm4QYkjK6nXGhOZWA2RPt
- loL47GYG1LnCg30ZfwNUiu/YmWPICHPHsT0xEAvenwOEwUTlllUR8YYapL/w8iHIg9n1cn2iei4
- l5qBs5yXasktNeZLvE37iM4zrAwruOAaZO9WLQtOvlSYXAaJ4mzcjqZiSnvOdeOji0+Vhcrp2Sj
- YPAX6QSKlRTCAPhVFdPueRC4F8sgoXuRJR6FLyrjgudS3o//6tx2eX6x4LCZQe01n1oY4LkOzzl
- xBWz1FOiZSB7NN7MkzStMbEo1Jc7e+Ur2ndrbeAGO1SwxDaWO5lXe0VW7UrLh83Yipz2r238HGo
- 61nRiXfQD+NAiHbGE5ubNj63lHR6qhv2HEMmfppX0tpi22NYMl+5aKnGx2NukE/l+ChYry9EHFO
- dm4/udF2U74ER0m5w33GCfaTLGN6VKre485OO3AMJLfsq+jBTYalxyuqdtv9wKw04DmBzjR+NO1
- ISSLNC9Dm7CpZhNFlUwkIeDVuDzjm50Xhm2QsFYBPtJEzXkSWszi53d5pma/HsELdA9smRXYzqc
- CXhkqqlMohzJWyw==
-X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
- fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230916110902.234273-9-arinc.unal@arinc9.com>
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,RCVD_IN_DNSWL_BLOCKED,T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Longcheer L8150 doesn't have any dedicated fuel-gauge or charger,
-instead making use of the pmic hardware blocks for those purposes.
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - description: |
+> +          Switch has base address 0x10. Use with models:
+> +          6085, 6095, 6097, 6123, 6131, 6141, 6161, 6165, 6171, 6172, 6175,
+> +          6176, 6185, 6240, 6320, 6321, 6341, 6350, 6351, 6352
+> +        const: marvell,mv88e6085
 
-Add pm8916 bms and charger, as well as the battery cell description
-that those devices rely on.
+The .txt file contained:
 
-Signed-off-by: Nikita Travkin <nikita@trvn.ru>
----
- .../boot/dts/qcom/msm8916-longcheer-l8150.dts      | 43 +++++++++++++++++++---
- 1 file changed, 37 insertions(+), 6 deletions(-)
+    The compatibility string is used only to find an identification
+    register, which is at a different MDIO base address in different
+    switch families.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
-index 3892ad4f639a..95dddf3b3880 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
-@@ -33,6 +33,25 @@ wcnss_mem: wcnss@8b600000 {
- 		};
- 	};
- 
-+	battery: battery {
-+		compatible = "simple-battery";
-+		voltage-min-design-microvolt = <3400000>;
-+		voltage-max-design-microvolt = <4350000>;
-+		energy-full-design-microwatt-hours = <9500000>;
-+		charge-full-design-microamp-hours = <2500000>;
-+
-+		ocv-capacity-celsius = <25>;
-+		ocv-capacity-table-0 = <4330000 100>, <4265000 95>,
-+			<4208000 90>, <4153000 85>, <4100000 80>, <4049000 75>,
-+			<4001000 70>, <3962000 65>, <3919000 60>, <3872000 55>,
-+			<3839000 50>, <3817000 45>, <3798000 40>, <3783000 35>,
-+			<3767000 30>, <3747000 25>, <3729000 20>, <3709000 16>,
-+			<3688000 13>, <3681000 11>, <3680000 10>, <3679000 9>,
-+			<3677000 8>, <3674000 7>, <3666000 6>, <3641000 5>,
-+			<3597000 4>, <3537000 3>, <3457000 2>, <3336000 1>,
-+			<3000000 0>;
-+	};
-+
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
-@@ -220,6 +239,22 @@ &blsp_uart2 {
- 	status = "okay";
- };
- 
-+&pm8916_bms {
-+	status = "okay";
-+
-+	monitored-battery = <&battery>;
-+	power-supplies = <&pm8916_charger>;
-+};
-+
-+&pm8916_charger {
-+	status = "okay";
-+
-+	monitored-battery = <&battery>;
-+
-+	qcom,fast-charge-safe-current = <900000>;
-+	qcom,fast-charge-safe-voltage = <4300000>;
-+};
-+
- &pm8916_resin {
- 	status = "okay";
- 	linux,code = <KEY_VOLUMEDOWN>;
-@@ -232,10 +267,6 @@ pm8916_l17: l17 {
- 	};
- };
- 
--&pm8916_usbin {
--	status = "okay";
--};
--
- &pm8916_vib {
- 	status = "okay";
- };
-@@ -252,11 +283,11 @@ &sdhc_2 {
- &usb {
- 	status = "okay";
- 	dr_mode = "peripheral";
--	extcon = <&pm8916_usbin>;
-+	extcon = <&pm8916_charger>;
- };
- 
- &usb_hs_phy {
--	extcon = <&pm8916_usbin>;
-+	extcon = <&pm8916_charger>;
- };
- 
- &wcnss {
+Please keep this text. There has been a lot of confusion in the past,
+lots of circular arguments etc, and it is way too late to do anything
+different. So i want to make it clear what the compatible is used for,
+juts to find the ID registers, nothing more.
 
--- 
-2.41.0
+> +
+> +      - description: |
+> +          Switch has base address 0x00. Use with models:
+> +          6190, 6190X, 6191, 6290, 6361, 6390, 6390X
 
+The .txt file is missing the 6191X and 6393X, which belong here. If
+you need to respin, please could you add them here.
+
+	Andrew
 
