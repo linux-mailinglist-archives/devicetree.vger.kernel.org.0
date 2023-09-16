@@ -1,130 +1,141 @@
-Return-Path: <devicetree+bounces-724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 032987A2CF8
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 03:16:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B18E7A2D1F
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 03:49:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B294428165F
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 01:16:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94F281C211B7
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 01:49:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F84A1856;
-	Sat, 16 Sep 2023 01:16:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF02E20E8;
+	Sat, 16 Sep 2023 01:49:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1807836E;
-	Sat, 16 Sep 2023 01:16:46 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8222A8;
-	Fri, 15 Sep 2023 18:16:45 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38G19HRm021822;
-	Sat, 16 Sep 2023 01:16:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=lzUInNfZ/+GSqx3Doaa3+ebCwEy1pXDvPNHjtdmQEjg=;
- b=Ycfwhlm5luFeuKHDm7B+4ETyXypXu4ky7g+6Oe6MKh8HP7SkmGoLSALaaENrx7DKyKi4
- xWOSYcK4+6/X2jXmiSdf4TxvMcNOkfpzTRV8sCPskaHRiaTc9IYY4CFzbGaFzlgeUW7Y
- spQu7RW6b/2qNIeiEfzbYlbvrX1DcFOUDbqYsBTgtxdMCpHJMWzN4bVcKAu3bHODv3E/
- Vdx/uGNNO+4FXDjrk9Am2f0/QAk4rsSExwwC0+NReOXpdAmotpfROhXn91AG+WOvI0sq
- ubB3y5kL9ZoEPPMKG6xIde+8fPT+TSDBXHNMhwi3roasyHPlr2ms0bUf4uUM6x0yb5lL EA== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t4g072n8e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 16 Sep 2023 01:16:16 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38G1GFgO019026
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 16 Sep 2023 01:16:15 GMT
-Received: from [10.110.47.184] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 15 Sep
- 2023 18:16:14 -0700
-Message-ID: <ae5a603f-459b-84af-239b-aca34c61e95d@quicinc.com>
-Date: Fri, 15 Sep 2023 18:16:14 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFF791C30
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 01:49:42 +0000 (UTC)
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB96F1BF2;
+	Fri, 15 Sep 2023 18:49:40 -0700 (PDT)
+Received: by mail-ot1-x333.google.com with SMTP id 46e09a7af769-6c0ab18e084so330684a34.1;
+        Fri, 15 Sep 2023 18:49:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1694828980; x=1695433780; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/xuPSclHlLs4o7tZAEr9Oqaj9rM7BhYSGMKkn2Xlw7U=;
+        b=IW61rrtjcpZefue1pw5RFD1yWu/DmKI2Irb6Emf05LKsij6wiq8BA61wzQdkRJeRtD
+         j8/pfV7oklI6MO6qSvuIcDAEsmy93MsT/Ah7CGXtKPzqM+AsARtgvSuvDLUvqpuZ13fq
+         aCU5KlIbobiV40kqH6Rmd2YB1fGKb/rDcGMumd0UVUnCHkm/bykY9NrUUUrUiRDBxbH+
+         hzTKQIBKq+FgbhUJTrotLQNhGeyev5UonxMXRSVorIcHng/JFD/WKkMZBgGGb26R1DSk
+         ax72l7H/X5CHUqvmO46Ui5E6Sb3oJWxgT4PrG8o2r6NbO51NkLSZqjVeeTci9GAVUpc9
+         rQvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694828980; x=1695433780;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/xuPSclHlLs4o7tZAEr9Oqaj9rM7BhYSGMKkn2Xlw7U=;
+        b=kpRSzLGYTmrVHiEbnrhYnGlaLQKREs4aQKxSQvi6gjvMkhS2+RSXOznv1Ub2v9lpQW
+         mwStaoMneaM/Ze+URlTaxd57DgTw36G4Qs5/LIF25tSUgp6zTxqNzcU1u34MTe87jBhR
+         cjCeMdVamiqE7yZMNrF6Xo/DF/CRJp3IaBkdcCjcXqZc4HvnAZ/wbGvuVW5sgj8xa5vg
+         vUebj3LYiR2cdhTGv4/0nsx4cE6B1locT2cYKOZD6BWwTEeAONc4GRehApkI2VTkB0Xv
+         mmb7epvZM0xHGdJhnbgpabI6xmwonozTPFW7mGfo4lTSXzBJUzGly8yrv42ApdjGcL+m
+         VDOQ==
+X-Gm-Message-State: AOJu0YxqLisTG9NvY62SdX4Txhk0X6DOgJDBehJUmLGu/OPr8s0TzSCs
+	VMIMUHpua9L89i7PTJ3YLmM=
+X-Google-Smtp-Source: AGHT+IEnrdg2UFlAMJmRKoqFTkmjZ8+iLTyvNwpjr/5YB7Y1QSm3vTF0XpBV41lXZwQbETA/e6c5WQ==
+X-Received: by 2002:a05:6870:4250:b0:1d5:bda7:132d with SMTP id v16-20020a056870425000b001d5bda7132dmr3393225oac.4.1694828980117;
+        Fri, 15 Sep 2023 18:49:40 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:bb17:c38c:aa6:be85])
+        by smtp.gmail.com with ESMTPSA id eg38-20020a05687098a600b001c4b473581fsm2519986oab.12.2023.09.15.18.49.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Sep 2023 18:49:39 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: rafael@kernel.org
+Cc: daniel.lezcano@linaro.org,
+	amitk@kernel.org,
+	rui.zhang@intel.com,
+	linux-pm@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v8 1/3] dt-bindings: thermal-zones: Document critical-action
+Date: Fri, 15 Sep 2023 22:49:26 -0300
+Message-Id: <20230916014928.2848737-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v6 10/33] ASoC: qcom: qdsp6: Add USB backend ASoC driver
- for Q6
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <mathias.nyman@intel.com>,
-        <gregkh@linuxfoundation.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <perex@perex.cz>, <tiwai@suse.com>,
-        <agross@kernel.org>, <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <srinivas.kandagatla@linaro.org>, <bgoswami@quicinc.com>,
-        <Thinh.Nguyen@synopsys.com>
-CC: <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20230916001026.315-1-quic_wcheng@quicinc.com>
- <20230916001026.315-11-quic_wcheng@quicinc.com>
- <fc3cecda-72dd-4b7f-8839-95bd04481038@linaro.org>
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <fc3cecda-72dd-4b7f-8839-95bd04481038@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: zEvQ2eMYk9JPuewhMCOPnOY4ErObID6W
-X-Proofpoint-ORIG-GUID: zEvQ2eMYk9JPuewhMCOPnOY4ErObID6W
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-15_20,2023-09-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 clxscore=1015 phishscore=0 spamscore=0 mlxscore=0
- adultscore=0 suspectscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
- mlxlogscore=772 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309160010
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Konrad,
+From: Fabio Estevam <festevam@denx.de>
 
-On 9/15/2023 5:34 PM, Konrad Dybcio wrote:
-> On 16.09.2023 02:10, Wesley Cheng wrote:
->> Create a USB BE component that will register a new USB port to the ASoC USB
->> framework.  This will handle determination on if the requested audio
->> profile is supported by the USB device currently selected.
->>
->> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
->> ---
-> [...]
-> 
->> +	ret = of_parse_phandle_with_fixed_args(node, "iommus", 1, 0, &args);
->> +	if (ret < 0)
->> +		data->priv.sid = -1;
->> +	else
->> +		data->priv.sid = args.args[0] & SID_MASK;
-> SID masking is done in the devicetree.
-> 
+Document the critical-action property to describe the thermal action
+the OS should perform after the critical temperature is reached.
 
-Not sure I get this point, but let me explain the use case of this 
-parameter, and maybe you can help clarify.
+The possible values are "shutdown" and "reboot".
 
-In this case, we are saving and passing the SID info so that the buffers 
-being mapped within the QC offload driver can be communicated to the 
-audio DSP.  So in short, the SID masking that is done here is just to 
-extract the SID from the iommus property.
+The motivation for introducing the critical-action property is that
+different systems may need different thermal actions when the critical
+temperature is reached.
 
-Thanks
-Wesley Cheng
+For example, a desktop PC may want the OS to trigger a shutdown
+when the critical temperature is reached.
+
+However, in some embedded cases, such behavior does not suit well,
+as the board may be unattended in the field and rebooting may be a
+better approach.
+
+The bootloader may also benefit from this new property as it can check
+the SoC temperature and in case the temperature is above the critical
+point, it can trigger a shutdown or reboot accordingly.
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes since v7:
+- Made critical-action a property of the top-level thermal-zone node. (Rafael)
+
+ .../devicetree/bindings/thermal/thermal-zones.yaml        | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+index 4f3acdc4dec0..d28f3fe1045d 100644
+--- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
++++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+@@ -48,6 +48,14 @@ properties:
+       platform-data regarding temperature thresholds and the mitigation actions
+       to take when the temperature crosses those thresholds.
+ 
++  critical-action:
++    $ref: /schemas/types.yaml#/definitions/string
++    description:
++      The action the OS should perform after the critical temperature is reached.
++    enum:
++      - shutdown
++      - reboot
++
+ patternProperties:
+   "^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$":
+     type: object
+-- 
+2.34.1
+
 
