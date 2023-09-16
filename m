@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDD3E7A3277
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 22:34:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8AC97A327A
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 22:37:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E04781C20C46
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 20:34:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6F451C208B2
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 20:37:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC8BF1C284;
-	Sat, 16 Sep 2023 20:34:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08EBA1B27A;
+	Sat, 16 Sep 2023 20:37:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C34E5685
-	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 20:34:54 +0000 (UTC)
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7657E180
-	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 13:34:52 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-401da71b83cso37240205e9.2
-        for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 13:34:52 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EC86134DE
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 20:37:29 +0000 (UTC)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B6D9CE1
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 13:37:26 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-52eed139ec2so3837125a12.2
+        for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 13:37:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694896491; x=1695501291; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694896645; x=1695501445; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qqUJAMMP6nTdqVaHY2YdLMWi5v1gO3qldLnRJmNMzJk=;
-        b=LZuF+PZCA6bPRc8cPf76cyqMSKkvlwnDQeg+FwO9QlaHJjg2eUoOwoNIw9IsSrSu46
-         11kKJfoqBlY54/upMnd+1zcTGBCkKhohKZXSnwagUrJ0NmyrRxkp0hOFVmLtJB6YoCKJ
-         VE932/ALivNWnWfNRPrJSI9k0jXGjnqyQgn5t+aWZnqigSl82mKFtXpWyJxqCm25RD33
-         /WfPGFIY3+vukdLqefkVyIjXT3QNBtprBzLfJeQpVCgPi706A9VTeOOdU98s67xrL64g
-         WpRI5SOhWTXDmX0phPO1SYJvEOqKJs4inQGd2Nmd3wQRyb2x4duc+l3wOTa3A5sTfuCP
-         sx/w==
+        bh=Gu0xrBA9e/3ScWNP+chjeCPq60bSd7X+az9Hsey0nCA=;
+        b=Sf2yd5X504hJGjQ+aFJH0JoHFcQq66u7Zgj9Irc0orNF7LHRdzhgeFOSuRjI+E7Xp4
+         vDQ8H1E29di59p0TCgChxBIB39Hhj8Sd7KYpLqGEmBYZTdDwGprZSpOo1B4aY0Fn/xPX
+         qmZWKOFd1Gyo7hrsRKhrH9lTwWFD2hlAvrP4Q7PjYlkSRvSgxn3z64xrPhKTJOzik6+f
+         oyQkuPQnfoIDa5uWRhNvWW7dwchvC41Hx+g2lhD9vZRjKdnZ/MdHWa2B7NTE+oWc5Zo4
+         IKsEiy6a8fIlcubDS/ShQcbHMq23FrOa9gSWgmhWcQQ6Kmr/V0BOhG5uAuv4WnKR/iW7
+         7yCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694896491; x=1695501291;
+        d=1e100.net; s=20230601; t=1694896645; x=1695501445;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qqUJAMMP6nTdqVaHY2YdLMWi5v1gO3qldLnRJmNMzJk=;
-        b=ZvELhU/ge7zACAHTeW8xDQkccy5qwyfEHnY1jeTRL1gEDYKo21q8pGCpc3x+sF7H2c
-         cqkyUOQlpoIcyvUdMb/mnjxGNZUGYPlCJOWwY+0GU93JFHwcxZ1Pryf84fl7IM88jwtu
-         Quy1FAhJlPNN1VXt3sNlACLk/6CNupTHMBf+RY5rRF365vO/KH7Q8YgjnIIRegHPMAUy
-         AYqwAVq8irol3UorpXVcD+bqtkjJL7zYt2l5ILREwFV7zC0rqkcZl3bj3HOoLXkPei4T
-         XqgIFFhwfNLiWlkCtPEsiGEZ3rmtZ9ismMKresemft8W8HS+keGKPRhHk/XKcN+pDs2R
-         9ZyA==
-X-Gm-Message-State: AOJu0Yz+LzsAETtMHs9Yv6PfjsJdP/g5pameQ3JBn/OUyNsmSW1efih+
-	kcyQ33YUqpWHfC/Ddn/7PHsZxg==
-X-Google-Smtp-Source: AGHT+IH6tnx25efyoNQVuboYkjl4DLIeQ5FaN6lxvZji5sMlHpTpVieQ8XHgvg3Gc7p8LCV1xU7IqQ==
-X-Received: by 2002:adf:ec4f:0:b0:314:4237:8832 with SMTP id w15-20020adfec4f000000b0031442378832mr4507382wrn.48.1694896490877;
-        Sat, 16 Sep 2023 13:34:50 -0700 (PDT)
+        bh=Gu0xrBA9e/3ScWNP+chjeCPq60bSd7X+az9Hsey0nCA=;
+        b=lHoM+ZGBouwJ8MDG9hv8FeeyrBphV0LRy44lax6XDPVBCPsa27aL085ZWnxlvAdQjr
+         7fhn+HIP9Lcscs2GTGWItQvd6o6r4f2lk+NI5jcI3HW0MyQGYw4P3t3Cx1LrPm3Bz3bi
+         vp5j5HJZ3S6xWtQjEQE9MtQLAf51h4GIImZX0DX/LIfI9Z7u2SCnKUwJW27d6pmm0Reo
+         PN+TmtVJWDW6LWiKXHAv7p7qDkkp5EfZ3kq6Gx/QFLDdr5OtB6nJvCIsJlF97QbSAY9q
+         mNtFr0buMS0pQc6znmZzlYmyR2gakPV2uoJXEF+fcqjFfI5u1sk/ef8suZGUNZKOQXmY
+         jVqg==
+X-Gm-Message-State: AOJu0YwaLE82Xccr9CN12vy4hkSUbFD4DPR0aPjkoVnQ/M5fP2tW5c/M
+	XRBAjK4A5z9XnaUtuMNlLaK0NA==
+X-Google-Smtp-Source: AGHT+IGb4kvGpJuIns3F9diBWd8z81LQpMGK9ZxmAGDOsFhjAZlsKWa9Z6zF37x/Y3GeHA2cPPqcEQ==
+X-Received: by 2002:a17:906:2001:b0:9ad:e20f:142b with SMTP id 1-20020a170906200100b009ade20f142bmr2940270ejo.51.1694896644686;
+        Sat, 16 Sep 2023 13:37:24 -0700 (PDT)
 Received: from [192.168.1.77] (150-140-187-31.ftth.glasoperator.nl. [31.187.140.150])
-        by smtp.gmail.com with ESMTPSA id a14-20020a17090680ce00b0099315454e76sm4077326ejx.211.2023.09.16.13.34.49
+        by smtp.gmail.com with ESMTPSA id u26-20020a170906c41a00b00989828a42e8sm4142097ejz.154.2023.09.16.13.37.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 16 Sep 2023 13:34:50 -0700 (PDT)
-Message-ID: <1bba7c11-f92b-5f1c-2543-c74eff7f1eae@linaro.org>
-Date: Sat, 16 Sep 2023 22:34:49 +0200
+        Sat, 16 Sep 2023 13:37:24 -0700 (PDT)
+Message-ID: <c42f1653-caa8-731c-e4ef-2d5fe47adc8c@linaro.org>
+Date: Sat, 16 Sep 2023 22:37:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,20 +66,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add saradc node to
- rk3588s-indiedroid-nova
+Subject: Re: [PATCH] dt-bindings: watchdog: atmel,at91rm9200-wdt: convert txt
+ to yaml
 Content-Language: en-US
-To: Chris Morgan <macromorgan@hotmail.com>
-Cc: Chris Morgan <macroalpha82@gmail.com>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, jagan@edgeble.ai, heiko@sntech.de,
- conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-References: <20230908164156.2846-1-macroalpha82@gmail.com>
- <20230908164156.2846-4-macroalpha82@gmail.com>
- <488e1f3b-e12b-c278-ed04-a2a5c807bc72@linaro.org>
- <ZQSK/+cOMhtu5Al0@wintermute.localhost.fail>
- <SN6PR06MB5342FE6A2C144600656701E4A5F6A@SN6PR06MB5342.namprd06.prod.outlook.com>
+To: Nik Bune <n3q5u8@yahoo.com>, wim@linux-watchdog.org, linux@roeck-us.net,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+ claudiu.beznea@microchip.com
+Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230916154826.84925-1-n3q5u8.ref@yahoo.com>
+ <20230916154826.84925-1-n3q5u8@yahoo.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SN6PR06MB5342FE6A2C144600656701E4A5F6A@SN6PR06MB5342.namprd06.prod.outlook.com>
+In-Reply-To: <20230916154826.84925-1-n3q5u8@yahoo.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,67 +88,65 @@ X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 15/09/2023 19:05, Chris Morgan wrote:
-> On Fri, Sep 15, 2023 at 11:49:05AM -0500, Chris Morgan wrote:
->> On Tue, Sep 12, 2023 at 10:31:19AM +0200, Krzysztof Kozlowski wrote:
->>> On 08/09/2023 18:41, Chris Morgan wrote:
->>>> From: Chris Morgan <macromorgan@hotmail.com>
->>>>
->>>> Add ADC support for the Indiedroid Nova, as well as the two ADC buttons
->>>> found on the device. The buttons are documented as "boot" and
->>>> "recovery". The boot button is used by the bootloader to boot into USB
->>>> recovery mode. The recovery button use is currently unknown.
->>>>
->>>> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
->>>> ---
->>>>  .../dts/rockchip/rk3588s-indiedroid-nova.dts  | 34 +++++++++++++++++++
->>>>  1 file changed, 34 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
->>>> index 1e2336d3065b..4c2d662d9c97 100644
->>>> --- a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
->>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
->>>> @@ -3,6 +3,7 @@
->>>>  /dts-v1/;
->>>>  
->>>>  #include <dt-bindings/gpio/gpio.h>
->>>> +#include <dt-bindings/input/linux-event-codes.h>
->>>>  #include <dt-bindings/pinctrl/rockchip.h>
->>>>  #include <dt-bindings/usb/pd.h>
->>>>  #include "rk3588s.dtsi"
->>>> @@ -11,6 +12,34 @@ / {
->>>>  	model = "Indiedroid Nova";
->>>>  	compatible = "indiedroid,nova", "rockchip,rk3588s";
->>>>  
->>>> +	adc_keys0 {
->>>
->>> No underscores in node names.
->>
->> My apologies, I should have known better...
->>
->>>
->>> Suffixes usually are after -
->>>
->>
->> Thank you.
->>
->>> Best regards,
->>> Krzysztof
->>>
->>
->> I'll correct this and resend.
->>
->> Chris
+On 16/09/2023 17:48, Nik Bune wrote:
+> Convert txt file to yaml. 
+> Add reg to the list of required properties.
+> Add mainteiners from ./scripts/get_maintainer.pl output.
 > 
-> Sorry, one more thing. I've checked for examples of adc-keys naming and
-> in every instance I see it as adc-keys (or adc-keys0 and adc-keys1 in a
-> few examples). Is the proper way going forward something like key0-adc
-> and key1-adc?
+> Signed-off-by: Nik Bune <n3q5u8@yahoo.com>
+> ---
+>  .../watchdog/atmel,at91rm9200-wdt.yaml        | 31 +++++++++++++++++++
+>  .../watchdog/atmel-at91rm9200-wdt.txt         |  9 ------
+>  2 files changed, 31 insertions(+), 9 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml b/Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
+> new file mode 100644
+> index 000000000000..e9706b9c1e6b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
+> @@ -0,0 +1,31 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
 
-I meant by suffix "-0" or "-1", so:
+How this copyright appeared here? Why are you adding some 2022
+copyrights of someone else?
 
-adc-keys-0
-adc-keys-1
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/atmel,at91rm9200-wdt.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel AT91RM9200 System Timer Watchdog
+> +
+> +maintainers:
+> +  - Wim Van Sebroeck <wim@linux-watchdog.org>
+> +  - Guenter Roeck <linux@roeck-us.net>
+> +
+
+Missing ref to watchdog.yaml. Please open existing files and take a look
+how it is done.
+
+
+> +properties:
+> +  compatible:
+> +    const: atmel,at91sam9260-wdt
+
+Missing blank line
+
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+
+This would not make sense without $ref...
+
+Anyway, you need to also test the DTS.
 
 Best regards,
 Krzysztof
