@@ -1,191 +1,101 @@
-Return-Path: <devicetree+bounces-746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3E857A2EE8
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 10:59:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DADB77A2EF5
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 11:14:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5A881C20B64
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 08:59:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A1C2281E31
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 09:14:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B816125B8;
-	Sat, 16 Sep 2023 08:59:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E88C1125D3;
+	Sat, 16 Sep 2023 09:14:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B7F07E
-	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 08:59:06 +0000 (UTC)
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FC69CF8
-	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 01:59:04 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-50078eba7afso4721963e87.0
-        for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 01:59:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694854742; x=1695459542; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=3u2vbto1umek1f24RIrtSGDaz5f+TY32is7IlWxMZj8=;
-        b=Oi9yLyQ6AiFsoCHwy1CAaQPiB/7eNavHB2nJKUQGnN1I/HGfGch+QKAMY0d4Z6U1qa
-         bs57227Ym5cRLdJXpxMuzF12Qkl1NxQH6ngw/haH8zKzh0ht2+ANtvB/THfq13SdwjXb
-         qAiU1Nl1bRF3MBymlxvRQsNhA22vZtPKhwJrksgs3GYxuJV3nx9gttwe5fiiBq+vhXir
-         0xTadJ77F/7oF0k3R2kZl7+k0PThY2M9P6dhNla1D7AU27cs+jZhIjYL9mdldxvVU4/D
-         VySv4BYzRyPALndm7TT7k08Z15rsxzSRkddNLupejNc9w3aK/VvzbdhJXE4riJ6IqWCc
-         5u6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694854742; x=1695459542;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3u2vbto1umek1f24RIrtSGDaz5f+TY32is7IlWxMZj8=;
-        b=Bk5i0vikSisxgPne81z/K0JTBe87VQsxnkzDZxad44xY+XSCsLEYZ43+CznUjbadQI
-         gvX1Ane5tj+ehuJ2Sq1OOeptlNnIQEcX3IDsqQgdoRTUGvQlSRiqEw1hH/qeQRdfJBCJ
-         VSGdJzXssxvVcZPJmWojR8lIYvE5uDniG0ZuwKIVfJAjk7dl2xFqLnvlqd5sX+HerGh8
-         xbaoj24XYZ8ajIm2a1LdlzEsHeKDtQQPwk6GsNUY4o+2aaw3VdOM70Mjr/AMkesAYjX6
-         OigTsdeUOc2nBF8RojSAvq9yWWG9vWY05N75Fhpp9rJNr7mwbkALiiXGDT5fFM0I6yum
-         b2LA==
-X-Gm-Message-State: AOJu0Yy6AICrBXR973FAbLRu11ftQlSWLWWjic6NzL/aM76f7r5kEvPK
-	cbxb7tGXw9ophmoP5OOwv+M=
-X-Google-Smtp-Source: AGHT+IHrEkmigwtbLJ+2r8gOCe1tW24WBREnf2iuZz+emRztSCYED7QoueakO09oGbXaqq+qFx42kw==
-X-Received: by 2002:a05:6512:318f:b0:503:3cc:cd39 with SMTP id i15-20020a056512318f00b0050303cccd39mr1129268lfe.8.1694854742075;
-        Sat, 16 Sep 2023 01:59:02 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id b23-20020ac25637000000b004ff96c09b47sm942843lff.260.2023.09.16.01.59.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 Sep 2023 01:59:01 -0700 (PDT)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Hauke Mehrtens <hauke@hauke-m.de>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA710111A1;
+	Sat, 16 Sep 2023 09:14:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9CCAC433C7;
+	Sat, 16 Sep 2023 09:14:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1694855661;
+	bh=GdGIL53lm5iv/mox0ahLK0T+iKNQXpwOmFGuHh0bLKI=;
+	h=From:To:Cc:Subject:Date:From;
+	b=MXFjs8+pBJZdHwmuPF39Dgwiac3x3AZ6Ss001Xqa4bdVx5TwxJZjc+2e08dgidLqf
+	 a1ThGwqoJ6cAu9E0MeCHJLx4YOr4hm9Z4mcrWe/AUeICdzvrfMbZbi2UcDrqEh1tJu
+	 WK2k44+EDyhxS10IwH49j77ngj+JZcI23btS3KkdtAZqkUiiUMQxMS/U0aQ0eZ9YOd
+	 k1fEulNFIvO4rcGn6pWtQ7eDvtckKZ5CJIrZVrbRcmjwKpWfQ8W4iomNjJpwNeTJuf
+	 6gRJg40669dhp8j//RhdpTdWlIC4Q/Wrs9uP6kOb5PQrs2tS15Xl/YQFaiYnQp7g/i
+	 uoD7BOXntteuw==
+From: Conor Dooley <conor@kernel.org>
+To: linux-riscv@lists.infradead.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
 	devicetree@vger.kernel.org,
-	bcm-kernel-feedback-list@broadcom.com,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	Vivek Unune <npcomplete13@gmail.com>
-Subject: [PATCH] ARM: dts: BCM5301X: Relicense Vivek's code to the GPL 2.0+ / MIT
-Date: Sat, 16 Sep 2023 10:58:55 +0200
-Message-Id: <20230916085855.28375-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] riscv: dts: allwinner: remove address-cells from intc node
+Date: Sat, 16 Sep 2023 10:14:00 +0100
+Message-Id: <20230916-saddling-dastardly-8cf6d1263c24@spud>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1512; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=UgmedOCSd3V8sGIbZthMv9VrCmYnN+opWlLsZB5DVno=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDKmshVfr/vQqXF5o7fZG0oplI5uJspPEknN7nj39fsdMy ckhYXlFRykLgxgHg6yYIkvi7b4WqfV/XHY497yFmcPKBDKEgYtTACbizMbwT8U7bukPz22JO/Yt to7Y7bVftroz1N7/sa+Obo/PthIJK4b/NVf+PvkQ5LS8NWG25eMLWp3N3x9XHX96bs379guOHle SGQA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-From: Rafał Miłecki <rafal@milecki.pl>
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Move code added by Vivek to the bcm-ns.dtsi which uses dual licensing.
-That syncs more Northstar code to be based on the same licensing schema.
+A recent submission [1] from Rob has added additionalProperties: false
+to the interrupt-controller child node of RISC-V cpus, highlighting that
+the D1 DT has been incorrectly using #address-cells since its
+introduction. It has no child nodes, so #address-cells is not needed.
+Remove it.
 
-This code was added in the commit 37f6130ec39f ("ARM: dts: BCM5301X:
-Make USB 3.0 PHY use MDIO PHY driver").
-
-Cc: Vivek Unune <npcomplete13@gmail.com>
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Fixes: 077e5f4f5528 ("riscv: dts: allwinner: Add the D1/D1s SoC devicetree")
+Link: https://patchwork.kernel.org/project/linux-riscv/patch/20230915201946.4184468-1-robh@kernel.org/ [1]
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
-Vivek: can you send your Acked-by for this patch, please?
+CC: Rob Herring <robh+dt@kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: Conor Dooley <conor+dt@kernel.org>
+CC: Chen-Yu Tsai <wens@csie.org>
+CC: Jernej Skrabec <jernej.skrabec@gmail.com>
+CC: Samuel Holland <samuel@sholland.org>
+CC: devicetree@vger.kernel.org
+CC: linux-riscv@lists.infradead.org
+CC: linux-sunxi@lists.linux.dev
+CC: linux-kernel@vger.kernel.org
 ---
- arch/arm/boot/dts/broadcom/bcm-ns.dtsi   | 27 ++++++++++++++++++++++++
- arch/arm/boot/dts/broadcom/bcm5301x.dtsi | 27 ------------------------
- 2 files changed, 27 insertions(+), 27 deletions(-)
+ arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm-ns.dtsi b/arch/arm/boot/dts/broadcom/bcm-ns.dtsi
-index f0f3a718c413..d0d5f7e52a91 100644
---- a/arch/arm/boot/dts/broadcom/bcm-ns.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm-ns.dtsi
-@@ -327,6 +327,29 @@ mdio: mdio@18003000 {
- 		#address-cells = <1>;
- 	};
- 
-+	mdio-mux@18003000 {
-+		compatible = "mdio-mux-mmioreg", "mdio-mux";
-+		mdio-parent-bus = <&mdio>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x18003000 0x4>;
-+		mux-mask = <0x200>;
-+
-+		mdio@0 {
-+			reg = <0x0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			usb3_phy: usb3-phy@10 {
-+				compatible = "brcm,ns-ax-usb3-phy";
-+				reg = <0x10>;
-+				usb3-dmp-syscon = <&usb3_dmp>;
-+				#phy-cells = <0>;
-+				status = "disabled";
-+			};
-+		};
-+	};
-+
- 	rng: rng@18004000 {
- 		compatible = "brcm,bcm5301x-rng";
- 		reg = <0x18004000 0x14>;
-@@ -467,6 +490,10 @@ nand_controller: nand-controller@18028000 {
- 		brcm,nand-has-wp;
- 	};
- 
-+	usb3_dmp: syscon@18105000 {
-+		reg = <0x18105000 0x1000>;
-+	};
-+
- 	thermal-zones {
- 		cpu_thermal: cpu-thermal {
- 			polling-delay-passive = <0>;
-diff --git a/arch/arm/boot/dts/broadcom/bcm5301x.dtsi b/arch/arm/boot/dts/broadcom/bcm5301x.dtsi
-index de46dbd5b876..f06a178a9240 100644
---- a/arch/arm/boot/dts/broadcom/bcm5301x.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm5301x.dtsi
-@@ -62,33 +62,6 @@ periph_clk: periph_clk {
+diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+index 8275630af977..b8684312593e 100644
+--- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
++++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+@@ -30,7 +30,6 @@ cpu0: cpu@0 {
+ 			cpu0_intc: interrupt-controller {
+ 				compatible = "riscv,cpu-intc";
+ 				interrupt-controller;
+-				#address-cells = <0>;
+ 				#interrupt-cells = <1>;
+ 			};
  		};
- 	};
- 
--	mdio-mux@18003000 {
--		compatible = "mdio-mux-mmioreg", "mdio-mux";
--		mdio-parent-bus = <&mdio>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0x18003000 0x4>;
--		mux-mask = <0x200>;
--
--		mdio@0 {
--			reg = <0x0>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			usb3_phy: usb3-phy@10 {
--				compatible = "brcm,ns-ax-usb3-phy";
--				reg = <0x10>;
--				usb3-dmp-syscon = <&usb3_dmp>;
--				#phy-cells = <0>;
--				status = "disabled";
--			};
--		};
--	};
--
--	usb3_dmp: syscon@18105000 {
--		reg = <0x18105000 0x1000>;
--	};
--
- 	i2c0: i2c@18009000 {
- 		compatible = "brcm,iproc-i2c";
- 		reg = <0x18009000 0x50>;
 -- 
-2.35.3
+2.39.2
 
 
