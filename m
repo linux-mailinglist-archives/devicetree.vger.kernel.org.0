@@ -1,125 +1,96 @@
-Return-Path: <devicetree+bounces-792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAF717A3158
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 18:16:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 427807A3174
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 18:38:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A1F7282124
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 16:16:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86FB6281E54
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 16:38:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA15018E16;
-	Sat, 16 Sep 2023 16:16:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B68114A89;
+	Sat, 16 Sep 2023 16:38:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 242C81428F;
-	Sat, 16 Sep 2023 16:16:08 +0000 (UTC)
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F39C4CC0;
-	Sat, 16 Sep 2023 09:16:03 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A761F20004;
-	Sat, 16 Sep 2023 16:15:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1694880962;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=3gR3DLgOcVXEyCHmeRvHW5kTpbx/Ml5B4FTcTxP2j0o=;
-	b=dlTg8bzB+GMfQwAkNn10piDT3xlzayexaJtzerTcgHGpGMs/JAhpZPkaM8RoNcP//TSyqN
-	3qqwDwy34P2RQiy3Kz8V9s5uw9bjz86onvrpaijDpXuq/oH81lB+2Yme5oZAxFBj7pTtCX
-	oM2LDmFmQum3aFrwsNN4fZtg9PUMRqx6PwUFU7uvrKAlbbFMOzjF3Dqm9MQ+BO6pxYcOMh
-	ifohoX73vuoVQ12QX1Ql7G1QHgmUvNpWCS/+P+cwSVNJ19TSSVrCnNe1mXIr/9LntGG2p8
-	3yC5m9V4cZIzMAHQGVFJEoeGGAnb+x1HyLflkFe7W4wgbaNMfGzsecHWLd0tfg==
-Message-ID: <e0a925bb-d4f1-44a1-8fe3-e1a59c4a7476@arinc9.com>
-Date: Sat, 16 Sep 2023 19:15:02 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32B1613FFF
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 16:38:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F8BCC433C7;
+	Sat, 16 Sep 2023 16:38:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1694882322;
+	bh=6SPj+HdHBFzYMOMmUZucBRA7B/JCBx1i85djDAa249Q=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=CP6pXwtMal2ssNHOgotH69SEARQaIw2JS32NemWhEb0DF1XrOEA8rnGBbtsL3oT2n
+	 VrHrVnunzEx7P45Yd58EXmq3x4q0N/Xnz2PoGJR92kvYweQCn5buavpjjQjCXKPWbR
+	 59j+SbTbYeXB7eNGmUq0xJzr58BqUoYH6TPzsS5oVayv4bqIGs1L/EUe/HfhVRKi2Y
+	 AmgI0JojDIAQe8GhqERl2r5usKYhSa4oi0mRMnQMi4BJNAK7DdGxgEdKodhL7yFzKK
+	 hbYog2AnwMSG7rnK2RMVqvCWyvp1196qdiXOpyh4jOSZHtWeD2V+SuLg9fRtvIO5p5
+	 Fc68HlaDFcGOA==
+Received: (nullmailer pid 1755274 invoked by uid 1000);
+	Sat, 16 Sep 2023 16:38:40 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 10/10] dt-bindings: net:
- marvell-armada-370-neta: convert to json-schema
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
- Sean Wang <sean.wang@mediatek.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Woojung Huh <Woojung.Huh@microchip.com>, John Crispin <john@phrozen.org>,
- linux-mediatek@lists.infradead.org, Lorenzo Bianconi <lorenzo@kernel.org>,
- Felix Fietkau <nbd@nbd.name>, Oleksij Rempel <linux@rempel-privat.de>,
- Shyam Pandey <radhey.shyam.pandey@xilinx.com>, Andrew Lunn <andrew@lunn.ch>,
- Steen Hegelund <steen.hegelund@microchip.com>, linux-kernel@vger.kernel.org,
- =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
- Daniel Machon <daniel.machon@microchip.com>,
- Landen Chao <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
- UNGLinuxDriver@microchip.com, Linus Walleij <linus.walleij@linaro.org>,
- Eric Dumazet <edumazet@google.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Marcin Wojtas <mw@semihalf.com>, Giuseppe Cavallaro
- <peppe.cavallaro@st.com>, "David S. Miller" <davem@davemloft.net>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>,
- Vladimir Oltean <olteanv@gmail.com>,
- Claudiu Beznea <claudiu.beznea@microchip.com>,
- Florian Fainelli <f.fainelli@gmail.com>, Daniel Golle
- <daniel@makrotopia.org>, Horatiu Vultur <horatiu.vultur@microchip.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- linux-arm-kernel@lists.infradead.org, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
- Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
- Marek Vasut <marex@denx.de>, Claudiu Manoil <claudiu.manoil@nxp.com>,
- Sekhar Nori <nsekhar@ti.com>, Lars Povlsen <lars.povlsen@microchip.com>,
- Kurt Kanzenbach <kurt@linutronix.de>, Jose Abreu <joabreu@synopsys.com>,
- Madalin Bucur <madalin.bucur@nxp.com>, netdev@vger.kernel.org,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Magnus Damm <magnus.damm@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
- mithat.guner@xeront.com,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Ioana Ciornei <ioana.ciornei@nxp.com>, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>,
- George McCollister <george.mccollister@gmail.com>, erkin.bozoglu@xeront.com,
- linux-renesas-soc@vger.kernel.org
-References: <20230916110902.234273-1-arinc.unal@arinc9.com>
- <20230916110902.234273-11-arinc.unal@arinc9.com>
- <169487631064.1637966.13545721653989465162.robh@kernel.org>
-From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <169487631064.1637966.13545721653989465162.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+From: Rob Herring <robh@kernel.org>
+To: Nik Bune <n3q5u8@yahoo.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, nicolas.ferre@microchip.com, conor+dt@kernel.org, robh+dt@kernel.org, alexandre.belloni@bootlin.com, linux-watchdog@vger.kernel.org, linux@roeck-us.net, wim@linux-watchdog.org, krzysztof.kozlowski+dt@linaro.org, claudiu.beznea@microchip.com
+In-Reply-To: <20230916154826.84925-1-n3q5u8@yahoo.com>
+References: <20230916154826.84925-1-n3q5u8.ref@yahoo.com>
+ <20230916154826.84925-1-n3q5u8@yahoo.com>
+Message-Id: <169488232023.1755258.3313315475687372959.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: watchdog: atmel,at91rm9200-wdt: convert
+ txt to yaml
+Date: Sat, 16 Sep 2023 11:38:40 -0500
 
-On 16.09.2023 17:58, Rob Herring wrote:
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+On Sat, 16 Sep 2023 17:48:26 +0200, Nik Bune wrote:
+> Convert txt file to yaml.
+> Add reg to the list of required properties.
+> Add mainteiners from ./scripts/get_maintainer.pl output.
 > 
-> yamllint warnings/errors:
+> Signed-off-by: Nik Bune <n3q5u8@yahoo.com>
+> ---
+>  .../watchdog/atmel,at91rm9200-wdt.yaml        | 31 +++++++++++++++++++
+>  .../watchdog/atmel-at91rm9200-wdt.txt         |  9 ------
+>  2 files changed, 31 insertions(+), 9 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.txt
 > 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/marvell-armada-370-neta.yaml:
-> Unresolvable JSON pointer: '$defs/phylink'
 
-Not surprising as this is added with a previous patch in this series.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> doc reference errors (make refcheckdocs):
-> Warning: Documentation/devicetree/bindings/net/marvell-neta-bm.txt references a file that doesn't exist: Documentation/devicetree/bindings/net/marvell-armada-370-neta.txt
-> Documentation/devicetree/bindings/net/marvell-neta-bm.txt: Documentation/devicetree/bindings/net/marvell-armada-370-neta.txt
+yamllint warnings/errors:
 
-Will address.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/watchdog/atmel,at91sam9-wdt.example.dtb: watchdog@fffffd40: Unevaluated properties are not allowed ('atmel,dbg-halt', 'atmel,idle-halt', 'atmel,max-heartbeat-sec', 'atmel,min-heartbeat-sec', 'atmel,reset-type', 'atmel,watchdog-type', 'clocks', 'interrupts', 'timeout-sec' were unexpected)
+	from schema $id: http://devicetree.org/schemas/watchdog/atmel,at91rm9200-wdt.yaml#
+Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.example.dtb: /example-0/watchdog@fffffd00: failed to match any schema with compatible: ['atmel,at91rm9200-wdt']
 
-Arınç
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230916154826.84925-1-n3q5u8@yahoo.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
