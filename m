@@ -1,155 +1,404 @@
-Return-Path: <devicetree+bounces-743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C97517A2E40
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 08:34:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 951517A2E6E
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 10:01:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 831C9281A3A
-	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 06:34:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 780371C209BE
+	for <lists+devicetree@lfdr.de>; Sat, 16 Sep 2023 08:01:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B575107A7;
-	Sat, 16 Sep 2023 06:33:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B458107A7;
+	Sat, 16 Sep 2023 08:01:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A223A2575;
-	Sat, 16 Sep 2023 06:33:33 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCDED19BA;
-	Fri, 15 Sep 2023 23:33:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1694846011; x=1726382011;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=dlwnheLHWrheCZf+0lnqyF5y1gAk0XJDuzApxL+C0IU=;
-  b=buFXf6XO+XGRNS1SGLuxjClGvhDCO8be5fhqZnsgTuTI//MPOZdf8FU0
-   X5zA71cYwmXWm/AGtW6YDoDCv3O/X1IRXbB4Rs/6c8wRF02SZnaNiKaKs
-   VbwmQ2HTvSFB9L9yc15NcFwRu9bsG3k4prU9htqvQbzQpP/ujde/gHTT4
-   xAE4DSLwSlxsfyjMSTuthUR7kNeAWo3Hch4+twlxDgM4Y5aQmYoAEFDIV
-   i6T4BjuU7fx/sPLXZ0+/Yg4kmuD2B4exs46sFTgshgEdSXVA3m7ns2pOF
-   KO/wEUzSfvzfYh4L1gQBisG3Eh8vuaSQ2DhRr6mvbmeYKan/8nnfO/nkx
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="359637818"
-X-IronPort-AV: E=Sophos;i="6.02,151,1688454000"; 
-   d="scan'208";a="359637818"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2023 23:33:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="780351428"
-X-IronPort-AV: E=Sophos;i="6.02,151,1688454000"; 
-   d="scan'208";a="780351428"
-Received: from pglc00032.png.intel.com ([10.221.207.52])
-  by orsmga001.jf.intel.com with ESMTP; 15 Sep 2023 23:33:27 -0700
-From: Rohan G Thomas <rohan.g.thomas@intel.com>
-To: "David S . Miller" <davem@davemloft.net>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	fancer.lancer@gmail.com
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Rohan G Thomas <rohan.g.thomas@intel.com>
-Subject: [PATCH net-next v7 2/2] net: stmmac: Tx coe sw fallback
-Date: Sat, 16 Sep 2023 14:33:12 +0800
-Message-Id: <20230916063312.7011-3-rohan.g.thomas@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230916063312.7011-1-rohan.g.thomas@intel.com>
-References: <20230916063312.7011-1-rohan.g.thomas@intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9229BEAE5
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 08:01:19 +0000 (UTC)
+Received: from smtp.smtpout.orange.fr (smtp-28.smtpout.orange.fr [80.12.242.28])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 040DD19A9
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 01:01:16 -0700 (PDT)
+Received: from [192.168.1.18] ([86.243.2.178])
+	by smtp.orange.fr with ESMTPA
+	id hQEkqqje4Bh1whQElqxQEC; Sat, 16 Sep 2023 10:01:09 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1694851269;
+	bh=3LMNoCG9d7rslxiT14uY/FJc0uqkR5qNPqeL0aUnp9U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=EgNisnKVhWsOp9CG2oBYANzkH8IOAZzGIfDrKxdE/4zBi1sCez16Z1S4YBkdESGpk
+	 XDFjOU1tNrxqhTnfN3Cx1yMElJaK6sLCLzmzBYO5JBVqf15SzVTLXWAf3JUyeo2E1h
+	 k5xCa5P5vKiTLmq082RFRjjLCqkKhtyBv/rpUqw1TwvcWMz7Hv0kaq7k9D65Y4VzZR
+	 O+uPr9XSVSlI48I4dQmBvxXNGKNTX/oo1TFGCSFjN3ez4+AEnRA/5iuDztuJca2IA0
+	 tJjBOQhrI8oOPzCqqyVEJTjSe8mvbnQsDDjC27lOZqH5lsD2ZjG7624UwitBLB+8ei
+	 2wghuHwvHjt3A==
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sat, 16 Sep 2023 10:01:09 +0200
+X-ME-IP: 86.243.2.178
+Message-ID: <cdc9a8f8-fbd5-1eb3-7bac-1e6e5893bc9b@wanadoo.fr>
+Date: Sat, 16 Sep 2023 10:01:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 2/3] iio: pressure: Support ROHM BU1390
+To: mazziesaccount@gmail.com
+Cc: ak@it-klinger.de, andriy.shevchenko@linux.intel.com,
+ ang.iglesiasg@gmail.com, bbara93@gmail.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, jic23@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, lars@metafoo.de,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ matti.vaittinen@fi.rohmeurope.com, robh+dt@kernel.org
+References: <cover.1694760170.git.mazziesaccount@gmail.com>
+ <f378a401cec4fb0b9287b52ab159f00dd77569a6.1694760170.git.mazziesaccount@gmail.com>
+Content-Language: fr, en-US
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <f378a401cec4fb0b9287b52ab159f00dd77569a6.1694760170.git.mazziesaccount@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add sw fallback of tx checksum calculation for those tx queues that
-don't support tx checksum offloading. DW xGMAC IP can be synthesized
-such that it can support tx checksum offloading only for a few
-initial tx queues. Also as Serge pointed out, for the DW QoS IP, tx
-coe can be individually configured for each tx queue.
+Le 15/09/2023 à 08:56, Matti Vaittinen a écrit :
+> Support for the ROHM BM1390 pressure sensor. The BM1390GLV-Z can measure
+> pressures ranging from 300 hPa to 1300 hPa with configurable measurement
+> averaging and internal FIFO. The sensor does also provide temperature
+> measurements.
+> 
+> Sensor does also contain IIR filter implemented in HW. The data-sheet
+> says the IIR filter can be configured to be "weak", "middle" or
+> "strong". Some RMS noise figures are provided in data sheet but no
+> accurate maths for the filter configurations is provided. Hence, the IIR
+> filter configuration is not supported by this driver and the filter is
+> configured to the "middle" setting (at least not for now).
+> 
+> The FIFO measurement mode is only measuring the pressure and not the
+> temperature. The driver measures temperature when FIFO is flushed and
+> simply uses the same measured temperature value to all reported
+> temperatures. This should not be a problem when temperature is not
+> changing very rapidly (several degrees C / second) but allows users to
+> get the temperature measurements from sensor without any additional logic.
+> 
+> This driver allows the sensor to be used in two muitually exclusive ways,
+> 
+> 1. With trigger (data-ready IRQ).
+> In this case the FIFO is not used as we get data ready for each collected
+> sample. Instead, for each data-ready IRQ we read the sample from sensor
+> and push it to the IIO buffer.
+> 
+> 2. With hardware FIFO and watermark IRQ.
+> In this case the data-ready is not used but we enable watermark IRQ. At
+> each watermark IRQ we go and read all samples in FIFO and push them to the
+> IIO buffer.
+> 
+> Signed-off-by: Matti Vaittinen <mazziesaccount-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> 
 
-So when tx coe is enabled, for any tx queue that doesn't support
-tx coe with 'coe-unsupported' flag set will have a sw fallback
-happen in the driver for tx checksum calculation when any packets to
-be transmitted on these tx queues.
+...
 
-Signed-off-by: Rohan G Thomas <rohan.g.thomas@intel.com>
----
- drivers/net/ethernet/stmicro/stmmac/stmmac_main.c     | 10 ++++++++++
- drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c |  3 +++
- include/linux/stmmac.h                                |  1 +
- 3 files changed, 14 insertions(+)
+> +struct bm1390_data_buf {
+> +	u32 pressure;
+> +	__be16 temp;
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-index 2206789802bf..9201ed778ebc 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -4401,6 +4401,16 @@ static netdev_tx_t stmmac_xmit(struct sk_buff *skb, struct net_device *dev)
- 	WARN_ON(tx_q->tx_skbuff[first_entry]);
- 
- 	csum_insertion = (skb->ip_summed == CHECKSUM_PARTIAL);
-+	/* DWMAC IPs can be synthesized to support tx coe only for a few tx
-+	 * queues. In that case, checksum offloading for those queues that don't
-+	 * support tx coe needs to fallback to software checksum calculation.
-+	 */
-+	if (csum_insertion &&
-+	    priv->plat->tx_queues_cfg[queue].coe_unsupported) {
-+		if (unlikely(skb_checksum_help(skb)))
-+			goto dma_map_err;
-+		csum_insertion = !csum_insertion;
-+	}
- 
- 	if (likely(priv->extend_desc))
- 		desc = (struct dma_desc *)(tx_q->dma_etx + entry);
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-index 0f28795e581c..a09014c9e7d0 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-@@ -276,6 +276,9 @@ static int stmmac_mtl_setup(struct platform_device *pdev,
- 			plat->tx_queues_cfg[queue].use_prio = true;
- 		}
- 
-+		plat->tx_queues_cfg[queue].coe_unsupported =
-+			of_property_read_bool(q_node, "snps,coe-unsupported");
-+
- 		queue++;
- 	}
- 	if (queue != plat->tx_queues_to_use) {
-diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
-index ce89cc3e4913..c0079a7574ae 100644
---- a/include/linux/stmmac.h
-+++ b/include/linux/stmmac.h
-@@ -139,6 +139,7 @@ struct stmmac_rxq_cfg {
- 
- struct stmmac_txq_cfg {
- 	u32 weight;
-+	bool coe_unsupported;
- 	u8 mode_to_use;
- 	/* Credit Base Shaper parameters */
- 	u32 send_slope;
--- 
-2.25.1
+I've not looked in details so I'm not sure if related, but 
+bm1390_read_temp() seems to use int.
+
+> +	s64 ts __aligned(8);
+> +};
+> +
+> +/* Pressure data is in 3 8-bit registers */
+> +#define BM1390_PRESSURE_SIZE	3
+
+Unused? (see other comment below)
+
+> +
+> +/* BM1390 has FIFO for 4 pressure samples */
+> +#define BM1390_FIFO_LENGTH	4
+> +
+> +/* Temperature data is in 2 8-bit registers */
+> +#define BM1390_TEMP_SIZE	2
+
+Unused? (see other comment below)
+
+...
+
+> +static int bm1390_read_temp(struct bm1390_data *data, int *temp)
+> +{
+> +	__be16 temp_raw;
+
+Something to do with BM1390_TEMP_SIZE?
+
+> +	int ret;
+> +
+> +	ret = regmap_bulk_read(data->regmap, BM1390_REG_TEMP_HI, &temp_raw,
+> +			       sizeof(temp_raw));
+> +	if (ret)
+> +		return ret;
+> +
+> +	*temp = be16_to_cpu(temp_raw);
+
+See potential link with the comment above related to 
+bm1390_data_buf.temp being a __be16 an temp being a int.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int bm1390_pressure_read(struct bm1390_data *data, u32 *pressure)
+> +{
+> +	int ret;
+> +	u8 raw[3];
+
+BM1390_PRESSURE_SIZE?
+
+(not sure if it make sense because we still have [0..2] below, so having 
+3 here looks useful)
+
+> +
+> +	ret = regmap_bulk_read(data->regmap, BM1390_REG_PRESSURE_BASE,
+> +			       raw, sizeof(raw));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	*pressure = (u32)(raw[2] >> 2 | raw[1] << 6 | raw[0] << 14);
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int bm1390_read_data(struct bm1390_data *data,
+> +			struct iio_chan_spec const *chan, int *val, int *val2)
+> +{
+> +	int ret;
+> +
+> +	mutex_lock(&data->mutex);
+> +	/*
+> +	 * We use 'continuous mode' even for raw read because according to the
+> +	 * data-sheet an one-shot mode can't be used with IIR filter.
+> +	 */
+> +	ret = bm1390_meas_set(data, BM1390_MEAS_MODE_CONTINUOUS);
+> +	if (ret)
+> +		goto unlock_out;
+> +
+> +	switch (chan->type) {
+> +	case IIO_PRESSURE:
+> +		msleep(BM1390_MAX_MEAS_TIME_MS);
+> +		ret = bm1390_pressure_read(data, val);
+> +		break;
+> +	case IIO_TEMP:
+> +		msleep(BM1390_MAX_MEAS_TIME_MS);
+> +		ret = bm1390_read_temp(data, val);
+> +		break;
+> +	default:
+> +		ret = -EINVAL;
+> +	}
+> +	bm1390_meas_set(data, BM1390_MEAS_MODE_STOP);
+
+"ret =" missing, or done on purpose?
+
+> +unlock_out:
+> +	mutex_unlock(&data->mutex);
+> +
+> +	return ret;
+> +}
+> +
+> +static int bm1390_read_raw(struct iio_dev *idev,
+> +			   struct iio_chan_spec const *chan,
+> +			   int *val, int *val2, long mask)
+> +{
+> +	struct bm1390_data *data = iio_priv(idev);
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_SCALE:
+> +		if (chan->type == IIO_TEMP) {
+> +			*val = 31;
+> +			*val2 = 250000;
+> +
+> +			return IIO_VAL_INT_PLUS_MICRO;
+> +		} else if (chan->type == IIO_PRESSURE) {
+> +			*val = 0;
+> +			/*
+> +			 * pressure in hPa is register value divided by 2048.
+> +			 * This means kPa is 1/20480 times the register value,
+> +			 * which equals to 48828.125 * 10 ^ -9
+> +			 * This is 48828.125 nano kPa.
+> +			 *
+> +			 * When we scale this using IIO_VAL_INT_PLUS_NANO we
+> +			 * get 48828 - which means we lose some accuracy. Well,
+> +			 * let's try to live with that.
+> +			 */
+> +			*val2 = 48828;
+> +
+> +			return IIO_VAL_INT_PLUS_NANO;
+> +		}
+> +
+> +		return -EINVAL;
+> +	case IIO_CHAN_INFO_RAW:
+> +		ret = iio_device_claim_direct_mode(idev);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = bm1390_read_data(data, chan, val, val2);
+> +		iio_device_release_direct_mode(idev);
+> +		if (ret)
+> +			return ret;
+> +
+> +		return IIO_VAL_INT;
+> +	default:
+> +		return -EINVAL;
+
+Certainly useless, but should we break and return -EINVAL after the 
+switch, so that it is more explicit that bm1390_read_raw() always 
+returns a value?
+
+> +	}
+> +}
+> +
+> +static int __bm1390_fifo_flush(struct iio_dev *idev, unsigned int samples,
+> +			       bool irq)
+> +{
+> +	struct bm1390_data *data = iio_priv(idev);
+> +	struct bm1390_data_buf buffer;
+> +	int smp_lvl, ret, i, warn;
+> +	u64 sample_period;
+> +	__be16 temp = 0;
+> +
+> +	/*
+> +	 * If the IC is accessed during FIFO read samples can be dropped.
+> +	 * Prevent access until FIFO_LVL is read
+> +	 */
+> +	if (test_bit(BM1390_CHAN_TEMP, idev->active_scan_mask)) {
+> +		ret = regmap_bulk_read(data->regmap, BM1390_REG_TEMP_HI, &temp,
+> +				       sizeof(temp));
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	ret = regmap_read(data->regmap, BM1390_REG_FIFO_LVL, &smp_lvl);
+> +	if (ret)
+> +		return ret;
+> +
+> +	smp_lvl = FIELD_GET(BM1390_MASK_FIFO_LVL, smp_lvl);
+> +	if (!smp_lvl)
+> +		return 0;
+> +
+> +	if (smp_lvl > 4) {
+> +		/*
+> +		 * The fifo holds maximum of 4 samples so valid values
+> +		 * should be 0, 1, 2, 3, 4 - rest are probably bit errors
+> +		 * in I2C line. Don't overflow if this happens.
+> +		 */
+> +		dev_err(data->dev, "bad FIFO level %d\n", smp_lvl);
+> +		smp_lvl = 4;
+> +	}
+> +
+> +	sample_period = data->timestamp - data->old_timestamp;
+> +	do_div(sample_period, smp_lvl);
+> +
+> +	if (samples && smp_lvl > samples)
+> +		smp_lvl = samples;
+> +
+> +	for (i = 0; i < smp_lvl; i++) {
+> +		ret = bm1390_pressure_read(data, &buffer.pressure);
+> +		if (ret)
+> +			break;
+> +
+> +		buffer.temp = temp;
+> +		/*
+> +		 * Old timestamp is either the previous sample IRQ time,
+> +		 * previous flush-time or, if this was first sample, the enable
+> +		 * time. When we add a sample period to that we should get the
+> +		 * best approximation of the time-stamp we are handling.
+> +		 *
+> +		 * Idea is to always keep the "old_timestamp" matching the
+> +		 * timestamp which we are currently handling.
+> +		 */
+> +		data->old_timestamp += sample_period;
+> +
+> +		iio_push_to_buffers_with_timestamp(idev, &buffer,
+> +						   data->old_timestamp);
+> +	}
+> +	/* Reading the FIFO_LVL closes the FIFO access sequence */
+> +	warn = regmap_read(data->regmap, BM1390_REG_FIFO_LVL, &smp_lvl);
+> +	if (warn)
+> +		dev_warn(data->dev, "Closing FIFO sequence failed\n");
+> +
+> +	if (!ret)
+
+if (ret)?
+If done on purpose "return 0;" would be more explicit.
+
+> +		return ret;
+> +
+> +	return smp_lvl;
+> +}
+
+...
+
+> +static int bm1390_setup_trigger(struct bm1390_data *data, struct iio_dev *idev,
+> +				int irq)
+> +{
+> +	struct iio_trigger *itrig;
+> +	char *name;
+> +	int ret;
+> +
+> +	/* Nothing to do if we don't have IRQ for data-ready and WMI */
+> +	if (irq < 0)
+> +		return 0;
+> +
+> +	ret = devm_iio_triggered_buffer_setup(data->dev, idev,
+> +					      &iio_pollfunc_store_time,
+> +					      &bm1390_trigger_handler,
+> +					      &bm1390_buffer_ops);
+> +
+> +	if (ret)
+> +		return dev_err_probe(data->dev, ret,
+> +				     "iio_triggered_buffer_setup FAIL\n");
+> +
+> +	itrig = devm_iio_trigger_alloc(data->dev, "%sdata-rdy-dev%d", idev->name,
+> +					    iio_device_id(idev));
+> +	if (!itrig)
+> +		return -ENOMEM;
+> +
+> +	data->trig = itrig;
+> +	idev->available_scan_masks = bm1390_scan_masks;
+> +
+> +	itrig->ops = &bm1390_trigger_ops;
+> +	iio_trigger_set_drvdata(itrig, data);
+> +
+> +	name = devm_kasprintf(data->dev, GFP_KERNEL, "%s-bm1390",
+> +			      dev_name(data->dev));
+
+Missing NULL check?
+
+> +
+> +	ret = devm_request_threaded_irq(data->dev, irq, bm1390_irq_handler,
+> +					&bm1390_irq_thread_handler,
+> +					IRQF_ONESHOT, name, idev);
+> +	if (ret)
+> +		return dev_err_probe(data->dev, ret, "Could not request IRQ\n");
+> +
+> +
+> +	ret = devm_iio_trigger_register(data->dev, itrig);
+> +	if (ret)
+> +		return dev_err_probe(data->dev, ret,
+> +				     "Trigger registration failed\n");
+> +
+> +	return 0;
+
+...
 
 
