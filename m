@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA0FB7A3E98
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 00:41:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A95587A3E99
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 00:41:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2D0E1C20925
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 22:41:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D84FA1C20925
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 22:41:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CA59125B3;
-	Sun, 17 Sep 2023 22:40:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ED3C111BD;
+	Sun, 17 Sep 2023 22:40:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79E396ABA
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 22:40:40 +0000 (UTC)
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B75412C;
-	Sun, 17 Sep 2023 15:40:39 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-404773f2501so33760315e9.0;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6395611701
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 22:40:41 +0000 (UTC)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E8D512B;
+	Sun, 17 Sep 2023 15:40:40 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-401f68602a8so43049755e9.3;
         Sun, 17 Sep 2023 15:40:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694990437; x=1695595237; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1694990438; x=1695595238; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=d58DRMcmmqVdQpNWAbMiLz0ISFX3idJISFoDmPX5pV4=;
-        b=Fs1yJekj5VZUsnEwk9NjkR7+d7C7lyzCpZip1ahwWs1mGgft6TG5RqPx+wrvTtqsWZ
-         /QCbhKrRJDXxHldMLq3iHY0DvSJ37cGAsd7rO7u7G/UnOnohw8sUhKsgv1hvGTDNDAww
-         OX1qTn04J6/iBfzcbRpJdPelsM1+/TTMGCiYgsKVnOiS154bMd/NNIt9qBLDJeXCilSZ
-         KH4tAyjbUS8GMCB2HoFbFGcUmmeuP6Cl+f74TnNYNpq4AkxAzW55/wRZtPH2ugWiikcC
-         1OO0wAH6oq7hdQYEhqqvGXuFwBi9j1ffgisbh9sYlvjgvGgiOaL7QWlnO2eQWUtCdhWw
-         iAxA==
+        bh=hHjjAyqptO8IMOlepeu6XUuPt7GkOQwtq9aZ8x05FNg=;
+        b=fb+XARL7GHZKTJ98jveBVuggR07aMYJzdA5ocCm6o02ErWQjlQDE1CBShE3P3LoxZu
+         4lX3/PewNS6/YmljvSfFF3EmMBBO30P0BTc3NS0TuEgCu4kEDjM/pO3AiuSOIu5dkyoo
+         Sdb7jU2e2y64jf4G1yJHgap8G6aYOErY4viRdLPBhfBn017inFLb2HxQ0LVnRjT6qq8c
+         42D9C7IKJaCKPJWN1xwmxEgX44+m2dF5WDj11gFUbbhBsnRo9rgU1YyD0bKrpxp37M0L
+         2Uevy9U5RHzaHUC/Y1wQKiwZpMlOnCAJ4T+n/3Scpz1275nTXz36JRHX+IXflrMlcDPA
+         ZhVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694990437; x=1695595237;
+        d=1e100.net; s=20230601; t=1694990438; x=1695595238;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=d58DRMcmmqVdQpNWAbMiLz0ISFX3idJISFoDmPX5pV4=;
-        b=VXyNeom/Fyb4dEl2F1Y5JaxUVfwz3zHMy5p7T1SbScVrYrFJhvSsihGAOehk9q9k9P
-         Ea55zYD7NtynzM5/E6wt2bPGX5xTQbdfThUzr5GtPezM1yo7UUnz64zaeQCG7sm6xOrA
-         ETZXEfxQGNdKH+yL3U14tiBoxg/DD/eeyH5ukz6c7Zb7lHHpfhPSgSctb2ZSPSQtpkhU
-         5fhd1pwaw+PrxOtxRRABr1G1jHj/wPtmEW9ZTnTAZb7VXebpbjpIY+6oDvgW8P8II5GB
-         +1SRmnAKEw/+4aJlee8aK9gP5j5hDKPsoIplFBwKmY8UWxmvyO+cat/NaloJzV9EUwwZ
-         7tfg==
-X-Gm-Message-State: AOJu0YyIe0uu+Qhs+6T5rOShuYIqN5wHgEn7t7u+ESt94JseKIqY0jy1
-	mewS16w93B3q9CTezvjGCyA=
-X-Google-Smtp-Source: AGHT+IEYhBep8mg6WS7aKBOBPPKW2JCJgL7HelrqDWQ8VqlnSyxcZRRMfPYvNeB+WumXVoC+/YvMXQ==
-X-Received: by 2002:a05:600c:2288:b0:404:7865:bf4 with SMTP id 8-20020a05600c228800b0040478650bf4mr5869641wmf.39.1694990437396;
-        Sun, 17 Sep 2023 15:40:37 -0700 (PDT)
+        bh=hHjjAyqptO8IMOlepeu6XUuPt7GkOQwtq9aZ8x05FNg=;
+        b=WVw8FCnrueyJR+4Yrun3q+9GKNvicO93eL69NcJIXoO3kHIgycMmHBeh3iMPSS6+5O
+         3GIQ/9P3BdRdoywP5OEa5yXILQkhN3jjmv9wHlq3X/8znVMAlpsAhl/rb2HZuxFvLaMa
+         Ka/ffVS7kTop05HqaoEwHxPzH13FiZjz8EkhCDNmv2Ybo/O7sZwQ25BNV+u3BxmjsT+o
+         ruNDPQ4s6iOg2OSVklhcY+NgYDifuqamBRok47kQ3AuUJLPJhwHhC+7UNr61X3gk5hKA
+         s9NyzIR4t9La8Cpy+TYEvPBwVip2CQ4uicoNVWJxwsrciSREarHHPG2OYW/A5jHLH4Gm
+         FLyg==
+X-Gm-Message-State: AOJu0Yygut5BIMrvDJDrIYiw5sCcvVAxzx6CmN/2Q0pGdoEQ2E8EPXrt
+	TAYxuZOGgzt0NAf+LFRO04Q=
+X-Google-Smtp-Source: AGHT+IFLk9i3F2eGbtKSIJ4+EO4UrKuGZHKBpH4MGvrG0hpgnN6SI7Pfgpa0h7Kabz110ICpPDUFwA==
+X-Received: by 2002:adf:ce09:0:b0:31f:e74e:8265 with SMTP id p9-20020adfce09000000b0031fe74e8265mr6156359wrn.56.1694990438311;
+        Sun, 17 Sep 2023 15:40:38 -0700 (PDT)
 Received: from [127.0.1.1] ([91.230.2.244])
-        by smtp.gmail.com with ESMTPSA id x14-20020a1c7c0e000000b003fe2b081661sm13642931wmc.30.2023.09.17.15.40.36
+        by smtp.gmail.com with ESMTPSA id x14-20020a1c7c0e000000b003fe2b081661sm13642931wmc.30.2023.09.17.15.40.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Sep 2023 15:40:37 -0700 (PDT)
+        Sun, 17 Sep 2023 15:40:38 -0700 (PDT)
 From: Benjamin Bara <bbara93@gmail.com>
-Date: Mon, 18 Sep 2023 00:40:03 +0200
-Subject: [PATCH 07/13] clk: detect unintended rate changes
+Date: Mon, 18 Sep 2023 00:40:04 +0200
+Subject: [PATCH 08/13] clk: divider: stop early if an optimal divider is
+ found
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +68,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230918-imx8mp-dtsi-v1-7-1d008b3237c0@skidata.com>
+Message-Id: <20230918-imx8mp-dtsi-v1-8-1d008b3237c0@skidata.com>
 References: <20230918-imx8mp-dtsi-v1-0-1d008b3237c0@skidata.com>
 In-Reply-To: <20230918-imx8mp-dtsi-v1-0-1d008b3237c0@skidata.com>
 To: Rob Herring <robh+dt@kernel.org>, 
@@ -93,120 +94,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 
 From: Benjamin Bara <benjamin.bara@skidata.com>
 
-As we now keep track of the clocks which are allowed to change - namely
-the ones which are along the ancestor line between the rate trigger and
-the top-most changed clock, we can run through the subtree of changes
-and look for unexpected ones. Shared parents must set their rate in a
-way, that all consumer-configured rates are respected. As this is
-sometimes not possible and clocks sometime doesn't require the *exact*
-rate, we might have to find a way to find out if it is *exact enough*.
-Then we could fix it in the core.
+During finding the best divider, the current implementation asks the
+parent for the best rate for all its available dividers. If there are a
+lot of supported divider values and the maximum divider is far from the
+target rate, this can lead to many iterations. Depending on the parent,
+the process of calculating the best fitting rate can be quite complex.
+
+Therefore, return early if an optimal divider has been found.
 
 Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
 ---
- drivers/clk/clk.c | 83 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 83 insertions(+)
+ drivers/clk/clk-divider.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index 82c65ed432c5..faececc44c28 100644
---- a/drivers/clk/clk.c
-+++ b/drivers/clk/clk.c
-@@ -2280,6 +2280,74 @@ static struct clk_core *clk_calc_new_rates(struct clk_core *core,
- 	return top;
- }
- 
-+/*
-+ * If the changed clock is consumer-configured, but not an ancestor of the
-+ * trigger, it is most likely an unintended change. As a workaround, we try to
-+ * set the rate back to the old without changing the parent. If this is not
-+ * possible, the change should not have been suggested in the first place.
-+ */
-+static struct clk_core *clk_detect_unintended_rate_changes(struct clk_core *core,
-+							   bool fix)
-+{
-+	struct clk_core *child, *tmp_clk;
-+
-+	if (core->rate == core->new_rate)
-+		return NULL;
-+
-+	if (core->set_rate && core != rate_trigger_clk->core &&
-+	    !clk_core_is_ancestor(rate_trigger_clk->core, core)) {
-+		struct clk_core *parent = core->new_parent ? : core->parent;
-+		struct clk_rate_request req;
-+
-+		pr_debug("%s: unintended change by %s (%lu -> %lu)\n", core->name,
-+			 rate_trigger_clk->core->name, core->rate, core->new_rate);
-+
-+		if (fix) {
-+			clk_hw_init_rate_request(core->hw, &req, core->rate);
-+			req.best_parent_rate = parent->new_rate;
-+			req.best_parent_hw = parent->hw;
-+
-+			if (clk_core_round_rate_nolock(core, &req))
-+				return core;
-+
-+			/* TODO: how close is close enough? */
-+			if (req.rate != core->rate) {
-+				pr_debug("%s: %s fix failed, req=%lu, sugg=%lu\n",
-+					 __func__, core->name, core->rate, req.rate);
-+				return core;
-+			}
-+			if (req.best_parent_rate != parent->new_rate ||
-+			    req.best_parent_hw != parent->hw) {
-+				pr_debug("%s: %s fix failed, req=%s@%lu, sugg=%s@%lu\n",
-+					 __func__, core->name, parent->name,
-+					 parent->new_rate,
-+					 req.best_parent_hw->core->name,
-+					 req.best_parent_rate);
-+				return core;
-+			}
-+
-+			core->new_rate = core->rate;
-+		}
-+		return NULL;
-+	}
-+
-+	hlist_for_each_entry(child, &core->children, child_node) {
-+		if (child->new_parent && child->new_parent != core)
-+			continue;
-+		tmp_clk = clk_detect_unintended_rate_changes(child, fix);
-+		if (tmp_clk)
-+			return tmp_clk;
-+	}
-+
-+	if (core->new_child) {
-+		tmp_clk = clk_detect_unintended_rate_changes(core->new_child, fix);
-+		if (tmp_clk)
-+			return tmp_clk;
-+	}
-+
-+	return NULL;
-+}
-+
- /*
-  * Notify about rate changes in a subtree. Always walk down the whole tree
-  * so that in case of an error we can walk down the whole tree again and
-@@ -2484,6 +2552,21 @@ static int clk_core_set_rate_nolock(struct clk_core *core,
- 		goto err;
+diff --git a/drivers/clk/clk-divider.c b/drivers/clk/clk-divider.c
+index a2c2b5203b0a..61b40dfb4e6f 100644
+--- a/drivers/clk/clk-divider.c
++++ b/drivers/clk/clk-divider.c
+@@ -332,6 +332,15 @@ static int clk_divider_bestdiv(struct clk_hw *hw, struct clk_hw *parent,
+ 			bestdiv = i;
+ 			best = now;
+ 			*best_parent_rate = parent_rate;
++			if (now == rate)
++				/*
++				 * Calculating fitting PLL parameters, which
++				 * might be done in parent's round_rate, can be
++				 * time-consuming. Therefore, the lowest parent
++				 * rate which gives us the exact required rate
++				 * is already optimal.
++				 */
++				return i;
+ 		}
  	}
- 
-+	/*
-+	 * The notifying process offers the possibility to fix the rates of
-+	 * unrelated clocks along the tree. After that, run a detection to find
-+	 * clocks which are potentially wrongly configured now. These might be
-+	 * fixed by the core in the future.
-+	 */
-+	fail_clk = clk_detect_unintended_rate_changes(top, false);
-+	if (fail_clk) {
-+		pr_err("%s: unintended rate change cannot be fixed\n",
-+		       fail_clk->name);
-+		ret = -EINVAL;
-+		goto err;
-+	}
-+
-+
- 	/* change the rates */
- 	clk_change_rate(top);
  
 
 -- 
