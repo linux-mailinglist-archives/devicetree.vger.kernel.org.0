@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5788B7A35A3
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 15:17:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 680E57A35A8
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 15:20:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CD732813C2
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 13:17:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07B251C208CA
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 13:20:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54D1D46BF;
-	Sun, 17 Sep 2023 13:17:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 738754428;
+	Sun, 17 Sep 2023 13:20:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CEA03C26
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 13:17:13 +0000 (UTC)
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42C4718B
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 06:17:11 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-401f68602a8so39829835e9.3
-        for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 06:17:11 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7CE0290B
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 13:20:38 +0000 (UTC)
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9749C12F
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 06:20:37 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id 5b1f17b1804b1-404539209ffso36576515e9.0
+        for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 06:20:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=aceart.de; s=google; t=1694956629; x=1695561429; darn=vger.kernel.org;
+        d=aceart.de; s=google; t=1694956836; x=1695561636; darn=vger.kernel.org;
         h=mime-version:user-agent:content-transfer-encoding:organization
          :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=Mgpgf51WlJtHJV0Rp4UXo+NI5qfPAJ/I7UubaP6q1W0=;
-        b=HSAn/xV3NFP79uUDNIRz1ybJZCEfgQKNnYdZKck835lpjI3KWZFAKgCi/ES2ivJEOO
-         bIbzPUPQSsPlwIDTN1ysE53v3V3/2rGqBCNb+JDQsfikQoS6TNgiuTOuX1viX/jSUSDk
-         czmARCwXjXJ9dOaSPwUI5IGl0ZBTP5gEo2xvW45NPRF6FA4DGGbI3goCs5FZXcxifyKB
-         CyfjxoDA7T2eNtbaoD1j7iXAWSYNSp6LR5p++35HRjSji2ClbU30z4pttcR3FVsIvs3H
-         2MEVf5/Tz8d+iKHNM8UjH1ZTLtE/p+vlwKmMiAokwG5DSvmlsORiM+JrLHiwO5WT8TE6
-         8bTQ==
+        bh=KeYIqn2tdFkcVAufe9gBvH8l2EIbPxMaLKSc9nvnSeI=;
+        b=fGP/lbeOLDw9ka7WpYIOuuqmh2b0qkPdH4OKothbxnK3awDnxiGkVXPoqDUU4I9Bbh
+         gHibX/usDnz6WHH2BHTYY6hKXtmwJaoLJJwJO+eP1isLelK6Cv0rlx8qXE1PIHe3RdpE
+         XcENRMZei5ZaA5Fvoxugqi3n5axgIOIQQUdZgJjIe55D6YnWB74vgmU96fCdQHdgoCok
+         9yl9FQBmzI4Cb/Ma8gdsOlXtdfw/w5wBdHZckbjoPkE7y3vlsdmHnAzaOXU/WePYx+Ti
+         PZ4/2YQYNzvM6VH5IR8i9KlD7lXZJoBbqf30HE2nsZFJv5cbe0038aHxi4mRLphfmfVl
+         CTTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694956629; x=1695561429;
+        d=1e100.net; s=20230601; t=1694956836; x=1695561636;
         h=mime-version:user-agent:content-transfer-encoding:organization
          :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Mgpgf51WlJtHJV0Rp4UXo+NI5qfPAJ/I7UubaP6q1W0=;
-        b=v9AnYzbuHOeFbkxApuPHpt7hS2fRqiiBxdoAqQEG+J3bcp+MVjdo6XMdqIZFjvxPk+
-         VM9lPdHQs+vxV1asGXPoK/GrrFc4qtm/IORqkpMUH83Hsd0R8BJ7e5RKe9TiqGF3Fq+N
-         J1JhPNbZo46YJRofTLrKzP1yZKgk48KW0a0gZfvJm+qveoGhCHvaO+fySlMyLfM4Jqda
-         eyJQcU2jybGKYUNPzDaylSX6yzMZ64vu/0/ZxvwbQNFjUi/Hq12b1MJiMrPypKpIxMA3
-         vZHqAMCqBK0mEf0Y+dyYaXF5hMESlsXgbvgRvDr+zhKOjcFHVdXkb/SQ+goFl38XlqnJ
-         dvuw==
-X-Gm-Message-State: AOJu0YxMmNFHScLQe4AxID/kmKHOUI1Tf0NleelfvkM+39KZiEfYIJRI
-	2aOF53ktFoeMiqcCxj5UNEV2kA==
-X-Google-Smtp-Source: AGHT+IHbddY4ACq7Zaot0S6FIVRIu0s/oobjuCpymDfmDT0A3OCnmkbaFe1yKVSrYn7lFvxvXBA0gw==
-X-Received: by 2002:a1c:f30a:0:b0:402:ea96:c09a with SMTP id q10-20020a1cf30a000000b00402ea96c09amr5889645wmq.16.1694956629493;
-        Sun, 17 Sep 2023 06:17:09 -0700 (PDT)
+        bh=KeYIqn2tdFkcVAufe9gBvH8l2EIbPxMaLKSc9nvnSeI=;
+        b=B8+pkKRZ+KRTwp9ZcRl4l/S0X/ARkLGTUrJVfPNmmuJtgXe8ke7lg43qh9M3gcmjnH
+         bUxsOrXRsl7/B3vcjSzY+qVbnQu9d7a3ulP7GHz8JYOlNiVlKCujeaqF285SXfqPQrMg
+         HyLq/rtyMLBUni4WqEVkB/IZIH+hjxeq9b6eoJ8Vu6oT8qSwbidRc9coYILdOfmmFQAY
+         k7lZDHM0FC9TPW9odOka8nmqmMqA0ERpa8C4glgXRX6cPcnTB8z6kBlH3D8CB87MOCCo
+         N6T9k52smq3FNVdI5XYbZs3EJFFeS76X3415mki2Q8kcBHYV8KJkLH4IVHCD5jVFPCPH
+         0ZZA==
+X-Gm-Message-State: AOJu0YzK3u24T/YAeGcxzENcyzp7ZLoQUesICnwFpzpYCA9dSJhcNtwl
+	K5Gnr/hOqO5ra+UYFmpMBVWchQ==
+X-Google-Smtp-Source: AGHT+IH4ywV4aEv+TpxbpFW30ZsBFhptGh4bDnt8s/U1O/3wFXPg4T07xR32tTPSdkwu/HFEYDVc2A==
+X-Received: by 2002:a05:600c:2901:b0:401:906b:7e9d with SMTP id i1-20020a05600c290100b00401906b7e9dmr6226687wmd.18.1694956835911;
+        Sun, 17 Sep 2023 06:20:35 -0700 (PDT)
 Received: from ?IPv6:2a02:8070:d84:9160:acd3:26fc:724e:a2dd? ([2a02:8070:d84:9160:acd3:26fc:724e:a2dd])
-        by smtp.gmail.com with ESMTPSA id y14-20020a5d4ace000000b0031c5dda3aedsm9779189wrs.95.2023.09.17.06.17.08
+        by smtp.gmail.com with ESMTPSA id r9-20020a05600c320900b00404732ad815sm8936077wmp.42.2023.09.17.06.20.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Sep 2023 06:17:09 -0700 (PDT)
-Message-ID: <c8168e781f3fc55f594f0c85501c480db5176497.camel@aceart.de>
+        Sun, 17 Sep 2023 06:20:35 -0700 (PDT)
+Message-ID: <dd0f65048f7030184caad4d99b8277d589c6d352.camel@aceart.de>
 Subject: Re: [PATCH 2/2] arm64: dts: qcom: msm8939-huawei-kiwi: Add initial
  device tree
 From: lukas walter <lukas.walter@aceart.de>
-To: krzysztof.kozlowski@linaro.org
+To: bryan.odonoghue@linaro.org
 Cc: agross@kernel.org, andersson@kernel.org, conor+dt@kernel.org, 
  devicetree@vger.kernel.org, konrad.dybcio@linaro.org, 
  krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org, 
  linux-kernel@vger.kernel.org, lukas.walter@aceart.de, 
  phone-devel@vger.kernel.org, raymondhackley@protonmail.com,
  robh+dt@kernel.org,  ~postmarketos/upstreaming@lists.sr.ht
-Date: Sun, 17 Sep 2023 15:17:08 +0200
-In-Reply-To: <bd833cee-2349-368d-93a4-9465ebc8a0e9@linaro.org>
+Date: Sun, 17 Sep 2023 15:20:34 +0200
+In-Reply-To: <3a66a198-5817-4c74-9047-c49e5bcc84c2@linaro.org>
 Organization: aceArt GmbH
-Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.48.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -81,33 +81,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA256
 
+>Are you sure this is 3620, have you tried wcn3660 and/or wcn3680 ?
 
->Order of SoB is unusual. Who did what here?
+I am sure. Downstream source [1] and downstream dmesg (wcnss: IRIS Reg:
+51120004 which should equal [2]) indicate 3620 (3620A does not exist)
 
-I created the dts and they update the model name. So it should be the
-other way around
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEi1ngOOsyNO1iyMXiY16HCsLx2zUFAmUG/FQACgkQY16HCsLx
-2zXbug//cFZNScSBr6k1I4tHuthR2+CFhTqOO0x0EqMa6W+l96s7ZimJA8UGq2jJ
-F+4BZHujtBlpd1p4bE/GMDERy6MMHmAW7/N8kl3dEfwErwvjwML4nvDLRSC2Movd
-93MNJ+4tncTndMLUEyARUUg5sP6Idgc/83pMRzKn4toFxWMHfWPFHy5XlNLDjJT5
-/BuvYlbAFpme9ZavTLMGtalOp6ovsS1qNRrNk/CZecV+I5tCVFs4ZbzMHf8vKi3/
-B7yObHRsZEdy80KE77kedgyBlGWu0/Tvu7xrK2qZxawkbraLBn+qE76wCmgk91qg
-7EheFFr30v1LuudZbA+5fOE3qC13u3LbmCaRwwKAC8S7C6OgMM8Vcg08rPdaaV10
-m1MDSPgxddA/TitQNz3epvFahpm1WWuGhR2xihDP/r345kogUYcRiLw4eqIkYKjb
-64Wgalclq8XByymGLndYuoBaR31wauOjCtShiHByRTp86XTWh9C+KJ2wVGdE2UWL
-ok+qs1hrao328+FtgtZn7FxnmO2yLA9I6xLeEPgTSt5VSZ9NWpRNQ5h61AYDEaZV
-YPy3cTJV5VN5Mrp6dul7bT/Ti5rp8tCH5zk6D62WTSq2xEzkDtjnE1DKzr2+0KNt
-c2VZQGmquTiTotnQF2c4E2M9ONd+TxN9sn0dYqwwZa0BLEI1JBk=3D
-=3DF2cY
------END PGP SIGNATURE-----
+[1]:
+https://github.com/CyanogenMod/android_kernel_huawei_kiwi/blob/cm-14.1/arch=
+/arm/boot/dts/qcom/huawei_msm8939_kiw_al20_vb/huawei-bt.dtsi#L5
+[2]:
+https://github.com/msm8916-mainline/linux-downstream/blob/b20608408caff817e=
+c874f325127b07609fbaeb8/drivers/net/wireless/wcnss/wcnss_vreg.c#L51
 
