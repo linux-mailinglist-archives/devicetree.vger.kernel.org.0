@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EA547A3417
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 09:37:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 439217A341E
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 09:46:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51DFC1C2087C
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 07:37:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C924328160B
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 07:46:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7D0F1869;
-	Sun, 17 Sep 2023 07:37:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C763186B;
+	Sun, 17 Sep 2023 07:46:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13DAC1865
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 07:37:16 +0000 (UTC)
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACF4918B
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 00:37:15 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2bcb89b4767so54592381fa.3
-        for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 00:37:15 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 122041859
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 07:46:27 +0000 (UTC)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FE3D18B
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 00:46:26 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-986d8332f50so466939666b.0
+        for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 00:46:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694936234; x=1695541034; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694936785; x=1695541585; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RvMkdgtkNGNiDefVNDejUYjyLoLcBedhxBbnbsWuV2o=;
-        b=EdgNhkm2/OWh4eFVILZIOYcI4tTe76U7RLvW2g92A2GSGPxugLoWVmxHGdpAycljam
-         fq5MdFWedy/dktk23hfw2K9ACk7LwQe7JpEQF9L4/Iv5f3E1hFDtioCAtAaJAvqpyBaJ
-         G2D++qYjC9RkEfc51/aHN3dua0gL2Lo264sopwHFpKE9sbd+ZoMviY/m0n2wloSRLQy8
-         n1Sjgf+AgDhI6Xvvyh24WxH8x5kt8vR10fDlkM+jMFjLCqU6y1FR7cP0/vRjiyYpIA/a
-         DwDvCGT2iCPdGJKdFncI9yCemqv2KEiOfv3Tvc6GTPxxZPKnpgKifCmYmsGX3ukriy4+
-         prcQ==
+        bh=x48DqBTN3AQWtiandQopaqlFClBcuCunTmT5FYjWw7c=;
+        b=v6jtl+FK5hFxikvLGjbZ1w6jeDKW0Yj3iUUgeJOIJGp1lyJ9n7bOY61KjYBZuMXh4z
+         dBd69TrQeSfnvGOpX4DMeJyfMkxZ28RM4vxHkRZQMq3pbv+oVl8kGa5QX+tSKfjeteVW
+         4dux/kVZKNK59t+dQDKsvGp7AKeHiXlP5QQxoQerFh/PWuZnYR+dd3opkZL18Yksq7lY
+         nyMv1n5cI7Nei7M7/6dW/AWOTOqcNXjK+0kAIWaQZLFC5liRt62vvr7vz93kStUVjQWc
+         ZmGhMtjUw5zBOzug8oknZJ1rsomJRMGEKyU0loL12tttpYffPJA77KFoypQGaBZ2dGC1
+         +awA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694936234; x=1695541034;
+        d=1e100.net; s=20230601; t=1694936785; x=1695541585;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RvMkdgtkNGNiDefVNDejUYjyLoLcBedhxBbnbsWuV2o=;
-        b=Nl6dLQa7zJgj9ECI2FFpHBTSvarDkSgSc8zeXm52rdPY/iiPK8XmxaaRMSbM9hc6Hv
-         WKAaQYbaqnZwMjQuWjETYOeJQU277naEw3BEjDwpGYwqpzOCBpmny/XNfQ46h8/ZWsGR
-         ZYbVhzcXMWtqobSHP1tFbP97GQcM44/+ZR2ZU89FUiELEW8+7sWRFtVhBd/evckSwA+2
-         wCPtuU9C1wzQEG9AbfQn1/EHjvbEtstYbH1AajhniomzsLETaAt2UXTdMhAVcZPPANBf
-         gI4OAdYprycriBnRSxi+QQsfvtfwZ7lh6Fu4rOw+GGCWSvUpOgrZlskLHSuhs6u/k93W
-         uVYA==
-X-Gm-Message-State: AOJu0YzEgRgcDS3dHpM9da7pboOoaFBYpF0veAHozfvYr6gXmeDfSNfm
-	nY8OIi8NABSoGp1CDprgqdTlOw==
-X-Google-Smtp-Source: AGHT+IEL8NbLQzIyJwWj3iyNixBkp1V6UkVgGtcWAffqfVPS4lYuBlbxvc3fLnB6Mt/CSDQri1aZ8g==
-X-Received: by 2002:a2e:9791:0:b0:2bd:1cd0:603f with SMTP id y17-20020a2e9791000000b002bd1cd0603fmr4929585lji.45.1694936233810;
-        Sun, 17 Sep 2023 00:37:13 -0700 (PDT)
+        bh=x48DqBTN3AQWtiandQopaqlFClBcuCunTmT5FYjWw7c=;
+        b=udmNXKNttfRHGDUJpHTT4AJJs+yuzV+Zlvv6a3UMChqtHoWRdx0TPi7B0l5ER14ijr
+         JAlkXalGrh12DO9EU71+m0CyWgkxRTRTV3n7vqWBUDctsF8vRmImYVtNfLOxP22IQzeH
+         74fM4Mj57TJ7gsIstDvbENJRZYrCvAn/Y49j1peQ6TPUyPcVqGDtwbdlg8jzVcqrm49g
+         PtM2qZ1lHGFfwp3zI0wR3tPh6WzjlQ5Jm4Gi3ehIF+LqqrTlJZmAcayZz0QfHYz9YzPU
+         zT85zfjRBPTOZ6X+r22pQhhG2fNaZ3Rwa3lNSFGKhJylS7OAkBFm82VA/QCmnbdPJD1+
+         wH0g==
+X-Gm-Message-State: AOJu0YxFdpoSjT9pZl9PvNJCDz9XxzLlI/Jrgr4sMC3aXFBR688vx/dn
+	UhSsDCn0llztaiTJVK9TklMS8A==
+X-Google-Smtp-Source: AGHT+IEMmvm/T/dhMyFPD2yzU4xF7sgZOL4AXo/0tCt/ITKpvjmCL9NMFZ+P4kx1vyfX0NMPsFeTZw==
+X-Received: by 2002:a17:906:8a5b:b0:9ad:ec25:825b with SMTP id gx27-20020a1709068a5b00b009adec25825bmr2669953ejc.58.1694936784759;
+        Sun, 17 Sep 2023 00:46:24 -0700 (PDT)
 Received: from [192.168.1.77] (150-140-187-31.ftth.glasoperator.nl. [31.187.140.150])
-        by smtp.gmail.com with ESMTPSA id s22-20020a1709066c9600b00993a9a951fasm4739819ejr.11.2023.09.17.00.37.12
+        by smtp.gmail.com with ESMTPSA id xj7-20020a170906db0700b009adc77330ebsm3597089ejb.199.2023.09.17.00.46.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 17 Sep 2023 00:37:13 -0700 (PDT)
-Message-ID: <bbf576d9-ec2c-e243-fddf-9f74ae44e0fd@linaro.org>
-Date: Sun, 17 Sep 2023 09:37:12 +0200
+        Sun, 17 Sep 2023 00:46:24 -0700 (PDT)
+Message-ID: <46d911d0-481d-4247-332c-9f2d27c7099a@linaro.org>
+Date: Sun, 17 Sep 2023 09:46:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,18 +66,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: power: qcom,rpmpd: Add SM7150
+Subject: Re: [PATCH v2 1/6] dt-bindings: gpio: vf610: update gpio-ranges
 Content-Language: en-US
-To: Danila Tikhonov <danila@jiaxyga.com>, agross@kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- ulf.hansson@linaro.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20230916175952.178611-1-danila@jiaxyga.com>
- <20230916175952.178611-2-danila@jiaxyga.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Stefan Agner <stefan@agner.ch>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Peng Fan <peng.fan@nxp.com>
+References: <20230916-vf610-gpio-v2-0-40823da788d7@nxp.com>
+ <20230916-vf610-gpio-v2-1-40823da788d7@nxp.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230916175952.178611-2-danila@jiaxyga.com>
+In-Reply-To: <20230916-vf610-gpio-v2-1-40823da788d7@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,13 +93,13 @@ X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 16/09/2023 19:59, Danila Tikhonov wrote:
-> Add a compatible for SM7150 platforms.
+On 16/09/2023 04:03, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> i.MX93 supports four gpio-ranges at max. To fix below issue:
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
