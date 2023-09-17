@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 361717A3E93
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 00:40:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D11A47A3E94
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 00:40:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5694A1C20929
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 22:40:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95CB32811FD
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 22:40:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09A3DF514;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77A98F51C;
 	Sun, 17 Sep 2023 22:40:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC68B33DF
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 22:40:35 +0000 (UTC)
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 627B512D;
-	Sun, 17 Sep 2023 15:40:34 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-403012f27e3so44636355e9.3;
-        Sun, 17 Sep 2023 15:40:34 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D25B7320F
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 22:40:36 +0000 (UTC)
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71FE9130;
+	Sun, 17 Sep 2023 15:40:35 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-40413ccdd4cso22025245e9.0;
+        Sun, 17 Sep 2023 15:40:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694990433; x=1695595233; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1694990434; x=1695595234; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=kzm9ZqjvlbCK0SNFX+TbEk59mYOrgBPner6DepnRFUs=;
-        b=jWIKQ39oDrDUCkUhPcCAP2YKqL8LQrFWAuoPYs5oa6/WcgEklDOBebTnpL1di7pmyk
-         IB2cx3qnoGhUR9+DYYSibj8n7mgvOVnjbtmbvdaQWptg8Li9k2504ESc0KHuURItErY5
-         qoKCwH916xGxsL2vryMLmBeVzf6LbHrdlOMq71IVko5isXDfgpTiBFimjZQ85cnfT5dx
-         0jAxRKd8OQaDqkz0bkmBe/JcVCogPInq+cMuNFDhJCTaXgb/IJ/Dnc805YpBWz8Vtu3M
-         jPPb39XJ5a3UiRxuuT/qUaUPSRcejbnFLvwbwnXSMOraR3v/faQB5Io7VkxLqyYmS3Hx
-         +hIg==
+        bh=AJPaLL3gJNqPRX6sTrQa6Jnq3juPdy0EeCdpo1oNzQw=;
+        b=jeDqhSr6FI7PiMIYasG3rO2uXEgINeM15EI7HhFzBc5HHTAKN127bTEjvbYvy1P8Kd
+         knX3QlSVpxGiQqgfTOn8CYA7FQimcw5AMZwgeYouYtcN7GRQlJMHhkCAtbBTw2HIFlFM
+         XLRsYPsEOqN6ugvVYmW8cIOhvRMVZm0a9xJxSSV+uswCDof2Z1w3dT/sVNVbJViiT8Vl
+         F6lARTx/LRWztFQfdC+KWdgnmVfHlOtpuSiVSYNHSPXTgi5qBnUo05YFgiCl/KhGFI3c
+         9vM9Q5TWSETk0LvIjckAyryjGedplRRBY/NF9kgnIsi+T193nT7Hf7qzVpld6WGtgA/c
+         U5Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694990433; x=1695595233;
+        d=1e100.net; s=20230601; t=1694990434; x=1695595234;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=kzm9ZqjvlbCK0SNFX+TbEk59mYOrgBPner6DepnRFUs=;
-        b=BMBgEmxRkNzxV45WAZM8j+jbpuoyvWPnJrqaPUu+9IYtPcQptxlKXZnrjHfqjGhFsS
-         wfSddRAWiGpVznbZn4Z21AmRmz4QQqh4nLkOIigCueSWDBGqmzjhyjb7fp1ns/UIexSH
-         LjYQxDVx3Gg6/5YuB2/hwkezwtKowGRM3DkNCieNzMnGPck7Q6GYvFlwp092VvTouEBb
-         WjicOpaWC8/qKWbCs3Wt0KhXXTEPf6p8QbSjZV1SRfIyrBsGKFi1f40I+Y4ulqEyPYnx
-         VTGXnZNys4kRbRYYojKo9336xOtE8tlmqjnkFA/hcA8AauaTqmK5RTJSq2CAzpx9wBQi
-         wGYQ==
-X-Gm-Message-State: AOJu0Yylus33jOgu8RlVPZqQvHhsLTCUkJ9p7Ap5RzjArm+ryGeLAt4N
-	AEYoFJRRy9s7MAuvnIVoqeA=
-X-Google-Smtp-Source: AGHT+IGWN1013/FPAnQNrT8Yy8PnHN/jWTSwQasqirYksiAE84RBS07CHFOeC869nuq6MRWGumVInw==
-X-Received: by 2002:a5d:6f0e:0:b0:321:4c7e:45e2 with SMTP id ay14-20020a5d6f0e000000b003214c7e45e2mr1505903wrb.8.1694990432669;
-        Sun, 17 Sep 2023 15:40:32 -0700 (PDT)
+        bh=AJPaLL3gJNqPRX6sTrQa6Jnq3juPdy0EeCdpo1oNzQw=;
+        b=CStjJfPMMOf+LyBbcvVhhNbPFEeNYbbBZrFlWHIrBCMJJTsFz5FaXavEPHbVrHIEiM
+         COI4NgKaZqJvCXFjuklDh3GN9VSVUGAVFTeD2nhLeLXhOiU2zHDWHlDbQDPgmnkidlqX
+         +xA+y9OhgofBQbc9MmhUJg0+sqVSIScQ3McI15Y+1mnIYlVQhCr/id2OX1/AXmZli/2K
+         xM5owkAU+IP37XT4aV7gKUlUfiLydHUSHB2r/w8G7Wgy9c0BsmlVDDuECfJ7NiwYmBuA
+         avVZWZ3SagjXMhq/wnaobbcJHH6uiuRczR7bPTmkGahbyFGoBa5BC1ns0VPFjMz0pDYA
+         dV+A==
+X-Gm-Message-State: AOJu0Ywt4aX2+DXIs4PRf/rHjbYZ0ELMVYrS/gRwpKaFO6FiIdiGJCfj
+	b8I0pZ5XtXJ4E06EBfjXXpk=
+X-Google-Smtp-Source: AGHT+IHAtcxw7kNPCGsfPeyvRci6B2TGJjm5SaBwDRo/wssjZoEUG1YriSdAYHy4qrPTLAuYhmg79A==
+X-Received: by 2002:a05:600c:1914:b0:401:bcec:be3e with SMTP id j20-20020a05600c191400b00401bcecbe3emr7808004wmq.17.1694990433512;
+        Sun, 17 Sep 2023 15:40:33 -0700 (PDT)
 Received: from [127.0.1.1] ([91.230.2.244])
-        by smtp.gmail.com with ESMTPSA id x14-20020a1c7c0e000000b003fe2b081661sm13642931wmc.30.2023.09.17.15.40.31
+        by smtp.gmail.com with ESMTPSA id x14-20020a1c7c0e000000b003fe2b081661sm13642931wmc.30.2023.09.17.15.40.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Sep 2023 15:40:32 -0700 (PDT)
+        Sun, 17 Sep 2023 15:40:33 -0700 (PDT)
 From: Benjamin Bara <bbara93@gmail.com>
-Date: Mon, 18 Sep 2023 00:39:58 +0200
-Subject: [PATCH 02/13] arm64: dts: imx8mp: re-parent
- IMX8MP_CLK_MEDIA_MIPI_PHY1_REF
+Date: Mon, 18 Sep 2023 00:39:59 +0200
+Subject: [PATCH 03/13] clk: implement clk_hw_set_rate()
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,7 +67,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230918-imx8mp-dtsi-v1-2-1d008b3237c0@skidata.com>
+Message-Id: <20230918-imx8mp-dtsi-v1-3-1d008b3237c0@skidata.com>
 References: <20230918-imx8mp-dtsi-v1-0-1d008b3237c0@skidata.com>
 In-Reply-To: <20230918-imx8mp-dtsi-v1-0-1d008b3237c0@skidata.com>
 To: Rob Herring <robh+dt@kernel.org>, 
@@ -83,7 +82,7 @@ To: Rob Herring <robh+dt@kernel.org>,
 Cc: Frank Oltmanns <frank@oltmanns.dev>, Maxime Ripard <mripard@kernel.org>, 
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- Benjamin Bara <benjamin.bara@skidata.com>, Adam Ford <aford173@gmail.com>
+ Benjamin Bara <benjamin.bara@skidata.com>
 X-Mailer: b4 0.12.3
 X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
@@ -94,54 +93,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 
 From: Benjamin Bara <benjamin.bara@skidata.com>
 
-Similar to commit 07bb2e368820 ("arm64: dts: imx8mp: Fix video clock
-parents") the parent of IMX8MP_CLK_MEDIA_MIPI_PHY1_REF should be set in
-the media_blk_ctrl. Currently, if mipi_dsi is not in use, its parent is
-set to IMX8MP_VIDEO_PLL1_OUT, and might therefore clash with the
-constraints coming from a panel.
+This function can be used to set the rate of a clock hardware from a
+driver, e.g. to adapt the rate to a clock change coming from the parent.
 
-Cc: Adam Ford <aford173@gmail.com>
 Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
 ---
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 14 ++++++--------
- 1 file changed, 6 insertions(+), 8 deletions(-)
+ drivers/clk/clk.c            | 15 +++++++++++++++
+ include/linux/clk-provider.h |  1 +
+ 2 files changed, 16 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index c946749a3d73..9539d747e28e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -1640,11 +1640,6 @@ mipi_dsi: dsi@32e60000 {
- 				clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
- 					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF>;
- 				clock-names = "bus_clk", "sclk_mipi";
--				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_APB>,
--						  <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF>;
--				assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>,
--							 <&clk IMX8MP_CLK_24M>;
--				assigned-clock-rates = <200000000>, <24000000>;
- 				samsung,pll-clock-frequency = <24000000>;
- 				interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_DSI_1>;
-@@ -1747,13 +1742,16 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
- 						  <&clk IMX8MP_CLK_MEDIA_APB>,
- 						  <&clk IMX8MP_CLK_MEDIA_DISP1_PIX>,
- 						  <&clk IMX8MP_CLK_MEDIA_DISP2_PIX>,
--						  <&clk IMX8MP_VIDEO_PLL1>;
-+						  <&clk IMX8MP_VIDEO_PLL1>,
-+						  <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF>;
- 				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>,
- 							 <&clk IMX8MP_SYS_PLL1_800M>,
- 							 <&clk IMX8MP_VIDEO_PLL1_OUT>,
--							 <&clk IMX8MP_VIDEO_PLL1_OUT>;
-+							 <&clk IMX8MP_VIDEO_PLL1_OUT>,
-+							 <&clk IMX8MP_CLK_24M>;
- 				assigned-clock-rates = <500000000>, <200000000>,
--						       <0>, <0>, <1039500000>;
-+						       <0>, <0>, <1039500000>,
-+						       <24000000>;
- 				#power-domain-cells = <1>;
+diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+index c249f9791ae8..3e222802b712 100644
+--- a/drivers/clk/clk.c
++++ b/drivers/clk/clk.c
+@@ -2462,6 +2462,21 @@ static int clk_core_set_rate_nolock(struct clk_core *core,
+ 	return ret;
+ }
  
- 				lvds_bridge: bridge@5c {
++int clk_hw_set_rate(struct clk_hw *hw, unsigned long req_rate)
++{
++	/* A rate change is ongoing, so just target the required rate.
++	 * Note: this does not work if one clock along the line has
++	 * CLK_RECALC_NEW_RATES active, as this overwrites the new_rate again.
++	 */
++	if (hw->core->new_rate != hw->core->rate) {
++		hw->core->new_rate = req_rate;
++		return 0;
++	}
++
++	return clk_core_set_rate_nolock(hw->core, req_rate);
++}
++EXPORT_SYMBOL_GPL(clk_hw_set_rate);
++
+ /**
+  * clk_set_rate - specify a new rate for clk
+  * @clk: the clk whose rate is being changed
+diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
+index ec32ec58c59f..3fb99ed5e8d9 100644
+--- a/include/linux/clk-provider.h
++++ b/include/linux/clk-provider.h
+@@ -1316,6 +1316,7 @@ int clk_hw_get_parent_index(struct clk_hw *hw);
+ int clk_hw_set_parent(struct clk_hw *hw, struct clk_hw *new_parent);
+ unsigned int __clk_get_enable_count(struct clk *clk);
+ unsigned long clk_hw_get_rate(const struct clk_hw *hw);
++int clk_hw_set_rate(struct clk_hw *hw, unsigned long req_rate);
+ unsigned long clk_hw_get_flags(const struct clk_hw *hw);
+ #define clk_hw_can_set_rate_parent(hw) \
+ 	(clk_hw_get_flags((hw)) & CLK_SET_RATE_PARENT)
 
 -- 
 2.34.1
