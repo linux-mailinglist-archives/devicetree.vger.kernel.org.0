@@ -1,78 +1,112 @@
-Return-Path: <devicetree+bounces-889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AF5B7A36F0
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 19:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95A577A36F5
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 19:58:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C1951C21607
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 17:51:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B2FC1C20A9B
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 17:58:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CD426AA4;
-	Sun, 17 Sep 2023 17:51:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EC4F6ABA;
+	Sun, 17 Sep 2023 17:58:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 333E84A29
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 17:51:37 +0000 (UTC)
-Received: from out-223.mta0.migadu.com (out-223.mta0.migadu.com [IPv6:2001:41d0:1004:224b::df])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8B5C135
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 10:51:35 -0700 (PDT)
-Date: Mon, 18 Sep 2023 03:46:06 +1000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-	t=1694973092;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=X5VCzkLDtXSGELcuDnEU7RoMTTqvoogEBre3WHO6Oe4=;
-	b=POpXb36kq+DJyJrG0vdY/DNXzBnwQQvdNRgqGSB3eRhARVMVl1NUpzhs9sy5vsUoUO9Ztb
-	IEJH6VqaBwOZBGLau3ZB7NwcPuCBfGNywbfVf2Bbp9ARvsK32zWZlJPK7fCIkDwrvB7zWU
-	A9Bi9jPmQjXrD0KXvb/91pZfoE3p8qIyLghdXxSz2XwjO5tda2tSxgErFYajJNhCm98oQr
-	BmPWQ9Ehv13cT+Suj80R3guDpJS7zOZTPCutteLzAcgL/UDFoOm3QNQ6R3ky7/udI1jsFs
-	5mVi06C45DmQUiELdif0DP3KmVwGLOvddB7oizToeTkgzsZ2ZrXo5mGrcWzAgA==
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: John Watts <contact@jookia.org>
-To: alsa-devel@alsa-project.org
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] ASoC: dt-bindings: wlf,wm8782: Add wlf,fsampen
- property
-Message-ID: <ZQc7XnrXX5VenYoX@titan>
-References: <20230917173726.1916439-1-contact@jookia.org>
- <20230917173726.1916439-4-contact@jookia.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 491AE5226
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 17:58:45 +0000 (UTC)
+Received: from smtp.smtpout.orange.fr (smtp-18.smtpout.orange.fr [80.12.242.18])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61D7B122
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 10:58:40 -0700 (PDT)
+Received: from [192.168.1.18] ([86.243.2.178])
+	by smtp.orange.fr with ESMTPA
+	id hw2MqAKVBUbVihw2MqRYG1; Sun, 17 Sep 2023 19:58:32 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1694973512;
+	bh=n5GOty1FZm3dW6STDTU4IzxaJuBtMC1qUI5dLmOz7Vg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=Co20ujl7wd3fI3AqepZdv+qa/OQOhrYcmkE48an/tSGeexYfljBIas7OjH3X+rAg/
+	 BnXA0DNr1dQ3qiFLAwcIZwUItWUBTxHwJdr96ajCHJk+i5lMbX1vm+XZf8+TZs1BDK
+	 xd7CmWBYFCloEHCwRNIC7LdVwn544+a3kbbxwP1E4rVveJXk2GxkiiV3OrMz+RqKb2
+	 HgDSLGs2Ygn0XDXEWh8S6+HozzZ2UVodzyEz4LejBiICDak3eqJDth1frJZ0IFEh5B
+	 qaftgOsL2kCkruvnCVU+ltasDkTxxFwSbHaQNFDutUmnHZu5LwAgubs011SyXxrI9M
+	 WpPt4H1FAOXTw==
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sun, 17 Sep 2023 19:58:32 +0200
+X-ME-IP: 86.243.2.178
+Message-ID: <0e2e0e8f-91dd-b458-e39e-b00baf98b4e0@wanadoo.fr>
+Date: Sun, 17 Sep 2023 19:58:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230917173726.1916439-4-contact@jookia.org>
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 2/2] Input: add Himax HX852x(ES) touchscreen driver
+Content-Language: fr, en-US
+To: stephan@gerhold.net, Jeff LaBundy <jeff@labundy.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
+ dmitry.torokhov@gmail.com, jonathan.albrieux@gmail.com,
+ krzysztof.kozlowski+dt@linaro.org, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org, rydberg@bitmath.org
+References: <20230913-hx852x-v1-0-9c1ebff536eb@gerhold.net>
+ <20230913-hx852x-v1-2-9c1ebff536eb@gerhold.net>
+ <abf36591-3b3c-dc47-b1aa-e574325499f4@wanadoo.fr> <ZQcrQIfXYCv5aMK7@nixie71>
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <ZQcrQIfXYCv5aMK7@nixie71>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_PASS,
+	T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Sep 18, 2023 at 03:37:26AM +1000, John Watts wrote:
-> +Optional properties:
-> +
-> + - wlf,fsampen : FSAMPEN pin value, 0 for low, 1 for high, 2 for disconnected
-> +
+Le 17/09/2023 à 18:37, Jeff LaBundy a écrit :
 
-Uh-oh, I forgot to specify what it defaults to.
-Should I reply to this patch with a fix or re-send the entire series after I get feedback?
+>>> +	error = input_register_device(hx->input_dev);
+>>> +	if (error) {
+>>
+>> input_mt_destroy_slots() should be called here, or in an error handling path
+>> below, or via a devm_add_action_or_reset().
+> 
+> This seems like a memory leak in every touchscreen driver; maybe it is more
+> practical to have the input core handle this clean-up.
+> 
+> Other drivers can and do insert other return paths between input_mt_init_slots()
+> and input_register_device(), so it seems that we cannot solve this by calling
+> input_mt_destroy_slots() from the error path within input_register_device().
+> 
+> Maybe a better option is to update input_mt_init_slots() to use device-managed
+> allocation instead?
 
-John.
+I think that devm_ is the way to go:
+
+    $ git grep input_mt_init_slots | wc -l
+    82
+
+    $ git grep input_mt_destroy_slots | wc -l
+    6
+
+I'll send a patch for it.
+
+> 
+>>
+>> It should also be called in a .remove function (unless
+>> devm_add_action_or_reset is prefered)
+> 
+> I think the remove path is OK, as input_dev_release() handles this for us. In
+> case I have misunderstood, please let me know.
+
+Agreed. I missed that.
+
+CJ
+
 
