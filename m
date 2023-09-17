@@ -1,2251 +1,1044 @@
-Return-Path: <devicetree+bounces-900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FACE7A3DD8
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 23:25:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E73DA7A3E64
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 00:13:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F6091C20902
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 21:25:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C40BB1C20971
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 22:13:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E6267482;
-	Sun, 17 Sep 2023 21:25:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7B9AF4F3;
+	Sun, 17 Sep 2023 22:13:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29C6F6FDB
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 21:25:04 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 427BE12F;
-	Sun, 17 Sep 2023 14:24:58 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 59FE9BC4;
-	Sun, 17 Sep 2023 23:23:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1694985801;
-	bh=5Lp8Hy77yR53w0i2vwCmtkhnpUP3avUymGYGGe1lNSs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RClKBMRsMe0PU/iMddG14TFSI1xfe3uWpwKo9YU5rUkjogmU769u9Z9zOOCvcwhd7
-	 hcTGu9hK4pDRxYiggn5jxW4BDoyMjgJiPYLbF7qKen0HeJ3lV8tPWcAzmpFooUxJC0
-	 JgLrj+CKf8aYjCwCsMyGgkO/96yBQTK1krhzwxjc=
-Date: Mon, 18 Sep 2023 00:25:09 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Sakari Ailus <sakari.ailus@iki.fi>
-Cc: guoniu.zhou@oss.nxp.com, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-imx@nxp.com, mchehab@kernel.org,
-	alexander.stein@ew.tq-group.com, krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org, conor+dt@kernel.org,
-	jacopo.mondi@ideasonboard.com,
-	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
-Subject: Re: [PATCH v2 2/2] media: nxp: add driver for i.MX93 MIPI CSI-2
- controller and D-PHY
-Message-ID: <20230917212509.GB16448@pendragon.ideasonboard.com>
-References: <20230710060352.584286-1-guoniu.zhou@oss.nxp.com>
- <20230710060352.584286-3-guoniu.zhou@oss.nxp.com>
- <ZQIdQmsv4wEmmyau@valkosipuli.retiisi.eu>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 648FEE563
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 22:13:12 +0000 (UTC)
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E77C8E7
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 15:13:08 -0700 (PDT)
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 15BE73F677
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 22:13:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1694988787;
+	bh=iXbIjHOnzxyacWcRg0KnaXmrGbvbltiOpGDDMNhau30=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=fOmVGuYEHn98X3rf5vhTdlz+4nyyS710QMy6Rux+OmGbR+32kipXpUwKQh0+zfKZU
+	 LOohfPZK650dYZFgKs6gStLS4Rj21yFjxf8r8wnQAeVSwpdMnrnb/Mt4vIYnhANau2
+	 RXGfwBTArXrmvzgqqxGJocwDGun6IvSDSDpZwrHurESP83JsQaNbSLSNxlFOyTQ3Kt
+	 A0EfqKxBvoByVRbTGQxP+Tjz0AphW4uAaxyj6/dLD2GBBApWibmKRCZ25rkdxApq86
+	 VJaVwTYmgEzWl/KbXrm9j82tp5e7quyVKvsdtt6FF6NlYl+wtD6OAue38Mlu0XOlZU
+	 h1KqIeVjyDrPA==
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-414f842870dso49776621cf.1
+        for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 15:13:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694988785; x=1695593585;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iXbIjHOnzxyacWcRg0KnaXmrGbvbltiOpGDDMNhau30=;
+        b=cImHG+blR2PVIpvnDCchetA6ao7qC1Mulq+vXEXrCd2xBY6s2o2E6oC1vH/6rPOjfK
+         K3XPy0OwwE+WGtphgZo/yr7LSFY5kUFLmQL1rZUtF4P+neDZaAVOgl4wnKerTYG61b6h
+         UOtCorHQ4ega2EFqcS7CZcheuOF89oLPi6Mcx7bbwz4rPTB6CXXNn33nMkP2PYfXI9b7
+         9QBwb7gmk4G7GGuT/bhcVVDYxunUZDzzj3dLsLcl9rwivUmtXkQG6CIttSt1dBMzWBQ8
+         IPzWVlPLrPeP3joMKBmVplPcsbo2uNguvwm9r7EnDQiC9QdmRlnFL54tFqIYtNEpQVRW
+         3Ukg==
+X-Gm-Message-State: AOJu0YzQmaYglRaEzEkrphRF8JHGsjJ5Sr+/+gg88E/afm4xJxXw6SAG
+	3lykIPbf0ROdx1LJHbJ2weJfVNaf9U9XMCgxbhCNjh5UMqZ8v1aBklOdcrx/wtBNjNfhdaTkjIN
+	qjT0Xcd2IyalaqOPZ5nuVYj4+OpQLo236ryPjvPlzZo/nVFwkmxFyC5w=
+X-Received: by 2002:ac8:5911:0:b0:417:9238:5a18 with SMTP id 17-20020ac85911000000b0041792385a18mr8947311qty.19.1694988785238;
+        Sun, 17 Sep 2023 15:13:05 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEcVAUT6LLSuqskgkqXpk8tYi+rrZm+bdUKVn55VDey16FBzK6U4/0d4RmrL5/Yvb0Crm0hiwYwxVeXRzXtmy8=
+X-Received: by 2002:ac8:5911:0:b0:417:9238:5a18 with SMTP id
+ 17-20020ac85911000000b0041792385a18mr8947286qty.19.1694988784802; Sun, 17 Sep
+ 2023 15:13:04 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Sun, 17 Sep 2023 15:13:04 -0700
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20230915102243.59775-19-minda.chen@starfivetech.com>
+References: <20230915102243.59775-1-minda.chen@starfivetech.com> <20230915102243.59775-19-minda.chen@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <ZQIdQmsv4wEmmyau@valkosipuli.retiisi.eu>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Mime-Version: 1.0
+Date: Sun, 17 Sep 2023 15:13:04 -0700
+Message-ID: <CAJM55Z_V7Zyni=hj8RLYb_Q0AbJ+8XNo6ABq2-=2_jD0KO1nFQ@mail.gmail.com>
+Subject: Re: [PATCH v6 18/19] PCI: starfive: Add JH7110 PCIe controller
+To: Minda Chen <minda.chen@starfivetech.com>, 
+	Daire McNamara <daire.mcnamara@microchip.com>, Conor Dooley <conor@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org, 
+	=?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Mason Huo <mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Kevin Xie <kevin.xie@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello,
+Minda Chen wrote:
+> Add StarFive JH7110 SoC PCIe controller platform
+> driver codes, and add host init/deinit to pcie-plda-host.c
+>
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> Co-developed-by: Kevin Xie <kevin.xie@starfivetech.com>
+> Reviewed-by: Mason Huo <mason.huo@starfivetech.com>
+> ---
+>  MAINTAINERS                                  |   7 +
+>  drivers/pci/controller/plda/Kconfig          |  12 +
+>  drivers/pci/controller/plda/Makefile         |   1 +
+>  drivers/pci/controller/plda/pcie-plda-host.c | 121 ++++-
+>  drivers/pci/controller/plda/pcie-plda.h      |  91 +++-
+>  drivers/pci/controller/plda/pcie-starfive.c  | 461 +++++++++++++++++++
+>  6 files changed, 688 insertions(+), 5 deletions(-)
+>  create mode 100644 drivers/pci/controller/plda/pcie-starfive.c
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ebdb65e195ee..4632cd411a3d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -16679,6 +16679,13 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/pci/socionext,uniphier-pcie*
+>  F:	drivers/pci/controller/dwc/pcie-uniphier*
+>
+> +PCIE DRIVER FOR STARFIVE JH71x0
+> +M:	Kevin Xie <kevin.xie@starfivetech.com>
+> +L:	linux-pci@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/pci/starfive*
+> +F:	drivers/pci/controller/plda/pcie-starfive.c
+> +
+>  PCIE DRIVER FOR ST SPEAR13XX
+>  M:	Pratyush Anand <pratyush.anand@gmail.com>
+>  L:	linux-pci@vger.kernel.org
+> diff --git a/drivers/pci/controller/plda/Kconfig b/drivers/pci/controller/plda/Kconfig
+> index e54a82ee94f5..8de661730aa5 100644
+> --- a/drivers/pci/controller/plda/Kconfig
+> +++ b/drivers/pci/controller/plda/Kconfig
+> @@ -15,4 +15,16 @@ config PCIE_MICROCHIP_HOST
+>  	  Say Y here if you want kernel to support the Microchip AXI PCIe
+>  	  Host Bridge driver.
+>
+> +config PCIE_STARFIVE_HOST
+> +	tristate "StarFive PCIe host controller"
+> +	depends on OF && PCI_MSI
+> +	select PCIE_PLDA_HOST
+> +	help
+> +	  Say Y here if you want to support the StarFive PCIe controller
+> +	  in host mode. StarFive PCIe controller uses PLDA PCIe
+> +	  core.
+> +	  If you choose to build this driver as module it will
+> +	  be dynamically linked and module will be called
+> +	  pcie-starfive.ko
+> +
+>  endmenu
+> diff --git a/drivers/pci/controller/plda/Makefile b/drivers/pci/controller/plda/Makefile
+> index 4340ab007f44..0ac6851bed48 100644
+> --- a/drivers/pci/controller/plda/Makefile
+> +++ b/drivers/pci/controller/plda/Makefile
+> @@ -1,3 +1,4 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  obj-$(CONFIG_PCIE_PLDA_HOST) += pcie-plda-host.o
+>  obj-$(CONFIG_PCIE_MICROCHIP_HOST) += pcie-microchip-host.o
+> +obj-$(CONFIG_PCIE_STARFIVE_HOST) += pcie-starfive.o
+> diff --git a/drivers/pci/controller/plda/pcie-plda-host.c b/drivers/pci/controller/plda/pcie-plda-host.c
+> index 26e6cfd2eaba..8b32df477ad8 100644
+> --- a/drivers/pci/controller/plda/pcie-plda-host.c
+> +++ b/drivers/pci/controller/plda/pcie-plda-host.c
+> @@ -20,6 +20,15 @@
+>
+>  #include "pcie-plda.h"
+>
+> +void __iomem *plda_pcie_map_bus(struct pci_bus *bus, unsigned int devfn,
+> +				int where)
+> +{
+> +	struct plda_pcie_rp *pcie = bus->sysdata;
+> +
+> +	return pcie->config_base + PCIE_ECAM_OFFSET(bus->number, devfn, where);
+> +}
+> +EXPORT_SYMBOL_GPL(plda_pcie_map_bus);
+> +
+>  static void plda_handle_msi(struct irq_desc *desc)
+>  {
+>  	struct plda_pcie_rp *port = irq_desc_get_handler_data(desc);
+> @@ -370,6 +379,12 @@ static const struct plda_event_ops plda_event_ops = {
+>  	.get_events = plda_get_events,
+>  };
+>
+> +static const struct plda_event plda_default_event = {
+> +	.event_ops		= &plda_event_ops,
+> +	.intx_event		= EVENT_PM_MSI_INT_INTX,
+> +	.msi_event		= EVENT_PM_MSI_INT_MSI
+> +};
+> +
+>  static int plda_pcie_init_irq_domains(struct plda_pcie_rp *port,
+>  				      const struct irq_domain_ops *ops)
+>  {
+> @@ -416,7 +431,6 @@ int plda_init_interrupts(struct platform_device *pdev,
+>  			 const struct plda_event *event)
+>  {
+>  	struct device *dev = &pdev->dev;
+> -	int irq;
+>  	int i, intx_irq, msi_irq, event_irq;
+>  	int ret;
+>  	const struct irq_domain_ops *irq_dom_ops;
+> @@ -434,8 +448,8 @@ int plda_init_interrupts(struct platform_device *pdev,
+>  		return ret;
+>  	}
+>
+> -	irq = platform_get_irq(pdev, 0);
+> -	if (irq < 0)
+> +	port->irq = platform_get_irq(pdev, 0);
+> +	if (port->irq < 0)
+>  		return -ENODEV;
 
-CC'ing Niklas, for a question down below.
+Here you're dropping the local variable irq and just use port->irq directly..
 
-On Wed, Sep 13, 2023 at 08:36:18PM +0000, Sakari Ailus wrote:
-> Hi Guonio,
-> 
-> Thanks for the patch. Looks pretty good overall, but please see comments
-> below...
-> 
-> On Mon, Jul 10, 2023 at 02:03:52PM +0800, guoniu.zhou@oss.nxp.com wrote:
-> > From: "Guoniu.zhou" <guoniu.zhou@nxp.com>
-> > 
-> > The MIPI CSI-2 controller and MIPI Rx D-PHY found on i.MX93 originate
-> > from Synopsys. MIPI CSI-2 controller implements the CSI-2 protocol on
-> > host side. MIPI 2-lane Rx D-PHY module implement the physical layer
-> > for the MIPI D-PHY interface. Lane operation ranging from 80 Mbps to
-> > 1.5Gbps in forward direction.
-> > 
-> > Add V4L2 subdev driver support both for CSI-2 controller and D-PHY
-> > since the PHY is wrapped by the CSI-2 controller and only expose a
-> > control interface to the CSI-2 controller.
-> > 
-> > Signed-off-by: Guoniu.zhou <guoniu.zhou@nxp.com>
-> > ---
-> >  MAINTAINERS                                |   10 +
-> >  drivers/media/platform/nxp/Kconfig         |   11 +
-> >  drivers/media/platform/nxp/Makefile        |    3 +
-> >  drivers/media/platform/nxp/dwc-mipi-csi2.c | 1354 ++++++++++++++++++++
-> >  drivers/media/platform/nxp/dwc-mipi-csi2.h |  299 +++++
-> >  drivers/media/platform/nxp/dwc-mipi-dphy.c |  295 +++++
-> >  6 files changed, 1972 insertions(+)
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index c83475103a25..349d981f9c24 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -15189,6 +15189,16 @@ S:	Maintained
-> >  F:	Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
-> >  F:	sound/soc/codecs/tfa989x.c
-> >  
-> > +NXP i.MX93 MIPI CSI-2 V4L2 DRIVER
-> > +M:	G.N. Zhou (OSS) <guoniu.zhou@oss.nxp.com>
-> > +R:	NXP Linux Team <linux-imx@nxp.com>
-> > +L:	linux-media@vger.kernel.org
-> > +S:	Maintained
-> > +F:	Documentation/devicetree/bindings/media/nxp,dwc-mipi-csi2.yaml
-> > +F:	drivers/media/platform/nxp/dwc-mipi-csi2.c
-> > +F:	drivers/media/platform/nxp/dwc-mipi-csi2.h
-> > +F:	drivers/media/platform/nxp/dwc-mipi-dphy.c
-> > +
-> >  NZXT-KRAKEN2 HARDWARE MONITORING DRIVER
-> >  M:	Jonas Malaco <jonas@protocubo.io>
-> >  L:	linux-hwmon@vger.kernel.org
-> > diff --git a/drivers/media/platform/nxp/Kconfig b/drivers/media/platform/nxp/Kconfig
-> > index a0ca6b297fb8..4b8b713022d4 100644
-> > --- a/drivers/media/platform/nxp/Kconfig
-> > +++ b/drivers/media/platform/nxp/Kconfig
-> > @@ -30,6 +30,17 @@ config VIDEO_IMX_MIPI_CSIS
-> >  
-> >  source "drivers/media/platform/nxp/imx8-isi/Kconfig"
-> >  
-> > +config VIDEO_DWC_MIPI_CSIS
-> > +	tristate "DesignWare Cores MIPI CSI-2 receiver found on i.MX93"
-> > +	depends on ARCH_MXC || COMPILE_TEST
-> > +	depends on VIDEO_DEV
-> > +	select MEDIA_CONTROLLER
-> > +	select V4L2_FWNODE
-> > +	select VIDEO_V4L2_SUBDEV_API
-> > +	help
-> > +	  Video4Linux2 sub-device driver for the DesignWare Cores MIPI
-> > +	  CSI-2 receiver used on i.MX93.
-> 
-> You seem to have D-PHY handling embedded in the same driver.
-> 
-> Would it be possible to use the phy framework instead? I believe there are
-> other drivers that already do this.
+>
+>  	port->event_ops = event->event_ops;
+> @@ -465,6 +479,7 @@ int plda_init_interrupts(struct platform_device *pdev,
+>  		dev_err(dev, "failed to map INTx interrupt\n");
+>  		return -ENXIO;
+>  	}
+> +	port->intx_irq = intx_irq;
 
-I think that would be difficult, as the D-PHY isn't memory-mapped to the
-CPU.
+..but for intx_irq..
 
-> > +
-> >  # mem2mem drivers
-> >  
-> >  config VIDEO_IMX_PXP
-> > diff --git a/drivers/media/platform/nxp/Makefile b/drivers/media/platform/nxp/Makefile
-> > index b8e672b75fed..07f43795dc16 100644
-> > --- a/drivers/media/platform/nxp/Makefile
-> > +++ b/drivers/media/platform/nxp/Makefile
-> > @@ -4,6 +4,9 @@ obj-y += dw100/
-> >  obj-y += imx-jpeg/
-> >  obj-y += imx8-isi/
-> >  
-> > +dwc-mipi-csis-y := dwc-mipi-csi2.o dwc-mipi-dphy.o
-> > +
-> > +obj-$(CONFIG_VIDEO_DWC_MIPI_CSIS) += dwc-mipi-csis.o
+>
+>  	/* Plug the INTx chained handler */
+>  	irq_set_chained_handler_and_data(intx_irq, plda_handle_intx, port);
+> @@ -473,12 +488,13 @@ int plda_init_interrupts(struct platform_device *pdev,
+>  				     event->msi_event);
+>  	if (!msi_irq)
+>  		return -ENXIO;
+> +	port->msi_irq = msi_irq;
 
-I like that this is a generic driver for the Synopsys CSI-2 host
-controller. Should it then be placed in drivers/media/platform/synopsys/
-?
+..and msi_irq you're keeping the local variable. I think you should drop
+the local variables here too, or at least do the same for all of them.
 
-> >  obj-$(CONFIG_VIDEO_IMX7_CSI) += imx7-media-csi.o
-> >  obj-$(CONFIG_VIDEO_IMX_MIPI_CSIS) += imx-mipi-csis.o
-> >  obj-$(CONFIG_VIDEO_IMX_PXP) += imx-pxp.o
-> > diff --git a/drivers/media/platform/nxp/dwc-mipi-csi2.c b/drivers/media/platform/nxp/dwc-mipi-csi2.c
-> > new file mode 100644
-> > index 000000000000..4a7154b471c5
-> > --- /dev/null
-> > +++ b/drivers/media/platform/nxp/dwc-mipi-csi2.c
-> > @@ -0,0 +1,1354 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright 2023 NXP
-> > + *
-> > + */
-> > +
-> > +#include <linux/bits.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/errno.h>
-> > +#include <linux/iopoll.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/pm_runtime.h>
-> > +
-> > +#include <media/v4l2-event.h>
-> > +#include <media/mipi-csi2.h>
-> > +
-> > +#include "dwc-mipi-csi2.h"
-> > +
-> > +#define DWC_MIPI_CSIS_DRIVER_NAME	"dwc-mipi-csi2"
-> > +
-> > +#define DWC_CSI2RX_DEF_MBUS_CODE	MEDIA_BUS_FMT_UYVY8_1X16
-> > +#define DWC_CSI2RX_DEF_PIX_WIDTH	1920U
-> > +#define DWC_CSI2RX_DEF_PIX_HEIGHT	1080U
-> > +#define DWC_CSI2RX_MAX_PIX_WIDTH	0xffff
-> > +#define DWC_CSI2RX_MAX_PIX_HEIGHT	0xffff
-> > +
-> > +enum imx93_csi_clks {
-> > +	PER,
-> > +	PIXEL,
-> > +	PHY_CFG,
-> > +};
-> > +
-> > +enum model {
-> > +	DWC_CSI2RX_IMX93,
-> > +};
-> > +
-> > +enum dwc_csi2rx_intf {
-> > +	DWC_CSI2RX_INTF_IDI,
-> > +	DWC_CSI2RX_INTF_IPI,
-> > +};
-> > +
-> > +struct dwc_csi_plat_data {
-> > +	enum model model;
-> > +	enum dwc_csi2rx_intf intf;
-> > +
-> > +	const struct clk_bulk_data *clks;
-> > +	u32 num_clks;
-> > +
-> > +	const struct dwc_csi_event *events;
-> > +	u32 num_events;
-> > +	u32 events_mask;
-> > +};
-> > +
-> > +/* -----------------------------------------------------------------------------
-> > + * Events
-> > + */
-> > +
-> > +struct dwc_csi_event {
-> > +	u32 mask;
-> > +	const char * const name;
-> > +	unsigned int counter;
-> > +};
-> > +
-> > +static struct dwc_csi_event mxc_imx93_events[] = {
-> 
-> const.
-> 
-> > +	{ CSI2RX_INT_ST_MAIN_FATAL_ERR_IPI, "IPI Interface Fatal Error" },
-> > +	{ CSI2RX_INT_ST_MAIN_ERR_PHY, "PHY Error" },
-> > +	{ CSI2RX_INT_ST_MAIN_ERR_ECC, "Header Single Bit Error" },
-> > +	{ CSI2RX_INT_ST_MAIN_ERR_DID, "Data ID Error" },
-> > +	{ CSI2RX_INT_ST_MAIN_FATAL_ERR_PLD_CRC, "Payload CRC Fatal Error" },
-> > +	{ CSI2RX_INT_ST_MAIN_FATAL_ERR_CRC_FRAME, "Frame CRC Fatal Error" },
-> > +	{ CSI2RX_INT_ST_MAIN_FATAL_ERR_SEQ_FRAME, "Frame Sequence Fatal Error" },
-> > +	{ CSI2RX_INT_ST_MAIN_FATAL_ERR_BNDRY_FRAMEL, "Frame Boundaries Fatal Error" },
-> > +	{ CSI2RX_INT_ST_MAIN_FATAL_ERR_PKT, "Packet Construction Fatal Error" },
-> > +	{ CSI2RX_INT_ST_MAIN_FATAL_ERR_PHY, "PHY Fatal Error" },
-> > +};
-> > +
-> > +/* -----------------------------------------------------------------------------
-> > + * Format helpers
-> > + */
-> > +
-> > +/* List of supported pixel formats for the subdev */
-> > +static const struct dwc_csi_pix_format dwc_csi_formats[] = {
-> > +	/* YUV formats */
-> > +	{
-> > +		.code = MEDIA_BUS_FMT_UYVY8_1X16,
-> > +		.output = MEDIA_BUS_FMT_UYVY8_1X16,
-> > +		.data_type = MIPI_CSI2_DT_YUV422_8B,
-> > +		.width = 16,
-> > +	},
-> > +	/* RGB formats */
-> > +	{
-> > +		.code = MEDIA_BUS_FMT_RGB565_1X16,
-> > +		.output = MEDIA_BUS_FMT_RGB565_1X16,
-> > +		.data_type = MIPI_CSI2_DT_RGB565,
-> > +		.width = 16,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_BGR888_1X24,
-> > +		.output = MEDIA_BUS_FMT_RGB888_1X24,
-> > +		.data_type = MIPI_CSI2_DT_RGB888,
-> > +		.width = 24,
-> > +	},
-> > +	/* RAW (Bayer and greyscale) formats. */
-> > +	{
-> > +		.code = MEDIA_BUS_FMT_SBGGR8_1X8,
-> > +		.output = MEDIA_BUS_FMT_SBGGR8_1X8,
-> > +		.data_type = MIPI_CSI2_DT_RAW8,
-> > +		.width = 8,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_SGBRG8_1X8,
-> > +		.output = MEDIA_BUS_FMT_SGBRG8_1X8,
-> > +		.data_type = MIPI_CSI2_DT_RAW8,
-> > +		.width = 8,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_SGRBG8_1X8,
-> > +		.output = MEDIA_BUS_FMT_SGRBG8_1X8,
-> > +		.data_type = MIPI_CSI2_DT_RAW8,
-> > +		.width = 8,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_SRGGB8_1X8,
-> > +		.output = MEDIA_BUS_FMT_SRGGB8_1X8,
-> > +		.data_type = MIPI_CSI2_DT_RAW8,
-> > +		.width = 8,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_Y8_1X8,
-> > +		.output = MEDIA_BUS_FMT_Y8_1X8,
-> > +		.data_type = MIPI_CSI2_DT_RAW8,
-> > +		.width = 8,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_SBGGR10_1X10,
-> > +		.output = MEDIA_BUS_FMT_SBGGR10_1X10,
-> > +		.data_type = MIPI_CSI2_DT_RAW10,
-> > +		.width = 10,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_SGBRG10_1X10,
-> > +		.output = MEDIA_BUS_FMT_SGBRG10_1X10,
-> > +		.data_type = MIPI_CSI2_DT_RAW10,
-> > +		.width = 10,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_SGRBG10_1X10,
-> > +		.output = MEDIA_BUS_FMT_SGRBG10_1X10,
-> > +		.data_type = MIPI_CSI2_DT_RAW10,
-> > +		.width = 10,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_SRGGB10_1X10,
-> > +		.output = MEDIA_BUS_FMT_SRGGB10_1X10,
-> > +		.data_type = MIPI_CSI2_DT_RAW10,
-> > +		.width = 10,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_Y10_1X10,
-> > +		.output = MEDIA_BUS_FMT_Y10_1X10,
-> > +		.data_type = MIPI_CSI2_DT_RAW10,
-> > +		.width = 10,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_SBGGR12_1X12,
-> > +		.output = MEDIA_BUS_FMT_SBGGR12_1X12,
-> > +		.data_type = MIPI_CSI2_DT_RAW12,
-> > +		.width = 12,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_SGBRG12_1X12,
-> > +		.output = MEDIA_BUS_FMT_SGBRG12_1X12,
-> > +		.data_type = MIPI_CSI2_DT_RAW12,
-> > +		.width = 12,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_SGRBG12_1X12,
-> > +		.output = MEDIA_BUS_FMT_SGRBG12_1X12,
-> > +		.data_type = MIPI_CSI2_DT_RAW12,
-> > +		.width = 12,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_SRGGB12_1X12,
-> > +		.output = MEDIA_BUS_FMT_SRGGB12_1X12,
-> > +		.data_type = MIPI_CSI2_DT_RAW12,
-> > +		.width = 12,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_Y12_1X12,
-> > +		.output = MEDIA_BUS_FMT_Y12_1X12,
-> > +		.data_type = MIPI_CSI2_DT_RAW12,
-> > +		.width = 12,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_SBGGR14_1X14,
-> > +		.output = MEDIA_BUS_FMT_SBGGR14_1X14,
-> > +		.data_type = MIPI_CSI2_DT_RAW14,
-> > +		.width = 14,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_SGBRG14_1X14,
-> > +		.output = MEDIA_BUS_FMT_SGBRG14_1X14,
-> > +		.data_type = MIPI_CSI2_DT_RAW14,
-> > +		.width = 14,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_SGRBG14_1X14,
-> > +		.output = MEDIA_BUS_FMT_SGRBG14_1X14,
-> > +		.data_type = MIPI_CSI2_DT_RAW14,
-> > +		.width = 14,
-> > +	}, {
-> > +		.code = MEDIA_BUS_FMT_SRGGB14_1X14,
-> > +		.output = MEDIA_BUS_FMT_SRGGB14_1X14,
-> > +		.data_type = MIPI_CSI2_DT_RAW14,
-> > +		.width = 14,
-> > +	}
-> > +};
-> > +
-> > +static const struct v4l2_mbus_framefmt dwc_csi_default_fmt = {
-> > +	.code = DWC_CSI2RX_DEF_MBUS_CODE,
-> > +	.width = DWC_CSI2RX_DEF_PIX_WIDTH,
-> > +	.height = DWC_CSI2RX_DEF_PIX_HEIGHT,
-> > +	.field = V4L2_FIELD_NONE,
-> > +	.colorspace = V4L2_COLORSPACE_SMPTE170M,
-> > +	.xfer_func = V4L2_MAP_XFER_FUNC_DEFAULT(V4L2_COLORSPACE_SMPTE170M),
-> > +	.ycbcr_enc = V4L2_MAP_YCBCR_ENC_DEFAULT(V4L2_COLORSPACE_SMPTE170M),
-> > +	.quantization = V4L2_QUANTIZATION_LIM_RANGE,
-> > +};
-> > +
-> > +static const struct dwc_csi_pix_format *find_csi_format(u32 code)
-> > +{
-> > +	int i;
-> 
-> unsigned int?
-> 
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(dwc_csi_formats); i++)
-> > +		if (code == dwc_csi_formats[i].code)
-> > +			return &dwc_csi_formats[i];
-> > +	return NULL;
-> 
-> Could you always return a valid format? This makes it easier for the caller
-> to handle the return value.
-> 
-> > +}
-> > +
-> > +/* -----------------------------------------------------------------------------
-> > + * DWC MIPI CSI-2 Host Controller Hardware operation
-> > + */
-> > +
-> > +static int dwc_csi_device_pg_enable(struct dwc_csi_device *csidev)
-> > +{
-> > +	const struct dwc_csi_pix_format *csi_fmt = csidev->csi_fmt;
-> > +	struct v4l2_mbus_framefmt *format;
-> > +	u32 val;
-> > +
-> > +	if (!csidev->pg_enable)
-> > +		return 0;
-> > +
-> > +	if (!csi_fmt) {
-> > +		dev_err(csidev->dev, "CSI pixel format is NULL\n");
-> > +		return -EINVAL;
-> > +	}
+>
+>  	/* Plug the MSI chained handler */
+>  	irq_set_chained_handler_and_data(msi_irq, plda_handle_msi, port);
+>
+>  	/* Plug the main event chained handler */
+> -	irq_set_chained_handler_and_data(irq, plda_handle_event, port);
+> +	irq_set_chained_handler_and_data(port->irq, plda_handle_event, port);
+>
+>  	return 0;
+>  }
+> @@ -544,3 +560,100 @@ int plda_pcie_setup_iomems(struct pci_host_bridge *bridge,
+>  	return 0;
+>  }
+>  EXPORT_SYMBOL_GPL(plda_pcie_setup_iomems);
+> +
+> +static void plda_pcie_irq_domain_deinit(struct plda_pcie_rp *pcie)
+> +{
+> +	irq_set_chained_handler_and_data(pcie->irq, NULL, NULL);
+> +	irq_set_chained_handler_and_data(pcie->msi_irq, NULL, NULL);
+> +	irq_set_chained_handler_and_data(pcie->intx_irq, NULL, NULL);
+> +
+> +	irq_domain_remove(pcie->msi.msi_domain);
+> +	irq_domain_remove(pcie->msi.dev_domain);
+> +
+> +	irq_domain_remove(pcie->intx_domain);
+> +	irq_domain_remove(pcie->event_domain);
+> +}
+> +
+> +int plda_pcie_host_init(struct plda_pcie_rp *port, struct pci_ops *ops)
+> +{
+> +	struct resource *cfg_res;
+> +	struct device *dev = port->dev;
+> +	int ret;
+> +	struct pci_host_bridge *bridge;
+> +	struct platform_device *pdev = to_platform_device(dev);
 
-This should never happen, the driver should ensure that a valid format
-is configured at all times.
+This looks weird. Please order initialized variables first and maybe even do
+reverse christmas tree order. Eg. longeist lines first.
 
-> > +
-> > +	format = &csidev->format_mbus[DWC_CSI2RX_PAD_SINK];
-> > +
-> > +	if (csi_fmt->data_type != MIPI_CSI2_DT_RGB888) {
-> > +		dev_err(csidev->dev, "Pattern generator only support RGB888\n");
+> +
+> +	port->bridge_addr =
+> +		devm_platform_ioremap_resource_byname(pdev, "apb");
+> +
+> +	if (IS_ERR(port->bridge_addr))
+> +		return dev_err_probe(dev, PTR_ERR(port->bridge_addr),
+> +				     "failed to map reg memory\n");
+> +
+> +	cfg_res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "cfg");
+> +	if (!cfg_res)
+> +		return dev_err_probe(dev, -ENODEV,
+> +				     "failed to get config memory\n");
+> +
+> +	port->config_base = devm_ioremap_resource(dev, cfg_res);
+> +	if (IS_ERR(port->config_base))
+> +		return dev_err_probe(dev, PTR_ERR(port->config_base),
+> +				     "failed to map config memory\n");
+> +
+> +	port->phy = devm_phy_optional_get(dev, NULL);
+> +	if (IS_ERR(port->phy))
+> +		return dev_err_probe(dev, PTR_ERR(port->phy),
+> +				     "failed to get pcie phy\n");
+> +
+> +	bridge = devm_pci_alloc_host_bridge(dev, 0);
+> +	if (!bridge)
+> +		return dev_err_probe(dev, -ENOMEM,
+> +				     "failed to alloc bridge\n");
+> +
+> +	if (port->host_ops && port->host_ops->host_init) {
+> +		ret = port->host_ops->host_init(port);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	port->bridge = bridge;
+> +	plda_pcie_setup_window(port->bridge_addr, 0, cfg_res->start, 0,
+> +			       resource_size(cfg_res));
+> +	plda_pcie_setup_iomems(bridge, port);
+> +	plda_set_default_msi(&port->msi);
+> +	ret = plda_init_interrupts(pdev, port, &plda_default_event);
+> +	if (ret)
+> +		goto err_host;
+> +
+> +	/* Set default bus ops */
+> +	bridge->ops = ops;
+> +	bridge->sysdata = port;
+> +
+> +	ret = pci_host_probe(bridge);
+> +	if (ret < 0) {
+> +		dev_err(dev, "failed to pci host probe: %d\n", ret);
 
-Make this a dev_dbg() as it can get triggered by userspace.
+I think you mean:
 
-> > +		return -EINVAL;
+dev_err_probe(dev, ret, "failed to probe pci host\n");
 
-Pipeline validation at stream on time typically returns -EPIPE.
+> +		goto err_probe;
+> +	}
+> +
+> +	return ret;
+> +
+> +err_probe:
+> +	plda_pcie_irq_domain_deinit(port);
+> +err_host:
+> +	if (port->host_ops && port->host_ops->host_deinit)
+> +		port->host_ops->host_deinit(port);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(plda_pcie_host_init);
+> +
+> +void plda_pcie_host_deinit(struct plda_pcie_rp *port)
+> +{
+> +	pci_stop_root_bus(port->bridge->bus);
+> +	pci_remove_root_bus(port->bridge->bus);
+> +
+> +	plda_pcie_irq_domain_deinit(port);
+> +
+> +	if (port->host_ops && port->host_ops->host_deinit)
+> +		port->host_ops->host_deinit(port);
+> +}
+> +EXPORT_SYMBOL_GPL(plda_pcie_host_deinit);
+> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/controller/plda/pcie-plda.h
+> index b7420598a326..e571047d7944 100644
+> --- a/drivers/pci/controller/plda/pcie-plda.h
+> +++ b/drivers/pci/controller/plda/pcie-plda.h
+> @@ -6,14 +6,24 @@
+>  #ifndef _PCIE_PLDA_H
+>  #define _PCIE_PLDA_H
+>
+> +#include <linux/phy/phy.h>
+> +
+>  /* Number of MSI IRQs */
+>  #define PLDA_MAX_NUM_MSI_IRQS			32
+>
+>  /* PCIe Bridge Phy Regs */
+> +#define GEN_SETTINGS				0x80
+> +#define  RP_ENABLE				1
+> +#define PCIE_PCI_IDS_DW1			0x9c
+> +#define  IDS_CLASS_CODE_SHIFT			16
+>  #define PCIE_PCI_IRQ_DW0			0xa8
+>  #define  MSIX_CAP_MASK				BIT(31)
+>  #define  NUM_MSI_MSGS_MASK			GENMASK(6, 4)
+>  #define  NUM_MSI_MSGS_SHIFT			4
+> +#define PCI_MISC				0xb4
+> +#define  PHY_FUNCTION_DIS			BIT(15)
+> +#define PCIE_WINROM				0xfc
+> +#define  PREF_MEM_WIN_64_SUPPORT		BIT(3)
+>
+>  #define IMASK_LOCAL				0x180
+>  #define  DMA_END_ENGINE_0_MASK			0x00000000u
+> @@ -64,6 +74,8 @@
+>  #define ISTATUS_HOST				0x18c
+>  #define IMSI_ADDR				0x190
+>  #define ISTATUS_MSI				0x194
+> +#define PMSG_SUPPORT_RX				0x3f0
+> +#define  PMSG_LTR_SUPPORT			BIT(2)
+>
+>  /* PCIe Master table init defines */
+>  #define ATR0_PCIE_WIN0_SRCADDR_PARAM		0x600u
+> @@ -85,6 +97,8 @@
+>  #define  PCIE_TX_RX_INTERFACE			0x00000000u
+>  #define  PCIE_CONFIG_INTERFACE			0x00000001u
+>
+> +#define CONFIG_SPACE_ADDR			0x1000u
+> +
+>  #define ATR_ENTRY_SIZE				32
+>
+>  #define EVENT_A_ATR_EVT_POST_ERR		0
+> @@ -134,6 +148,11 @@ struct plda_event_ops {
+>  	u32 (*get_events)(struct plda_pcie_rp *pcie);
+>  };
+>
+> +struct plda_pcie_host_ops {
+> +	int (*host_init)(struct plda_pcie_rp *pcie);
+> +	void (*host_deinit)(struct plda_pcie_rp *pcie);
+> +};
+> +
+>  struct plda_msi {
+>  	struct mutex lock;		/* Protect used bitmap */
+>  	struct irq_domain *msi_domain;
+> @@ -145,12 +164,19 @@ struct plda_msi {
+>
+>  struct plda_pcie_rp {
+>  	struct device *dev;
+> +	struct pci_host_bridge *bridge;
+>  	struct irq_domain *intx_domain;
+>  	struct irq_domain *event_domain;
+>  	raw_spinlock_t lock;
+>  	struct plda_msi msi;
+>  	const struct plda_event_ops *event_ops;
+> +	const struct plda_pcie_host_ops *host_ops;
+> +	struct phy *phy;
+>  	void __iomem *bridge_addr;
+> +	void __iomem *config_base;
+> +	int irq;
+> +	int msi_irq;
+> +	int intx_irq;
+>  	int num_events;
+>  };
+>
+> @@ -163,6 +189,7 @@ struct plda_event {
+>  	int msi_event;
+>  };
+>
+> +void __iomem *plda_pcie_map_bus(struct pci_bus *bus, unsigned int devfn, int where);
+>  int plda_init_interrupts(struct platform_device *pdev,
+>  			 struct plda_pcie_rp *port,
+>  			 const struct plda_event *event);
+> @@ -171,4 +198,66 @@ void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
+>  			    size_t size);
+>  int plda_pcie_setup_iomems(struct pci_host_bridge *bridge,
+>  			   struct plda_pcie_rp *port);
+> -#endif
+> +int plda_pcie_host_init(struct plda_pcie_rp *pcie, struct pci_ops *ops);
+> +void plda_pcie_host_deinit(struct plda_pcie_rp *pcie);
+> +
+> +static inline void plda_set_default_msi(struct plda_msi *msi)
+> +{
+> +	msi->vector_phy = IMSI_ADDR;
+> +	msi->num_vectors = PLDA_MAX_NUM_MSI_IRQS;
+> +}
+> +
+> +static inline void plda_pcie_enable_root_port(struct plda_pcie_rp *plda)
+> +{
+> +	u32 value;
+> +
+> +	value = readl_relaxed(plda->bridge_addr + GEN_SETTINGS);
+> +	value |= RP_ENABLE;
+> +	writel_relaxed(value, plda->bridge_addr + GEN_SETTINGS);
+> +}
+> +
+> +static inline void plda_pcie_set_standard_class(struct plda_pcie_rp *plda)
+> +{
+> +	u32 value;
+> +
+> +	value = readl_relaxed(plda->bridge_addr + PCIE_PCI_IDS_DW1);
+> +	value &= 0xff;
+> +	value |= (PCI_CLASS_BRIDGE_PCI << IDS_CLASS_CODE_SHIFT);
 
-> > +	}
-> > +
-> > +	val = CSI2RX_PPI_PG_PATTERN_HRES_HRES(format->width);
-> > +	dwc_csi_write(csidev, CSI2RX_PPI_PG_PATTERN_HRES, val);
-> > +
-> > +	val = CSI2RX_PPI_PG_PATTERN_VRES_VRES(format->height);
-> > +	dwc_csi_write(csidev, CSI2RX_PPI_PG_PATTERN_VRES, val);
-> > +
-> > +	val = CSI2RX_PPI_PG_CONFIG_DATA_TYPE(csi_fmt->data_type);
-> > +	val |= CSI2RX_PPI_PG_CONFIG_VIR_CHAN(0);
-> > +	val |= CSI2RX_PPI_PG_CONFIG_PG_MODE(csidev->pg_pattern);
-> > +	dwc_csi_write(csidev, CSI2RX_PPI_PG_CONFIG, val);
-> > +
-> > +	/*
-> > +	 * Select line start packets to construct vertical
-> > +	 * timing information for IPI interface
-> > +	 **/
+This looks suspicious. You're clearing the lower 8 bits, but setting
+bits 16 and up. Also the parentheses are not strictly necessary.
 
-Double **
+> +	writel_relaxed(value, plda->bridge_addr + PCIE_PCI_IDS_DW1);
+> +}
+> +
+> +static inline void plda_pcie_set_pref_win_64bit(struct plda_pcie_rp *plda)
+> +{
+> +	u32 value;
+> +
+> +	value = readl_relaxed(plda->bridge_addr + PCIE_WINROM);
+> +	value |= PREF_MEM_WIN_64_SUPPORT;
+> +	writel_relaxed(value, plda->bridge_addr + PCIE_WINROM);
+> +}
+> +
+> +static inline void plda_pcie_disable_ltr(struct plda_pcie_rp *plda)
+> +{
+> +	u32 value;
+> +
+> +	value = readl_relaxed(plda->bridge_addr + PMSG_SUPPORT_RX);
+> +	value &= ~PMSG_LTR_SUPPORT;
+> +	writel_relaxed(value, plda->bridge_addr + PMSG_SUPPORT_RX);
+> +}
+> +
+> +static inline void plda_pcie_disable_func(struct plda_pcie_rp *plda)
+> +{
+> +	u32 value;
+> +
+> +	value = readl_relaxed(plda->bridge_addr + PCI_MISC);
+> +	value |= PHY_FUNCTION_DIS;
+> +	writel_relaxed(value, plda->bridge_addr + PCI_MISC);
+> +}
+> +
+> +static inline void plda_pcie_write_rc_bar(struct plda_pcie_rp *plda, u64 val)
+> +{
+> +	void __iomem *addr = plda->bridge_addr + CONFIG_SPACE_ADDR;
+> +
+> +	writel_relaxed(val & 0xffffffff, addr + PCI_BASE_ADDRESS_0);
+> +	writel_relaxed(val >> 32, addr + PCI_BASE_ADDRESS_1);
 
-> > +	val = CSI2RX_IPI_ADV_FEATURES_SYNC_EVENT_MODE;
-> > +	val |= CSI2RX_IPI_ADV_FEATURES_SYNC_LS_PKT;
-> > +	val |= CSI2RX_IPI_ADV_FEATURES_LINE_EVENT_SEL;
-> > +	dwc_csi_write(csidev, CSI2RX_IPI_ADV_FEATURES, val);
-> > +
-> > +	val = CSI2RX_PPI_PG_ENABLE_EN;
-> > +	dwc_csi_write(csidev, CSI2RX_PPI_PG_ENABLE, val);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static void dwc_csi_device_pg_disable(struct dwc_csi_device *csidev)
-> > +{
-> > +	dwc_csi_write(csidev, CSI2RX_PPI_PG_ENABLE, 0);
-> > +}
-> > +
-> > +static void dwc_csi_ipi_enable(struct dwc_csi_device *csidev)
-> > +{
-> > +	const struct dwc_csi_plat_data *pdata = csidev->pdata;
-> > +	u32 val;
-> > +
-> > +	if (pdata->intf != DWC_CSI2RX_INTF_IPI)
-> > +		return;
+Consider using lower_32_bits(val) and upper_32_bits(val) here.
 
-The driver supports the IPI interface only, I would drop these checks as
-well as the intf field.
+> +}
+> +#endif /* _PCIE_PLDA_H */
+> diff --git a/drivers/pci/controller/plda/pcie-starfive.c b/drivers/pci/controller/plda/pcie-starfive.c
+> new file mode 100644
+> index 000000000000..42099fef0d7d
+> --- /dev/null
+> +++ b/drivers/pci/controller/plda/pcie-starfive.c
+> @@ -0,0 +1,461 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * PCIe host controller driver for StarFive JH7110 Soc.
+> + *
+> + * Copyright (C) 2023 StarFive Technology Co., Ltd.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/of_pci.h>
+> +#include <linux/pci.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+> +#include <linux/reset.h>
+> +#include "../../pci.h"
+> +
+> +#include "pcie-plda.h"
+> +
+> +#define PCIE_FUNC_NUM			4
+> +
+> +/* system control */
+> +#define STG_SYSCON_PCIE0_BASE			0x48
+> +#define STG_SYSCON_PCIE1_BASE			0x1f8
+> +
+> +#define STG_SYSCON_ARFUNC_OFFSET		0x78
+> +#define STG_SYSCON_AXI4_SLVL_ARFUNC_MASK	 GENMASK(22, 8)
+> +#define STG_SYSCON_AXI4_SLVL_PHY_ARFUNC(x)	 FIELD_PREP(GENMASK(20, 17), x)
+> +#define STG_SYSCON_AWFUNC_OFFSET		0x7c
+> +#define STG_SYSCON_AXI4_SLVL_AWFUNC_MASK	 GENMASK(14, 0)
+> +#define STG_SYSCON_AXI4_SLVL_PHY_AWFUNC(x)	 FIELD_PREP(GENMASK(12, 9), x)
+> +#define STG_SYSCON_CLKREQ			 BIT(22)
+> +#define STG_SYSCON_CKREF_SRC_MASK		 GENMASK(19, 18)
+> +#define STG_SYSCON_RP_NEP_OFFSET		0xe8
+> +#define STG_SYSCON_K_RP_NEP			 BIT(8)
+> +#define STG_SYSCON_LNKSTA_OFFSET		0x170
+> +#define DATA_LINK_ACTIVE			 BIT(5)
+> +
+> +/* Parameters for the waiting for link up routine */
+> +#define LINK_WAIT_MAX_RETRIES	10
+> +#define LINK_WAIT_USLEEP_MIN	90000
+> +#define LINK_WAIT_USLEEP_MAX	100000
+> +
+> +struct starfive_jh7110_pcie {
+> +	struct plda_pcie_rp plda;
+> +	struct reset_control *resets;
+> +	struct clk_bulk_data *clks;
+> +	struct regmap *reg_syscon;
+> +	struct gpio_desc *power_gpio;
+> +	struct gpio_desc *reset_gpio;
+> +
+> +	u32 stg_arfun;
+> +	u32 stg_awfun;
+> +	u32 stg_rp_nep;
+> +	u32 stg_lnksta;
+> +
+> +	int num_clks;
+> +};
+> +
+> +/*
+> + * The BAR0/1 of bridge should be hidden during enumeration to
+> + * avoid the sizing and resource allocation by PCIe core.
+> + */
+> +static bool starfive_pcie_hide_rc_bar(struct pci_bus *bus, unsigned int  devfn,
+> +				      int offset)
+> +{
+> +	if (pci_is_root_bus(bus) && !devfn &&
+> +	    (offset == PCI_BASE_ADDRESS_0 || offset == PCI_BASE_ADDRESS_1))
+> +		return true;
+> +
+> +	return false;
+> +}
+> +
+> +static int starfive_pcie_config_write(struct pci_bus *bus, unsigned int devfn,
+> +				      int where, int size, u32 value)
+> +{
+> +	if (starfive_pcie_hide_rc_bar(bus, devfn, where))
+> +		return PCIBIOS_BAD_REGISTER_NUMBER;
+> +
+> +	return pci_generic_config_write(bus, devfn, where, size, value);
+> +}
+> +
+> +static int starfive_pcie_config_read(struct pci_bus *bus, unsigned int devfn,
+> +				     int where, int size, u32 *value)
+> +{
+> +	if (starfive_pcie_hide_rc_bar(bus, devfn, where))
+> +		return PCIBIOS_BAD_REGISTER_NUMBER;
+> +
+> +	return pci_generic_config_read(bus, devfn, where, size, value);
+> +}
+> +
+> +static int starfive_pcie_parse_dt(struct starfive_jh7110_pcie *pcie, struct device *dev)
+> +{
+> +	int domain_nr, stg_pcie_base;
+> +
+> +	pcie->num_clks = devm_clk_bulk_get_all(dev, &pcie->clks);
+> +	if (pcie->num_clks < 0)
+> +		return dev_err_probe(dev, -ENODEV,
+> +			"failed to get pcie clocks\n");
+> +
+> +	pcie->resets = devm_reset_control_array_get_exclusive(dev);
+> +	if (IS_ERR(pcie->resets))
+> +		return dev_err_probe(dev, PTR_ERR(pcie->resets),
+> +			"failed to get pcie resets");
+> +
+> +	pcie->reg_syscon =
+> +		syscon_regmap_lookup_by_phandle(dev->of_node,
+> +						"starfive,stg-syscon");
+> +
+> +	if (IS_ERR(pcie->reg_syscon))
+> +		return dev_err_probe(dev, PTR_ERR(pcie->reg_syscon),
+> +			"failed to parse starfive,stg-syscon\n");
+> +
+> +	domain_nr = of_get_pci_domain_nr(dev->of_node);
+> +
+> +	if (domain_nr < 0 || domain_nr > 1)
+> +		return dev_err_probe(dev, -ENODEV,
+> +			"failed to get valid pcie id\n");
+> +
+> +	if (domain_nr == 0)
+> +		stg_pcie_base = STG_SYSCON_PCIE0_BASE;
+> +	else
+> +		stg_pcie_base = STG_SYSCON_PCIE1_BASE;
 
-> > +
-> > +	/* Memory is automatically flushed at each Frame Start */
-> > +	val = CSI2RX_IPI_MEM_FLUSH_AUTO;
-> > +	dwc_csi_write(csidev, CSI2RX_IPI_MEM_FLUSH, val);
-> > +
-> > +	/* Enable IPI */
-> > +	val = dwc_csi_read(csidev, CSI2RX_IPI_MODE);
-> > +	val |= CSI2RX_IPI_MODE_ENABLE;
-> > +	dwc_csi_write(csidev, CSI2RX_IPI_MODE, val);
-> > +}
-> > +
-> > +static void dwc_csi_ipi_disable(struct dwc_csi_device *csidev)
-> > +{
-> > +	const struct dwc_csi_plat_data *pdata = csidev->pdata;
-> > +
-> > +	if (pdata->intf != DWC_CSI2RX_INTF_IPI)
-> > +		return;
-> > +
-> > +	dwc_csi_write(csidev, CSI2RX_IPI_MODE, 0);
-> > +}
-> > +
-> > +static void dwc_csi_device_ipi_config(struct dwc_csi_device *csidev)
-> > +{
-> > +	const struct dwc_csi_pix_format *csi_fmt = csidev->csi_fmt;
-> > +	const struct dwc_csi_plat_data *pdata = csidev->pdata;
-> > +	u32 val;
-> > +
-> > +	if (pdata->intf != DWC_CSI2RX_INTF_IPI)
-> > +		return;
-> > +
-> > +	/* Do IPI soft reset */
-> > +	dwc_csi_write(csidev, CSI2RX_IPI_SOFTRSTN, 0x0);
-> > +	dwc_csi_write(csidev, CSI2RX_IPI_SOFTRSTN, 0x1);
-> > +
-> > +	/* Select virtual channel and data type to be processed by IPI */
-> > +	val = CSI2RX_IPI_DATA_TYPE_DT(csi_fmt->data_type);
-> > +	dwc_csi_write(csidev, CSI2RX_IPI_DATA_TYPE, val);
-> > +
-> > +	/* Set virtual channel 0 as default */
-> > +	val  = CSI2RX_IPI_VCID_VC(0);
-> > +	dwc_csi_write(csidev, CSI2RX_IPI_VCID, val);
-> > +
-> > +	/*
-> > +	 * Select IPI camera timing mode and allow the pixel stream
-> > +	 * to be non-continuous when pixel interface FIFO is empty
-> > +	 */
-> > +	val = dwc_csi_read(csidev, CSI2RX_IPI_MODE);
-> > +	val &= ~CSI2RX_IPI_MODE_CONTROLLER;
-> > +	val &= ~CSI2RX_IPI_MODE_COLOR_MODE16;
-> > +	val |= CSI2RX_IPI_MODE_CUT_THROUGH;
-> > +	dwc_csi_write(csidev, CSI2RX_IPI_MODE, val);
-> > +}
-> > +
-> > +static void dwc_csi_device_reset(struct dwc_csi_device *csidev)
-> > +{
-> > +	/* Reset mipi csi host, active low */
-> > +	dwc_csi_write(csidev, CSI2RX_HOST_RESETN, 0);
-> > +	dwc_csi_write(csidev, CSI2RX_HOST_RESETN, 1);
-> > +}
-> > +
-> > +static void dwc_csi_device_startup(struct dwc_csi_device *csidev)
-> > +{
-> > +	/* Release DWC_mipi_csi2_host from reset */
-> > +	dwc_csi_device_reset(csidev);
-> > +
-> > +	/* Apply PHY Reset */
-> > +	dphy_rx_reset(csidev);
-> > +
-> > +	/* Release PHY test codes from reset */
-> > +	dphy_rx_test_code_reset(csidev);
-> > +}
-> > +
-> > +static int dwc_csi_device_init(struct dwc_csi_device *csidev)
-> > +{
-> > +	struct device *dev = csidev->dev;
-> > +	u32 val;
-> > +	int ret;
-> > +
-> > +	/* Release Synopsys DPHY test codes from reset */
-> > +	dwc_csi_write(csidev, CSI2RX_DPHY_RSTZ, 0x0);
-> > +	dwc_csi_write(csidev, CSI2RX_DPHY_SHUTDOWNZ, 0x0);
-> > +	dwc_csi_write(csidev, CSI2RX_HOST_RESETN, 0);
-> > +
-> > +	/* Set testclr=1'b1 */
-> > +	val = dwc_csi_read(csidev, CSI2RX_DPHY_TEST_CTRL0);
-> > +	val |= CSI2RX_DPHY_TEST_CTRL0_TEST_CLR;
-> > +	dwc_csi_write(csidev, CSI2RX_DPHY_TEST_CTRL0, val);
-> > +
-> > +	/* Wait for at least 15ns */
-> > +	ndelay(15);
-> > +
-> > +	/* Configure the PHY frequency range */
-> > +	ret = dphy_rx_get_hsfreqrange(csidev);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	dphy_rx_test_code_config(csidev);
-> > +	dphy_rx_test_code_dump(csidev);
-> > +
-> > +	/* Config the number of active lanes */
-> > +	val = CSI2RX_N_LANES_N_LANES(csidev->bus.num_data_lanes - 1);
-> > +	dwc_csi_write(csidev, CSI2RX_N_LANES, val);
-> > +
-> > +	/* Release PHY from reset */
-> > +	dwc_csi_write(csidev, CSI2RX_DPHY_SHUTDOWNZ, 0x1);
-> > +	dwc_csi_write(csidev, CSI2RX_DPHY_RSTZ, 0x1);
-> > +	dwc_csi_write(csidev, CSI2RX_HOST_RESETN, 0x1);
-> > +
-> > +	/* Check if lanes are in stop state */
-> > +	ret = readl_poll_timeout(csidev->regs + CSI2RX_DPHY_STOPSTATE,
-> > +				 val, val != 0x10003, 10, 10000);
-> > +	if (ret) {
-> > +		dev_err(dev, "Lanes are not in stop state(%#x)\n", val);
-> > +		return ret;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static void dwc_csi_device_hs_rx_start(struct dwc_csi_device *csidev)
-> > +{
-> > +	dwc_csi_ipi_enable(csidev);
-> > +}
-> > +
-> > +static int dwc_csi_device_hs_rx_stop(struct dwc_csi_device *csidev)
-> > +{
-> > +	struct device *dev = csidev->dev;
-> > +	u32 val;
-> > +
-> > +	dwc_csi_ipi_disable(csidev);
-> > +	dphy_rx_power_off(csidev);
-> > +
-> > +	/* Check clock lanes are not in High Speed Mode */
-> > +	val = dwc_csi_read(csidev, CSI2RX_DPHY_RX_STATUS);
-> > +	if (val & CSI2RX_DPHY_RX_STATUS_CLK_LANE_HS) {
-> > +		dev_err(dev, "Clock lanes are still in HS mode\n");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static void dwc_csi_device_enable_interrupts(struct dwc_csi_device *csidev, bool on)
-> > +{
-> > +	/* Define errors to be enabled */
-> > +	dwc_csi_write(csidev, CSI2RX_INT_MSK_DPHY_FATAL, on ? 0x3 : 0);
-> > +	dwc_csi_write(csidev, CSI2RX_INT_MSK_PKT_FATAL, on ? 0x3 : 0);
-> > +	dwc_csi_write(csidev, CSI2RX_INT_MSK_DPHY, on ? 0x30003 : 0);
-> > +	dwc_csi_write(csidev, CSI2RX_INT_MSK_IPI_FATAL, on ? 0x7f : 0);
-> > +}
-> > +
-> > +static int dwc_csi_clk_enable(struct dwc_csi_device *csidev)
-> > +{
-> > +	const struct dwc_csi_plat_data *pdata = csidev->pdata;
-> > +
-> > +	return clk_bulk_prepare_enable(pdata->num_clks, csidev->clks);
-> > +}
-> > +
-> > +static void dwc_csi_clk_disable(struct dwc_csi_device *csidev)
-> > +{
-> > +	const struct dwc_csi_plat_data *pdata = csidev->pdata;
-> > +
-> > +	clk_bulk_disable_unprepare(pdata->num_clks, csidev->clks);
-> > +}
-> > +
-> > +static int dwc_csi_clk_get(struct dwc_csi_device *csidev)
-> > +{
-> > +	const struct dwc_csi_plat_data *pdata = csidev->pdata;
-> > +	unsigned int size;
-> > +	int ret;
-> > +
-> > +	size = pdata->num_clks * sizeof(*csidev->clks);
-> > +
-> > +	csidev->clks = devm_kmalloc(csidev->dev, size, GFP_KERNEL);
-> 
-> devm_kmalloc_array()?
-> 
-> > +	if (!csidev->clks)
-> > +		return -ENOMEM;
-> > +
-> > +	memcpy(csidev->clks, pdata->clks, size);
-> > +
-> > +	ret = devm_clk_bulk_get(csidev->dev, pdata->num_clks, csidev->clks);
-> > +	if (ret < 0) {
-> > +		dev_err(csidev->dev, "Failed to acquire clocks: %d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +/* -----------------------------------------------------------------------------
-> > + * Debug
-> > + */
-> > +
-> > +static void dwc_csi_clear_counters(struct dwc_csi_device *csidev)
-> > +{
-> > +	unsigned long flags;
-> > +	unsigned int i;
-> > +
-> > +	spin_lock_irqsave(&csidev->slock, flags);
-> > +
-> > +	for (i = 0; i < csidev->pdata->num_events; ++i)
-> > +		csidev->events[i].counter = 0;
-> > +
-> > +	spin_unlock_irqrestore(&csidev->slock, flags);
-> > +}
-> > +
-> > +static void dwc_csi_log_counters(struct dwc_csi_device *csidev)
-> > +{
-> > +	unsigned int num_events = csidev->pdata->num_events;
-> > +	unsigned long flags;
-> > +	unsigned int i;
-> > +
-> > +	spin_lock_irqsave(&csidev->slock, flags);
-> > +
-> > +	for (i = 0; i < num_events; ++i) {
-> > +		if (csidev->events[i].counter > 0)
-> > +			dev_info(csidev->dev, "%s events: %d\n",
-> > +				 csidev->events[i].name,
-> > +				 csidev->events[i].counter);
-> > +	}
-> > +
-> > +	spin_unlock_irqrestore(&csidev->slock, flags);
-> > +}
-> > +
-> > +static void dwc_csi_dump_regs(struct dwc_csi_device *csidev)
-> > +{
-> > +#define DWC_MIPI_CSIS_DEBUG_REG(name)		{name, #name}
-> > +	static const struct {
-> > +		u32 offset;
-> > +		const char * const name;
-> > +	} registers[] = {
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_VERSION),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_N_LANES),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_HOST_RESETN),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_INT_ST_MAIN),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_DPHY_SHUTDOWNZ),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_DPHY_RSTZ),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_DPHY_RX_STATUS),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_DPHY_STOPSTATE),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_DPHY_TEST_CTRL0),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_DPHY_TEST_CTRL1),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_PPI_PG_PATTERN_VRES),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_PPI_PG_PATTERN_HRES),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_PPI_PG_CONFIG),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_PPI_PG_ENABLE),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_PPI_PG_STATUS),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_IPI_MODE),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_IPI_VCID),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_IPI_DATA_TYPE),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_IPI_MEM_FLUSH),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_IPI_SOFTRSTN),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_IPI_ADV_FEATURES),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_INT_ST_DPHY_FATAL),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_INT_ST_PKT_FATAL),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_INT_ST_DPHY_FATAL),
-> > +		DWC_MIPI_CSIS_DEBUG_REG(CSI2RX_INT_ST_IPI_FATAL),
-> > +	};
-> > +
-> 
-> Extra newline.
-> 
-> > +	unsigned int i;
-> > +	u32 cfg;
-> > +
-> > +	dev_dbg(csidev->dev, "--- REGISTERS ---\n");
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(registers); i++) {
-> > +		cfg = dwc_csi_read(csidev, registers[i].offset);
-> > +		dev_dbg(csidev->dev, "%14s[0x%02x]: 0x%08x\n",
-> > +			registers[i].name, registers[i].offset, cfg);
-> > +	}
-> > +}
-> > +
-> > +/* -----------------------------------------------------------------------------
-> > + * V4L2 subdev operations
-> > + */
-> > +
-> > +static inline struct dwc_csi_device *
-> > +sd_to_dwc_csi_device(struct v4l2_subdev *sdev)
-> 
-> Please call this "sd" or "subdev" (instead of sdev).
-> 
-> > +{
-> > +	return container_of(sdev, struct dwc_csi_device, sd);
-> > +}
-> > +
-> > +static struct v4l2_mbus_framefmt *
-> > +dwc_csi_get_pad_format(struct dwc_csi_device *csidev,
-> > +			struct v4l2_subdev_state *sd_state,
-> > +			enum v4l2_subdev_format_whence which,
-> > +			unsigned int pad)
-> > +{
-> > +	if (which == V4L2_SUBDEV_FORMAT_TRY)
-> > +		return v4l2_subdev_get_try_format(&csidev->sd, sd_state, pad);
-> > +
-> > +	return &csidev->format_mbus[pad];
-> 
-> Please use sub-device state. See e.g.
+It seems you only need the domain_nr for the determining this offset into the
+stg_syscon. Since this is already specific to the JH7110 SoC, wouldn't it be
+safer to match on the 0x2b000000/0x2c000000 or 0x940000000/0x9c0000000
+address of the peripheral instead?
 
-To be precise, this is about storing the subdev active state in a
-v4l2_subdev_state structure managed by the subdev core. It should
-simplify the driver.
+> +
+> +	pcie->stg_arfun = stg_pcie_base + STG_SYSCON_ARFUNC_OFFSET;
+> +	pcie->stg_awfun = stg_pcie_base + STG_SYSCON_AWFUNC_OFFSET;
+> +	pcie->stg_rp_nep = stg_pcie_base + STG_SYSCON_RP_NEP_OFFSET;
+> +	pcie->stg_lnksta = stg_pcie_base + STG_SYSCON_LNKSTA_OFFSET;
 
-> <URL:https://git.linuxtv.org/sailus/media_tree.git/commit/?h=metadata&id=9e6a17a9750e220a93e0eb5d24c4af4c27d5fe3a>
-> for an example. I believe there are other examples in the tree already.
-> 
-> > +}
-> > +
-> > +static int dwc_csi_subdev_init_cfg(struct v4l2_subdev *sd,
-> > +				    struct v4l2_subdev_state *sd_state)
-> > +{
-> > +	struct dwc_csi_device *csidev = sd_to_dwc_csi_device(sd);
-> > +	struct v4l2_mbus_framefmt *fmt_sink;
-> > +	struct v4l2_mbus_framefmt *fmt_source;
-> > +
-> > +	fmt_sink = dwc_csi_get_pad_format(csidev, sd_state,
-> > +					   V4L2_SUBDEV_FORMAT_TRY,
-> > +					   DWC_CSI2RX_PAD_SINK);
-> > +	*fmt_sink = dwc_csi_default_fmt;
-> > +
-> > +	fmt_source = dwc_csi_get_pad_format(csidev, sd_state,
-> > +					     V4L2_SUBDEV_FORMAT_TRY,
-> > +					     DWC_CSI2RX_PAD_SOURCE);
-> > +	*fmt_source = *fmt_sink;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int dwc_csi_subdev_enum_mbus_code(struct v4l2_subdev *sd,
-> > +					  struct v4l2_subdev_state *sd_state,
-> > +					  struct v4l2_subdev_mbus_code_enum *code)
-> > +{
-> > +	struct dwc_csi_device *csidev = sd_to_dwc_csi_device(sd);
-> > +
-> > +	/*
-> > +	 * The CSIS can't transcode in any way, the source format is identical
-> > +	 * to the sink format.
-> > +	 */
-> > +	if (code->pad == DWC_CSI2RX_PAD_SOURCE) {
-> > +		struct v4l2_mbus_framefmt *fmt;
-> > +
-> > +		if (code->index > 0)
-> > +			return -EINVAL;
-> > +
-> > +		fmt = dwc_csi_get_pad_format(csidev, sd_state, code->which,
-> > +					      code->pad);
-> > +		code->code = fmt->code;
-> > +		return 0;
-> > +	}
-> > +
-> > +	if (code->pad != DWC_CSI2RX_PAD_SINK)
-> > +		return -EINVAL;
-> 
-> Do you have more than two pads? The caller will have validated the pad
-> field already.
-> 
-> > +
-> > +	if (code->index >= ARRAY_SIZE(dwc_csi_formats))
-> > +		return -EINVAL;
-> > +
-> > +	code->code = dwc_csi_formats[code->index].code;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int dwc_csi_subdev_get_fmt(struct v4l2_subdev *sd,
-> > +				   struct v4l2_subdev_state *sd_state,
-> > +				   struct v4l2_subdev_format *sdformat)
-> > +{
-> > +	struct dwc_csi_device *csidev = sd_to_dwc_csi_device(sd);
-> > +	struct v4l2_mbus_framefmt *fmt;
-> > +
-> > +	fmt = dwc_csi_get_pad_format(csidev, sd_state, sdformat->which,
-> > +				      sdformat->pad);
-> > +
-> > +	mutex_lock(&csidev->lock);
-> > +	sdformat->format = *fmt;
-> > +	mutex_unlock(&csidev->lock);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int dwc_csi_subdev_set_fmt(struct v4l2_subdev *sd,
-> > +				   struct v4l2_subdev_state *sd_state,
-> > +				   struct v4l2_subdev_format *sdformat)
-> > +{
-> > +	struct dwc_csi_device *csidev = sd_to_dwc_csi_device(sd);
-> > +	struct dwc_csi_pix_format const *csi_fmt;
-> > +	struct v4l2_mbus_framefmt *fmt;
-> > +	unsigned int align;
-> > +
-> > +	/*
-> > +	 * The CSIS can't transcode in any way, the source format can't be
-> > +	 * modified.
-> > +	 */
-> > +	if (sdformat->pad == DWC_CSI2RX_PAD_SOURCE)
-> > +		return dwc_csi_subdev_get_fmt(sd, sd_state, sdformat);
-> > +
-> > +	if (sdformat->pad != DWC_CSI2RX_PAD_SINK)
-> > +		return -EINVAL;
-> 
-> Ditto.
-> 
-> > +
-> > +	/*
-> > +	 * Validate the media bus code and clamp and align the size.
-> > +	 *
-> > +	 * The total number of bits per line must be a multiple of 8. We thus
-> > +	 * need to align the width for formats that are not multiples of 8
-> > +	 * bits.
-> > +	 */
-> > +	csi_fmt = find_csi_format(sdformat->format.code);
-> > +	if (!csi_fmt)
-> > +		csi_fmt = &dwc_csi_formats[0];
-> > +
-> > +	switch (csi_fmt->width % 8) {
-> > +	case 0:
-> > +		align = 0;
-> > +		break;
-> > +	case 4:
-> > +		align = 1;
-> > +		break;
-> > +	case 2:
-> > +	case 6:
-> > +		align = 2;
-> > +		break;
-> > +	default:
-> > +		/* 1, 3, 5, 7 */
-> > +		align = 3;
-> > +		break;
-> > +	}
-> > +
-> > +	v4l_bound_align_image(&sdformat->format.width, 1,
-> > +			      DWC_CSI2RX_MAX_PIX_WIDTH, align,
-> > +			      &sdformat->format.height, 1,
-> > +			      DWC_CSI2RX_MAX_PIX_HEIGHT, 0, 0);
-> > +
-> > +	fmt = dwc_csi_get_pad_format(csidev, sd_state, sdformat->which,
-> > +				      sdformat->pad);
-> > +
-> > +	mutex_lock(&csidev->lock);
-> > +
-> > +	fmt->code = csi_fmt->code;
-> > +	fmt->width = sdformat->format.width;
-> > +	fmt->height = sdformat->format.height;
-> > +	fmt->colorspace = sdformat->format.colorspace;
-> > +	fmt->quantization = sdformat->format.quantization;
-> > +	fmt->xfer_func = sdformat->format.xfer_func;
-> > +	fmt->ycbcr_enc = sdformat->format.ycbcr_enc;
-> > +
-> > +	sdformat->format = *fmt;
-> > +
-> > +	/* Propagate the format from sink to source. */
-> > +	fmt = dwc_csi_get_pad_format(csidev, sd_state, sdformat->which,
-> > +				      DWC_CSI2RX_PAD_SOURCE);
-> > +	*fmt = sdformat->format;
-> > +
-> > +	/* The format on the source pad might change due to unpacking. */
-> > +	fmt->code = csi_fmt->output;
-> > +
-> > +	/* Store the CSIS format descriptor for active formats. */
-> > +	if (sdformat->which == V4L2_SUBDEV_FORMAT_ACTIVE)
-> > +		csidev->csi_fmt = csi_fmt;
-> > +
-> > +	mutex_unlock(&csidev->lock);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int dwc_csi_get_frame_desc(struct v4l2_subdev *sd, unsigned int pad,
-> > +				   struct v4l2_mbus_frame_desc *fd)
-> > +{
-> > +	struct dwc_csi_device *csidev = sd_to_dwc_csi_device(sd);
-> > +	struct v4l2_mbus_frame_desc_entry *entry = &fd->entry[0];
-> > +
-> > +	if (pad != DWC_CSI2RX_PAD_SOURCE)
-> > +		return -EINVAL;
-> > +
-> > +	fd->type = V4L2_MBUS_FRAME_DESC_TYPE_PARALLEL;
-> > +	fd->num_entries = 1;
+These offsets are all the same for both pcie0 and pcie1 so why do you need a
+variable for each? Eg. why not just
 
-Does the CSI-2 receiver support capturing embedded data ?
+if (domain_nr == 0)
+	pcie->stg_base = STG_SYSCON_PCIE0_BASE;
+else
+	pcie->stg_base = STG_SYSCON_PCIE1_BASE;
 
-> > +
-> > +	memset(entry, 0, sizeof(*entry));
-> > +
-> > +	mutex_lock(&csidev->lock);
-> > +
-> > +	entry->flags = 0;
-> > +	entry->pixelcode = csidev->csi_fmt->code;
-> > +	entry->bus.csi2.vc = 0;
-> > +	entry->bus.csi2.dt = csidev->csi_fmt->data_type;
-> > +
-> > +	mutex_unlock(&csidev->lock);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int dwc_csi_start_stream(struct dwc_csi_device *csidev)
-> > +{
-> > +	int ret;
-> > +
-> > +	dwc_csi_device_startup(csidev);
-> > +
-> > +	ret = dwc_csi_device_init(csidev);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	dwc_csi_device_ipi_config(csidev);
-> > +
-> > +	ret = dwc_csi_device_pg_enable(csidev);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	dwc_csi_device_hs_rx_start(csidev);
-> > +
-> > +	dwc_csi_device_enable_interrupts(csidev, true);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static void dwc_csi_stop_stream(struct dwc_csi_device *csidev)
-> > +{
-> > +	dwc_csi_device_enable_interrupts(csidev, false);
-> > +	dwc_csi_device_hs_rx_stop(csidev);
-> > +	dwc_csi_device_pg_disable(csidev);
-> > +}
-> > +
-> > +static int dwc_csi_subdev_s_stream(struct v4l2_subdev *sd, int enable)
-> > +{
-> > +	struct dwc_csi_device *csidev = sd_to_dwc_csi_device(sd);
-> > +	int ret;
-> > +
-> > +	if (!csidev->sensor_sd) {
-> > +		dev_err(csidev->dev, "Sensor don't link with CSIS pad\n");
-> > +		return -EPIPE;
-> > +	}
+..and then add add those static offsets where needed?
 
-As the driver supports a single connected sensor (it adds a single entry
-to the notifier at probe time), you can simplify this by assigning
-sensor_sd in the .bound() handler, making the link immutable, and
-dropping the check here as well as dropping the .link_setup() handler.
+> +
+> +	pcie->reset_gpio = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(pcie->reset_gpio)) {
+> +		dev_warn(dev, "failed to get perst-gpio\n");
 
-> > +
-> > +	mutex_lock(&csidev->lock);
-> > +
-> > +	if (!enable) {
-> > +		dwc_csi_stop_stream(csidev);
-> > +		dwc_csi_log_counters(csidev);
-> > +		pm_runtime_put(csidev->dev);
-> > +		goto sd_stream;
-> > +	}
+Why is this a warn when you actually error out? I think you mean
 
-An 
+return dev_err_probe(dev, PTR_ERR(pcie->reset_gpio, "failed to get
+reset GPIO\n");
 
-	} else {
+> +		return -EINVAL;
+> +	}
+> +
+> +	pcie->power_gpio = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_LOW);
+> +	if (IS_ERR(pcie->power_gpio)) {
+> +		dev_warn(dev, "failed to get power-gpio\n");
+> +		return -EINVAL;
 
-here would avoid the goto above.
+return dev_err_probe(dev, PTR_ERR(pcie->power_gpio), "failed to get
+power GPIO\n");
 
-> > +
-> > +	ret = pm_runtime_resume_and_get(csidev->dev);
-> > +	if (ret < 0)
-> > +		goto unlocked;
-> > +
-> > +	ret = __v4l2_ctrl_handler_setup(&csidev->ctrl_handler);
-> > +	if (ret < 0) {
-> > +		pm_runtime_put(csidev->dev);
-> > +		goto unlocked;
-> > +	}
-> > +
-> > +	dwc_csi_clear_counters(csidev);
-> > +
-> > +	/* CSIS HW configuration */
-> > +	ret = dwc_csi_start_stream(csidev);
-> > +	if (ret) {
-> > +		pm_runtime_put(csidev->dev);
-> > +		goto unlocked;
-> > +	}
-> > +
-> > +	dwc_csi_dump_regs(csidev);
-> > +
-> > +sd_stream:
-> > +	/*
-> > +	 * when enable CSI pattern generator, the clock source of
-> > +	 * pattern generator will be from external sensor, so it
-> > +	 * also need to enable external sensor clock.
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static struct pci_ops starfive_pcie_ops = {
+> +	.map_bus	= plda_pcie_map_bus,
+> +	.read           = starfive_pcie_config_read,
+> +	.write          = starfive_pcie_config_write,
+> +};
+> +
+> +static int starfive_pcie_clk_rst_init(struct starfive_jh7110_pcie *pcie)
+> +{
+> +	int ret;
+> +	struct device *dev = pcie->plda.dev;
 
-That makes the test pattern generator less useful :-( If you need a
-sensor anyway, what are the use cases for using the TPG ?
+Again, please order initialized variables first.
 
-> > +	 */
-> > +	v4l2_subdev_call(csidev->sensor_sd, video, s_stream, enable);
-> > +	dwc_csi_log_counters(csidev);
-> > +unlocked:
+> +
+> +	ret = clk_bulk_prepare_enable(pcie->num_clks, pcie->clks);
+> +	if (ret) {
+> +		dev_err(dev, "failed to enable clocks\n");
+> +		return ret;
 
-s/unlocked/unlock/
+return dev_err_probe(dev, ret, "failed to enable clocks\n");
 
-> > +	mutex_unlock(&csidev->lock);
-> > +	return ret;
-> > +}
-> > +
-> > +static int dwc_csi_subdev_log_status(struct v4l2_subdev *sd)
-> > +{
-> > +	struct dwc_csi_device *csidev = sd_to_dwc_csi_device(sd);
-> > +
-> > +	dwc_csi_log_counters(csidev);
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct v4l2_subdev_core_ops dwc_csi_subdev_core_ops = {
-> > +	.log_status = dwc_csi_subdev_log_status,
-> > +	.subscribe_event = v4l2_ctrl_subdev_subscribe_event,
-> > +	.unsubscribe_event = v4l2_event_subdev_unsubscribe,
-> > +};
-> > +
-> > +static const struct v4l2_subdev_pad_ops dwc_csi_subdev_pad_ops = {
-> > +	.init_cfg = dwc_csi_subdev_init_cfg,
-> > +	.enum_mbus_code	= dwc_csi_subdev_enum_mbus_code,
-> > +	.get_fmt = dwc_csi_subdev_get_fmt,
-> > +	.set_fmt = dwc_csi_subdev_set_fmt,
-> > +	.get_frame_desc = dwc_csi_get_frame_desc,
-> > +};
-> > +
-> > +static const struct v4l2_subdev_video_ops dwc_csi_subdev_video_ops = {
-> > +	.s_stream = dwc_csi_subdev_s_stream,
-> > +};
-> > +
-> > +static const struct v4l2_subdev_ops dwc_csi_subdev_ops = {
-> > +	.core  = &dwc_csi_subdev_core_ops,
-> > +	.pad   = &dwc_csi_subdev_pad_ops,
-> > +	.video = &dwc_csi_subdev_video_ops,
-> > +};
-> > +
-> > +/* -----------------------------------------------------------------------------
-> > + * Media entity operations
-> > + */
-> > +
-> > +static int dwc_csi_link_setup(struct media_entity *entity,
-> > +			       const struct media_pad *local_pad,
-> > +			       const struct media_pad *remote_pad, u32 flags)
-> > +{
-> > +	struct v4l2_subdev *sd = media_entity_to_v4l2_subdev(entity);
-> > +	struct dwc_csi_device *csidev = sd_to_dwc_csi_device(sd);
-> > +	struct v4l2_subdev *remote_sd;
-> > +
-> > +	dev_dbg(csidev->dev, "link setup %s -> %s", remote_pad->entity->name,
-> > +		local_pad->entity->name);
-> > +
-> > +	/* We only care about the link to the source. */
-> > +	if (!(local_pad->flags & MEDIA_PAD_FL_SINK))
-> > +		return 0;
-> > +
-> > +	remote_sd = media_entity_to_v4l2_subdev(remote_pad->entity);
-> > +
-> > +	if (flags & MEDIA_LNK_FL_ENABLED) {
-> > +		if (csidev->sensor_sd)
-> > +			return -EBUSY;
-> > +
-> > +		csidev->sensor_sd = remote_sd;
-> > +		csidev->remote_pad = remote_pad->index;
-> > +	} else {
-> > +		csidev->sensor_sd = NULL;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int dwc_csi_link_validate(struct media_link *link)
-> > +{
-> > +	struct media_pad *sink_pad = link->sink;
-> > +	struct v4l2_subdev *sink_sd;
-> > +	struct dwc_csi_device *csidev;
-> > +
-> > +	sink_sd = media_entity_to_v4l2_subdev(sink_pad->entity);
-> > +	csidev = sd_to_dwc_csi_device(sink_sd);
-> > +
-> > +	dev_dbg(csidev->dev, "entity name:%s pad index=%d\n",
-> > +			   sink_sd->name, sink_pad->index);
-> > +
-> > +	/*
-> > +	 * Skip link validate when pattern enabled since the soruce
+> +	}
+> +
+> +	ret = reset_control_deassert(pcie->resets);
+> +	if (ret) {
+> +		clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
+> +		dev_err(dev, "failed to resets\n");
 
-s/soruce/source/
+I think you mean
+return dev_err_probe(dev, ret, "failed to deassert resets\n");
 
-> > +	 * data will be from CSI pattern generator, not sensor.
-> > +	 */
-> > +	if (csidev->pg_enable && sink_pad->index == DWC_CSI2RX_PAD_SINK)
-> > +		return 0;
-> > +
-> > +	return v4l2_subdev_link_validate(link);
-> > +}
-> > +
-> > +static const struct media_entity_operations dwc_csi_entity_ops = {
-> > +	.link_setup	= dwc_csi_link_setup,
-> > +	.link_validate	= dwc_csi_link_validate,
-> > +	.get_fwnode_pad = v4l2_subdev_get_fwnode_pad_1_to_1,
-> > +};
-> > +
-> > +/* -----------------------------------------------------------------------------
-> > + * Async subdev notifier
-> > + */
-> > +
-> > +static inline struct dwc_csi_device *
-> > +notifier_to_dwc_csi_device(struct v4l2_async_notifier *n)
-> > +{
-> > +	return container_of(n, struct dwc_csi_device, notifier);
-> > +}
-> > +
-> > +static int dwc_csi_notify_bound(struct v4l2_async_notifier *notifier,
-> > +				  struct v4l2_subdev *sd,
-> > +				  struct v4l2_async_subdev *asd)
-> 
-> There have been changes since you posted the patch, the equivalent struct
-> is now called v4l2_async_connection.
-> 
-> > +{
-> > +	struct dwc_csi_device *csidev = notifier_to_dwc_csi_device(notifier);
-> > +	struct media_pad *sink = &csidev->sd.entity.pads[DWC_CSI2RX_PAD_SINK];
-> > +
-> > +	return v4l2_create_fwnode_links_to_pad(sd, sink, 0);
-> > +}
-> > +
-> > +static const struct v4l2_async_notifier_operations dwc_csi_notify_ops = {
-> > +	.bound = dwc_csi_notify_bound,
-> > +};
-> > +
-> > +static int dwc_csi_async_register(struct dwc_csi_device *csidev)
-> > +{
-> > +	struct v4l2_fwnode_endpoint vep = {
-> > +		.bus_type = V4L2_MBUS_CSI2_DPHY,
-> > +	};
-> > +	struct v4l2_async_subdev *asd;
-> > +	struct fwnode_handle *ep;
-> > +	unsigned int i;
-> > +	int ret;
-> > +
-> > +	v4l2_async_nf_init(&csidev->notifier);
-> > +
-> > +	ep = fwnode_graph_get_endpoint_by_id(dev_fwnode(csidev->dev), 0, 0,
-> > +					     FWNODE_GRAPH_ENDPOINT_NEXT);
-> > +	if (!ep)
-> > +		return -ENOTCONN;
-> > +
-> > +	ret = v4l2_fwnode_endpoint_parse(ep, &vep);
-> > +	if (ret)
-> > +		goto err_parse;
-> > +
-> > +	for (i = 0; i < vep.bus.mipi_csi2.num_data_lanes; ++i) {
-> > +		if (vep.bus.mipi_csi2.data_lanes[i] != i + 1) {
-> > +			dev_err(csidev->dev,
-> > +				"data lanes reordering is not supported");
-> > +			ret = -EINVAL;
-> > +			goto err_parse;
-> > +		}
-> > +	}
-> > +
-> > +	csidev->bus = vep.bus.mipi_csi2;
-> > +
-> > +	dev_dbg(csidev->dev, "data lanes: %d\n", csidev->bus.num_data_lanes);
-> > +	dev_dbg(csidev->dev, "flags: 0x%08x\n", csidev->bus.flags);
-> > +
-> > +	asd = v4l2_async_nf_add_fwnode_remote(&csidev->notifier, ep,
-> > +					      struct v4l2_async_subdev);
-> > +	if (IS_ERR(asd)) {
-> > +		ret = PTR_ERR(asd);
-> > +		goto err_parse;
-> > +	}
-> > +
-> > +	fwnode_handle_put(ep);
-> > +
-> > +	csidev->notifier.ops = &dwc_csi_notify_ops;
-> > +
-> > +	ret = v4l2_async_subdev_nf_register(&csidev->sd, &csidev->notifier);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	return v4l2_async_register_subdev(&csidev->sd);
-> > +
-> > +err_parse:
-> > +	fwnode_handle_put(ep);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +/* -----------------------------------------------------------------------------
-> > + * Pattern Generator Controller operations
-> > + */
-> > +
-> > +static const char * const test_pattern_menu[] = {
-> > +	"Disabled",
-> > +	"Vertical Color Bars",
-> > +	"Horizontal Color Bars",
-> > +};
-> > +
-> > +static inline struct dwc_csi_device *ctrl_to_csidev(struct v4l2_ctrl *ctrl)
-> > +{
-> > +	return container_of(ctrl->handler, struct dwc_csi_device, ctrl_handler);
-> > +}
-> > +
-> > +static int dwc_csi_s_ctrl(struct v4l2_ctrl *ctrl)
-> > +{
-> > +	struct dwc_csi_device *csidev  = ctrl_to_csidev(ctrl);
-> > +	int ret = 0;
-> > +
-> > +	switch (ctrl->id) {
-> > +	case V4L2_CID_TEST_PATTERN:
-> > +		/* Pattern index start from 0 */
-> > +		csidev->pg_pattern = ctrl->val - 1;
-> > +		csidev->pg_enable = (ctrl->val) ? true : false;
-> > +		break;
-> 
-> You could already return here. Ret would become redundant. Up to you.
-> 
-> > +	default:
-> > +		ret = -EINVAL;
-> > +		break;
-> > +	}
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static const struct v4l2_ctrl_ops dwc_csi_ctrl_ops = {
-> > +	.s_ctrl = dwc_csi_s_ctrl,
-> > +};
-> > +
-> > +static int dwc_csi_controls_init(struct dwc_csi_device *csidev)
-> > +{
-> > +	struct v4l2_ctrl_handler *handler = &csidev->ctrl_handler;
-> > +	int ret;
-> > +
-> > +	v4l2_ctrl_handler_init(handler, 1);
-> > +
-> > +	/* Use driver mutex lock for the ctrl lock */
-> > +	handler->lock = &csidev->lock;
-> > +
-> > +	v4l2_ctrl_new_std_menu_items(handler, &dwc_csi_ctrl_ops,
-> > +				     V4L2_CID_TEST_PATTERN,
-> > +				     ARRAY_SIZE(test_pattern_menu) - 1,
-> > +				     0, 0, test_pattern_menu);
-> > +
-> > +	if (handler->error) {
-> > +		ret = handler->error;
-> > +		v4l2_ctrl_handler_free(handler);
-> > +		return ret;
-> > +	}
-> > +
-> > +	csidev->sd.ctrl_handler = handler;
-> > +	return 0;
-> > +}
-> > +/* -----------------------------------------------------------------------------
-> > + * Suspend/resume
-> > + */
-> > +
-> > +static int dwc_csi_system_suspend(struct device *dev)
-> > +{
-> > +	return pm_runtime_force_suspend(dev);
-> > +}
-> > +
-> > +static int dwc_csi_system_resume(struct device *dev)
-> > +{
-> > +	int ret;
-> > +
-> > +	ret = pm_runtime_force_resume(dev);
-> > +	if (ret < 0) {
-> > +		dev_err(dev, "force resume %s failed!\n", dev_name(dev));
-> > +		return ret;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static void starfive_pcie_clk_rst_deinit(struct starfive_jh7110_pcie *pcie)
+> +{
+> +	reset_control_assert(pcie->resets);
+> +	clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
+> +}
+> +
+> +static bool starfive_pcie_link_up(struct plda_pcie_rp *plda)
+> +{
+> +	struct starfive_jh7110_pcie *pcie =
+> +		container_of(plda, struct starfive_jh7110_pcie, plda);
+> +	struct device *dev = pcie->plda.dev;
 
-These shouldn't be needed, the device connected to the CSI-2 RX output
-should stop the pipeline during system suspend and resume it during
-system resume.
+This is only used once below, so just use pcie->plda.dev directly there.
 
-> > +
-> > +static int dwc_csi_runtime_suspend(struct device *dev)
-> > +{
-> > +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> > +	struct dwc_csi_device *csidev = sd_to_dwc_csi_device(sd);
-> > +
-> > +	dwc_csi_clk_disable(csidev);
+> +	int ret;
+> +	u32 stg_reg_val;
+> +
+> +	ret = regmap_read(pcie->reg_syscon, pcie->stg_lnksta, &stg_reg_val);
+> +	if (ret) {
+> +		dev_err(dev, "failed to read link status\n");
+> +		return false;
+> +	}
+> +
+> +	if (stg_reg_val & DATA_LINK_ACTIVE)
+> +		return true;
+> +
+> +	return false;
 
-This is the only caller fo the dwc_csi_clk_disable() function, I would
-inline it here. Same for dwc_csi_clk_enable() below.
+These last 4 lines is just "return stg_reg_val & DATA_LINK_ACTIVE;" right?
 
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int dwc_csi_runtime_resume(struct device *dev)
-> > +{
-> > +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> > +	struct dwc_csi_device *csidev = sd_to_dwc_csi_device(sd);
-> > +	int ret;
-> > +
-> > +	ret = dwc_csi_clk_enable(csidev);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	return 0;
+> +}
+> +
+> +static int starfive_pcie_host_wait_for_link(struct starfive_jh7110_pcie *pcie)
+> +{
+> +	struct device *dev = pcie->plda.dev;
 
-	return dwc_csi_clk_enable(csidev);
+Only used once, just inline.
 
-> > +}
-> > +
-> > +static const struct dev_pm_ops dwc_csi_device_pm_ops = {
-> > +	SET_SYSTEM_SLEEP_PM_OPS(dwc_csi_system_suspend, dwc_csi_system_resume)
-> > +	SET_RUNTIME_PM_OPS(dwc_csi_runtime_suspend, dwc_csi_runtime_resume, NULL)
-> > +};
-> > +
-> > +/* -----------------------------------------------------------------------------
-> > + * IRQ handling
-> > + */
-> > +
-> > +static irqreturn_t dwc_csi_irq_handler(int irq, void *priv)
-> > +{
-> > +	struct dwc_csi_device *csidev = priv;
-> > +	unsigned long flags;
-> > +	u32 status;
-> > +	int i;
-> > +
-> > +	status = dwc_csi_read(csidev, CSI2RX_INT_ST_MAIN);
-> > +
-> > +	spin_lock_irqsave(&csidev->slock, flags);
-> > +
-> > +	if (status & csidev->pdata->events_mask) {
-> > +		for (i = 0; i < csidev->pdata->num_events; ++i) {
-> > +			struct dwc_csi_event *event = &csidev->events[i];
-> > +
-> > +			if (status & event->mask)
-> > +				event->counter++;
-> > +		}
-> > +	}
-> > +
-> > +	spin_unlock_irqrestore(&csidev->slock, flags);
-> > +
-> > +	return IRQ_HANDLED;
-> > +}
-> > +
-> > +/* -----------------------------------------------------------------------------
-> > + * Probe/remove & platform driver
-> > + */
-> > +
-> > +static int dwc_csi_param_init(struct dwc_csi_device *csidev)
-> > +{
-> > +	int i;
-> 
-> unsigned int?
-> 
-> > +
-> > +	/* Initialize the same format for pads of CSIS entity */
-> > +	for (i = 0; i < DWC_CSI2RX_PADS_NUM; ++i)
-> > +		csidev->format_mbus[i] = dwc_csi_default_fmt;
-> > +
-> > +	csidev->csi_fmt = &dwc_csi_formats[0];
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int dwc_csi_event_init(struct dwc_csi_device *csidev)
-> > +{
-> > +	unsigned int size = csidev->pdata->num_events
-> > +			  * sizeof(*csidev->events);
-> > +
-> > +	csidev->events = devm_kzalloc(csidev->dev, size, GFP_KERNEL);
-> > +	if (!csidev->events)
-> > +		return -ENOMEM;
-> > +
-> > +	memcpy(csidev->events, csidev->pdata->events, size);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int dwc_csi_subdev_init(struct dwc_csi_device *csidev)
-> > +{
-> > +	struct v4l2_subdev *sd = &csidev->sd;
-> > +
-> > +	v4l2_subdev_init(sd, &dwc_csi_subdev_ops);
-> > +	sd->owner = THIS_MODULE;
-> > +	snprintf(sd->name, sizeof(sd->name), "csidev-%s", dev_name(csidev->dev));
-> > +
-> > +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE |
-> > +		     V4L2_SUBDEV_FL_HAS_EVENTS;
-> > +	sd->entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
-> > +	sd->entity.ops = &dwc_csi_entity_ops;
-> > +
-> > +	sd->dev = csidev->dev;
-> > +
-> > +	csidev->pads[DWC_CSI2RX_PAD_SINK].flags = MEDIA_PAD_FL_SINK;
-> > +	csidev->pads[DWC_CSI2RX_PAD_SOURCE].flags = MEDIA_PAD_FL_SOURCE;
-> > +
-> > +	return media_entity_pads_init(&csidev->sd.entity, DWC_CSI2RX_PADS_NUM,
-> > +				      csidev->pads);
-> > +}
-> > +
-> > +static int dwc_csi_device_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct dwc_csi_device *csidev;
-> > +	unsigned long cfg_rate;
-> > +	int irq;
-> > +	int ret;
-> > +
-> > +	csidev = devm_kzalloc(dev, sizeof(*csidev), GFP_KERNEL);
-> > +	if (!csidev)
-> > +		return -ENOMEM;
-> > +
-> > +	mutex_init(&csidev->lock);
-> > +	spin_lock_init(&csidev->slock);
-> > +
-> > +	csidev->dev = dev;
-> > +	csidev->pdata = of_device_get_match_data(dev);
-> > +
-> > +	csidev->regs = devm_platform_ioremap_resource(pdev, 0);
-> > +	if (IS_ERR(csidev->regs)) {
-> > +		dev_err(dev, "Failed to get DWC csi2 register map\n");
-> > +		return PTR_ERR(csidev->regs);
-> > +	}
-> > +
-> > +	irq = platform_get_irq(pdev, 0);
-> > +	if (irq < 0) {
-> > +		dev_err(dev, "Failed to get IRQ (%d)\n", irq);
-> > +		return irq;
-> > +	}
-> > +
-> > +	ret = devm_request_irq(dev, irq, dwc_csi_irq_handler, 0,
-> > +			       dev_name(dev), csidev);
-> > +	if (ret < 0) {
-> > +		dev_err(dev, "Failed to request IRQ (%d)\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret = dwc_csi_clk_get(csidev);
-> > +	if (ret < 0) {
-> > +		dev_err(dev, "Failed to get clocks\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	/* cfgclkfreqrange[5:0] = round[(cfg_clk(MHz) - 17) * 4] */
-> > +	cfg_rate = clk_get_rate(csidev->clks[PHY_CFG].clk);
-> > +	if (!cfg_rate) {
-> > +		dev_err(dev, "Failed to get phy_cfg clock rate\n");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	csidev->cfgclkfreqrange = ((cfg_rate / 1000000) - 17) * 4;
-> 
-> Please use div_u64() here. This won't work on some archs otherwise.
-> 
-> > +
-> > +	ret = dwc_csi_param_init(csidev);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	ret = dwc_csi_event_init(csidev);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	ret = dwc_csi_subdev_init(csidev);
-> > +	if (ret < 0) {
-> > +		dev_err(dev, "Failed to initialize subdev\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret = dwc_csi_controls_init(csidev);
-> > +	if (ret) {
-> > +		dev_err(dev, "Failed to initialize controls\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	platform_set_drvdata(pdev, &csidev->sd);
-> > +
-> > +	ret = dwc_csi_async_register(csidev);
-> > +	if (ret < 0) {
-> > +		dev_err(dev, "Async register failed: %d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	pm_runtime_enable(dev);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int dwc_csi_device_remove(struct platform_device *pdev)
-> > +{
-> > +	struct v4l2_subdev *sd = platform_get_drvdata(pdev);
-> > +	struct dwc_csi_device *csidev = sd_to_dwc_csi_device(sd);
-> > +
-> > +	v4l2_async_nf_unregister(&csidev->notifier);
-> > +	v4l2_async_nf_cleanup(&csidev->notifier);
-> > +	v4l2_async_unregister_subdev(&csidev->sd);
-> > +
-> > +	pm_runtime_disable(&pdev->dev);
-> > +
-> > +	media_entity_cleanup(&csidev->sd.entity);
-> > +	fwnode_handle_put(csidev->sd.fwnode);
-> > +	mutex_destroy(&csidev->lock);
-> > +
-> > +	pm_runtime_set_suspended(&pdev->dev);
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct clk_bulk_data mxc_imx93_clks[] = {
-> > +	{ .id = "per" },
-> > +	{ .id = "pixel" },
-> > +	{ .id = "phy_cfg" },
-> > +};
-> > +
-> > +static const struct dwc_csi_plat_data mxc_imx93_data = {
-> > +	.model		= DWC_CSI2RX_IMX93,
-> > +	.intf		= DWC_CSI2RX_INTF_IPI,
-> > +	.clks		= mxc_imx93_clks,
-> > +	.num_clks	= ARRAY_SIZE(mxc_imx93_clks),
-> > +	.events		= mxc_imx93_events,
-> > +	.num_events	= ARRAY_SIZE(mxc_imx93_events),
-> > +	.events_mask	= 0x500ff,
-> > +};
-> > +
-> > +static const struct of_device_id dwc_csi_device_of_match[] = {
-> > +	{ .compatible = "fsl,imx93-mipi-csi2", .data = &mxc_imx93_data },
-> > +	{ /* sentinel */ },
-> > +};
-> > +MODULE_DEVICE_TABLE(of, dwc_csi_device_of_match);
-> > +
-> > +static struct platform_driver dwc_csi_device_driver = {
-> > +	.driver = {
-> > +		.owner          = THIS_MODULE,
-> > +		.name           = DWC_MIPI_CSIS_DRIVER_NAME,
-> > +		.of_match_table = dwc_csi_device_of_match,
-> > +		.pm             = &dwc_csi_device_pm_ops,
-> > +	},
-> > +	.probe  = dwc_csi_device_probe,
-> > +	.remove = dwc_csi_device_remove,
-> > +};
-> > +
-> > +module_platform_driver(dwc_csi_device_driver);
-> > +
-> > +MODULE_DESCRIPTION("DesignWare Core MIPI CSI2 driver");
-> > +MODULE_LICENSE("GPL");
-> > +MODULE_ALIAS("platform:" DWC_MIPI_CSIS_DRIVER_NAME);
-> > diff --git a/drivers/media/platform/nxp/dwc-mipi-csi2.h b/drivers/media/platform/nxp/dwc-mipi-csi2.h
-> > new file mode 100644
-> > index 000000000000..470023787c25
-> > --- /dev/null
-> > +++ b/drivers/media/platform/nxp/dwc-mipi-csi2.h
-> > @@ -0,0 +1,299 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +/*
-> > + * Copyright 2023 NXP
-> > + */
-> > +
-> > +#ifndef __DWC_MIPI_CSI2_H__
-> > +#define __DWC_MIPI_CSI2_H__
-> > +
-> > +#include <linux/device.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/io.h>
-> > +
-> > +#include <media/v4l2-ctrls.h>
-> > +#include <media/v4l2-device.h>
-> > +#include <media/v4l2-fwnode.h>
-> > +#include <media/v4l2-mc.h>
-> > +#include <media/v4l2-subdev.h>
-> 
-> I don't think you need many of these headers here. Please move to the .c
-> file those you don't need here.
-> 
-> > +
-> > +/* MIPI CSI-2 Host Controller Registers Define */
-> > +
+> +	int retries;
+> +
+> +	/* Check if the link is up or not */
+> +	for (retries = 0; retries < LINK_WAIT_MAX_RETRIES; retries++) {
+> +		if (starfive_pcie_link_up(&pcie->plda)) {
+> +			dev_info(dev, "port link up\n");
+> +			return 0;
+> +		}
+> +		usleep_range(LINK_WAIT_USLEEP_MIN, LINK_WAIT_USLEEP_MAX);
+> +	}
+> +
+> +	return -ETIMEDOUT;
+> +}
+> +
+> +static int starfive_pcie_enable_phy(struct device *dev, struct plda_pcie_rp *pcie)
+> +{
+> +	int ret;
+> +
+> +	if (!pcie->phy)
+> +		return 0;
+> +
+> +	ret = phy_init(pcie->phy);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +			"failed to initialize pcie phy\n");
+> +
+> +	ret = phy_set_mode(pcie->phy, PHY_MODE_PCIE);
+> +	if (ret) {
+> +		dev_err(dev, "failed to set pcie mode\n");
+> +		goto err_phy_on;
+> +	}
+> +
+> +	ret = phy_power_on(pcie->phy);
+> +	if (ret) {
+> +		dev_err(dev, "failed to power on pcie phy\n");
+> +		goto err_phy_on;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_phy_on:
+> +	phy_exit(pcie->phy);
+> +	return ret;
+> +}
+> +
+> +static void starfive_pcie_disable_phy(struct plda_pcie_rp *pcie)
+> +{
+> +	phy_power_off(pcie->phy);
+> +	phy_exit(pcie->phy);
+> +}
+> +
+> +static void starfive_pcie_host_deinit(struct plda_pcie_rp *plda)
+> +{
+> +	struct starfive_jh7110_pcie *pcie =
+> +		container_of(plda, struct starfive_jh7110_pcie, plda);
+> +
+> +	starfive_pcie_clk_rst_deinit(pcie);
+> +	if (pcie->power_gpio)
+> +		gpiod_set_value_cansleep(pcie->power_gpio, 0);
+> +	starfive_pcie_disable_phy(plda);
+> +}
+> +
+> +static int starfive_pcie_host_init(struct plda_pcie_rp *plda)
+> +{
+> +	int i;
+> +	struct starfive_jh7110_pcie *pcie =
+> +		container_of(plda, struct starfive_jh7110_pcie, plda);
+> +	struct device *dev = plda->dev;
+> +	int ret;
 
-Niklas, is it me, or do the registers here look very familiar ? The
-R-Car V4H may have the same CSI-2 RX. Should we have a single driver ?
+Weird ordering again.
 
-> > +/* Core Version */
-> > +#define CSI2RX_VERSION					0x0
-> > +
-> > +/* Number of Lanes */
-> > +#define CSI2RX_N_LANES					0x4
-> > +#define CSI2RX_N_LANES_N_LANES(x)			((x) & 0x7)
-> > +
-> > +/* Logic Reset */
-> > +#define CSI2RX_HOST_RESETN				0x8
-> > +#define CSI2RX_HOST_RESETN_ENABLE			BIT(0)
-> > +
-> > +/* Main Interrupt Status */
-> > +#define CSI2RX_INT_ST_MAIN				0xc
-> > +#define CSI2RX_INT_ST_MAIN_FATAL_ERR_IPI		BIT(18)
-> > +#define CSI2RX_INT_ST_MAIN_ERR_PHY			BIT(16)
-> > +#define CSI2RX_INT_ST_MAIN_ERR_ECC			BIT(7)
-> > +#define CSI2RX_INT_ST_MAIN_ERR_DID			BIT(6)
-> > +#define CSI2RX_INT_ST_MAIN_FATAL_ERR_PLD_CRC		BIT(5)
-> > +#define CSI2RX_INT_ST_MAIN_FATAL_ERR_CRC_FRAME		BIT(4)
-> > +#define CSI2RX_INT_ST_MAIN_FATAL_ERR_SEQ_FRAME		BIT(3)
-> > +#define CSI2RX_INT_ST_MAIN_FATAL_ERR_BNDRY_FRAMEL	BIT(2)
-> > +#define CSI2RX_INT_ST_MAIN_FATAL_ERR_PKT		BIT(1)
-> > +#define CSI2RX_INT_ST_MAIN_FATAL_ERR_PHY		BIT(0)
-> > +
-> > +/* PHY Shutdown */
-> > +#define CSI2RX_DPHY_SHUTDOWNZ				0x40
-> > +#define CSI2RX_DPHY_SHUTDOWNZ_ENABLE			BIT(0)
-> > +
-> > +/* DPHY Reset */
-> > +#define CSI2RX_DPHY_RSTZ				0x44
-> > +#define CSI2RX_DPHY_RSTZ_ENABLE				BIT(0)
-> > +
-> > +/* RX PHY Status */
-> > +#define CSI2RX_DPHY_RX_STATUS				0x48
-> > +#define CSI2RX_DPHY_RX_STATUS_CLK_LANE_HS		BIT(17)
-> > +#define CSI2RX_DPHY_RX_STATUS_CLK_LANE_ULP		BIT(16)
-> > +#define CSI2RX_DPHY_RX_STATUS_DATA_LANE1_ULP		BIT(1)
-> > +#define CSI2RX_DPHY_RX_STATUS_DATA_LANE0_ULP		BIT(0)
-> > +
-> > +/* STOP STATE PHY Status */
-> > +#define CSI2RX_DPHY_STOPSTATE				0x4c
-> > +#define CSI2RX_DPHY_STOPSTATE_CLK_LANE			BIT(16)
-> > +#define CSI2RX_DPHY_STOPSTATE_DATA_LANE1		BIT(1)
-> > +#define CSI2RX_DPHY_STOPSTATE_DATA_LANE0		BIT(0)
-> > +
-> > +/* DPHY Test and Control Interface 1 */
-> > +#define CSI2RX_DPHY_TEST_CTRL0				0x50
-> > +#define CSI2RX_DPHY_TEST_CTRL0_TEST_CLR			BIT(0)
-> > +#define CSI2RX_DPHY_TEST_CTRL0_TEST_CLKEN		BIT(1)
-> > +
-> > +/* DPHY Test and Control Interface 2 */
-> > +#define CSI2RX_DPHY_TEST_CTRL1				0x54
-> > +#define CSI2RX_DPHY_TEST_CTRL1_TEST_DIN(x)		((x) & 0xff)
-> > +#define CSI2RX_DPHY_TEST_CTRL1_TEST_DOUT(x)		(((x) & 0xff00) >> 8)
-> > +#define CSI2RX_DPHY_TEST_CTRL1_TEST_EN			BIT(16)
-> > +
-> > +/* Pattern Generator vertical Resolution */
-> > +#define CSI2RX_PPI_PG_PATTERN_VRES			0x60
-> > +#define CSI2RX_PPI_PG_PATTERN_VRES_VRES(x)		((x) & 0xffff)
-> > +
-> > +/* Pattern Generator horizontal Resolution */
-> > +#define CSI2RX_PPI_PG_PATTERN_HRES			0x64
-> > +#define CSI2RX_PPI_PG_PATTERN_HRES_HRES(x)		((x) & 0xffff)
-> > +
-> > +/* Pattern Generator */
-> > +#define CSI2RX_PPI_PG_CONFIG				0x68
-> > +#define CSI2RX_PPI_PG_CONFIG_DATA_TYPE(x)		(((x) & 0x3f) << 8)
-> > +#define CSI2RX_PPI_PG_CONFIG_VIR_CHAN(x)		(((x) & 0x3) << 14)
-> > +#define CSI2RX_PPI_PG_CONFIG_VIR_CHAN_EX(x)		(((x) & 0x3) << 16)
-> > +#define CSI2RX_PPI_PG_CONFIG_VIR_CHAN_EX_2_EN		BIT(18)
-> > +#define CSI2RX_PPI_PG_CONFIG_PG_MODE(x)			(x)
-> > +
-> > +/* Pattern Generator Enable */
-> > +#define CSI2RX_PPI_PG_ENABLE				0x6c
-> > +#define CSI2RX_PPI_PG_ENABLE_EN				BIT(0)
-> > +
-> > +/* Pattern Generator Status */
-> > +#define CSI2RX_PPI_PG_STATUS				0x70
-> > +#define CSI2RX_PPI_PG_STATUS_ACTIVE			BIT(0)
-> > +
-> > +/* IPI Mode */
-> > +#define CSI2RX_IPI_MODE					0x80
-> > +#define CSI2RX_IPI_MODE_ENABLE				BIT(24)
-> > +#define CSI2RX_IPI_MODE_CUT_THROUGH			BIT(16)
-> > +#define CSI2RX_IPI_MODE_COLOR_MODE16			BIT(8)
-> > +#define CSI2RX_IPI_MODE_CONTROLLER			BIT(1)
-> > +
-> > +/* IPI Virtual Channel */
-> > +#define CSI2RX_IPI_VCID					0x84
-> > +#define CSI2RX_IPI_VCID_VC(x)				((x)  & 0x3)
-> > +#define CSI2RX_IPI_VCID_VC_0_1(x)			(((x) & 0x3) << 2)
-> > +#define CSI2RX_IPI_VCID_VC_2				BIT(4)
-> > +
-> > +/* IPI Data Type */
-> > +#define CSI2RX_IPI_DATA_TYPE				0x88
-> > +#define CSI2RX_IPI_DATA_TYPE_DT(x)			((x) & 0x3f)
-> > +#define CSI2RX_IPI_DATA_TYPE_EMB_DATA_EN		BIT(8)
-> > +
-> > +/* IPI Flush Memory */
-> > +#define CSI2RX_IPI_MEM_FLUSH				0x8c
-> > +#define CSI2RX_IPI_MEM_FLUSH_AUTO			BIT(8)
-> > +
-> > +/* IPI HSA */
-> > +#define CSI2RX_IPI_HSA_TIME				0x90
-> > +#define CSI2RX_IPI_HSA_TIME_VAL(x)			((x) & 0xfff)
-> > +
-> > +/* IPI HBP */
-> > +#define CSI2RX_IPI_HBP_TIME				0x94
-> > +#define CSI2RX_IPI_HBP_TIME_VAL(x)			((x) & 0xfff)
-> > +
-> > +/* IPI HSD */
-> > +#define CSI2RX_IPI_HSD_TIME				0x98
-> > +#define CSI2RX_IPI_HSD_TIME_VAL(x)			((x) & 0xfff)
-> > +
-> > +/* IPI HLINE */
-> > +#define CSI2RX_IPI_HLINE_TIME				0x9C
-> > +#define CSI2RX_IPI_HLINE_TIME_VAL(x)			((x) & 0x3fff)
-> > +
-> > +/* IPI Soft Reset */
-> > +#define CSI2RX_IPI_SOFTRSTN				0xa0
-> > +
-> > +/* IPI Advanced Features */
-> > +#define CSI2RX_IPI_ADV_FEATURES				0xac
-> > +#define CSI2RX_IPI_ADV_FEATURES_SYNC_EVENT_MODE		BIT(24)
-> > +#define CSI2RX_IPI_ADV_FEATURES_SYNC_EMBEDDED_PKT	BIT(21)
-> > +#define CSI2RX_IPI_ADV_FEATURES_SYNC_BLANKING_PKT	BIT(20)
-> > +#define CSI2RX_IPI_ADV_FEATURES_SYNC_NULL_PKT		BIT(19)
-> > +#define CSI2RX_IPI_ADV_FEATURES_SYNC_LS_PKT		BIT(18)
-> > +#define CSI2RX_IPI_ADV_FEATURES_SYNC_VIDEO_PKT		BIT(17)
-> > +#define CSI2RX_IPI_ADV_FEATURES_LINE_EVENT_SEL		BIT(16)
-> > +#define CSI2RX_IPI_ADV_FEATURES_DT_OVER_WRITE(x)	(((x) & 0x3f) << 8)
-> > +#define CSI2RX_IPI_ADV_FEATURES_DT_OVER_WRITE_EN	BIT(0)
-> > +
-> > +/* IPI VSA */
-> > +#define CSI2RX_IPI_VSA_LINES				0xb0
-> > +#define CSI2RX_IPI_VSA_LINES_VAL(x)			((x) & 0x3ff)
-> > +
-> > +/* IPI VBP */
-> > +#define CSI2RX_IPI_VBP_LINES				0xb4
-> > +#define CSI2RX_IPI_VBP_LINES_VAL(x)			((x) & 0x3ff)
-> > +
-> > +/* IPI VFP */
-> > +#define CSI2RX_IPI_VFP_LINES				0xb8
-> > +#define CSI2RX_IPI_VFP_LINES_VAL(x)			((x) & 0x3ff)
-> > +
-> > +/* IPI VACTIVE */
-> > +#define CSI2RX_IPI_VACTIVE_LINES			0xbc
-> > +#define CSI2RX_IPI_VACTIVE_LINES_VAL(x)			((x) & 0x3fff)
-> > +
-> > +/* Fatal Interruption Caused by PHY */
-> > +#define CSI2RX_INT_ST_DPHY_FATAL			0xe0
-> > +#define CSI2RX_INT_ST_DPHY_FATAL_ERR_SOT_LANE1		BIT(1)
-> > +#define CSI2RX_INT_ST_DPHY_FATAL_ERR_SOT_LANE0		BIT(0)
-> > +
-> > +/* Mask for Fatal Interruption Caused by PHY */
-> > +#define CSI2RX_INT_MSK_DPHY_FATAL			0xe4
-> > +#define CSI2RX_INT_MSK_DPHY_FATAL_ERR_SOT_LANE1		BIT(1)
-> > +#define CSI2RX_INT_MSK_DPHY_FATAL_ERR_SOT_LANE0		BIT(0)
-> > +
-> > +/* Force for Fatal Interruption Caused by PHY */
-> > +#define CSI2RX_INT_FORCE_DPHY_FATAL			0xe8
-> > +
-> > +/* Fatal Interruption Caused During Packet Construction */
-> > +#define CSI2RX_INT_ST_PKT_FATAL			0xf0
-> > +#define CSI2RX_INT_ST_PKT_FATAL_ERR_PAYLOAD		BIT(1)
-> > +#define CSI2RX_INT_ST_PKT_FATAL_ERR_ECC		BIT(0)
-> > +
-> > +/* Mask for Fatal Interruption Caused During Packet Construction */
-> > +#define CSI2RX_INT_MSK_PKT_FATAL			0xf4
-> > +#define CSI2RX_INT_MSK_PKT_FATAL_ERR_PAYLOAD		BIT(1)
-> > +#define CSI2RX_INT_MSK_PKT_FATAL_ERR_ECC		BIT(0)
-> > +
-> > +/* Force for Fatal Interruption Caused During Packet Construction */
-> > +#define CSI2RX_INT_FORCE_PKT_FATAL			0xf8
-> > +
-> > +/* Interruption Caused by PHY */
-> > +#define CSI2RX_INT_ST_DPHY				0x110
-> > +#define CSI2RX_INT_ST_DPHY_ERR_ESC_LANE1		BIT(17)
-> > +#define CSI2RX_INT_ST_DPHY_ERR_ESC_LANE0		BIT(16)
-> > +#define CSI2RX_INT_ST_DPHY_ERR_SOT_LANE1		BIT(1)
-> > +#define CSI2RX_INT_ST_DPHY_ERR_SOT_LANE0		BIT(0)
-> > +
-> > +/* Mask for Interruption Caused by PHY */
-> > +#define CSI2RX_INT_MSK_DPHY				0x114
-> > +#define CSI2RX_INT_MSK_DPHY_ESC_ERR_LANE1		BIT(17)
-> > +#define CSI2RX_INT_MSK_DPHY_ESC_ERR_LANE0		BIT(16)
-> > +#define CSI2RX_INT_MSK_DPHY_SOT_ERR_LANE1		BIT(1)
-> > +#define CSI2RX_INT_MSK_DPHY_SOT_ERR_LANE0		BIT(0)
-> > +
-> > +/* Force for Interruption Caused by PHY */
-> > +#define CSI2RX_INT_FORCE_DPHY				0x118
-> > +
-> > +/* Fatal Interruption Caused by IPI Interface */
-> > +#define CSI2RX_INT_ST_IPI_FATAL			0x140
-> > +#define CSI2RX_INT_ST_IPI_FATAL_ERR_PD_FIFO_OVERFLOW	BIT(6)
-> > +#define CSI2RX_INT_ST_IPI_FATAL_ERR_FIFO_OVERFLOW	BIT(5)
-> > +#define CSI2RX_INT_ST_IPI_FATAL_ERR_HLINE_TIME		BIT(4)
-> > +#define CSI2RX_INT_ST_IPI_FATAL_ERR_FIFO_NOT_EMPTY	BIT(3)
-> > +#define CSI2RX_INT_ST_IPI_FATAL_ERR_FRAME_SYNC		BIT(2)
-> > +#define CSI2RX_INT_ST_IPI_FATAL_ERR_IF_FIFO_OVERFLOW	BIT(1)
-> > +#define CSI2RX_INT_ST_IPI_FATAL_ERR_IF_FIFO_UNDERFLOW	BIT(0)
-> > +
-> > +/* Mask for Fatal Interruption Caused by IPI Interface */
-> > +#define CSI2RX_INT_MSK_IPI_FATAL			0x144
-> > +#define CSI2RX_INT_MSK_IPI_FATAL_ERR_PD_FIFO_OVERFLOW	BIT(6)
-> > +#define CSI2RX_INT_MSK_IPI_FATAL_ERR_FIFO_OVERFLOW	BIT(5)
-> > +#define CSI2RX_INT_MSK_IPI_FATAL_ERR_HLINE_TIME		BIT(4)
-> > +#define CSI2RX_INT_MSK_IPI_FATAL_ERR_FIFO_NOT_EMPTY	BIT(3)
-> > +#define CSI2RX_INT_MSK_IPI_FATAL_ERR_FRAME_SYNC		BIT(2)
-> > +#define CSI2RX_INT_MSK_IPI_FATAL_ERR_IF_FIFO_OVERFLOW	BIT(1)
-> > +#define CSI2RX_INT_MSK_IPI_FATAL_ERR_IF_FIFO_UNDERFLOW	BIT(0)
-> > +
-> > +/* Force for Fatal Interruption Caused by IPI Interface */
-> > +#define CSI2RX_INT_FORCE_IPI_FATAL			0x148
-> > +
-> > +/* Data De-Scrambling */
-> > +#define CSI2RX_SCRAMBLING				0x300
-> > +
-> > +/* De-scrambler Seed for Lane 1 */
-> > +#define CSI2RX_SCRAMBLING_SEED1				0x304
-> > +
-> > +/* De-scrambler Seed for Lane 2 */
-> > +#define CSI2RX_SCRAMBLING_SEED2				0x308
-> > +
-> > +#define dwc_csi_write(csidev, reg, val)	writel((val), csidev->regs + (reg))
-> > +#define dwc_csi_read(csidev, reg)	readl(csidev->regs + (reg))
-> > +
-> > +#define DWC_CSI2RX_PAD_SINK		0
-> > +#define DWC_CSI2RX_PAD_SOURCE		1
-> > +#define DWC_CSI2RX_PADS_NUM		2
-> > +
-> > +struct dwc_csi_pix_format {
-> > +	u32 code;
-> > +	u32 output;
-> > +	u32 data_type;
-> > +	u8 width;
-> > +};
-> > +
-> > +struct dwc_csi_device {
-> > +	struct device *dev;
-> > +	void __iomem *regs;
-> > +	struct clk_bulk_data *clks;
-> > +	const struct dwc_csi_plat_data *pdata;
-> > +
-> > +	struct v4l2_subdev sd;
-> > +	struct v4l2_async_notifier notifier;
-> > +	struct v4l2_subdev *sensor_sd;
-> > +	struct v4l2_ctrl_handler ctrl_handler;
-> > +	struct media_pad pads[DWC_CSI2RX_PADS_NUM];
-> > +	u16 remote_pad;
-> > +
-> > +	struct v4l2_mbus_config_mipi_csi2 bus;
-> > +	u32 cfgclkfreqrange;
-> > +	u32 hsfreqrange;
-> > +
-> > +	spinlock_t slock;	/* Protect events */
-> > +	struct mutex lock;
-> > +
-> > +	struct dwc_csi_event *events;
-> > +	const struct dwc_csi_pix_format *csi_fmt;
-> > +	struct v4l2_mbus_framefmt format_mbus[DWC_CSI2RX_PADS_NUM];
-> > +
-> > +	/* Used for pattern generator */
-> > +	bool pg_enable;
-> > +	enum {
-> > +		PATTERN_DISABLED,
-> > +		PATTERN_VERTICAL,
-> > +		PATTERN_HORIZONTAL,
-> > +	} pg_pattern;
-> > +};
-> > +
-> > +void dphy_rx_reset(struct dwc_csi_device *csidev);
-> > +void dphy_rx_test_code_reset(struct dwc_csi_device *csidev);
-> > +void dphy_rx_test_code_config(struct dwc_csi_device *csidev);
-> > +void dphy_rx_power_off(struct dwc_csi_device *csidev);
-> > +void dphy_rx_test_code_dump(struct dwc_csi_device *csidev);
-> > +int dphy_rx_get_hsfreqrange(struct dwc_csi_device *csidev);
-> > +
-> > +#endif /* __DWC_MIPI_CSI2_H__ */
-> > diff --git a/drivers/media/platform/nxp/dwc-mipi-dphy.c b/drivers/media/platform/nxp/dwc-mipi-dphy.c
-> > new file mode 100644
-> > index 000000000000..9b9f2f01a31c
-> > --- /dev/null
-> > +++ b/drivers/media/platform/nxp/dwc-mipi-dphy.c
-> > @@ -0,0 +1,295 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright 2023 NXP
-> > + */
-> > +
-> > +#include "dwc-mipi-csi2.h"
-> > +
-> > +/*
-> > + * DPHY testcode used to configure Rx DPHY
-> > + */
-> > +
-> > +/* System configuration 0 */
-> > +#define DPHY_RX_SYS_0					0x01
-> > +#define HSFREQRANGE_OVR_EN_RW				BIT(5)
-> > +
-> > +/* System configuration 1 */
-> > +#define DPHY_RX_SYS_1					0x02
-> > +#define HSFREQRANGE_OVR_RW(x)				((x) & 0x7F)
-> > +#define TIMEBASE_OVR_EN_RW				BIT(7)
-> > +
-> > +/* System configuration 2 */
-> > +#define DPHY_RX_SYS_2					0x03
-> > +#define TIMEBASE_OVR_RW(x)				((x) & 0xFF)
-> > +
-> > +struct dwc_csi_mbps_reg {
-> > +	u16 mbps;
-> > +	u16 reg;
-> > +};
-> > +
-> > +/*
-> > + * Bit rate to high speed frequency range map table
-> > + */
-> > +static const struct dwc_csi_mbps_reg dwc_csi_mbps_table[] = {
-> > +	{ .mbps = 80,  .reg = 0x00 },
-> > +	{ .mbps = 90,  .reg = 0x10 },
-> > +	{ .mbps = 100, .reg = 0x20 },
-> > +	{ .mbps = 110, .reg = 0x30 },
-> > +	{ .mbps = 120, .reg = 0x01 },
-> > +	{ .mbps = 130, .reg = 0x11 },
-> > +	{ .mbps = 140, .reg = 0x21 },
-> > +	{ .mbps = 150, .reg = 0x31 },
-> > +	{ .mbps = 160, .reg = 0x02 },
-> > +	{ .mbps = 170, .reg = 0x12 },
-> > +	{ .mbps = 180, .reg = 0x22 },
-> > +	{ .mbps = 190, .reg = 0x32 },
-> > +	{ .mbps = 205, .reg = 0x03 },
-> > +	{ .mbps = 220, .reg = 0x13 },
-> > +	{ .mbps = 235, .reg = 0x23 },
-> > +	{ .mbps = 250, .reg = 0x33 },
-> > +	{ .mbps = 275, .reg = 0x04 },
-> > +	{ .mbps = 300, .reg = 0x14 },
-> > +	{ .mbps = 325, .reg = 0x25 },
-> > +	{ .mbps = 350, .reg = 0x35 },
-> > +	{ .mbps = 400, .reg = 0x05 },
-> > +	{ .mbps = 450, .reg = 0x16 },
-> > +	{ .mbps = 500, .reg = 0x26 },
-> > +	{ .mbps = 550, .reg = 0x37 },
-> > +	{ .mbps = 600, .reg = 0x07 },
-> > +	{ .mbps = 650, .reg = 0x18 },
-> > +	{ .mbps = 700, .reg = 0x28 },
-> > +	{ .mbps = 750, .reg = 0x39 },
-> > +	{ .mbps = 800, .reg = 0x09 },
-> > +	{ .mbps = 850, .reg = 0x19 },
-> > +	{ .mbps = 900, .reg = 0x29 },
-> > +	{ .mbps = 950, .reg = 0x3a },
-> > +	{ .mbps = 1000, .reg = 0x0a },
-> > +	{ .mbps = 1050, .reg = 0x1a },
-> > +	{ .mbps = 1100, .reg = 0x2a },
-> > +	{ .mbps = 1150, .reg = 0x3b },
-> > +	{ .mbps = 1200, .reg = 0x0b },
-> > +	{ .mbps = 1250, .reg = 0x1b },
-> > +	{ .mbps = 1300, .reg = 0x2b },
-> > +	{ .mbps = 1350, .reg = 0x3c },
-> > +	{ .mbps = 1400, .reg = 0x0c },
-> > +	{ .mbps = 1450, .reg = 0x1c },
-> > +	{ .mbps = 1500, .reg = 0x2c },
-> > +	{ /* sentinel */ },
-> > +};
-> > +
-> > +static inline void dphy_rx_test_ctrl_set(struct dwc_csi_device *csidev,
-> > +					 u32 offset, u32 mask, u32 code)
-> > +{
-> > +	u32 val;
-> > +
-> > +	val = dwc_csi_read(csidev, offset);
-> > +	val &= ~(mask);
-> > +	val |= code;
-> > +	dwc_csi_write(csidev, offset, val);
-> > +}
-> > +
-> > +static inline void dphy_rx_test_ctrl_clr(struct dwc_csi_device *csidev,
-> > +					 u32 offset, u32 code)
-> > +{
-> > +	u32 val;
-> > +
-> > +	val = dwc_csi_read(csidev, offset);
-> > +	val &= ~(code);
-> > +	dwc_csi_write(csidev, offset, val);
-> > +}
-> > +
-> > +static u8 dphy_rx_test_ctrl_get(struct dwc_csi_device *csidev, u32 offset)
-> > +{
-> > +	u32 val;
-> > +
-> > +	val = dwc_csi_read(csidev, offset);
-> > +	val = CSI2RX_DPHY_TEST_CTRL1_TEST_DOUT(val);
-> > +
-> > +	return (u8)val;
-> > +}
-> > +
-> > +static void dphy_rx_write(struct dwc_csi_device *csidev, u8 addr, u8 value)
-> > +{
-> > +	u32 val;
-> > +
-> > +	/*
-> > +	 * Set PHY_TST_CTRL1, bit[16] and write PHY_TST_CTRL1,
-> > +	 * bit[7:0] with test code address
-> > +	 */
-> > +	val = CSI2RX_DPHY_TEST_CTRL1_TEST_EN;
-> > +	val |= CSI2RX_DPHY_TEST_CTRL1_TEST_DIN(addr);
-> > +	dphy_rx_test_ctrl_set(csidev, CSI2RX_DPHY_TEST_CTRL1, 0x100ff, val);
-> > +
-> > +	/*
-> > +	 * Set and clear PHY_TST_CTRL0, bit[1]
-> > +	 */
-> > +	val = CSI2RX_DPHY_TEST_CTRL0_TEST_CLKEN;
-> > +	dphy_rx_test_ctrl_set(csidev, CSI2RX_DPHY_TEST_CTRL0, 0x2, val);
-> > +	dphy_rx_test_ctrl_clr(csidev, CSI2RX_DPHY_TEST_CTRL0, val);
-> > +
-> > +	/*
-> > +	 * Write PHY_TST_CTRL1, bit[7:0] with test code content
-> > +	 */
-> > +	val = CSI2RX_DPHY_TEST_CTRL1_TEST_DIN(value);
-> > +	dphy_rx_test_ctrl_set(csidev, CSI2RX_DPHY_TEST_CTRL1, 0xff, val);
-> > +
-> > +	/*
-> > +	 * Clear PHY_TST_CTRL1, bit[16]
-> > +	 */
-> > +	val = CSI2RX_DPHY_TEST_CTRL1_TEST_EN;
-> > +	dphy_rx_test_ctrl_clr(csidev, CSI2RX_DPHY_TEST_CTRL1, val);
-> > +
-> > +	/*
-> > +	 * Set and clear PHY_TST_CTRL0, bit[1]
-> > +	 */
-> > +	val = CSI2RX_DPHY_TEST_CTRL0_TEST_CLKEN;
-> > +	dphy_rx_test_ctrl_set(csidev, CSI2RX_DPHY_TEST_CTRL0, 0x2, val);
-> > +	dphy_rx_test_ctrl_clr(csidev, CSI2RX_DPHY_TEST_CTRL0, val);
-> > +}
-> > +
-> > +static int dphy_rx_read(struct dwc_csi_device *csidev, u8 addr)
-> > +{
-> > +	u32 val;
-> > +
-> > +	/*
-> > +	 * Set PHY_TST_CTRL1, bit[16] and write PHY_TST_CTRL1,
-> > +	 * bit[7:0] with test code address
-> > +	 */
-> > +	val = CSI2RX_DPHY_TEST_CTRL1_TEST_EN;
-> > +	val |= CSI2RX_DPHY_TEST_CTRL1_TEST_DIN(addr);
-> > +	dphy_rx_test_ctrl_set(csidev, CSI2RX_DPHY_TEST_CTRL1, 0x100ff, val);
-> > +
-> > +	/* Set and clear PHY_TST_CTRL0, bit[1] */
-> > +	val = CSI2RX_DPHY_TEST_CTRL0_TEST_CLKEN;
-> > +	dphy_rx_test_ctrl_set(csidev, CSI2RX_DPHY_TEST_CTRL0, 0x2, val);
-> > +	dphy_rx_test_ctrl_clr(csidev, CSI2RX_DPHY_TEST_CTRL0, val);
-> > +
-> > +	/* Read PHY_TST_CTRL1, bit[15:8] with the test code content */
-> > +	val = dphy_rx_test_ctrl_get(csidev, CSI2RX_DPHY_TEST_CTRL1);
-> > +
-> > +	/* Clear PHY_TST_CTRL1, bit[16] */
-> > +	dphy_rx_test_ctrl_clr(csidev, CSI2RX_DPHY_TEST_CTRL1,
-> > +				CSI2RX_DPHY_TEST_CTRL1_TEST_EN);
-> > +
-> > +	return val;
-> > +}
-> > +
-> > +void dphy_rx_reset(struct dwc_csi_device *csidev)
-> > +{
-> > +	dwc_csi_write(csidev, CSI2RX_DPHY_RSTZ, 0x0);
-> > +	dwc_csi_write(csidev, CSI2RX_DPHY_SHUTDOWNZ, 0x0);
-> > +	ndelay(15);
-> > +
-> > +	dwc_csi_write(csidev, CSI2RX_DPHY_SHUTDOWNZ, 0x1);
-> > +	ndelay(5);
-> > +	dwc_csi_write(csidev, CSI2RX_DPHY_RSTZ, 0x1);
-> > +}
-> > +
-> > +void dphy_rx_test_code_reset(struct dwc_csi_device *csidev)
-> > +{
-> > +	u32 val;
-> > +
-> > +	/* Set PHY_TST_CTRL0, bit[0] */
-> > +	val = dwc_csi_read(csidev, CSI2RX_DPHY_TEST_CTRL0);
-> > +	val |= CSI2RX_DPHY_TEST_CTRL0_TEST_CLR;
-> > +	dwc_csi_write(csidev, CSI2RX_DPHY_TEST_CTRL0, val);
-> > +
-> > +	/* Clear PHY_TST_CTRL0, bit[0] */
-> > +	val = dwc_csi_read(csidev, CSI2RX_DPHY_TEST_CTRL0);
-> > +	val &= ~CSI2RX_DPHY_TEST_CTRL0_TEST_CLR;
-> > +	dwc_csi_write(csidev, CSI2RX_DPHY_TEST_CTRL0, val);
-> > +}
-> > +
-> > +void dphy_rx_test_code_config(struct dwc_csi_device *csidev)
-> > +{
-> > +	u32 val;
-> > +	u8 dphy_val;
-> > +
-> > +	/* Set testclr=1'b0 */
-> > +	val = dwc_csi_read(csidev, CSI2RX_DPHY_TEST_CTRL0);
-> > +	val &= ~CSI2RX_DPHY_TEST_CTRL0_TEST_CLR;
-> > +	dwc_csi_write(csidev, CSI2RX_DPHY_TEST_CTRL0, val);
-> > +
-> > +	/* Enable hsfreqrange_ovr_en and set hsfreqrange */
-> > +	dphy_rx_write(csidev, DPHY_RX_SYS_0, HSFREQRANGE_OVR_EN_RW);
-> > +	dphy_rx_write(csidev, DPHY_RX_SYS_1,
-> > +		      HSFREQRANGE_OVR_RW(csidev->hsfreqrange));
-> > +
-> > +	/* Enable timebase_ovr_en */
-> > +	dphy_val = dphy_rx_read(csidev, DPHY_RX_SYS_1);
-> > +	dphy_val |= TIMEBASE_OVR_EN_RW;
-> > +	dphy_rx_write(csidev, DPHY_RX_SYS_1, dphy_val);
-> > +
-> > +	/* Set cfgclkfreqrange */
-> > +	dphy_rx_write(csidev, DPHY_RX_SYS_2,
-> > +		      TIMEBASE_OVR_RW(csidev->cfgclkfreqrange + 0x44));
-> > +}
-> > +
-> > +void dphy_rx_power_off(struct dwc_csi_device *csidev)
-> > +{
-> > +	dwc_csi_write(csidev, CSI2RX_DPHY_RSTZ, 0x0);
-> > +	dwc_csi_write(csidev, CSI2RX_DPHY_SHUTDOWNZ, 0x0);
-> > +}
-> > +
-> > +void dphy_rx_test_code_dump(struct dwc_csi_device *csidev)
-> > +{
-> > +#define DPHY_DEBUG_REG(name)		{name, #name}
-> > +	static const struct {
-> > +		u32 offset;
-> > +		const char * const name;
-> > +	} test_codes[] = {
-> > +		DPHY_DEBUG_REG(DPHY_RX_SYS_0),
-> > +		DPHY_DEBUG_REG(DPHY_RX_SYS_1),
-> > +		DPHY_DEBUG_REG(DPHY_RX_SYS_2),
-> > +	};
-> > +	unsigned int i;
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(test_codes); i++)
-> > +		dev_dbg(csidev->dev, "%14s[0x%02x]: 0x%02x\n",
-> > +			test_codes[i].name, test_codes[i].offset,
-> > +			dphy_rx_read(csidev, test_codes[i].offset));
-> > +}
-> > +
-> > +int dphy_rx_get_hsfreqrange(struct dwc_csi_device *csidev)
-> > +{
-> > +	struct v4l2_subdev *source = csidev->sensor_sd;
-> > +	const struct dwc_csi_mbps_reg *value;
-> > +	const struct dwc_csi_mbps_reg *prev_value = NULL;
-> > +	s64 link_freq;
-> > +	u32 mbsp;
-> > +
-> > +	link_freq = v4l2_get_link_freq(source->ctrl_handler,
-> > +				       csidev->csi_fmt->width,
-> > +				       csidev->bus.num_data_lanes * 2);
-> > +	if (link_freq < 0) {
-> > +		dev_err(csidev->dev, "Unable to obtain link frequency: %d\n",
-> > +			(int)link_freq);
-> > +		return link_freq;
-> > +	}
-> > +
-> > +	mbsp = link_freq * 2 / 1000000;
-> > +
-> > +	if (mbsp < 80 || mbsp > 1500) {
-> > +		dev_dbg(csidev->dev, "Out-of-bound lane rate %u\n", mbsp);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	for (value = dwc_csi_mbps_table; value->mbps; value++) {
-> > +		if (value->mbps >= mbsp)
-> > +			break;
-> > +		prev_value = value;
-> > +	}
-> > +
-> > +	if (prev_value &&
-> > +	    ((mbsp - prev_value->mbps) <= (value->mbps - mbsp)))
-> > +		value = prev_value;
-> > +
-> > +	if (!value->mbps) {
-> > +		dev_err(csidev->dev, "Unsupported PHY speed (%u Mbps)", mbsp);
-> > +		return -ERANGE;
-> > +	}
-> > +
-> > +	csidev->hsfreqrange = value->reg;
-> > +
-> > +	return 0;
-> > +}
+> +
+> +	ret = starfive_pcie_enable_phy(dev, plda);
+> +	if (ret)
+> +		return ret;
+> +
+> +	regmap_update_bits(pcie->reg_syscon, pcie->stg_rp_nep,
+> +			   STG_SYSCON_K_RP_NEP, STG_SYSCON_K_RP_NEP);
+> +
+> +	regmap_update_bits(pcie->reg_syscon, pcie->stg_awfun,
+> +			   STG_SYSCON_CKREF_SRC_MASK,
+> +			   FIELD_PREP(STG_SYSCON_CKREF_SRC_MASK, 2));
+> +
+> +	regmap_update_bits(pcie->reg_syscon, pcie->stg_awfun,
+> +			   STG_SYSCON_CLKREQ, STG_SYSCON_CLKREQ);
+> +
+> +	ret = starfive_pcie_clk_rst_init(pcie);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (pcie->power_gpio)
+> +		gpiod_set_value_cansleep(pcie->power_gpio, 1);
+> +
+> +	if (pcie->reset_gpio)
+> +		gpiod_set_value_cansleep(pcie->reset_gpio, 1);
+> +
+> +	/* Disable physical functions except #0 */
+> +	for (i = 1; i < PCIE_FUNC_NUM; i++) {
+> +		regmap_update_bits(pcie->reg_syscon,
+> +				   pcie->stg_arfun,
+> +				   STG_SYSCON_AXI4_SLVL_ARFUNC_MASK,
+> +				   STG_SYSCON_AXI4_SLVL_PHY_ARFUNC(i));
+> +
+> +		regmap_update_bits(pcie->reg_syscon,
+> +				   pcie->stg_awfun,
+> +				   STG_SYSCON_AXI4_SLVL_AWFUNC_MASK,
+> +				   STG_SYSCON_AXI4_SLVL_PHY_AWFUNC(i));
+> +
+> +		plda_pcie_disable_func(plda);
+> +	}
+> +
+> +	regmap_update_bits(pcie->reg_syscon, pcie->stg_arfun,
+> +			   STG_SYSCON_AXI4_SLVL_ARFUNC_MASK, 0);
+> +	regmap_update_bits(pcie->reg_syscon, pcie->stg_awfun,
+> +			   STG_SYSCON_AXI4_SLVL_AWFUNC_MASK, 0);
+> +
+> +	plda_pcie_enable_root_port(plda);
+> +	plda_pcie_write_rc_bar(plda, 0);
+> +
+> +	/* PCIe PCI Standard Configuration Identification Settings. */
+> +	plda_pcie_set_standard_class(plda);
+> +
+> +	/*
+> +	 * The LTR message forwarding of PCIe Message Reception was set by core
+> +	 * as default, but the forward id & addr are also need to be reset.
+> +	 * If we do not disable LTR message forwarding here, or set a legal
+> +	 * forwarding address, the kernel will get stuck after this driver probe.
+> +	 * To workaround, disable the LTR message forwarding support on
+> +	 * PCIe Message Reception.
+> +	 */
+> +	plda_pcie_disable_ltr(plda);
+> +
+> +	/* Prefetchable memory window 64-bit addressing support */
+> +	plda_pcie_set_pref_win_64bit(plda);
+> +
+> +	/* Ensure that PERST has been asserted for at least 100 ms,
+> +	 * the sleep value is T_PVPERL from PCIe CEM spec r2.0 (Table 2-4)
+> +	 */
+> +	msleep(100);
+> +	if (pcie->reset_gpio)
+> +		gpiod_set_value_cansleep(pcie->reset_gpio, 0);
+> +
+> +	/* As the requirement in PCIe base spec r6.0, system (<=5GT/s) must
+> +	 * wait a minimum of 100 ms following exit from a conventional reset
+> +	 * before sending a configuration request to the device.
+> +	 */
+> +	msleep(100);
+> +
+> +	if (starfive_pcie_host_wait_for_link(pcie))
+> +		dev_info(dev, "port link down\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct plda_pcie_host_ops sf_host_ops = {
+> +	.host_init = starfive_pcie_host_init,
+> +	.host_deinit = starfive_pcie_host_deinit,
+> +};
+> +
+> +static int starfive_pcie_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct starfive_jh7110_pcie *pcie;
+> +	struct plda_pcie_rp *plda;
+> +	int ret;
+> +
+> +	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
+> +	if (!pcie)
+> +		return -ENOMEM;
+> +
+> +	plda = &pcie->plda;
+> +	plda->dev = dev;
+> +
+> +	ret = starfive_pcie_parse_dt(pcie, dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	plda->host_ops = &sf_host_ops;
+> +	plda->num_events = NUM_PLDA_EVENTS;
+> +	ret = plda_pcie_host_init(&pcie->plda, &starfive_pcie_ops);
+> +	if (ret)
+> +		return ret;
+> +
+> +	pm_runtime_enable(&pdev->dev);
+> +	pm_runtime_get_sync(&pdev->dev);
+> +	platform_set_drvdata(pdev, pcie);
+> +
+> +	return 0;
+> +}
+> +
+> +static void starfive_pcie_remove(struct platform_device *pdev)
+> +{
+> +	struct starfive_jh7110_pcie *pcie = platform_get_drvdata(pdev);
+> +
+> +	plda_pcie_host_deinit(&pcie->plda);
+> +	platform_set_drvdata(pdev, NULL);
+> +}
+> +
+> +static int starfive_pcie_suspend_noirq(struct device *dev)
+> +{
+> +	struct starfive_jh7110_pcie *pcie = dev_get_drvdata(dev);
+> +
+> +	if (!pcie)
+> +		return 0;
+> +
+> +	clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
+> +	starfive_pcie_disable_phy(&pcie->plda);
+> +
+> +	return 0;
+> +}
+> +
+> +static int starfive_pcie_resume_noirq(struct device *dev)
+> +{
+> +	struct starfive_jh7110_pcie *pcie = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret = starfive_pcie_enable_phy(dev, &pcie->plda);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = clk_bulk_prepare_enable(pcie->num_clks, pcie->clks);
+> +	if (ret) {
+> +		dev_err(dev, "failed to enable clocks\n");
+> +		starfive_pcie_disable_phy(&pcie->plda);
+> +		return ret;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct dev_pm_ops starfive_pcie_pm_ops = {
+> +	NOIRQ_SYSTEM_SLEEP_PM_OPS(starfive_pcie_suspend_noirq,
+> +				  starfive_pcie_resume_noirq)
+> +};
+> +
+> +static const struct of_device_id starfive_pcie_of_match[] = {
+> +	{ .compatible = "starfive,jh7110-pcie"},
 
--- 
-Regards,
+Missing space before }
 
-Laurent Pinchart
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, starfive_pcie_of_match);
+> +
+> +static struct platform_driver starfive_pcie_driver = {
+> +	.driver = {
+> +		.name = "pcie-starfive",
+> +		.of_match_table = of_match_ptr(starfive_pcie_of_match),
+> +#ifdef CONFIG_PM_SLEEP
+> +		.pm = &starfive_pcie_pm_ops,
+> +#endif
+
+This can be just .pm = pm_sleep_ptr(&starfive_pcie_pm_ops),
+
+> +	},
+> +	.probe = starfive_pcie_probe,
+> +	.remove_new = starfive_pcie_remove,
+> +};
+> +module_platform_driver(starfive_pcie_driver);
+> +
+> +MODULE_DESCRIPTION("StarFive JH7110 PCIe host driver");
+> +MODULE_LICENSE("GPL v2");
+> --
+> 2.17.1
 
