@@ -1,99 +1,210 @@
-Return-Path: <devicetree+bounces-811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F65B7A3377
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 02:22:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F4567A33E6
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 08:04:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9ADC281649
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 00:22:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96EA41C208C6
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 06:03:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84902368;
-	Sun, 17 Sep 2023 00:22:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41A4C139E;
+	Sun, 17 Sep 2023 06:03:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25688173
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 00:22:31 +0000 (UTC)
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F6A2CCF
-	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 17:22:30 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-31ad779e6b3so3169011f8f.2
-        for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 17:22:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694910149; x=1695514949; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7/mSGd0lQiQIs0ky3gsayu99HBJSZ/MEeeFtzu3vHGM=;
-        b=O08KXq1StnZ0mi6ZFrkdQPpCsqRzSl2k5pgdo6ZvS3klDp8F1pkNuthmNssgEyU7s+
-         SLKfBuaYk3hZUJ2dKiptJdCOnifj80kFUbnYyePY/MQYtEdJI8w3qujfbfqFRFjQvP1T
-         U6FaLkv6A3FwwwiijCpXbAg8u963z9uOEKnyGgJSNtwb44j4O4FdILCdv6HuOl4HyHkb
-         uZnIWYyxUpMIJjMgJF3e4+jsL0JY0KVCl+ogEZXzwohWGSoEzDtOVT6n5W2rlnJ8gyqx
-         zMibd2KhoTXL8l9uUIWVCNF6Vk+8WnKrwYAz4LswNHurfdnaaHnCUBRQhRV2Vz52jpjs
-         62gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694910149; x=1695514949;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7/mSGd0lQiQIs0ky3gsayu99HBJSZ/MEeeFtzu3vHGM=;
-        b=Nl+AiqZMz3EoA8NIo93TiXxCESZGqlxlA+uJp0l8zwgRrMGjrHsNXdMy1Hu+a2zGHD
-         JGhBTB1pbr6QHw871ZtURRqFGTA2+f0peDhQ7bEm9kFUYZMn6SehtZKa2FzLsMX0Om2v
-         YWkuK0MbUM3q7AgvbNTYF4SRy1M53JUH+rX52nBXGUsUPji3XimFkb2/CpzoRvegHM3V
-         /8RVd86P7rNrsLReLeehTN5wjTdIKcyRnvF4NC2ODPuU3IUUF8kvbz1pkziGz9i/6O82
-         cOtW6oXui6XwIv3Z7bIORvZNimMOREo4veGle0/BM0P9Agv89AvvegQoMDuDro72eCAU
-         dIvA==
-X-Gm-Message-State: AOJu0Ywj/bg78ixGcPKbamYszqqemiWYveDyX0b3UgJTZpkGznqx3i0B
-	25hhrBQX3MXxNV0IlHogbGb4Eg==
-X-Google-Smtp-Source: AGHT+IF0WUtsBTjNiyn9tDsi9lSymZ3pEuoj5cUAFdJtxACwTRWECoejR/S3RU8WWwYVNbkSljXqEg==
-X-Received: by 2002:adf:e78d:0:b0:314:17cc:31d0 with SMTP id n13-20020adfe78d000000b0031417cc31d0mr4482762wrm.34.1694910148573;
-        Sat, 16 Sep 2023 17:22:28 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id y14-20020a5d4ace000000b0031c5dda3aedsm8412372wrs.95.2023.09.16.17.22.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 16 Sep 2023 17:22:28 -0700 (PDT)
-Message-ID: <3a66a198-5817-4c74-9047-c49e5bcc84c2@linaro.org>
-Date: Sun, 17 Sep 2023 01:22:26 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21597136F
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 06:03:54 +0000 (UTC)
+Received: from smtp.smtpout.orange.fr (smtp-29.smtpout.orange.fr [80.12.242.29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AAAF13E
+	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 23:03:52 -0700 (PDT)
+Received: from [192.168.1.18] ([86.243.2.178])
+	by smtp.orange.fr with ESMTPA
+	id hksmq6IsMiBkuhksnqfNaI; Sun, 17 Sep 2023 08:03:50 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1694930630;
+	bh=L+fucrYvHZGTDZtgpuMyh0kVP9Gh8YSk+kaR8DcFbLY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=tREb9eM0fmJ8o3fwVwse+LA5/+eLq2t/DibFtMaWoB1iAMG43iuPjkKXfvKBYciAr
+	 wwSiZSIukVV8mDWI8974rTf+CKt+zyz4K1yFaMilj0DaNaFMoJJAiKyU7Qr7Gj0dio
+	 PA/Lv5tgGSPg3uQYPRAXRXt+NWC41pfDhV4AZELnob2rRcWQOJWdCJPCUs+SkvAvlA
+	 K9B87jq2dsuHhSGP3o83q3Fno9ba5nLmjtQJhdUftrQ7Y3v873PFT9mrWapjKNZ2Q2
+	 EsjyPukbByZmAhf4Vm8NteT7EFsQvEr2KGCv2zcf1P0rUOOJU8WDrR+n9OdV2j7JDD
+	 EhXsWUgAMkiiA==
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sun, 17 Sep 2023 08:03:50 +0200
+X-ME-IP: 86.243.2.178
+Message-ID: <abf36591-3b3c-dc47-b1aa-e574325499f4@wanadoo.fr>
+Date: Sun, 17 Sep 2023 08:03:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: msm8939-huawei-kiwi: Add initial
- device tree
-Content-Language: en-US
-To: Lukas Walter <lukas.walter@aceart.de>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- Raymond Hackley <raymondhackley@protonmail.com>
-References: <20230916134147.163764-1-lukas.walter@aceart.de>
- <20230916134147.163764-2-lukas.walter@aceart.de>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230916134147.163764-2-lukas.walter@aceart.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 2/2] Input: add Himax HX852x(ES) touchscreen driver
+To: stephan@gerhold.net
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
+ dmitry.torokhov@gmail.com, jeff@labundy.com, jonathan.albrieux@gmail.com,
+ krzysztof.kozlowski+dt@linaro.org, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org, rydberg@bitmath.org
+References: <20230913-hx852x-v1-0-9c1ebff536eb@gerhold.net>
+ <20230913-hx852x-v1-2-9c1ebff536eb@gerhold.net>
+Content-Language: fr
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20230913-hx852x-v1-2-9c1ebff536eb@gerhold.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 16/09/2023 14:41, Lukas Walter wrote:
-> + +&wcnss_iris { + compatible = "qcom,wcn3620"; +}; +
+Le 13/09/2023 à 15:25, Stephan Gerhold a écrit :
+> From: Jonathan Albrieux <jonathan.albrieux-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> 
+> Add a simple driver for the Himax HX852x(ES) touch panel controller,
+> with support for multi-touch and capacitive touch keys.
+> 
+> The driver is somewhat based on sample code from Himax. However, that
+> code was so extremely confusing that we spent a significant amount of
+> time just trying to understand the packet format and register commands.
+> In this driver they are described with clean structs and defines rather
+> than lots of magic numbers and offset calculations.
+> 
+> Signed-off-by: Jonathan Albrieux <jonathan.albrieux-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> Co-developed-by: Stephan Gerhold <stephan-3XONVrnlUWDR7s880joybQ@public.gmane.org>
+> Signed-off-by: Stephan Gerhold <stephan-3XONVrnlUWDR7s880joybQ@public.gmane.org>
+> ---
 
-Are you sure this is 3620, have you tried wcn3660 and/or wcn3680 ?
+...
 
----
-bod
+> +static irqreturn_t hx852x_interrupt(int irq, void *ptr)
+> +{
+> +	struct hx852x *hx = ptr;
+> +	int error;
+> +
+> +	error = hx852x_handle_events(hx);
+> +	if (error) {
+> +		dev_err(&hx->client->dev, "failed to handle events: %d\n", error);
+
+Should dev_err_ratelimited() be preferred?
+
+> +		return IRQ_NONE;
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+
+...
+
+> +static int hx852x_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct hx852x *hx;
+> +	int error, i;
+
+Nit: err or ret is shorter and maybe more "standard".
+
+> +
+> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C |
+> +				     I2C_FUNC_SMBUS_WRITE_BYTE |
+> +				     I2C_FUNC_SMBUS_WRITE_BYTE_DATA |
+> +				     I2C_FUNC_SMBUS_WRITE_WORD_DATA)) {
+> +		dev_err(dev, "not all i2c functionality supported\n");
+> +		return -ENXIO;
+> +	}
+> +
+> +	hx = devm_kzalloc(dev, sizeof(*hx), GFP_KERNEL);
+> +	if (!hx)
+> +		return -ENOMEM;
+> +
+> +	hx->client = client;
+> +	hx->input_dev = devm_input_allocate_device(dev);
+> +	if (!hx->input_dev)
+> +		return -ENOMEM;
+> +
+> +	hx->input_dev->name = "Himax HX852x";
+> +	hx->input_dev->id.bustype = BUS_I2C;
+> +	hx->input_dev->open = hx852x_input_open;
+> +	hx->input_dev->close = hx852x_input_close;
+> +
+> +	i2c_set_clientdata(client, hx);
+> +	input_set_drvdata(hx->input_dev, hx);
+> +
+> +	hx->supplies[0].supply = "vcca";
+> +	hx->supplies[1].supply = "vccd";
+> +	error = devm_regulator_bulk_get(dev, ARRAY_SIZE(hx->supplies), hx->supplies);
+> +	if (error < 0)
+> +		return dev_err_probe(dev, error, "failed to get regulators");
+> +
+> +	hx->reset_gpiod = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(hx->reset_gpiod))
+> +		return dev_err_probe(dev, error, "failed to get reset gpio");
+> +
+> +	error = devm_request_threaded_irq(dev, client->irq, NULL, hx852x_interrupt,
+> +					  IRQF_ONESHOT | IRQF_NO_AUTOEN, NULL, hx);
+> +	if (error) {
+> +		dev_err(dev, "failed to request irq %d: %d\n", client->irq, error);
+
+dev_err_probe() could be used to be consistent with above code.
+Same for below dev_err() calls.
+
+> +		return error;
+> +	}
+> +
+> +	error = hx852x_read_config(hx);
+> +	if (error)
+> +		return error;
+> +
+> +	input_set_capability(hx->input_dev, EV_ABS, ABS_MT_POSITION_X);
+> +	input_set_capability(hx->input_dev, EV_ABS, ABS_MT_POSITION_Y);
+> +	input_set_abs_params(hx->input_dev, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
+> +
+> +	touchscreen_parse_properties(hx->input_dev, true, &hx->props);
+> +	error = hx852x_parse_properties(hx);
+> +	if (error)
+> +		return error;
+> +
+> +	hx->input_dev->keycode = hx->keycodes;
+> +	hx->input_dev->keycodemax = hx->keycount;
+> +	hx->input_dev->keycodesize = sizeof(hx->keycodes[0]);
+> +	for (i = 0; i < hx->keycount; i++)
+> +		input_set_capability(hx->input_dev, EV_KEY, hx->keycodes[i]);
+> +
+> +	error = input_mt_init_slots(hx->input_dev, hx->max_fingers,
+> +				    INPUT_MT_DIRECT | INPUT_MT_DROP_UNUSED);
+> +	if (error) {
+> +		dev_err(dev, "failed to init MT slots: %d\n", error);
+> +		return error;
+> +	}
+> +
+> +	error = input_register_device(hx->input_dev);
+> +	if (error) {
+
+input_mt_destroy_slots() should be called here, or in an error handling 
+path below, or via a devm_add_action_or_reset().
+
+It should also be called in a .remove function (unless 
+devm_add_action_or_reset is prefered)
+
+CJ
+
+> +		dev_err(dev, "failed to register input device: %d\n", error);
+> +		return error;
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
 
