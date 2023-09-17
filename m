@@ -1,302 +1,184 @@
-Return-Path: <devicetree+bounces-902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D5A17A3E68
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 00:20:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C21787A3E92
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 00:40:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A9642812FB
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 22:20:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7268D281209
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 22:40:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E668DF4F9;
-	Sun, 17 Sep 2023 22:20:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9CDAF505;
+	Sun, 17 Sep 2023 22:40:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45F096FC1
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 22:20:31 +0000 (UTC)
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3DB09F
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 15:20:29 -0700 (PDT)
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 907A93F664
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 22:20:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1694989227;
-	bh=MHzNwi9slcSY5+J98yaBWBbVj/QNNWWNlukZ9uThGv4=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=E0HOkLmSw3xdHh7GOECFgt3CI03zvVSxKPv0yP8EE1iRY2ggbe9HaNosms7mt3LO+
-	 osBxY23eXCpuMWI4Ulh26HfLMIhgBuPN9mh9tcMKZhn0DWREpefFAh9ytHZ2MisAQ1
-	 E0D3oQU39MbWhueh32J9CGDfmRyN93Llnlbv174B8wSpPLUhsUBzU/tSepyV6P1hkb
-	 iAPJteePNprD8QeyR0d+VS3eVVanKPlebkvQ7TKEzPlz2qUYBlxNcNnHv/+8bl3G0f
-	 6kCeymmix7XgJyuibKlju1V2YNm05JqC7V0q5+pZ+cE70JA5X1C6InW4OwseVF5uVL
-	 7Tz4zLxpakMhQ==
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-41219864601so46090921cf.0
-        for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 15:20:27 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE79D33DD
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 22:40:34 +0000 (UTC)
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2166912B;
+	Sun, 17 Sep 2023 15:40:33 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-40479f8325fso29972355e9.1;
+        Sun, 17 Sep 2023 15:40:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1694990431; x=1695595231; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pu55F0bb4aC5tU7CS7Hj+QvENmRKx9xwc5E2LcNAfp4=;
+        b=FYMljGgmPGRvBwI4FGBxfrlNEQBof+nqWESW5HoBjEwD59CKYxYqxRD50ZNE0P+eV+
+         kVtOncNplDTuDiQwwzJKYEz7R/XnmBbvyl8DMr87pTlNIGVDyIQKdHcr4Osb1gS+NDSV
+         Qbrv3BZhgzhoxJOMxIRAx6l4IkRF6Vi1CKPWOvqQoxPgvc7ooBf9K8smwTJ1VQhu00Tu
+         vu4BwcsFv5EdPPrIHObSdrHhHxmjuz7tgx4gG3Q8cbNxY6BsE8X2cfS5Q69Dub4hGzI/
+         v1murZQvLJd0JiRu6Tl5WN4SRMxzvLrOum0iROUyRHQjYXpaXEZJ9WIkQnRnvZDjmaJM
+         TizQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694989224; x=1695594024;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MHzNwi9slcSY5+J98yaBWBbVj/QNNWWNlukZ9uThGv4=;
-        b=dKSqaThg+kFmzKjLC5cD3V5fWN7ZoxaXrB2yJEguINcCnl/ruKieAttzjBYqkT1C/N
-         7ub0D/Caa7ua8orBfkz7rYbCUAt0PaxJE/9JYw0p1GWX2FCISIoWOGpE047XU7lyLoPq
-         pNVpNZWJ3p8Ltw0TU4oEzbyigQ9UWDf1t6bgawKuebZN5b63EcAvVcRH/rSqXgHkX+Qj
-         2M2Jc5zwYcmch0BX09zvNxTpQ6HwOmtuDKx6l02g+s1B3i9vihITwftrUls5aMwBrZFn
-         b6Dw9UNCZ22GIaYl+rxRMezh7KiX+vA9r7ypPqK206HMqeXmKT9Bx1pqregSvZ98s4EC
-         1dXg==
-X-Gm-Message-State: AOJu0YwCHGPAw3xwaAHqaIwjfIawWFYcJ2lp1DdSNmKJd/QiHQBTtteP
-	fE0tLr6xLKvvbygy9YFdvvF/pkAc5Ixv8oEIFM8TxEFGnaDziYgKlftrH3bravJJwo/nt8Q/Z4F
-	fYQfncveVDXwCtsFrDk8lLvol5Kh3u2rLn5wwNpLmMNdVrZckbGAeRpY=
-X-Received: by 2002:a05:622a:1d1:b0:412:4847:20af with SMTP id t17-20020a05622a01d100b00412484720afmr9875878qtw.23.1694989224328;
-        Sun, 17 Sep 2023 15:20:24 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGrYqzVM75uuKU/x9guzZO42+l/vGRJORhbptSN1kBCkn8+skT6lT5TltjUNQpFf7InVCnN+h8fL47vFAieQJ4=
-X-Received: by 2002:a05:622a:1d1:b0:412:4847:20af with SMTP id
- t17-20020a05622a01d100b00412484720afmr9875856qtw.23.1694989224089; Sun, 17
- Sep 2023 15:20:24 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Sun, 17 Sep 2023 15:20:23 -0700
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20230915102243.59775-20-minda.chen@starfivetech.com>
-References: <20230915102243.59775-1-minda.chen@starfivetech.com> <20230915102243.59775-20-minda.chen@starfivetech.com>
+        d=1e100.net; s=20230601; t=1694990431; x=1695595231;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pu55F0bb4aC5tU7CS7Hj+QvENmRKx9xwc5E2LcNAfp4=;
+        b=gKJiOlvTQX3FqTxezz+7yfgASTKxs4grY7IMoMFh58+LUm4lve6FZ0wbvbzjULfH51
+         pnC5clfb61x8BW0BNW/l3E4dQx1+fB0A1U7J6efF8FedZJ+XOP1rAt62CnikKMv0RTwS
+         pBPQSniHrr8UJJ08dp0McYoXA6LRNq/6IxNBXLgATNoPy/TSNEeVwK4Bzh9tOtcxuz5W
+         X9dlIMNOaS7SpGi2dN44ItE0TLPpxRpzhxxd19+B3/74y2dQLqBUlC9oQLTyt93Mzb6i
+         OG9ca/+cucbdoKF8s16BHkUybIN0lC81OeL+apXfgKJ6aBaRPhIKRdpF4jjgP9NntKkq
+         Y+/Q==
+X-Gm-Message-State: AOJu0Yz11jF/vzJH3T2JoXqlbuQOamAsZ9By9fn8jcjnD0h2amIQUuh5
+	8dqyRR/BWEy9+cdCs14L85Q=
+X-Google-Smtp-Source: AGHT+IG1VR6cDCdZ46S19smX52QInRtz+mz6NvGtQgk0lwi5BOk5UmykR5KiLbJFQ+OC5vUw/6UaRw==
+X-Received: by 2002:a05:600c:28f:b0:402:e68f:888c with SMTP id 15-20020a05600c028f00b00402e68f888cmr6072309wmk.7.1694990430795;
+        Sun, 17 Sep 2023 15:40:30 -0700 (PDT)
+Received: from [127.0.1.1] ([91.230.2.244])
+        by smtp.gmail.com with ESMTPSA id x14-20020a1c7c0e000000b003fe2b081661sm13642931wmc.30.2023.09.17.15.40.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Sep 2023 15:40:30 -0700 (PDT)
+From: Benjamin Bara <bbara93@gmail.com>
+Subject: [PATCH 00/13] imx8mp: first clock propagation attempt (for LVDS)
+Date: Mon, 18 Sep 2023 00:39:56 +0200
+Message-Id: <20230918-imx8mp-dtsi-v1-0-1d008b3237c0@skidata.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Sun, 17 Sep 2023 15:20:23 -0700
-Message-ID: <CAJM55Z8ES9ip53R14OoKVphEr14BFOwk88DCZEp13oGrnPkdvg@mail.gmail.com>
-Subject: Re: [PATCH v6 19/19] riscv: dts: starfive: add PCIe dts configuration
- for JH7110
-To: Minda Chen <minda.chen@starfivetech.com>, 
-	Daire McNamara <daire.mcnamara@microchip.com>, Conor Dooley <conor@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org, 
-	=?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Mason Huo <mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
-	Kevin Xie <kevin.xie@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADyAB2UC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2MDS0Nj3czcCovcAt2UkuJMXfNks1QjU0sD81SDVCWgjoKi1LTMCrBp0bG
+ 1tQCBWXH5XQAAAA==
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+ Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>
+Cc: Frank Oltmanns <frank@oltmanns.dev>, Maxime Ripard <mripard@kernel.org>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+ Benjamin Bara <benjamin.bara@skidata.com>, Adam Ford <aford173@gmail.com>, 
+ Lucas Stach <l.stach@pengutronix.de>
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Minda Chen wrote:
-> Add PCIe dts configuraion for JH7110 SoC platform.
->
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> ---
->  .../jh7110-starfive-visionfive-2.dtsi         | 63 +++++++++++++
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 88 +++++++++++++++++++
->  2 files changed, 151 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> index d79f94432b27..8c84852f1c06 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> @@ -402,6 +402,53 @@
->  		};
->  	};
->
-> +	pcie0_pins: pcie0-0 {
-> +		wake-pins {
-> +			pinmux = <GPIOMUX(32, GPOUT_LOW,
-> +					      GPOEN_DISABLE,
-> +					      GPI_NONE)>;
-> +			bias-pull-up;
-> +			drive-strength = <2>;
-> +			input-enable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +		clkreq-pins {
-> +			pinmux = <GPIOMUX(27, GPOUT_LOW,
-> +					      GPOEN_DISABLE,
-> +					      GPI_NONE)>;
-> +			bias-pull-down;
-> +			drive-strength = <2>;
-> +			input-enable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +	};
-> +
-> +	pcie1_pins: pcie1-0 {
-> +		wake-pins {
-> +			pinmux = <GPIOMUX(21, GPOUT_LOW,
-> +					      GPOEN_DISABLE,
-> +					      GPI_NONE)>;
-> +			bias-pull-up;
-> +			drive-strength = <2>;
-> +			input-enable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +
-> +		clkreq-pins {
-> +			pinmux = <GPIOMUX(29, GPOUT_LOW,
-> +					      GPOEN_DISABLE,
-> +					      GPI_NONE)>;
-> +			bias-pull-down;
-> +			drive-strength = <2>;
-> +			input-enable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +	};
-> +
->  	spi0_pins: spi0-0 {
->  		mosi-pins {
->  			pinmux = <GPIOMUX(52, GPOUT_SYS_SPI0_TXD,
-> @@ -499,6 +546,22 @@
->  	};
->  };
->
-> +&pcie0 {
-> +	pinctrl-names = "default";
-> +	perst-gpios = <&sysgpio 26 GPIO_ACTIVE_LOW>;
-> +	pinctrl-0 = <&pcie0_pins>;
-> +	phys = <&pciephy0>;
-> +	status = "okay";
-> +};
-> +
-> +&pcie1 {
-> +	pinctrl-names = "default";
-> +	perst-gpios = <&sysgpio 28 GPIO_ACTIVE_LOW>;
-> +	pinctrl-0 = <&pcie1_pins>;
-> +	phys = <&pciephy1>;
-> +	status = "okay";
-> +};
+Hi!
 
-These nodes are out of place. The order is
-- root node
-- clocks sorted alphabetically
-- other node references sorted alphabetically
+Target of this series is to dynamically set the rate of video_pll1 to
+the required LVDS clock rate(s), which are configured by the panel, and
+the lvds-bridge respectively.
 
->  &tdm {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&tdm_pins>;
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index e85464c328d0..97fe5a242d60 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -1045,5 +1045,93 @@
->  			#reset-cells = <1>;
->  			power-domains = <&pwrc JH7110_PD_VOUT>;
->  		};
-> +
-> +		pcie0: pcie@940000000 {
-> +			compatible = "starfive,jh7110-pcie";
-> +			reg = <0x9 0x40000000 0x0 0x1000000>,
-> +			      <0x0 0x2b000000 0x0 0x100000>;
-> +			reg-names = "cfg", "apb";
-> +			linux,pci-domain = <0>;
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +			#interrupt-cells = <1>;
-> +			ranges = <0x82000000  0x0 0x30000000  0x0 0x30000000 0x0 0x08000000>,
-> +				 <0xc3000000  0x9 0x00000000  0x9 0x00000000 0x0 0x40000000>;
-> +			interrupts = <56>;
-> +			interrupt-parent = <&plic>;
+Some background:
+The LVDS panel requires two clocks: the crtc clock and the lvds clock.
+The lvds rate is always 7x the crtc rate. On the imx8mp, these are
+assigned to media_disp2_pix and media_ldb, which are both
+clk-composite-8m. The rates are set by drm_client_modeset_commit() (and
+later by fsl_ldb_atomic_enable()), and the fsl-ldb driver, first crtc,
+then lvds. The parent is typically assigned to video_pll1, which is a
+clk-pll14xx (pll1443x).
 
-Is interrupt-parent not inherited from the soc bus like other peripherals?
+The main problem:
+As the clk-composite-8m currently doesn't support CLK_SET_RATE_PARENT,
+the crtc rate is not propagated to video_pll1, and therefore must be
+assigned in the device-tree manually.
 
-> +			interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-> +			interrupt-map = <0x0 0x0 0x0 0x1 &pcie_intc0 0x1>,
-> +					<0x0 0x0 0x0 0x2 &pcie_intc0 0x2>,
-> +					<0x0 0x0 0x0 0x3 &pcie_intc0 0x3>,
-> +					<0x0 0x0 0x0 0x4 &pcie_intc0 0x4>;
-> +			msi-controller;
-> +			device_type = "pci";
-> +			starfive,stg-syscon = <&stg_syscon>;
-> +			bus-range = <0x0 0xff>;
-> +			clocks = <&syscrg JH7110_SYSCLK_NOC_BUS_STG_AXI>,
-> +				 <&stgcrg JH7110_STGCLK_PCIE0_TL>,
-> +				 <&stgcrg JH7110_STGCLK_PCIE0_AXI_MST0>,
-> +				 <&stgcrg JH7110_STGCLK_PCIE0_APB>;
-> +			clock-names = "noc", "tl", "axi_mst0", "apb";
-> +			resets = <&stgcrg JH7110_STGRST_PCIE0_AXI_MST0>,
-> +				 <&stgcrg JH7110_STGRST_PCIE0_AXI_SLV0>,
-> +				 <&stgcrg JH7110_STGRST_PCIE0_AXI_SLV>,
-> +				 <&stgcrg JH7110_STGRST_PCIE0_BRG>,
-> +				 <&stgcrg JH7110_STGRST_PCIE0_CORE>,
-> +				 <&stgcrg JH7110_STGRST_PCIE0_APB>;
-> +			reset-names = "mst0", "slv0", "slv", "brg",
-> +				      "core", "apb";
-> +			status = "disabled";
-> +
-> +			pcie_intc0: interrupt-controller {
-> +				#address-cells = <0>;
-> +				#interrupt-cells = <1>;
-> +				interrupt-controller;
-> +			};
-> +		};
-> +
-> +		pcie1: pcie@9c0000000 {
-> +			compatible = "starfive,jh7110-pcie";
-> +			reg = <0x9 0xc0000000 0x0 0x1000000>,
-> +			      <0x0 0x2c000000 0x0 0x100000>;
-> +			reg-names = "cfg", "apb";
-> +			linux,pci-domain = <1>;
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +			#interrupt-cells = <1>;
-> +			ranges = <0x82000000  0x0 0x38000000  0x0 0x38000000 0x0 0x08000000>,
-> +				 <0xc3000000  0x9 0x80000000  0x9 0x80000000 0x0 0x40000000>;
-> +			interrupts = <57>;
-> +			interrupt-parent = <&plic>;
+The idea:
+Enable CLK_SET_RATE_PARENT, at least for media_disp2_pix and media_ldb.
+When this is done, ensure that the pll1443x can be re-configured,
+meaning it ensures that an already configured rate (crtc rate) is still
+supported when a second child requires a different rate (lvds rate). As
+the children have divider, the current approach is straight forward by
+calculating the LCM of the required rates. During the rate change of the
+PLL, it must ensure that all children still have the configured rate at
+the end (and maybe also bypass the clock while doing so?). This is done
+by implementing a notifier function for the clk-composite-8m. The tricky
+part is now to find out if the rate change was intentional or not. This
+is done by adding the "change trigger" to the notify data. In our case,
+we now can infer if we aren't the change trigger, we need to keep the
+existing rate after the PLL's rate change. We keep the existing rate by
+modifying the new_rate of the clock's core, as we are quite late in an
+already ongoing clock change process.
 
-ditto.
+Future work:
+The re-configuration of the PLL can definitely be improved for other use
+cases where the children have more fancy inter-dependencies. That's one
+of the main reasons I currently only touched the mentioned clocks.
+Additionally, it might make sense to automatically re-parent if a
+different possible parent suits better.
+For the core part, I thought about extending my "unintentional change
+check" so that the core ensures that the children keep the configured
+rate, which might not be easy as the parent could be allowed to "round",
+but it's not clear (at least to me yet) how much rounding is allowed. I
+found a similar discussion posted here[1], therefore added Frank and
+Maxime.
 
-> +			interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-> +			interrupt-map = <0x0 0x0 0x0 0x1 &pcie_intc1 0x1>,
-> +					<0x0 0x0 0x0 0x2 &pcie_intc1 0x2>,
-> +					<0x0 0x0 0x0 0x3 &pcie_intc1 0x3>,
-> +					<0x0 0x0 0x0 0x4 &pcie_intc1 0x4>;
-> +			msi-controller;
-> +			device_type = "pci";
-> +			starfive,stg-syscon = <&stg_syscon>;
-> +			bus-range = <0x0 0xff>;
-> +			clocks = <&syscrg JH7110_SYSCLK_NOC_BUS_STG_AXI>,
-> +				 <&stgcrg JH7110_STGCLK_PCIE1_TL>,
-> +				 <&stgcrg JH7110_STGCLK_PCIE1_AXI_MST0>,
-> +				 <&stgcrg JH7110_STGCLK_PCIE1_APB>;
-> +			clock-names = "noc", "tl", "axi_mst0", "apb";
-> +			resets = <&stgcrg JH7110_STGRST_PCIE1_AXI_MST0>,
-> +				 <&stgcrg JH7110_STGRST_PCIE1_AXI_SLV0>,
-> +				 <&stgcrg JH7110_STGRST_PCIE1_AXI_SLV>,
-> +				 <&stgcrg JH7110_STGRST_PCIE1_BRG>,
-> +				 <&stgcrg JH7110_STGRST_PCIE1_CORE>,
-> +				 <&stgcrg JH7110_STGRST_PCIE1_APB>;
-> +			reset-names = "mst0", "slv0", "slv", "brg",
-> +				      "core", "apb";
-> +			status = "disabled";
-> +
-> +			pcie_intc1: interrupt-controller {
-> +				#address-cells = <0>;
-> +				#interrupt-cells = <1>;
-> +				interrupt-controller;
-> +			};
-> +		};
->  	};
->  };
-> --
-> 2.17.1
+Thanks & regards,
+Benjamin
+
+[1] https://lore.kernel.org/lkml/20230825-pll-mipi_keep_rate-v1-0-35bc43570730@oltmanns.dev/
+
+---
+Benjamin Bara (13):
+      arm64: dts: imx8mp: lvds_bridge: use root instead of composite
+      arm64: dts: imx8mp: re-parent IMX8MP_CLK_MEDIA_MIPI_PHY1_REF
+      clk: implement clk_hw_set_rate()
+      clk: print debug message if parent change is ignored
+      clk: keep track of the trigger of an ongoing clk_set_rate
+      clk: keep track if a clock is explicitly configured
+      clk: detect unintended rate changes
+      clk: divider: stop early if an optimal divider is found
+      clk: imx: pll14xx: consider active rate for re-config
+      clk: imx: composite-8m: convert compute_dividers to void
+      clk: imx: composite-8m: implement CLK_SET_RATE_PARENT
+      clk: imx: imx8mp: allow LVDS clocks to set parent rate
+      arm64: dts: imx8mp: remove assigned-clock-rate of IMX8MP_VIDEO_PLL1
+
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi |  14 +--
+ drivers/clk/clk-divider.c                 |   9 ++
+ drivers/clk/clk.c                         | 146 +++++++++++++++++++++++++++++-
+ drivers/clk/imx/clk-composite-8m.c        |  89 +++++++++++++++---
+ drivers/clk/imx/clk-imx8mp.c              |   4 +-
+ drivers/clk/imx/clk-pll14xx.c             |  20 ++++
+ drivers/clk/imx/clk.h                     |   4 +
+ include/linux/clk-provider.h              |   2 +
+ include/linux/clk.h                       |   2 +
+ 9 files changed, 261 insertions(+), 29 deletions(-)
+---
+base-commit: e143016b56ecb0fcda5bb6026b0a25fe55274f56
+change-id: 20230913-imx8mp-dtsi-7c6e25907e0e
+
+Best regards,
+-- 
+Benjamin Bara <benjamin.bara@skidata.com>
+
 
