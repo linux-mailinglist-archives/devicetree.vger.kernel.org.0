@@ -1,185 +1,140 @@
-Return-Path: <devicetree+bounces-856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D28437A35D7
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 16:34:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D60F77A35EE
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 16:44:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3E631C20434
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 14:34:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED9E91C20933
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 14:44:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E3602579;
-	Sun, 17 Sep 2023 14:34:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9C874C60;
+	Sun, 17 Sep 2023 14:44:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A58E10F9
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 14:34:03 +0000 (UTC)
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2041.outbound.protection.outlook.com [40.107.249.41])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01FFD12C;
-	Sun, 17 Sep 2023 07:34:02 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lGm6VN8KJ2YlCCuR2bavVMy0uXytYtObgswkZYmCLJ7ynTkZIeKqQTlobM4g0PmqybG4FnQytqhpR6PsHR7fVQhr4k30Rb+kw0g4yWLModNPxt0amuS09zIb1ZsbRo9z9Mc82nBap16GuFuMZl2iPAz9sk2/M5B+L0tSda62896COEm/fQBMFpNxrb7OOlX2m5yCxxlafcYSpn/PoU2qglw3ydGmnhZ4IU9dNrsDouX2vNh/Ay0oZxQgv8cQ2CYDLlYSsEXzU2reddXBC+ZN3/NzrkmpR1H4D1vLizWpYCtZX8/1lwkB///LYSneBfRsixyZsYSv3KOIyxmVlIdwIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vgR9UMUcGm9szNMvmhzxw3HZGJUt3O4dQ+QS05L85dA=;
- b=DSMsTlaYYS8Q1w5x+trbTJ+tj9I3AtBDHHcWyebam0nJHMvOkhRiMDTrc8IWYBo0aJUwFWUXXfCVn0CFIYQXUDRPLvypTqUnBcXyA2JfoldP8Yz1CNUYqGmMgFMhGZrFlcitHS3DhBApeZOttruUA1D1QBTgZd5l320SNFMwrrc0H5GrHGvBvnMID1ywrmMfyb2ejAwdTwk3YLvdqBfGQKm3a4HorPahtD4YAKEUQfBMXvyHSxAtiqy89BviHJNgdBPCURknH3HvlS+r+coyRHJggmTKJLkMUWJZ+fE0g67iygAr6F9Sp2QO/MgddImACp6oVxoTlwTQeGnTTkkMXQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=solid-run.com; dmarc=pass action=none
- header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7842846A7
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 14:44:18 +0000 (UTC)
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41F2712D;
+	Sun, 17 Sep 2023 07:44:17 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9a9d6b98845so1046227066b.0;
+        Sun, 17 Sep 2023 07:44:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vgR9UMUcGm9szNMvmhzxw3HZGJUt3O4dQ+QS05L85dA=;
- b=eauOMxzINuW9CvhgYfmP43CrM4GZw0J6IblqGhiYhY3BIrQThQysCk5QRCN1ICBE70YEEokLoS92YWIN/RMSQiAumcI5hzonEviqR90b24TcYJ0jaTq89JWe0pZqzb4S7YBpXku+Pg1sPcVraNnFu4iT4MqutusGxUGKYK9LyVk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=solid-run.com;
-Received: from AS8PR04MB8963.eurprd04.prod.outlook.com (2603:10a6:20b:42e::18)
- by AS8PR04MB8341.eurprd04.prod.outlook.com (2603:10a6:20b:3b0::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.26; Sun, 17 Sep
- 2023 14:33:59 +0000
-Received: from AS8PR04MB8963.eurprd04.prod.outlook.com
- ([fe80::c19e:3b5a:c081:ce3b]) by AS8PR04MB8963.eurprd04.prod.outlook.com
- ([fe80::c19e:3b5a:c081:ce3b%4]) with mapi id 15.20.6792.026; Sun, 17 Sep 2023
- 14:33:59 +0000
-Message-ID: <2f1571a6-014b-4b70-9135-306cf9014238@solid-run.com>
-Date: Sun, 17 Sep 2023 16:33:54 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/4] arm64: dts: lx2160a: describe the SerDes block #2
-Content-Language: en-US
-To: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Cc: Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        d=gmail.com; s=20230601; t=1694961856; x=1695566656; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=76MVv177zY9dsxPsQgQCgjtWxWwiLSVOTVF9dOpujsM=;
+        b=WL3BRlfIKnIeIfKqYwZ7AjUBFqfzH4+pqQcZRrucX5Tr63MltQ7MjNkqQ/aoNd9XeG
+         Xam++R8jTxWdDig+2fQO2PSp3JQkrBuNpX6kjE8etwsSZI2FiPoPUG0LJ33HiCmC0WLj
+         aQr8cen8oScLhMFhmi4+oOS8TSBSTlOsWAJd0BuCLW18SF85KfXwAv9tOkPnZ5cBBBIw
+         8fo6LOv0nFuvrO+4RMdbLpvrKCKZKueoRxScI7XqZfFCY98EqhdcDzJm3e6hMbpXq4Hw
+         pEO4THXtUUMuW+LclwO7b6ceC00UbRiE9mMdtdIsMr95NuBqMAw0rxAOSwVhd5c3Ew6g
+         pYgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694961856; x=1695566656;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=76MVv177zY9dsxPsQgQCgjtWxWwiLSVOTVF9dOpujsM=;
+        b=cvHtzCiqzMgfSv1keEPmXrNEMR/PHU1sMkTLnhY6DU/dUyNZ4iStjwhkrIq+ktxzoq
+         7qwwXsraL8zHI5G/OJw1rqWXbS+fM4ic/eMso3pdIAV1y7PFptGDFrG968jP3jI8JEN0
+         LqPR3EaznE/QFlrh8wxrIZlpKSu6J3MM8S8D0HV9HSSAVpg45Fn5oDRgSovmHi2y8Bgi
+         g37BkuswCaEhjW79xeRzaw+u2ruSTPgbHEgnrdoSbdf2OZ7b5+sDzcTetwV2qKoRlH37
+         GjmJ09vj3okhUrA0mwRojPQnHfnq9MUashir32i8lopvvuXzhHxbzdme2K2PeSDC6dvw
+         GMPA==
+X-Gm-Message-State: AOJu0YzvC4U+VjPsHOOQbduQ6QZtjzbt/MXdeeDV+e1Kl0pigcPXikCs
+	y3wa/l0XrZYmbOIU46JJoSU=
+X-Google-Smtp-Source: AGHT+IG10fQvNKmNWOCHHO3EJrMAN6SKA+/1Io0nXHROE7X4TQTiZl1pdzhSV1Hr6ZXK4WLsYWLxDQ==
+X-Received: by 2002:a17:907:728e:b0:9a1:c69c:9388 with SMTP id dt14-20020a170907728e00b009a1c69c9388mr10830626ejc.37.1694961855448;
+        Sun, 17 Sep 2023 07:44:15 -0700 (PDT)
+Received: from jernej-laptop.localnet (APN-123-246-155-gprs.simobil.net. [46.123.246.155])
+        by smtp.gmail.com with ESMTPSA id e24-20020a17090681d800b009a2235ed496sm5176569ejx.141.2023.09.17.07.44.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Sep 2023 07:44:15 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: linux-riscv@lists.infradead.org, Conor Dooley <conor@kernel.org>
+Cc: conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20230818111016.11271-1-josua@solid-run.com>
- <20230818111016.11271-2-josua@solid-run.com>
-From: Josua Mayer <josua@solid-run.com>
-In-Reply-To: <20230818111016.11271-2-josua@solid-run.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TL2P290CA0001.ISRP290.PROD.OUTLOOK.COM
- (2603:1096:950:2::19) To AS8PR04MB8963.eurprd04.prod.outlook.com
- (2603:10a6:20b:42e::18)
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH v1] riscv: dts: allwinner: remove address-cells from intc node
+Date: Sun, 17 Sep 2023 16:44:12 +0200
+Message-ID: <4863891.31r3eYUQgx@jernej-laptop>
+In-Reply-To: <20230916-saddling-dastardly-8cf6d1263c24@spud>
+References: <20230916-saddling-dastardly-8cf6d1263c24@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8963:EE_|AS8PR04MB8341:EE_
-X-MS-Office365-Filtering-Correlation-Id: cc063328-4887-426d-cfac-08dbb78b2139
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	3B9fcbOeLKVvmmPGKK5I2xmXHPE1bQxGvaLUJFcsbV6Eqcpf7lA47SPgnJ75lcvSXh+gHTpSNqoHGoQpmmsS+HLYpgbVESkwEJ+1jfEsA0b36CsqnHExFione+Q0zt0hr0Lm5k8VBnWNBsnWl0FXzyoHo5M1BWKXL7RcyDHnMc31aDTwrbsgkkDAJ6ILL9r4QzT4ErZKSq919LSatFnES5vdyv7EPNXxHPfOjkYIKpZwBXFqk33i8K9CCh812E45HGZhXv7C9sdeTVpv+47baVfjQ7ibteLFWonmLKOZnnGW5Ti6MLlldX/B3wMzMRKLZT1tHZUHIGsl1TWUAVedjdVDPBHpU6lj+oU86Wsf8M7tOPY6teuJnQu1anDzNQtELBDiTkIIz22GM8Iin94XE7nVDadau9mA5wpB5wYKk61VM/Kc8TIDIMFD4s2e0oO/Mu6n/GpNwLVNGrcPNzhwBLUDYE5Peh5NrXGvvKu1t7kGfZx+lKV8s6IBOp2bxcoa2VaMUF26yBTpi/W1FYyDxHHbsqfiEHopFsZadWrFxSQ/NYStkfLebxCwwzF5p/X5E+akRi4SPsXChDsksMvcHWmTFh+x6nvwrWGWBxkyzwp0PWfXrfHEt1RpHTpu0EcK52RcNwL6IJwlEMzNa40XOA==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8963.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39830400003)(136003)(366004)(396003)(376002)(346002)(451199024)(186009)(1800799009)(6512007)(6506007)(6486002)(6666004)(83380400001)(86362001)(31696002)(38100700002)(36756003)(2616005)(26005)(66946007)(66556008)(66476007)(54906003)(41300700001)(316002)(2906002)(5660300002)(8936002)(4326008)(8676002)(31686004)(478600001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?S2pDQUJIZjNCaS9UL3J6OHh4S0FuUzBCcUVjOThJS0V0b1cwWW9oQ2lWMWl2?=
- =?utf-8?B?OTNqSDFFMkFndzQ1Q2UrYUxrcUFoVFFTNzBjeXBwekNYU054Q2lCbm5pcEVa?=
- =?utf-8?B?TUJNYldGam84QmxFZkxaand2UW1NN00weHNXUkkxeWJMWnhWb2tiZndQRnIz?=
- =?utf-8?B?Vi9MZmlJVGNZL2NrOXZOZ21KYmtaR1VGbFBaN0RSUUV2Q2pZVWRzZnhDSFcz?=
- =?utf-8?B?TkMrY1V2bnlZT0pFenFvei9OZUE3Q215N0tocXlPdWd0WHN1MGJaTWVCd2th?=
- =?utf-8?B?V2VhdkhveXpybE1TQXZJV3hzUytXNUYyTDQwMktEZERTVnY5bjVncnQrNnN5?=
- =?utf-8?B?Z3F3ejVPWW9RWHM4NzBDSTV0d29aaHg0S3BwYVF0UjJkeEM3Ry9iUnU0bHRn?=
- =?utf-8?B?a1J4YVVMZUlPNUkzMUlrN2g5bWpQbjhXam9GekpTbThCQ3hlUFV4TnNFMW9N?=
- =?utf-8?B?MEdwb0dKUm9RZU9IZDdSWVZPU2pzQXZZTGYyMmZ6M0VRSjVSR0xzQ2tXSzRy?=
- =?utf-8?B?bmtkWGZ6c3JHUHBVVXRJRVpGU3ZXejd5eWlYM2hudU40Mit6RStCYnloT2hL?=
- =?utf-8?B?U0lVWHlCeWhmbUZEeDFjWTJWTkZJejBZYXZFVVp5VTNhRDNhYkJ3VU9mY1hJ?=
- =?utf-8?B?c1YzR1lrUy9qbFFCVEsrMlhQRnJLbWx1eDUyZERveFhSMFZsTnFESnVIK2Fl?=
- =?utf-8?B?emRrT0xiaUkybUp6ZW1wMXZ5Vy8wQm1ZcW1XWlpNaWlHU2JyWW1CMDA4ZG1m?=
- =?utf-8?B?VCsrUk45Q3VpdUdES2FKOGI5N0NnNlgzK3djWGh6S0hXSWloS0ZlSnF4TU1k?=
- =?utf-8?B?SmI0d3o4Z0FDNjNlcVhvMTdxRzlNRTZDcHd6cDQzZUtkUjl2eldCbGF5aVpO?=
- =?utf-8?B?Ry9RTzRaMHMyOGg0V0FNUGwxQzkzVTBmblRuVnd0MCtSQUlaV1VPaHo4RDIw?=
- =?utf-8?B?blowRlFKeWtLZUh6RkhGWW1XVjA1OTZvdzdqdmZsbCtzQUZneUc2NkNkRSt5?=
- =?utf-8?B?Z3pqcEtLQlM1bituNldHbklpb0hodlpOZkdBRUEreG5qb01TWkN1UURibXhW?=
- =?utf-8?B?WUt6Zko4RkxMTkpUa1JJcTNWYm1MeGgzNlhCMkQ0aURxOWwxSGdENW9hcGVh?=
- =?utf-8?B?WUU5WDhGMlJNRyt4eVZvWXdDZTBzczkyZEZLdEc4bzFpOUs3cmsxWFlGSFJN?=
- =?utf-8?B?VUcrVTU3QnpLenlTY0dTYlpOTS9naW01UFlqTmhyaHBvbTFZRVhZWmJWc21P?=
- =?utf-8?B?NDJHdkI2V1B6NEZoRytjU1RqY1ZQdXBZUzVuUlRweVFRSDdibUxtV01mUzRh?=
- =?utf-8?B?MXVjblFOZkdMbXd1aHYrMXZaUTk2dUxXSFEwZWlkVFljZElXVW5ma0ZBbXUv?=
- =?utf-8?B?RUdydXhFMFZITDVoeC9raUo4Mk0yOTMzeXhjVC8vSnprc2lKQnlOVTBCanBQ?=
- =?utf-8?B?aE1paTBFWDBuL2J4eW9GV3hvcWdNSTh0N0ZCRmEydXBpak5HL2dHVDNKN1Vt?=
- =?utf-8?B?U3dwTFM0UitRUnJoTG0wSzJlK3JVdHlkMmVjR09ZS3hyclRwQXJRMElOQitX?=
- =?utf-8?B?c2pyQVlxNklRVkMyYUxIOXQvUldaOFI1dWRkbERQb1dOcnRGZk1PV01GL011?=
- =?utf-8?B?SEZmRHdGdFM2MFNvVFNQaTRlVXI0Z2FYeGVET3lMQ2lxYmhzSHI0RDBpUlhS?=
- =?utf-8?B?MFlPMzFTZFlzMzJXQjJaaGdWVE9Nck5SbERtMkg3ZE54MWZMdGZqdHdVYWJX?=
- =?utf-8?B?amhReitzV0kvaUd1OHVqcE04QlR1bitRaThZZUJiY1RzdURFUGR3KzV0SVY0?=
- =?utf-8?B?elB6cU1GQ0hDTFdEMFh2OGcvbG03UnYxZnhPN2huNVc3cnZmdTdndjUxVUpO?=
- =?utf-8?B?aFRiK3ZIeWdkdisxd0krVFdOQmRJVWlUMUV3MDh0WDRTcUV0OGdxcm9Ubk13?=
- =?utf-8?B?UHd5Yy9yQlo3MmZGdWl0eHNjT2xrb0Q0OWVqckhBK0hCblhjcTZ2R3hVUno3?=
- =?utf-8?B?MjA4VTJLVmcvQUpSOUhTcURWd3hnNnNhMjF0czlIWmJqcFlXRUowUFUvU0xQ?=
- =?utf-8?B?Z2dtL0IwUnJiV1IydjlMaXNvWFNROU5lS1A5SWdZSFBvR2ZZL29rMFJaZXZ2?=
- =?utf-8?Q?/JETCZp4V/ZbByc/CGzc3jjRv?=
-X-OriginatorOrg: solid-run.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cc063328-4887-426d-cfac-08dbb78b2139
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8963.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Sep 2023 14:33:59.1090
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CI/pnLioOagdwYF/3pe1D3C6hhng13JLa9rWlw9p71uMwNFhG44se88ngriY+pdhvMZSSu0/QwSdsaVnwhedgw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8341
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello everyone,
-
-This is one of the patches in my series that hasn't received any 
-feedback yet ...
-(apart from Krzysztof correctly pointing out commit a description 
-formatting mistake).
-
-Please note that I intend on changing the new serdes_2 node to add 
-status disabled by default.
-Since the lynx-28g driver currently only supports network protocols,
-enabling it by default could interfere with configurations using those 
-SerDes's as PCI.
-
-Am 18.08.23 um 13:10 schrieb Josua Mayer:
-> Add description for the LX2160A second SerDes block.
-> It is functionally identical to the first one already added in
-> commit 3cbe93a1f540 ("arch: arm64: dts: lx2160a: describe the SerDes
-> block #1").
->
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
+Dne sobota, 16. september 2023 ob 11:14:00 CEST je Conor Dooley napisal(a):
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> A recent submission [1] from Rob has added additionalProperties: false
+> to the interrupt-controller child node of RISC-V cpus, highlighting that
+> the D1 DT has been incorrectly using #address-cells since its
+> introduction. It has no child nodes, so #address-cells is not needed.
+> Remove it.
+> 
+> Fixes: 077e5f4f5528 ("riscv: dts: allwinner: Add the D1/D1s SoC devicetree")
+> Link:
+> https://patchwork.kernel.org/project/linux-riscv/patch/20230915201946.41844
+> 68-1-robh@kernel.org/ [1] Signed-off-by: Conor Dooley
+> <conor.dooley@microchip.com>
 > ---
-> V4 -> V5: expand commit hash reference in commit message
->
->   arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 6 ++++++
->   1 file changed, 6 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> index ea6a94b57aeb..2e68c05181dd 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> @@ -626,6 +626,12 @@ serdes_1: phy@1ea0000 {
->   			#phy-cells = <1>;
->   		};
->   
-> +		serdes_2: phy@1eb0000 {
-> +			compatible = "fsl,lynx-28g";
-> +			reg = <0x0 0x1eb0000 0x0 0x1e30>;
-> +			#phy-cells = <1>;
-> +		};
-> +
->   		crypto: crypto@8000000 {
->   			compatible = "fsl,sec-v5.0", "fsl,sec-v4.0";
->   			fsl,sec-era = <10>;
-- Josua Mayer
+> CC: Rob Herring <robh+dt@kernel.org>
+> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> CC: Conor Dooley <conor+dt@kernel.org>
+> CC: Chen-Yu Tsai <wens@csie.org>
+> CC: Jernej Skrabec <jernej.skrabec@gmail.com>
+> CC: Samuel Holland <samuel@sholland.org>
+> CC: devicetree@vger.kernel.org
+> CC: linux-riscv@lists.infradead.org
+> CC: linux-sunxi@lists.linux.dev
+> CC: linux-kernel@vger.kernel.org
+
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+
+Best regards,
+Jernej
+
+> ---
+>  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi index
+> 8275630af977..b8684312593e 100644
+> --- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> @@ -30,7 +30,6 @@ cpu0: cpu@0 {
+>  			cpu0_intc: interrupt-controller {
+>  				compatible = "riscv,cpu-intc";
+>  				interrupt-controller;
+> -				#address-cells = <0>;
+>  				#interrupt-cells = <1>;
+>  			};
+>  		};
+
+
+
+
 
