@@ -1,171 +1,129 @@
-Return-Path: <devicetree+bounces-892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AB637A3809
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 21:30:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F4567A386E
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 21:36:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84CAE1C20A48
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 19:30:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F71B1C20BCA
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 19:36:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D312C6FC1;
-	Sun, 17 Sep 2023 19:30:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBE0A63DE;
+	Sun, 17 Sep 2023 19:36:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51D5C6FA7;
-	Sun, 17 Sep 2023 19:30:51 +0000 (UTC)
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E959211D;
-	Sun, 17 Sep 2023 12:30:48 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40476ce8b2fso31500015e9.3;
-        Sun, 17 Sep 2023 12:30:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694979047; x=1695583847; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=65K8mCgmEtlpMY3z9VOkOvaOrG/VTVZNxKLA9kqTNW0=;
-        b=mImcQPSeeGgaKIzSrGJ7A2NOGpggoEkSIIdTE9qFwxOv/A1XMdJygDW8jWdbOLkNyq
-         52gfhulGuJHDTaaNvvoCuH9qxGNu1Ye5CcxwQPuFENwwTPazXuzeiFcdIpdL3RD0e5vA
-         uGs54A/Jc29UEAdRev4xehPofCSmWkvO++Vrqrp1ZG7IVNFFIS1095TbMKBwbMzFQFAk
-         LDSDXlIpXwCS6rYWr8IErlWImgOYZq3JDdZ0HAE18CDtmSodHlD4i1dEQ/o2QGFQdGek
-         0mA29KzdKwedHVk2hw8O634ZS1aFzVzPa/Ouyxc62Z0/LaxR9nqxmctkGBy3TbV2bZAT
-         l5VQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694979047; x=1695583847;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=65K8mCgmEtlpMY3z9VOkOvaOrG/VTVZNxKLA9kqTNW0=;
-        b=W5UwRoNUBqgQ/jQjWMA88wzaSimAOTFXbBeQ4pujO1V6gH1TDXnZ4a0bqvczIOSXi+
-         GdkkPMPaedGvPtJGlXs3VIsWBLQzQ02+ZQ/pBwZ2aXi0H/nx1GziJCF7Hx5HwSGNyx2j
-         CawkInDgh9CuUIy2V5cRpB9Zak4hkRS/0r1r+Pa461b5dJzDEJmOHjEZRPlm6CXWeoJQ
-         SIU5DLG9cWyOD1LzMM7gTcx9hPv1wh48T7Oav6OGq7tHsxcFQSd4TaJ+zbVFNWLaMI3n
-         dPaRnTQ4at5vxkSCVQLlPp0EmTxIql+U2Ld9vtQa3JhOwxk0Cc4ZGjh81GCZAaeaOlbQ
-         Y8hw==
-X-Gm-Message-State: AOJu0Yw+uJvDTnUY9eKmZEW+4/kXNgr3vDN5k/3T1wgkD8/HxN+hOWGf
-	B0o/5BcIxeDXSpfrRoJPkIY=
-X-Google-Smtp-Source: AGHT+IEZ5Sx1p0ZdSk+yrT/cIxqHnNIZVD8FaC6GGIoFcGg1Lq6rK7+e0PI3+qOkiax2m0hZ8VzhzA==
-X-Received: by 2002:a05:6000:1744:b0:320:baa:eba1 with SMTP id m4-20020a056000174400b003200baaeba1mr2027666wrf.5.1694979047077;
-        Sun, 17 Sep 2023 12:30:47 -0700 (PDT)
-Received: from primary ([5.45.134.53])
-        by smtp.gmail.com with ESMTPSA id d6-20020adfef86000000b0031f82743e25sm10412350wro.67.2023.09.17.12.30.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Sep 2023 12:30:46 -0700 (PDT)
-Date: Sun, 17 Sep 2023 15:30:41 -0400
-From: Abdel Alkuo <alkuor@gmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
-	abdelalkuor@geotab.com, heikki.krogerus@linux.intel.com,
-	bryan.odonoghue@linaro.org
-Subject: Re: [PATCH v5 01/15] dt-bindings: usb: tps6598x: Add tps25750
-Message-ID: <ZQdT4RWSKhGeGYJ4@primary>
-References: <20230917152639.21443-1-alkuor@gmail.com>
- <20230917152639.21443-2-alkuor@gmail.com>
- <384eb2c7-5aff-ef50-2f89-81cf8dd6e724@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D3B753B4
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 19:36:06 +0000 (UTC)
+Received: from sonic310-11.consmr.mail.ir2.yahoo.com (sonic310-11.consmr.mail.ir2.yahoo.com [77.238.177.32])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDB24124
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 12:36:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1694979363; bh=XGUFTEtX56UUAn9r60nv9VH7rWEmZ7X4qt4RPcuxz8M=; h=From:To:Cc:Subject:Date:In-Reply-To:References:From:Subject:Reply-To; b=rx0GHELAMTAnblFwxLL39Nx9pQzeAXanj4PMS0xR/JOIqIWCyIUEWHDZ+RjN2OhoISFU/a2CaLnCrksBJ6+B6gc1NvSHgvQ6pBK7tGdkrVXvhIX0HLIsaf6H7IDKWwtWKaUqMguSZ/a2Vzj8SFzhwd/d3QmR5HaHsz5eZCApWUSGQxs24VCe9P52z879hHmz5CSoKxcaD7E+n8vSv8ClAjTMU9TgstUQ51ooroxKsSaDeM+Z3+Ejn1QxGLZ0M1nPzjnMLMcuMk+kidnnXhdTgamKQIPaUnf9bcP6jptVkG0WKQ59mV9kI8Htf6afKhq2W4AnFiIF2e/JnMyaulogaw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1694979363; bh=e5uMcYuH7HGC0PbSHgaud5K86jVCACSeubm91CAsrKM=; h=X-Sonic-MF:From:To:Subject:Date:From:Subject; b=BbxUyedGcohMeaQcILGFFLOcfJTtTbvcYTiDTBSBBiqDFhi/w7URq9k+Jv7Ru9Bb6DufYaUdurm6zar/4iTsb7ma3JvelsBNI01geTZ+k6NMLcQQ6K79sAZky+L5V6VDkoC8WjjbuqP/FAHQmzDmAlVbOHTrX/Ebyb7cjTyVqM38dYnxaEwVuPIy0jogMo3OBefG6gaYavnURpC/aJluACEDX6/YaUC+GDyCs11B1+Jv7C2vKLtH+9L4ILZUHHjqD8eGy7Z/y4+idZ90ZKt1O7QsWfsGORLLykfPzFwj+QgV1t09G7ZSbVT9vvlZA/hWi17+JOCEMnrjtizOMSX9BQ==
+X-YMail-OSG: TVHbyIcVM1lCnYEoFC7F5.g0zAkg4w.CHz5ZMvKTXyEK_w_vZIlQ057xkO2zxNm
+ .xFykwadZR7p91ejdceXT8Jm8d2BodLjtxWABhkmHSx8Ia6jmQTL7Ulpv6fTAFMDbSt5Ld_uU3a_
+ 1vSsVozuBVK0.7eQCAhsFxrXcFdDgBqWHfnJjhA4tL2vvrHtuTfQ.APhVtB_jZyrEXbLoY6rlnC5
+ H0Spf8OTrqDbls0pq30N8SqDwVPXr9KPZMKPZok0RXcxAAlPWuN4sDioSF5nbP5wTG7XzG2jIqZi
+ 9hzSXWNjEVx6AsO5VOuIN.kXyZkWsZnm2C.BLrZ9MkjQrU6dm7F1tA9XCFfKNRW8_f.lj1ZIojJ9
+ EmV7XEy9sL61VFoeb_pXLa7CHiAxZqeOda3ExKjx_0r3USF8QTuF257gYi9gRdGiRnZfWrgWQix0
+ YDlqInOcLD5QED_dmbJ7i9QzO6Lmaibarg_i9MxkShwnrL4L44TEbWkq4MSid261A3FuFvElk52L
+ ka1Kt2iX3FwKL2RJiCYHAiZ9p_b_7fSUPLsJM_GAuwCIMDQkDxg.Ps98sbW9RVc1PlkYBEmu7RDX
+ jeCtZz.SsJ5tW_L2vlrcdmwzBMyR.flP1wbZ3PzaJHCfYXWZ0347ZkcBUr.mmQDi.IYcf9lnuvJd
+ bVBJPCoso6K8nqZwbPSs1Ev_GZsgcKQR9TCDpaUaP0D5mwMnZZGi2ML2yV7xFndU5dWN_76IqMuY
+ U.kXAegNHWwP_z8B0wFqP4548.5keJwaE18MYF.lQWgOg8tohGc25TKWWI4JHUBEOCPA_rla4QXI
+ pueXDXkUs27rpX7JhihaUSQGF2Ls5A9MlM6FOdOykhTittBLr9wf_hgPLODbJdq5wFj0uxCg9z68
+ BKPLigXaX84.1DhF2x8g_srdHpFjd1r88JdtnooZHmpiq8MvvxPKorv7JLS7JjZIUuFvNrM0bT0.
+ .UFTpNmV8tF7JUt_47I2eFC7fgtHVJAd0myNygrb_9TlCBqIWLm1laCZGEFRMnTIAMevxCg.IEla
+ hI4cVRipfJN2G43qeH2lmfL_hIUt.qckRiLtzrK4jsam3U2T5eHLIPAoDySPIieMKbrU3DTuAo8Z
+ f9gjzf2vAhsGhpVjHGkAt0SIYrFh8CgBz7IJr8sNIG284qv0aYIwWrDylotcGnvLdvYwmiEPnhR7
+ Hms6fWhjItZjYX4x4_VblAO_IkZ0_T5U07r4gWAm81vJi4pxsHmTumMEswnUPUa5_wzYcMywSuZo
+ 9JJnlnC06FL.6kI2r_fjJriYzrN56FDIqe23Xv7zeOTqWR5KmQ0Wwj26JvbOo_ZW.bFmoE3gWUyw
+ feh2rXkSyFjUWZyl7DpZtBrPkpgXEdetxuEbRWvKBUDLuMWt90YR6x_g4PzwAwr.mf404Kph1JNw
+ FjstWrdOuqsbqV3PHiJNFzXn_EU6GEpFjO1R9vnsRw.tSt.nhco3MNMdYEPzDDnpB1BulBc.IsPJ
+ Ac..H6sizWOKqEly3jhPH9tbVaYLDouerHk2Sm0cU.agbXhIwknN3mHt09UzsMcmYFwgA5ayaQCE
+ ydRA2OecKzaJGNBif5MzO.4F1x0rPRX8ruBd_65TepB5WBKwdUngEGYnL3Snzn4bd.fK4BOSLpaZ
+ e3IlQwyGUzSORwcKGi4AxTXDAPjW5cns9wDLimo7JtDgS_1vgI92C25G.4dwqFhOBKUDIu_DzQe4
+ NqL4OwrIN_1LERiipqoCJeCFrKaF4aUOw1YV8Vns0gCeCryT.70cUfuX_xWz_qQy_q642c0dhNlo
+ h5asSP4eB_.rgbJZRX5WVMeE_6ECrQsShPhbcHGy21E7Y4KXRsrDChgd5nYP5yqfYC_A9NudvUk1
+ SVQWBJdF2sfnolyCxHzMXB2sKic44mNcvqUnXPp0m3tmIV1ZN0BSHSs78rINqwZmJBJRxer1Dvla
+ 1eItAsJwhsYzLxj4mg5vmKSUlQhEti_byDCA6ehED7a.k81NfFmolPw2C8bpj4jaECM7HojdsSbg
+ lIDejuYTqjBl6Bc0fBhXgFV.bwZ1mmGQRNdVai_coNems.sIePVJy0Wf1MZ1lMgxSCGH7d0kQvHt
+ 1QbX83WZICoEFL7fhvdhIhra0cACFOgTTR4k7ocdphZTlyQQV4MBG8HMm5rMzMHRve6Ln_RG.rgo
+ bY2ZS8061qv91mZpvhkUWU5xap9XrsuFBIpyF2kMtMKE93zGVQk3zzbRKeLW99eTmB_jqnHfaSOQ
+ 6KY38_TK7Y5ksKF3qBrGbld1vW4c5_tIv60VkDGzsw1E9pJ8cCmAqgVNdyQt08K0L
+X-Sonic-MF: <n3q5u8@yahoo.com>
+X-Sonic-ID: 807355c8-ac7c-465d-baf7-0e78a2bd17a5
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic310.consmr.mail.ir2.yahoo.com with HTTP; Sun, 17 Sep 2023 19:36:03 +0000
+Received: by hermes--production-ir2-8464d7bd7d-5jx8g (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 5a5cc63ee8f77d2e1dabbe49173895e3;
+          Sun, 17 Sep 2023 19:35:58 +0000 (UTC)
+From: Nik Bune <n3q5u8@yahoo.com>
+To: wim@linux-watchdog.org,
+	linux@roeck-us.net,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com,
+	claudiu.beznea@microchip.com
+Cc: n3q5u8@yahoo.com,
+	linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: watchdog: atmel,at91rm9200-wdt: convert txt to yaml
+Date: Sun, 17 Sep 2023 21:35:56 +0200
+Message-Id: <20230917193556.10783-1-n3q5u8@yahoo.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230916154826.84925-1-n3q5u8@yahoo.com>
+References: <20230916154826.84925-1-n3q5u8@yahoo.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <384eb2c7-5aff-ef50-2f89-81cf8dd6e724@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Sun, Sep 17, 2023 at 07:30:52PM +0200, Krzysztof Kozlowski wrote:
-> On 17/09/2023 17:26, Abdel Alkuor wrote:
-> > From: Abdel Alkuor <abdelalkuor@geotab.com>
-> > 
-> > TPS25750 is USB TypeC PD controller which is a subset of TPS6598x.
-> > 
-> > Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
-> > ---
-> >  .../devicetree/bindings/usb/ti,tps6598x.yaml  | 70 +++++++++++++++++++
-> >  1 file changed, 70 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-> > index 5497a60cddbc..e49bd92b5276 100644
-> > --- a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-> > @@ -20,6 +20,8 @@ properties:
-> >      enum:
-> >        - ti,tps6598x
-> >        - apple,cd321x
-> > +      - ti,tps25750
-> > +
-> >    reg:
-> >      maxItems: 1
-> >  
-> > @@ -32,10 +34,45 @@ properties:
-> >      items:
-> >        - const: irq
-> >  
-> > +  firmware-name:
-> > +    description: |
-> > +      Should contain the name of the default patch binary
-> > +      file located on the firmware search path which is
-> > +      used to switch the controller into APP mode.
-> > +      This is used when tps25750 doesn't have an EEPROM
-> > +      connected to it.
-> > +    maxItems: 1
-> > +
-> > +  ti,patch-address:
-> > +    description: |
-> > +      One of PBMs command data field is I2C slave address
-> > +      which is used when writing the patch for TPS25750.
-> > +      The slave address can be any value except 0x00, 0x20,
-> > +      0x21, 0x22, and 0x23
-> 
-> Why this cannot be another entry in the reg?
-> 
-This address is different than the physical address of PD controller.
-The patch address will be used instead of PD controller address when
-writing the patch. I thought reg proprity is only for a device physical
-address, should I add another entry in the reg property in this case?
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > +    minimum: 1
-> > +    maximum: 0x7e
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> >  
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: ti,tps25750
-> > +    then:
-> > +      required:
-> > +        - ti,patch-address
-> > +        - connector
-> 
-> 
-> Why? Connector should be required or not required for both devices. What
-> is different between them?
-> 
-The data-role for tps6598x can be extracted from system config register
-which it doesn't exist in tps25750, so the only way to extract
-this information is by using data-role property from the Connector for
-tps25750, hence Connector and data-role are set as required for
-tps25750.
-> 
-> Best regards,
-> Krzysztof
+Hello, thank you for your review! 
+
+On Sat, Sep 16, 2023 at 10:37:23PM +0200, Krzysztof Kozlowski wrote:
+
+>On 16/09/2023 17:48, Nik Bune wrote:
+>> Convert txt file to yaml.
+>> Add reg to the list of required properties.
+>> Add mainteiners from ./scripts/get_maintainer.pl output.
+>>
+>> Signed-off-by: Nik Bune <n3q5u8@yahoo.com>
+>> ---
+>>  .../watchdog/atmel,at91rm9200-wdt.yaml        | 31 +++++++++++++++++++
+>>  .../watchdog/atmel-at91rm9200-wdt.txt        |  9 ------
+>>  2 files changed, 31 insertions(+), 9 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
+>>  delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml b/Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
+>> new file mode 100644
+>> index 000000000000..e9706b9c1e6b
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
+>> @@ -0,0 +1,31 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
 >
-Thanks,
-Abdel
+>How this copyright appeared here? Why are you adding some 2022
+>copyrights of someone else?
+
+I copied it from the neighbour file atmel,at91sam9-wdt.yaml.
+I assume I should leave only "SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)" here.
+
+Thank you!
 
