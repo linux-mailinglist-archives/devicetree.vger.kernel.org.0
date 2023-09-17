@@ -1,112 +1,123 @@
-Return-Path: <devicetree+bounces-890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95A577A36F5
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 19:58:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF1B47A373B
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 21:08:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B2FC1C20A9B
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 17:58:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 979142813AC
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 19:08:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EC4F6ABA;
-	Sun, 17 Sep 2023 17:58:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD61163B3;
+	Sun, 17 Sep 2023 19:08:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 491AE5226
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 17:58:45 +0000 (UTC)
-Received: from smtp.smtpout.orange.fr (smtp-18.smtpout.orange.fr [80.12.242.18])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61D7B122
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 10:58:40 -0700 (PDT)
-Received: from [192.168.1.18] ([86.243.2.178])
-	by smtp.orange.fr with ESMTPA
-	id hw2MqAKVBUbVihw2MqRYG1; Sun, 17 Sep 2023 19:58:32 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1694973512;
-	bh=n5GOty1FZm3dW6STDTU4IzxaJuBtMC1qUI5dLmOz7Vg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=Co20ujl7wd3fI3AqepZdv+qa/OQOhrYcmkE48an/tSGeexYfljBIas7OjH3X+rAg/
-	 BnXA0DNr1dQ3qiFLAwcIZwUItWUBTxHwJdr96ajCHJk+i5lMbX1vm+XZf8+TZs1BDK
-	 xd7CmWBYFCloEHCwRNIC7LdVwn544+a3kbbxwP1E4rVveJXk2GxkiiV3OrMz+RqKb2
-	 HgDSLGs2Ygn0XDXEWh8S6+HozzZ2UVodzyEz4LejBiICDak3eqJDth1frJZ0IFEh5B
-	 qaftgOsL2kCkruvnCVU+ltasDkTxxFwSbHaQNFDutUmnHZu5LwAgubs011SyXxrI9M
-	 WpPt4H1FAOXTw==
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Sun, 17 Sep 2023 19:58:32 +0200
-X-ME-IP: 86.243.2.178
-Message-ID: <0e2e0e8f-91dd-b458-e39e-b00baf98b4e0@wanadoo.fr>
-Date: Sun, 17 Sep 2023 19:58:25 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64A006FA4
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 19:08:50 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23DCA10D;
+	Sun, 17 Sep 2023 12:08:49 -0700 (PDT)
+Received: from mercury (unknown [185.254.75.28])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 58B14660721F;
+	Sun, 17 Sep 2023 20:08:47 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1694977727;
+	bh=MhUT4ZgnWZIvqh1JKIu10f1szECnNwOZIDOW8HonKBc=;
+	h=From:To:Cc:Subject:Date:From;
+	b=TrqPdfKzJqDG9xMsqEC1xY+ba/jCjD+czKGJ8mpI4Tuih83nSieN+5ih0xl7IfRb+
+	 lU8AcYyQcCWgYdt72h3n4G3j31hdzoePHA9L+KvmNHyItfm1J6Ch4XEi9pchXRf8Sj
+	 iDdU7q0Atl57/VTJpE0lmu5V7goPnuP3kAiLTWWXos7DOT8CxapxLnf9413aSw+ysU
+	 CdVtmShMhfyPRQxakJJ/wiyx03k47P3jYCbDtCDR1Zt3HI/Mq4/GiICx3q58AOqCYy
+	 azpIE9dT2aGOlK/Ov2ay0H367G+IJ8CDZsDvb6L9Qq/iWQIHNogxiPYLeX+nfL8mB9
+	 yhCe4a0X1C8ug==
+Received: by mercury (Postfix, from userid 1000)
+	id 394D710604B6; Sun, 17 Sep 2023 21:01:31 +0200 (CEST)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Sebastian Reichel <sre@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCH] dt-bindings: power: supply: Drop deprecated ab8500-battery
+Date: Sun, 17 Sep 2023 21:01:24 +0200
+Message-Id: <20230917190124.1012316-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 2/2] Input: add Himax HX852x(ES) touchscreen driver
-Content-Language: fr, en-US
-To: stephan@gerhold.net, Jeff LaBundy <jeff@labundy.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
- dmitry.torokhov@gmail.com, jonathan.albrieux@gmail.com,
- krzysztof.kozlowski+dt@linaro.org, linux-input@vger.kernel.org,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org, rydberg@bitmath.org
-References: <20230913-hx852x-v1-0-9c1ebff536eb@gerhold.net>
- <20230913-hx852x-v1-2-9c1ebff536eb@gerhold.net>
- <abf36591-3b3c-dc47-b1aa-e574325499f4@wanadoo.fr> <ZQcrQIfXYCv5aMK7@nixie71>
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <ZQcrQIfXYCv5aMK7@nixie71>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_PASS,
-	T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Le 17/09/2023 à 18:37, Jeff LaBundy a écrit :
+Linus Walleij modified AB8500 to use the generic simple-battery
+and samsung,battery bindings. This is an unused leftover that
+can be removed.
 
->>> +	error = input_register_device(hx->input_dev);
->>> +	if (error) {
->>
->> input_mt_destroy_slots() should be called here, or in an error handling path
->> below, or via a devm_add_action_or_reset().
-> 
-> This seems like a memory leak in every touchscreen driver; maybe it is more
-> practical to have the input core handle this clean-up.
-> 
-> Other drivers can and do insert other return paths between input_mt_init_slots()
-> and input_register_device(), so it seems that we cannot solve this by calling
-> input_mt_destroy_slots() from the error path within input_register_device().
-> 
-> Maybe a better option is to update input_mt_init_slots() to use device-managed
-> allocation instead?
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+---
+ .../supply/stericsson,ab8500-battery.txt      | 34 -------------------
+ 1 file changed, 34 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/power/supply/stericsson,ab8500-battery.txt
 
-I think that devm_ is the way to go:
-
-    $ git grep input_mt_init_slots | wc -l
-    82
-
-    $ git grep input_mt_destroy_slots | wc -l
-    6
-
-I'll send a patch for it.
-
-> 
->>
->> It should also be called in a .remove function (unless
->> devm_add_action_or_reset is prefered)
-> 
-> I think the remove path is OK, as input_dev_release() handles this for us. In
-> case I have misunderstood, please let me know.
-
-Agreed. I missed that.
-
-CJ
+diff --git a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-battery.txt b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-battery.txt
+deleted file mode 100644
+index ee125cb0e46d..000000000000
+--- a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-battery.txt
++++ /dev/null
+@@ -1,34 +0,0 @@
+-AB85000 PMIC contains a node, which contains shared
+-information about the battery connected to the PMIC.
+-The node has no compatible property.
+-
+-Properties of this node are:
+-
+-thermistor-on-batctrl:
+-	A boolean value indicating thermistor interface	to battery
+-
+-	Note:
+-	'btemp' and 'batctrl' are the pins interfaced for battery temperature
+-	measurement, 'btemp' signal is used when NTC(negative temperature
+-	coefficient) resister is interfaced external to battery whereas
+-	'batctrl' pin is used when NTC resister is internal to battery.
+-
+-	Example:
+-	ab8500_battery: ab8500_battery {
+-		thermistor-on-batctrl;
+-	};
+-	indicates: NTC resister is internal to battery, 'batctrl' is used
+-		for thermal measurement.
+-
+-	The absence of property 'thermal-on-batctrl' indicates
+-	NTC resister is external to battery and  'btemp' signal is used
+-	for thermal measurement.
+-
+-battery-type:
+-	This shall be the battery manufacturing technology type,
+-	allowed types are:
+-		"UNKNOWN" "NiMH" "LION" "LIPO" "LiFe" "NiCd" "LiMn"
+-	Example:
+-	ab8500_battery: ab8500_battery {
+-		stericsson,battery-type = "LIPO";
+-	}
+-- 
+2.40.1
 
 
