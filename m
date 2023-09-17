@@ -1,153 +1,117 @@
-Return-Path: <devicetree+bounces-829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AA437A349B
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 10:47:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C97C7A34A7
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 10:49:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 331D71C20AFA
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 08:47:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B2FB1C20B03
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 08:49:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AFE11C35;
-	Sun, 17 Sep 2023 08:47:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0E401C3D;
+	Sun, 17 Sep 2023 08:49:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BD121876;
-	Sun, 17 Sep 2023 08:47:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61959C433C7;
-	Sun, 17 Sep 2023 08:47:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1694940454;
-	bh=l+Sr+3wtCBb7xzBSEztJcEqZ8CXJywYnYrDfeKgva0g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FKlcyKI2kpWpgmNiueo4a26VAntMReflY2KPdNKBUoBv1OPJC6yo+TgJ/eYj1XNI8
-	 YqWY7bQg8BuZ3eDnrfXfmIKcf36zE3/mU1QJDRa+G3zh0HnHqus3I/jAXZ6GcIZOWV
-	 aacSttw4rLx/isPT7EN2NHNV4Bf2fIPH1KBMpkKuDkOk3ANTrlaBwkD8Or9uJsSG+y
-	 LhmswnwVU6GJF2EXmjH0oIHPZWt+YiMwY34fc3sbjRWV0rxk3bK1wjdbs7hknE8LQ5
-	 M1jBaGONdVNuOp0BlkXjkR8ws/A3YY3WWwdzpG2k855dT/l0o77y+ytD38Dpl2I6M9
-	 4P2jSGmXhCBYA==
-Date: Sun, 17 Sep 2023 10:47:28 +0200
-From: Simon Horman <horms@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: netdev@vger.kernel.org, lorenzo.bianconi@redhat.com, nbd@nbd.name,
-	john@phrozen.org, sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, daniel@makrotopia.org,
-	linux-mediatek@lists.infradead.org, sujuan.chen@mediatek.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 13/15] net: ethernet: mtk_wed: introduce hw_rro
- support for MT7988
-Message-ID: <20230917084728.GI1125562@kernel.org>
-References: <cover.1694701767.git.lorenzo@kernel.org>
- <da27f7333fa31808ceae581d9bef5030c6072f33.1694701767.git.lorenzo@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C08815C5
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 08:49:29 +0000 (UTC)
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C8B3185;
+	Sun, 17 Sep 2023 01:49:27 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+	by ex01.ufhost.com (Postfix) with ESMTP id 6C53224DCA6;
+	Sun, 17 Sep 2023 16:49:20 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 17 Sep
+ 2023 16:49:20 +0800
+Received: from [192.168.125.57] (113.72.144.67) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 17 Sep
+ 2023 16:49:19 +0800
+Message-ID: <0ce30520-7286-dfa0-2e16-e5145b950945@starfivetech.com>
+Date: Sun, 17 Sep 2023 16:49:18 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <da27f7333fa31808ceae581d9bef5030c6072f33.1694701767.git.lorenzo@kernel.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v6 02/19] PCI: microchip: Move pcie-microchip-host.c to
+ plda directory
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>
+CC: Daire McNamara <daire.mcnamara@microchip.com>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>, Emil Renner Berthing
+	<emil.renner.berthing@canonical.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+	<linux-pci@vger.kernel.org>, =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+	<palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Mason Huo <mason.huo@starfivetech.com>, Leyfoon Tan
+	<leyfoon.tan@starfivetech.com>, Kevin Xie <kevin.xie@starfivetech.com>
+References: <20230915102243.59775-1-minda.chen@starfivetech.com>
+ <20230915102243.59775-3-minda.chen@starfivetech.com>
+ <20230916-outcome-obedient-fda7043bcca7@spud>
+From: Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <20230916-outcome-obedient-fda7043bcca7@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.144.67]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Thu, Sep 14, 2023 at 04:38:18PM +0200, Lorenzo Bianconi wrote:
-> From: Sujuan Chen <sujuan.chen@mediatek.com>
+
+
+On 2023/9/16 8:09, Conor Dooley wrote:
+> On Fri, Sep 15, 2023 at 06:22:26PM +0800, Minda Chen wrote:
+>> For Microchip Polarfire PCIe host is PLDA XpressRich IP,
+>> move to plda directory. Prepare for refactor the codes.
+>> 
+>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>> ---
+>>  MAINTAINERS                                        |  2 +-
+>>  drivers/pci/controller/Kconfig                     |  9 +--------
+>>  drivers/pci/controller/Makefile                    |  2 +-
+>>  drivers/pci/controller/plda/Kconfig                | 14 ++++++++++++++
+>>  drivers/pci/controller/plda/Makefile               |  2 ++
+>>  .../controller/{ => plda}/pcie-microchip-host.c    |  2 +-
+>>  6 files changed, 20 insertions(+), 11 deletions(-)
+>>  create mode 100644 drivers/pci/controller/plda/Kconfig
+>>  create mode 100644 drivers/pci/controller/plda/Makefile
+>>  rename drivers/pci/controller/{ => plda}/pcie-microchip-host.c (99%)
+>> 
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 90f13281d297..b1050804e6d2 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -16647,7 +16647,7 @@ M:	Daire McNamara <daire.mcnamara@microchip.com>
+>>  L:	linux-pci@vger.kernel.org
+>>  S:	Supported
+>>  F:	Documentation/devicetree/bindings/pci/microchip*
+>> -F:	drivers/pci/controller/*microchip*
+>> +F:	drivers/pci/controller/plda/*microchip*
 > 
-> MT7988 SoC support 802.11 receive reordering offload in hw while
-> MT7986 SoC implements it through the firmware running on the mcu.
-> 
-> Co-developed-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> Signed-off-by: Sujuan Chen <sujuan.chen@mediatek.com>
-
-...
-
-Hi Lorenzo,
-
-some minor feedback from my side.
-
-> @@ -565,6 +565,73 @@ mtk_wed_free_tx_buffer(struct mtk_wed_device *dev)
->  	kfree(page_list);
->  }
->  
-> +static int
-> +mtk_wed_hwrro_buffer_alloc(struct mtk_wed_device *dev)
-> +{
-> +	int n_pages = MTK_WED_RX_PG_BM_CNT / MTK_WED_RX_BUF_PER_PAGE;
-> +	struct mtk_wed_buf *page_list;
-> +	struct mtk_wed_bm_desc *desc;
-> +	dma_addr_t desc_phys;
-> +	int i, page_idx = 0;
-> +
-> +	if (!dev->wlan.hw_rro)
-> +		return 0;
-> +
-> +	page_list = kcalloc(n_pages, sizeof(*page_list), GFP_KERNEL);
-> +	if (!page_list)
-> +		return -ENOMEM;
-> +
-> +	dev->hw_rro.size = dev->wlan.rx_nbuf & ~(MTK_WED_BUF_PER_PAGE - 1);
-> +	dev->hw_rro.pages = page_list;
-> +	desc = dma_alloc_coherent(dev->hw->dev,
-> +				  dev->wlan.rx_nbuf * sizeof(*desc),
-> +				  &desc_phys, GFP_KERNEL);
-> +	if (!desc)
-> +		return -ENOMEM;
-> +
-> +	dev->hw_rro.desc = desc;
-> +	dev->hw_rro.desc_phys = desc_phys;
-> +
-> +	for (i = 0; i < MTK_WED_RX_PG_BM_CNT; i += MTK_WED_RX_BUF_PER_PAGE) {
-> +		dma_addr_t page_phys, buf_phys;
-> +		struct page *page;
-> +		void *buf;
-> +		int s;
-> +
-> +		page = __dev_alloc_page(GFP_KERNEL);
-> +		if (!page)
-> +			return -ENOMEM;
-> +
-> +		page_phys = dma_map_page(dev->hw->dev, page, 0, PAGE_SIZE,
-> +					 DMA_BIDIRECTIONAL);
-> +		if (dma_mapping_error(dev->hw->dev, page_phys)) {
-> +			__free_page(page);
-> +			return -ENOMEM;
-> +		}
-> +
-> +		page_list[page_idx].p = page;
-> +		page_list[page_idx++].phy_addr = page_phys;
-> +		dma_sync_single_for_cpu(dev->hw->dev, page_phys, PAGE_SIZE,
-> +					DMA_BIDIRECTIONAL);
-> +
-> +		buf = page_to_virt(page);
-> +		buf_phys = page_phys;
-> +
-> +		for (s = 0; s < MTK_WED_RX_BUF_PER_PAGE; s++) {
-> +			desc->buf0 = cpu_to_le32(buf_phys);
-> +			desc++;
-> +
-> +			buf += MTK_WED_PAGE_BUF_SIZE;
-
-clang-16 W=1 warns that buf is set but otherwise unused in this function.
-
-> +			buf_phys += MTK_WED_PAGE_BUF_SIZE;
-> +		}
-> +
-> +		dma_sync_single_for_device(dev->hw->dev, page_phys, PAGE_SIZE,
-> +					   DMA_BIDIRECTIONAL);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int
->  mtk_wed_rx_buffer_alloc(struct mtk_wed_device *dev)
->  {
-
-...
+> The riscv patchwork automation is complaining that you have added
+> maintainers pattern errors with this patch. If you run
+> ./scripts/get_maintainer.pl --self-test=patterns
+> it'll tell you what the bad pattern is. Not sure why I never actually
+> dumped the output of that test into the failure report, so I can't
+> immediately tell you what is wrong.
+Okay. I will check this.
 
