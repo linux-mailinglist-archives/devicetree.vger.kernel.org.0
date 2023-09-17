@@ -1,186 +1,93 @@
-Return-Path: <devicetree+bounces-884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B4037A36CE
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 19:32:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BC427A36DF
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 19:37:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1A36282987
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 17:32:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AD601C2167E
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 17:37:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C82B9568A;
-	Sun, 17 Sep 2023 17:32:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 001BE63D1;
+	Sun, 17 Sep 2023 17:37:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DAD14A3B
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 17:32:31 +0000 (UTC)
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB65412C
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 10:32:28 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2ba1e9b1fa9so61366221fa.3
-        for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 10:32:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694971947; x=1695576747; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FAUrGwSXliSzl6do0piL0fUoJFOhBx16PQ2kuiIjv0E=;
-        b=hyOU7VIcNNwwe2F1NyXMasjYdxABwiInez23PZpdyVTHOJvYEnNn//qyoh4AwQirP8
-         eIunm9tAYIJL/hNCOtSzG0FPJatLqDHt3iP8KtgFcR4IdlKGnXZkWw7zD02ElWtHGUQW
-         BmN701nPbZoCa6eRHZL1y09mpDDKLCM3ZRL4FMA6nx9bBA4hX5+gLDsNxn3F8lv8M/O/
-         BxlWM3HFTRUBr0T/tfUE52dGllR/pTOJ22aQ4SpN9ph8I8NEbUXMAMN6p8FCfUDaNALg
-         eN56WzV7F5GOQDgjtzD8iAPSMMk+A49rYumC7pzzakGBCX67l8ElyD8kwFwkV5EIjkg1
-         wouQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694971947; x=1695576747;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FAUrGwSXliSzl6do0piL0fUoJFOhBx16PQ2kuiIjv0E=;
-        b=HtnnQOp9w2tNrJlP61b00nsbKBDxYsf7n2XFeGlB4YQbsv+0+x8Me9YDldKQd6+ctW
-         9OnUx2EHSNu3TS/0qG1Dsjqdo4l218DXObIds7i8Dq++0JkcLSZ0ZnuO7LzptZ7n7fcU
-         GDzGLU+dSLSo0WTjzJBSggnncizm56ccG+s5aXsW5vj4G119KnS4UUHjMOJwCZa0PcVY
-         aWU6JgLKbRNByBOUvQnmffRPiesQktdiC7DK3vfFo6/XNc5Ek6wVryR30RdJaDmb7f7b
-         zkOubrXXOpyaVOYVhJL1ey5ZraJT5PKFQ06dzIDET5FzVL6CvHSh0KOxsUyxIAJekms5
-         d++Q==
-X-Gm-Message-State: AOJu0YzbtNX40zxHf1IrQ+P2DdVw+tLKQ3KId/Q0IUqzo+NBcyCagmXv
-	keBMVuLdw7+YRzlACdgiodpbMg==
-X-Google-Smtp-Source: AGHT+IHpuEJOb2kc1LZ7icvbDz8sWqxmRdmM5s1F83iX4feIQVNLKNFPf1XMTFlpL8xUVcJwClqwtw==
-X-Received: by 2002:a2e:2416:0:b0:2b6:eb5a:d377 with SMTP id k22-20020a2e2416000000b002b6eb5ad377mr6054055ljk.5.1694971946989;
-        Sun, 17 Sep 2023 10:32:26 -0700 (PDT)
-Received: from [192.168.1.77] (150-140-187-31.ftth.glasoperator.nl. [31.187.140.150])
-        by smtp.gmail.com with ESMTPSA id r11-20020a170906350b00b009a5f1d1564dsm5171907eja.126.2023.09.17.10.32.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 17 Sep 2023 10:32:26 -0700 (PDT)
-Message-ID: <43fdd3de-50cf-49f6-0577-61667288453e@linaro.org>
-Date: Sun, 17 Sep 2023 19:32:25 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E98B4A29
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 17:37:42 +0000 (UTC)
+Received: from out-213.mta1.migadu.com (out-213.mta1.migadu.com [IPv6:2001:41d0:203:375::d5])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59CDDF1
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 10:37:39 -0700 (PDT)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
+	t=1694972257;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=cothmr+77o5e2+4r9KfUSFxuV8BjV2N0LakyRZnqIAM=;
+	b=Hx+AGSSUKxqQRB0EAhnk2jNtrY8DxlBBs4gWDHSw3BGOuKmiXCAzH93LkH3bl/8Tj2p7RM
+	oqBdX7ALk9Pagk5qFr0uOR5fLkqlailnskw8WzyHDuPpXciVsq/+Qgwa2HEpXzDOcWDY+F
+	WoJO80mhaMOaDfv0ILZx4pm+vXLYQnbm+WJmbfb0GMQ/Kaj/EpTdT7336m3FVbVqdL+zAk
+	+DA/TY1SdQLjsfDrPZUP9nlN4vPUGGhPWnvkI9zKVyqf/9U1LD1tTs4jxR6uTCR//hnCcV
+	Z0gZu2zKAF4mbf88Tk/cSAGiZvJS7pyutsdmQ07E3rfI2shF3cRVDp/Q4RiHIQ==
+From: John Watts <contact@jookia.org>
+To: alsa-devel@alsa-project.org
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	John Watts <contact@jookia.org>,
+	patches@opensource.cirrus.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/3] ASoC: wm8782: Allow higher audio rates
+Date: Mon, 18 Sep 2023 03:37:23 +1000
+Message-ID: <20230917173726.1916439-1-contact@jookia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v5 11/15] USB: typec: Enable sleep mode for tps25750
-Content-Language: en-US
-To: Abdel Alkuor <alkuor@gmail.com>, heikki.krogerus@linux.intel.com,
- krzysztof.kozlowski+dt@linaro.org, bryan.odonoghue@linaro.org
-Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org,
- linux-kernel@vger.kernel.org, abdelalkuor@geotab.com
-References: <20230917152639.21443-1-alkuor@gmail.com>
- <20230917152639.21443-12-alkuor@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230917152639.21443-12-alkuor@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 17/09/2023 17:26, Abdel Alkuor wrote:
-> From: Abdel Alkuor <abdelalkuor@geotab.com>
-> 
-> Allow controller to enter sleep mode after the device
-> is idle for sleep time.
-> 
-> Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
-> ---
->  drivers/usb/typec/tipd/core.c     | 29 ++++++++++++++++++++++++++++-
->  drivers/usb/typec/tipd/tps6598x.h |  3 +++
->  2 files changed, 31 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
-> index a97fda68cb54..3d9877551160 100644
-> --- a/drivers/usb/typec/tipd/core.c
-> +++ b/drivers/usb/typec/tipd/core.c
-> @@ -42,6 +42,7 @@
->  #define TPS_REG_PD_STATUS		0x40
->  #define TPS_REG_RX_IDENTITY_SOP		0x48
->  #define TPS_REG_DATA_STATUS		0x5f
-> +#define TPS_REG_SLEEP_CONF		0x70
->  
->  /* TPS_REG_SYSTEM_CONF bits */
->  #define TPS_SYSCONF_PORTINFO(c)		((c) & 7)
-> @@ -205,6 +206,11 @@ static inline int tps6598x_read64(struct tps6598x *tps, u8 reg, u64 *val)
->  	return tps6598x_block_read(tps, reg, val, sizeof(u64));
->  }
->  
-> +static inline int tps6598x_write8(struct tps6598x *tps, u8 reg, u8 val)
-> +{
-> +	return tps6598x_block_write(tps, reg, &val, sizeof(u8));
-> +}
-> +
->  static inline int tps6598x_write64(struct tps6598x *tps, u8 reg, u64 val)
->  {
->  	return tps6598x_block_write(tps, reg, &val, sizeof(u64));
-> @@ -977,6 +983,24 @@ static int tps25750_apply_patch(struct tps6598x *tps)
->  	return 0;
->  };
->  
-> +static int tps25750_init(struct tps6598x *tps)
-> +{
-> +	int ret;
-> +
-> +	ret = tps25750_apply_patch(tps);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = tps6598x_write8(tps, TPS_REG_SLEEP_CONF,
-> +			      TPS_SLEEP_CONF_SLEEP_MODE_ALLOWED);
-> +	if (ret)
-> +		dev_warn(tps->dev,
-> +			 "%s: failed to enable sleep mode: %d\n",
-> +			 __func__, ret);
-> +
-> +	return 0;
-> +}
-> +
->  static int
->  tps6598x_register_port(struct tps6598x *tps, struct fwnode_handle *fwnode)
->  {
-> @@ -1131,6 +1155,7 @@ static int tps6598x_probe(struct i2c_client *client)
->  		irq_handler = cd321x_interrupt;
->  	} else {
->  		tps->is_tps25750 = of_device_is_compatible(np, "ti,tps25750");
-> +
->  		/* Enable power status, data status and plug event interrupts */
->  		mask1 = TPS_REG_INT_POWER_STATUS_UPDATE |
->  			TPS_REG_INT_DATA_STATUS_UPDATE |
-> @@ -1138,6 +1163,7 @@ static int tps6598x_probe(struct i2c_client *client)
->  	}
->  
->  	tps->irq_handler = irq_handler;
-> +
+The wm8782 supports higher audio rates than just 48kHz. This is
+configured by setting the FSAMPEN pin on the codec chip.
 
-Drop
+This patch series introduces the 'wlf,fsampen' device tree property
+to indicate the pin status and control the maximum rate available
+when using the codec.
 
->  	/* Make sure the controller has application firmware running */
->  	ret = tps6598x_check_mode(tps, &mode);
->  	if (ret)
-> @@ -1149,6 +1175,7 @@ static int tps6598x_probe(struct i2c_client *client)
->  			return ret;
->  	}
->  
-> +
+v2 -> v3:
+- Rate is now properly constrained using ALSA constraints
 
-That's not really relevant, neither correct.
+v1 -> v2:
+- Switched from max-rate property to wlf,fsampen property
+- Clarified property is optional, not required
 
->  	ret = tps6598x_write64(tps, TPS_REG_INT_MASK1, mask1);
->  	if (ret)
->  		goto err_reset_controller;
-> @@ -1286,7 +1313,7 @@ static int __maybe_unused tps6598x_resume(struct device *dev)
->  		return ret;
+John Watts (3):
+  ASoC: wm8782: Constrain maximum audio rate at runtime
+  ASoC: wm8782: Use wlf,fsampen device tree property
+  ASoC: dt-bindings: wlf,wm8782: Add wlf,fsampen property
 
-Best regards,
-Krzysztof
+ .../devicetree/bindings/sound/wm8782.txt      |  5 ++
+ sound/soc/codecs/wm8782.c                     | 63 +++++++++++++++----
+ 2 files changed, 55 insertions(+), 13 deletions(-)
+
+-- 
+2.42.0
 
 
