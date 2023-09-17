@@ -1,83 +1,82 @@
-Return-Path: <devicetree+bounces-857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D60F77A35EE
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 16:44:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54D577A3623
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 17:27:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED9E91C20933
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 14:44:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57B0E1C2084C
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 15:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9C874C60;
-	Sun, 17 Sep 2023 14:44:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6CC44A2D;
+	Sun, 17 Sep 2023 15:27:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7842846A7
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 14:44:18 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41F2712D;
-	Sun, 17 Sep 2023 07:44:17 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9a9d6b98845so1046227066b.0;
-        Sun, 17 Sep 2023 07:44:17 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8152290B;
+	Sun, 17 Sep 2023 15:27:04 +0000 (UTC)
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04F3911F;
+	Sun, 17 Sep 2023 08:27:03 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-3214de9cd8bso230129f8f.2;
+        Sun, 17 Sep 2023 08:27:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694961856; x=1695566656; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=76MVv177zY9dsxPsQgQCgjtWxWwiLSVOTVF9dOpujsM=;
-        b=WL3BRlfIKnIeIfKqYwZ7AjUBFqfzH4+pqQcZRrucX5Tr63MltQ7MjNkqQ/aoNd9XeG
-         Xam++R8jTxWdDig+2fQO2PSp3JQkrBuNpX6kjE8etwsSZI2FiPoPUG0LJ33HiCmC0WLj
-         aQr8cen8oScLhMFhmi4+oOS8TSBSTlOsWAJd0BuCLW18SF85KfXwAv9tOkPnZ5cBBBIw
-         8fo6LOv0nFuvrO+4RMdbLpvrKCKZKueoRxScI7XqZfFCY98EqhdcDzJm3e6hMbpXq4Hw
-         pEO4THXtUUMuW+LclwO7b6ceC00UbRiE9mMdtdIsMr95NuBqMAw0rxAOSwVhd5c3Ew6g
-         pYgA==
+        d=gmail.com; s=20230601; t=1694964421; x=1695569221; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=itAnQtUK0esq7xPW/PIltIlBTpoKhniXVdlB9pgFqig=;
+        b=fpcmbzioRagxHtRRBJqwPgMcM5eEUjASlnE4sGUhQKLKouuNeMEJe6jVKLb36Yw+3c
+         Pnb03qaFZE343cTmm5WgnuvNWJhq6EwxCoI74pUcKUldEiyCaoX26lfPvN41JZjan6Jc
+         P7H80jFNdsvHpD9kRND3HN+4b/2iIvg2GxIrNfr9r/vbSRszfj7NCvKja9vrNnCARb/s
+         rdP6gSaEA6QV9qvIivjpopByu+zgcf81h9OnUH+tDccKmuITDQx4ywZSJ7RmXs+VlpeR
+         8BdpfIYj0Kja5D7tvsAPMvKkjPM/q5xcq2/yul79//1uDoGhi58gt2Kq/B0OsWu16+DV
+         +rDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694961856; x=1695566656;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=76MVv177zY9dsxPsQgQCgjtWxWwiLSVOTVF9dOpujsM=;
-        b=cvHtzCiqzMgfSv1keEPmXrNEMR/PHU1sMkTLnhY6DU/dUyNZ4iStjwhkrIq+ktxzoq
-         7qwwXsraL8zHI5G/OJw1rqWXbS+fM4ic/eMso3pdIAV1y7PFptGDFrG968jP3jI8JEN0
-         LqPR3EaznE/QFlrh8wxrIZlpKSu6J3MM8S8D0HV9HSSAVpg45Fn5oDRgSovmHi2y8Bgi
-         g37BkuswCaEhjW79xeRzaw+u2ruSTPgbHEgnrdoSbdf2OZ7b5+sDzcTetwV2qKoRlH37
-         GjmJ09vj3okhUrA0mwRojPQnHfnq9MUashir32i8lopvvuXzhHxbzdme2K2PeSDC6dvw
-         GMPA==
-X-Gm-Message-State: AOJu0YzvC4U+VjPsHOOQbduQ6QZtjzbt/MXdeeDV+e1Kl0pigcPXikCs
-	y3wa/l0XrZYmbOIU46JJoSU=
-X-Google-Smtp-Source: AGHT+IG10fQvNKmNWOCHHO3EJrMAN6SKA+/1Io0nXHROE7X4TQTiZl1pdzhSV1Hr6ZXK4WLsYWLxDQ==
-X-Received: by 2002:a17:907:728e:b0:9a1:c69c:9388 with SMTP id dt14-20020a170907728e00b009a1c69c9388mr10830626ejc.37.1694961855448;
-        Sun, 17 Sep 2023 07:44:15 -0700 (PDT)
-Received: from jernej-laptop.localnet (APN-123-246-155-gprs.simobil.net. [46.123.246.155])
-        by smtp.gmail.com with ESMTPSA id e24-20020a17090681d800b009a2235ed496sm5176569ejx.141.2023.09.17.07.44.13
+        d=1e100.net; s=20230601; t=1694964421; x=1695569221;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=itAnQtUK0esq7xPW/PIltIlBTpoKhniXVdlB9pgFqig=;
+        b=r4MjzYvzib8d5YPD4pge/uqEew1YnWqjLqXrGPLsklFtHmdSwA48uuzqRVRgAeEyVy
+         owCnCcyTXr3W3FqWZ9BAIdZylnUnExSor79NzYD/KbZvuxUHz7WjaQQd3QSdGRUlZKb8
+         ftxTz6iOWiyHc/4/GJug0WIqN0iCSZnK8OO1XFzA1ixByuTy4TopG+rCGlk4JAciTLbW
+         LLaof8LKi8jY/2ElhOSk0w3is0kX9bkDi66RFnnrLyRpkZNRuNDMapKzFg9qbD5QmoBB
+         DZlnqGbefOZ+maNBlifvdVNUSrldufQ/O1Z7Doqu7NOHPYr5nWD5WpF2bPHrnlDWLxJE
+         xaZw==
+X-Gm-Message-State: AOJu0Yye9jt9A08lcMULo3+zgXLlFU2SKnZ+zBu1tilaL0hfIo6K2uAd
+	XNo14HqMtlJuyX2/YnNsf80=
+X-Google-Smtp-Source: AGHT+IHukKtw2b9SH5a5yatF3/vlsOtq0OzgkV4iDDaL+tlI2m6aiInWnEoKVXTTzZ8SIA5rrVCllA==
+X-Received: by 2002:a05:6000:118d:b0:316:efb9:101d with SMTP id g13-20020a056000118d00b00316efb9101dmr6956862wrx.25.1694964421068;
+        Sun, 17 Sep 2023 08:27:01 -0700 (PDT)
+Received: from localhost.localdomain ([5.45.134.53])
+        by smtp.gmail.com with ESMTPSA id j23-20020a05600c489700b003fe15ac0934sm7388865wmp.1.2023.09.17.08.26.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Sep 2023 07:44:15 -0700 (PDT)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: linux-riscv@lists.infradead.org, Conor Dooley <conor@kernel.org>
-Cc: conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v1] riscv: dts: allwinner: remove address-cells from intc node
-Date: Sun, 17 Sep 2023 16:44:12 +0200
-Message-ID: <4863891.31r3eYUQgx@jernej-laptop>
-In-Reply-To: <20230916-saddling-dastardly-8cf6d1263c24@spud>
-References: <20230916-saddling-dastardly-8cf6d1263c24@spud>
+        Sun, 17 Sep 2023 08:27:00 -0700 (PDT)
+From: Abdel Alkuor <alkuor@gmail.com>
+To: heikki.krogerus@linux.intel.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	bryan.odonoghue@linaro.org
+Cc: gregkh@linuxfoundation.org,
+	robh+dt@kernel.org,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	abdelalkuor@geotab.com
+Subject: [PATCH v5 00/15] Add TPS25750 USB type-C PD controller support
+Date: Sun, 17 Sep 2023 11:26:24 -0400
+Message-Id: <20230917152639.21443-1-alkuor@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
 	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -85,56 +84,91 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Dne sobota, 16. september 2023 ob 11:14:00 CEST je Conor Dooley napisal(a):
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> A recent submission [1] from Rob has added additionalProperties: false
-> to the interrupt-controller child node of RISC-V cpus, highlighting that
-> the D1 DT has been incorrectly using #address-cells since its
-> introduction. It has no child nodes, so #address-cells is not needed.
-> Remove it.
-> 
-> Fixes: 077e5f4f5528 ("riscv: dts: allwinner: Add the D1/D1s SoC devicetree")
-> Link:
-> https://patchwork.kernel.org/project/linux-riscv/patch/20230915201946.41844
-> 68-1-robh@kernel.org/ [1] Signed-off-by: Conor Dooley
-> <conor.dooley@microchip.com>
-> ---
-> CC: Rob Herring <robh+dt@kernel.org>
-> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> CC: Conor Dooley <conor+dt@kernel.org>
-> CC: Chen-Yu Tsai <wens@csie.org>
-> CC: Jernej Skrabec <jernej.skrabec@gmail.com>
-> CC: Samuel Holland <samuel@sholland.org>
-> CC: devicetree@vger.kernel.org
-> CC: linux-riscv@lists.infradead.org
-> CC: linux-sunxi@lists.linux.dev
-> CC: linux-kernel@vger.kernel.org
+From: Abdel Alkuor <abdelalkuor@geotab.com>
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+TPS25750 USB type-C PD controller has the same register offsets as
+tps6598x. The following is a summary of incorporating TPS25750 into
+TPS6598x driver:
 
-Best regards,
-Jernej
+- Only Check VID register (0x00) for TPS6598x and cd321x, as TPS25750 doesn't
+  have VID register.
 
-> ---
->  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi index
-> 8275630af977..b8684312593e 100644
-> --- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> @@ -30,7 +30,6 @@ cpu0: cpu@0 {
->  			cpu0_intc: interrupt-controller {
->  				compatible = "riscv,cpu-intc";
->  				interrupt-controller;
-> -				#address-cells = <0>;
->  				#interrupt-cells = <1>;
->  			};
->  		};
+- TypeC port registration will be registered differently for each PD
+  controller. TPS6598x uses system configuration register (0x28) to get
+  pr/dr capabilities. On the other hand, TPS25750 will use data role property
+  and PD status register (0x40) to get pr/dr capabilities as TPS25750 doesn't
+  have register 0x28 supported.
 
+- TPS25750 requires writing a binary configuration to switch PD
+  controller from PTCH mode to APP mode which needs the following changes:
+  - Add PTCH mode to the modes list.
+  - Add an argument to tps6598x_check_mode to return the current mode.
+  - Currently, tps6598x_exec_cmd has cmd timeout hardcoded to 1 second,
+    and doesn't wait before checking DATA_OUT response. In TPS25750, patch 4CCs
+    take longer than 1 second to execute and some requires a delay before
+    checking DATA_OUT. To accommodate that, cmd_timeout and response_delay will
+    be added as arguments to tps6598x_exec_cmd.
+  - Implement applying patch sequence for TPS25750.
 
+- In pm suspend callback, patch mode needs to be checked and the binary
+  configuration should be applied if needed.
 
+- For interrupt, TPS25750 has only one event register (0x14) and one mask
+  register (0x16) of 11 bytes each, where TPS6598x has two event
+  and two mask registers of 8 bytes each. Both TPS25750 and TPS65986x
+  shares the same bit field offsets for events/masks/clear but many of
+  there fields are reserved in TPS25750, the following needs to be done in
+  tps6598x_interrupt:
+  - Read EVENT1 register as a block of 11 bytes when tps25750 is present
+  - Write CLEAR1 register as a block of 11 bytes when tps25750 is present
+  - Add trace_tps25750_irq
+  - During testing, I noticed that when a cable is plugged into the PD
+    controller and before PD controller switches to APP mode, there is a
+    lag between dr/pr updates and PlugInsertOrRemoval Event, so a check
+    for dr/pr change needs to be added along TPS_REG_INT_PLUG_EVENT check
+
+- Add TPS25750 traces for status and power status registers. Trace for
+  data register won't be added as it doesn't exist in the device.
+
+- Configure sleep mode for TPS25750.
+
+v5:
+ - PATCH 1: Add tps25750 bindings to tps6598x
+ - PATCH 2: Remove tps25750 driver and incorperate tps25750
+ 	    into tps6598x driver
+v4:
+ - PATCH 1: No change
+ - PATCH 2: Fix comments style and drop of_match_ptr
+v3:
+ - PATCH 1: Fix node name
+ - PATCH 2: Upload tps25750 driver patch
+v2:
+ - PATCH 1: General properties clean up
+
+Abdel Alkuor (15):
+  dt-bindings: usb: tps6598x: Add tps25750
+  USB: typec: Add cmd timeout and response delay
+  USB: typec: Add patch mode to tps6598x
+  USB: typec: Load TPS25750 patch bundle
+  USB: typec: Check for EEPROM present
+  USB: typec: Clear dead battery flag
+  USB: typec: Apply patch again after power resume
+  USB: typec: Add interrupt support for TPS25750
+  USB: typec: Refactor tps6598x port registration
+  USB: typec: Add port registration for tps25750
+  USB: typec: Enable sleep mode for tps25750
+  USB: typec: Add trace for tps25750 irq
+  USB: typec: Add power status trace for tps25750
+  USB: typec: Add status trace for tps25750
+  USB: typec: Do not check VID for tps25750
+
+ .../devicetree/bindings/usb/ti,tps6598x.yaml  |  70 +++
+ drivers/usb/typec/tipd/core.c                 | 570 +++++++++++++++---
+ drivers/usb/typec/tipd/tps6598x.h             |  36 ++
+ drivers/usb/typec/tipd/trace.h                |  84 +++
+ 4 files changed, 683 insertions(+), 77 deletions(-)
+
+-- 
+2.34.1
 
 
