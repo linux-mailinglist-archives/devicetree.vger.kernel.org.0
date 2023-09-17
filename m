@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 336707A33E7
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 08:04:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19A237A3414
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 09:35:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E21642816D1
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 06:04:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C16F028141C
+	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 07:35:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AC8F136F;
-	Sun, 17 Sep 2023 06:04:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59DB21865;
+	Sun, 17 Sep 2023 07:35:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23FB215B9
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 06:03:59 +0000 (UTC)
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 361E6187
-	for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 23:03:57 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-31f7638be6eso3278660f8f.3
-        for <devicetree@vger.kernel.org>; Sat, 16 Sep 2023 23:03:57 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28777186B
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 07:35:27 +0000 (UTC)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20905189
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 00:35:26 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-52889bc61b6so4187093a12.0
+        for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 00:35:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1694930635; x=1695535435; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694936124; x=1695540924; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6kNd1On9Iu+U+6wDKZBy98BmzT+uqpRHNYsTIMU9dqo=;
-        b=ZXdFapJcjgrSne1n3zpppUt2TTCIVXC/UeFdQcmhgbCwX1UqfCtxRnEfpMkG8/BQNQ
-         CosleZ7Msp6+0gB4fRdMAKljnyYROShi/Mwhg1xP/SzFoFTJAcBG8vVa3MmN68aIKaJx
-         rk5qU6oSaSlIz3QWJWlm8F5Yd2zuyki0oRMIZWO67LylWLBKDAv4xTl+xXlkpVFp1Gz6
-         R1DdkB35iBWQWvor+azLo/ZnlU62WmdsCE/wmIMB401HD0WJxyuHMiG1P7zhVQ1JlUAw
-         qJM531owYNOMBQPm/RKOcCrqQ0HpmZDZAxx6VOEoiwdNrWcGG6cbqZx3dZNmr9Y1uMFE
-         eM0g==
+        bh=GVg4iMqyFo6GXp2VZ+N/pcY2Y8g5Wn2f/zmdGd2t3MI=;
+        b=lar6a0V7EyMJdDCKr4MuzCIk4QQdplSI/2WYfIwB+1LAUsXqc4j4vbSFidTmbOq6SK
+         0bpTJf+NTNSF0NJER3QS6ghdZNx7vn/IQQW6S79DNEHFX13WC7scTWa4BGJdeiHfYeiE
+         di+YqMNuxXgiZm9lD7Q7Ac4PLKbl94CUpB7s9YufmL8JZ4kkZHUAytFQw/JaXE5klPaI
+         DulXd09UItfiFXkGEB9Bbql/5CzTeh+usiVZ2b8el6dX1gwb3mGI3U91K2bP1Iu6buUX
+         BoSx6HvFj6J4C1Ol5wZeJFgnytIF2xAm9n+ysQApemwPIlxQs8cTDiV1YNstNfktBNet
+         Jcpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694930635; x=1695535435;
+        d=1e100.net; s=20230601; t=1694936124; x=1695540924;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6kNd1On9Iu+U+6wDKZBy98BmzT+uqpRHNYsTIMU9dqo=;
-        b=uZlmP4dKtu9a04OH64gyK6b6jIP508N4MPTLCUPEA5pRzPtD+9PUtbE9H+jXfz4W2w
-         AdyyijSgnMrc0TtuY5VjRJZxPc7jnDXdA82Az1kXh69ti914fRgYFn/vdEgs5CxHG04L
-         NDGT2sSSWmpVUV5PvcEJ128UWdgKT4UutVvNy6ErjlEMaYVMpiRdBARMK8+hcLbM7cjv
-         1OzzQx/payROhVR5JxgJO57EqOT++uTjzzKNbnScMc9TQJ1jiuRf79hHI/y6IFpp1B+g
-         bK5dbXtKDkTJcBspSelVQ+k7Z6YAXu7gR77B9vpcnDMIYlbHmMh8kt0LIetke4cnRGKB
-         hPRg==
-X-Gm-Message-State: AOJu0Yw7U0mceBIFi64Z5B/1kNVJ+POxzmPKP/boRPzWCIpEHRQ3TdO9
-	VUoxIfELgj2lfzJKW4vdO7tJgw==
-X-Google-Smtp-Source: AGHT+IGgQCPDrEkd95eNwGWv1/ntTr/QvYlONlPNSyWw9veRdSU7GnER8u9uhg8zbKtCQwYPgnlxFg==
-X-Received: by 2002:adf:f8c5:0:b0:31f:87f2:2155 with SMTP id f5-20020adff8c5000000b0031f87f22155mr4853991wrq.26.1694930635389;
-        Sat, 16 Sep 2023 23:03:55 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.145])
-        by smtp.gmail.com with ESMTPSA id s17-20020a5d5111000000b0032148618cc4sm417842wrt.29.2023.09.16.23.03.53
+        bh=GVg4iMqyFo6GXp2VZ+N/pcY2Y8g5Wn2f/zmdGd2t3MI=;
+        b=D9IiCvsnYY0KqhJAeAqVKH0/LO2utIYktaYOeKap2/yhJtY1DxWZebUCQCAbVMbRF7
+         jiT8bCeA6GY6X6sGB60L7Puy1nezkl8e64AgP7toAMkRzLcCKbqOZqbkshlndZLy7WA2
+         /fN9UO+OuajXOW/UPK+z3mkvOjCTTR4VgJNQ893aE2CLf11tyhwp8tRaqQNkgKudNKrk
+         qgU8OASokWSaiQ0Y8R8n694OhpfJusw8VsZPmVllZn6dr67SgJ3xJGQMjAz8feUrJSYI
+         rFrmdXfpIBJ+BsZ83PGFQwHkx6dHBsI2QFcRIi5cTAjm2LK3/RfIQjrH7KHrUTN1pa0k
+         TavQ==
+X-Gm-Message-State: AOJu0YyXfKs3zfvoodk1pAiX2dJy6KKwru3K5JE+FWQGBGJ/P10XsbYO
+	1wA0FEFGFdjMd/i6U3lxsTG78Q==
+X-Google-Smtp-Source: AGHT+IHV9X9GTjPS8Rpcs9R2kxN8xI/rL5gF7b1VuZpWiQozu9bvvyJUcivpO+mDfPfyOicv9EQkxw==
+X-Received: by 2002:a17:907:775a:b0:9a2:16e2:353 with SMTP id kx26-20020a170907775a00b009a216e20353mr5651059ejc.6.1694936124406;
+        Sun, 17 Sep 2023 00:35:24 -0700 (PDT)
+Received: from [192.168.1.77] (150-140-187-31.ftth.glasoperator.nl. [31.187.140.150])
+        by smtp.gmail.com with ESMTPSA id r20-20020a170906365400b0099bd1a78ef5sm4640735ejb.74.2023.09.17.00.35.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 16 Sep 2023 23:03:54 -0700 (PDT)
-Message-ID: <6c3c8585-8f6d-384a-9a27-c0f851016135@tuxon.dev>
-Date: Sun, 17 Sep 2023 09:03:53 +0300
+        Sun, 17 Sep 2023 00:35:23 -0700 (PDT)
+Message-ID: <54fcf0c2-c8e2-6ee8-5f6c-4de914c56c19@linaro.org>
+Date: Sun, 17 Sep 2023 09:35:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,701 +65,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v3] ARM: dts: at91: sama5d29_curiosity: Add device tree
- for sama5d29_curiosity board
-To: Mihai Sain <mihai.sain@microchip.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- nicolas.ferre@microchip.com, cristian.birsan@microchip.com,
- alexandre.belloni@bootlin.com, andre.przywara@arm.com,
- jerry.ray@microchip.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: andrei.simion@microchip.com
-References: <20230817131352.17631-1-mihai.sain@microchip.com>
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v2 8/8] arm64: defconfig: enable interconnect and pinctrl
+ for SM4450
+To: Georgi Djakov <djakov@kernel.org>, Trilok Soni <quic_tsoni@quicinc.com>,
+ Tengfei Fan <quic_tengfan@quicinc.com>, will@kernel.org,
+ robin.murphy@arm.com, joro@8bytes.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, catalin.marinas@arm.com
+Cc: geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org,
+ nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
+ linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, quic_shashim@quicinc.com,
+ quic_kaushalk@quicinc.com, quic_tdas@quicinc.com, quic_tingweiz@quicinc.com,
+ quic_aiquny@quicinc.com, kernel@quicinc.com
+References: <20230915021509.25773-1-quic_tengfan@quicinc.com>
+ <20230915021509.25773-10-quic_tengfan@quicinc.com>
+ <8f2c9664-a2c8-50dc-8a1c-e50a071ebeb2@linaro.org>
+ <e9ff05b3-2742-416e-b417-5e2414036008@quicinc.com>
+ <0a34dd35-7aea-4655-4cdd-e7196a1ba52b@linaro.org>
+ <f76e1cc8-fc48-4208-bbe4-9204d9d28363@quicinc.com>
+ <b7398390-23bc-467c-5b83-411110d60f43@linaro.org>
+ <01c020ae-a019-e4eb-14cb-64503bde05a6@quicinc.com>
+ <212f9bfa-6d4c-bba2-60d2-272c001a4322@quicinc.com>
+ <e30870d5-a0cc-4210-a2b0-c7621ea5ecfa@kernel.org>
+ <accb4814-4826-ff97-3527-4e3fbadcd4ff@linaro.org>
+ <c11fd3c2-770a-4d40-8cf3-d8bc81f7c480@kernel.org>
 Content-Language: en-US
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20230817131352.17631-1-mihai.sain@microchip.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <c11fd3c2-770a-4d40-8cf3-d8bc81f7c480@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi, Mihai,
-
-On 17.08.2023 16:13, Mihai Sain wrote:
-> Add initial device tree file for sama5d29_curiosity board.
+On 17/09/2023 00:55, Georgi Djakov wrote:
+> Hi Krzysztof,
 > 
-> Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
-> ---
-
-I would apply this but there are some warnings like:
-
-/home/claudiu/repos/linux-microchip/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dtb:
-leds: 'blue', 'green', 'red' do not match any of the regexes:
-'(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
-
-/home/claudiu/repos/linux-microchip/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dtb:
-pinctrl@fc038000: i2c0-gpio: {'pinmux': [[63, 64]], 'bias-disable': True,
-'phandle': [[23]]} is not of type 'array'
-        from schema $id:
-http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
-/home/claudiu/repos/linux-microchip/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dtb:
-pinctrl@fc038000: i2c1-gpio: {'pinmux': [[100, 101]], 'bias-disable': True,
-'phandle': [[36]]} is not of type 'array'
-
-Can you, please, run make dtbs_check arch/arm/boot/dts/microchip and fix
-the warnings introduced by your dts (not the ones comming from dtsi at the
-moment)?
-
-Thank you,
-Claudiu Beznea
-
-> Changes in v3:
-> * remove i2s0 node and its pinctrl
+> On 16.09.23 23:32, Krzysztof Kozlowski wrote:
+>> On 16/09/2023 17:13, Georgi Djakov wrote:
+>>>
+>>>>
+>>>> Complete list here, and it is inconsistent. Latest 8550 is also =y. Do we document
+>>>> the reasons somewhere on why they are added as =y?
+>>>>
+>>>> CONFIG_INTERCONNECT_QCOM=y
+>>>> CONFIG_INTERCONNECT_QCOM_MSM8916=m
+>>>> CONFIG_INTERCONNECT_QCOM_MSM8996=m
+>>>> CONFIG_INTERCONNECT_QCOM_OSM_L3=m
+>>>> CONFIG_INTERCONNECT_QCOM_QCM2290=m
+>>>> CONFIG_INTERCONNECT_QCOM_QCS404=m
+>>>> CONFIG_INTERCONNECT_QCOM_SA8775P=y
+>>>> CONFIG_INTERCONNECT_QCOM_SC7180=y
+>>>> CONFIG_INTERCONNECT_QCOM_SC7280=y
+>>>> CONFIG_INTERCONNECT_QCOM_SC8180X=y
+>>>> CONFIG_INTERCONNECT_QCOM_SC8280XP=y
+>>>> CONFIG_INTERCONNECT_QCOM_SDM845=y
+>>>> CONFIG_INTERCONNECT_QCOM_SM8150=m
+>>>> CONFIG_INTERCONNECT_QCOM_SM8250=m
+>>>> CONFIG_INTERCONNECT_QCOM_SM8350=m
+>>>> CONFIG_INTERCONNECT_QCOM_SM8450=y
+>>>> CONFIG_INTERCONNECT_QCOM_SM8550=y
+>>>
+>>> If the device can boot (to console/initramfs) with =m, we go with that.
+>>> But if something critical like the UART depends on the interconnect
+>>> provider, then we make it built-in.
+>>>
+>>> On SM8550 for example, we have enabled bandwidth scaling support for QUP
+>>> and that's why it needs to be =y.
+>>>
+>>> It looks like on SM4450 this should be =y too.
+>>
+>> I asked why SM4450 has to be =y and there was no answer. The argument
+>> that SM8450 is a module, is not applicable.
 > 
-> Changes in v2:
-> * drop dt-bindings patch
-> * remove vdd_1v8 regulator
-> * fix flx4 node to use 1 spi node and pinctrl
-> * add i2s0 node and pinctrl
-> * remove macb0 node and pinctrl
-> * remove unused pinctrl
-> * sort in alphabetical order all nodes and pinctrl
-> * replace "_" with "-" in node names
-> ---
->  arch/arm/boot/dts/microchip/Makefile          |   2 +
->  .../dts/microchip/at91-sama5d29_curiosity.dts | 600 ++++++++++++++++++
->  2 files changed, 602 insertions(+)
->  create mode 100644 arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
+>  From the hardware description i see in patch 7, the serial engine depends
+> on some interconnect provider. But as the serial console driver is only
+> available as built-in, the interconnect provider also needs be built-in
+> for the UART device to probe and register the console.
 > 
-> diff --git a/arch/arm/boot/dts/microchip/Makefile b/arch/arm/boot/dts/microchip/Makefile
-> index 31e03747cdf4..efde9546c8f4 100644
-> --- a/arch/arm/boot/dts/microchip/Makefile
-> +++ b/arch/arm/boot/dts/microchip/Makefile
-> @@ -4,6 +4,7 @@ DTC_FLAGS_at91-sam9x60_curiosity := -@
->  DTC_FLAGS_at91-sam9x60ek := -@
->  DTC_FLAGS_at91-sama5d27_som1_ek := -@
->  DTC_FLAGS_at91-sama5d27_wlsom1_ek := -@
-> +DTC_FLAGS_at91-sama5d29_curiosity := -@
->  DTC_FLAGS_at91-sama5d2_icp := -@
->  DTC_FLAGS_at91-sama5d2_ptc_ek := -@
->  DTC_FLAGS_at91-sama5d2_xplained := -@
-> @@ -64,6 +65,7 @@ dtb-$(CONFIG_SOC_SAM_V7) += \
->  	at91-nattis-2-natte-2.dtb \
->  	at91-sama5d27_som1_ek.dtb \
->  	at91-sama5d27_wlsom1_ek.dtb \
-> +	at91-sama5d29_curiosity.dtb \
->  	at91-sama5d2_icp.dtb \
->  	at91-sama5d2_ptc_ek.dtb \
->  	at91-sama5d2_xplained.dtb \
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-> new file mode 100644
-> index 000000000000..267e1dbb417d
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-> @@ -0,0 +1,600 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * at91-sama5d29_curiosity.dts - Device Tree file for SAMA5D29 Curiosity board
-> + *
-> + * Copyright (C) 2023 Microchip Technology Inc. and its subsidiaries
-> + *
-> + * Author: Mihai Sain <mihai.sain@microchip.com>
-> + *
-> + */
-> +/dts-v1/;
-> +#include "sama5d29.dtsi"
-> +#include "sama5d2-pinfunc.h"
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/mfd/atmel-flexcom.h>
-> +
-> +/ {
-> +	model = "Microchip SAMA5D29 Curiosity";
-> +	compatible = "microchip,sama5d29-curiosity", "atmel,sama5d29", "atmel,sama5d2", "atmel,sama5";
-> +
-> +	aliases {
-> +		serial0 = &uart0;	// debug
-> +		serial1 = &uart1;	// RPi
-> +		serial2 = &uart3;	// mikro BUS 2
-> +		serial3 = &uart4;	// mikro BUS 1
-> +		serial4 = &uart6;	// flx1 Bluetooth
-> +		i2c0 = &i2c0;
-> +		i2c1 = &i2c1;
-> +	};
-> +
-> +	chosen {
-> +		bootargs = "console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait";
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	clocks {
-> +		slow_xtal {
-> +			clock-frequency = <32768>;
-> +		};
-> +
-> +		main_xtal {
-> +			clock-frequency = <24000000>;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_key_gpio_default>;
-> +
-> +		button-1 {
-> +			label = "USER BUTTON";
-> +			gpios = <&pioA PIN_PA17 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_PROG1>;
-> +			wakeup-source;
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_led_gpio_default>;
-> +		status = "okay";
-> +
-> +		red {
-> +			label = "red";
-> +			gpios = <&pioA PIN_PA7 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		green {
-> +			label = "green";
-> +			gpios = <&pioA PIN_PA8 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		blue {
-> +			label = "blue";
-> +			gpios = <&pioA PIN_PA9 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +	};
-> +
-> +	memory@20000000 {
-> +		device_type = "memory";
-> +		reg = <0x20000000 0x20000000>;
-> +	};
-> +};
-> +
-> +&adc {
-> +	vddana-supply = <&vdd_3v3>;
-> +	vref-supply = <&vdd_3v3>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_adc_default &pinctrl_adtrg_default>;
-> +	status = "okay";
-> +};
-> +
-> +&can0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_can0_default>;
-> +	status = "okay";
-> +};
-> +
-> +&can1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_can1_default>;
-> +	status = "okay";
-> +};
-> +
-> +&flx1 {
-> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
-> +	status = "okay";
-> +
-> +	uart6: serial@200 {
-> +		pinctrl-0 = <&pinctrl_flx1_default>;
-> +		pinctrl-names = "default";
-> +		atmel,use-dma-rx;
-> +		atmel,use-dma-tx;
-> +		status = "okay";
-> +	};
-> +};
-> +
-> +&flx4 {
-> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_SPI>;
-> +	status = "okay";
-> +
-> +	spi6: spi@400 {
-> +		dmas = <0>, <0>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_rpi_spi>;
-> +		status = "okay";
-> +	};
-> +};
-> +
-> +&i2c0 {
-> +	dmas = <0>, <0>;
-> +	pinctrl-names = "default", "gpio";
-> +	pinctrl-0 = <&pinctrl_i2c0_default>;
-> +	pinctrl-1 = <&pinctrl_i2c0_gpio>;
-> +	sda-gpios = <&pioA PIN_PB31 GPIO_ACTIVE_HIGH>;
-> +	scl-gpios = <&pioA PIN_PC0 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	i2c-sda-hold-time-ns = <350>;
-> +	status = "okay";
-> +
-> +	mcp16502@5b {
-> +		compatible = "microchip,mcp16502";
-> +		reg = <0x5b>;
-> +		status = "okay";
-> +		lpm-gpios = <&pioBU 0 GPIO_ACTIVE_LOW>;
-> +
-> +		regulators {
-> +			vdd_3v3: VDD_IO {
-> +				regulator-name = "VDD_IO";
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-initial-mode = <2>;
-> +				regulator-allowed-modes = <2>, <4>;
-> +				regulator-always-on;
-> +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
-> +
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
-> +			};
-> +
-> +			vddio_ddr: VDD_DDR {
-> +				regulator-name = "VDD_DDR";
-> +				regulator-min-microvolt = <1200000>;
-> +				regulator-max-microvolt = <1200000>;
-> +				regulator-initial-mode = <2>;
-> +				regulator-allowed-modes = <2>, <4>;
-> +				regulator-always-on;
-> +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <1200000>;
-> +					regulator-changeable-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
-> +
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <1200000>;
-> +					regulator-changeable-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
-> +			};
-> +
-> +			vdd_core: VDD_CORE {
-> +				regulator-name = "VDD_CORE";
-> +				regulator-min-microvolt = <1250000>;
-> +				regulator-max-microvolt = <1250000>;
-> +				regulator-initial-mode = <2>;
-> +				regulator-allowed-modes = <2>, <4>;
-> +				regulator-always-on;
-> +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
-> +
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
-> +			};
-> +
-> +			vdd_ddr: VDD_OTHER {
-> +				regulator-name = "VDD_OTHER";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-initial-mode = <2>;
-> +				regulator-allowed-modes = <2>, <4>;
-> +				regulator-always-on;
-> +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <1800000>;
-> +					regulator-changeable-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
-> +
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <1800000>;
-> +					regulator-changeable-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
-> +			};
-> +
-> +			LDO1 {
-> +				regulator-name = "LDO1";
-> +				regulator-min-microvolt = <2500000>;
-> +				regulator-max-microvolt = <2500000>;
-> +				regulator-always-on;
-> +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +				};
-> +
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			LDO2 {
-> +				regulator-name = "LDO2";
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-always-on;
-> +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +				};
-> +
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&i2c1 {
-> +	dmas = <0>, <0>;
-> +	pinctrl-names = "default", "gpio";
-> +	pinctrl-0 = <&pinctrl_i2c1_default>;
-> +	pinctrl-1 = <&pinctrl_i2c1_gpio>;
-> +	i2c-analog-filter;
-> +	i2c-digital-filter;
-> +	i2c-digital-filter-width-ns = <35>;
-> +	sda-gpios = <&pioA PIN_PD4 GPIO_ACTIVE_HIGH>;
-> +	scl-gpios = <&pioA PIN_PD5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	status = "okay";
-> +};
-> +
-> +&pioA {
-> +	pinctrl_adc_default: adc-default {
-> +		pinmux = <PIN_PD25__GPIO>,
-> +			 <PIN_PD26__GPIO>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_adtrg_default: adtrg-default {
-> +		pinmux = <PIN_PD31__ADTRG>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	pinctrl_can0_default: can0-default {
-> +		pinmux = <PIN_PC10__CANTX0>,
-> +			 <PIN_PC11__CANRX0>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_can1_default: can1-default {
-> +		pinmux = <PIN_PC26__CANTX1>,
-> +			 <PIN_PC27__CANRX1>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_debug_uart: debug-uart {
-> +		pinmux = <PIN_PB26__URXD0>,
-> +			 <PIN_PB27__UTXD0>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_flx1_default: flx1-default {
-> +		pinmux = <PIN_PA24__FLEXCOM1_IO0>,
-> +			 <PIN_PA23__FLEXCOM1_IO1>,
-> +			 <PIN_PA25__FLEXCOM1_IO3>,
-> +			 <PIN_PA26__FLEXCOM1_IO4>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_i2c0_default: i2c0-default {
-> +		pinmux = <PIN_PB31__TWD0>,
-> +			 <PIN_PC0__TWCK0>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_i2c0_gpio: i2c0-gpio {
-> +		pinmux = <PIN_PB31__GPIO>,
-> +			 <PIN_PC0__GPIO>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_i2c1_default: i2c1-default {
-> +		pinmux = <PIN_PD4__TWD1>,
-> +			 <PIN_PD5__TWCK1>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_i2c1_gpio: i2c1-gpio {
-> +		pinmux = <PIN_PD4__GPIO>,
-> +			 <PIN_PD5__GPIO>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_key_gpio_default: key-gpio-default {
-> +		pinmux = <PIN_PA17__GPIO>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	pinctrl_led_gpio_default: led-gpio-default {
-> +		pinmux = <PIN_PA7__GPIO>,
-> +			 <PIN_PA8__GPIO>,
-> +			 <PIN_PA9__GPIO>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	pinctrl_mikrobus1_pwm: mikrobus1-pwm {
-> +		pinmux = <PIN_PA31__PWML0>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_mikrobus2_pwm: mikrobus2-pwm {
-> +		pinmux = <PIN_PB0__PWMH1>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_mikrobus1_uart: mikrobus1-uart {
-> +		pinmux = <PIN_PB3__URXD4>,
-> +			 <PIN_PB4__UTXD4>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_mikrobus2_uart: mikrobus2-uart {
-> +		pinmux = <PIN_PB11__URXD3>,
-> +			 <PIN_PB12__UTXD3>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_qspi1_default: qspi1-default {
-> +		pinmux = <PIN_PB5__QSPI1_SCK>,
-> +			 <PIN_PB6__QSPI1_CS>,
-> +			 <PIN_PB7__QSPI1_IO0>,
-> +			 <PIN_PB8__QSPI1_IO1>,
-> +			 <PIN_PB9__QSPI1_IO2>,
-> +			 <PIN_PB10__QSPI1_IO3>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_rpi_spi: rpi-spi {
-> +		pinmux = <PIN_PD12__FLEXCOM4_IO0>,
-> +			 <PIN_PD13__FLEXCOM4_IO1>,
-> +			 <PIN_PD14__FLEXCOM4_IO2>,
-> +			 <PIN_PD15__FLEXCOM4_IO3>,
-> +			 <PIN_PD16__FLEXCOM4_IO4>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_rpi_uart: rpi-uart {
-> +		pinmux = <PIN_PD2__URXD1>,
-> +			 <PIN_PD3__UTXD1>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_sdmmc0_default: sdmmc0-default {
-> +		pinmux = <PIN_PA0__SDMMC0_CK>,
-> +			 <PIN_PA1__SDMMC0_CMD>,
-> +			 <PIN_PA2__SDMMC0_DAT0>,
-> +			 <PIN_PA3__SDMMC0_DAT1>,
-> +			 <PIN_PA4__SDMMC0_DAT2>,
-> +			 <PIN_PA5__SDMMC0_DAT3>,
-> +			 <PIN_PA11__SDMMC0_VDDSEL>,
-> +			 <PIN_PA13__SDMMC0_CD>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_sdmmc1_default: sdmmc1-default {
-> +		pinmux = <PIN_PA18__SDMMC1_DAT0>,
-> +			 <PIN_PA19__SDMMC1_DAT1>,
-> +			 <PIN_PA20__SDMMC1_DAT2>,
-> +			 <PIN_PA21__SDMMC1_DAT3>,
-> +			 <PIN_PA22__SDMMC1_CK>,
-> +			 <PIN_PA28__SDMMC1_CMD>,
-> +			 <PIN_PA30__SDMMC1_CD>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_spi1_default: spi1-default {
-> +		pinmux = <PIN_PC1__SPI1_SPCK>,
-> +			 <PIN_PC2__SPI1_MOSI>,
-> +			 <PIN_PC3__SPI1_MISO>,
-> +			 <PIN_PC4__SPI1_NPCS0>,
-> +			 <PIN_PC5__SPI1_NPCS1>,
-> +			 <PIN_PC6__SPI1_NPCS2>,
-> +			 <PIN_PC7__SPI1_NPCS3>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_usb_default: usb-default {
-> +		pinmux = <PIN_PA6__GPIO>;
-> +		bias-disable;
-> +	};
-> +
-> +	pinctrl_usba_vbus: usba-vbus {
-> +		pinmux = <PIN_PB13__GPIO>;
-> +		bias-disable;
-> +	};
-> +};
-> +
-> +&pwm0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_mikrobus1_pwm &pinctrl_mikrobus2_pwm>;
-> +	status = "okay";
-> +};
-> +
-> +&qspi1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_qspi1_default>;
-> +	status = "okay";
-> +
-> +	flash@0 {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		compatible = "jedec,spi-nor";
-> +		reg = <0>;
-> +		spi-max-frequency = <80000000>;
-> +		spi-tx-bus-width = <4>;
-> +		spi-rx-bus-width = <4>;
-> +		m25p,fast-read;
-> +		label = "atmel_qspi1";
-> +		status = "okay";
-> +
-> +		at91bootstrap@0 {
-> +			label = "at91bootstrap";
-> +			reg = <0x0 0x40000>;
-> +		};
-> +
-> +		bootloader@40000 {
-> +			label = "bootloader";
-> +			reg = <0x40000 0xc0000>;
-> +		};
-> +
-> +		bootloaderenvred@100000 {
-> +			label = "bootloader env redundant";
-> +			reg = <0x100000 0x40000>;
-> +		};
-> +
-> +		bootloaderenv@140000 {
-> +			label = "bootloader env";
-> +			reg = <0x140000 0x40000>;
-> +		};
-> +
-> +		dtb@180000 {
-> +			label = "device tree";
-> +			reg = <0x180000 0x80000>;
-> +		};
-> +
-> +		kernel@200000 {
-> +			label = "kernel";
-> +			reg = <0x200000 0x600000>;
-> +		};
-> +	};
-> +};
-> +
-> +&sdmmc0 {
-> +	bus-width = <4>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_sdmmc0_default>;
-> +	disable-wp;
-> +	status = "okay";
-> +};
-> +
-> +&sdmmc1 {
-> +	bus-width = <4>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_sdmmc1_default>;
-> +	disable-wp;
-> +	status = "okay";
-> +};
-> +
-> +&shutdown_controller {
-> +	debounce-delay-us = <976>;
-> +	atmel,wakeup-rtc-timer;
-> +
-> +	input@0 {
-> +		reg = <0>;
-> +	};
-> +};
-> +
-> +&spi1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_spi1_default>;
-> +	status = "okay";
-> +};
-> +
-> +&tcb0 {
-> +	timer0: timer@0 {
-> +		compatible = "atmel,tcb-timer";
-> +		reg = <0>;
-> +	};
-> +
-> +	timer1: timer@1 {
-> +		compatible = "atmel,tcb-timer";
-> +		reg = <1>;
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_debug_uart>;
-> +	atmel,use-dma-rx;
-> +	atmel,use-dma-tx;
-> +	status = "okay";
-> +};
-> +
-> +&uart1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_rpi_uart>;
-> +	atmel,use-dma-rx;
-> +	atmel,use-dma-tx;
-> +	status = "okay";
-> +};
-> +
-> +&uart3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_mikrobus2_uart>;
-> +	atmel,use-dma-rx;
-> +	atmel,use-dma-tx;
-> +	status = "okay";
-> +};
-> +
-> +&uart4 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_mikrobus1_uart>;
-> +	atmel,use-dma-rx;
-> +	atmel,use-dma-tx;
-> +	status = "okay";
-> +};
-> +
-> +&usb0 {
-> +	atmel,vbus-gpio = <&pioA PIN_PB13 GPIO_ACTIVE_HIGH>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usba_vbus>;
-> +	status = "okay";
-> +};
-> +
-> +&usb1 {
-> +	num-ports = <3>;
-> +	atmel,vbus-gpio = <0
-> +			   &pioA PIN_PA6 GPIO_ACTIVE_HIGH
-> +			   0>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usb_default>;
-> +	status = "okay";
-> +};
-> +
-> +&usb2 {
-> +	status = "okay";
-> +};
-> +
-> +&watchdog {
-> +	status = "okay";
-> +};
+> So the answer to your question should be that this is needed by the UART
+> device (at least).
+> 
+> Such details of course deserve to be mentioned in the commit message of
+> this patch.
+
+If you mean here the debug UART with console, then it is the same valid
+reason as in my change for others. This should be mentioned in commit msg.
+
+Best regards,
+Krzysztof
+
 
