@@ -1,153 +1,148 @@
-Return-Path: <devicetree+bounces-1141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 498C77A5088
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:08:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FA0B7A5023
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:00:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A4561C213BD
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:08:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 238111C20A28
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:00:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B271A262A7;
-	Mon, 18 Sep 2023 17:07:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D7532376F;
+	Mon, 18 Sep 2023 17:00:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1933B262A3;
-	Mon, 18 Sep 2023 17:07:38 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 304B493;
-	Mon, 18 Sep 2023 10:07:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=dauQr5A1qgLA9BmzHiEleNb3IjNWdzZ7y7a1hCEGPGY=; b=x0mHl8qtGRdY+kCyZqq3C5c5OF
-	C6aejezm9Q3BOHyHm7/OzU+eGIkWqNgFNkm046pxYqXYH5sqZW7IznKwWA5lrWDbZRyxFi/WWaaTf
-	nq7Lsdc31FAWQ1kRs2OyhRB653+zyp/v3YqvYtkkisXynTTr1JUVmaH/Tm+uT0Jbyduw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1qiH9V-006oJU-7v; Mon, 18 Sep 2023 18:31:13 +0200
-Date: Mon, 18 Sep 2023 18:31:13 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jay Monkman <jtm@lopingdog.com>
-Cc: devicetree@vger.kernel.org, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Piergiorgio Beruto <piergiorgio.beruto@gmail.com>,
-	Arndt Schuebel <Arndt.Schuebel@onsemi.com>
-Subject: Re: [PATCH 1/4] dt-bindings: net: Add bindings for onsemi NCN26000
- PHY
-Message-ID: <a467d803-3c71-4008-8d6e-7bb03128ea44@lunn.ch>
-References: <ZQf1LMnICzEnt9XK@lopingdog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3C3B22F1F;
+	Mon, 18 Sep 2023 17:00:11 +0000 (UTC)
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2051.outbound.protection.outlook.com [40.107.215.51])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A825FB;
+	Mon, 18 Sep 2023 10:00:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=luj+v2LZusX6xUg1qxJBpgluZgkdNbUFXBcSfhRvlYlmLNJfpz0GDQ/DfJUQDMRyY6GBmthZgDWkX+tMsQ7u/Avcq1MstiOOLfB/VNKmp/S+uaFmKMcjqvFvmR1FLv3PizhAXnZgk15dcd5I96Tdg0qP+rf34QNSCUqoUu6bxeSGd4MCgr6tc1qTrtm7hlIW4+oZyQxsJRoO3FAxg9wlDfMw9MlgvnYAsbsdCJEQu3h7GZmXPnk2obVgxTBueqIzeF8yD5YJGnXJ6KamHFeTpNZK9StmN0EuBKcrb0M2um0HPRjf1xfJiLw4a+ov5cXg6iR2r6TDN2/HOR0Ibvgwew==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=C/26KH+EA6lvFQEO/nQIYrlOHn756T3Ld0n5AaeE/Wk=;
+ b=MZiGSu0y30BA6oHdmVoFtfgM2dlngyf1hYUq2X/0jzMkmeQMfFgG8IGVqq/26VixcL2Gn8L0qKdK3r5wi2GYAot6Dmkp+GKldASD1eTydWXfRJo7M5qegD8CkxT1XIOhWJV7SBHElKGUpEOVbkLQS5DLD9LpFdeozI5TFjKBIG3qxLTCXiaWhvbd510njzo96fzEIyuEED7MKCRLreM6XJ9ODnDWkmuvQvADj9qx2SGhe1lvc1N1czbnlculBvNA20UiWNk9yg9gMqcCvuC9uV2CssTMhBz1F6z+M7iJtNg0QbdQ7yHu6UBGq5lDe3cC+HRPmOMTdzT1RQwyOo5rOw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 175.98.123.7) smtp.rcpttodomain=gmail.com smtp.mailfrom=nuvoton.com;
+ dmarc=fail (p=none sp=quarantine pct=100) action=none header.from=gmail.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=nuvoton.onmicrosoft.com; s=selector2-nuvoton-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=C/26KH+EA6lvFQEO/nQIYrlOHn756T3Ld0n5AaeE/Wk=;
+ b=EszytZzPru4MAb0fDIjnwGAYqLwK0EIKEuf4DuAI9/p/t6PQsrq6EN69c62+s4JHzRoE/H+QLQahmK1g90bGRWmlWxhG7pPyYh8rZCyENPmx33C9RUhMlgq/xLhoxTVudqE9Msky3mZG/oQa+UJbR/XYWkT6SD+/58dZuWqR28M=
+Received: from SI2PR02CA0039.apcprd02.prod.outlook.com (2603:1096:4:196::9) by
+ TYZPR03MB5584.apcprd03.prod.outlook.com (2603:1096:400:57::10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6792.27; Mon, 18 Sep 2023 17:00:03 +0000
+Received: from SG2PEPF000B66CB.apcprd03.prod.outlook.com
+ (2603:1096:4:196:cafe::72) by SI2PR02CA0039.outlook.office365.com
+ (2603:1096:4:196::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.26 via Frontend
+ Transport; Mon, 18 Sep 2023 17:00:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 175.98.123.7)
+ smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=gmail.com;
+Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
+ 175.98.123.7 as permitted sender) receiver=protection.outlook.com;
+ client-ip=175.98.123.7; helo=NTHCCAS04.nuvoton.com; pr=C
+Received: from NTHCCAS04.nuvoton.com (175.98.123.7) by
+ SG2PEPF000B66CB.mail.protection.outlook.com (10.167.240.24) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.20.6792.20 via Frontend Transport; Mon, 18 Sep 2023 17:00:02 +0000
+Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.14; Tue, 19
+ Sep 2023 01:00:01 +0800
+Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Tue, 19 Sep 2023 01:00:01 +0800
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+	id 5F1706473F; Mon, 18 Sep 2023 20:00:00 +0300 (IDT)
+From: Tomer Maimon <tmaimon77@gmail.com>
+To: <peter.chen@kernel.org>, <gregkh@linuxfoundation.org>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<xu.yang_2@nxp.com>, <peng.fan@nxp.com>, <avifishman70@gmail.com>,
+	<tali.perry1@gmail.com>, <joel@jms.id.au>, <venture@google.com>,
+	<yuenn@google.com>, <benjaminfair@google.com>, <j.neuschaefer@gmx.net>
+CC: <openbmc@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Tomer Maimon
+	<tmaimon77@gmail.com>
+Subject: [PATCH v1 0/2] usb: ChipIdea: add Nuvoton NPCM UDC support
+Date: Mon, 18 Sep 2023 19:59:56 +0300
+Message-ID: <20230918165958.2659-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.33.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZQf1LMnICzEnt9XK@lopingdog.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NotSetDelaration: True
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CB:EE_|TYZPR03MB5584:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4c08622d-e08c-4324-5c3e-08dbb868b31e
+X-MS-Exchange-SenderADCheck: 0
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	8usqIWzlSpTk2He16B9riaX0X5aKz9xA6WMd7hfO4AEYM7R4IpzdlUjDlnbk6YZYclxLXGoXsx2KtQWZc6fzbDDdtHZKWsPtxXXHo7lm66lI+IpvXw3tMTGQsp2OiZ8RxQsywrlVGH5m87RODk+eGFDtXxUzkg9eZ5xmnlU67qWa0k9Tq9ugyswD0A6QoFinhe2tsZXeUWKPO7mYaBaywNQfWFXlmRFuJOdhhq9h2lMcbu6ubxWEiolm0WoO+PpBB16wp5L10UF1IXDwYuG39BSJGawWlMZcP7vqd4r7Dh6vFlDTuzeIWL+ZJ9dVsj/F/CTKQR7VHgdTcLJk+KiiUY88qSOYdwCDqCJhzwkdAxIscd6O2LFX0KhPHby4Kz1BoRUvPwgmS85c2czMd0bZU+ONd08xAkSWsGGYQ5PF3xSgK8bU8UyvnLLXNWxd34YyrZbGiTxHQpUI1Ofu7SN8CkWvqMbFWDyZ4JxhlyNhtnp+sbBDOsbwv47DD8ViN51ydZf7UM2+1/kC6y99dh4RGehRz3ZR8skv66lPjZlmHOQZ2dGbT7ICGZ2LLV6cVBUpEEzXpAvwllbMr6baw2JwsRxvtCoAIIrY0jkjQZ4i2zNi6O0+zP7D/5xh6TDupHmMRvTLr5ua/hPyp4CMWWxtg70pzU6DQJJqm6WzODL4pS2NzINO+LMJFFP+vEhB337TDyGDrTi8zQFNARFnIvXkYBwKVbtOBJs45rxJR3wxc6TNnZjA1a7iTXyZWpL1BXINQ3XKZd9fSAYSwWHsBE5uqfliSkJQZTa3W7lkuLHnCbxkSVJhxCzrCAm28Y6M4TIrCsovX1pzUS99P6h9dsMOh1RLypUSjjC3+VzFXEpVV1bIh4Or8vy6JpvlG3TJ5nAYM/AwutMVwJo9djx63s2RAQ==
+X-Forefront-Antispam-Report:
+	CIP:175.98.123.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS04.nuvoton.com;PTR:175-98-123-7.static.tfn.net.tw;CAT:NONE;SFS:(13230031)(4636009)(376002)(39860400002)(346002)(396003)(136003)(61400799006)(48200799006)(186009)(451199024)(82310400011)(40470700004)(46966006)(36840700001)(7416002)(336012)(73392003)(6266002)(42882007)(36756003)(40460700003)(83170400001)(921005)(81166007)(356005)(40480700001)(47076005)(2906002)(4744005)(82740400003)(36860700001)(41300700001)(2616005)(54906003)(70206006)(42186006)(70586007)(110136005)(316002)(76482006)(26005)(55446002)(478600001)(5660300002)(6666004)(4326008)(8676002)(8936002)(82202003)(1076003)(45356006)(35450700002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2023 17:00:02.2559
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c08622d-e08c-4324-5c3e-08dbb868b31e
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[175.98.123.7];Helo=[NTHCCAS04.nuvoton.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG2PEPF000B66CB.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB5584
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-> +properties:
-> +  description: |
-> +    Sets the transmitter amplitude gain. If not specified,
-> +    gain is set to 1.0V (1v0)
-> +  tx-gain:
-> +    enum:
-> +      - 1v1
-> +      - 1v0
-> +      - 0v9
-> +      - 0v8
+This patch set add USB device controller for the NPCM Baseboard 
+Management Controllers (BMC).
 
-How is a gain in volts? Isn't gain just a multiplier, so it unitless?
+NPCM UDC driver is a part of the USB ChipIdea driver.
 
-> +  tx-slew:
-> +    description: |
-> +      Sets the slew rate of the TX line driver output. Defaults
-> +      to slow if not set.
-> +    enum:
-> +      - fast
-> +      - slow
+The NPCM UDC is using the CI_HDRC_FORCE_VBUS_ACTIVE_ALWAYS flag
+therefor, this patch set should apply after  
+usb: chipidea: add CI_HDRC_FORCE_VBUS_ACTIVE_ALWAYS flag commit will
+apply.
 
-How does this map to a standard? I would expect the standard to
-specify the slew. So why is this needed?
+BMC NPCM7XX and BMC NPCM8XX has ten identical NPCM UDC modules,
 
-> +  dig-slew:
-> +    description: |
-> +      Sets the slew rate of the digital output pins. Defaults
-> +      to slow if not set.
+The NPCM UDC were tested on NPCM845 evaluation board.
 
-By Digital output pins, do you them the GPO pins you are adding a GPIO
-driver for?
+Tomer Maimon (2):
+  dt-binding: usb: ci-hdrc-usb2: document Nuvoton NPCM supprt
+  usb: chipidea: Add support for NPCM
 
-> +  cmc-comp:
-> +    description: |
-> +      Sets the common mode choke resistance (CMC compensation).
-> +      Defaults to 0-0.5 ohm (0p25) if not set.
-> +    enum:
-> +      - 0p25
-> +      - 1p38
-> +      - 3p00
-> +      - 3p37
+ .../devicetree/bindings/usb/ci-hdrc-usb2.yaml |  16 +++
+ drivers/usb/chipidea/Kconfig                  |   4 +
+ drivers/usb/chipidea/Makefile                 |   1 +
+ drivers/usb/chipidea/ci_hdrc_npcm.c           | 126 ++++++++++++++++++
+ 4 files changed, 147 insertions(+)
+ create mode 100644 drivers/usb/chipidea/ci_hdrc_npcm.c
 
-What is the mapping between 0-0.5 ohm and 0p25? Can we just use ohms
-here?
+-- 
+2.33.0
 
-> +  plca-precedence:
-> +    description: |
-> +      Enables PLCA precedence mode. Defaults to off if not
-> +      set.
-> +    type: boolean
-
-What is PLCA precedence? Should this be an ethtool parameter, along
-side all the other PLCA controls?
-
-> +  eni-mode:
-> +    description: |
-> +      Enables Enhanced Noise Immunity mode. Defaults to off if
-> +      not set.
-> +    enum:
-> +      - force-on
-> +      - force-off
-> +      - auto
-
-phy tunable?
-
-> +
-> +  tx-pkt-loop:
-> +    description: |
-> +      Enables packet loopback mode. Defaults to off is not set.
-> +    type: boolean
-
-How does this differ from struct phy_driver::set_loopback()?
-
-> +  unjab-tmr-disable:
-> +    description: |
-> +      Disables the Unjab Timer. When disabled, device transmission
-> +      will be stopped due to a jabber error and only restarted on
-> +      device reset. If not set, this defaults to enabled.
-> +    type: boolean
-> +
-> +  col-disable:
-> +    description: |
-> +      Disables collision masking. Defaults to enabled if not set.
-> +    type: boolean
-
-I could be wrong, but this feels like an SDK dump of all the features
-the device has, but nobody will ever user in reality. We need some
-justification why all these properties are really needed, and ideally
-a .dts file for a board actually using them. If there is no user, i
-suggest waiting until somebody really does need them.
-
-	Andrew
 
