@@ -1,124 +1,112 @@
-Return-Path: <devicetree+bounces-1047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6FD97A476E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:44:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE0147A476F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:45:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62D1728172D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 10:44:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D99961C20F47
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 10:45:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 241E738FA2;
-	Mon, 18 Sep 2023 10:44:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBF4438FA8;
+	Mon, 18 Sep 2023 10:44:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65B0D63B6
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 10:44:41 +0000 (UTC)
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DE38100
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 03:44:38 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-50306b2920dso1858345e87.0
-        for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 03:44:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1695033876; x=1695638676; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IGkdCcI18B7hgDeo6RzVWYQ9sD6aoucVKvw6M/xbnDU=;
-        b=H1gsuGrvAXb1M4YT6F93VgqWxgpsLrwuYs2tgfKd1JBXnmcfJdnCnPkGnn8SCJp/VY
-         h3FaKURPMH+SC4cDX+rLL4cCMzgbnMxDDqeoBitiQkJ7giBYI6k/51im3O7GJ6QrH0JP
-         IIRbz8e567Omq9mDQL71ZGJgsjbhfD+CwBME4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695033876; x=1695638676;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IGkdCcI18B7hgDeo6RzVWYQ9sD6aoucVKvw6M/xbnDU=;
-        b=Eau7pAV7Tzkg93QB0mlhVL0vZ6dDwJkkt5riev5yPWnEf/ez6J8od7rJMRrz56Xic5
-         ImnLrkVrQSD3Chb1cNMbYYHaOz5mayqxoEnqyyMQIwNWnnvYC051KshIMflku9a4czil
-         4V8Uch1MH+fVM05W+7E5sb1yz7X1vSz1pzZCxTQ4Vxb96jUP4AFnUm4ACeqgO1cgKTcK
-         YnkP1wjVKk6cFnddB9UY38HvJKvbpzlAbcfDCYhVLM+h2k/IVFaP9tPFWx7Qp3abAAgY
-         RU1sxJi5emKVfSKhhktvwJKsJSF8aQ7VNtkYDcz4U/U+TBTXvDDQPS87L76t9x568SZt
-         uwAg==
-X-Gm-Message-State: AOJu0YzK3aV9Si2H99bR7AZR6MDMeYPAHJ9eGf361ULpVG+WwrWXHkIR
-	CRyRJPeCAbCFdsxYq7BlOv/ZNMYoyOi4BmbxMKmvXg==
-X-Google-Smtp-Source: AGHT+IGIg/CJtdEmuQQHM8i7T4H6aOlEi6CRY6h6lVig1fzQNxD9WQD0b+EvqCe7Iv5e6XJyFKEGdbI+7C1+JpTi2ro=
-X-Received: by 2002:a05:6512:1599:b0:501:b872:8c6c with SMTP id
- bp25-20020a056512159900b00501b8728c6cmr4185650lfb.27.1695033876680; Mon, 18
- Sep 2023 03:44:36 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6988438F89;
+	Mon, 18 Sep 2023 10:44:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FDF6A2;
+	Mon, 18 Sep 2023 03:44:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1695033893; x=1726569893;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=YuADBYyJPbfyS00a+dZYSYo97GWD7ip/0k5iF9oNauE=;
+  b=JeixJUGq59gwH+GUvowa2egT0n8qoTR0kQWgqAliXKul+skBXTHaWnCr
+   fgLwB2usaaJ0m9M2h4MB3X9xS/tJIJvvI6myGtCkzzIs9hFjlwyqRHUlZ
+   6fMUP5D/f3PCMQkvT5i6mKoibbCyIfHBR4Vsk4kLZvQ2UbHgCeHZCVHyw
+   l5YxgZl+1wEy4vnf9F9Vn/sQVCuTS7UOrpTycvu1ME61OXUu66HZW6jat
+   cYhGnd7NgYCGd/A4uyVVq0lMyDFi5Jl9DsvIOwkjNi/14NhCZlMB0qKBD
+   nX0U0860YL8YiSczHr8cu69e+sr4nIsVZ5lCiyvurW6Qog+i0+q7BcCvX
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="383445202"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; 
+   d="scan'208";a="383445202"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2023 03:44:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="739086164"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; 
+   d="scan'208";a="739086164"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by orsmga007.jf.intel.com with SMTP; 18 Sep 2023 03:44:48 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 18 Sep 2023 13:44:48 +0300
+Date: Mon, 18 Sep 2023 13:44:48 +0300
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Abdel Alkuor <alkuor@gmail.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, bryan.odonoghue@linaro.org,
+	gregkh@linuxfoundation.org, robh+dt@kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+	abdelalkuor@geotab.com
+Subject: Re: [PATCH v5 02/15] USB: typec: Add cmd timeout and response delay
+Message-ID: <ZQgqII6+wplL8AjG@kuha.fi.intel.com>
+References: <20230917152639.21443-1-alkuor@gmail.com>
+ <20230917152639.21443-3-alkuor@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <ZQH2dG+l/dONUsyi@p14s> <20230918103141.126271-1-laura.nao@collabora.com>
-In-Reply-To: <20230918103141.126271-1-laura.nao@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 18 Sep 2023 18:44:25 +0800
-Message-ID: <CAGXv+5Esi=G0xgkP=+Bhf39Xs3gMN1PBzarxKBKduOjgwDijAA@mail.gmail.com>
-Subject: Re: [PATCH v17 00/14] Add support for MT8195 SCP 2nd core
-To: Laura Nao <laura.nao@collabora.com>, tinghan.shen@mediatek.com, 
-	angelogioacchino.delregno@collabora.com
-Cc: mathieu.poirier@linaro.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com, andersson@kernel.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-remoteproc@vger.kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org, 
-	kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230917152639.21443-3-alkuor@gmail.com>
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Sep 18, 2023 at 6:32=E2=80=AFPM Laura Nao <laura.nao@collabora.com>=
- wrote:
->
-> > Other than patch 2 and 14, I have applied this set.  The remaining patc=
-hes will
-> > have to be resent to Matthias.
->
-> > Thanks,
-> > Mathieu
->
-> Hello,
->
-> With patch 2 missing, the SCP is not probed correctly anymore on asurada =
-(MT8192) and kukui (MT8183). The mtk-scp driver relies on the existence of =
-the `cros-ec-rpmsg` node in the dt to determine if the SCP is single or mul=
-ticore. Without patch 2 the driver wrongly assumes the SCP on MT8192 and MT=
-8183 are multicore, leading to the following errors during initialization:
->
-> 10696 04:33:59.126671  <3>[   15.465714] platform 10500000.scp:cros-ec: i=
-nvalid resource (null)
-> 10697 04:33:59.142855  <3>[   15.478560] platform 10500000.scp:cros-ec: F=
-ailed to parse and map sram memory
-> 10698 04:33:59.149650  <3>[   15.486121] mtk-scp 10500000.scp: Failed to =
-initialize core 0 rproc
->
-> The issue was caught by KernelCI, complete logs can be found here:
-> - asurada: https://storage.kernelci.org/next/master/next-20230914/arm64/d=
-efconfig+arm64-chromebook+videodec/gcc-10/lab-collabora/baseline-nfs-mt8192=
--asurada-spherion-r0.html
-> - kukui: https://storage.kernelci.org/next/master/next-20230914/arm64/def=
-config+arm64-chromebook+videodec/gcc-10/lab-collabora/baseline-nfs-mt8183-k=
-ukui-jacuzzi-juniper-sku16.html
->
-> Reporting the issue so that patch 2 and 14 can be resent and merged soon.
+On Sun, Sep 17, 2023 at 11:26:26AM -0400, Abdel Alkuor wrote:
+> Some commands in tps25750 take longer than 1 second
+> to complete, and some responses need some delay before
+> the result becomes available.
+> 
+> Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
+> ---
+>  drivers/usb/typec/tipd/core.c | 18 ++++++++++++------
+>  1 file changed, 12 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
+> index 37b56ce75f39..a8aee4e1aeba 100644
+> --- a/drivers/usb/typec/tipd/core.c
+> +++ b/drivers/usb/typec/tipd/core.c
+> @@ -284,7 +284,8 @@ static void tps6598x_disconnect(struct tps6598x *tps, u32 status)
+>  
+>  static int tps6598x_exec_cmd(struct tps6598x *tps, const char *cmd,
+>  			     size_t in_len, u8 *in_data,
+> -			     size_t out_len, u8 *out_data)
+> +			     size_t out_len, u8 *out_data,
+> +			     u32 cmd_timeout_ms, u32 res_delay_ms)
 
-This being a backward incompatible DT binding change, maybe we should rever=
-t
-the node name change. Or, the driver could simply count the number of child
-nodes that have the "mediatek,rpmsg-name" property, which is required.
+It looks like 1s/0s is still the "default", so you could have just
+made this old function a wrapper:
 
-ChenYu
+static int tps6598x_exec_cmd(struct tps6598x *tps, const char *cmd,
+			     size_t in_len, u8 *in_data,
+			     size_t out_len, u8 *out_data)
+{
+        return tps6598x_exec_cmd_tmo(tps, cmd, in_len, in_data, out_len, out_data, 1000, 0);
+}
+
+thanks,
+
+-- 
+heikki
 
