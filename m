@@ -1,141 +1,198 @@
-Return-Path: <devicetree+bounces-1190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A7587A5416
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 22:27:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 805CA7A5422
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 22:29:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D05CC1C21059
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 20:27:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39EDF281427
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 20:29:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFA352869C;
-	Mon, 18 Sep 2023 20:27:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B95FA286A4;
+	Mon, 18 Sep 2023 20:28:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 580B327EF4
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 20:27:40 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8556E116;
-	Mon, 18 Sep 2023 13:27:38 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38IK7O5V029990;
-	Mon, 18 Sep 2023 20:27:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=ACVw4rp0FamgaBhcqjxntg9e4OvnXiwruT7sOlPwj8I=;
- b=UrTuqvJ617mOQgwtl3uppx9k3PcN3wt97BS3N+LPAyqnXuanvHias2rCjRcxrCH2R0np
- 0HKEeGbEDTy7IfELI1b7E6lWWgzk0TU5NhEu+nHsM11fK+6D2eRNJ9rxfgxUgBZ6Q/NS
- Meyen7C+Jkh8N+bLiYOw0s/ZQBaFFIFq6FoTtdt+ILDEgoJMQaPwepg6wwZhzhaJfjPa
- 3XyLx3VkwHivbRYmCqqjRtBpA70tmm/unZEt73hL2L07GYfoPSOShij9BCB+IyHO9qCg
- NsTvMhbd8Rx7jQ/ShOY1iqfdm6L6TI+WnY6iX0R98tzIcEVOwVDI4ndtlS5P4RTrUWQ3 Kg== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t6mts9apr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Sep 2023 20:27:07 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38IKR6jr005970
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Sep 2023 20:27:06 GMT
-Received: from [10.110.125.66] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Mon, 18 Sep
- 2023 13:27:06 -0700
-Message-ID: <64760d6e-10f4-4108-d467-f40289a1c6b4@quicinc.com>
-Date: Mon, 18 Sep 2023 13:27:05 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACE7F28686;
+	Mon, 18 Sep 2023 20:28:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D942FC433C8;
+	Mon, 18 Sep 2023 20:28:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695068931;
+	bh=pUlBBuz1FK2J0cyfaQ4KvrItSJbWh9d+uorfnqujgLI=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=L7UXMY1k5WmTCEz3nJJH5T79ESygRsChx6oSvJiO5+j6bg/BaSUmONosJP7oJsJt8
+	 0d1wogo6meA3o4KKhq4ocspMuc1nK0WHf+g3qyCQbJYXJBr1RuL0b+D8XRrAhdDX+H
+	 JNhKCCJIR3ouQCF6YXBoCZZjkpH5xi7NQchu+uQmxf9WnpAQcSjiiv0IyrkkiGUxbO
+	 Nn5giMTbLxNvRNb4pWZn7cU+yYj+pto3gAHZRnEtqWsCCcDZb0t3U3gLd0FXCSrR72
+	 4u4z76lOj7aRqVy1V5hEuUOpEDGrB+Ud2JU6H8ZNdoBKknw2rziHJEeoeSv/ddnlAs
+	 YTigZMLrMFqhg==
+Message-ID: <5194bd75-9562-8375-5748-ccce560b67cf@kernel.org>
+Date: Mon, 18 Sep 2023 22:28:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 4/9] drm/panel: nv3052c: Wait before entering sleep
- mode
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 2/4] dt-bindings: net: Add onsemi NCN26010 ethernet
+ controller
+To: Jay Monkman <jtm@lopingdog.com>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Piergiorgio Beruto <piergiorgio.beruto@gmail.com>,
+ Arndt Schuebel <Arndt.Schuebel@onsemi.com>
+References: <ZQf1Mgb8lfHkB6rl@lopingdog.com>
 Content-Language: en-US
-To: John Watts <contact@jookia.org>, <dri-devel@lists.freedesktop.org>
-CC: Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg
-	<sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter
-	<daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Chris
- Morgan <macromorgan@hotmail.com>, Jagan Teki <jagan@edgeble.ai>,
-        Paul
- Cercueil <paul@crapouillou.net>,
-        Christophe Branchereau
-	<cbranchereau@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230918125853.2249187-1-contact@jookia.org>
- <20230918125853.2249187-5-contact@jookia.org>
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <20230918125853.2249187-5-contact@jookia.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <ZQf1Mgb8lfHkB6rl@lopingdog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: AiiOecIg-oIqUSVsEc1jm7-2K1ue1XDx
-X-Proofpoint-ORIG-GUID: AiiOecIg-oIqUSVsEc1jm7-2K1ue1XDx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-18_09,2023-09-18_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 bulkscore=0 suspectscore=0 adultscore=0 mlxlogscore=999
- malwarescore=0 mlxscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309180178
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
+On 18/09/2023 08:58, Jay Monkman wrote:
+> 
 
+Drop stray blank line.
 
-On 9/18/2023 5:58 AM, John Watts wrote:
-> The panel needs us to wait 120ms between exiting and entering sleep.
-> Guarantee that by always waiting 150ms before entering sleep mode.
+> Add devicetree bindings for onsemi's NCN26010 10BASE-T1S
+> ethernet controller.
 
-Hi John,
-
-Same question as the last patch -- is this a fix for something?
-
-Thanks,
-
-Jessica Zhang
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC (and consider --no-git-fallback argument). It might
+happen, that command when run on an older kernel, gives you outdated
+entries. Therefore please be sure you base your patches on recent Linux
+kernel.
 
 > 
-> Signed-off-by: John Watts <contact@jookia.org>
+> Signed-off-by: Jay Monkman <jtm@lopingdog.com>
 > ---
->   drivers/gpu/drm/panel/panel-newvision-nv3052c.c | 3 +++
->   1 file changed, 3 insertions(+)
+>  .../devicetree/bindings/net/onnn,macphy.yaml  | 94 +++++++++++++++++++
+>  1 file changed, 94 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/onnn,macphy.yaml
 > 
-> diff --git a/drivers/gpu/drm/panel/panel-newvision-nv3052c.c b/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
-> index 2526b123b1f5..307335d0f1fc 100644
-> --- a/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
-> +++ b/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
-> @@ -289,6 +289,9 @@ static int nv3052c_unprepare(struct drm_panel *panel)
->   	struct mipi_dbi *dbi = &priv->dbi;
->   	int err;
->   
-> +	/* Wait 150ms in case we just exited sleep mode */
-> +	msleep(150);
+> diff --git a/Documentation/devicetree/bindings/net/onnn,macphy.yaml b/Documentation/devicetree/bindings/net/onnn,macphy.yaml
+> new file mode 100644
+> index 000000000000..1813da81b95f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/onnn,macphy.yaml
+> @@ -0,0 +1,94 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/onnn,macphy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->   	err = mipi_dbi_command(dbi, MIPI_DCS_ENTER_SLEEP_MODE);
->   	if (err)
->   		dev_err(priv->dev, "Unable to enter sleep mode: %d\n", err);
-> -- 
-> 2.42.0
-> 
+> +title: onsemi 10BASE-T1S Ethernet Controller
+> +
+> +maintainers:
+> +  - Jay Monkman <jtm@lopingdog.com>
+> +
+> +description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +  Bindings for onsemi 10BASE-T1S ethernet controller.
+
+Drop "bindings for" and instead describe the hardware.
+
+> +
+> +  Supported devices:
+> +    ncn26010
+
+Supported by what? By bindings? Or driver? Drop, instead, describe the
+hardware.
+
+> +
+> +allOf:
+> +  - $ref: ethernet-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: onnn,ncn26010
+> +
+> +  ctrl-protected:
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+Is it a generic property? Does not look like. All non-standard
+properties need vendor prefix.
+
+> +      Enables control data read/write protection mode.
+
+I don't understand this and it is very close to duplicate the property
+name. Describe what it does in the hardware, not in the driver, so it
+will be justified to have it in bindings in the first place.
+
+> +    type: boolean
+> +
+> +  poll-interval:
+
+Missing units.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Defines how often the MACPHY thread runs in milliseconds.
+
+thread? So Linux kthread? Nope, not a bindings property.
+
+> +      If not specified, a default value of 5 is used.
+> +
+> +  tx-fcs-calc:
+> +    description: |
+> +      Enables driver calculation of the FCS on transmitted frames.
+> +    type: boolean
+
+Driver? Not hardware? So drop the property.
+
+> +
+> +  rx-fcs-check:
+> +    description: |
+> +      Enables driver checking of the FCS on received frames
+> +    type: boolean
+
+Not a bindings property.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  mdio:
+> +    $ref: mdio.yaml#
+> +    unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+
+Nothing else is required?
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+
+If this is a SPI device, then you miss spi-peripheral-props.
+
+> +
+> +      ethernet@0 {
+> +        compatible = "onnn,ncn26010";
+> +        reg = <0>; /* CE0 */
+
+CE0? Isn't chip select obvious from the reg=0?
+
+
+Best regards,
+Krzysztof
+
 
