@@ -1,81 +1,89 @@
-Return-Path: <devicetree+bounces-1210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F3847A552C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 23:41:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A30A7A553E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 23:51:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8ED0281FC9
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 21:41:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 559BC1C20A8D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 21:51:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D69CC28E00;
-	Mon, 18 Sep 2023 21:41:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEEA228E06;
+	Mon, 18 Sep 2023 21:51:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C5C450EF
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 21:41:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97C7DC433C9;
-	Mon, 18 Sep 2023 21:41:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695073300;
-	bh=V73nY87sAUP0s1VV3p5Xs8gRGMRBWjjwisJY9Axkhtg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T+V2W2V2R7xh2q8vD7s/3b9X+EeWgzacET/c0gn2eDnB9H9VwmZUW/9oR6dKBo3fX
-	 qRXTs8+Q9yyRp6v31I4A978mX50y7kfd6rPqB6krd7XGZtFgmS6ccOdmotPQP9CGdN
-	 +VpvRxMEGNgqf1i8V760VaLT/N3IC4Fahog9IjdaXKvNnekUgR2nP51z91ADzBiSFH
-	 n+0VARy7IR7da8XAMNNTazbGztC//eCUOHRaX+Ut7BRw9QmGEBmh8SJqrIBwI01Gv6
-	 V65i+Yiek7G07x4GJ0qCid11ybVvLZc4BPhoU3wiJbxIUfhWHeXSucQyOUL/sYNPTB
-	 QC1r+aujqRblA==
-Date: Mon, 18 Sep 2023 17:41:38 -0400
-From: Sasha Levin <sashal@kernel.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>, agross@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH AUTOSEL 6.5 30/36] arm64: dts: qcom: sc8280xp-x13s: Add
- camera activity LED
-Message-ID: <ZQjEEt7sB2M5EO53@sashalap>
-References: <20230908192848.3462476-1-sashal@kernel.org>
- <20230908192848.3462476-30-sashal@kernel.org>
- <ZP60ngCV3hhNZiX5@hovoldconsulting.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A0CA286B1
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 21:50:59 +0000 (UTC)
+X-Greylist: delayed 66 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 18 Sep 2023 14:50:58 PDT
+Received: from mail.sakamoto.pl (mail.sakamoto.pl [185.236.240.130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B809D8E
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 14:50:58 -0700 (PDT)
+Authentication-Results: mail.sakamoto.pl;
+	auth=pass (plain)
+Date: Mon, 18 Sep 2023 23:49:44 +0200
+From: Alicja Michalska <alka@sakamoto.pl>
+To: devicetree@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org, andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
+	daniel@ffwll.ch
+Subject: [PATCH] dt-bindings: display: anx7814: Add definition for anx7816
+Message-ID: <ZQjFabKW7QvrvsnG@tora>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZP60ngCV3hhNZiX5@hovoldconsulting.com>
+X-Haraka-GeoIP: FR
+X-Haraka-GeoIP-Received: 37.165.191.167:FR
+Received: from localhost (Unknown [127.0.0.1])
+	by mail.sakamoto.pl (Haraka/2.8.28) with ESMTPSA id 00563704-9D56-448D-AC2A-1D164520EB98.1
+	envelope-from <alka@sakamoto.pl>
+	tls TLS_AES_256_GCM_SHA384 (authenticated bits=0);
+	Mon, 18 Sep 2023 23:49:50 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=sakamoto.pl; s=s20200705610;
+	h=from:subject:date:message-id:to:cc:mime-version;
+	bh=sI571ETAaL0Us0YlexREagZHnhYjl//syzK9E0tVq1U=;
+	b=gLhvsyYwxgka72wBii+b4ZJ8YMKsQMkTMIuTAq1Uss5mNwKYZXZh5an1lYSrGaeY1ZaOFJw7o+
+	6Ku5p9u/H3a4GwhwJM9mMngwSJplp48Yiy8bpZ6qA5fu8i9L33aZt52q3MdNB/13C+K9w4Y5kA54
+	c27hLPdEy2V5kSzgCb5Z6ALrAR6C+USrZ83tQUol20WVUzYeXhBkHNFg7HB+DS/C/PbSdHzaI4IU
+	enwrOgzdH+Y+xH+GpNhklu6jp9PrLQq9qdz8rElXfpvb+uirOGNIq1y1OBl9PLIQXrHMtILGAP+Z
+	DGLoBPn8Qskfk38P7QrWju0CdslEWh4nXa1FDfTQ==
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,MSGID_FROM_MTA_HEADER,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Mon, Sep 11, 2023 at 08:33:02AM +0200, Johan Hovold wrote:
->On Fri, Sep 08, 2023 at 03:28:41PM -0400, Sasha Levin wrote:
->> From: Konrad Dybcio <konrad.dybcio@linaro.org>
->>
->> [ Upstream commit 1c63dd1c5fdafa8854526d7d60d2b741c813678d ]
->>
->> Disappointigly, the camera activity LED is implemented in software.
->> Hook it up as a gpio-led and (until we have camera *and* a "camera on"
->> LED trigger) configure it as a panic indicator.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> Link: https://lore.kernel.org/r/20230805-topic-x13s_cam_led-v1-1-443d752158c4@linaro.org
->> Signed-off-by: Bjorn Andersson <andersson@kernel.org>
->> Signed-off-by: Sasha Levin <sashal@kernel.org>
->
->This is a new feature if anything, not a fix. Please drop from all
->autosel queues.
+As requested by Robert Foss <rfoss@kernel.org>, this patch adds
+definition for anx7816. It supplements the patch submitted to dri-devel.
 
-Not a feature, but hardware enablement.
+Signed-off-by: Alicja Michalska <ahplka19@gmail.com>
+---
+ .../devicetree/bindings/display/bridge/analogix,anx7814.yaml     | 1 +
+ 1 file changed, 1 insertion(+)
 
+diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml
+index 4a5e5d9d6f90..4509c496731b 100644
+--- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml
+@@ -17,6 +17,7 @@ properties:
+       - analogix,anx7808
+       - analogix,anx7812
+       - analogix,anx7814
++      - analogix,anx7816
+       - analogix,anx7818
+ 
+   reg:
 -- 
-Thanks,
-Sasha
+2.41.0
+
 
