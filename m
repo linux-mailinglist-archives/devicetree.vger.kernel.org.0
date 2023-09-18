@@ -1,103 +1,120 @@
-Return-Path: <devicetree+bounces-1079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD9637A4964
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 14:17:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D14337A496A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 14:18:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A53A01C20DD7
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:17:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88B92281E54
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:18:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A30451CAAE;
-	Mon, 18 Sep 2023 12:17:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04E151CAB1;
+	Mon, 18 Sep 2023 12:18:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D79BC38F93
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 12:17:06 +0000 (UTC)
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 770DBFF
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 05:16:51 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-530bc7c5bc3so2503863a12.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 05:16:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695039410; x=1695644210; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pNv1FDwVT3hMnnPhWO3xcQr1aUeDgxmwwA9dkUiq1gI=;
-        b=qc95taDBjEAqfD4twunA1NE/fn6b2KKBIJ67SOttxLNUrL3e5YquEC5qHcm7qDijy2
-         Jrb2XKRvUEgtFomNNYRz69883mWGWFPWoHUn6aNKBSBtQNDAawjufWcaVRae2DmclFC+
-         +LAbuow2Mit0IRCEVorp7YvfNOf9iGj8LwVDfl7q3g9ZLDxZBjV0eABPvLkCoO3eP9rk
-         f4ov9EXsK/27l6sVH5Y3VnrW5Q5d2zR3sbXAQ8c2DgVeJb2M3gh+HuhE1tHf5+ur4s+g
-         JtFIoQkqbOjeCrOdXnEr6KajkcaZjWrBfDiqNXsBBNP6JQ4e5u+iyXVkepeTDl5MnZ2s
-         Dkgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695039410; x=1695644210;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pNv1FDwVT3hMnnPhWO3xcQr1aUeDgxmwwA9dkUiq1gI=;
-        b=tmpsWrUYTFO+NU7fEsiXnpzaENnyRG7OdBr6/AcOxLlAmYl+McCzGk+cToco0UHMBA
-         bjQDjL5t14dZ6/y59clOuGNDVVn/uMC7MwDetxRufm1vEzlt74rm1hAVccaKtVdXByMe
-         wGJpwW5bEpDDaLzGEh6zEoz9BDAIYnZcHydVvG6+kfj3wPR2fWfgxsaY7jAR8TUbfQEb
-         YRQ/+DJ9x86/8feXiIFzbxtrzG89seZV5/UjFU/b2u0LTkz6kT9cGh9cUNFZe1iYFFgP
-         /P3KaYKmjoId1GTgiIY2QgL3vu5YwWrPCfSbCFQEaX9uTn254mGoPAQ2yzZO++LPRGUl
-         TJ+A==
-X-Gm-Message-State: AOJu0YzW+wA1GcbEZzMifUbvYQxh8LFt3eMCHMYNzlkpgl0UBuhvxVAM
-	272SOd236Bls7+zZ1OBvCbN+MQ==
-X-Google-Smtp-Source: AGHT+IHjEzmDf8sH8wfhuBGiqE680D7tr59P6K14bIMYabWiXD52tF+e9xu/8MVoljBZIxA6w9Tptw==
-X-Received: by 2002:aa7:d394:0:b0:525:691c:cd50 with SMTP id x20-20020aa7d394000000b00525691ccd50mr8530961edq.24.1695039409909;
-        Mon, 18 Sep 2023 05:16:49 -0700 (PDT)
-Received: from [172.25.80.114] ([217.67.225.27])
-        by smtp.gmail.com with ESMTPSA id a3-20020aa7cf03000000b0052e1959db1csm5962284edy.20.2023.09.18.05.16.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Sep 2023 05:16:49 -0700 (PDT)
-Message-ID: <1f9cfc55-bb63-92f2-7e22-26d31ad16e96@linaro.org>
-Date: Mon, 18 Sep 2023 14:16:47 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E97DF14AA2;
+	Mon, 18 Sep 2023 12:18:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1522FC433C8;
+	Mon, 18 Sep 2023 12:18:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695039481;
+	bh=m9DbiuYGQsroUWLQblr7CsaQDo+/wfuOspyhyKz0qyI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ixfkDgtCQsm1qsYVqsBxRnfw76vgvheO6lwjFgfn6yxbF1012FTJgSRtZNnZm9HtZ
+	 4m5ZtvRHN9RGP1wKU7Hn1MXf24+TdVfzsIjeOTMTEExl9Fa0vOXItABeWuxQ9u24mi
+	 agRFmL0GEnQFdbR/pseV8rfJPLy+NoUqV6ssEfWZKA3cFDIHctiWLHv7lhuJeJnFQE
+	 FHIrFg4UOzp52+93c1JZGyVcgGxybgyuDCxzAZ/BliNVDAGeVu/Cvs1P3l4Ws+snKi
+	 7j3hgHBSMatEGojj76inqNh04Xdsb+CgGVApVD6JS7+aPytlTNtmhPjNFSyYcmbkeZ
+	 dEtHAChXA7kxQ==
+Date: Mon, 18 Sep 2023 14:17:58 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: netdev@vger.kernel.org, lorenzo.bianconi@redhat.com, nbd@nbd.name,
+	john@phrozen.org, sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, linux-mediatek@lists.infradead.org,
+	sujuan.chen@mediatek.com, horms@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 net-next 09/17] net: ethernet: mtk_wed: fix
+ EXT_INT_STATUS_RX_FBUF definitions for MT7986 SoC
+Message-ID: <ZQg/9ku0S+g5WF0O@lore-desk>
+References: <cover.1695032290.git.lorenzo@kernel.org>
+ <ebde071cc3cc9c35b00366c41912ee2f25e5282d.1695032291.git.lorenzo@kernel.org>
+ <ZQg2AxAIxkadOiIr@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v1 3/8] dt-bindings: clock: rk3188: Add binding id for
- ACLK_CPU_PRE
-Content-Language: en-US
-To: Elaine Zhang <zhangqing@rock-chips.com>, mturquette@baylibre.com,
- sboyd@kernel.org, kever.yang@rock-chips.com, heiko@sntech.de,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, huangtao@rock-chips.com, xxx@rock-chips.com,
- xf@rock-chips.com
-References: <20230918073151.7660-1-zhangqing@rock-chips.com>
- <20230918073151.7660-4-zhangqing@rock-chips.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230918073151.7660-4-zhangqing@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
-
-On 18/09/2023 09:31, Elaine Zhang wrote:
-> export clk id ACLK_CPU_PRE.
-> 
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3XwjkoR69/2cL2MM"
+Content-Disposition: inline
+In-Reply-To: <ZQg2AxAIxkadOiIr@makrotopia.org>
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+--3XwjkoR69/2cL2MM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+> On Mon, Sep 18, 2023 at 12:29:11PM +0200, Lorenzo Bianconi wrote:
+> > Fix MTK_WED_EXT_INT_STATUS_RX_FBUF_LO_TH and
+> > MTK_WED_EXT_INT_STATUS_RX_FBUF_HI_TH definitions for MT7986 (MT7986 is
+> > the only SoC to use them).
+>=20
+> Afaik this applies also to MT7981 which is very similar to MT7986.
 
+ack, fine. Can you please test it out when you have some free cycles?
+I do not have a MT7981 device for testing.
+
+Regards,
+Lorenzo
+
+>=20
+> >=20
+> > Fixes: de84a090d99a ("net: ethernet: mtk_eth_wed: add wed support for m=
+t7986 chipset")
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  drivers/net/ethernet/mediatek/mtk_wed_regs.h | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/drivers/net/ethernet/mediatek/mtk_wed_regs.h b/drivers/net=
+/ethernet/mediatek/mtk_wed_regs.h
+> > index 47ea69feb3b2..f87ab9b8a590 100644
+> > --- a/drivers/net/ethernet/mediatek/mtk_wed_regs.h
+> > +++ b/drivers/net/ethernet/mediatek/mtk_wed_regs.h
+> > @@ -64,8 +64,8 @@ struct mtk_wdma_desc {
+> >  #define MTK_WED_EXT_INT_STATUS_TKID_TITO_INVALID	BIT(4)
+> >  #define MTK_WED_EXT_INT_STATUS_TX_FBUF_LO_TH		BIT(8)
+> >  #define MTK_WED_EXT_INT_STATUS_TX_FBUF_HI_TH		BIT(9)
+> > -#define MTK_WED_EXT_INT_STATUS_RX_FBUF_LO_TH		BIT(12)
+> > -#define MTK_WED_EXT_INT_STATUS_RX_FBUF_HI_TH		BIT(13)
+> > +#define MTK_WED_EXT_INT_STATUS_RX_FBUF_LO_TH		BIT(10) /* wed v2 */
+> > +#define MTK_WED_EXT_INT_STATUS_RX_FBUF_HI_TH		BIT(11) /* wed v2 */
+> >  #define MTK_WED_EXT_INT_STATUS_RX_DRV_R_RESP_ERR	BIT(16)
+> >  #define MTK_WED_EXT_INT_STATUS_RX_DRV_W_RESP_ERR	BIT(17)
+> >  #define MTK_WED_EXT_INT_STATUS_RX_DRV_COHERENT		BIT(18)
+> > --=20
+> > 2.41.0
+> >=20
+> >=20
+
+--3XwjkoR69/2cL2MM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZQg/9QAKCRA6cBh0uS2t
+rMYuAPwLlBwabmv9CBuoMVQSW6yos/0jwMwqx2hC30mstqMXugD/SkmJjYrTRWsA
+7Wg219Zkui+ubUI3KZoNdXylN5X8FAw=
+=C28k
+-----END PGP SIGNATURE-----
+
+--3XwjkoR69/2cL2MM--
 
