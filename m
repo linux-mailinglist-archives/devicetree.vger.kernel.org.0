@@ -1,75 +1,48 @@
-Return-Path: <devicetree+bounces-1136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D5237A4EC6
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 18:26:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 498C77A5088
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:08:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43AD01C21913
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 16:26:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A4561C213BD
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:08:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E8342376C;
-	Mon, 18 Sep 2023 16:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B271A262A7;
+	Mon, 18 Sep 2023 17:07:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAD4523748
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 16:25:36 +0000 (UTC)
-Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63F22196;
-	Mon, 18 Sep 2023 09:25:27 -0700 (PDT)
-Received: by mail-oo1-xc34.google.com with SMTP id 006d021491bc7-571194584e2so2910757eaf.3;
-        Mon, 18 Sep 2023 09:25:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695054326; x=1695659126; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=MZi9KVW/VHOjmcBD8yLAq6vDAF0JfWa5rIwSZAGCZA8=;
-        b=lLmCDo+MYbo+VFpiqIycJHyAejVaWhXIg6N1TvF8v3Yf12mJz8oXadb67zt0KTdssH
-         6ekZL0JTG+0IXmFWwxaTKbQcf0+FhvLb11D0ifuCFqTchxLxKk42KirD6vwZpOIC2gdF
-         SRf2Rwr1phyXvC20wTmGmLNPePPrzh0VDoSLI2m+Oi4thkgwjj0bZ1SJjs3ALLmADa+v
-         Qo4vvIKHavhZkMuR7nDEu05d9X0NeFrA6u1JFeT7pXOmt0M+4xXAXJ2kTKK/fg5HwVME
-         Q/qAd5tEkE41y4y9NPvdYvMgx8f/+EFVDoBz8K7sE3xo+87+gVXlg0wWp1KPM43fiv0R
-         5WTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695054326; x=1695659126;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MZi9KVW/VHOjmcBD8yLAq6vDAF0JfWa5rIwSZAGCZA8=;
-        b=Qw4z764wGiZimn23MEw/C3OddEjQZGl2uSpHgrLOxuX2QLjgW++TIZlFoKfdxUyXGI
-         s+XariNkgUYuzooc8o+6tYPqUuIoB57G5SOHEzl7CWGfe+8I3SXJvwWDPvr19Zz2BcRc
-         tRXDcOv2NfPpeP6gFS9UNzyz+Tn8iMfEf9/zffr6IB63yYapxnNNie5MxEoAFWqlBvVZ
-         av4ufbMPKt3Pu+Dlx0JbuHQrisowBxwDt9pwgzNuw7ebIVgD9A60dbtYxCQkRKb3/pcW
-         3fWhPzxxdlS1wTH00YIjr2J7G8w8dmBfireO1e1zImAhBx5RSqFUEz+cCoGsNQRagloG
-         tgMw==
-X-Gm-Message-State: AOJu0Yx0W6HCLRUKz3aWy+UMhBC9B5zJ7oBv1hzjyoqXF30NVgiqfAJu
-	0/g58SlHSXdjKcT1S0gc4ew=
-X-Google-Smtp-Source: AGHT+IHkTQ/j6v86h1uYYMolH9IaMasCsbfxKFGtmjZPTUAosXsBAzolCO4DtPHATAtDQTdFN1whSQ==
-X-Received: by 2002:a05:6870:468e:b0:1b3:715c:463e with SMTP id a14-20020a056870468e00b001b3715c463emr11909272oap.0.1695054326515;
-        Mon, 18 Sep 2023 09:25:26 -0700 (PDT)
-Received: from shaak (modemcable063.135-226-192.mc.videotron.ca. [192.226.135.63])
-        by smtp.gmail.com with ESMTPSA id h9-20020a0cb4c9000000b00656373f9c30sm2708297qvf.75.2023.09.18.09.25.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Sep 2023 09:25:25 -0700 (PDT)
-Date: Mon, 18 Sep 2023 12:25:23 -0400
-From: Liam Beguin <liambeguin@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] iio: adc: add ltc2309 support
-Message-ID: <20230918162523.GA735412@shaak>
-References: <20230828-ltc2309-v3-0-338b3a8fab8b@gmail.com>
- <20230828-ltc2309-v3-2-338b3a8fab8b@gmail.com>
- <20230903124341.360c95fe@jic23-huawei>
- <20230910150333.472437be@jic23-huawei>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1933B262A3;
+	Mon, 18 Sep 2023 17:07:38 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 304B493;
+	Mon, 18 Sep 2023 10:07:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=dauQr5A1qgLA9BmzHiEleNb3IjNWdzZ7y7a1hCEGPGY=; b=x0mHl8qtGRdY+kCyZqq3C5c5OF
+	C6aejezm9Q3BOHyHm7/OzU+eGIkWqNgFNkm046pxYqXYH5sqZW7IznKwWA5lrWDbZRyxFi/WWaaTf
+	nq7Lsdc31FAWQ1kRs2OyhRB653+zyp/v3YqvYtkkisXynTTr1JUVmaH/Tm+uT0Jbyduw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qiH9V-006oJU-7v; Mon, 18 Sep 2023 18:31:13 +0200
+Date: Mon, 18 Sep 2023 18:31:13 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jay Monkman <jtm@lopingdog.com>
+Cc: devicetree@vger.kernel.org, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Piergiorgio Beruto <piergiorgio.beruto@gmail.com>,
+	Arndt Schuebel <Arndt.Schuebel@onsemi.com>
+Subject: Re: [PATCH 1/4] dt-bindings: net: Add bindings for onsemi NCN26000
+ PHY
+Message-ID: <a467d803-3c71-4008-8d6e-7bb03128ea44@lunn.ch>
+References: <ZQf1LMnICzEnt9XK@lopingdog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,110 +51,103 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230910150333.472437be@jic23-huawei>
+In-Reply-To: <ZQf1LMnICzEnt9XK@lopingdog.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Jonathan,
+> +properties:
+> +  description: |
+> +    Sets the transmitter amplitude gain. If not specified,
+> +    gain is set to 1.0V (1v0)
+> +  tx-gain:
+> +    enum:
+> +      - 1v1
+> +      - 1v0
+> +      - 0v9
+> +      - 0v8
 
-On Sun, Sep 10, 2023 at 03:03:33PM +0100, Jonathan Cameron wrote:
-> On Sun, 3 Sep 2023 12:43:41 +0100
-> Jonathan Cameron <jic23@kernel.org> wrote:
-> 
-> > On Mon, 28 Aug 2023 22:41:35 -0400
-> > Liam Beguin <liambeguin@gmail.com> wrote:
-> > 
-> > > The LTC2309 is an 8-Channel, 12-Bit SAR ADC with an I2C Interface.
-> > > 
-> > > This implements support for all single-ended and differential channels,
-> > > in unipolar mode only.
-> > > 
-> > > Signed-off-by: Liam Beguin <liambeguin@gmail.com>  
-> > Hi Liam,
-> > 
-> > A few really small editorial bits in here.  I'll fix them whilst applying.
-> > Series applied to the togreg branch of iio.git
-> > 
-> > Note I will be rebasing the tree on rc1 once available and in the meantime
-> > this will only be pushed out as testing.
-> 
-> A couple more static analysis reports came in (unreachable return in one pace
-> and a missing static.  I've fixed up in my tree.
+How is a gain in volts? Isn't gain just a multiplier, so it unitless?
 
-My apologies for the delay, I was away for a few days.
+> +  tx-slew:
+> +    description: |
+> +      Sets the slew rate of the TX line driver output. Defaults
+> +      to slow if not set.
+> +    enum:
+> +      - fast
+> +      - slow
 
-Thanks for making those changes, I'll go over the comments and the
-reports, and if there's anything left, I'll send an update.
+How does this map to a standard? I would expect the standard to
+specify the slew. So why is this needed?
 
-> Thanks,
-> 
-> Jonathan
+> +  dig-slew:
+> +    description: |
+> +      Sets the slew rate of the digital output pins. Defaults
+> +      to slow if not set.
 
-Thanks again for your time,
+By Digital output pins, do you them the GPO pins you are adding a GPIO
+driver for?
 
-Liam
+> +  cmc-comp:
+> +    description: |
+> +      Sets the common mode choke resistance (CMC compensation).
+> +      Defaults to 0-0.5 ohm (0p25) if not set.
+> +    enum:
+> +      - 0p25
+> +      - 1p38
+> +      - 3p00
+> +      - 3p37
 
-> 
-> > 
-> > Thanks,
-> > 
-> > Jonathan
-> > 
-> > 
-> > 
-> > > +/**
-> > > + * struct ltc2309 - internal device data structure
-> > > + * @dev:	Device reference
-> > > + * @client:	I2C reference
-> > > + * @vref:	External reference source
-> > > + * @lock:	Lock to serialize data access
-> > > + * @vref_mv	Internal voltage reference  
-> > 
-> > Missing : which is what the bot picked up on.
-> > 
-> > > + */
-> > > +struct ltc2309 {
-> > > +	struct device		*dev;
-> > > +	struct i2c_client	*client;
-> > > +	struct regulator	*vref;
-> > > +	struct mutex		lock; /* serialize data access */
-> > > +	int			vref_mv;
-> > > +};  
-> > 
-> > > +
-> > > +void ltc2309_regulator_disable(void *regulator)
-> > > +{
-> > > +	struct regulator *r = (struct regulator *)regulator;  
-> > 
-> > Never any need to explicitly cast from a void * to any other pointer type.
-> > (C spec says it is always fine to do this :)
-> > 
-> > Given type is obvious from use, can just do
-> > 	regulator_disable(regulator);
-> > and lose the local variable.
-> > 
-> > > +
-> > > +	regulator_disable(r);
-> > > +}  
-> > 
-> > ..
-> > > +
-> > > +static const struct of_device_id ltc2309_of_match[] = {
-> > > +	{ .compatible = "lltc,ltc2309" },
-> > > +	{ }
-> > > +};
-> > > +MODULE_DEVICE_TABLE(of, ltc2309_of_match);
-> > > +
-> > > +static const struct i2c_device_id ltc2309_id[] = {
-> > > +	{ "ltc2309" },
-> > > +	{}  
-> > 
-> > Trivial but space between { and } for consistency.
-> > 
-> > 
-> 
+What is the mapping between 0-0.5 ohm and 0p25? Can we just use ohms
+here?
+
+> +  plca-precedence:
+> +    description: |
+> +      Enables PLCA precedence mode. Defaults to off if not
+> +      set.
+> +    type: boolean
+
+What is PLCA precedence? Should this be an ethtool parameter, along
+side all the other PLCA controls?
+
+> +  eni-mode:
+> +    description: |
+> +      Enables Enhanced Noise Immunity mode. Defaults to off if
+> +      not set.
+> +    enum:
+> +      - force-on
+> +      - force-off
+> +      - auto
+
+phy tunable?
+
+> +
+> +  tx-pkt-loop:
+> +    description: |
+> +      Enables packet loopback mode. Defaults to off is not set.
+> +    type: boolean
+
+How does this differ from struct phy_driver::set_loopback()?
+
+> +  unjab-tmr-disable:
+> +    description: |
+> +      Disables the Unjab Timer. When disabled, device transmission
+> +      will be stopped due to a jabber error and only restarted on
+> +      device reset. If not set, this defaults to enabled.
+> +    type: boolean
+> +
+> +  col-disable:
+> +    description: |
+> +      Disables collision masking. Defaults to enabled if not set.
+> +    type: boolean
+
+I could be wrong, but this feels like an SDK dump of all the features
+the device has, but nobody will ever user in reality. We need some
+justification why all these properties are really needed, and ideally
+a .dts file for a board actually using them. If there is no user, i
+suggest waiting until somebody really does need them.
+
+	Andrew
 
