@@ -1,67 +1,75 @@
-Return-Path: <devicetree+bounces-962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 388A17A4328
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 09:44:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B996D7A433E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 09:45:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 504CA1C21074
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 07:44:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBDBF1C21050
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 07:45:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DD23748E;
-	Mon, 18 Sep 2023 07:43:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B34134BD;
+	Mon, 18 Sep 2023 07:44:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88F4011701
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 07:43:48 +0000 (UTC)
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98985B2;
-	Mon, 18 Sep 2023 00:42:39 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 457B41BF226;
-	Mon, 18 Sep 2023 07:41:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1695022957;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67D13F9C1;
+	Mon, 18 Sep 2023 07:44:33 +0000 (UTC)
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A20B3CCE;
+	Mon, 18 Sep 2023 00:43:10 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E2503C000B;
+	Mon, 18 Sep 2023 07:42:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1695022989;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=YeG5a/Bqgvtd/iPOq8Fvj8+3brEGEmRcYA0IG9bBuc4=;
-	b=bhc8RvMqy/Pq5T6Dh0KqYSOzBrydic0M1kq7DmoPrtyEtMnm+6lesiXFQdyEPub3mcsUmj
-	EhNPwJ5K8q7WOxYxfwOv+IdXkTWJWyZirjZu5A9oZkiyGYXTTn2/nEjFixVkFOobUBVd3o
-	UhndKbq7sG+L7VJGxO/K9xvkmVR8I22vkqjamelhSeEO/HZbzq4YsR8QmTBm/2NrXVajmX
-	bEBQwS75OTvCN+nCWwp2VAMQ7QJH9BaITC6LZdYjG4o9q8GOqqVlrn+4CFsu8HdxHBwGvo
-	8mORnLNEb0y5tA3O0lWJv8vJeaO3iCa8ei1LJngy12eNl4DHYmeIA3WIIQIxsA==
-From: =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Claudiu Beznea <claudiu.beznea@microchip.com>,
-	Peter Rosin <peda@axentia.se>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Jesper Nilsson <jesper.nilsson@axis.com>,
-	=?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Paul Barker <paul.barker@sancloud.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH] arm: dts: replace Bananapi with Banana Pi
-Date: Mon, 18 Sep 2023 10:41:22 +0300
-Message-Id: <20230918074122.73265-1-arinc.unal@arinc9.com>
-X-Mailer: git-send-email 2.39.2
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=yImr8034vhbpOmwr9ltkLzW5eGzffuc8l1c+tIEQu4k=;
+	b=keY1QUS7dtQt/GsW5vOiYAwTOlPRGRRxUYperfcoQ3wCmbAj7I76ON/0gdvYrWD/tWoiYL
+	Hn2p1FGMOpV7FuqzU15Nt0trTIa4GFq+b3F4Y28Uz6Ve9PGSwCgX4jLzvbWGR8Yu1pLEU2
+	1NsWUihV3cVL74ZjiCyIFfG1zGI8LQKIzhHCMa2BxY0+rOJWZITaXBmNywrfT6C1fyWcdT
+	BT636wpK0zzG/fVKstJkQo/SGNr6otVeseu8nm3FvgklIDVTPkEnJ5ewMLWMjVYTzmE0Xf
+	nT6R9OlIbFGA9Kw5pzgn3EYX71nox4MtzDHt0P9KrBj9kFNiHbI+pVNi3AYXKQ==
+Date: Mon, 18 Sep 2023 09:42:39 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Qiang
+ Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
+ <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Shengjiu Wang
+ <shengjiu.wang@gmail.com>, Xiubo Li <Xiubo.Lee@gmail.com>, Fabio Estevam
+ <festevam@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>, Christophe
+ Leroy <christophe.leroy@csgroup.eu>, Randy Dunlap <rdunlap@infradead.org>,
+ netdev@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ alsa-devel@alsa-project.org, Simon Horman <horms@kernel.org>, Christophe
+ JAILLET <christophe.jaillet@wanadoo.fr>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 08/31] dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc:
+ Add support for QMC HDLC
+Message-ID: <20230918094239.4d2d0c32@bootlin.com>
+In-Reply-To: <20230913-unburned-overturn-41b83e1eed25@spud>
+References: <20230912081527.208499-1-herve.codina@bootlin.com>
+	<20230912101018.225246-1-herve.codina@bootlin.com>
+	<20230912-capable-stash-c7a3e33078ac@spud>
+	<20230913092640.76934b31@bootlin.com>
+	<20230913-unruly-recite-7dbbbd7e63e0@spud>
+	<20230913165250.02bab2ad@bootlin.com>
+	<20230913-oversold-delay-05368e5de9fe@spud>
+	<20230913-unburned-overturn-41b83e1eed25@spud>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,50 +78,106 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+X-GND-Sasl: herve.codina@bootlin.com
 
-The brand name is Banana Pi. Replace any mention of Bananapi with Banana
-Pi.
+Hi Conor,
 
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
----
- arch/arm/boot/dts/allwinner/sunxi-bananapi-m2-plus-v1.2.dtsi | 2 +-
- arch/arm/boot/dts/mediatek/mt7623n-bananapi-bpi-r2.dts       | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+On Wed, 13 Sep 2023 15:59:41 +0100
+Conor Dooley <conor@kernel.org> wrote:
 
-diff --git a/arch/arm/boot/dts/allwinner/sunxi-bananapi-m2-plus-v1.2.dtsi b/arch/arm/boot/dts/allwinner/sunxi-bananapi-m2-plus-v1.2.dtsi
-index 235994a4a2eb..ef532494fc9d 100644
---- a/arch/arm/boot/dts/allwinner/sunxi-bananapi-m2-plus-v1.2.dtsi
-+++ b/arch/arm/boot/dts/allwinner/sunxi-bananapi-m2-plus-v1.2.dtsi
-@@ -7,7 +7,7 @@
- 
- / {
- 	/*
--	 * Bananapi M2+ v1.2 uses a GPIO line to change the effective
-+	 * Banana Pi BPI-M2+ v1.2 uses a GPIO line to change the effective
- 	 * resistance on the CPU regulator's feedback pin.
- 	 */
- 	reg_vdd_cpux: vdd-cpux {
-diff --git a/arch/arm/boot/dts/mediatek/mt7623n-bananapi-bpi-r2.dts b/arch/arm/boot/dts/mediatek/mt7623n-bananapi-bpi-r2.dts
-index a37f3fa223c7..7f0948074945 100644
---- a/arch/arm/boot/dts/mediatek/mt7623n-bananapi-bpi-r2.dts
-+++ b/arch/arm/boot/dts/mediatek/mt7623n-bananapi-bpi-r2.dts
-@@ -10,7 +10,7 @@
- #include "mt6323.dtsi"
- 
- / {
--	model = "Bananapi BPI-R2";
-+	model = "Banana Pi BPI-R2";
- 	compatible = "bananapi,bpi-r2", "mediatek,mt7623";
- 
- 	aliases {
--- 
-2.39.2
+> On Wed, Sep 13, 2023 at 03:56:16PM +0100, Conor Dooley wrote:
+> > On Wed, Sep 13, 2023 at 04:52:50PM +0200, Herve Codina wrote:  
+> > > On Wed, 13 Sep 2023 15:42:45 +0100
+> > > Conor Dooley <conor@kernel.org> wrote:
+> > >   
+> > > > On Wed, Sep 13, 2023 at 09:26:40AM +0200, Herve Codina wrote:  
+> > > > > Hi Conor,
+> > > > > 
+> > > > > On Tue, 12 Sep 2023 18:21:58 +0100
+> > > > > Conor Dooley <conor@kernel.org> wrote:
+> > > > >     
+> > > > > > On Tue, Sep 12, 2023 at 12:10:18PM +0200, Herve Codina wrote:    
+> > > > > > > The QMC (QUICC mutichannel controller) is a controller present in some
+> > > > > > > PowerQUICC SoC such as MPC885.
+> > > > > > > The QMC HDLC uses the QMC controller to transfer HDLC data.
+> > > > > > > 
+> > > > > > > Additionally, a framer can be connected to the QMC HDLC.
+> > > > > > > If present, this framer is the interface between the TDM bus used by the
+> > > > > > > QMC HDLC and the E1/T1 line.
+> > > > > > > The QMC HDLC can use this framer to get information about the E1/T1 line
+> > > > > > > and configure the E1/T1 line.
+> > > > > > > 
+> > > > > > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > > > > > > ---
+> > > > > > >  .../bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml   | 13 +++++++++++++
+> > > > > > >  1 file changed, 13 insertions(+)
+> > > > > > > 
+> > > > > > > diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml
+> > > > > > > index 82d9beb48e00..b5073531f3f1 100644
+> > > > > > > --- a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml
+> > > > > > > +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml
+> > > > > > > @@ -101,6 +101,16 @@ patternProperties:
+> > > > > > >            Channel assigned Rx time-slots within the Rx time-slots routed by the
+> > > > > > >            TSA to this cell.
+> > > > > > >  
+> > > > > > > +      compatible:
+> > > > > > > +        const: fsl,qmc-hdlc
+> > > > > > > +
+> > > > > > > +      fsl,framer:
+> > > > > > > +        $ref: /schemas/types.yaml#/definitions/phandle
+> > > > > > > +        description:
+> > > > > > > +          phandle to the framer node. The framer is in charge of an E1/T1 line
+> > > > > > > +          interface connected to the TDM bus. It can be used to get the E1/T1 line
+> > > > > > > +          status such as link up/down.      
+> > > > > > 
+> > > > > > Sounds like this fsl,framer property should depend on the compatible
+> > > > > > being present, no?    
+> > > > > 
+> > > > > Well from the implementation point of view, only the QMC HDLC driver uses this
+> > > > > property.
+> > > > > 
+> > > > > From the hardware description point of view, this property means that the time slots
+> > > > > handled by this channel are connected to the framer. So I think it makes sense for
+> > > > > any channel no matter the compatible (even if compatible is not present).
+> > > > > 
+> > > > > Should I change and constraint the fsl,framer property to the compatible presence ?
+> > > > > If so, is the following correct for this contraint ?
+> > > > >    --- 8< ---
+> > > > >    dependencies:
+> > > > >      - fsl,framer: [ compatible ];
+> > > > >    --- 8< ---    
+> > > > 
+> > > > The regular sort of
+> > > > if:
+> > > > 	compatible:
+> > > > 		contains:
+> > > > 			const: foo
+> > > > then:
+> > > > 	required:
+> > > > 		- fsl,framer
+> > > > would fit the bill, no?  
+> > > 
+> > > Not sure.
+> > > "fsl,framer" is an optional property (depending on the hardware we can have
+> > > a framer or not).  
+> > 
+> > Ah apologies, I had it backwards! Your suggestion seems fair in that
+> > case.  
+> 
+> Or actually,
+> if:
+> 	compatible:
+> 		not:
+> 	 		contains:
+> 	 			const: foo
+>  then:
+>  	properties:
+>  		fsl,framer: false
+> ? That should do the trick in a more conventional way.
 
+Thanks for this proposal.
+I will use it in the next iteration.
+
+Regards,
+Hervé
 
