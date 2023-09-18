@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-1092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17AB27A49F7
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 14:42:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AD087A49F8
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 14:42:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1210281EE1
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:42:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8402D1C20F31
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:42:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C741CABF;
-	Mon, 18 Sep 2023 12:41:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97BFA1CFB4;
+	Mon, 18 Sep 2023 12:41:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA6A51CAB8
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 12:41:45 +0000 (UTC)
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2056.outbound.protection.outlook.com [40.107.100.56])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AA8B94;
-	Mon, 18 Sep 2023 05:41:44 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DB6F171BF
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 12:41:47 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2047.outbound.protection.outlook.com [40.107.94.47])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ECC6C7;
+	Mon, 18 Sep 2023 05:41:45 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SnH42TRMpDJP099FR9sQ3ThJKcmCEXcaaGKKGF8kveBk0h52TQwdXZe7VWY2FHiu5DGyX+uMYkyXiyeG80bI9bvtnwlzFpxl7zxwNI6b1JPNnj6XdA/0QWfuG45Echqyu1//SJh9n/6h5Gh3LO6VsvUtWXh16d/tW9g44+f+tNO22C48P3qnyshrPEMDbnKPUbyF6jIZwnWjkferjAf8fgGJhFXkA1P441wXEqdI3iFzJF0OFEljIsB/eyZqScAY311X8lOhuS4XguyaO4rNVUeEhfOJge/k+oW9J0MaTjQFWw6F3FBR+UZFo8bdmOL9wVk03ofwmZe1P93t3JMj/A==
+ b=C3GLlz2d9o9XCLr7KFrFXq9cjfBbjfIvQsYAkpGBoMk2Kg6OtRInaGQpQqJYx6oAsAk0ETOLKH7lGj54TTx+zTzPDw8xLtghdu+KNLRTqn43xpVP2wjZ2oWB7AA1rOOmd01pzhMLtoHLByncZ2Bw4F7vvqKnnjZZaLyI8nln+BD0hapYXpTXZx75rjkmXrNTq1/TgsRRVjbF0kDLqfdT16MzOEuAY5DQkAKfbLTqGDUbSMLdK3RlGPY/SkgooBZF/vPmJFjODIcga37H8HIxrYHryv8WHtQfB1H9CFUg606iOjthxhDBrK1kKlH4Jb0JxiJxO2INHQXHmmppC6PAdw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dwex9DUl2ckUQAzA70vP8kXOm+hxFBihQRHFR5HGE4s=;
- b=U9lZiAB2FzkXkIku3VdZ9p2hAuyQXOtT3T0F08K7mdS8YbSyyw82e/9bLcFG5MyWAsljYYiPAVOWZnMJiCMHGbrm7M8EeqAkulzY9vQCV3ulZqZIulpSz6ZYesmBUrtoAeW2JOKF88syHs8Vd7pGV7s83+UUDbw0KOVhaFIG3QPw5WZdCKWqrNXedQyGWlY8PFwl2pJx4vusH6cUgeuVVbqpDsLvqml9D2+4fskjoQmFFtqeCfp5uR++v42dTDR0xohxJKJwWAIs6e/ykAJOxjFYi6hV0C4Tr4Tg339DZLqq0QCWRz5KgEU0SzUv4LEh/ecAsZkLHeTEFVGOvvprEw==
+ bh=CmJbAwbAIacIYlZaklNcvYgQMvO68GLuUb5mpGsGuIc=;
+ b=kRueUQO0W/yFdMM4+iS+cpDIM96QF0KRHd9nZFZeDKkNg73K1I5LHJPRVSTXckPCLOL4sq2j3+H9wIZa5wVpPcWUvpH/gkoZcF0p41OGZe5Gaq6khbT05ukJBAWm6sAhhHooJhDciXokwE2tZrDLwipy4dE757NzVOV05G2RuTesShEM1gAqmHBun/s+Ie4V5aTMQUoO44jfbQe/PMsHznTEBmZ+Ky3iXMAht/rJ419xoewLkZANQpZRgg/6CoWAG26mP7knmvXSigWUo6TkQH9/KW5yvtWxsgf9ph4Iz2vCwhKd9wiFx4hOHYSroBwaGoBj/TJXtv+c6vXFo9I1GQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dwex9DUl2ckUQAzA70vP8kXOm+hxFBihQRHFR5HGE4s=;
- b=WZfzgL4l/Z2Fn1rmCyAc3mv5orZoFZAfD8xf4sq8gFMzJz+2ApDMWPab5SnhyQxKbwQTsmsrt/10YXylwfI6QIBwpoopYU7vtAjRaDz9tNYmk+0S9IWanRRuyU2mmpDpvJKwcnRmhS1fX2BNkjFfu2xq6muocZMSKDSM3ti4Dgk=
-Received: from CY5PR15CA0054.namprd15.prod.outlook.com (2603:10b6:930:1b::20)
- by PH0PR12MB7009.namprd12.prod.outlook.com (2603:10b6:510:21c::8) with
+ bh=CmJbAwbAIacIYlZaklNcvYgQMvO68GLuUb5mpGsGuIc=;
+ b=dY1TAlt+XHtVCafKOPt+Vje8tzA/46K+//W92fCvNXCybyn5YGjrLQZEjgVrivmM5ctyUDu7ZLeDK3IBSX9KZ7bKBJUAynCiv/1MKdA3nnaOlAzTyBeCgSJT+zkiS9eSIEn6enLD655cZ9/5WbF1ylfo8z4tb5yqAi8mNKBa4SQ=
+Received: from CY5PR15CA0034.namprd15.prod.outlook.com (2603:10b6:930:1b::15)
+ by CH2PR12MB4102.namprd12.prod.outlook.com (2603:10b6:610:a9::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.26; Mon, 18 Sep
  2023 12:41:39 +0000
 Received: from CY4PEPF0000E9CF.namprd03.prod.outlook.com
- (2603:10b6:930:1b:cafe::e6) by CY5PR15CA0054.outlook.office365.com
- (2603:10b6:930:1b::20) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:930:1b:cafe::d0) by CY5PR15CA0034.outlook.office365.com
+ (2603:10b6:930:1b::15) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.27 via Frontend
- Transport; Mon, 18 Sep 2023 12:41:38 +0000
+ Transport; Mon, 18 Sep 2023 12:41:39 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -55,24 +55,23 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CY4PEPF0000E9CF.mail.protection.outlook.com (10.167.241.142) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6792.20 via Frontend Transport; Mon, 18 Sep 2023 12:41:38 +0000
+ 15.20.6792.20 via Frontend Transport; Mon, 18 Sep 2023 12:41:39 +0000
 Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 18 Sep
- 2023 07:41:32 -0500
+ 2023 07:41:34 -0500
 From: Michal Simek <michal.simek@amd.com>
 To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
 	<michal.simek@xilinx.com>, <git@xilinx.com>
-CC: Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>, Conor Dooley
-	<conor+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Manikanta Guntupalli
-	<manikanta.guntupalli@amd.com>, Parth Gajjar <parth.gajjar@amd.com>, "Rob
- Herring" <robh+dt@kernel.org>, Sharath Kumar Dasari
-	<sharath.kumar.dasari@xilinx.com>, Vishal Sagar <vishal.sagar@amd.com>,
+CC: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>, Parth Gajjar <parth.gajjar@amd.com>,
+	Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>, Rob Herring
+	<robh+dt@kernel.org>, Tanmay Shah <tanmay.shah@amd.com>,
 	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH 5/6] arm64: xilinx: Remove address/size-cells from flash node
-Date: Mon, 18 Sep 2023 14:41:16 +0200
-Message-ID: <c4447028f914e77b8c28640dc458b8409198ee30.1695040866.git.michal.simek@amd.com>
+Subject: [PATCH 6/6] arm64: xilinx: Remove address/size-cells from gem nodes
+Date: Mon, 18 Sep 2023 14:41:17 +0200
+Message-ID: <7252203d52af3ca8867764c8514affc4828e530d.1695040866.git.michal.simek@amd.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <cover.1695040866.git.michal.simek@amd.com>
 References: <cover.1695040866.git.michal.simek@amd.com>
@@ -82,7 +81,7 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=833; i=michal.simek@amd.com; h=from:subject:message-id; bh=qblDog3nK/snMwS/IzSu8c64JM6+nf1pBHo99FYr1Ps=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhlQO18w9F6It46s4QhhjWsRfvpuuqhAwxbJjXluMlOzCx BkHr73riGVhEGRikBVTZJG2uXJmb+WMKcIXD8vBzGFlAhnCwMUpABPxcWOYw335/LnD8Y/4Lc7u Cq56lnH8esu0ZQxzZaPO5mjOXBtzYu1MXXc38aMWumtOAQA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2350; i=michal.simek@amd.com; h=from:subject:message-id; bh=VxjWBEG/PxOMI66ltpxdPq0p6b+3O7VYB+YnbxR7cnc=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhlQO18zfM18mPdmVMefNHu+k7T9m97rM8EuTSm2cY9z/T 0z1bWttRywLgyATg6yYIou0zZUzeytnTBG+eFgOZg4rE8gQBi5OAZjIHROG+VmqeyXjme5oi2y8 Xdg0i6lGSVekkGFBI1vqH1ulX0sZm5aVr5/i+pBt0mFLAA==
 X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -91,26 +90,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9CF:EE_|PH0PR12MB7009:EE_
-X-MS-Office365-Filtering-Correlation-Id: 115a4b05-653c-4ce4-7fb2-08dbb8449a35
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9CF:EE_|CH2PR12MB4102:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7cc68610-d404-4854-dda6-08dbb8449a94
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	iptj28lMTtiFJzoV6W2NidnBUZgVPw6D1ErQ9clSTzk7oIeP+XF4OrDSw2WiX1Z0cUrs/H9HV8RV88iXXBz+C+X5/H7wY3qxorTBbKwNhGj/DdHrU9ygvZho2JV2xW5wsWxtHeYbh/MtCuQQT/oenbrAoq6DNYcCnuIeTGmDyQuZiYmK9CVxFCLQ7h9wGFslvVKEq6jd1X/3S+kuzoG6iKuJTBCXdqo9zs2DGR4efb7TJbUKfubJqIovZbGvAKenrq9iMWUw7WegNKo+yYGvPlEkuvzENax8O2T48qYjLBACXAO9Gcf0wV1px3xO4EPxMiyJ4QNu4NKG+UiPX8uAE5h6baLr3R+zymxosQZqozfiHWRPFpR+e4mMQG2qPy/A/wJOW7qQ+tbbhsI+iVnwjI2Pdaetzvf+IvJ2bFLq3qVep8QzBn2mxnEuGcIIf0b7W56LQ1NXm8TDumGzUUYDFhK4JMSgkAyl06PJ9BdQstaG1oqowLvn913qjlLM3CC7obAY59dHUQJuF9+z8XRolQKQKIlLCH1+2zfg3d466RgvAk3Dj0OrNicnHoY3BukNnbk9wGr4sjCAlp1QTCIo9njO2xzIkOFm5V4EEaXC4muge9ODu5Y5SPnE/pPlCwAm7888rfB7wKiNWjv1V42796ATnXUEgFiE3hXPZhqQAUWlK0tEl3WsKTz5LIgCW2y+C7Md94HFIof09p19xStIt/Qnf5PBeIU8DAiKk/4kVB0jie3klJbkttASenMOqHDSmztl5q5R+B+koQwkJaU2l/hhxlL129lfSDsvAH12h3w=
+	lybqzqikcWia4pD6//tX1FahWNoQgOwks3hDpkxJzGujGKiNretB/WhikGLFSEwAomUsVOiBgcP6cWMTPmvfA9QQq6YTJ5EjgkhuCzWSgb0aYOcS8mgg3DKvN75ZlcBtbpaipeVpb5frYJovYZ0u2LcWXoOeSq5+DmgBkdW+KJ1Uo2s5+u4uDGDUbZaZQMpqhQvyUJcLduc3NzhVzW9+EmbA8X8rIY7gKSlN67Xq/A2UVT7pa7hA+ZisFkLG81n8u037BFuWxMFkx+E09r5BiMOBpNWILOgigCKMNMaJ+nJLRg06zyJLLz6OVCDUj/1v3J2HOY4na0y6XYEHjFdlYhXWYwBDi8TzPetzN0xIDXhHVIO4yiFM4gTl9iJkDm16WH+/OjPARFUYmE4yhrZBMmr0VEJGIOvAegia6e3AWwlnTzlSxY4MPEbwmB+qVR8idQhQ6VRRHaoZ2TaWDba4cmRnkAdrzG3hCN9t7SSnLoy2IX007gu0+VbMkpdytRjr6DZYxSVHOI5RyF8Jht4QioB2qpdiIAJx2fA39L1sndVF/tDhYaZAwI4nHeAJx0444U/b86FVunOMTGKe49nV/SiwIbSRCmiq14u9b6m3UNo1lvQDkAsKxdOSnHr4edz/TBSaFmrCYnRCqGQpEPWfyMrq15nNzPTyUYOfQDZ3AuVmUKiSMyQ1nrCCYPxGn9jaBwy+8N8q2vxSonq6qIasnTA3fLsngiriR85Iilv2qIx8NjN3BE1n0yDA1jRLc/iQmE2IdjhL4D1nhhEn9Rvb3m7o9G04oFCtesypAGnjRnU=
 X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(376002)(396003)(346002)(136003)(451199024)(1800799009)(82310400011)(186009)(36840700001)(46966006)(40470700004)(5660300002)(40480700001)(44832011)(86362001)(54906003)(316002)(41300700001)(70586007)(70206006)(110136005)(6666004)(478600001)(2616005)(8936002)(356005)(26005)(81166007)(82740400003)(16526019)(2906002)(36860700001)(36756003)(4744005)(47076005)(426003)(336012)(4326008)(8676002)(40460700003)(83380400001)(7416002)(36900700001)(2101003);DIR:OUT;SFP:1101;
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(346002)(396003)(376002)(136003)(1800799009)(186009)(451199024)(82310400011)(46966006)(36840700001)(40470700004)(40460700003)(6666004)(83380400001)(82740400003)(81166007)(356005)(86362001)(36860700001)(47076005)(36756003)(2616005)(426003)(336012)(40480700001)(16526019)(26005)(110136005)(70586007)(70206006)(54906003)(41300700001)(316002)(2906002)(5660300002)(44832011)(8676002)(4326008)(8936002)(478600001)(2101003)(36900700001);DIR:OUT;SFP:1101;
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2023 12:41:38.6447
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2023 12:41:39.2853
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 115a4b05-653c-4ce4-7fb2-08dbb8449a35
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7cc68610-d404-4854-dda6-08dbb8449a94
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource:
 	CY4PEPF0000E9CF.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7009
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4102
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
 	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
@@ -118,28 +117,62 @@ X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Partitions are described via fixed-partitions that's why there is no need
-to have address/size-cells in flash node.
+Some boards are using one mdio bus which holds multiple phys and also
+boards are using mdio node for bus description. That's why there are cases
+where address/size-cells are unnecessary which is also reported by make W=1
+dtbs. That's why remove them from zynqmp.dtsi and let board DTSes to handle
+it based on used description.
+
+Error log:
+/axi/ethernet@ff0e0000: unnecessary #address-cells/#size-cells without
+"ranges" or child "reg" property
 
 Signed-off-by: Michal Simek <michal.simek@amd.com>
 ---
 
- arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts | 2 --
- 1 file changed, 2 deletions(-)
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 8 --------
+ 1 file changed, 8 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
-index cd5cd7f3b5ce..51622896b1b1 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
-@@ -132,8 +132,6 @@ &qspi { /* MIO 0-5 - U143 */
- 	status = "okay";
- 	spi_flash: flash@0 { /* MT25QU512A */
- 		compatible = "jedec,spi-nor"; /* 64MB */
--		#address-cells = <1>;
--		#size-cells = <1>;
- 		reg = <0>;
- 		spi-tx-bus-width = <4>;
- 		spi-rx-bus-width = <4>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+index e50e95cbe817..f5e1eb8cb3b7 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+@@ -584,8 +584,6 @@ gem0: ethernet@ff0b0000 {
+ 				     <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
+ 			reg = <0x0 0xff0b0000 0x0 0x1000>;
+ 			clock-names = "pclk", "hclk", "tx_clk", "rx_clk", "tsu_clk";
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+ 			iommus = <&smmu 0x874>;
+ 			power-domains = <&zynqmp_firmware PD_ETH_0>;
+ 			resets = <&zynqmp_reset ZYNQMP_RESET_GEM0>;
+@@ -600,8 +598,6 @@ gem1: ethernet@ff0c0000 {
+ 				     <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
+ 			reg = <0x0 0xff0c0000 0x0 0x1000>;
+ 			clock-names = "pclk", "hclk", "tx_clk", "rx_clk", "tsu_clk";
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+ 			iommus = <&smmu 0x875>;
+ 			power-domains = <&zynqmp_firmware PD_ETH_1>;
+ 			resets = <&zynqmp_reset ZYNQMP_RESET_GEM1>;
+@@ -616,8 +612,6 @@ gem2: ethernet@ff0d0000 {
+ 				     <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
+ 			reg = <0x0 0xff0d0000 0x0 0x1000>;
+ 			clock-names = "pclk", "hclk", "tx_clk", "rx_clk", "tsu_clk";
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+ 			iommus = <&smmu 0x876>;
+ 			power-domains = <&zynqmp_firmware PD_ETH_2>;
+ 			resets = <&zynqmp_reset ZYNQMP_RESET_GEM2>;
+@@ -632,8 +626,6 @@ gem3: ethernet@ff0e0000 {
+ 				     <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>;
+ 			reg = <0x0 0xff0e0000 0x0 0x1000>;
+ 			clock-names = "pclk", "hclk", "tx_clk", "rx_clk", "tsu_clk";
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+ 			iommus = <&smmu 0x877>;
+ 			power-domains = <&zynqmp_firmware PD_ETH_3>;
+ 			resets = <&zynqmp_reset ZYNQMP_RESET_GEM3>;
 -- 
 2.36.1
 
