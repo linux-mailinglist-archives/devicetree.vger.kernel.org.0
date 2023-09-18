@@ -1,36 +1,36 @@
-Return-Path: <devicetree+bounces-1146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1B7D7A50A9
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:11:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85B4B7A50B4
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:12:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B88928201A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:11:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CF831C213AA
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:12:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13371266A7;
-	Mon, 18 Sep 2023 17:09:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE69D262A7;
+	Mon, 18 Sep 2023 17:11:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 031BF262A8
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 17:09:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E14FCC433C8;
-	Mon, 18 Sep 2023 17:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6A762628E
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 17:11:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB6C2C433C9;
+	Mon, 18 Sep 2023 17:11:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695056990;
-	bh=ie0dC3735TiHhNHywyLZGNNJXTNALR8fq5hX9ARI43M=;
+	s=k20201202; t=1695057099;
+	bh=v5sI31zzPgufOthvXRtj8GfaK7y/0aVuMqOHUUR8dX8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FRl8ot8Ru8cylWwmvUFsC8/QAQNlyPWbLQhkGQilrOqy854VlLcloQduphYb9MHC2
-	 3HCe61+jkh1M/lMJDiC3PBW/Ns73uVWyeUz+q8W3CMGW1Gjgno7tz73rdtIV4SLjLa
-	 5AN+SgTBbhUmWHxcZcDSw5r3aClyXXPfT3QFzH/TR02CVAjnqm7qDwlkxEj2OLS8AX
-	 DjcsOOlSBvr7YJ65DwkVixKUIttWLzS3buBYqRI2NJx0JDJUB4seW3FTOTcns9LZ/J
-	 H/5ezvoK5RHeNZRE+N7H4PTGjvxxrb+gZ5/xMBcjLvHJiFBmVvxLIh0lfJsh6eZedy
-	 g9veMrkFyCBhQ==
-Date: Mon, 18 Sep 2023 18:09:45 +0100
+	b=AHGr+Gdci97U9SKDpKXceaMwQJGv09F++q4dYR4QApD6cAW9V6L6KD5R3/a0+ECwz
+	 X19MGEFfOIygqJaljDFBVsCfyLrIUIXGXFmiKKfMHuyKookYtOLv3qAKipShnTFPN7
+	 EYmkRse/dWHZF5uIgrxw7/DCkkXoR1FM2wPulsJhtSkFqXT1YAT3/MM52amVrZDRZD
+	 zu91H5GGJfS6aVczRtPnI2NyqDwZiVrQ5m4Xr3QtNlmquL3K2tw2LhyTXeKBLSuHSV
+	 4z6IwqlGP2Tal44T+6EpGgw+8v22fxFYQo+kY/aMk4lVoXksItmii1O9Wc3vh3LIty
+	 jq3wLKmG59QOw==
+Date: Mon, 18 Sep 2023 18:11:34 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Nik Bune <n3q5u8@yahoo.com>
 Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
@@ -41,9 +41,9 @@ Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
 	linux-kernel@vger.kernel.org
 Subject: Re: [PATCH] dt-bindings: watchdog: atmel,at91rm9200-wdt: convert txt
  to yaml
-Message-ID: <20230918-929fd60eab94754c28ce5cd4@fedora>
+Message-ID: <20230918-5cdb7a21163283ce85a4deb5@fedora>
 References: <20230916154826.84925-1-n3q5u8@yahoo.com>
- <20230917193556.10783-1-n3q5u8@yahoo.com>
+ <20230917195520.11987-1-n3q5u8@yahoo.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,71 +51,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="73rtgbxXCV6DBhLK"
+	protocol="application/pgp-signature"; boundary="wvEX6caj9KSw1sXP"
 Content-Disposition: inline
-In-Reply-To: <20230917193556.10783-1-n3q5u8@yahoo.com>
+In-Reply-To: <20230917195520.11987-1-n3q5u8@yahoo.com>
 
 
---73rtgbxXCV6DBhLK
-Content-Type: text/plain; charset=us-ascii
+--wvEX6caj9KSw1sXP
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Sep 17, 2023 at 09:35:56PM +0200, Nik Bune wrote:
-> Hello, thank you for your review!=20
+On Sun, Sep 17, 2023 at 09:55:20PM +0200, Nik Bune wrote:
 >=20
-> On Sat, Sep 16, 2023 at 10:37:23PM +0200, Krzysztof Kozlowski wrote:
->=20
+> >On Saturday, 16 September 2023 at 22:38:17 CEST, Krzysztof Kozlowski <kr=
+zysztof.kozlowski@linaro.org> wrote:
+> >
+> >
 > >On 16/09/2023 17:48, Nik Bune wrote:
+> >
 > >> Convert txt file to yaml.
 > >> Add reg to the list of required properties.
 > >> Add mainteiners from ./scripts/get_maintainer.pl output.
-> >>
-> >> Signed-off-by: Nik Bune <n3q5u8@yahoo.com>
-> >> ---
-> >>  .../watchdog/atmel,at91rm9200-wdt.yaml        | 31 +++++++++++++++++++
-> >>  .../watchdog/atmel-at91rm9200-wdt.txt        |  9 ------
-> >>  2 files changed, 31 insertions(+), 9 deletions(-)
-> >>  create mode 100644 Documentation/devicetree/bindings/watchdog/atmel,a=
-t91rm9200-wdt.yaml
-> >>  delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-a=
-t91rm9200-wdt.txt
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/watchdog/atmel,at91rm92=
-00-wdt.yaml b/Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-w=
-dt.yaml
-> >> new file mode 100644
-> >> index 000000000000..e9706b9c1e6b
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.=
-yaml
-> >> @@ -0,0 +1,31 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
 > >
-> >How this copyright appeared here? Why are you adding some 2022
-> >copyrights of someone else?
+> >
+> >...
+> >
+> >> +---
+> >> +$id: http://devicetree.org/schemas/watchdog/atmel,at91rm9200-wdt.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Atmel AT91RM9200 System Timer Watchdog
+> >> +
+> >> +maintainers:
+> >> +=A0 - Wim Van Sebroeck <wim@linux-watchdog.org>
+> >> +=A0 - Guenter Roeck <linux@roeck-us.net
+> >>
+> >
+> >No, these should be maintainer of device or subarch, not subsystem.
+> >
 >=20
-> I copied it from the neighbour file atmel,at91sam9-wdt.yaml.
-> I assume I should leave only "SPDX-License-Identifier: (GPL-2.0-only OR B=
-SD-2-Clause)" here.
-
-The original file does not contain a license, which means (AFAIU) to
-GPL-2.0-only, unless the original author ACKs a relicensing.
-
+> Is it a particular way how to determine the mainterners of the device?=20
 >=20
-> Thank you!
+> I have checked nearby atmel devices. They have Eugen Hristev <eugen.hrist=
+ev@microchip.com> in the list of maintainers.=20
+> Also I have found the similar patch, which looks like have never finalise=
+d, https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202305251=
+25602.640855-5-claudiu.beznea@microchip.com/=20
+> it has=20
+> maintainers:
+>   - Nicolas Ferre <nicolas.ferre@microchip.com>
+>   - Alexandre Belloni <alexandre.belloni@bootlin.com>
+>   - Claudiu Beznea <claudiu.beznea@microchip.coam>
 
---73rtgbxXCV6DBhLK
+Neither Claudiu or Eugen work at microchip any more. Nicolas should be
+able to volunteer someone to look after it if you don't want to.
+
+--wvEX6caj9KSw1sXP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQiEVAAKCRB4tDGHoIJi
-0ot9AP9gc12jMqf92DMjVEqIb7XtEMn6oIkJS8wSL0SfQVFYhQEAiBYvCYLNFJKd
-NXAz7wDn0QEFAHtv54asRO5qYtO0wQI=
-=Df90
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQiEwQAKCRB4tDGHoIJi
+0pl/AQD0B6M6a4QQQ0juoaYFPZGVWjyF7mIP5T3eMHfmKeL2RQD8D2oGoWnw0KzJ
+q7OLanatDFxBUJ5yeKcHYhmXdKsbxAI=
+=63Rj
 -----END PGP SIGNATURE-----
 
---73rtgbxXCV6DBhLK--
+--wvEX6caj9KSw1sXP--
 
