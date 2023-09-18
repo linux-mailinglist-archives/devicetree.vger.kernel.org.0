@@ -1,105 +1,155 @@
-Return-Path: <devicetree+bounces-1000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF8E87A44DB
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 10:36:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 439A87A4517
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 10:48:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3BD71C20A77
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 08:36:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 541C41C20AC2
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 08:48:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4061B1079A;
-	Mon, 18 Sep 2023 08:36:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A547514AA6;
+	Mon, 18 Sep 2023 08:48:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E13EE137C
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 08:36:17 +0000 (UTC)
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5D4A91;
-	Mon, 18 Sep 2023 01:36:16 -0700 (PDT)
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38I4SDP2011029;
-	Mon, 18 Sep 2023 03:35:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=PODMain02222019; bh=2n7pNpKVLOivSG4
-	DFdhrlBJ2AweybJOuaBKfhmO5+JM=; b=kUGIJAndEcaXMxWvuhig7Y6FQ6y2eOk
-	HW/J3SoI/94qHe5pHPlMCKcaxsuL2pdTiyvxqmHAfe8u6T5wz3uj/IFDnvYQGU84
-	KHhSlT/2bSYNQSxie9tYS5ba0KBfqUMbRk0qV4I8YvO912YhMK4CybluE/QG7b4C
-	YRUVgWoLGg6SSasWQNdcjKOskJ58zPGd7+vksiE/oYF4hCJu8d6N5weHMMaYgH5s
-	/OxTOx3g/bjncb3pS4KuEz/7T6ERT8lIGsGsZVqtOOf7YvOyMLIqM+e2u7uGLbq7
-	vhPMU0clNUf9YVsOyPet39zXW2PEPVkwiXoHTNrLtoBpJzBFfHFpk0g==
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3t59ry235y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Sep 2023 03:35:47 -0500 (CDT)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Mon, 18 Sep
- 2023 09:35:45 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.37 via Frontend Transport; Mon, 18 Sep 2023 09:35:45 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 7EB9315B4;
-	Mon, 18 Sep 2023 08:35:45 +0000 (UTC)
-Date: Mon, 18 Sep 2023 08:35:45 +0000
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
-To: John Watts <contact@jookia.org>
-CC: <alsa-devel@alsa-project.org>, Liam Girdwood <lgirdwood@gmail.com>,
-        "Mark
- Brown" <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai
-	<tiwai@suse.com>, <patches@opensource.cirrus.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 3/3] ASoC: dt-bindings: wlf,wm8782: Add wlf,fsampen
- property
-Message-ID: <20230918083545.GX103419@ediswmail.ad.cirrus.com>
-References: <20230917173726.1916439-1-contact@jookia.org>
- <20230917173726.1916439-4-contact@jookia.org>
- <ZQc7XnrXX5VenYoX@titan>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A6C414AA9
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 08:48:07 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B3B910E;
+	Mon, 18 Sep 2023 01:47:57 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 4750366071A0;
+	Mon, 18 Sep 2023 09:47:55 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1695026875;
+	bh=PQUHws8Z1w+TcF0jCRyePlr50AeNkNWESN1De6xP8dY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cLEYwxEiW2Z8laabejsz3E+oq39RdP0AVM6njg/u5/bbU+4eLVyrUT9RPaweN01CA
+	 Pb7vMLBcp/lm5f0rhZ9kNADin2MewwuuMpDZmRNTmIca4b720JCsbPI3d5D0mRNZan
+	 AUGUyZn00oQmQe2i6Dt/ppeU3eu50jjq4klAD85PWwu4+cW5vSg+wK7KVgxQilm+uf
+	 LzZ5927BaNwAdV4r6hQbNEB7VtyiSadwF4YHvvS9UL7XElzBhPjD76fa9m50MS9+oA
+	 m4tnB2kBGJD/gpspLH8tKOQ5kidqMxVSmaT40X4bhX0zD1RqI+QA3CtKz8KkDGDPz3
+	 ggIPipT5GMKcA==
+Message-ID: <9acc8d99-e3db-3df8-4051-21d95450b28d@collabora.com>
+Date: Mon, 18 Sep 2023 10:47:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZQc7XnrXX5VenYoX@titan>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: 8HuOBrbWGgJulNyoGbHCm-8cWOZUTd7y
-X-Proofpoint-ORIG-GUID: 8HuOBrbWGgJulNyoGbHCm-8cWOZUTd7y
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v2 3/3] dt-bindings: hwinfo: Add mtk-socinfo driver
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ William-tw Lin <william-tw.lin@mediatek.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Kevin Hilman <khilman@kernel.org>
+Cc: Project_Global_Chrome_Upstream_Group@mediatek.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20230915152607.18116-1-william-tw.lin@mediatek.com>
+ <20230915152607.18116-4-william-tw.lin@mediatek.com>
+ <3e7bc476-ffc7-fb07-8e64-246427da736c@linaro.org>
+Content-Language: en-US
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <3e7bc476-ffc7-fb07-8e64-246427da736c@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Sep 18, 2023 at 03:46:06AM +1000, John Watts wrote:
-> On Mon, Sep 18, 2023 at 03:37:26AM +1000, John Watts wrote:
-> > +Optional properties:
-> > +
-> > + - wlf,fsampen : FSAMPEN pin value, 0 for low, 1 for high, 2 for disconnected
-> > +
+Il 17/09/23 10:26, Krzysztof Kozlowski ha scritto:
+> On 15/09/2023 17:26, William-tw Lin wrote:
+>> dt-binding documentation for mtk-socinfo driver.
 > 
-> Uh-oh, I forgot to specify what it defaults to.
-> Should I reply to this patch with a fix or re-send the entire series after I get feedback?
+> Here and in subject, drop driver and instead descrbe hardware.
+> 
+>> mtk-socinfo driver provides SoC-related information.
+>> Such information includes manufacturer information, SoC name,
+>> SoC segment name, and SoC marketing name.
+>>
+>> Signed-off-by: William-tw Lin <william-tw.lin@mediatek.com>
+>> ---
+>>   .../bindings/hwinfo/mtk-socinfo.yaml          | 48 +++++++++++++++++++
+>>   1 file changed, 48 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/hwinfo/mtk-socinfo.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/hwinfo/mtk-socinfo.yaml b/Documentation/devicetree/bindings/hwinfo/mtk-socinfo.yaml
+>> new file mode 100644
+>> index 000000000000..74f03f1dc404
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/hwinfo/mtk-socinfo.yaml
+> 
+> Nothing improved.
+> 
+> This is a friendly reminder during the review process.
+> 
+> It seems my previous comments were not fully addressed. Maybe my
+> feedback got lost between the quotes, maybe you just forgot to apply it.
+> Please go back to the previous discussion and either implement all
+> requested changes or keep discussing them.
+> 
+> Thank you.
+> 
+>> @@ -0,0 +1,48 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/hwinfo/mtk-socinfo.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: MediaTek SoC ChipID
+>> +
+>> +maintainers:
+>> +  - William Lin <william-tw.lin@mediatek.com>
+>> +  - Matthias Brugger <matthias.bgg@gmail.com>
+>> +  - Kevin Hilman <khilman@kernel.org>
+>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> +
+>> +description:
+>> +  MediaTek SoCs store various product information in eFuses, including
+>> +  Chip ID and Revision fields, usable to identify the manufacturer,
+>> +  SoC version, plus segment and marketing names.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: mediatek,socinfo
+> 
+> What happened to compatibles? No, this is just wrong and no explained.
+> You ignored other comments as well. Really, that's not the way to go.
 > 
 
-I would probably send a new spin with the fix and my acks.
+Practically, having different compatibles for each SoC is not needed, as
+the only thing that changes between SoCs is the eFuse(s) that you read to
+get the information - and that's all.
 
-Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+So ... we either use this driver with devicetree, giving it the right eFuses
+to read from, or we duplicate the mtk-efuse driver, or we statically assign
+the eFuses in the driver itself and we set compatibles like
+"mediatek,mt8195-socinfo" to select that... ideas?
 
-Thanks,
-Charles
+Cheers,
+Angelo
+
+> NAK
+> 
+> Best regards,
+> Krzysztof
+> 
+
 
