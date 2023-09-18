@@ -1,123 +1,124 @@
-Return-Path: <devicetree+bounces-1046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08E687A4764
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:42:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6FD97A476E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:44:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8594281FCB
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 10:42:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62D1728172D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 10:44:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 981C938FA7;
-	Mon, 18 Sep 2023 10:41:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 241E738FA2;
+	Mon, 18 Sep 2023 10:44:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33FA338F8E
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 10:41:27 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88D0D100;
-	Mon, 18 Sep 2023 03:41:23 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38IA6DNe031947;
-	Mon, 18 Sep 2023 10:40:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=B/syoctX9E+0f5BY3ihWhiNWKIhOTa+1cKiNrQMlXAw=;
- b=d/rrt51jHmxYQ6ZK1Ek6joQRsqp7TSdiBpTB2Qyx5qnvfMdPWRw0XmaFcQ/hOHA5/F0u
- VEFqqYGDGu8pRqJ22xHdXNIx7+X9GuHvDrrFZ8DbGIosDDq2NLURbmTeFY7laEG0L55j
- iSp20H37mZTYfMSicY+3wD88QU/MXfNyXCrudPrKU8xGBcilmZk3O1JZFAuK8UdC4aJi
- mIxQT0vAsMcbN4xAKWrImIUW/kikXg2MTglsGNcWbGy3eUELXZMakAaGKWRlBlgUsY5J
- Tu9CS9ordpPcHibWsn+FAqj44xEM2ZNltWsKCw1i8QBe9rflmLO2HTNKDOCXNTMNwLAg kw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t53ps2u91-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Sep 2023 10:40:55 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38IAesN0002326
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Sep 2023 10:40:54 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Mon, 18 Sep
- 2023 03:40:46 -0700
-Message-ID: <a8b512ed-c03c-4e81-aee9-079f18f45da1@quicinc.com>
-Date: Mon, 18 Sep 2023 18:40:43 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65B0D63B6
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 10:44:41 +0000 (UTC)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DE38100
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 03:44:38 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-50306b2920dso1858345e87.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 03:44:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1695033876; x=1695638676; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IGkdCcI18B7hgDeo6RzVWYQ9sD6aoucVKvw6M/xbnDU=;
+        b=H1gsuGrvAXb1M4YT6F93VgqWxgpsLrwuYs2tgfKd1JBXnmcfJdnCnPkGnn8SCJp/VY
+         h3FaKURPMH+SC4cDX+rLL4cCMzgbnMxDDqeoBitiQkJ7giBYI6k/51im3O7GJ6QrH0JP
+         IIRbz8e567Omq9mDQL71ZGJgsjbhfD+CwBME4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695033876; x=1695638676;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IGkdCcI18B7hgDeo6RzVWYQ9sD6aoucVKvw6M/xbnDU=;
+        b=Eau7pAV7Tzkg93QB0mlhVL0vZ6dDwJkkt5riev5yPWnEf/ez6J8od7rJMRrz56Xic5
+         ImnLrkVrQSD3Chb1cNMbYYHaOz5mayqxoEnqyyMQIwNWnnvYC051KshIMflku9a4czil
+         4V8Uch1MH+fVM05W+7E5sb1yz7X1vSz1pzZCxTQ4Vxb96jUP4AFnUm4ACeqgO1cgKTcK
+         YnkP1wjVKk6cFnddB9UY38HvJKvbpzlAbcfDCYhVLM+h2k/IVFaP9tPFWx7Qp3abAAgY
+         RU1sxJi5emKVfSKhhktvwJKsJSF8aQ7VNtkYDcz4U/U+TBTXvDDQPS87L76t9x568SZt
+         uwAg==
+X-Gm-Message-State: AOJu0YzK3aV9Si2H99bR7AZR6MDMeYPAHJ9eGf361ULpVG+WwrWXHkIR
+	CRyRJPeCAbCFdsxYq7BlOv/ZNMYoyOi4BmbxMKmvXg==
+X-Google-Smtp-Source: AGHT+IGIg/CJtdEmuQQHM8i7T4H6aOlEi6CRY6h6lVig1fzQNxD9WQD0b+EvqCe7Iv5e6XJyFKEGdbI+7C1+JpTi2ro=
+X-Received: by 2002:a05:6512:1599:b0:501:b872:8c6c with SMTP id
+ bp25-20020a056512159900b00501b8728c6cmr4185650lfb.27.1695033876680; Mon, 18
+ Sep 2023 03:44:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 7/8] arm64: dts: qcom: add uart console support for
- SM4450
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <will@kernel.org>,
-        <robin.murphy@arm.com>, <joro@8bytes.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <agross@kernel.org>, <andersson@kernel.org>, <catalin.marinas@arm.com>
-CC: <geert+renesas@glider.be>, <arnd@arndb.de>, <neil.armstrong@linaro.org>,
-        <nfraprado@collabora.com>, <rafal@milecki.pl>, <peng.fan@nxp.com>,
-        <linux-arm-kernel@lists.infradead.org>, <iommu@lists.linux.dev>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <quic_tsoni@quicinc.com>,
-        <quic_shashim@quicinc.com>, <quic_kaushalk@quicinc.com>,
-        <quic_tdas@quicinc.com>, <quic_tingweiz@quicinc.com>,
-        <quic_aiquny@quicinc.com>, <kernel@quicinc.com>
-References: <20230915021509.25773-1-quic_tengfan@quicinc.com>
- <20230915021509.25773-9-quic_tengfan@quicinc.com>
- <f1795027-cbb5-44fe-83ac-dd2b079d65ad@linaro.org>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <f1795027-cbb5-44fe-83ac-dd2b079d65ad@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: lgC4iExz9KqOaoeDh8g-0Y9YessK-dwZ
-X-Proofpoint-GUID: lgC4iExz9KqOaoeDh8g-0Y9YessK-dwZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-18_02,2023-09-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
- suspectscore=0 lowpriorityscore=0 clxscore=1015 adultscore=0
- malwarescore=0 mlxlogscore=495 spamscore=0 bulkscore=0 impostorscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309180093
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <ZQH2dG+l/dONUsyi@p14s> <20230918103141.126271-1-laura.nao@collabora.com>
+In-Reply-To: <20230918103141.126271-1-laura.nao@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Mon, 18 Sep 2023 18:44:25 +0800
+Message-ID: <CAGXv+5Esi=G0xgkP=+Bhf39Xs3gMN1PBzarxKBKduOjgwDijAA@mail.gmail.com>
+Subject: Re: [PATCH v17 00/14] Add support for MT8195 SCP 2nd core
+To: Laura Nao <laura.nao@collabora.com>, tinghan.shen@mediatek.com, 
+	angelogioacchino.delregno@collabora.com
+Cc: mathieu.poirier@linaro.org, 
+	Project_Global_Chrome_Upstream_Group@mediatek.com, andersson@kernel.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	linux-remoteproc@vger.kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org, 
+	kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On Mon, Sep 18, 2023 at 6:32=E2=80=AFPM Laura Nao <laura.nao@collabora.com>=
+ wrote:
+>
+> > Other than patch 2 and 14, I have applied this set.  The remaining patc=
+hes will
+> > have to be resent to Matthias.
+>
+> > Thanks,
+> > Mathieu
+>
+> Hello,
+>
+> With patch 2 missing, the SCP is not probed correctly anymore on asurada =
+(MT8192) and kukui (MT8183). The mtk-scp driver relies on the existence of =
+the `cros-ec-rpmsg` node in the dt to determine if the SCP is single or mul=
+ticore. Without patch 2 the driver wrongly assumes the SCP on MT8192 and MT=
+8183 are multicore, leading to the following errors during initialization:
+>
+> 10696 04:33:59.126671  <3>[   15.465714] platform 10500000.scp:cros-ec: i=
+nvalid resource (null)
+> 10697 04:33:59.142855  <3>[   15.478560] platform 10500000.scp:cros-ec: F=
+ailed to parse and map sram memory
+> 10698 04:33:59.149650  <3>[   15.486121] mtk-scp 10500000.scp: Failed to =
+initialize core 0 rproc
+>
+> The issue was caught by KernelCI, complete logs can be found here:
+> - asurada: https://storage.kernelci.org/next/master/next-20230914/arm64/d=
+efconfig+arm64-chromebook+videodec/gcc-10/lab-collabora/baseline-nfs-mt8192=
+-asurada-spherion-r0.html
+> - kukui: https://storage.kernelci.org/next/master/next-20230914/arm64/def=
+config+arm64-chromebook+videodec/gcc-10/lab-collabora/baseline-nfs-mt8183-k=
+ukui-jacuzzi-juniper-sku16.html
+>
+> Reporting the issue so that patch 2 and 14 can be resent and merged soon.
 
+This being a backward incompatible DT binding change, maybe we should rever=
+t
+the node name change. Or, the driver could simply count the number of child
+nodes that have the "mediatek,rpmsg-name" property, which is required.
 
-在 9/15/2023 8:12 PM, Konrad Dybcio 写道:
-> On 15.09.2023 04:15, Tengfei Fan wrote:
->> Add base description of UART, TLMM, interconnect, TCSRCC and SMMU nodes
->> which helps SM4450 boot to shell with console on boards with this SoC.
->>
->> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->> ---
-> You're adding multiple independent hardware blocks at once.
-> This is impossible to bisect if anyone ever encounters an
-> issue with one of them.
-> 
-> Konrad
-
-Hi Konrad,
-
-Because all these DT nodes are for support enable uart console. Put all 
-these DT nodes in one patch to form a complete funcitonal body, so add 
-multiple independent hardware blocks in one patch.
-
--- 
-Thx and BRs,
-Tengfei Fan
+ChenYu
 
