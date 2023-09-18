@@ -1,321 +1,137 @@
-Return-Path: <devicetree+bounces-917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FFC97A3EBB
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 00:46:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C628A7A3F05
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 02:35:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 047352813C5
-	for <lists+devicetree@lfdr.de>; Sun, 17 Sep 2023 22:46:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E28501C20841
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 00:35:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FCF8F50B;
-	Sun, 17 Sep 2023 22:46:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF501EA8;
+	Mon, 18 Sep 2023 00:35:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E384F33DF
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 22:46:34 +0000 (UTC)
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 081C4CE6
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 15:45:59 -0700 (PDT)
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 8BD4A3F546
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 22:45:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1694990758;
-	bh=adOo4FRviXb28KWdA8otRonF2VEmbfWYur20KX0COuI=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=DdeFHPC0ciwBzDedf9uroKNRyLPMCx6+WcNih5H3i/ioSZbmc9YEtbG79vLo7Aol6
-	 +BNap6W68qNzYEZvmztBXWLWT0BZnmnaMk5fO8e+b9e9yuDWg4DajY3pDN0fkoGWDj
-	 HHJ7IUPp+iQyxwhV8f6l3eRrhAQOmg/oOqCGEE/nyeE9goADukKcW9YCSgZNol+FBS
-	 LdAflcaknAJNhmk6VhHT4OnYLc00j+PPAUB5j2KIqVd1U1s7JBreKhSY/Hy4MhdRz+
-	 ZEof8+tXSQ6/onOUPAsyI1bvc9jJMwZPWCCTxQU2Y8qpA5qXu7mjOb96Eo5NAu8x5M
-	 oE9Ti2B/gNbAQ==
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-414bbfbdf37so45923301cf.1
-        for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 15:45:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5712A620;
+	Mon, 18 Sep 2023 00:35:33 +0000 (UTC)
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A9BD120;
+	Sun, 17 Sep 2023 17:35:30 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b9338e4695so62975201fa.2;
+        Sun, 17 Sep 2023 17:35:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1694997329; x=1695602129; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=GO29z9RignFFHbu12u74l94xcqtaPR4h8snHrNTAFJk=;
+        b=QX5HLmjJD/OoyeUTxmik2NxtQTmwbkUQViAv1tQKbLEkHr1AsEvChApukWZfMOPQoh
+         92gNj59ck3+gbvpMcddfLXHnutuTATN3X2jF7iUvdgWrzarl8zJnkvoto9LuDZIXpAy8
+         QDe6iVjTYVUe4oMxaUXsG8U8Q8KOYjghuvJa7/IYRq/7LwWIlm5AeMCAPRsZRNN//CmQ
+         KEjcQjCWsYcPWn1T6+8slJAEKlEq3+DLQg7bx9OxF9mT79rMzim9bwnzac5Ur9MxfyZS
+         c6a8jT6NIfGyKd8wiTt+ZuaM6pBJsJtN2fsGGCKviwPKrtYFr6xu6SMVlEPw47rKBIP/
+         Utvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694990757; x=1695595557;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=adOo4FRviXb28KWdA8otRonF2VEmbfWYur20KX0COuI=;
-        b=BNv5vGuL8nryw6FxUB6DF546dToaou8bD7KKreIZ6BVKjPfN59seTZxjfLsAGdNSVt
-         6lqLuxyQUnwAFb1P4w7jNCKSjOLP+WXF4C5v+JCD1KPmwusFwFlgHb5fonbfhfLhj/tw
-         ypLO0i9BzxyV+155toh1rJKjlGgCG/HzauAo4cYYsYSNnnIIUoaSw3PGC6XE89dQJ/yS
-         7xiKMuD9cBqfu9tM4E+CoEREPKNJtlaEcSILabLTSULvLeEo8hH6u8Ko2aVEZ7RxRF+J
-         /GVPtObobRxkmz74EDa/OPrkNUPOGexinEeOtVoHGRQDxYlAzdZ/iTYEc1WTP+xhIvZ6
-         14vQ==
-X-Gm-Message-State: AOJu0YxT+3JaKyf5+BE5UmTgGu5K9hrEIL4soPr+hvtUsql6IrUHbZ4T
-	6FmIWvl3zK3PlzQr2cLYaCCaRM5qHiL4oc4SLAnNxuNbrCj39bNU3D/q+s1szV84v/DlYDlioaG
-	Mg05E9dUkYqnmGqGMTwrTgCoWvF4t39Z42GMsOxGv+aSUCCs0SLJ6FenidTcg+lU=
-X-Received: by 2002:a05:622a:1302:b0:412:2f9c:668a with SMTP id v2-20020a05622a130200b004122f9c668amr10889381qtk.57.1694990757237;
-        Sun, 17 Sep 2023 15:45:57 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHt0cz9k7AF6FAHvF0DVOz8jPCvqc/EGwEO8ffOLxDdkWRjv6xnCIfuk1vyxEcc2JzipFIjyceX/qG9uZwUOuU=
-X-Received: by 2002:a05:622a:1302:b0:412:2f9c:668a with SMTP id
- v2-20020a05622a130200b004122f9c668amr10889360qtk.57.1694990756988; Sun, 17
- Sep 2023 15:45:56 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Sun, 17 Sep 2023 15:45:56 -0700
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20230915102243.59775-8-minda.chen@starfivetech.com>
-References: <20230915102243.59775-1-minda.chen@starfivetech.com> <20230915102243.59775-8-minda.chen@starfivetech.com>
+        d=1e100.net; s=20230601; t=1694997329; x=1695602129;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GO29z9RignFFHbu12u74l94xcqtaPR4h8snHrNTAFJk=;
+        b=XiLgqe34ZKQZ+wABYsua0JPC5amUG/jriROR/N5aS6ZDMpriuX5n+SR5oZs29YBAKO
+         5mmbE3aTFEQn5CqJ1/BcrG3PEzB4So6wSiJZShMyhTKTANMgSR/gbp2eZ8GGbOrWu1ZX
+         afUyk5ysMRZnoPkdsggRG1NZNq77XHOhEa//NIARuBPfu/zhSmj6Kx7+gQKvz2KFLlA5
+         cUs9fAXAoHm1jxVezXdwGPFFru6HQ494HfcPfjT0HiZC708wUbB2IZ8wBpkP5XKzz7V+
+         /7haPLgsCWSiXigh3aqe7fLf13uvV2A/bLMHIpMh+LCDPgKooCIN9ojw7gxNIce+SbJh
+         tk+Q==
+X-Gm-Message-State: AOJu0YyJcw9wZUeSDCiHTc84F8u6XbemVUGRMmZzDgVXvpAuDBwzNcO/
+	5hf0lidSdyGIEmj0+IzVm/A=
+X-Google-Smtp-Source: AGHT+IHkmIWAA/lVu0Etf2C/gw42g2+fX5kkwfLGMnZ4J9YEoGLPFjeL6R3F/+OLnmA4s3CwzJ7xeA==
+X-Received: by 2002:a05:651c:2115:b0:2bf:df8c:4e56 with SMTP id a21-20020a05651c211500b002bfdf8c4e56mr7212908ljq.39.1694997328320;
+        Sun, 17 Sep 2023 17:35:28 -0700 (PDT)
+Received: from mobilestation ([95.79.219.206])
+        by smtp.gmail.com with ESMTPSA id y14-20020a05651c154e00b002bff5d46b4csm844737ljp.16.2023.09.17.17.35.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Sep 2023 17:35:27 -0700 (PDT)
+Date: Mon, 18 Sep 2023 03:35:25 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Rohan G Thomas <rohan.g.thomas@intel.com>
+Cc: "David S . Miller" <davem@davemloft.net>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v7 0/2] net: stmmac: Tx coe sw fallback
+Message-ID: <vvgo2wqc66neeapl64g7io7abjfainjgaqb4v3rvxn7bomkwbt@jdlbs6uzfgvh>
+References: <20230916063312.7011-1-rohan.g.thomas@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Sun, 17 Sep 2023 15:45:56 -0700
-Message-ID: <CAJM55Z-wD4+TUJCsXsbgR49Zux5fuMZQmJ5bXEVW96QVNJbBFQ@mail.gmail.com>
-Subject: Re: [PATCH v6 07/19] PCI: plda: Move the setup functions to pcie-plda-host.c
-To: Minda Chen <minda.chen@starfivetech.com>, 
-	Daire McNamara <daire.mcnamara@microchip.com>, Conor Dooley <conor@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org, 
-	=?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Mason Huo <mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
-	Kevin Xie <kevin.xie@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230916063312.7011-1-rohan.g.thomas@intel.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Minda Chen wrote:
-> Move setup functions to common pcie-plda-host.c.
->
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  drivers/pci/controller/plda/Kconfig           |  4 +
->  drivers/pci/controller/plda/Makefile          |  1 +
->  .../pci/controller/plda/pcie-microchip-host.c | 59 -------------
->  drivers/pci/controller/plda/pcie-plda-host.c  | 82 +++++++++++++++++++
->  drivers/pci/controller/plda/pcie-plda.h       |  6 ++
->  5 files changed, 93 insertions(+), 59 deletions(-)
->  create mode 100644 drivers/pci/controller/plda/pcie-plda-host.c
->
-> diff --git a/drivers/pci/controller/plda/Kconfig b/drivers/pci/controller/plda/Kconfig
-> index 5cb3be4fc98c..e54a82ee94f5 100644
-> --- a/drivers/pci/controller/plda/Kconfig
-> +++ b/drivers/pci/controller/plda/Kconfig
-> @@ -3,10 +3,14 @@
->  menu "PLDA-based PCIe controllers"
->  	depends on PCI
->
-> +config PCIE_PLDA_HOST
-> +	bool
-> +
->  config PCIE_MICROCHIP_HOST
->  	tristate "Microchip AXI PCIe controller"
->  	depends on PCI_MSI && OF
->  	select PCI_HOST_COMMON
-> +	select PCIE_PLDA_HOST
->  	help
->  	  Say Y here if you want kernel to support the Microchip AXI PCIe
->  	  Host Bridge driver.
-> diff --git a/drivers/pci/controller/plda/Makefile b/drivers/pci/controller/plda/Makefile
-> index e1a265cbf91c..4340ab007f44 100644
-> --- a/drivers/pci/controller/plda/Makefile
-> +++ b/drivers/pci/controller/plda/Makefile
-> @@ -1,2 +1,3 @@
->  # SPDX-License-Identifier: GPL-2.0
-> +obj-$(CONFIG_PCIE_PLDA_HOST) += pcie-plda-host.o
->  obj-$(CONFIG_PCIE_MICROCHIP_HOST) += pcie-microchip-host.o
-> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
-> index 1d253acd6bc2..ac7126b0bacf 100644
-> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
-> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
-> @@ -837,65 +837,6 @@ static int mc_pcie_init_irq_domains(struct plda_pcie_rp *port)
->  	return mc_allocate_msi_domains(port);
->  }
->
-> -static void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
-> -				   phys_addr_t axi_addr, phys_addr_t pci_addr,
-> -				   size_t size)
-> -{
-> -	u32 atr_sz = ilog2(size) - 1;
-> -	u32 val;
-> -
-> -	if (index == 0)
-> -		val = PCIE_CONFIG_INTERFACE;
-> -	else
-> -		val = PCIE_TX_RX_INTERFACE;
-> -
-> -	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
-> -	       ATR0_AXI4_SLV0_TRSL_PARAM);
-> -
-> -	val = lower_32_bits(axi_addr) | (atr_sz << ATR_SIZE_SHIFT) |
-> -			    ATR_IMPL_ENABLE;
-> -	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
-> -	       ATR0_AXI4_SLV0_SRCADDR_PARAM);
-> -
-> -	val = upper_32_bits(axi_addr);
-> -	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
-> -	       ATR0_AXI4_SLV0_SRC_ADDR);
-> -
-> -	val = lower_32_bits(pci_addr);
-> -	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
-> -	       ATR0_AXI4_SLV0_TRSL_ADDR_LSB);
-> -
-> -	val = upper_32_bits(pci_addr);
-> -	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
-> -	       ATR0_AXI4_SLV0_TRSL_ADDR_UDW);
-> -
-> -	val = readl(bridge_base_addr + ATR0_PCIE_WIN0_SRCADDR_PARAM);
-> -	val |= (ATR0_PCIE_ATR_SIZE << ATR0_PCIE_ATR_SIZE_SHIFT);
-> -	writel(val, bridge_base_addr + ATR0_PCIE_WIN0_SRCADDR_PARAM);
-> -	writel(0, bridge_base_addr + ATR0_PCIE_WIN0_SRC_ADDR);
-> -}
-> -
-> -static int plda_pcie_setup_iomems(struct pci_host_bridge *bridge,
-> -				  struct plda_pcie_rp *port)
-> -{
-> -	void __iomem *bridge_base_addr = port->bridge_addr;
-> -	struct resource_entry *entry;
-> -	u64 pci_addr;
-> -	u32 index = 1;
-> -
-> -	resource_list_for_each_entry(entry, &bridge->windows) {
-> -		if (resource_type(entry->res) == IORESOURCE_MEM) {
-> -			pci_addr = entry->res->start - entry->offset;
-> -			plda_pcie_setup_window(bridge_base_addr, index,
-> -					       entry->res->start, pci_addr,
-> -					       resource_size(entry->res));
-> -			index++;
-> -		}
-> -	}
-> -
-> -	return 0;
-> -}
-> -
->  static inline void mc_clear_secs(struct mc_pcie *port)
->  {
->  	void __iomem *ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
-> diff --git a/drivers/pci/controller/plda/pcie-plda-host.c b/drivers/pci/controller/plda/pcie-plda-host.c
-> new file mode 100644
-> index 000000000000..f0c7636f1f64
-> --- /dev/null
-> +++ b/drivers/pci/controller/plda/pcie-plda-host.c
-> @@ -0,0 +1,82 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * PLDA PCIe XpressRich host controller driver
-> + *
-> + * Copyright (C) 2023 Microchip Co. Ltd
-> + *		      StarFive Co. Ltd.
-> + *
-> + * Author: Daire McNamara <daire.mcnamara@microchip.com>
-> + * Author: Minda Chen <minda.chen@starfivetech.com>
-> + */
-> +
-> +#include <linux/irqchip/chained_irq.h>
-> +#include <linux/irqdomain.h>
-> +#include <linux/msi.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_pci.h>
-> +#include <linux/pci_regs.h>
-> +#include <linux/pci-ecam.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include "pcie-plda.h"
-> +
-> +void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
-> +			    phys_addr_t axi_addr, phys_addr_t pci_addr,
-> +			    size_t size)
-> +{
-> +	u32 atr_sz = ilog2(size) - 1;
-> +	u32 val;
-> +
-> +	if (index == 0)
-> +		val = PCIE_CONFIG_INTERFACE;
-> +	else
-> +		val = PCIE_TX_RX_INTERFACE;
-> +
-> +	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
-> +	       ATR0_AXI4_SLV0_TRSL_PARAM);
-> +
-> +	val = lower_32_bits(axi_addr) | (atr_sz << ATR_SIZE_SHIFT) |
-> +			    ATR_IMPL_ENABLE;
-> +	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
-> +	       ATR0_AXI4_SLV0_SRCADDR_PARAM);
-> +
-> +	val = upper_32_bits(axi_addr);
-> +	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
-> +	       ATR0_AXI4_SLV0_SRC_ADDR);
-> +
-> +	val = lower_32_bits(pci_addr);
-> +	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
-> +	       ATR0_AXI4_SLV0_TRSL_ADDR_LSB);
-> +
-> +	val = upper_32_bits(pci_addr);
-> +	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
-> +	       ATR0_AXI4_SLV0_TRSL_ADDR_UDW);
-> +
-> +	val = readl(bridge_base_addr + ATR0_PCIE_WIN0_SRCADDR_PARAM);
-> +	val |= (ATR0_PCIE_ATR_SIZE << ATR0_PCIE_ATR_SIZE_SHIFT);
+On Sat, Sep 16, 2023 at 02:33:10PM +0800, Rohan G Thomas wrote:
+> Hi,
+> DW xGMAC IP can be synthesized such that it can support tx checksum
+> offloading only for a few initial tx queues. Also as Serge pointed
+> out, for the DW QoS IP, tx coe can be individually configured for
+> each tx queue. This patchset adds support for tx coe sw fallback for
+> those queues that don't support tx coe. Also, add binding for
+> snps,coe-unsupported property.
 
-I know this code is just a straight copy, but for future cleanups are we
-guaranteed that this field is always zero?
+The series looks good to me. Thanks!
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 
-Otherwise it looks a little suspicious to do read-modify-write, but just
-set the (0x25 << 1) bits without clearing the field first.
+-Serge(y)
 
-> +	writel(val, bridge_base_addr + ATR0_PCIE_WIN0_SRCADDR_PARAM);
-> +	writel(0, bridge_base_addr + ATR0_PCIE_WIN0_SRC_ADDR);
-> +}
-> +EXPORT_SYMBOL_GPL(plda_pcie_setup_window);
-> +
-> +int plda_pcie_setup_iomems(struct pci_host_bridge *bridge,
-> +			   struct plda_pcie_rp *port)
-> +{
-> +	void __iomem *bridge_base_addr = port->bridge_addr;
-> +	struct resource_entry *entry;
-> +	u64 pci_addr;
-> +	u32 index = 1;
-> +
-> +	resource_list_for_each_entry(entry, &bridge->windows) {
-> +		if (resource_type(entry->res) == IORESOURCE_MEM) {
-> +			pci_addr = entry->res->start - entry->offset;
-> +			plda_pcie_setup_window(bridge_base_addr, index,
-> +					       entry->res->start, pci_addr,
-> +					       resource_size(entry->res));
-> +			index++;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(plda_pcie_setup_iomems);
-> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/controller/plda/pcie-plda.h
-> index d04a571404b9..3deefd35fa5a 100644
-> --- a/drivers/pci/controller/plda/pcie-plda.h
-> +++ b/drivers/pci/controller/plda/pcie-plda.h
-> @@ -119,4 +119,10 @@ struct plda_pcie_rp {
->  	struct plda_msi msi;
->  	void __iomem *bridge_addr;
->  };
-> +
-> +void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
-> +			    phys_addr_t axi_addr, phys_addr_t pci_addr,
-> +			    size_t size);
-> +int plda_pcie_setup_iomems(struct pci_host_bridge *bridge,
-> +			   struct plda_pcie_rp *port);
->  #endif
-> --
-> 2.17.1
+> 
+> changelog v7:
+> * Updated commit message.
+> * Add blank lines around newly added dt binding.
+> 
+> changelog v6:
+> * Reworked patchset to cover DW QoS Ethernet IP also.
+> 
+> changelog v5:
+> * As rightly suggested by Serge, reworked redundant code.
+> 
+> changelog v4: 
+> * Replaced tx_q_coe_lmt with bit flag.
+> 
+> changelog v3: 
+> * Resend with complete email list.
+> 
+> changelog v2: 
+> * Reformed binding description.
+> * Minor grammatical corrections in comments and commit messages.
+> 
+> Rohan G Thomas (2):
+>   dt-bindings: net: snps,dwmac: Tx coe unsupported
+>   net: stmmac: Tx coe sw fallback
+> 
+>  Documentation/devicetree/bindings/net/snps,dwmac.yaml |  5 +++++
+>  drivers/net/ethernet/stmicro/stmmac/stmmac_main.c     | 10 ++++++++++
+>  drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c |  3 +++
+>  include/linux/stmmac.h                                |  1 +
+>  4 files changed, 19 insertions(+)
+> 
+> -- 
+> 2.25.1
+> 
 
