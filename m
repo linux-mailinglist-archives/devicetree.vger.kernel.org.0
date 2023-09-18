@@ -1,46 +1,73 @@
-Return-Path: <devicetree+bounces-1216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 514A87A55CD
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 00:29:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CEE37A5624
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 01:17:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53DEE1C209EE
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 22:29:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E6DB1C209FC
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 23:17:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E283F34192;
-	Mon, 18 Sep 2023 22:29:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF90530FA5;
+	Mon, 18 Sep 2023 23:17:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE3BB450FA
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 22:29:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AED08C433C7;
-	Mon, 18 Sep 2023 22:29:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695076182;
-	bh=mDnuLPjnWhvrz7zvBdQofJEYR3fhnCIVsuJPvQIYWUQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U0JWg6czFfkApL/f7hioO32UamWDOagGvWQf37a9Mb2l7WrLa8zBuJ/npVqllcKa9
-	 EMMnnuzdwnbaCJ1X369UyMyC0UgpCS3+fQfJUl3K6TVY2jJHBTwZpV9GQOi9nvrxes
-	 zR72TSXTJMw2dN9Cu309kINL1jk/ZJuelWIJ0vy9xm/5Omus71gSdzNP68WeWMmOiP
-	 hvghsppaKOiaG53UPkR5Tr7qn4B0mDY8wgUSJ+Q+R7Z+CjPmNU5Y54n8yeHe35tS5r
-	 GhO6SdY0wvlzraR5KeD8wpteP7x9JFQ6JGCUE+ndSq6ytPfJoYXLctuYm2FLav7ElI
-	 GAIm9/Ex87Vrg==
-Received: (nullmailer pid 1858098 invoked by uid 1000);
-	Mon, 18 Sep 2023 22:29:39 -0000
-Date: Mon, 18 Sep 2023 17:29:39 -0500
-From: Rob Herring <robh@kernel.org>
-To: John Watts <contact@jookia.org>
-Cc: dri-devel@lists.freedesktop.org, Jagan Teki <jagan@edgeble.ai>, devicetree@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Chris Morgan <macromorgan@hotmail.com>, Jessica Zhang <quic_jesszhan@quicinc.com>, Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Paul Cercueil <paul@crapouillou.net>, Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Christophe Branchereau <cbranchereau@gmail.com>, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [RFC PATCH v2 9/9] dt-bindings: display: panel: add Fascontek
- FS035VG158 panel
-Message-ID: <169507617909.1858058.4798985239779880637.robh@kernel.org>
-References: <20230918125853.2249187-1-contact@jookia.org>
- <20230918125853.2249187-10-contact@jookia.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE14450F5
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 23:17:39 +0000 (UTC)
+Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE42690;
+	Mon, 18 Sep 2023 16:17:37 -0700 (PDT)
+Received: by mail-qv1-xf32.google.com with SMTP id 6a1803df08f44-65806ba1221so7290056d6.1;
+        Mon, 18 Sep 2023 16:17:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695079057; x=1695683857; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=eZgj0kNITFKrAtHYiEcQ7nJa+lwRZCA5FwjQ7D2PR9k=;
+        b=Dp6L49XhV+cbUVBE63uISyG5eKSfsY+AkTHOnK4aVTRilINfvaWP7Ct74AmdysaKn8
+         CzG/IVGBSVU0/+xyiF2NIpE7S7/jsImN59hSvbc/0u+CmNQZXeDCSXzuZ7Miwn1tLSRN
+         KZrWhYQIax4wv7/tkgxax0HqvwpX5zk/tELpVWIwtGqx1vAbzLL0WQ9Wf/9vyXR2waCU
+         2nmHdsPyRIFsw9TBqlJ6Z7UcGITnrHmQ3bIeFgv3TCxlEzCSAYm6GgnmEhXYH6T/vxbY
+         lQMbZWieLuWNkwLXxJHydVAdHDIi3BByk3JQa4nxLR3CsWUtr1OXJdSsFv00O8f290Yo
+         IMIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695079057; x=1695683857;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eZgj0kNITFKrAtHYiEcQ7nJa+lwRZCA5FwjQ7D2PR9k=;
+        b=YGzlq2IHsliWK2qyNN295ChbYqn6kO9Kb9V/p9uLpDubZ0QF8PwKT5wE9bIAn06utb
+         ryHyU4iDC4DZaR0CCdUE6khWg69vzCZNuC77MYZn7K9PeLVUX/ErlBDrzkwu9EHUU2pk
+         XelxyJNC9p0YxH2G/F4YCK8B2cciwHwC13BQepbTTpla+EwqviSKplMTfPOTev3Iio5B
+         tds//4QHan0D4cBW2EU3Enbd7FDmh1RxhjsmtPaXY7KyVf/UwIE6MprU9fdVSvhi56dE
+         0oynhe3eoBLLebDG7weFLKt7Ywp8w7kTU7yseJv/Euhp1N0creVwT1uj2j5PcTCeMmmi
+         PGkg==
+X-Gm-Message-State: AOJu0YwJfiArthJBLS+xyJ31nn4guHzPWLkPAdD1Avpkq4FqQNVA8Y5P
+	Gln7UPuaWZ7A4Ktb2j5LNh0AshVOkM8=
+X-Google-Smtp-Source: AGHT+IHV7oqbfK6jGt4sVAIS6wPFmLSqCrwrnE3qUAQyHr2zntSI1doa5jU5ZdoXVj/x/F2Rv5uZKQ==
+X-Received: by 2002:a0c:b2ce:0:b0:649:8baa:2986 with SMTP id d14-20020a0cb2ce000000b006498baa2986mr10283553qvf.2.1695079056742;
+        Mon, 18 Sep 2023 16:17:36 -0700 (PDT)
+Received: from localhost ([2607:fea8:529e:7800::ef5a])
+        by smtp.gmail.com with ESMTPSA id i13-20020a0cf38d000000b0064f5d70d072sm1145542qvk.37.2023.09.18.16.17.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Sep 2023 16:17:36 -0700 (PDT)
+Date: Mon, 18 Sep 2023 19:17:34 -0400
+From: Richard Acayan <mailingradian@gmail.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sdm670: Fix pdc mapping
+Message-ID: <ZQjajpc4VLslnGgv@radian>
+References: <20230818-topic-670_pdc_fix-v1-1-1ba025041de7@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,19 +76,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230918125853.2249187-10-contact@jookia.org>
+In-Reply-To: <20230818-topic-670_pdc_fix-v1-1-1ba025041de7@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-
-On Mon, 18 Sep 2023 22:58:53 +1000, John Watts wrote:
-> This is a small 3.5" 640x480 IPS LCD panel.
-> 
-> Signed-off-by: John Watts <contact@jookia.org>
+On Fri, Aug 18, 2023 at 01:19:09PM +0200, Konrad Dybcio wrote:
+> As pointed out by Richard, I missed a non-continuity in one of the ranges.
+> Fix it.
+>
+> Reported-by: Richard Acayan <mailingradian@gmail.com>
+> Fixes: b51ee205dc4f ("arm64: dts: qcom: sdm670: Add PDC")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  .../display/panel/fascontek,fs035vg158.yaml   | 56 +++++++++++++++++++
->  1 file changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/fascontek,fs035vg158.yaml
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Just a friendly reminder to everyone that this patch is still here.
 
+Also, I see no issues arising from this patch.
+
+Acked-by: Richard Acayan <mailingradian@gmail.com>
+
+>  arch/arm64/boot/dts/qcom/sdm670.dtsi | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+> index 84cd2e39266f..ba2043d67370 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+> @@ -1328,7 +1328,8 @@ pdc: interrupt-controller@b220000 {
+>  			compatible = "qcom,sdm670-pdc", "qcom,pdc";
+>  			reg = <0 0x0b220000 0 0x30000>;
+>  			qcom,pdc-ranges = <0 480 40>, <41 521 7>, <49 529 4>,
+> -					  <54 534 24>, <79 559 30>, <115 630 7>;
+> +					  <54 534 24>, <79 559 15>, <94 609 15>,
+> +					  <115 630 7>;
+>  			#interrupt-cells = <2>;
+>  			interrupt-parent = <&intc>;
+>  			interrupt-controller;
+>
+> ---
+> base-commit: 7271b2a530428b879443b274c191b34536a4ea11
+> change-id: 20230818-topic-670_pdc_fix-d07fbdf4d179
+>
+> Best regards,
+> -- 
+> Konrad Dybcio <konrad.dybcio@linaro.org>
+>
 
