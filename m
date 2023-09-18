@@ -1,241 +1,208 @@
-Return-Path: <devicetree+bounces-1005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09CDB7A458C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 11:09:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C128B7A45D0
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 11:24:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA3C01C20A37
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 09:09:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AD18282296
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 09:24:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07DF314F6A;
-	Mon, 18 Sep 2023 09:09:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E02B7156C2;
+	Mon, 18 Sep 2023 09:24:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1476D5382
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 09:09:40 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 865BD1B4;
-	Mon, 18 Sep 2023 02:08:35 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0061A111A1;
+	Mon, 18 Sep 2023 09:24:50 +0000 (UTC)
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 555AB10A;
+	Mon, 18 Sep 2023 02:24:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695028115; x=1726564115;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version:content-id;
-  bh=0uQHwVJQ/72M+fo4Gun6LQuu5CNMkqH8cPrlkJ03Qgg=;
-  b=Hku4CK9yyd1SiCf20NRTz0DN1jjI3SS7uCySHGx0ztfKcYcK8qicGF6e
-   H4UqrMZStPFLgfF9ZVdYxcmsWT1Jx20STEWkI8V5LUy499wmBRD1FbGas
-   KlkiuKjaUlqJIe/m5+HcH0oCl/IZYjs1U6eKGBcyGe8NxbHY7S8QkvVlT
-   UZhNhmS22ygnyHmxJ6CMwI99WkeUBs8s8qWPrAEocsgM6FGBxIeun8Wpi
-   2mGwnnlYjmJXT73sG/IyNju53x3xgb1h0I12/T3Y14hWY9yd6p0m4/TVW
-   nhGIqXE5KVyc+kTk8SdwfAyHCwVnmqK8b1W/7MU29gGD32hGqlfV7IhGI
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="364647107"
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1695029082; x=1726565082;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=rBLo8RSiA4+VPh/gflbudfWUTirQ8DEpQN+f4eh5HTM=;
+  b=pA6/i6uhBLOYYzgg1xlSf8dYDxxIqiLAHLrKfBQ7oLwR9B11ezCg5JTs
+   P5QCrYT0RGIADZ84aLFifvBJsDRjxWL2p0mLRCN0KHq4N/GVBomMSj8Js
+   kLJeY/Dysi4l9iCwxSZCFtS/yBGeQTcNaMsnows5wM+Ymzd4XvCrbN6hz
+   cpnvuaHZZEeZ6PwHA3YGUTNrmBobCQgD/pwOQYG/5tR3xVv+iFtiPqntZ
+   8kxH9XBlrIv/K2FBIzYp2U4LU7JKDBhj3NM6w6vvf3N1uSHcW1RkB+ES3
+   5CLGXbVqhZvsj9hnDcZGne2lQr8lLpq1VUq2oTuRWHLpiIMEM3YY5wqed
+   g==;
+X-CSE-ConnectionGUID: CLPLQpskQDi9rfQvvrRf3Q==
+X-CSE-MsgGUID: UQlJw/OrSm6lgrfH0xdQ3w==
+X-ThreatScanner-Verdict: Negative
 X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; 
-   d="scan'208";a="364647107"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2023 02:07:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="745742708"
-X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; 
-   d="scan'208";a="745742708"
-Received: from nprotaso-mobl1.ccr.corp.intel.com ([10.252.49.156])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2023 02:07:48 -0700
-Date: Mon, 18 Sep 2023 12:07:46 +0300 (EEST)
-From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: Max Filippov <jcmvbkbc@gmail.com>
-cc: LKML <linux-kernel@vger.kernel.org>, 
-    linux-serial <linux-serial@vger.kernel.org>, devicetree@vger.kernel.org, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-    Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-    Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 2/4] drivers/tty/serial: add driver for the ESP32 UART
-In-Reply-To: <CAMo8BfJs+ToGNUCtMamU10EqpMR4PNDmJ8+4ya0jZtqTFwCEOQ@mail.gmail.com>
-Message-ID: <8c524546-a6ae-ac68-bac3-f1fcc2e2f732@linux.intel.com>
-References: <20230913211449.668796-1-jcmvbkbc@gmail.com> <20230913211449.668796-3-jcmvbkbc@gmail.com> <13c43e44-aaee-c44-a32-87febd81379c@linux.intel.com> <CAMo8BfJs+ToGNUCtMamU10EqpMR4PNDmJ8+4ya0jZtqTFwCEOQ@mail.gmail.com>
+   d="scan'208";a="5069830"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 18 Sep 2023 02:24:41 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 18 Sep 2023 02:23:59 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Mon, 18 Sep 2023 02:23:59 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jzIv7gHqOmL9pvSYxCU3DZjZtl23aJU4t12uWOlRFrLachilcbjZOs6U2rN0hQOseqsJ5uHWZtpHDHMxQaqSr4m9u0XkLOaNBW53mUBVwpTr7bEf/BhgeqsOBIm3UUukllHz7DC+Kt3HId1Lq4/FkXNNdkFZz/bbdNe9SZHW5/DcLU/ULnQ1IKEEA2pluvTpvVDz2Ek7qvUnxJ+3WrlTvi3uaoI125iW08A1rraVnerAa/oUEuI2sorUzo7F1m3ZmSfmHWxLGHsBwbhYzsnOFW7RzG+kUMcuhCFO3vGnzsoci0tzTRihRbMtf5+GLKfx9CJqqij/bfMxGc9zwN6B4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rBLo8RSiA4+VPh/gflbudfWUTirQ8DEpQN+f4eh5HTM=;
+ b=PptBWdm0K5OKF0nbEqFm6K3ovyP0ar8N3r21lI80X6cZwBPKd112Og25Hn+9fXA0dKc5jLNUANhpM2+T9Y5ViCZG6iv/Mfur7gBgr5mM5u9FLLXS/VOWCbGWh1YJQVwp9yudDgANRYnfLhUv67vMMZD3l8VNZXoTOs8wNpheC4OtVz8wV6/uaTx0vJKNltz7bf8elOVtZReLrZnOMJX/zmh4QSQPQ4kEEStMMEJnkEee1ObEpI2ocT7lsaqz+P9OVpnUUjDxjyQnCekviBQ3/pLw9+8jmYXUtPmugdNVyJFhAQ9NT5Trwf5rPAJk+9l0dw83sy0sCutn5xsIoZ/ESQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rBLo8RSiA4+VPh/gflbudfWUTirQ8DEpQN+f4eh5HTM=;
+ b=R5UUrDz19a571OovLs4YcXlEuOeojbAXDxzVKue9zjDUvYKIY2RgkaQMNuL7zaqzMKLZqN6+eLQgJ0hNpFebTPsq22Nrh/EPMY5/v5trLxAtKMg6P/l5WMqHsiljYovkuQlesyJwxTHkfhFSdqJs2zH/CmsO/+C9fL+hVnlNLg0=
+Received: from DM6PR11MB3532.namprd11.prod.outlook.com (2603:10b6:5:70::25) by
+ SJ2PR11MB7598.namprd11.prod.outlook.com (2603:10b6:a03:4c6::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.21; Mon, 18 Sep
+ 2023 09:23:55 +0000
+Received: from DM6PR11MB3532.namprd11.prod.outlook.com
+ ([fe80::6352:54f7:6c42:69ef]) by DM6PR11MB3532.namprd11.prod.outlook.com
+ ([fe80::6352:54f7:6c42:69ef%6]) with mapi id 15.20.6792.026; Mon, 18 Sep 2023
+ 09:23:55 +0000
+From: <Parthiban.Veerasooran@microchip.com>
+To: <krzysztof.kozlowski@linaro.org>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+	<Horatiu.Vultur@microchip.com>, <Woojung.Huh@microchip.com>,
+	<Nicolas.Ferre@microchip.com>, <UNGLinuxDriver@microchip.com>,
+	<Thorsten.Kummermehr@microchip.com>, <davem@davemloft.net>,
+	<edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <corbet@lwn.net>, <Steen.Hegelund@microchip.com>,
+	<rdunlap@infradead.org>, <horms@kernel.org>, <casper.casan@gmail.com>,
+	<andrew@lunn.ch>
+Subject: Re: [RFC PATCH net-next 0/6] Add support for OPEN Alliance 10BASE-T1x
+ MACPHY Serial Interface
+Thread-Topic: [RFC PATCH net-next 0/6] Add support for OPEN Alliance
+ 10BASE-T1x MACPHY Serial Interface
+Thread-Index: AQHZ4mDzB/QUuCJz5U6/cDo3W2/tF7AT5fQAgAThHgCAACbuAIAHcNKA
+Date: Mon, 18 Sep 2023 09:23:54 +0000
+Message-ID: <a6414443-c5c1-6380-110c-626e6ea649f1@microchip.com>
+References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
+ <eef69aa5-73c2-9789-9f6d-c3300553c44d@linaro.org>
+ <fab8908e-ce74-eff0-8e67-6259b3ad5e1e@microchip.com>
+ <588db15e-62f1-ca9e-211c-21d58e15bd73@linaro.org>
+In-Reply-To: <588db15e-62f1-ca9e-211c-21d58e15bd73@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM6PR11MB3532:EE_|SJ2PR11MB7598:EE_
+x-ms-office365-filtering-correlation-id: 9503737d-7016-447e-40a2-08dbb828fad8
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: cYh9HNaKCF3CVk4uduJ+DNHxePODofDP2i3lzoTwq1voWCVG2ZeycKRZv4HH05ha6PmSj7F/HEV+aBb2Gp8JwY79ChR3O/QgdaPl2JlyFRjLdajmnflaRl+86gGsegqoVu0ET9JHQnxqo/c+FqJ9EcS6d6RO8OsFTHp8KUtWNxLHo4LvPqQAQm+nDpVzYFIfGxKSLXMQ0lLlBhfoOyu+kEVgJc+pofhgV10dijYTzyT4kkrtdpYQOHEUtWv0kdGCSfdrfYJsdZ3Tk0PzGZC7dFBmohYRgeMLyF7BtRwHx/3KLf7NgyBKkCWhSNeogmCPwSmwko7/hVOLwVxQmgJHHRQpAknpRTekH2fiJaQz5+zmjQTIxig2B2bsLrL89Xa0nLwqBltMGTVn+b8jNmc8/FKdxc4qhJhxEDL7pWjy7xcWACI5cFjbPZtR6eVlc/Nxu/3YiO8ies5D1FV8P2rQWyFP6BlDDpZ/SpU837EXs0aZmX/DwPCV5AIGXbGPk93S4k/ZlKPsZx7SonTTrlWGbUCoEQzTZ6U/XeXOrMdH/MM+jEOAULeu7xUQUJZaAJ6iCjVM4C9jjLw1tlee/kzcTA0pUdHXK2dsxFlu7yu1cyoZRMHpCqNe1IsKePf80nGxJT5ZP3RRmC7vfFILluQKMQi2Y4wTFNdfnS1KBq+rv5A=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3532.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(346002)(376002)(366004)(396003)(136003)(451199024)(1800799009)(186009)(83380400001)(31686004)(6486002)(6506007)(71200400001)(53546011)(31696002)(38070700005)(36756003)(38100700002)(122000001)(2616005)(26005)(6512007)(2906002)(5660300002)(478600001)(86362001)(91956017)(4326008)(8936002)(7416002)(8676002)(76116006)(66556008)(66476007)(316002)(6916009)(64756008)(66446008)(41300700001)(66946007)(54906003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?V3pRb3grUjl5d3VmMFN2Tk94N1BiNGF0dlcvMjFDTXkvak14N0RlWXMzUU5U?=
+ =?utf-8?B?VU1aanVGM01wZkJ1VmU1aXc3ZXlobW5BLzFvZisySHZJMkRjVWo1RUhlUGM1?=
+ =?utf-8?B?V2RuR1BQbjNySjUreTZwRE12RExwS3ROYlgxaDJhakNwY1VQMnNPMmt1Y2wr?=
+ =?utf-8?B?M0tuMEVPQmJqZ3dFU1NXL2g4ZnU4UEJOQnppbGNIcHdXY0hHVGxBbTZabUNY?=
+ =?utf-8?B?NU83Q3NtcjlGOGgzc2lDeUFOOTFZTldjc3BpekNVa1ZaUDVpM00zWW83UnpF?=
+ =?utf-8?B?RzZtQVhGcjc1Q2xZaHpLWXNueGk1Vnh5bnFYbEpkM0Y2WTBJNlpwRHhEcUVa?=
+ =?utf-8?B?cTkvZU1rSkJvczZabTl2di9NUEsrVzhpUWN1cmEyd0kzWEZGUnlINlRyWFlO?=
+ =?utf-8?B?a25XWmZDM1l0SGhJWldyNUVsT1ZtT1lXaE8zZWlYMk9hR001MzBnTlVKTkxn?=
+ =?utf-8?B?V2Zka3JSRzAwK2pSZWNJdUVvbmhKYzQ0cnl0U281RTZVdGpPSjJLcnJiTjBr?=
+ =?utf-8?B?aGsxa3JkNWg4QWJZNCtKMEVQQUlLQ28vTUVqSWlZTmkvdFd6TVdHbWt4U1pL?=
+ =?utf-8?B?T2J1NGt3TFdKK3EwdjhjWkI1dHN6WFh6RjZnWGtoR0cxSm15NFBRY2VIMkM5?=
+ =?utf-8?B?UGhVcDBTMzY0WlZKZ3JmY21UMmNoZllwL29yRWEwT0ZBV2dZOXZLQnBDSzRs?=
+ =?utf-8?B?cU9NRjFhODdMempuellyd1JOc2VVQXhySlhsVWxtUytSbDNKeEJab1MvckI2?=
+ =?utf-8?B?dVRrd21vV2ZuSWVxN01kN2oyK3o2N0NoWXNnM0FIeEFDbyt2em5UNEFmQytF?=
+ =?utf-8?B?Q3Q5L0U5YzBvYk1DL0dYQlhTZWM4aFRjVkpaeUUyQ29xQmw2MDUyQkRMVWZG?=
+ =?utf-8?B?U3lzd09RbmtnYnJQelhTVCs2VmY0M2QzTVJYak5jMmFtRXk1U0FPVGRDMElM?=
+ =?utf-8?B?TlZpSENRdS9INTZEUlduUlZ2WUN2cnU1dGhrRFNLU2YzRVp0VTZ4WWJRQno3?=
+ =?utf-8?B?aWdjcTJvakNxN1lUZXNNOE5CVEM4Z0x5WFNRMjRRb1Zrdk9Fd090ZVlBUFpE?=
+ =?utf-8?B?dkdFMTh0OTRTUGxwY0RkVkhTYjgzTVZvTEFmY2MvMUg3TGhkYXNqM2w0T3pC?=
+ =?utf-8?B?RFRJOXNsTm9ZSnFSUmNBN2oxWlh6dVdsMlI4eUVaMmhXSmpyYmlGR0QvUHJ2?=
+ =?utf-8?B?T1VMdmwzVWplejJ1MFpjZjY3c1VQUUpZblVvYkdGcVYzdjZEczJwcHdRU0NS?=
+ =?utf-8?B?RENSdnhSdlovVVJ0d3Z6L3BQMnpFWThmY1lPeWgrT1haVSsyMzhIeVBiOWtH?=
+ =?utf-8?B?NjQybEc4Mm9Sc1NmVUozRGtLSTdwTmpXU3YycGV3eE16UHFaTjhxZmpleEdG?=
+ =?utf-8?B?OU5JSlVMS2Y2TEpYRE1RaTNZMjhJWHo2M2VTMHM0MzQ1ZzlWN3FiWW1CS1Ev?=
+ =?utf-8?B?OHdwdlA1WUhxTHBWY01BajVlaXJuQ0F2TTROd3ZUYmlCY0MxbnBXTEZQUnRr?=
+ =?utf-8?B?Snh3TVMyVW52a1h5SlUyRDNuanZEY2hXb1VIalo0NVp6RzIxZEc1UjFIZWNY?=
+ =?utf-8?B?K0FnS0g5d001RjJBUVZOYnkvQmJvL3lhM01HY0Z1RDFtNDFKSjhKSzNncFVP?=
+ =?utf-8?B?aXBDd3Q0cEkwa08rdWNDOFEvaDJLZmRxOE1UNmd6K1NqMlBEZFNtc1hkc3FO?=
+ =?utf-8?B?WVJDOEtwb1YyRXBYRFhNV0IxRjc4NjdqMVNaWmh5Wjh2czFDa3Y0WE1Pd1pG?=
+ =?utf-8?B?Wm5Ga1RUTGtGWmhWNUtncFdKK0pteUYyeXJPRkdIY2ZVUkhvWUFBVHJwK0pW?=
+ =?utf-8?B?MDVsOG45S3NDS1RwcFU3UlZTMEdLN2tNM2RMcWdnMUV4OUkxbzlrbW1zSE1I?=
+ =?utf-8?B?OGorR29NWUJuRGpncE56QnBwU0VRSzYwR1dGTU5BR0RYRHZGazZraVFLQnpH?=
+ =?utf-8?B?MmhPY28wZ2t3dldvaFE0NkYrT3I0aHV0UE1nYkpxK1FkL1NRdTc0MGFyRmxv?=
+ =?utf-8?B?bzlyVkMyRXNHMWY4amM2dTR4alJsaStGOHdyR0p0TjJUZkI5TkhHQmQ0Q0o0?=
+ =?utf-8?B?ZCtDaXA3b2pHeE03WXVSRGtNVVY5UTJ4eElscHFsYXR1U3FiV2YvdU93TWhr?=
+ =?utf-8?B?YVVXbEhYdU9yZ2RXMktucmFQUDJ2bnk3QTBCSHJ2OTJEd1NWcnhxeGZOc2tJ?=
+ =?utf-8?B?eXc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <04CEF8FAEC5C1648922089081B7B3FF5@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-1672321599-1695027504=:1832"
-Content-ID: <e7c73a6f-538d-b59a-3363-469b1d98c1a@linux.intel.com>
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-	autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3532.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9503737d-7016-447e-40a2-08dbb828fad8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2023 09:23:54.9229
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: I4RmK5/shP/nDUi9oA1OLWZ86xUhiSjDjLUEsfob998odyeEUASd6PgI+BvJogdH7XS16jvksT4gN2XJ6FLqbEBM9Wwwovc3PXqjAp9/lvcBPhabhNc8te6SybcKC2KR
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7598
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
---8323329-1672321599-1695027504=:1832
-Content-Type: text/plain; CHARSET=UTF-8
-Content-Transfer-Encoding: 8BIT
-Content-ID: <cb6f11fd-cc9f-822b-e14b-6a647c04a2f@linux.intel.com>
-
-On Fri, 15 Sep 2023, Max Filippov wrote:
-
-> On Thu, Sep 14, 2023 at 6:07 AM Ilpo Järvinen
-> <ilpo.jarvinen@linux.intel.com> wrote:
-> >
-> > On Wed, 13 Sep 2023, Max Filippov wrote:
-> >
-> > > Add driver for the UART controllers of the Espressif ESP32 and ESP32S3
-> > > SoCs. Hardware specification is available at the following URLs:
-> > >
-> > >   https://www.espressif.com/sites/default/files/documentation/esp32_technical_reference_manual_en.pdf
-> > >   (Chapter 13 UART Controller)
-> > >   https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf
-> > >   (Chapter 26 UART Controller)
-> > >
-> > > Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
-> > > ---
-> > >  drivers/tty/serial/Kconfig       |  13 +
-> > >  drivers/tty/serial/Makefile      |   1 +
-> > >  drivers/tty/serial/esp32_uart.c  | 766 +++++++++++++++++++++++++++++++
-> > >  include/uapi/linux/serial_core.h |   3 +
-> > >  4 files changed, 783 insertions(+)
-> > >  create mode 100644 drivers/tty/serial/esp32_uart.c
-> > >
-> > > diff --git a/drivers/tty/serial/Kconfig b/drivers/tty/serial/Kconfig
-> > > index bdc568a4ab66..d9ca6b268f01 100644
-> > > --- a/drivers/tty/serial/Kconfig
-> > > +++ b/drivers/tty/serial/Kconfig
-> > > @@ -1578,6 +1578,19 @@ config SERIAL_NUVOTON_MA35D1_CONSOLE
-> > >         but you can alter that using a kernel command line option such as
-> > >         "console=ttyNVTx".
-> > >
-> > > +config SERIAL_ESP32
-> > > +     tristate "Espressif ESP32 UART support"
-> > > +     depends on XTENSA_PLATFORM_ESP32 || (COMPILE_TEST && OF)
-> > > +     select SERIAL_CORE
-> > > +     select SERIAL_CORE_CONSOLE
-> > > +     select SERIAL_EARLYCON
-> > > +     help
-> > > +       Driver for the UART controllers of the Espressif ESP32xx SoCs.
-> > > +       When earlycon option is enabled the following kernel command line
-> > > +       snippets may be used:
-> > > +         earlycon=esp32s3uart,mmio32,0x60000000,115200n8,40000000
-> > > +         earlycon=esp32uart,mmio32,0x3ff40000,115200n8
-> > > +
-> > >  endmenu
-> > >
-> > >  config SERIAL_MCTRL_GPIO
-> > > diff --git a/drivers/tty/serial/Makefile b/drivers/tty/serial/Makefile
-> > > index 138abbc89738..7b73137df7f3 100644
-> > > --- a/drivers/tty/serial/Makefile
-> > > +++ b/drivers/tty/serial/Makefile
-> > > @@ -88,6 +88,7 @@ obj-$(CONFIG_SERIAL_MILBEAUT_USIO) += milbeaut_usio.o
-> > >  obj-$(CONFIG_SERIAL_SIFIVE)  += sifive.o
-> > >  obj-$(CONFIG_SERIAL_LITEUART) += liteuart.o
-> > >  obj-$(CONFIG_SERIAL_SUNPLUS) += sunplus-uart.o
-> > > +obj-$(CONFIG_SERIAL_ESP32)   += esp32_uart.o
-> > >
-> > >  # GPIOLIB helpers for modem control lines
-> > >  obj-$(CONFIG_SERIAL_MCTRL_GPIO)      += serial_mctrl_gpio.o
-> > > diff --git a/drivers/tty/serial/esp32_uart.c b/drivers/tty/serial/esp32_uart.c
-> > > new file mode 100644
-> > > index 000000000000..05ec0fce3a62
-> > > --- /dev/null
-> > > +++ b/drivers/tty/serial/esp32_uart.c
-
-> > > +static u32 esp32_uart_tx_fifo_cnt(struct uart_port *port)
-> > > +{
-> > > +     return (esp32_uart_read(port, UART_STATUS_REG) &
-> > > +             port_variant(port)->txfifo_cnt_mask) >> UART_TXFIFO_CNT_SHIFT;
-> > > +}
-> > > +
-> > > +static u32 esp32_uart_rx_fifo_cnt(struct uart_port *port)
-> > > +{
-> > > +     return (esp32_uart_read(port, UART_STATUS_REG) &
-> > > +             port_variant(port)->rxfifo_cnt_mask) >> UART_RXFIFO_CNT_SHIFT;
-> >
-> > FIELD_GET().
-> 
-> I see how FIELD_GET can be used in other places, but here
-> port_variant(port)->rxfifo_cnt_mask is not a runtime constant and
-> FIELD_GET does not work with non-constant field definitions. Any
-> suggestions?
-
-Ah, I sorry. I probably moved around while composing the reply and it 
-seems I returned to add the comment to a wrong line.
-
-I don't have a good suggestion for this one besides breking it into 
-multiple lines for better readability.
-
-> > Use more lines (and a local variable) instead of splitting one line. It
-> > will be more readable that way.
-> 
-> Ok.
-
-> > > +     u32 frag = (port->uartclk * 16) / baud - div * 16;
-> > > +
-> > > +     if (div <= port_variant(port)->clkdiv_mask) {
-> > > +             esp32_uart_write(port, UART_CLKDIV_REG,
-> > > +                              div | (frag << UART_CLKDIV_FRAG_SHIFT));
-> >
-> > FIELD_PREP().
-> 
-> Ok.
-> 
-> > Also div be encapsulated into FIELD_PREP here even if it's
-> > shift is 0.
-> 
-> This field's mask, port_variant(port)->clkdiv_mask, is, again, not a runtime
-> constant. Any suggestion for this?
-
-So you're saying there are two different sized fields. I suppose it can be
-left as is then.
-
-> > > +                     port->uartclk / port_variant(port)->clkdiv_mask);
-> > > +             esp32_uart_write(port, UART_CLKDIV_REG,
-> > > +                              port_variant(port)->clkdiv_mask |
-> > > +                              UART_CLKDIV_FRAG_MASK);
-> >
-> > I think you want to make the meaning more obvious here by using
-> > FIELD_MAX(UART_CLKDIV_FRAG_MASK);
-> 
-> No. I think FIELD_MAX makes it less obvious, because to work properly
-> it must be not just
->   FIELD_MAX(UART_CLKDIV_FRAG),
-> but
->   FIELD_PREP(UART_CLKDIV_FRAG, FIELD_MAX(UART_CLKDIV_FRAG)).
-
-Maybe add FIELD_PREP_MAX() in a preparatory patch to bitfield.h as this 
-looks something that could be of use beyond this driver.
-
-> > > +     esp32_uart_write(port, UART_CONF0_REG, conf0);
-> > > +     esp32_uart_write(port, UART_CONF1_REG, conf1);
-> > > +     spin_unlock_irqrestore(&port->lock, flags);
-> > > +
-> > > +     /*
-> > > +      * esp32s3 may not support 9600, passing its minimal baud rate
-> > > +      * as the min argument would trigger a WARN inside uart_get_baud_rate
-> > > +      */
-> > > +     baud = uart_get_baud_rate(port, termios, old,
-> > > +                               0, port->uartclk / 16);
-> >
-> > This looks questionable solution to the problem mentioned in the comment.
-> > What happens when user asks for baudrates below the minimum supported one?
-> 
-> I'll change it to refuse to change to unsupported baud rate and set default
-> to 115200.
->
-> > You might need to do something touching the core code to handle the case
-> > where 9600 is not possible fallback.
-> 
-> I'd rather make a fallback to 115200, as it's a much more reasonable default.
-
-I'll have to see the code before commenting on these.
-
--- 
- i.
---8323329-1672321599-1695027504=:1832--
+SGkgS3J6eXN6dG9mLA0KDQpPbiAxMy8wOS8yMyA5OjE1IHBtLCBLcnp5c3p0b2YgS296bG93c2tp
+IHdyb3RlOg0KPiBFWFRFUk5BTCBFTUFJTDogRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0
+YWNobWVudHMgdW5sZXNzIHlvdSBrbm93IHRoZSBjb250ZW50IGlzIHNhZmUNCj4gDQo+IE9uIDEz
+LzA5LzIwMjMgMTU6MjYsIFBhcnRoaWJhbi5WZWVyYXNvb3JhbkBtaWNyb2NoaXAuY29tIHdyb3Rl
+Og0KPj4gSGkgS3J6eXN6dG9mLA0KPj4NCj4+IE9uIDEwLzA5LzIzIDQ6MjUgcG0sIEtyenlzenRv
+ZiBLb3psb3dza2kgd3JvdGU6DQo+Pj4gRVhURVJOQUwgRU1BSUw6IERvIG5vdCBjbGljayBsaW5r
+cyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5b3Uga25vdyB0aGUgY29udGVudCBpcyBzYWZl
+DQo+Pj4NCj4+PiBPbiAwOC8wOS8yMDIzIDE2OjI5LCBQYXJ0aGliYW4gVmVlcmFzb29yYW4gd3Jv
+dGU6DQo+Pj4+IFRoaXMgcGF0Y2ggc2VyaWVzIGNvbnRhaW4gdGhlIGJlbG93IHVwZGF0ZXMsDQo+
+Pj4+IC0gQWRkcyBzdXBwb3J0IGZvciBPUEVOIEFsbGlhbmNlIDEwQkFTRS1UMXggTUFDUEhZIFNl
+cmlhbCBJbnRlcmZhY2UgaW4gdGhlDQo+Pj4+ICAgICBuZXQvZXRoZXJuZXQvb2FfdGM2LmMuDQo+
+Pj4+IC0gQWRkcyBkcml2ZXIgc3VwcG9ydCBmb3IgTWljcm9jaGlwIExBTjg2NTAvMSBSZXYuQjAg
+MTBCQVNFLVQxUyBNQUNQSFkNCj4+Pj4gICAgIEV0aGVybmV0IGRyaXZlciBpbiB0aGUgbmV0L2V0
+aGVybmV0L21pY3JvY2hpcC9sYW44NjV4LmMuDQo+Pj4NCj4+PiBBbmQgd2h5IGlzIHRoaXMgUkZD
+PyBEbyB5b3UgbWVhbiBieSB0aGF0IGl0IGlzIGJ1Z2d5IGFuZCBub3QgZmluaXNoZWQsDQo+Pj4g
+c28gd2Ugc2hvdWxkIG5vdCByZXZpZXc/DQo+Pg0KPj4gTm8sIHRoaXMgaXMgbm90IGEgYnVnZ3kv
+dW5maW5pc2hlZCBwYXRjaCBzZXJpZXMuIEkgaGF2ZSBhZGRlZCBSRkMgYXMNCj4gDQo+IEkgZG9u
+J3QgdW5kZXJzdGFuZCBob3cgcGVvcGxlIG5hbWUgdGhlaXIgc3R1ZmYgUkZDLiBTb21lIHNlbmQg
+dG90YWxseQ0KPiBidWdneSBhbmQgdW50ZXN0ZWQgYmluZGluZ3MgdW5kZXIgUkZDIGFuZCwgYWZ0
+ZXIgcmVjZWl2aW5nIGZlZWRiYWNrLA0KPiByZXNwb25kIHN1cnByaXNlZCAtIGl0IHdhcyBqdXN0
+IFJGQyENCj4gDQo+IE90aGVyIHNlbmQgUkZDIGFuZCBleHBlY3QgcmV2aWV3Lg0KPiANCj4gSnVz
+dCBjYWxsIGl0IGEgUEFUQ0guIFBBVENIIGlzIFJlcXVlc3RpbmcgZm9yIENvbW1lbnRzLg0KT2ss
+IEkgdW5kZXJzdGFuZCB5b3VyIHBvaW50LiBGcm9tIHRoZSBuZXh0IHZlcnNpb24gb2YgcGF0Y2hl
+cywgSSB3aWxsIA0KcmVtb3ZlIFJGQy4NCg0KQmVzdCBSZWdhcmRzLA0KUGFydGhpYmFuIFYNCj4g
+DQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQo+IA0KPiANCg0K
 
