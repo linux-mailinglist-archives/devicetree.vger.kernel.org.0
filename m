@@ -1,164 +1,121 @@
-Return-Path: <devicetree+bounces-1145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42E2C7A50A3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:11:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1B7D7A50A9
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:11:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0E48281A43
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:11:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B88928201A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:11:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D64D2250F5;
-	Mon, 18 Sep 2023 17:08:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13371266A7;
+	Mon, 18 Sep 2023 17:09:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA1F42629D
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 17:08:22 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B6DB10C8;
-	Mon, 18 Sep 2023 10:08:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695056884; x=1726592884;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=R0IYlcHB+mDxKxCzHImBnbsDf3CITkOOK5I/jc4Vt4g=;
-  b=jHmVXcnHxtmp9g7cDHL/OkxMyvebYAO6oquBDrkJo/a+KVVdUPtx3o4J
-   MkVxl3S9cxl7Cw5d2qJb8JI3a65E+VPflJvNO+0VsWgvki9hFLNCiaSba
-   jC+xQpNXl1k8aT95Bhb5M2muNoIEtY3hIzw0rE6KrlLH6Zz+fRQ2ljPp0
-   Q+z8C4FtEwY5cEi6NWyMwHiriy3qHJo3YdqzMX4ZIvcIzxFyCNZfOpSsY
-   asldT74jT9fkq2KuYrs3kGhzAXk6jmhyWjmR6hVIsURsKZKKn0f38xiZH
-   diUwLCbpjKWkYzycxjq4BIbH9mR2SrwBRF/T3lXD9m4XXeNu2jRpJ2vhc
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="377037214"
-X-IronPort-AV: E=Sophos;i="6.02,157,1688454000"; 
-   d="scan'208";a="377037214"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2023 10:08:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="775202677"
-X-IronPort-AV: E=Sophos;i="6.02,157,1688454000"; 
-   d="scan'208";a="775202677"
-Received: from lkp-server02.sh.intel.com (HELO 9ef86b2655e5) ([10.239.97.151])
-  by orsmga008.jf.intel.com with ESMTP; 18 Sep 2023 10:07:58 -0700
-Received: from kbuild by 9ef86b2655e5 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qiHj2-0006J6-1j;
-	Mon, 18 Sep 2023 17:07:56 +0000
-Date: Tue, 19 Sep 2023 01:07:42 +0800
-From: kernel test robot <lkp@intel.com>
-To: Elaine Zhang <zhangqing@rock-chips.com>, mturquette@baylibre.com,
-	sboyd@kernel.org, kever.yang@rock-chips.com, heiko@sntech.de,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	huangtao@rock-chips.com, xxx@rock-chips.com, xf@rock-chips.com
-Subject: Re: [PATCH v1 4/8] clk: rockchip: Avoid __clk_lookup() calls
-Message-ID: <202309190032.1NPAySNx-lkp@intel.com>
-References: <20230918073151.7660-5-zhangqing@rock-chips.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 031BF262A8
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 17:09:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E14FCC433C8;
+	Mon, 18 Sep 2023 17:09:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695056990;
+	bh=ie0dC3735TiHhNHywyLZGNNJXTNALR8fq5hX9ARI43M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FRl8ot8Ru8cylWwmvUFsC8/QAQNlyPWbLQhkGQilrOqy854VlLcloQduphYb9MHC2
+	 3HCe61+jkh1M/lMJDiC3PBW/Ns73uVWyeUz+q8W3CMGW1Gjgno7tz73rdtIV4SLjLa
+	 5AN+SgTBbhUmWHxcZcDSw5r3aClyXXPfT3QFzH/TR02CVAjnqm7qDwlkxEj2OLS8AX
+	 DjcsOOlSBvr7YJ65DwkVixKUIttWLzS3buBYqRI2NJx0JDJUB4seW3FTOTcns9LZ/J
+	 H/5ezvoK5RHeNZRE+N7H4PTGjvxxrb+gZ5/xMBcjLvHJiFBmVvxLIh0lfJsh6eZedy
+	 g9veMrkFyCBhQ==
+Date: Mon, 18 Sep 2023 18:09:45 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Nik Bune <n3q5u8@yahoo.com>
+Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+	claudiu.beznea@microchip.com, linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: watchdog: atmel,at91rm9200-wdt: convert txt
+ to yaml
+Message-ID: <20230918-929fd60eab94754c28ce5cd4@fedora>
+References: <20230916154826.84925-1-n3q5u8@yahoo.com>
+ <20230917193556.10783-1-n3q5u8@yahoo.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="73rtgbxXCV6DBhLK"
+Content-Disposition: inline
+In-Reply-To: <20230917193556.10783-1-n3q5u8@yahoo.com>
+
+
+--73rtgbxXCV6DBhLK
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230918073151.7660-5-zhangqing@rock-chips.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Transfer-Encoding: quoted-printable
 
-Hi Elaine,
+On Sun, Sep 17, 2023 at 09:35:56PM +0200, Nik Bune wrote:
+> Hello, thank you for your review!=20
+>=20
+> On Sat, Sep 16, 2023 at 10:37:23PM +0200, Krzysztof Kozlowski wrote:
+>=20
+> >On 16/09/2023 17:48, Nik Bune wrote:
+> >> Convert txt file to yaml.
+> >> Add reg to the list of required properties.
+> >> Add mainteiners from ./scripts/get_maintainer.pl output.
+> >>
+> >> Signed-off-by: Nik Bune <n3q5u8@yahoo.com>
+> >> ---
+> >>  .../watchdog/atmel,at91rm9200-wdt.yaml        | 31 +++++++++++++++++++
+> >>  .../watchdog/atmel-at91rm9200-wdt.txt        |  9 ------
+> >>  2 files changed, 31 insertions(+), 9 deletions(-)
+> >>  create mode 100644 Documentation/devicetree/bindings/watchdog/atmel,a=
+t91rm9200-wdt.yaml
+> >>  delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-a=
+t91rm9200-wdt.txt
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/watchdog/atmel,at91rm92=
+00-wdt.yaml b/Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-w=
+dt.yaml
+> >> new file mode 100644
+> >> index 000000000000..e9706b9c1e6b
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.=
+yaml
+> >> @@ -0,0 +1,31 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
+> >
+> >How this copyright appeared here? Why are you adding some 2022
+> >copyrights of someone else?
+>=20
+> I copied it from the neighbour file atmel,at91sam9-wdt.yaml.
+> I assume I should leave only "SPDX-License-Identifier: (GPL-2.0-only OR B=
+SD-2-Clause)" here.
 
-kernel test robot noticed the following build warnings:
+The original file does not contain a license, which means (AFAIU) to
+GPL-2.0-only, unless the original author ACKs a relicensing.
 
-[auto build test WARNING on rockchip/for-next]
-[also build test WARNING on clk/clk-next linus/master v6.6-rc2 next-20230918]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>=20
+> Thank you!
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Elaine-Zhang/clk-clk-fractional-divider-Export-clk_fractional_divider_general_approximation-API/20230918-154652
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
-patch link:    https://lore.kernel.org/r/20230918073151.7660-5-zhangqing%40rock-chips.com
-patch subject: [PATCH v1 4/8] clk: rockchip: Avoid __clk_lookup() calls
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20230919/202309190032.1NPAySNx-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230919/202309190032.1NPAySNx-lkp@intel.com/reproduce)
+--73rtgbxXCV6DBhLK
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202309190032.1NPAySNx-lkp@intel.com/
+-----BEGIN PGP SIGNATURE-----
 
-All warnings (new ones prefixed by >>):
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQiEVAAKCRB4tDGHoIJi
+0ot9AP9gc12jMqf92DMjVEqIb7XtEMn6oIkJS8wSL0SfQVFYhQEAiBYvCYLNFJKd
+NXAz7wDn0QEFAHtv54asRO5qYtO0wQI=
+=Df90
+-----END PGP SIGNATURE-----
 
-   In file included from drivers/clk/rockchip/clk-rk3328.c:13:
->> drivers/clk/rockchip/clk-rk3328.c:160:7: warning: 'mux_armclk_p' defined but not used [-Wunused-const-variable=]
-     160 | PNAME(mux_armclk_p)             = { "apll_core",
-         |       ^~~~~~~~~~~~
-   drivers/clk/rockchip/clk.h:512:43: note: in definition of macro 'PNAME'
-     512 | #define PNAME(x) static const char *const x[] __initconst
-         |                                           ^
---
-   In file included from drivers/clk/rockchip/clk-rk3588.c:13:
->> drivers/clk/rockchip/clk-rk3588.c:447:7: warning: 'mux_armclkb23_p' defined but not used [-Wunused-const-variable=]
-     447 | PNAME(mux_armclkb23_p)                  = { "xin24m", "gpll", "b1pll",};
-         |       ^~~~~~~~~~~~~~~
-   drivers/clk/rockchip/clk.h:512:43: note: in definition of macro 'PNAME'
-     512 | #define PNAME(x) static const char *const x[] __initconst
-         |                                           ^
->> drivers/clk/rockchip/clk-rk3588.c:446:7: warning: 'mux_armclkb01_p' defined but not used [-Wunused-const-variable=]
-     446 | PNAME(mux_armclkb01_p)                  = { "xin24m", "gpll", "b0pll",};
-         |       ^~~~~~~~~~~~~~~
-   drivers/clk/rockchip/clk.h:512:43: note: in definition of macro 'PNAME'
-     512 | #define PNAME(x) static const char *const x[] __initconst
-         |                                           ^
->> drivers/clk/rockchip/clk-rk3588.c:445:7: warning: 'mux_armclkl_p' defined but not used [-Wunused-const-variable=]
-     445 | PNAME(mux_armclkl_p)                    = { "xin24m", "gpll", "lpll" };
-         |       ^~~~~~~~~~~~~
-   drivers/clk/rockchip/clk.h:512:43: note: in definition of macro 'PNAME'
-     512 | #define PNAME(x) static const char *const x[] __initconst
-         |                                           ^
-
-
-vim +/mux_armclk_p +160 drivers/clk/rockchip/clk-rk3328.c
-
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  144  
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  145  PNAME(mux_2plls_p)		= { "cpll", "gpll" };
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  146  PNAME(mux_gpll_cpll_p)		= { "gpll", "cpll" };
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  147  PNAME(mux_cpll_gpll_apll_p)	= { "cpll", "gpll", "apll" };
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  148  PNAME(mux_2plls_xin24m_p)	= { "cpll", "gpll", "xin24m" };
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  149  PNAME(mux_2plls_hdmiphy_p)	= { "cpll", "gpll",
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  150  				    "dummy_hdmiphy" };
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  151  PNAME(mux_4plls_p)		= { "cpll", "gpll",
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  152  				    "dummy_hdmiphy",
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  153  				    "usb480m" };
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  154  PNAME(mux_2plls_u480m_p)	= { "cpll", "gpll",
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  155  				    "usb480m" };
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  156  PNAME(mux_2plls_24m_u480m_p)	= { "cpll", "gpll",
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  157  				     "xin24m", "usb480m" };
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  158  
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  159  PNAME(mux_ddrphy_p)		= { "dpll", "apll", "cpll" };
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29 @160  PNAME(mux_armclk_p)		= { "apll_core",
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  161  				    "gpll_core",
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  162  				    "dpll_core",
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  163  				    "npll_core"};
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  164  PNAME(mux_hdmiphy_p)		= { "hdmi_phy", "xin24m" };
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  165  PNAME(mux_usb480m_p)		= { "usb480m_phy",
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  166  				    "xin24m" };
-fe3511ad8a1cf6 Elaine Zhang 2016-12-29  167  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--73rtgbxXCV6DBhLK--
 
