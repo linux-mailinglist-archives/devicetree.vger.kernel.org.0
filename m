@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-1094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E26877A49FE
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 14:47:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03FEF7A4A0E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 14:47:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 045E31C2092A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:47:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F7631C20EEF
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:47:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E22C1CF8A;
-	Mon, 18 Sep 2023 12:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E851CFB6;
+	Mon, 18 Sep 2023 12:47:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 972D91B269;
-	Mon, 18 Sep 2023 12:46:59 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F41E10CA;
-	Mon, 18 Sep 2023 05:45:27 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF7931CFA7;
+	Mon, 18 Sep 2023 12:47:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE07710E;
+	Mon, 18 Sep 2023 05:46:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695041127; x=1726577127;
+  t=1695041206; x=1726577206;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=evExW3bG5vKXvR/8ACHxSz8qanjHLTzC/i7m/KWMGPU=;
-  b=jNEe/K/tjRdDVQSZFAHti12RwNyt/9yOc9zTo+coGnQd1e3xkWKbU4v0
-   Gr8xwXQaEZumSdJ8sk7CxQexORIy/i4ob8fAJORMrbECv2G7ARjcZm9Aq
-   nwV+6KCnaEmEIjSSE6l0snIPdj8cebDM76pd2S2Bv2NAcly26JOjTFjBV
-   cqO8sjIp+1dw1k0oT+E3DRG9FF4qgqbkvgc/M15i/BLVK4ubEcWHtVQnc
-   XXhzJg7lkNwYvAcFyFibuTYi3XDfXArTz/EPUCfDQXTSJVSEXcWXXVJYX
-   zwm2puByPRW3c5PgxS3Cf7MylaBhyt0+bHnljLRSVPqyrew2VuUO2+NmM
+  bh=LJ1zp68bNG5G9J5GGwAmMBIOGWs61scPElasfTnNOpg=;
+  b=UuwBQVtKPugcK0VmbAqilryGhqK6UfoMEj9IdKym871dZLiSoA4HIAXe
+   cyg5KRX1Yd30VSikc/BtX1WSaEX0k+IhVoKC1DDNHRsrJGHBYSxD758kQ
+   o1Mjgga2O8RvKYVueWmmkMCCMSZ+oSoRMUWHYtLTort63nHxB4xCnuJyN
+   /p2Tq4M8718IdHL735gtXwf5mzG1epbzKP93vchMqVZzCx060uoPUQdxT
+   pN9TF2ZR2BXuNTuy/7NwaNCKYrIijUMzhS4Nfs8QSTslmiyu3DfCF8fE/
+   cHF7v365MSs0HwVtdja5oFvKiX0ruA6UwFROC4cG05QS+tTQZ0drO0J40
    Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="465990154"
+X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="383465402"
 X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; 
-   d="scan'208";a="465990154"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2023 05:45:09 -0700
+   d="scan'208";a="383465402"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2023 05:46:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="695496315"
+X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="739128262"
 X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; 
-   d="scan'208";a="695496315"
+   d="scan'208";a="739128262"
 Received: from kuha.fi.intel.com ([10.237.72.185])
-  by orsmga003.jf.intel.com with SMTP; 18 Sep 2023 05:45:05 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 18 Sep 2023 15:45:04 +0300
-Date: Mon, 18 Sep 2023 15:45:04 +0300
+  by orsmga007.jf.intel.com with SMTP; 18 Sep 2023 05:46:41 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 18 Sep 2023 15:46:40 +0300
+Date: Mon, 18 Sep 2023 15:46:40 +0300
 From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 To: Abdel Alkuor <alkuor@gmail.com>
 Cc: krzysztof.kozlowski+dt@linaro.org, bryan.odonoghue@linaro.org,
@@ -54,10 +54,10 @@ Cc: krzysztof.kozlowski+dt@linaro.org, bryan.odonoghue@linaro.org,
 	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
 	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
 	abdelalkuor@geotab.com
-Subject: Re: [PATCH v5 05/15] USB: typec: Check for EEPROM present
-Message-ID: <ZQhGUKocVc+yjOVL@kuha.fi.intel.com>
+Subject: Re: [PATCH v5 08/15] USB: typec: Add interrupt support for TPS25750
+Message-ID: <ZQhGsA4PyiaUy7+7@kuha.fi.intel.com>
 References: <20230917152639.21443-1-alkuor@gmail.com>
- <20230917152639.21443-6-alkuor@gmail.com>
+ <20230917152639.21443-9-alkuor@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,79 +66,142 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230917152639.21443-6-alkuor@gmail.com>
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230917152639.21443-9-alkuor@gmail.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+	SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Sun, Sep 17, 2023 at 11:26:29AM -0400, Abdel Alkuor wrote:
+Hi,
+
+On Sun, Sep 17, 2023 at 11:26:32AM -0400, Abdel Alkuor wrote:
 > From: Abdel Alkuor <abdelalkuor@geotab.com>
 > 
-> When an EEPROM is present, tps25750 loads the binary configuration from
-> EEPROM. Hence, all we need to do is wait for the device to switch to APP
-> mode
-> 
+> Update tps6598x interrupt handler to accommodate tps25750 interrupt
+
+You have the "why" explained here, but please also explain what you
+are doing - in this case it's not completely clear.
+
 > Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
 > ---
->  drivers/usb/typec/tipd/core.c     | 13 +++++++++++++
->  drivers/usb/typec/tipd/tps6598x.h |  3 +++
->  2 files changed, 16 insertions(+)
+>  drivers/usb/typec/tipd/core.c | 49 +++++++++++++++++++++++++----------
+>  1 file changed, 35 insertions(+), 14 deletions(-)
 > 
 > diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
-> index fea139c72d6d..b3d4b2b5bf5f 100644
+> index bd5436fd88fd..17b3bc480f97 100644
 > --- a/drivers/usb/typec/tipd/core.c
 > +++ b/drivers/usb/typec/tipd/core.c
-> @@ -37,6 +37,7 @@
->  #define TPS_REG_STATUS			0x1a
->  #define TPS_REG_SYSTEM_CONF		0x28
->  #define TPS_REG_CTRL_CONF		0x29
-> +#define TPS_REG_BOOT_STATUS		0x2D
->  #define TPS_REG_POWER_STATUS		0x3f
->  #define TPS_REG_RX_IDENTITY_SOP		0x48
->  #define TPS_REG_DATA_STATUS		0x5f
-> @@ -897,6 +898,17 @@ static int tps25750_apply_patch(struct tps6598x *tps)
->  	int ret;
->  	unsigned long timeout;
->  	u8 mode;
-> +	u64 status = 0;
+> @@ -120,6 +120,7 @@ struct tps6598x {
+>  	enum power_supply_usb_type usb_type;
+>  
+>  	int wakeup;
+> +	u32 status; /* status reg */
+>  	u16 pwr_status;
+>  	struct delayed_work	wq_poll;
+>  	irq_handler_t irq_handler;
+> @@ -539,50 +540,71 @@ static irqreturn_t cd321x_interrupt(int irq, void *data)
+>  	return IRQ_NONE;
+>  }
+>  
+> +static bool tps6598x_has_role_changed(struct tps6598x *tps, u32 status)
+> +{
+> +	status ^= tps->status;
 > +
-> +	ret = tps6598x_block_read(tps, TPS_REG_BOOT_STATUS, &status, 5);
-> +	if (ret)
-> +		return ret;
-> +	/*
-> +	 * Nothing to be done if the configuration
-> +	 * is being loaded from EERPOM
-> +	 */
-> +	if (status & TPS25750_BOOT_STATUS_I2C_EEPROM_PRESENT)
-> +		goto wait_for_app;
+> +	return status & (TPS_STATUS_PORTROLE | TPS_STATUS_DATAROLE);
+> +}
+> +
+>  static irqreturn_t tps6598x_interrupt(int irq, void *data)
+>  {
+>  	struct tps6598x *tps = data;
+> -	u64 event1 = 0;
+> -	u64 event2 = 0;
+> +	u64 event[2] = { };
+>  	u32 status;
+>  	int ret;
 >  
->  	ret = tps25750_start_patch_burst_mode(tps);
+>  	mutex_lock(&tps->lock);
+>  
+> -	ret = tps6598x_read64(tps, TPS_REG_INT_EVENT1, &event1);
+> -	ret |= tps6598x_read64(tps, TPS_REG_INT_EVENT2, &event2);
+> +	if (tps->is_tps25750) {
+> +		ret = tps6598x_block_read(tps, TPS_REG_INT_EVENT1, event, 11);
+> +	} else {
+> +		ret = tps6598x_read64(tps, TPS_REG_INT_EVENT1, &event[0]);
+> +		ret |= tps6598x_read64(tps, TPS_REG_INT_EVENT2, &event[1]);
+> +	}
+> +
 >  	if (ret) {
-> @@ -908,6 +920,7 @@ static int tps25750_apply_patch(struct tps6598x *tps)
->  	if (ret)
->  		return ret;
+>  		dev_err(tps->dev, "%s: failed to read events\n", __func__);
+>  		goto err_unlock;
+>  	}
+> -	trace_tps6598x_irq(event1, event2);
+> +	trace_tps6598x_irq(event[0], event[1]);
 >  
-> +wait_for_app:
->  	timeout = jiffies + msecs_to_jiffies(1000);
+> -	if (!(event1 | event2))
+> +	if (!(event[0] | event[1]))
+>  		goto err_unlock;
 >  
->  	do {
-> diff --git a/drivers/usb/typec/tipd/tps6598x.h b/drivers/usb/typec/tipd/tps6598x.h
-> index 527857549d69..5e942c089c27 100644
-> --- a/drivers/usb/typec/tipd/tps6598x.h
-> +++ b/drivers/usb/typec/tipd/tps6598x.h
-> @@ -199,4 +199,7 @@
->  #define TPS_DATA_STATUS_DP_SPEC_PIN_ASSIGNMENT_A    BIT(2)
->  #define TPS_DATA_STATUS_DP_SPEC_PIN_ASSIGNMENT_B    (BIT(2) | BIT(1))
+>  	if (!tps6598x_read_status(tps, &status))
+>  		goto err_clear_ints;
 >  
-> +/* BOOT STATUS REG*/
-> +#define TPS25750_BOOT_STATUS_I2C_EEPROM_PRESENT	BIT(3)
+> -	if ((event1 | event2) & TPS_REG_INT_POWER_STATUS_UPDATE)
+> +	if ((event[0] | event[1]) & TPS_REG_INT_POWER_STATUS_UPDATE)
+>  		if (!tps6598x_read_power_status(tps))
+>  			goto err_clear_ints;
+>  
+> -	if ((event1 | event2) & TPS_REG_INT_DATA_STATUS_UPDATE)
+> +	if ((event[0] | event[1]) & TPS_REG_INT_DATA_STATUS_UPDATE)
+>  		if (!tps6598x_read_data_status(tps))
+>  			goto err_clear_ints;
+>  
+> -	/* Handle plug insert or removal */
+> -	if ((event1 | event2) & TPS_REG_INT_PLUG_EVENT)
+> +	/*
+> +	 * data/port roles could be updated independently after
+> +	 * a plug event. Therefore, we need to check
+> +	 * for pr/dr status change to set TypeC dr/pr accordingly.
+> +	 */
+> +	if ((event[0] | event[1]) & TPS_REG_INT_PLUG_EVENT ||
+> +		tps6598x_has_role_changed(tps, status))
 
-That's not TPS25750 specific bit, so please rename that to
-TPS_BOOT_STATUS_I2C_EEPROM_PRESENT
+Alignment.
 
-thanks,
+>  		tps6598x_handle_plug_event(tps, status);
+>  
+> +	tps->status = status;
+>  err_clear_ints:
+> -	tps6598x_write64(tps, TPS_REG_INT_CLEAR1, event1);
+> -	tps6598x_write64(tps, TPS_REG_INT_CLEAR2, event2);
+> +	if (tps->is_tps25750) {
+> +		tps6598x_block_write(tps, TPS_REG_INT_CLEAR1, event, 11);
+> +	} else {
+> +		tps6598x_write64(tps, TPS_REG_INT_CLEAR1, event[0]);
+> +		tps6598x_write64(tps, TPS_REG_INT_CLEAR2, event[1]);
+> +	}
+>  
+>  err_unlock:
+>  	mutex_unlock(&tps->lock);
+>  
+> -	if (event1 | event2)
+> +	if (event[0] | event[1])
+>  		return IRQ_HANDLED;
+>  	return IRQ_NONE;
+>  }
+> @@ -1003,7 +1025,6 @@ static int tps6598x_probe(struct i2c_client *client)
+>  
+>  		irq_handler = cd321x_interrupt;
+>  	} else {
+> -
+
+You need to fix patch 4 instead - that's where you add that empty
+line.
+
+>  		tps->is_tps25750 = of_device_is_compatible(np, "ti,tps25750");
+>  		/* Enable power status, data status and plug event interrupts */
+>  		mask1 = TPS_REG_INT_POWER_STATUS_UPDATE |
+> -- 
+> 2.34.1
 
 -- 
 heikki
