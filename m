@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-1151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C32B17A5109
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:33:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D3987A510A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:33:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3F581C209AE
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:33:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 462B91C20D48
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:33:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAA39266C6;
-	Mon, 18 Sep 2023 17:33:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEF71266CD;
+	Mon, 18 Sep 2023 17:33:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BB24262A2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DF62262AF
 	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 17:33:05 +0000 (UTC)
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D4E4FD
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9ED0102
 	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 10:33:04 -0700 (PDT)
-Received: by mail-ot1-x32f.google.com with SMTP id 46e09a7af769-6c0b40a13ebso2620400a34.0
+Received: by mail-ot1-x335.google.com with SMTP id 46e09a7af769-6beff322a97so3018415a34.3
         for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 10:33:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695058383; x=1695663183; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1695058384; x=1695663184; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fOcE1gEVv8k+1mKB0BOnHrQMjIkGHZfrQmU9eoEzouw=;
-        b=IXmNaA5gTl929v+KdTmEq3LgPIj60FWbmZEXfDbnTO8Cn5GKaIQX5WeufS3JTnvcc2
-         6U3J2XlJ4TtJVEcLSp2i89+xWRyYLvno1Lwm3mf/ZC7av93zMyjnPbzwB3h42Xts2yTX
-         c9Pe3ysK8tU23oARZ+EuHNz08kr1xd6IIKNvsKQn92MCrMtgMJR2IqkgScXsC6BSeqEJ
-         cvRcRlc07v/IR1kY5GrIFNcjZGsyI5u/FCoGQRdLhiztf8efnrtUHhDA60BpEZOqDnWp
-         Wd1HEHOs+w4HSq4yD3w9sIoxcIXcAtYESI7J2e7X9g6qY9UUE8QwJPH8mRKcIevqjX8Y
-         9EJg==
+        bh=23RWTA42oeiWyX/+9q0UPnX5CmGzLdzzX40DGM4ZYYo=;
+        b=M95HgQTNv01tGUub8UvqvHK6HbVB+Ywx0l76k6muir+o2JhDY9HD2MRVZK2bdZraja
+         Ipax7bQLAuhmnrSiFsUKTD5cdm7qBD+I9usTwddq/c2oDCNzAEb62JFDg38QgIt7HAGL
+         hVHIwzpa4ZLMJrcVf9lXGqB+naAcanDnHUuTqHIumg52B8djazs1MNRKKISFHk0yTQFz
+         Z+SHGFyg6V7lMxk0dEjKhNqr5pg6repnh3rJF310ZcAqL/yf+lZrRxw+yIPbsPeTxRZY
+         3ZjfXZEcUnStoB60Z1YX37RnGjJ1+EnWmlgnHkzmzmrScDaTY7/Hdm+66lOKsJibSWxE
+         FRGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695058383; x=1695663183;
+        d=1e100.net; s=20230601; t=1695058384; x=1695663184;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=fOcE1gEVv8k+1mKB0BOnHrQMjIkGHZfrQmU9eoEzouw=;
-        b=VyQbXhgdBEyluqjEUXM8MLHU0zkjLyP90GH64dWraeaFs7oIWtzSmO0F66PsnyJDtl
-         u8ILVL/kFEOBgN5YTkHxj1UbJTny67uoqw4jw+/Pixx5R+apUS6iAuQlDV7iFyzs7Zop
-         Rqf+hghjJEYN2LI0OptaIbjB/9hUsEL9wYkZZiZZzd9+O/+QPKv4x/J75774mKH7jnFk
-         H3Cchv/kKy0B4tcfKMrLj6FRuApHnlZo7kvWQALb0VKOOHQrRbOzKV54lO8qQ/zgqEQO
-         KTdByzyD9rY4N3y1k+nXIP06y9HsRCG/2IYMxS4awzQr9SmeVXJrz1y1I7FiNjE3pbaT
-         7Nnw==
-X-Gm-Message-State: AOJu0Ywkgd2/62K6CZldzG9EuTAwfesIXClXliF5xs7jyuLxxGH7/msa
-	YC/7agndCkpPqNp2jSBoGVjZGtxGJr0=
-X-Google-Smtp-Source: AGHT+IHwJnfJ+vNpzCxFe1Y+gVZMxsNsok+2pobr3vm625PSwkZzk7Gd+IgfVNKsp37mzVgFeJHbdA==
-X-Received: by 2002:a05:6830:3493:b0:6bd:8067:21ec with SMTP id c19-20020a056830349300b006bd806721ecmr256313otu.15.1695058383320;
+        bh=23RWTA42oeiWyX/+9q0UPnX5CmGzLdzzX40DGM4ZYYo=;
+        b=rfbCDmFAw7UAZc1OaKPtTf6PsMryQCoDokC0yEBuKH7YfuDd9XoJYblqyFWGiYPeJ/
+         7biJXP0iRgEq6xxfdYKjzUm4VyPoYBYbtzPOLdh9y9xO4Cr6dnJcS5bahipeM6bYB/M9
+         m52TSrpIWa6G61j1Sr/6ubjTICP+1MUUrxqg4o5uubSgZIIlXV+xGl6+BJwp6m1FPR0+
+         s3O1jPXsdOZ7F7GKkgn9yArkr2e0VAZ4wU+e0W72tGPU2NvkjeokMATjlNF45JjmP8AX
+         soDh7VnKyrH0y50e5q1tC2h0gJm/rcDGo85gtpOgeYxj97rIbQnSf/ANkzK3rD5idzU2
+         AH0A==
+X-Gm-Message-State: AOJu0Yx+FATrtwMcHmjzMnDPDnPJ5HhRI6Ttxy9QEtfhhxdU3D7Ni4ou
+	y0Ebls5+QaBWYzLsrBrG8iSqqW/O5qc=
+X-Google-Smtp-Source: AGHT+IFhyJPfr37KhtqJ3wZPBJSB4Q0J4LL+BiQBQ2krz+QLEZPpXFJVQeJuBoTMWVVYL6p0kMeSxA==
+X-Received: by 2002:a9d:7dcb:0:b0:6bf:ef0:c69 with SMTP id k11-20020a9d7dcb000000b006bf0ef00c69mr9537847otn.34.1695058383965;
         Mon, 18 Sep 2023 10:33:03 -0700 (PDT)
 Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id z5-20020a056830128500b006bf0f95f702sm4315755otp.64.2023.09.18.10.33.02
+        by smtp.gmail.com with ESMTPSA id z5-20020a056830128500b006bf0f95f702sm4315755otp.64.2023.09.18.10.33.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Mon, 18 Sep 2023 10:33:03 -0700 (PDT)
 From: Chris Morgan <macroalpha82@gmail.com>
@@ -65,9 +65,9 @@ Cc: linux-rockchip@lists.infradead.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	robh+dt@kernel.org,
 	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V2 1/3] arm64: dts: rockchip: add PCIe to rk3588s-indiedroid-nova
-Date: Mon, 18 Sep 2023 12:32:53 -0500
-Message-Id: <20230918173255.1325-2-macroalpha82@gmail.com>
+Subject: [PATCH V2 2/3] arm64: dts: rockchip: add USB2 to rk3588s-indiedroid
+Date: Mon, 18 Sep 2023 12:32:54 -0500
+Message-Id: <20230918173255.1325-3-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230918173255.1325-1-macroalpha82@gmail.com>
 References: <20230918173255.1325-1-macroalpha82@gmail.com>
@@ -87,55 +87,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Add the necessary nodes to the Indiedroid Nova to activate the PCI
-express port that is used by the RTL8111 ethernet controller.
+Enable USB2 (EHCI and OCHI mode) support for the Indiedroid Nova. This
+adds support for USB for the 4 full size USB-A ports. Note that USB 3
+(the two blue full-size USB-A ports) is still outstanding, as is
+support for USB on the USB-C ports. The controller is not yet supported
+for these ports.
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 ---
- .../dts/rockchip/rk3588s-indiedroid-nova.dts     | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ .../dts/rockchip/rk3588s-indiedroid-nova.dts  | 34 +++++++++++++++++++
+ 1 file changed, 34 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-index d1503a4b233a..646f49cc9e53 100644
+index 646f49cc9e53..1e2336d3065b 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-@@ -109,6 +109,10 @@ vcc5v0_usbdcin: vcc5v0-usbdcin-regulator {
- 	};
+@@ -751,6 +751,24 @@ &tsadc {
+ 	status = "okay";
  };
  
-+&combphy0_ps {
++&u2phy2 {
 +	status = "okay";
 +};
 +
- &cpu_l0 {
- 	cpu-supply = <&vdd_cpu_lit_s0>;
- };
-@@ -348,6 +352,12 @@ i2s0_8ch_p0_0: endpoint {
- 	};
- };
- 
-+&pcie2x1l2 {
-+	pinctrl-0 = <&rtl8111_perstb>;
-+	pinctrl-names = "default";
++&u2phy2_host {
++	phy-supply = <&vcc5v0_usb>;
 +	status = "okay";
 +};
 +
- &pinctrl {
- 	bluetooth-pins {
- 		bt_reset: bt-reset {
-@@ -366,6 +376,12 @@ bt_wake_host: bt-wake-host {
- 		};
- 	};
- 
-+	ethernet-pins {
-+		rtl8111_perstb: rtl8111-perstb {
-+			rockchip,pins = <3 RK_PD1 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
++&u2phy3 {
++	status = "okay";
++};
 +
- 	hym8563 {
- 
- 		hym8563_int: hym8563-int {
++&u2phy3_host {
++	phy-supply = <&vcc5v0_usb>;
++	status = "okay";
++};
++
+ &uart2 {
+ 	pinctrl-0 = <&uart2m0_xfer>;
+ 	status = "okay";
+@@ -775,3 +793,19 @@ bluetooth {
+ 		pinctrl-names = "default";
+ 	};
+ };
++
++&usb_host0_ehci {
++	status = "okay";
++};
++
++&usb_host0_ohci {
++	status = "okay";
++};
++
++&usb_host1_ehci {
++	status = "okay";
++};
++
++&usb_host1_ohci {
++	status = "okay";
++};
 -- 
 2.34.1
 
