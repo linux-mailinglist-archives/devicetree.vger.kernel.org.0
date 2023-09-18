@@ -1,75 +1,230 @@
-Return-Path: <devicetree+bounces-1115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15CEC7A4C1B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:26:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEE2D7A4C32
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:28:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F387E1C20B2C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 15:26:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A7572819F4
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 15:28:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92BCF1D696;
-	Mon, 18 Sep 2023 15:26:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF1EE1D6AF;
+	Mon, 18 Sep 2023 15:28:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07C6413AF3
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 15:26:21 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4650E173D;
-	Mon, 18 Sep 2023 08:24:29 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EE28B1FB;
-	Mon, 18 Sep 2023 08:16:33 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E6E163F67D;
-	Mon, 18 Sep 2023 08:15:54 -0700 (PDT)
-Date: Mon, 18 Sep 2023 16:15:52 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Nikunj Kela <quic_nkela@quicinc.com>
-Cc: cristian.marussi@arm.com, robh+dt@kernel.org,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v4 0/4] Add qcom hvc/shmem transport support
-Message-ID: <20230918151552.n3jvw2qqi5tmyfbb@bogus>
-References: <20230718160833.36397-1-quic_nkela@quicinc.com>
- <20230911194359.27547-1-quic_nkela@quicinc.com>
- <0efe305e-031b-bdf5-0268-ca1c6d562653@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 498071D6B2
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 15:28:34 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74087E4C;
+	Mon, 18 Sep 2023 08:26:48 -0700 (PDT)
+Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7FB4F8A5F;
+	Mon, 18 Sep 2023 17:22:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1695050524;
+	bh=eUeGACMHyZhM2g7i0GeSAmr3+zMDlgtDBBJJ5VCvzd8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZGKbN7IwyXjMBQs0fHMLzXURSn1AGbY+U+0UN5o/ZUHVgnvRnUrTD7xGHSCoaIY2E
+	 BSXk0K3+hGkPNfQZ15HzjPwTA/QERvQD9Z95swmRFptXk4GKdpkw2atxYDnNI7bhzw
+	 gJ3gqRrzVQvT64Ov395rz6OfHKPjQq9PsB/NpLlA=
+Message-ID: <a8c5d3a8-5c1f-7b37-5f5f-41773d66b7e3@ideasonboard.com>
+Date: Mon, 18 Sep 2023 18:23:35 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0efe305e-031b-bdf5-0268-ca1c6d562653@quicinc.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 2/2] drivers/tidss: Add support for AM62A7 DSS
+Content-Language: en-US
+To: Aradhya Bhatia <a-bhatia1@ti.com>, Jyri Sarha <jyri.sarha@iki.fi>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: DRI Development List <dri-devel@lists.freedesktop.org>,
+ Devicetree List <devicetree@vger.kernel.org>,
+ Linux Kernel List <linux-kernel@vger.kernel.org>, Nishanth Menon
+ <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Devarsh Thakkar <devarsht@ti.com>, Jayesh Choudhary <j-choudhary@ti.com>,
+ Jai Luthra <j-luthra@ti.com>
+References: <20230818142124.8561-1-a-bhatia1@ti.com>
+ <20230818142124.8561-3-a-bhatia1@ti.com>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <20230818142124.8561-3-a-bhatia1@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Sep 18, 2023 at 08:01:26AM -0700, Nikunj Kela wrote:
-> Gentle Ping!
+On 18/08/2023 17:21, Aradhya Bhatia wrote:
+> Add support for the DSS controller on TI's AM62A7 SoC in the tidss
+> driver.
 > 
+> This contrller has 2 video pipelines that can render 2 video planes on
 
-I will take a look at this later this week. That said, I am unable be
-gauge the urgency based on you ping here. You have shown the same urgency
-last time for a feature that I queued promptly just to know that it was
-abandon within couple of days. So I don't want to rush here simply based
-on the number of pings here. I need to understand that it is really that
-important. For now, I am thinking of skipping even v6.7 just to allow
-some time for Qcom to make up its mind and be absolutely sure this is what
-they *really* want this time.
+"controller".
 
--- 
-Regards,
-Sudeep
+> over a screen, using the overlay managers. The output of the DSS comes
+> from video port 2 (VP2) in the form of RGB88 DPI signals, while the VP1
+> is tied off inside the SoC.
+
+If the VP1 is tied off, I think we should somehow mark it in the feats 
+below. Maybe just a comment, or perhaps a new DISPC_VP_* flag.
+
+  Tomi
+
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> ---
+> Notes:
+>         Changes from V1:
+>         * Correctly sort DISPC_AM62A7 macro after DISPC_AM625.
+> 
+>   drivers/gpu/drm/tidss/tidss_dispc.c | 53 +++++++++++++++++++++++++++++
+>   drivers/gpu/drm/tidss/tidss_dispc.h |  2 ++
+>   drivers/gpu/drm/tidss/tidss_drv.c   |  1 +
+>   3 files changed, 56 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
+> index 9d9dee7abaef..5539ddb7f338 100644
+> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
+> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
+> @@ -322,6 +322,54 @@ const struct dispc_features dispc_am625_feats = {
+>   	.vid_order = { 1, 0 },
+>   };
+>   
+> +const struct dispc_features dispc_am62a7_feats = {
+> +	.max_pclk_khz = {
+> +		[DISPC_VP_DPI] = 165000,
+> +	},
+> +
+> +	.scaling = {
+> +		.in_width_max_5tap_rgb = 1280,
+> +		.in_width_max_3tap_rgb = 2560,
+> +		.in_width_max_5tap_yuv = 2560,
+> +		.in_width_max_3tap_yuv = 4096,
+> +		.upscale_limit = 16,
+> +		.downscale_limit_5tap = 4,
+> +		.downscale_limit_3tap = 2,
+> +		/*
+> +		 * The max supported pixel inc value is 255. The value
+> +		 * of pixel inc is calculated like this: 1+(xinc-1)*bpp.
+> +		 * The maximum bpp of all formats supported by the HW
+> +		 * is 8. So the maximum supported xinc value is 32,
+> +		 * because 1+(32-1)*8 < 255 < 1+(33-1)*4.
+> +		 */
+> +		.xinc_max = 32,
+> +	},
+> +
+> +	.subrev = DISPC_AM62A7,
+> +
+> +	.common = "common",
+> +	.common_regs = tidss_am65x_common_regs,
+> +
+> +	.num_vps = 2,
+> +	.vp_name = { "vp1", "vp2" },
+> +	.ovr_name = { "ovr1", "ovr2" },
+> +	.vpclk_name =  { "vp1", "vp2" },
+> +	.vp_bus_type = { DISPC_VP_INTERNAL, DISPC_VP_DPI },
+> +
+> +	.vp_feat = { .color = {
+> +			.has_ctm = true,
+> +			.gamma_size = 256,
+> +			.gamma_type = TIDSS_GAMMA_8BIT,
+> +		},
+> +	},
+> +
+> +	.num_planes = 2,
+> +	/* note: vid is plane_id 0 and vidl1 is plane_id 1 */
+> +	.vid_name = { "vid", "vidl1" },
+> +	.vid_lite = { false, true, },
+> +	.vid_order = { 1, 0 },
+> +};
+> +
+>   static const u16 *dispc_common_regmap;
+>   
+>   struct dss_vp_data {
+> @@ -824,6 +872,7 @@ dispc_irq_t dispc_read_and_clear_irqstatus(struct dispc_device *dispc)
+>   	case DISPC_K2G:
+>   		return dispc_k2g_read_and_clear_irqstatus(dispc);
+>   	case DISPC_AM625:
+> +	case DISPC_AM62A7:
+>   	case DISPC_AM65X:
+>   	case DISPC_J721E:
+>   		return dispc_k3_read_and_clear_irqstatus(dispc);
+> @@ -840,6 +889,7 @@ void dispc_set_irqenable(struct dispc_device *dispc, dispc_irq_t mask)
+>   		dispc_k2g_set_irqenable(dispc, mask);
+>   		break;
+>   	case DISPC_AM625:
+> +	case DISPC_AM62A7:
+>   	case DISPC_AM65X:
+>   	case DISPC_J721E:
+>   		dispc_k3_set_irqenable(dispc, mask);
+> @@ -1331,6 +1381,7 @@ void dispc_ovr_set_plane(struct dispc_device *dispc, u32 hw_plane,
+>   					x, y, layer);
+>   		break;
+>   	case DISPC_AM625:
+> +	case DISPC_AM62A7:
+>   	case DISPC_AM65X:
+>   		dispc_am65x_ovr_set_plane(dispc, hw_plane, hw_videoport,
+>   					  x, y, layer);
+> @@ -2250,6 +2301,7 @@ static void dispc_plane_init(struct dispc_device *dispc)
+>   		dispc_k2g_plane_init(dispc);
+>   		break;
+>   	case DISPC_AM625:
+> +	case DISPC_AM62A7:
+>   	case DISPC_AM65X:
+>   	case DISPC_J721E:
+>   		dispc_k3_plane_init(dispc);
+> @@ -2357,6 +2409,7 @@ static void dispc_vp_write_gamma_table(struct dispc_device *dispc,
+>   		dispc_k2g_vp_write_gamma_table(dispc, hw_videoport);
+>   		break;
+>   	case DISPC_AM625:
+> +	case DISPC_AM62A7:
+>   	case DISPC_AM65X:
+>   		dispc_am65x_vp_write_gamma_table(dispc, hw_videoport);
+>   		break;
+> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.h b/drivers/gpu/drm/tidss/tidss_dispc.h
+> index 33ac5ad7a423..7f203f83559b 100644
+> --- a/drivers/gpu/drm/tidss/tidss_dispc.h
+> +++ b/drivers/gpu/drm/tidss/tidss_dispc.h
+> @@ -60,6 +60,7 @@ enum dispc_vp_bus_type {
+>   enum dispc_dss_subrevision {
+>   	DISPC_K2G,
+>   	DISPC_AM625,
+> +	DISPC_AM62A7,
+>   	DISPC_AM65X,
+>   	DISPC_J721E,
+>   };
+> @@ -88,6 +89,7 @@ struct dispc_features {
+>   
+>   extern const struct dispc_features dispc_k2g_feats;
+>   extern const struct dispc_features dispc_am625_feats;
+> +extern const struct dispc_features dispc_am62a7_feats;
+>   extern const struct dispc_features dispc_am65x_feats;
+>   extern const struct dispc_features dispc_j721e_feats;
+>   
+> diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/tidss_drv.c
+> index 4d063eb9cd0b..edf69d020544 100644
+> --- a/drivers/gpu/drm/tidss/tidss_drv.c
+> +++ b/drivers/gpu/drm/tidss/tidss_drv.c
+> @@ -231,6 +231,7 @@ static void tidss_shutdown(struct platform_device *pdev)
+>   static const struct of_device_id tidss_of_table[] = {
+>   	{ .compatible = "ti,k2g-dss", .data = &dispc_k2g_feats, },
+>   	{ .compatible = "ti,am625-dss", .data = &dispc_am625_feats, },
+> +	{ .compatible = "ti,am62a7-dss", .data = &dispc_am62a7_feats, },
+>   	{ .compatible = "ti,am65x-dss", .data = &dispc_am65x_feats, },
+>   	{ .compatible = "ti,j721e-dss", .data = &dispc_j721e_feats, },
+>   	{ }
+
 
