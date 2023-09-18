@@ -1,285 +1,98 @@
-Return-Path: <devicetree+bounces-951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 381137A418A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 08:50:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E8BD7A41C3
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 09:09:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 021C51C20D5B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 06:50:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 329CB281C6E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 07:09:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7505F6FB4;
-	Mon, 18 Sep 2023 06:50:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D84A9746C;
+	Mon, 18 Sep 2023 07:09:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D890F63DD
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 06:50:02 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 468569F;
-	Sun, 17 Sep 2023 23:50:00 -0700 (PDT)
-Received: from localhost (89-26-75-29.dyn.cablelink.at [89.26.75.29])
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47496746A;
+	Mon, 18 Sep 2023 07:09:06 +0000 (UTC)
+Received: from core.lopingdog.com (core.lopingdog.com [162.55.228.84])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84871F3;
+	Mon, 18 Sep 2023 00:08:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lopingdog.com;
+	s=mail; t=1695020329;
+	bh=jeWrBC92z//V5paBXAzhpWHpsdsNIxZ42afnWQdTjhU=;
+	h=Date:From:To:Subject:From;
+	b=YoMqkn8oubSVPlfpVsecdU2nK7A8TQotBlwDqUmrumLrrKo2wR9rCGOa1QZjqvqPG
+	 BqD09i15Iu6BR5ju5nq9Pz6QFe6d18j0pIayC9nvoWFUGZjpB/UVUyY+rzBVysdwqJ
+	 fH/w0D1Ng4J7T0J8JgLi1HjUFA2qCf2AXZLhVEZ2ubpkQtZ2U3oypfghL1aH0OaX/4
+	 UfRkeC6cOBwM6chS+WRfv/Hybknrd+HI1I+0hY+S53xUvOolRtWXjqaL/cT/Khjo7N
+	 8YFDprVfWfPrZHN5pVZ2ax0MiwEawmwNduRCRO1DLxKLbJhsjBKAMjZU5cgZRU5jVq
+	 tEDhc8mKm5gmA==
+Received: from authenticated-user (core.lopingdog.com [162.55.228.84])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: sebastianfricke)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 0203B66003B0;
-	Mon, 18 Sep 2023 07:49:56 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1695019797;
-	bh=/fk3WgWVIYNC71tqjOyEDy5t6GDP5pCDuBwKWMnwgxE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j8kgdFNsDeMRL6vqcTTQWRS4ULKyBARTk6YDzIJGP0giAKjB77H8rH5FIkbfal5Lr
-	 m4qSH0C4uewsXm/CleX3j9mrtcuyNZ7Kh09gtuP0oVkZDTstRKcWyN8j1vCSdoIyJ4
-	 cYN8W6nIJrOlyUQcyHVEc6SccOCFJFGCrNdMJ8htc95VcYYZSmxNtA/PD3WU2XkAFq
-	 4AeJTjwplgQ92u/gkzWzl9LWIpuMx39KuwNqq16QRULcX955sCVeVB3npl1ZySq1Dl
-	 jIKotKXefBTLe0dLrwozioMgBz/jFmEOO6lOgnJPnhAjGY4X5p4GkGdItmtgVFCkJx
-	 7Si/joxR7ImPg==
-Date: Mon, 18 Sep 2023 08:49:54 +0200
-From: Sebastian Fricke <sebastian.fricke@collabora.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Nas Chung <nas.chung@chipsnmedia.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jackson Lee <jackson.lee@chipsnmedia.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Robert Beckett <bob.beckett@collabora.com>,
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kernel@collabora.com,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Subject: Re: [PATCH v12 6/7] dt-bindings: media: wave5: add yaml devicetree
- bindings
-Message-ID: <20230918064954.iuomunsckduawiay@basti-XPS-13-9310>
-References: <20230915-wave5_v12_on_media_master-v12-0-92fc66cd685d@collabora.com>
- <20230915-wave5_v12_on_media_master-v12-6-92fc66cd685d@collabora.com>
- <30384744-94d7-2675-63ad-d8531e3156d1@linaro.org>
+	by core.lopingdog.com (Postfix) with ESMTPSA id AD4E14402DB;
+	Mon, 18 Sep 2023 01:58:47 -0500 (CDT)
+Date: Mon, 18 Sep 2023 01:58:46 -0500
+From: Jay Monkman <jtm@lopingdog.com>
+To: devicetree@vger.kernel.org, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Piergiorgio Beruto <piergiorgio.beruto@gmail.com>,
+	Arndt Schuebel <Arndt.Schuebel@onsemi.com>
+Subject: [PATCH 0/4] net: Add NCN26010 driver
+Message-ID: <ZQf1JnM34pR9oimS@lopingdog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <30384744-94d7-2675-63ad-d8531e3156d1@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hey Krzysztof,
+This series adds support for onsemi's NCN26010 10BASE-T1S Ethernet controller. This is
+a combined MAC/PHY that uses SPI to interface to a microcontroller.
 
-thanks for your review.
+The patches include devicetree bindings for the NCN26000 PHY and the
+NCN26010, required changes to the NCN26000 PHY driver and the NCN26010
+driver itself.
 
-On 17.09.2023 09:56, Krzysztof Kozlowski wrote:
->On 15/09/2023 23:11, Sebastian Fricke wrote:
->> From: Robert Beckett <bob.beckett@collabora.com>
->>
->> Add bindings for the wave5 chips&media codec driver
->>
->> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
->> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
->> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
->
->So this is v12 and still no tested?
 
-I have tested it, multiple times actually since V11. (For some reason
-that indentation issue slipped by me though ...)
-If you mean the tested by tag, the patch was completely unnoticed until
-v10 by the community, which was partially because me and the previous
-commiters didn't use the right recipients for this patch. So from that
-point of view this is more like v2.
+Jay Monkman (4):
+  dt-bindings: net: Add bindings for onsemi NCN26000 PHY
+  dt-bindings: net: Add onsemi NCN26010 ethernet controller
+  net: phy: Add GPIO and DT support to NCN26000
+  net/onsemi: Add NCN26010 driver
 
->
->A nit, subject: drop second/last, redundant "yaml devicetree indings".
->The "dt-bindings" prefix is already stating that these are bindings.
->Basically three words bringing zero information.
+ .../devicetree/bindings/net/onnn,macphy.yaml  |   94 +
+ .../bindings/net/onnn,ncn26000.yaml           |  177 ++
+ drivers/net/ethernet/Kconfig                  |    1 +
+ drivers/net/ethernet/Makefile                 |    1 +
+ drivers/net/ethernet/onsemi/Kconfig           |   27 +
+ drivers/net/ethernet/onsemi/Makefile          |    9 +
+ drivers/net/ethernet/onsemi/onsemi_macphy.h   |  298 +++
+ .../net/ethernet/onsemi/onsemi_macphy_core.c  | 2149 +++++++++++++++++
+ .../ethernet/onsemi/onsemi_macphy_ethtool.c   |  179 ++
+ drivers/net/phy/ncn26000.c                    |  467 +++-
+ 10 files changed, 3394 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/onnn,macphy.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/onnn,ncn26000.yaml
+ create mode 100644 drivers/net/ethernet/onsemi/Kconfig
+ create mode 100644 drivers/net/ethernet/onsemi/Makefile
+ create mode 100644 drivers/net/ethernet/onsemi/onsemi_macphy.h
+ create mode 100644 drivers/net/ethernet/onsemi/onsemi_macphy_core.c
+ create mode 100644 drivers/net/ethernet/onsemi/onsemi_macphy_ethtool.c
 
-Okay so:
-`dt-bindings: media: wave5: add devicetree`
-?
+-- 
+2.40.1
 
->
->> ---
->>  .../devicetree/bindings/media/cnm,wave5.yaml       | 66 ++++++++++++++++++++++
->>  1 file changed, 66 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/media/cnm,wave5.yaml b/Documentation/devicetree/bindings/media/cnm,wave5.yaml
->> new file mode 100644
->> index 000000000000..b8f383621805
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/cnm,wave5.yaml
->> @@ -0,0 +1,66 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/cnm,wave5.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Chips&Media Wave 5 Series multi-standard codec IP
->> +
->> +maintainers:
->> +  - Nas Chung <nas.chung@chipsnmedia.com>
->> +  - Jackson Lee <jackson.lee@chipsnmedia.com>
->> +
->> +description: |-
->
->Do not need '|-' unless you need to preserve formatting.
-
-Ack.
-
->
->> +  The Chips&Media WAVE codec IP is a multi format video encoder/decoder
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +        - cnm,cm521c-vpu
->
->It does not look like you tested the bindings, at least after quick
->look. Please run `make dt_binding_check` (see
->Documentation/devicetree/bindings/writing-schema.rst for instructions).
->Maybe you need to update your dtschema and yamllint.
-
-Here my testing output:
-```
-❯ make dt_binding_check DT_SCHEMA_FILES=cnm,wave5.yaml
-   HOSTCC  scripts/basic/fixdep
-   HOSTCC  scripts/dtc/dtc.o
-   HOSTCC  scripts/dtc/flattree.o
-   HOSTCC  scripts/dtc/fstree.o
-   HOSTCC  scripts/dtc/data.o
-   HOSTCC  scripts/dtc/livetree.o
-   HOSTCC  scripts/dtc/treesource.o
-   HOSTCC  scripts/dtc/srcpos.o
-   HOSTCC  scripts/dtc/checks.o
-   HOSTCC  scripts/dtc/util.o
-   LEX     scripts/dtc/dtc-lexer.lex.c
-   YACC    scripts/dtc/dtc-parser.tab.[ch]
-   HOSTCC  scripts/dtc/dtc-lexer.lex.o
-   HOSTCC  scripts/dtc/dtc-parser.tab.o
-   HOSTLD  scripts/dtc/dtc
-   LINT    Documentation/devicetree/bindings
-./Documentation/devicetree/bindings/media/cnm,wave5.yaml:19:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
-   CHKDT   Documentation/devicetree/bindings/processed-schema.json
-   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-   DTEX    Documentation/devicetree/bindings/media/cnm,wave5.example.dts
-   DTC_CHK Documentation/devicetree/bindings/media/cnm,wave5.example.dtb
-```
-
-Again sorry about missing the indentation warning, but nothing else was
-highlighted.
-
-Both dtschema and yamllint seem to be up-to-date:
-```
-❯ python3 -m pip --version
-pip 23.2.1 from /home/basti/.local/lib/python3.8/site-packages/pip (python 3.8)
-❯ pip3 show dtschema
-Name: dtschema
-Version: 2023.7
-Summary: DeviceTree validation schema and tools
-Home-page: https://github.com/devicetree-org/dt-schema
-Author: Rob Herring
-Author-email: robh@kernel.org
-License: BSD
-Location: /home/basti/.local/lib/python3.8/site-packages
-Requires: jsonschema, pylibfdt, rfc3987, ruamel.yaml
-Required-by: 
-❯ pip3 show yamllint
-Name: yamllint
-Version: 1.32.0
-Summary: A linter for YAML files.
-Home-page: 
-Author: Adrien Vergé
-Author-email: 
-License: GPL-3.0-only
-Location: /home/basti/.local/lib/python3.8/site-packages
-Requires: pathspec, pyyaml
-Required-by: 
-```
-
->
->Missing blank line
-
-Ack, will add that.
->
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    items:
->> +      - description: VCODEC clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: vcodec
->
->Drop clock-names, not really useful for one entry.
-
-Ack
-
->
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  sram:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +
->
->Drop blank line
-
-Ack
-
->
->> +    description:
->> +      The VPU uses the SRAM to store some of the reference data instead of
->> +      storing it on DMA memory. It is mainly used for the purpose of reducing
->> +      bandwidth.
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->
->Keep the same order as listed in properties:
-
-Ack
-
->
->> +  - clocks
->> +  - clock-names
->> +
->> +additionalProperties: false
->> +
->
->Best regards,
->Krzysztof
-
-Sincerely,
-Sebastian
-
->
->_______________________________________________
->Kernel mailing list -- kernel@mailman.collabora.com
->To unsubscribe send an email to kernel-leave@mailman.collabora.com
 
