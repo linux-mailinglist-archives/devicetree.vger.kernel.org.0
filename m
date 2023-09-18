@@ -1,201 +1,428 @@
-Return-Path: <devicetree+bounces-1060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B749D7A4870
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 13:31:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE86D7A487B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 13:33:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 736C4282789
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 11:31:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D2FE1C212A2
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 11:33:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E6881C69B;
-	Mon, 18 Sep 2023 11:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D11481C69F;
+	Mon, 18 Sep 2023 11:33:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C94A38F88;
-	Mon, 18 Sep 2023 11:31:43 +0000 (UTC)
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A3EB10EF;
-	Mon, 18 Sep 2023 04:29:59 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D104F38F83;
+	Mon, 18 Sep 2023 11:33:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D13ACC4;
+	Mon, 18 Sep 2023 04:32:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1695036599; x=1726572599;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=bH/Ubu5mp1udw7rUikXMhI11vrANTJHbYk+wTKyzDQE=;
-  b=S5kYct0sk8TMuW60bMXNU7ZrqPNT7Euyb14ltndBQBievEPYl179bOcB
-   eMynOD17KfUxd7pioOFb+Dv0uAAvVS3F6My6KKSGi+Xpc3PX3diVzMY+S
-   xTLHn5YZCI6Yk58079ZcKt6Gb/8i2IZ2czOqgX/nNgV51+TmbtF4k69vK
-   4FFD5SO5up2V1Z7RbA+TvS83FG4NgyYtPN2qM9mwm1SW3yabRfNnunILM
-   DtlEO4sYL/Pe0jGOa8CVoI+0Uxe+sOISyqY23V1mbohqQgUp4ZdCyzi4Y
-   g3FSSmkHIF02EsCPmwjNwOhG0fLNR0D2moiZC2hMdXs+vXb00LzSOYuwM
-   w==;
-X-CSE-ConnectionGUID: AX5F2GGaS4mN+FgnJvrkWg==
-X-CSE-MsgGUID: BVZBTsCDR3KFSMSkgtGhXg==
-X-ThreatScanner-Verdict: Negative
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1695036742; x=1726572742;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=TOMYLS1qN5l6pVaWhuff1MJ5EKpIo64HMXFcJ37IiuY=;
+  b=QoTx7BMlQI6EwpIeSBm+4KcVvKBqsNICQH1y3VGcuLiOkDXDR+MSv8Xn
+   h195iVz6yWULeJcnnTqg/ACAB5u+DzzUaF/E+INmkIu5jqZMBzIEEefMo
+   Y/5wA7gAbzAoL6P2Pqp/UFu19Qzn94CnsA6BhQq/4AleCwEE5YLAcxstz
+   vwYZybzGTPauLM9yVxtswTLlzXRf+FvT+JZxzX7udmxTYyB0ZAciTGPYO
+   Efwz6XAL0fJl+pnEK9RscJxu2GJt7RfYa1WI69YaB+HP0TnroDga3IjCi
+   TcZLEikyqfBoxwVZtSPVQHVXXX8wv3hxnYBHYBsWMYiay7Q4gMmahtXqX
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="359881887"
 X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; 
-   d="scan'208";a="5370608"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 18 Sep 2023 04:23:53 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 18 Sep 2023 04:23:44 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Mon, 18 Sep 2023 04:23:44 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FPYg9GjHOWPwT/fZn8oxoHmfU/2dzYH3t36mgTTd/GXL3raKk50AHb3cI0DEjgRdEYXb2AFXjD64qtwK/saxUiP8rBivc4uFCmW28SfSaqWNGh+gvzAvU9Lf9oAn5iTK2p7+rg2+OLknDyte4lFacBIentYnboJa3XPHl0BEFEAereClmNSmg/GaadGuCrvAekTIi6SlPkCihlCbbdJyxM3TpKv8FdT8Tk06B/h30k6LiKLIG+Y3OHiOiYZtvGdreZHF2JbI0p7kkbJAnHp6V25ch6Kx+NmBri3W4rWBs/g3xvMPk74d/RwDcesVzuHUnUqmrmuFOM7aJs+BN55uHg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bH/Ubu5mp1udw7rUikXMhI11vrANTJHbYk+wTKyzDQE=;
- b=jwj79jk9dc4D5xP6ala24KmIAaaHMN3wLYOZZoIZZAzpRKOFdQuw9UgQXtT+BOIxreLJD9VBjEM4Fxgt1RJR2SY8EHqAFcDZZHRyWU/M96Ese6SV5qmjo3M1k8hkmwJsfmkacLGEM5Vcpmdv+0drK1/FrRlPoXX2MLqqUtHSk8mYltuEDdeRi7DXfUmBwdRh9kllTJM51ZsXeES6M3qIhNawz0e5l/5ckDz+/2G0FNMbjOF0vViIuNgmCHyoYtGhrp/5w8A/rGPsZUFyjAH5MDsmTFMYgmha17sFP98KRKDR8KOBZAlxM9IIzE3NrbT7JLY9EpQtNgyv0mfiP2UHkA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bH/Ubu5mp1udw7rUikXMhI11vrANTJHbYk+wTKyzDQE=;
- b=Mu8zabqs+KjAcTIC0KW8Q9DwCaItXwTmqdWnh88UUMF6+dqIhQgPUb1yvbCF7UyctB/0nqtoVAMhHPtZOclFJtZ+7kJ7SKx6eoDmIq/kl/L2wot6LffJsa6Dh3wtU10EjREDmxZ/AHi05O00+N8RsAXwRoG+C9QA041et4cXFKA=
-Received: from DM6PR11MB3532.namprd11.prod.outlook.com (2603:10b6:5:70::25) by
- PH7PR11MB7026.namprd11.prod.outlook.com (2603:10b6:510:209::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6792.23; Mon, 18 Sep 2023 11:23:42 +0000
-Received: from DM6PR11MB3532.namprd11.prod.outlook.com
- ([fe80::6352:54f7:6c42:69ef]) by DM6PR11MB3532.namprd11.prod.outlook.com
- ([fe80::6352:54f7:6c42:69ef%6]) with mapi id 15.20.6792.026; Mon, 18 Sep 2023
- 11:23:42 +0000
-From: <Parthiban.Veerasooran@microchip.com>
-To: <andrew@lunn.ch>
-CC: <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-	<Steen.Hegelund@microchip.com>, <rdunlap@infradead.org>, <horms@kernel.org>,
-	<casper.casan@gmail.com>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>, <Horatiu.Vultur@microchip.com>,
-	<Woojung.Huh@microchip.com>, <Nicolas.Ferre@microchip.com>,
-	<UNGLinuxDriver@microchip.com>, <Thorsten.Kummermehr@microchip.com>
-Subject: Re: [RFC PATCH net-next 5/6] microchip: lan865x: add driver support
- for Microchip's LAN865X MACPHY
-Thread-Topic: [RFC PATCH net-next 5/6] microchip: lan865x: add driver support
- for Microchip's LAN865X MACPHY
-Thread-Index: AQHZ4mEuK01gdvjwlU2rxFfJz2fLmrAZmDGAgAboGYA=
-Date: Mon, 18 Sep 2023 11:23:42 +0000
-Message-ID: <2f60de6a-124e-8c8c-1c79-73fa38141e41@microchip.com>
-References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
- <20230908142919.14849-6-Parthiban.Veerasooran@microchip.com>
- <8d5078b0-1a45-43ac-89bd-c71c514336f5@lunn.ch>
-In-Reply-To: <8d5078b0-1a45-43ac-89bd-c71c514336f5@lunn.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM6PR11MB3532:EE_|PH7PR11MB7026:EE_
-x-ms-office365-filtering-correlation-id: 5cadb96e-d706-4bd6-a860-08dbb839b6e2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: vybr+Ojmt7SxGSgR8kpo7FFSTT9Lli3RT/ztGwWZBXnZ4gTrWgwvwsP4P/BGgxEiPXW2nNbw72AQeX6jvp7PCpkCR0sc6jEfYDpcT9+hnRsDqFaJ1p64pVX5Zir3PJ2A+r4CgHp6rsZXPxSo7EzBMK9M3YN03e3TqfkbEbMOIzMu4y/rAKTqyT6eEVlsj7T3Vyi4s3IZqjH3b1maq0aXtEyV7hRxDIsKFFqKI68ZjNEIc2txZRQyDyqcDIpNtU+A3efXg7JoHvuCivqL2PhgT+ciev8enTOVsJ49aB9xYJEp00Ofs/n6LpKGEjZyNf3nIo+LnetlTJimrTZ1Qn2GdelTP2RF+oiiJ4OA2Q8gO/Z45TZkTeBBPY0IOj0nhEaVpXR9PpWwr9VbnT2FOBUcwKQSqicr/byPrOs/oPYjJ6mGSZp6lDyYKIYKZSsTpwlJQUx0OkPYj7I+fy91k0w2sFJ/G2Rho/YWHPE8dio08skl81eM6cjJL7U3o1pNvpc7Px7OiZ0y5Nn9IDD/HUAqS5YQ2DTx4hpL/gadyYSGpu9+q1gmSiMJcJ2DqWeYagWkSE6GoghwCcTNNU53X46sUTI71OkHZiQPsKsQbW91YkbcmtgaxFvrUT2t8X7nQRlm4i9Z9u/7tHFnfyG+U2wJXwpZnJHvQODlWCHoJaguMIo/ic1F5F6Oej/Q0zE7B2z2
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3532.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(39860400002)(376002)(346002)(136003)(396003)(451199024)(186009)(1800799009)(66556008)(66446008)(64756008)(66476007)(54906003)(36756003)(31686004)(38070700005)(5660300002)(107886003)(2616005)(38100700002)(26005)(4744005)(7416002)(2906002)(31696002)(86362001)(4326008)(8936002)(8676002)(6916009)(41300700001)(316002)(76116006)(66946007)(122000001)(478600001)(71200400001)(91956017)(6486002)(6506007)(53546011)(6512007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dk5xWXE5NHVabnh3SHFkelFRai95cU5WZzl2RHVGM0M0dUZkSTBYa2N2aUxO?=
- =?utf-8?B?MGtVaERuTnRsaVJrK0hDV1lNVWQzOEpETUhvOGRqNGduWHd1bFdDS1J6T0hs?=
- =?utf-8?B?b3ZzOWN4S3F3emVkUVc0Q1FuQlNOVWtCQjc4Q1ZNbXBGeFh2OEd1Y1dVK0No?=
- =?utf-8?B?SFpFRnkyNDd3UG9ZeFFTVnI3dXdKNXdFbWhjTGdQckZTSDNXUHRZdzNLbkQ5?=
- =?utf-8?B?Nkl1SkUzUlF0K0JieEY4Vy9ycWp4MTdXUWtuOUtiOTYzeDA0czRvVEdPQVo5?=
- =?utf-8?B?TWx4QXhOb1F5VVNTejkxb3FsWnZjeVdtTDNmemxhanNsbDlId2I2TFBFTlRL?=
- =?utf-8?B?eVN6RGpWYjRjUWlhMlE5L29hajN2NlBqYUxQUlpoMFR2ZGQ0NWo1SWZQcDdV?=
- =?utf-8?B?d0ZDMFl0b2NrV2ZMM2NTcFNMcm9UL2h2TWlWb2NlcFY1MUhRL0JLMGRyZTJz?=
- =?utf-8?B?SkNld3BNamI2NkxUazZNUTE4dkhtdHJ0MW11d3VpS2NjYlVZbWV1T2RTVGNH?=
- =?utf-8?B?R0g2QVVxM2pZZlh6Q1czd3dYUGlnZDExUG8wbTcyaXFaSHVzZUc5bWtNWGc5?=
- =?utf-8?B?QmpSdlIvc3lXVWtEVEVZcmo0MjlVNUNubmc4ZTd4MHUyWU5FVXI0a1NSU2VU?=
- =?utf-8?B?T0lieGd1S05iOENXSDNSOFlHMVR2QjUwYXJFaU1iQ2lIQ3RIaXNoRzdGTHBP?=
- =?utf-8?B?MFZSblRyMXVOdW9xWmR3NGs0WWREalRwUjk0Qm5nSXVtS3laTHd4Z1FEUXEr?=
- =?utf-8?B?YnlGZktGK0JhUm1NbFhRUXNpN3hubVlqTlNtVlRRTGZheUZ2S0dGTkh1Nmo0?=
- =?utf-8?B?dGFsZVc4cVdBM3VUWnhwVFp0SUVqMlZNT3liKzR0VEMvVzdlWDRRc25zSmxG?=
- =?utf-8?B?NXRia1BEUHQ1dUcwWEFqNkhqZnhmTGcwNmhJbGVxQzBQa0d0cHJXYW9CVllz?=
- =?utf-8?B?dG54ZDdPMlhEK0pPeDVsQWVFUjZUY2U4Q0YyTmJYQ2hnVy9VVW1mQWJYeG9Q?=
- =?utf-8?B?VTZFVmhSaHlFS1BHUk1RNUthd2dweFE3TjdjQ3VrVDJxVE1lY2dHUHRqQUhT?=
- =?utf-8?B?SFR2Zy9ub1lTTmpyWjYzbjg4a0dNTUVjWnI2VHB1T2VKZVRpZXc5QzJYaENV?=
- =?utf-8?B?Q2wyZkFFa0FYb3BDSWRRd3V3WGlTaElrd1N0aWdRaGxhMncvbTNmbnJ1SHY5?=
- =?utf-8?B?Rm1IRjhvM3o1OFNqSzdOa1lKTFFPeWZQTEQ0bzlhYk1Yc1d1THM1ZGdPeWc0?=
- =?utf-8?B?S21IbTJ1UGIyM3pPbEVrZXFIS0l3WW9lN1FqUThWSXFWL25iQVB5Yy85M2RJ?=
- =?utf-8?B?V3dsMzhyZ3k0SlFTc2xpZEVZaUo5TjdZbHhiVjNHYzVzVjVLTFJxUU1MRTZG?=
- =?utf-8?B?Zk5sNXl4YlZjVVpTOTVLSkFsa3lzaHNscS8xVlVQQXora2o4Q0VITFBlM2dY?=
- =?utf-8?B?TFZWUkRPeDlqMUJVMndDajRrWkw3V2tVMVczVnZSZlAvWWhDallUYStSTGtw?=
- =?utf-8?B?NytxNU5qQ1JjZXM5dHhSSkErU01XTTg5WlhOL3dnWTRjNTYySWRQY1J6VW1x?=
- =?utf-8?B?UEFVeFFmQmE3bXFVbTNxTFYwSkQ2ZFE5YVlWYlNJMlBJTW03am9YK3VKbzA1?=
- =?utf-8?B?bC92d01HRkx2SXo2Mm9lbEN0N3N3MDdSb3lHR0NpSXdQdTZ3Tm9TVnlLRkFv?=
- =?utf-8?B?aFE3T1FHRTRaS01UMFIvY1d6QlRmZys4a01DRmVVWHQ5R1p6TzZ3cFdQVktw?=
- =?utf-8?B?WUhtYVloaWN6VzBiZjN5RmdZRlVnZExsN3lSNjhBZ3VTdG1XbUtvaHFyT2NM?=
- =?utf-8?B?MkFNTXYrL2xPODAzRlRlRjNxZ2xmWndXOFJleXB5RWRoM2NCeFZ5YUxUbW9o?=
- =?utf-8?B?cElZTTZET01JQUtLa0hpdkM2MVUvOHNHcHVPaDkwTEptaGU0YzYydXA2SjF5?=
- =?utf-8?B?YU02VURPM0JsK2ZkMWhNL1JVaTNvaExrdUxubld2bklMald1TXZkOEZMcjhN?=
- =?utf-8?B?VEdHclZPS1Z3WjY3VzlkQ2xueWtaaUxXSUpxWHBlR2NDdG5udFIrZE5kZEh3?=
- =?utf-8?B?aVg0WmduVVVpZmZZRnEzd2sxNWJhVkx0emx6UjdRd1pabHNUTTY2bGtjV0V0?=
- =?utf-8?B?dDIwcHJHZmtaVitLQlVManBlRVloZUUveXNPb3U5SGlYOXRGakVJVlUyVi9F?=
- =?utf-8?B?dHc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <23C0A64E5DB0184AB375306CC4B9B280@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+   d="scan'208";a="359881887"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2023 04:31:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="748981155"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; 
+   d="scan'208";a="748981155"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga007.fm.intel.com with SMTP; 18 Sep 2023 04:31:55 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 18 Sep 2023 14:31:54 +0300
+Date: Mon, 18 Sep 2023 14:31:54 +0300
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Abdel Alkuor <alkuor@gmail.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, bryan.odonoghue@linaro.org,
+	gregkh@linuxfoundation.org, robh+dt@kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+	abdelalkuor@geotab.com
+Subject: Re: [PATCH v5 04/15] USB: typec: Load TPS25750 patch bundle
+Message-ID: <ZQg1KjinxBRxwUSM@kuha.fi.intel.com>
+References: <20230917152639.21443-1-alkuor@gmail.com>
+ <20230917152639.21443-5-alkuor@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3532.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5cadb96e-d706-4bd6-a860-08dbb839b6e2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2023 11:23:42.3828
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: htLmr7sw5L9K/rchL9oLi8TnDzFhbib+UgGctYTDvH1ZE7u+EXsrhyyzTu4lEIZqLYN7YX9gZtMMgQwqqeI3qG7E4tvrJSoykKvYGfV0PiSgnLindRJd83G7hyTRJ6hJ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7026
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_PASS,SPF_NONE autolearn=unavailable autolearn_force=no
-	version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230917152639.21443-5-alkuor@gmail.com>
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-SGkgQW5kcmV3LA0KDQpPbiAxNC8wOS8yMyA3OjI1IGFtLCBBbmRyZXcgTHVubiB3cm90ZToNCj4g
-RVhURVJOQUwgRU1BSUw6IERvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVu
-bGVzcyB5b3Uga25vdyB0aGUgY29udGVudCBpcyBzYWZlDQo+IA0KPj4gKyNkZWZpbmUgUkVHX1NU
-RFJfUkVTRVQgICAgICAgICAgICAgICAweDAwMDAwMDAzDQo+IA0KPiBUaGlzIGFwcGVhcnMgdG8g
-YmUgYSBzdGFuZGFyZCByZWdpc3Rlciwgc28geW91IHNob3VsZCBub3QgbmVlZCB0bw0KPiBkZWZp
-bmUgaXQgaGVyZS4NCkFoIG9rLCB3aWxsIGRvIGl0Lg0KPiANCj4+ICsjZGVmaW5lIFJFR19NQUNf
-QUREUl9CTyAgICAgICAgICAgICAgMHgwMDAxMDAyMg0KPj4gKyNkZWZpbmUgUkVHX01BQ19BRERS
-X0wgICAgICAgICAgICAgICAweDAwMDEwMDI0DQo+PiArI2RlZmluZSBSRUdfTUFDX0FERFJfSCAg
-ICAgICAgICAgICAgIDB4MDAwMTAwMjUNCj4+ICsjZGVmaW5lIFJFR19NQUNfTldfQ1RSTCAgICAg
-ICAgIDB4MDAwMTAwMDANCj4+ICsjZGVmaW5lIFJFR19NQUNfTldfQ09ORklHICAgIDB4MDAwMTAw
-MDENCj4+ICsjZGVmaW5lIFJFR19NQUNfSEFTSEwgICAgICAgICAgICAgICAgMHgwMDAxMDAyMA0K
-Pj4gKyNkZWZpbmUgUkVHX01BQ19IQVNISCAgICAgICAgICAgICAgICAweDAwMDEwMDIxDQo+PiAr
-I2RlZmluZSBSRUdfTUFDX0FERFJfQk8gICAgICAgICAgICAgIDB4MDAwMTAwMjINCj4+ICsjZGVm
-aW5lIFJFR19NQUNfQUREUl9MICAgICAgICAgICAgICAgMHgwMDAxMDAyNA0KPj4gKyNkZWZpbmUg
-UkVHX01BQ19BRERSX0ggICAgICAgICAgICAgICAweDAwMDEwMDI1DQo+PiArDQo+PiArI2RlZmlu
-ZSBDQ1NfUTBfVFhfQ0ZHICAgICAgICAgICAgICAgIDB4MDAwQTAwODENCj4+ICsjZGVmaW5lIEND
-U19RMF9SWF9DRkcgICAgICAgICAgICAgICAgMHgwMDBBMDA4Mg0KPiANCj4gVGhlc2UgYXJlIHBy
-b3ByaWV0YXJ5IHZlbmRvciByZWdpc3RlcnMsIHNvIHBsZWFzZSBhZGQgYSBwcmVmaXggdG8gbWFr
-ZQ0KPiB0aGlzIGNsZWFyLg0KU3VyZSwgd2lsbCBhZGQgaXQgaW4gdGhlIG5leHQgdmVyc2lvbi4N
-Cg0KQmVzdCBSZWdhcmRzLA0KUGFydGhpYmFuIFYNCj4gDQo+ICAgICAgIEFuZHJldw0KDQo=
+On Sun, Sep 17, 2023 at 11:26:28AM -0400, Abdel Alkuor wrote:
+> From: Abdel Alkuor <abdelalkuor@geotab.com>
+> 
+> TPS25750 controller requires a binary to be loaded with a configuration
+> binary by an EEPROM or a host.
+> 
+> Appling a patch bundling using a host is implemented based on the flow
+> diagram pg.62 in TPS25750 host interface manual.
+> https://www.ti.com/lit/ug/slvuc05a/slvuc05a.pdf
+> 
+> The flow diagram can be summarized as following:
+> - Start the patch loading sequence with patch bundle information by
+>   executing PBMs
+> - Write the whole patch at once
+> - When writing the patch fails, execute PBMe which instructs the PD controller
+>   to end the patching process
+> - After writing the patch successfully, execute PBMc which verifies the patch
+>   integrity and applies the patch internally
+> - Wait for the device to switch into APP mode (normal operation)
+> 
+> The execuation flow diagram polls the events register and then polls the
+> corresponding register related to the event as well before advancing to the next
+> state. Polling the events register is a redundant step, in this implementation
+> only the corresponding register related to the event is polled.
+> 
+> Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
+> ---
+>  drivers/usb/typec/tipd/core.c | 237 +++++++++++++++++++++++++++++++++-
+>  1 file changed, 236 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
+> index 6d2151325fbb..fea139c72d6d 100644
+> --- a/drivers/usb/typec/tipd/core.c
+> +++ b/drivers/usb/typec/tipd/core.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/usb/typec_altmode.h>
+>  #include <linux/usb/role.h>
+>  #include <linux/workqueue.h>
+> +#include <linux/firmware.h>
+>  
+>  #include "tps6598x.h"
+>  #include "trace.h"
+> @@ -43,6 +44,23 @@
+>  /* TPS_REG_SYSTEM_CONF bits */
+>  #define TPS_SYSCONF_PORTINFO(c)		((c) & 7)
+>  
+> +/*
+> + * BPMs task timeout, recommended 5 seconds
+> + * pg.48 TPS2575 Host Interface Technical Reference
+> + * Manual (Rev. A)
+> + * https://www.ti.com/lit/ug/slvuc05a/slvuc05a.pdf
+> + */
+> +#define TPS_BUNDLE_TIMEOUT	0x32
+> +
+> +/* BPMs return code */
+> +#define TPS_TASK_BPMS_INVALID_BUNDLE_SIZE	0x4
+> +#define TPS_TASK_BPMS_INVALID_SLAVE_ADDR	0x5
+> +#define TPS_TASK_BPMS_INVALID_TIMEOUT		0x6
+> +
+> +/* PBMc data out */
+> +#define TPS_PBMC_RC	0 /* Return code */
+> +#define TPS_PBMC_DPCS	2 /* device patch complete status */
+> +
+>  enum {
+>  	TPS_PORTINFO_SINK,
+>  	TPS_PORTINFO_SINK_ACCESSORY,
+> @@ -88,6 +106,8 @@ struct tps6598x {
+>  	struct mutex lock; /* device lock */
+>  	u8 i2c_protocol:1;
+>  
+> +	u8 is_tps25750:1;
+> +
+>  	struct typec_port *port;
+>  	struct typec_partner *partner;
+>  	struct usb_pd_identity partner_identity;
+> @@ -708,6 +728,203 @@ static int devm_tps6598_psy_register(struct tps6598x *tps)
+>  	return PTR_ERR_OR_ZERO(tps->psy);
+>  }
+>  
+> +static int
+> +tps25750_write_firmware(struct tps6598x *tps,
+> +			u8 bpms_addr, const u8 *data, size_t len)
+> +{
+> +	struct i2c_client *client = to_i2c_client(tps->dev);
+> +	int ret;
+> +	u8 slave_addr;
+> +	int timeout;
+> +
+> +	slave_addr = client->addr;
+> +	timeout = client->adapter->timeout;
+> +
+> +	/*
+> +	 * binary configuration size is around ~16Kbytes
+> +	 * which might take some time to finish writing it
+> +	 */
+> +	client->adapter->timeout = msecs_to_jiffies(5000);
+> +	client->addr = bpms_addr;
+> +
+> +	ret = regmap_raw_write(tps->regmap, data[0], &data[1], len - 1);
+> +
+> +	client->addr = slave_addr;
+> +	client->adapter->timeout = timeout;
+> +
+> +	return ret;
+> +}
+> +
+> +static int
+> +tps25750_exec_pbms(struct tps6598x *tps, u8 *in_data, size_t in_len)
+> +{
+> +	int ret;
+> +	u8 rc;
+> +
+> +	ret = tps6598x_exec_cmd(tps, "PBMs", in_len, in_data,
+> +				sizeof(rc), &rc, 4000, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	switch (rc) {
+> +	case TPS_TASK_BPMS_INVALID_BUNDLE_SIZE:
+> +		dev_err(tps->dev, "%s: invalid fw size\n", __func__);
+> +		return -EINVAL;
+> +	case TPS_TASK_BPMS_INVALID_SLAVE_ADDR:
+> +		dev_err(tps->dev, "%s: invalid slave address\n", __func__);
+> +		return -EINVAL;
+> +	case TPS_TASK_BPMS_INVALID_TIMEOUT:
+> +		dev_err(tps->dev, "%s: timed out\n", __func__);
+> +		return -ETIMEDOUT;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int tps25750_abort_patch_process(struct tps6598x *tps)
+> +{
+> +	int ret;
+> +	u8 mode;
+> +
+> +	ret = tps6598x_exec_cmd(tps, "PBMe", 0, NULL, 0, NULL, 1000, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = tps6598x_check_mode(tps, &mode);
+> +	if (mode != TPS_MODE_PTCH)
+> +		dev_err(tps->dev, "failed to switch to \"PTCH\" mode\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static int tps25750_start_patch_burst_mode(struct tps6598x *tps)
+> +{
+> +	int ret;
+> +	const struct firmware *fw;
+> +	const char *firmware_name;
+> +	struct {
+> +		u32 fw_size;
+> +		u8 addr;
+> +		u8 timeout;
+> +	} __packed bpms_data;
+> +
+> +	ret = device_property_read_string(tps->dev, "firmware-name",
+> +					  &firmware_name);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = request_firmware(&fw, firmware_name, tps->dev);
+> +	if (ret) {
+> +		dev_err(tps->dev, "failed to retrieve \"%s\"\n", firmware_name);
+> +		return ret;
+> +	}
+> +
+> +	if (fw->size == 0) {
+> +		ret = -EINVAL;
+> +		goto release_fw;
+> +	}
+> +
+> +	ret = device_property_read_u8(tps->dev, "ti,patch-address", &bpms_data.addr);
+> +	if (ret) {
+> +		dev_err(tps->dev, "failed to get patch address\n");
+> +		return ret;
+> +	}
+> +
+> +	bpms_data.fw_size = fw->size;
+> +	bpms_data.timeout = TPS_BUNDLE_TIMEOUT;
+> +
+> +	ret = tps25750_exec_pbms(tps, (u8 *)&bpms_data, sizeof(bpms_data));
+> +	if (ret)
+> +		goto release_fw;
+> +
+> +	ret = tps25750_write_firmware(tps, bpms_data.addr, fw->data, fw->size);
+> +	if (ret) {
+> +		dev_err(tps->dev, "Failed to write patch %s of %lu bytes\n",
+> +			firmware_name, fw->size);
+> +		goto release_fw;
+> +	}
+> +
+> +	/*
+> +	 * A delay of 500us is required after the firmware is written
+> +	 * based on pg.62 in tps6598x Host Interface Technical
+> +	 * Reference Manual
+> +	 * https://www.ti.com/lit/ug/slvuc05a/slvuc05a.pdf
+> +	 */
+> +	udelay(500);
+> +
+> +release_fw:
+> +	release_firmware(fw);
+> +
+> +	return ret;
+> +}
+> +
+> +static int tps25750_complete_patch_process(struct tps6598x *tps)
+> +{
+> +	int ret;
+> +	u8 out_data[40];
+> +	u8 dummy[2] = { };
+> +
+> +	/*
+> +	 * Without writing something to DATA_IN, this command would
+> +	 * return an error
+> +	 */
+> +	ret = tps6598x_exec_cmd(tps, "PBMc", sizeof(dummy), dummy,
+> +				sizeof(out_data), out_data, 2000, 20);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (out_data[TPS_PBMC_RC]) {
+> +		dev_err(tps->dev,
+> +			"%s: pbmc failed: %u\n", __func__,
+> +			out_data[TPS_PBMC_RC]);
+> +		return -EIO;
+> +	}
+> +
+> +	if (out_data[TPS_PBMC_DPCS]) {
+> +		dev_err(tps->dev,
+> +			"%s: failed device patch complete status: %u\n",
+> +			__func__, out_data[TPS_PBMC_DPCS]);
+> +		return -EIO;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int tps25750_apply_patch(struct tps6598x *tps)
+> +{
+> +	int ret;
+> +	unsigned long timeout;
+> +	u8 mode;
+> +
+> +	ret = tps25750_start_patch_burst_mode(tps);
+> +	if (ret) {
+> +		tps25750_abort_patch_process(tps);
+> +		return ret;
+> +	}
+> +
+> +	ret = tps25750_complete_patch_process(tps);
+> +	if (ret)
+> +		return ret;
+> +
+> +	timeout = jiffies + msecs_to_jiffies(1000);
+> +
+> +	do {
+> +		ret = tps6598x_check_mode(tps, &mode);
+> +		if (ret)
+> +			return ret;
+> +
+> +		if (time_is_before_jiffies(timeout))
+> +			return -ETIMEDOUT;
+> +
+> +	} while (mode != TPS_MODE_APP);
+> +
+> +	dev_info(tps->dev, "controller switched to \"APP\" mode\n");
+> +
+> +	return 0;
+> +};
+> +
+>  static int tps6598x_probe(struct i2c_client *client)
+>  {
+>  	irq_handler_t irq_handler = tps6598x_interrupt;
+> @@ -757,6 +974,8 @@ static int tps6598x_probe(struct i2c_client *client)
+>  
+>  		irq_handler = cd321x_interrupt;
+>  	} else {
+> +
+> +		tps->is_tps25750 = of_device_is_compatible(np, "ti,tps25750");
+>  		/* Enable power status, data status and plug event interrupts */
+>  		mask1 = TPS_REG_INT_POWER_STATUS_UPDATE |
+>  			TPS_REG_INT_DATA_STATUS_UPDATE |
+> @@ -769,9 +988,15 @@ static int tps6598x_probe(struct i2c_client *client)
+>  	if (ret)
+>  		return ret;
+>  
+> +	if (tps->is_tps25750 && mode == TPS_MODE_PTCH) {
+> +		ret = tps25750_apply_patch(tps);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>  	ret = tps6598x_write64(tps, TPS_REG_INT_MASK1, mask1);
+>  	if (ret)
+> -		return ret;
+> +		goto err_reset_controller;
+>  
+>  	ret = tps6598x_read32(tps, TPS_REG_STATUS, &status);
+>  	if (ret < 0)
+> @@ -891,6 +1116,10 @@ static int tps6598x_probe(struct i2c_client *client)
+>  	fwnode_handle_put(fwnode);
+>  err_clear_mask:
+>  	tps6598x_write64(tps, TPS_REG_INT_MASK1, 0);
+> +err_reset_controller:
+> +	/* Reset PD controller to remove any applied patch */
+> +	if (tps->is_tps25750)
+> +		tps6598x_exec_cmd(tps, "GAID", 0, NULL, 0, NULL, 2000, 0);
+>  	return ret;
+>  }
+>  
+> @@ -901,9 +1130,14 @@ static void tps6598x_remove(struct i2c_client *client)
+>  	if (!client->irq)
+>  		cancel_delayed_work_sync(&tps->wq_poll);
+>  
+> +	devm_free_irq(tps->dev, client->irq, tps);
+>  	tps6598x_disconnect(tps, 0);
+>  	typec_unregister_port(tps->port);
+>  	usb_role_switch_put(tps->role_sw);
+> +
+> +	/* Reset PD controller to remove any applied patch */
+> +	if (tps->is_tps25750)
+> +		tps6598x_exec_cmd(tps, "GAID", 0, NULL, 0, NULL, 2000, 0);
+>  }
+>  
+>  static int __maybe_unused tps6598x_suspend(struct device *dev)
+> @@ -946,6 +1180,7 @@ static const struct dev_pm_ops tps6598x_pm_ops = {
+>  static const struct of_device_id tps6598x_of_match[] = {
+>  	{ .compatible = "ti,tps6598x", },
+>  	{ .compatible = "apple,cd321x", },
+> +	{ .compatible = "ti,tps25750", },
+
+This is probable OK for now, we can mix this stuff into core.c now, but
+later I want this driver (core.c) to be converted into a library that
+contains only the common functionality. TPS5750 will at that point have
+its own probe/glue driver.
+
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, tps6598x_of_match);
+> -- 
+> 2.34.1
+
+thanks,
+
+-- 
+heikki
 
