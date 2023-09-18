@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-1152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D3987A510A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:33:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8D247A510B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:33:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 462B91C20D48
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:33:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2817281857
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:33:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEF71266CD;
-	Mon, 18 Sep 2023 17:33:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6548266D1;
+	Mon, 18 Sep 2023 17:33:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DF62262AF
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 17:33:05 +0000 (UTC)
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9ED0102
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 10:33:04 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id 46e09a7af769-6beff322a97so3018415a34.3
-        for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 10:33:04 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 020E9262A2
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 17:33:06 +0000 (UTC)
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69414DB
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 10:33:05 -0700 (PDT)
+Received: by mail-ot1-x32c.google.com with SMTP id 46e09a7af769-6c0f3f24c27so2876671a34.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 10:33:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20230601; t=1695058384; x=1695663184; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=23RWTA42oeiWyX/+9q0UPnX5CmGzLdzzX40DGM4ZYYo=;
-        b=M95HgQTNv01tGUub8UvqvHK6HbVB+Ywx0l76k6muir+o2JhDY9HD2MRVZK2bdZraja
-         Ipax7bQLAuhmnrSiFsUKTD5cdm7qBD+I9usTwddq/c2oDCNzAEb62JFDg38QgIt7HAGL
-         hVHIwzpa4ZLMJrcVf9lXGqB+naAcanDnHUuTqHIumg52B8djazs1MNRKKISFHk0yTQFz
-         Z+SHGFyg6V7lMxk0dEjKhNqr5pg6repnh3rJF310ZcAqL/yf+lZrRxw+yIPbsPeTxRZY
-         3ZjfXZEcUnStoB60Z1YX37RnGjJ1+EnWmlgnHkzmzmrScDaTY7/Hdm+66lOKsJibSWxE
-         FRGA==
+        bh=XK3Zx4cA9xhlrAxpKhxgK0rFJrxd0HOs9F/T85uolkQ=;
+        b=KT8n7d303w9fwG+WaJ4RkKOuhyfriT6UjDsBKQkKWEVKYEFzu4yCiL5aWD3lV/zHbq
+         JNN1efBc74D22UbeiE6wLg6kFgG3rIdgCLd5GEBTh0nLiveHsWjAEUVyiBFgfjCbqLJ6
+         Eq2YDrjyYKYhASRMAlA2jucY3/O6t9OZowHc+jmj/JUGVBkGLk27euHy591WGKslRZw8
+         EuwZI7syIuJ2UI4thSojnT7goLZR01xxVS5C2+gBmIoLQMbzdg4zcvl44R1LiANw8mc0
+         xakN8N9rUCMFWlKNJbirDQJJNGMQytNs2s6RVN8w8vzqA4wRXzk9be+0IZ7qxZQ2WYjg
+         4huA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1695058384; x=1695663184;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=23RWTA42oeiWyX/+9q0UPnX5CmGzLdzzX40DGM4ZYYo=;
-        b=rfbCDmFAw7UAZc1OaKPtTf6PsMryQCoDokC0yEBuKH7YfuDd9XoJYblqyFWGiYPeJ/
-         7biJXP0iRgEq6xxfdYKjzUm4VyPoYBYbtzPOLdh9y9xO4Cr6dnJcS5bahipeM6bYB/M9
-         m52TSrpIWa6G61j1Sr/6ubjTICP+1MUUrxqg4o5uubSgZIIlXV+xGl6+BJwp6m1FPR0+
-         s3O1jPXsdOZ7F7GKkgn9yArkr2e0VAZ4wU+e0W72tGPU2NvkjeokMATjlNF45JjmP8AX
-         soDh7VnKyrH0y50e5q1tC2h0gJm/rcDGo85gtpOgeYxj97rIbQnSf/ANkzK3rD5idzU2
-         AH0A==
-X-Gm-Message-State: AOJu0Yx+FATrtwMcHmjzMnDPDnPJ5HhRI6Ttxy9QEtfhhxdU3D7Ni4ou
-	y0Ebls5+QaBWYzLsrBrG8iSqqW/O5qc=
-X-Google-Smtp-Source: AGHT+IFhyJPfr37KhtqJ3wZPBJSB4Q0J4LL+BiQBQ2krz+QLEZPpXFJVQeJuBoTMWVVYL6p0kMeSxA==
-X-Received: by 2002:a9d:7dcb:0:b0:6bf:ef0:c69 with SMTP id k11-20020a9d7dcb000000b006bf0ef00c69mr9537847otn.34.1695058383965;
-        Mon, 18 Sep 2023 10:33:03 -0700 (PDT)
+        bh=XK3Zx4cA9xhlrAxpKhxgK0rFJrxd0HOs9F/T85uolkQ=;
+        b=Yr01rebxz8BT3kLAZNuAM2aFkkgDcGS0sY8jmw496bvTei7hvnCAfQRz+8SpvoJNTT
+         etr3PWCr1a4QrQ+K698fscYhwbxNNdxj/yot4jX77OUeVLHcpMdfK7nsF8SZABWNspix
+         VBz8llyHdW1eXhcR4twkzsjo2B0CbdHT3xKd/4aQygBB/9P8rOdcfnBDgbOzpARMQIfk
+         MgIKS3zdqsgiTYkWF/sRzgWNTZctHREcnxYXzCpJj0YfwMvxLFWsJY+4nyn7+zISTLl1
+         h3ReiXpdYEamcmXDRMp/CrS+lLPTqh/Snx6cxILQOiyE0KkNYVXxXvrK+BEgCMGaKCV2
+         IG3g==
+X-Gm-Message-State: AOJu0Yzh2wMi/AMlhHd1QYlNi9M5aDk15tEgZArioOBKH+l3iDEN00DP
+	7FZSsJ9KDW1tOc95eAhG8FlZiOiiOFs=
+X-Google-Smtp-Source: AGHT+IG099pZXcuRlYWQ4u4WN0bBrYtPwrlrp3XmF1JITM2fdMwNCInhOudAchYGgcQDm9Og8WM1Qg==
+X-Received: by 2002:a9d:4f0b:0:b0:6be:c1b:ded4 with SMTP id d11-20020a9d4f0b000000b006be0c1bded4mr10608390otl.3.1695058384590;
+        Mon, 18 Sep 2023 10:33:04 -0700 (PDT)
 Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id z5-20020a056830128500b006bf0f95f702sm4315755otp.64.2023.09.18.10.33.03
+        by smtp.gmail.com with ESMTPSA id z5-20020a056830128500b006bf0f95f702sm4315755otp.64.2023.09.18.10.33.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Sep 2023 10:33:03 -0700 (PDT)
+        Mon, 18 Sep 2023 10:33:04 -0700 (PDT)
 From: Chris Morgan <macroalpha82@gmail.com>
 To: devicetree@vger.kernel.org
 Cc: linux-rockchip@lists.infradead.org,
@@ -65,9 +65,9 @@ Cc: linux-rockchip@lists.infradead.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	robh+dt@kernel.org,
 	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V2 2/3] arm64: dts: rockchip: add USB2 to rk3588s-indiedroid
-Date: Mon, 18 Sep 2023 12:32:54 -0500
-Message-Id: <20230918173255.1325-3-macroalpha82@gmail.com>
+Subject: [PATCH V2 3/3] arm64: dts: rockchip: Add saradc node to Indiedroid Nova
+Date: Mon, 18 Sep 2023 12:32:55 -0500
+Message-Id: <20230918173255.1325-4-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230918173255.1325-1-macroalpha82@gmail.com>
 References: <20230918173255.1325-1-macroalpha82@gmail.com>
@@ -87,11 +87,10 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Enable USB2 (EHCI and OCHI mode) support for the Indiedroid Nova. This
-adds support for USB for the 4 full size USB-A ports. Note that USB 3
-(the two blue full-size USB-A ports) is still outstanding, as is
-support for USB on the USB-C ports. The controller is not yet supported
-for these ports.
+Add ADC support for the Indiedroid Nova, as well as the two ADC buttons
+found on the device. The buttons are documented as "boot" and
+"recovery". The boot button is used by the bootloader to boot into USB
+recovery mode. The recovery button use is currently unknown.
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 ---
@@ -99,54 +98,64 @@ Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
  1 file changed, 34 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-index 646f49cc9e53..1e2336d3065b 100644
+index 1e2336d3065b..60f00ceb630e 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-@@ -751,6 +751,24 @@ &tsadc {
- 	status = "okay";
- };
+@@ -3,6 +3,7 @@
+ /dts-v1/;
  
-+&u2phy2 {
-+	status = "okay";
-+};
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/linux-event-codes.h>
+ #include <dt-bindings/pinctrl/rockchip.h>
+ #include <dt-bindings/usb/pd.h>
+ #include "rk3588s.dtsi"
+@@ -11,6 +12,34 @@ / {
+ 	model = "Indiedroid Nova";
+ 	compatible = "indiedroid,nova", "rockchip,rk3588s";
+ 
++	adc-keys-0 {
++		compatible = "adc-keys";
++		io-channel-names = "buttons";
++		io-channels = <&saradc 0>;
++		keyup-threshold-microvolt = <1800000>;
++		poll-interval = <100>;
 +
-+&u2phy2_host {
-+	phy-supply = <&vcc5v0_usb>;
-+	status = "okay";
-+};
++		button-boot {
++			label = "boot";
++			linux,code = <KEY_PROG1>;
++			press-threshold-microvolt = <18000>;
++		};
++	};
 +
-+&u2phy3 {
-+	status = "okay";
-+};
++	adc-keys-1 {
++		compatible = "adc-keys";
++		io-channel-names = "buttons";
++		io-channels = <&saradc 1>;
++		keyup-threshold-microvolt = <1800000>;
++		poll-interval = <100>;
 +
-+&u2phy3_host {
-+	phy-supply = <&vcc5v0_usb>;
-+	status = "okay";
-+};
++		button-recovery {
++			label = "recovery";
++			linux,code = <KEY_PROG2>;
++			press-threshold-microvolt = <18000>;
++		};
++	};
 +
- &uart2 {
- 	pinctrl-0 = <&uart2m0_xfer>;
- 	status = "okay";
-@@ -775,3 +793,19 @@ bluetooth {
- 		pinctrl-names = "default";
+ 	aliases {
+ 		mmc0 = &sdhci;
+ 		mmc1 = &sdmmc;
+@@ -410,6 +439,11 @@ typec5v_pwren: typec5v-pwren {
  	};
  };
-+
-+&usb_host0_ehci {
+ 
++&saradc {
++	vref-supply = <&vcca_1v8_s0>;
 +	status = "okay";
 +};
 +
-+&usb_host0_ohci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ohci {
-+	status = "okay";
-+};
+ /* HS400 modes seemed to cause io errors. */
+ &sdhci {
+ 	bus-width = <8>;
 -- 
 2.34.1
 
