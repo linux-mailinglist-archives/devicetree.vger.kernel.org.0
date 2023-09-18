@@ -1,162 +1,144 @@
-Return-Path: <devicetree+bounces-1153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8D247A510B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:33:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3C377A5171
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:59:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2817281857
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:33:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D9AA28109D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:59:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6548266D1;
-	Mon, 18 Sep 2023 17:33:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EE9D266D7;
+	Mon, 18 Sep 2023 17:59:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 020E9262A2
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 17:33:06 +0000 (UTC)
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69414DB
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 10:33:05 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id 46e09a7af769-6c0f3f24c27so2876671a34.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 10:33:05 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15D4123749
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 17:59:32 +0000 (UTC)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59C51DB;
+	Mon, 18 Sep 2023 10:59:30 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-522bd411679so6173706a12.0;
+        Mon, 18 Sep 2023 10:59:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695058384; x=1695663184; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1695059968; x=1695664768; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XK3Zx4cA9xhlrAxpKhxgK0rFJrxd0HOs9F/T85uolkQ=;
-        b=KT8n7d303w9fwG+WaJ4RkKOuhyfriT6UjDsBKQkKWEVKYEFzu4yCiL5aWD3lV/zHbq
-         JNN1efBc74D22UbeiE6wLg6kFgG3rIdgCLd5GEBTh0nLiveHsWjAEUVyiBFgfjCbqLJ6
-         Eq2YDrjyYKYhASRMAlA2jucY3/O6t9OZowHc+jmj/JUGVBkGLk27euHy591WGKslRZw8
-         EuwZI7syIuJ2UI4thSojnT7goLZR01xxVS5C2+gBmIoLQMbzdg4zcvl44R1LiANw8mc0
-         xakN8N9rUCMFWlKNJbirDQJJNGMQytNs2s6RVN8w8vzqA4wRXzk9be+0IZ7qxZQ2WYjg
-         4huA==
+        bh=2z+YfEIrjX3pGh98erEY2L625u+oUnPZE1jx6jpqjps=;
+        b=mm/LoWXaXRxm27XEHEwGWRp9Ej/ppCSH5ewljKttRPsRH+I0rq95QyU+g7EM8qH9r8
+         truc/e/gYlsrkakVr6hVCEP13oOoi5qyZJ3l7RlA8SwMFRrdkN2+HWZrkO9wQf7PNNOg
+         RBonJ+PC7L3A83MXyThWGhix5a8sayEJQS1zPpNc83i/MQB+WYtY5pa1kbLO6JGzCYxq
+         rW1UMJ5UHDtWB6Ho0psNG2zXcGY3+G18DFBQyVRrW3yJXjSAC4g1jpiGIzN+q3XC5Tgj
+         7cmpkTiRFn9VvmHkqI92KiPM68UT123RGcPJtoRCX9/81cz1R1llkCX3Z/PLK0IHsX5H
+         wPcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695058384; x=1695663184;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1695059968; x=1695664768;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XK3Zx4cA9xhlrAxpKhxgK0rFJrxd0HOs9F/T85uolkQ=;
-        b=Yr01rebxz8BT3kLAZNuAM2aFkkgDcGS0sY8jmw496bvTei7hvnCAfQRz+8SpvoJNTT
-         etr3PWCr1a4QrQ+K698fscYhwbxNNdxj/yot4jX77OUeVLHcpMdfK7nsF8SZABWNspix
-         VBz8llyHdW1eXhcR4twkzsjo2B0CbdHT3xKd/4aQygBB/9P8rOdcfnBDgbOzpARMQIfk
-         MgIKS3zdqsgiTYkWF/sRzgWNTZctHREcnxYXzCpJj0YfwMvxLFWsJY+4nyn7+zISTLl1
-         h3ReiXpdYEamcmXDRMp/CrS+lLPTqh/Snx6cxILQOiyE0KkNYVXxXvrK+BEgCMGaKCV2
-         IG3g==
-X-Gm-Message-State: AOJu0Yzh2wMi/AMlhHd1QYlNi9M5aDk15tEgZArioOBKH+l3iDEN00DP
-	7FZSsJ9KDW1tOc95eAhG8FlZiOiiOFs=
-X-Google-Smtp-Source: AGHT+IG099pZXcuRlYWQ4u4WN0bBrYtPwrlrp3XmF1JITM2fdMwNCInhOudAchYGgcQDm9Og8WM1Qg==
-X-Received: by 2002:a9d:4f0b:0:b0:6be:c1b:ded4 with SMTP id d11-20020a9d4f0b000000b006be0c1bded4mr10608390otl.3.1695058384590;
-        Mon, 18 Sep 2023 10:33:04 -0700 (PDT)
-Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id z5-20020a056830128500b006bf0f95f702sm4315755otp.64.2023.09.18.10.33.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Sep 2023 10:33:04 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: linux-rockchip@lists.infradead.org,
-	jagan@edgeble.ai,
-	heiko@sntech.de,
-	conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V2 3/3] arm64: dts: rockchip: Add saradc node to Indiedroid Nova
-Date: Mon, 18 Sep 2023 12:32:55 -0500
-Message-Id: <20230918173255.1325-4-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230918173255.1325-1-macroalpha82@gmail.com>
-References: <20230918173255.1325-1-macroalpha82@gmail.com>
+        bh=2z+YfEIrjX3pGh98erEY2L625u+oUnPZE1jx6jpqjps=;
+        b=VUTLWqB5WGrK0MLxlyDW4uCbyK6p1DvFG0zLdot/OHGHfMWhdq/ZDxCSa8LTnrrxkk
+         jevrh+ZyW6haTuR2LFmJkKfZWEwjdlhx2NIciqBSDJBtV/h/8CidjYveBz7GeaVRVJ1c
+         Rrx/dz9do0oRJhXXjBky82+Hemb5JU1EOl8sFjo+LrciQSiUD0MWgZTgPR907r9v5IIC
+         93yGQcjYCbNfoRMF6OGlzhAIh2wGfeh+799+e5WvA5ggZ9sRuZPcm7IWnwo8EYQcFtbO
+         BvknXEvsmJwngBinEBGILdu71uWm2DZke8anF7I7jXoZ7P9SANahO0OUQ7bUa6MInyqs
+         Sbnw==
+X-Gm-Message-State: AOJu0YzdiaF32aJIbSQKZIVDcqvyxATyDFwSmVymt1r8ZriQYZzgItru
+	c7TbrSQEnnwC/8Ry6e2SKqLcsGd7rM79foGnzak=
+X-Google-Smtp-Source: AGHT+IG/RyMpqq1hOq1M/e4gKRaB7kZ9lH1Ca1G70SneQICLUr0RT6KxkeqMMhs2bB3VSBrO3ofPIT1Y4DbuBjAUIjo=
+X-Received: by 2002:aa7:d3d6:0:b0:51e:2e39:9003 with SMTP id
+ o22-20020aa7d3d6000000b0051e2e399003mr6614828edr.40.1695059968144; Mon, 18
+ Sep 2023 10:59:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230918-imx8mp-dtsi-v1-0-1d008b3237c0@skidata.com> <CAHCN7xJ8KrBd-532=gDE+82xo1ZNtoDT7pZsYwy9-9WiJvmkvw@mail.gmail.com>
+In-Reply-To: <CAHCN7xJ8KrBd-532=gDE+82xo1ZNtoDT7pZsYwy9-9WiJvmkvw@mail.gmail.com>
+From: Benjamin Bara <bbara93@gmail.com>
+Date: Mon, 18 Sep 2023 19:59:16 +0200
+Message-ID: <CAJpcXm6OWNODOz5gEWVhOJjKTazwzE7XV6ZR1H06zpECrivZig@mail.gmail.com>
+Subject: Re: [PATCH 00/13] imx8mp: first clock propagation attempt (for LVDS)
+To: Adam Ford <aford173@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	NXP Linux Team <linux-imx@nxp.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+	Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+	Frank Oltmanns <frank@oltmanns.dev>, Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Benjamin Bara <benjamin.bara@skidata.com>, 
+	Lucas Stach <l.stach@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+	FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Chris Morgan <macromorgan@hotmail.com>
+Hi Adam!
 
-Add ADC support for the Indiedroid Nova, as well as the two ADC buttons
-found on the device. The buttons are documented as "boot" and
-"recovery". The boot button is used by the bootloader to boot into USB
-recovery mode. The recovery button use is currently unknown.
+On Mon, 18 Sept 2023 at 07:00, Adam Ford <aford173@gmail.com> wrote:
+> On Sun, Sep 17, 2023 at 3:40=E2=80=AFPM Benjamin Bara <bbara93@gmail.com>=
+ wrote:
+> > The idea:
+> > Enable CLK_SET_RATE_PARENT, at least for media_disp2_pix and media_ldb.
+> > When this is done, ensure that the pll1443x can be re-configured,
+> > meaning it ensures that an already configured rate (crtc rate) is still
+> > supported when a second child requires a different rate (lvds rate). As
+>
+> Have you tested with the DSI as well?  If memory servers, the DSI
+> clock and the LVDS clock are both clocked from the same video_pll.  At
+> one time, I had done some experimentation with trying the DSI
+> connected to an HDMI bridge chip connected to a monitor and the LVDS
+> was connected to a display panel with a static resolution and refresh
+> rate.  For my LVDS display, it needs 30MHz to display properly, but
+> various HDMI resolutions needed values that were not evenly divisible
+> by 30MHz which appeared to cause display sync issues when trying to
+> share a clock that was trying to dynamically adjust for two different
+> displays especially when trying to change the resoltuion of the HDMI
+> display to various values for different resolutions.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- .../dts/rockchip/rk3588s-indiedroid-nova.dts  | 34 +++++++++++++++++++
- 1 file changed, 34 insertions(+)
+Unfortunately I haven't. I think if you have the use case to support
+different "run-time-dynamic" (HDMI) rates in parallel with a static
+(LVDS) rate, it probably makes sense (for now) to just use a LVDS panel
+which can be feeded from one of the static PLLs directly and do a manual
+re-parenting in the dt. The manual re-parenting could be replaced by an
+automated re-parenting in the composite driver. When I think about it,
+it might make sense to extend clk-divider's clk_divider_bestdiv()[1]
+(which is currently used by the composite-8m) with a "find the best
+parent" implementation, something like:
+1. are we in range if we divide the active parent with all possible
+   dividers? (already existing)
+2. are we in range if we switch to a different parent and divide it with
+   all possible dividers?
+3. are we in range if we re-configure a possible parent (and switch to
+   it)?
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-index 1e2336d3065b..60f00ceb630e 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-@@ -3,6 +3,7 @@
- /dts-v1/;
- 
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/pinctrl/rockchip.h>
- #include <dt-bindings/usb/pd.h>
- #include "rk3588s.dtsi"
-@@ -11,6 +12,34 @@ / {
- 	model = "Indiedroid Nova";
- 	compatible = "indiedroid,nova", "rockchip,rk3588s";
- 
-+	adc-keys-0 {
-+		compatible = "adc-keys";
-+		io-channel-names = "buttons";
-+		io-channels = <&saradc 0>;
-+		keyup-threshold-microvolt = <1800000>;
-+		poll-interval = <100>;
-+
-+		button-boot {
-+			label = "boot";
-+			linux,code = <KEY_PROG1>;
-+			press-threshold-microvolt = <18000>;
-+		};
-+	};
-+
-+	adc-keys-1 {
-+		compatible = "adc-keys";
-+		io-channel-names = "buttons";
-+		io-channels = <&saradc 1>;
-+		keyup-threshold-microvolt = <1800000>;
-+		poll-interval = <100>;
-+
-+		button-recovery {
-+			label = "recovery";
-+			linux,code = <KEY_PROG2>;
-+			press-threshold-microvolt = <18000>;
-+		};
-+	};
-+
- 	aliases {
- 		mmc0 = &sdhci;
- 		mmc1 = &sdmmc;
-@@ -410,6 +439,11 @@ typec5v_pwren: typec5v-pwren {
- 	};
- };
- 
-+&saradc {
-+	vref-supply = <&vcca_1v8_s0>;
-+	status = "okay";
-+};
-+
- /* HS400 modes seemed to cause io errors. */
- &sdhci {
- 	bus-width = <8>;
--- 
-2.34.1
+Steps 2 & 3 are e.g. implemented by at91's clk-master[2]. There are
+maybe also "smarter" solutions to the problem beside trying every
+possibility. Anyways, we already have a CLK_SET_RATE_NO_REPARENT which
+would indicate if we are allowed to do so.
 
+For static use cases involving both, I would probably (for now) go with
+a hard-assigned, tested clock rate in the dt. IMHO, this should always
+work as fall-back.
+
+Regards,
+Benjamin
+
+[1] https://elixir.bootlin.com/linux/v6.5.3/source/drivers/clk/clk-divider.=
+c#L304
+[2] https://elixir.bootlin.com/linux/v6.5.3/source/drivers/clk/at91/clk-mas=
+ter.c#L586
 
