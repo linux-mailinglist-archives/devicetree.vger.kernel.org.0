@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-1178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C33607A530E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 21:24:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB1DA7A5309
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 21:24:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAE7B1C2099F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:24:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BA8F1C20D23
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:24:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0D7E27EFE;
-	Mon, 18 Sep 2023 19:22:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D72527ED3;
+	Mon, 18 Sep 2023 19:22:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AAE62773D
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 19:22:24 +0000 (UTC)
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6AA0119;
-	Mon, 18 Sep 2023 12:22:18 -0700 (PDT)
-X-UUID: a99f0888565811eea33bb35ae8d461a2-20230919
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79F1C27724
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 19:22:23 +0000 (UTC)
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFDD9122;
+	Mon, 18 Sep 2023 12:22:21 -0700 (PDT)
+X-UUID: aaef8aa0565811ee8051498923ad61e6-20230919
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=0FGZehlLCno83Z8FTy72FubzQX4DbX4unNwvaHAIttY=;
-	b=BjI4+8JTWdo0gAbT3cionUglmDvb/sa8dSORvuvwBYMQsNq2fpAV1z0b5yhXP52cQZzijqvMAXvOoZiIOfCm0Co48SWmx8Cov+InaUpp6xGz7RyK/4DhUYUJ1B3jA12se4ZUL1Oda7BjDCZv8GH1e1HKxS8c7zQNbNQnW+j50J8=;
+	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=KpjaD11RemCk9V23Luuqh5H4jqtM7xkfN3lzoZC/OKs=;
+	b=P6Lz+gHFP473vAUjOh7NJAX6UoGH7bIXcsjBKsgGaUEfiOqJMVziw78RSZr/h4agi4JzKkqyG86V5qwP6mhEju09MR/lViYwYHOGR/SfA2PTcvuFja8DWAcNIIw0gari+FswDJ+EOc8+dKncPrCLaKDd8Eh95FLXrfqgYLNVa90=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:19ca8d34-cb2b-492b-9949-bdfc4c3d79cb,IP:0,U
+X-CID-O-INFO: VERSION:1.1.31,REQID:c82851fe-1a71-4b18-b160-17151ca571a5,IP:0,U
 	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
 	release,TS:0
-X-CID-META: VersionHash:0ad78a4,CLOUDID:d10b1514-4929-4845-9571-38c601e9c3c9,B
+X-CID-META: VersionHash:0ad78a4,CLOUDID:10dafabe-14cc-44ca-b657-2d2783296e72,B
 	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
 	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
 	DKR:0,DKP:0,BRR:0,BRE:0
 X-CID-BVR: 0,NGT
 X-CID-BAS: 0,NGT,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: a99f0888565811eea33bb35ae8d461a2-20230919
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+X-UUID: aaef8aa0565811ee8051498923ad61e6-20230919
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
 	(envelope-from <jason-jh.lin@mediatek.com>)
 	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 845686881; Tue, 19 Sep 2023 03:22:09 +0800
+	with ESMTP id 1380721463; Tue, 19 Sep 2023 03:22:11 +0800
 Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.2.1118.26; Tue, 19 Sep 2023 03:22:08 +0800
 Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
@@ -55,16 +55,17 @@ To: Jassi Brar <jassisinghbrar@gmail.com>, Krzysztof Kozlowski
 	<chunkuang.hu@kernel.org>, AngeloGioacchino Del Regno
 	<angelogioacchino.delregno@collabora.com>
 CC: Conor Dooley <conor+dt@kernel.org>, Jason-ch Chen
-	<jason-ch.chen@mediatek.com>, Johnson Wang <johnson.wang@mediatek.com>, Elvis
- Wang <Elvis.Wang@mediatek.com>, "Jason-JH . Lin" <jason-jh.lin@mediatek.com>,
-	Singo Chang <singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>,
-	Shawn Sung <shawn.sung@mediatek.com>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <dri-devel@lists.freedesktop.org>,
+	<jason-ch.chen@mediatek.com>, Johnson Wang <johnson.wang@mediatek.com>,
+	"Elvis Wang" <Elvis.Wang@mediatek.com>, "Jason-JH . Lin"
+	<jason-jh.lin@mediatek.com>, Singo Chang <singo.chang@mediatek.com>, Nancy
+ Lin <nancy.lin@mediatek.com>, Shawn Sung <shawn.sung@mediatek.com>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<dri-devel@lists.freedesktop.org>,
 	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH 11/15] soc: mediatek: Add cmdq_insert_backup_cookie before EOC for secure pkt
-Date: Tue, 19 Sep 2023 03:22:00 +0800
-Message-ID: <20230918192204.32263-12-jason-jh.lin@mediatek.com>
+Subject: [PATCH 12/15] mailbox: mediatek: Add CMDQ driver support for mt8188
+Date: Tue, 19 Sep 2023 03:22:01 +0800
+Message-ID: <20230918192204.32263-13-jason-jh.lin@mediatek.com>
 X-Mailer: git-send-email 2.18.0
 In-Reply-To: <20230918192204.32263-1-jason-jh.lin@mediatek.com>
 References: <20230918192204.32263-1-jason-jh.lin@mediatek.com>
@@ -75,64 +76,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--5.774700-8.000000
+X-TMASE-MatchedRID: cAwOsowI+VI9S3IiQd+eNaMVgdN9w+TCTJDl9FKHbrkKogmGusPLb2Tv
+	8eaKHrag93LsYxp0JcCAMuqetGVetnyef22ep6XYOwBXM346/+xDDq9Dt7KcVyrv3Di/02TciNo
+	EzftgE6BdE1KeR8n7U1Wkdp//fhk0
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--5.774700-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP: 81B48E97CA2E055112CAB8A637FD7B8066E0ED5569C28872C6E23BB0E0CC33D12000:8
 X-MTK: N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
+	SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=no
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add cmdq_insert_backup_cookie to append some commands before EOC:
-1. Get GCE HW thread execute count from the GCE HW register.
-2. Add 1 to the execute count and then store into a shared memory.
-3. Set a software event siganl as secure irq to GCE HW.
-
-Since the value of execute count + 1 is stored in a shared memory,
-CMDQ driver in the normal world can use it to handle task done in irq
-handler and CMDQ driver in the secure world will use it to schedule
-the task slot for each secure thread.
+Add CMDQ driver support for mt8188 by adding its compatible and
+driver data in CMDQ driver.
 
 Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
 ---
- drivers/soc/mediatek/mtk-cmdq-helper.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/mailbox/mtk-cmdq-mailbox.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c b/drivers/soc/mediatek/mtk-cmdq-helper.c
-index bbb127620bb3..7b5392878aba 100644
---- a/drivers/soc/mediatek/mtk-cmdq-helper.c
-+++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
-@@ -8,6 +8,7 @@
- #include <linux/module.h>
- #include <linux/mailbox_controller.h>
- #include <linux/of.h>
-+#include <linux/mailbox/mtk-cmdq-sec-mailbox.h>
- #include <linux/soc/mediatek/mtk-cmdq.h>
+diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
+index cd4a8f0ef6ad..3940b9f8e774 100644
+--- a/drivers/mailbox/mtk-cmdq-mailbox.c
++++ b/drivers/mailbox/mtk-cmdq-mailbox.c
+@@ -746,12 +746,20 @@ static const struct gce_plat gce_plat_v7 = {
+ 	.gce_num = 1
+ };
  
- #define CMDQ_WRITE_ENABLE_MASK	BIT(0)
-@@ -153,7 +154,9 @@ void cmdq_pkt_destroy(struct cmdq_pkt *pkt)
- 
- 	dma_unmap_single(client->chan->mbox->dev, pkt->pa_base, pkt->buf_size,
- 			 DMA_TO_DEVICE);
++static const struct gce_plat gce_plat_v8 = {
++	.thread_nr = 32,
++	.shift = 3,
++	.control_by_sw = true,
++	.gce_num = 2
++};
 +
- 	kfree(pkt->va_base);
-+	kfree(pkt->sec_data);
- 	kfree(pkt);
- }
- EXPORT_SYMBOL(cmdq_pkt_destroy);
-@@ -458,6 +461,12 @@ int cmdq_pkt_finalize(struct cmdq_pkt *pkt)
- 	struct cmdq_instruction inst = { {0} };
- 	int err;
- 
-+	if (pkt->sec_data) {
-+		err = cmdq_sec_insert_backup_cookie(pkt);
-+		if (err < 0)
-+			return err;
-+	}
-+
- 	/* insert EOC and generate IRQ for each command iteration */
- 	inst.op = CMDQ_CODE_EOC;
- 	inst.value = CMDQ_EOC_IRQ_EN;
+ static const struct of_device_id cmdq_of_ids[] = {
+ 	{.compatible = "mediatek,mt8173-gce", .data = (void *)&gce_plat_v2},
+ 	{.compatible = "mediatek,mt8183-gce", .data = (void *)&gce_plat_v3},
+ 	{.compatible = "mediatek,mt8186-gce", .data = (void *)&gce_plat_v7},
+ 	{.compatible = "mediatek,mt6779-gce", .data = (void *)&gce_plat_v4},
+ 	{.compatible = "mediatek,mt8192-gce", .data = (void *)&gce_plat_v5},
++	{.compatible = "mediatek,mt8188-gce", .data = (void *)&gce_plat_v8},
+ 	{.compatible = "mediatek,mt8195-gce", .data = (void *)&gce_plat_v6},
+ 	{}
+ };
 -- 
 2.18.0
 
