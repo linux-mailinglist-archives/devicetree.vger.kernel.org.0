@@ -1,177 +1,90 @@
-Return-Path: <devicetree+bounces-1148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F6387A50E4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:24:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE05B7A50F1
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:27:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A7881C2119D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:24:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBB071C20B28
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:27:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F151B262A7;
-	Mon, 18 Sep 2023 17:24:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4823262A9;
+	Mon, 18 Sep 2023 17:27:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 614951F5E9
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 17:24:52 +0000 (UTC)
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84E94DB
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 10:24:50 -0700 (PDT)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4RqBVy2295z9sVw;
-	Mon, 18 Sep 2023 19:24:42 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oltmanns.dev;
-	s=MBO0001; t=1695057882;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+4yHZzrHJjqPq7LBrt01/QAbJUKdFCg/AHjFPUYawGM=;
-	b=FNUSQaK7LApdoP5g+mITwld4G9hToDRz95VaB47X6UkIF4AXHWaH097ukp/autFcL6DmU8
-	uyXDLwDHuCAOVXTnm28zLYj1tQWwlGkMrJyuOWXbJlPUWyB4UsmSSE431UJQduy/LeH6o/
-	+hhTnswkKDH6nnkzhPca9FglyNr9lFm88xC8we0pR+6/JWQtKd4KaGpt0nHCmdc/lz4tay
-	Jsa6Y2EqX96ESgoyGzzqPulK76XFtliJEhgJYNZtTxordHMW0KRWa6ESnLu+lwLBB71N1L
-	g58hb9jE3HEMFvs6Zn+onrZ8EKm/1QCDo6rC1C70ylqDxLH9rOGGkMWGEvzYXg==
-References: <20230918-imx8mp-dtsi-v1-0-1d008b3237c0@skidata.com>
-From: Frank Oltmanns <frank@oltmanns.dev>
-To: Benjamin Bara <bbara93@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
- <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Russell King <linux@armlinux.org.uk>, Abel Vesa <abelvesa@kernel.org>,
- Peng Fan <peng.fan@nxp.com>, Maxime Ripard <mripard@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, Benjamin Bara
- <benjamin.bara@skidata.com>, Adam Ford <aford173@gmail.com>, Lucas Stach
- <l.stach@pengutronix.de>
-Subject: Re: [PATCH 00/13] imx8mp: first clock propagation attempt (for LVDS)
-In-reply-to: <20230918-imx8mp-dtsi-v1-0-1d008b3237c0@skidata.com>
-Date: Mon, 18 Sep 2023 19:24:08 +0200
-Message-ID: <87fs3bbdjb.fsf@oltmanns.dev>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F00323759
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 17:27:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A95EC433C8;
+	Mon, 18 Sep 2023 17:27:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695058042;
+	bh=vblYavse5REeHZTur9wUxZXCUJeSaDa6nOcObQCi4Yo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LwDPdc2iMP6JEC0GiN+vf1KuT/TpP5/WY3Ik+9UZGzatkyVXvdIhmHZh41pf1uC7D
+	 2aLDIqtm/G4qL9/KBtAYyxZnKkLqxDsUj0c8lPR9Om/L/0q0sNyAANSeh7z9+Emwnk
+	 MWuCDfGqiVWQTdjqu0B5XLRqfWZ++rvbQzR7pJ3npz77wQacsWDLd17IR3JAhxhP1L
+	 s8OL/gVEgx8FPtyccL5ei+bwQVVFZKCkTdkfq6MCxGKTbGM195soKtWuyCUzhT92Gb
+	 LdIdpufyHxqBXpeuA2ZqGVljFoVlErtL6vLbJ2TBIcUY9nU8DutHxfjDfr2hpgV6uc
+	 yjhx0bsiV0NdQ==
+Received: (nullmailer pid 1413154 invoked by uid 1000);
+	Mon, 18 Sep 2023 17:27:20 -0000
+Date: Mon, 18 Sep 2023 12:27:20 -0500
+From: Rob Herring <robh@kernel.org>
+To: Lee Jones <lee@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: mfd: armltd: Move Arm board syscon's to
+ separate schema
+Message-ID: <20230918172720.GA1411360-robh@kernel.org>
+References: <20230915201520.4179115-1-robh@kernel.org>
+ <169481377499.149218.2656119781038291714.robh@kernel.org>
+ <20230918143639.GP13143@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230918143639.GP13143@google.com>
 
-Hi Benjamin!
+On Mon, Sep 18, 2023 at 03:36:39PM +0100, Lee Jones wrote:
+> On Fri, 15 Sep 2023, Rob Herring wrote:
+> 
+> > 
+> > On Fri, 15 Sep 2023 15:15:05 -0500, Rob Herring wrote:
+> > > The Arm Ltd board bindings are a bit unusual in that they define child
+> > > nodes for various syscon's. The schemas are also incomplete as they lack
+> > > constraints on having additional properties and some properties are
+> > > missing. As the bindings for the different platforms only vary by
+> > > compatibles, combine them into a single schema doc.
+> > > 
+> > > Add the "arm,im-pd1-syscon" compatible which was not documented. Add
+> > > "ranges", "#address-cells", and "#size-cells properties which were
+> > > missing.
+> > > 
+> > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > >  .../bindings/arm/arm,integrator.yaml          | 39 -----------
+> > >  .../devicetree/bindings/arm/arm,realview.yaml | 37 ----------
+> > >  .../bindings/arm/arm,versatile.yaml           | 40 +++--------
+> > >  .../mfd/arm,dev-platforms-syscon.yaml         | 67 +++++++++++++++++++
+> > >  4 files changed, 75 insertions(+), 108 deletions(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/mfd/arm,dev-platforms-syscon.yaml
+> > > 
+> > 
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> Errr ... I'm a little torn.
+> 
+> Do I trust the maintainer or his bot? :)
 
-On 2023-09-18 at 00:39:56 +0200, Benjamin Bara <bbara93@gmail.com> wrote:
-> Hi!
->
-> Target of this series is to dynamically set the rate of video_pll1 to
-> the required LVDS clock rate(s), which are configured by the panel, and
-> the lvds-bridge respectively.
->
-> Some background:
-> The LVDS panel requires two clocks: the crtc clock and the lvds clock.
-> The lvds rate is always 7x the crtc rate. On the imx8mp, these are
-> assigned to media_disp2_pix and media_ldb, which are both
-> clk-composite-8m. The rates are set by drm_client_modeset_commit() (and
-> later by fsl_ldb_atomic_enable()), and the fsl-ldb driver, first crtc,
-> then lvds. The parent is typically assigned to video_pll1, which is a
-> clk-pll14xx (pll1443x).
->
-> The main problem:
-> As the clk-composite-8m currently doesn't support CLK_SET_RATE_PARENT,
-> the crtc rate is not propagated to video_pll1, and therefore must be
-> assigned in the device-tree manually.
->
-> The idea:
-> Enable CLK_SET_RATE_PARENT, at least for media_disp2_pix and media_ldb.
-> When this is done, ensure that the pll1443x can be re-configured,
-> meaning it ensures that an already configured rate (crtc rate) is still
-> supported when a second child requires a different rate (lvds rate). As
-> the children have divider, the current approach is straight forward by
-> calculating the LCM of the required rates. During the rate change of the
-> PLL, it must ensure that all children still have the configured rate at
-> the end (and maybe also bypass the clock while doing so?). This is done
-> by implementing a notifier function for the clk-composite-8m. The tricky
-> part is now to find out if the rate change was intentional or not. This
-> is done by adding the "change trigger" to the notify data. In our case,
-> we now can infer if we aren't the change trigger, we need to keep the
-> existing rate after the PLL's rate change. We keep the existing rate by
-> modifying the new_rate of the clock's core, as we are quite late in an
-> already ongoing clock change process.
->
-> Future work:
-> The re-configuration of the PLL can definitely be improved for other use
-> cases where the children have more fancy inter-dependencies. That's one
-> of the main reasons I currently only touched the mentioned clocks.
-> Additionally, it might make sense to automatically re-parent if a
-> different possible parent suits better.
-> For the core part, I thought about extending my "unintentional change
-> check" so that the core ensures that the children keep the configured
-> rate, which might not be easy as the parent could be allowed to "round",
-> but it's not clear (at least to me yet) how much rounding is allowed. I
-> found a similar discussion posted here[1], therefore added Frank and
-> Maxime.
+New version fixing the example coming...
 
-Thank you very much for including me in the discussion. If I understood
-Maxime correctly, your proposal is close to what he was suggesting in
-the discussion you referenced. Unfortunately, it doesn't cover the
-rounding aspect (which you also mentioned in your cover letter and the
-description for clk_detect_unintended_rate_changes in patch 7. I've been
-pondering the last three weeks how to find a good solution to this
-problem, but so far haven't found any.
-
-Hopefully, your suggestion spurs some new thoughts.
-
-Thanks,
-  Frank
-
->
-> Thanks & regards,
-> Benjamin
->
-> [1] https://lore.kernel.org/lkml/20230825-pll-mipi_keep_rate-v1-0-35bc43570730@oltmanns.dev/
->
-> ---
-> Benjamin Bara (13):
->       arm64: dts: imx8mp: lvds_bridge: use root instead of composite
->       arm64: dts: imx8mp: re-parent IMX8MP_CLK_MEDIA_MIPI_PHY1_REF
->       clk: implement clk_hw_set_rate()
->       clk: print debug message if parent change is ignored
->       clk: keep track of the trigger of an ongoing clk_set_rate
->       clk: keep track if a clock is explicitly configured
->       clk: detect unintended rate changes
->       clk: divider: stop early if an optimal divider is found
->       clk: imx: pll14xx: consider active rate for re-config
->       clk: imx: composite-8m: convert compute_dividers to void
->       clk: imx: composite-8m: implement CLK_SET_RATE_PARENT
->       clk: imx: imx8mp: allow LVDS clocks to set parent rate
->       arm64: dts: imx8mp: remove assigned-clock-rate of IMX8MP_VIDEO_PLL1
->
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi |  14 +--
->  drivers/clk/clk-divider.c                 |   9 ++
->  drivers/clk/clk.c                         | 146 +++++++++++++++++++++++++++++-
->  drivers/clk/imx/clk-composite-8m.c        |  89 +++++++++++++++---
->  drivers/clk/imx/clk-imx8mp.c              |   4 +-
->  drivers/clk/imx/clk-pll14xx.c             |  20 ++++
->  drivers/clk/imx/clk.h                     |   4 +
->  include/linux/clk-provider.h              |   2 +
->  include/linux/clk.h                       |   2 +
->  9 files changed, 261 insertions(+), 29 deletions(-)
-> ---
-> base-commit: e143016b56ecb0fcda5bb6026b0a25fe55274f56
-> change-id: 20230913-imx8mp-dtsi-7c6e25907e0e
->
-> Best regards,
+Rob
 
