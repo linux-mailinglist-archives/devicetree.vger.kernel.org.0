@@ -1,120 +1,104 @@
-Return-Path: <devicetree+bounces-1080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D14337A496A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 14:18:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 645947A496D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 14:19:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88B92281E54
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:18:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DDD61C20D0D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:19:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04E151CAB1;
-	Mon, 18 Sep 2023 12:18:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 120431CAB2;
+	Mon, 18 Sep 2023 12:19:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E97DF14AA2;
-	Mon, 18 Sep 2023 12:18:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1522FC433C8;
-	Mon, 18 Sep 2023 12:18:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695039481;
-	bh=m9DbiuYGQsroUWLQblr7CsaQDo+/wfuOspyhyKz0qyI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ixfkDgtCQsm1qsYVqsBxRnfw76vgvheO6lwjFgfn6yxbF1012FTJgSRtZNnZm9HtZ
-	 4m5ZtvRHN9RGP1wKU7Hn1MXf24+TdVfzsIjeOTMTEExl9Fa0vOXItABeWuxQ9u24mi
-	 agRFmL0GEnQFdbR/pseV8rfJPLy+NoUqV6ssEfWZKA3cFDIHctiWLHv7lhuJeJnFQE
-	 FHIrFg4UOzp52+93c1JZGyVcgGxybgyuDCxzAZ/BliNVDAGeVu/Cvs1P3l4Ws+snKi
-	 7j3hgHBSMatEGojj76inqNh04Xdsb+CgGVApVD6JS7+aPytlTNtmhPjNFSyYcmbkeZ
-	 dEtHAChXA7kxQ==
-Date: Mon, 18 Sep 2023 14:17:58 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: netdev@vger.kernel.org, lorenzo.bianconi@redhat.com, nbd@nbd.name,
-	john@phrozen.org, sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, linux-mediatek@lists.infradead.org,
-	sujuan.chen@mediatek.com, horms@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 net-next 09/17] net: ethernet: mtk_wed: fix
- EXT_INT_STATUS_RX_FBUF definitions for MT7986 SoC
-Message-ID: <ZQg/9ku0S+g5WF0O@lore-desk>
-References: <cover.1695032290.git.lorenzo@kernel.org>
- <ebde071cc3cc9c35b00366c41912ee2f25e5282d.1695032291.git.lorenzo@kernel.org>
- <ZQg2AxAIxkadOiIr@makrotopia.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E75AD1C69B
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 12:19:01 +0000 (UTC)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46757A9
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 05:18:59 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9ad8bba8125so586436766b.3
+        for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 05:18:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695039538; x=1695644338; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=y9rNikTX4JSjtk+QKNWAhJm6If3F+GFPL9rgnm3nUG8=;
+        b=ekTmcE8KOaXblvuT8PoHygGN2Uf3V05zTHIdq3AuJnUmZ6vhyUIDHv35UArTF+uYiy
+         UTYW91mkFcM2fupipOatMCmv35gIxolbsvlSxYi7/cws99jvLoI7G2G418aAk2H8X16D
+         lzUW8JC3s/tzwnSfBL0Vh2aKLYZZMn+k5ImNi+iay3tAIlIIWwqynkfkqr1UIwSrVPgQ
+         5XYJjFIAixOTp6gc6xEOgFUhlbNBFTwnWzmyn+b0NpwqEVYW+pUZp5/5qpWBmzF0k38X
+         seXA48r4SRLT+n0UnsQD2RR5F2rFX2DvcNi1Fq273IPby2UTdBR3/l9yoCvdwgb1bn9x
+         PVng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695039538; x=1695644338;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=y9rNikTX4JSjtk+QKNWAhJm6If3F+GFPL9rgnm3nUG8=;
+        b=sxBDjo00JvLgU+fAbrfedos75qmgmfyQyKw5D+nd0LRHnhSw6ZlHXp29FNB6pN3Ntv
+         l2KTyVQrUnNVvNJkc2cTgRh9yWC0mkGHLBRCZmRUe1aohInw3aV7J5FW+ljcEiXFyBbM
+         gL5UBsKPSjxE49KOqwacaLszGNNjnGP/UGY411UzfeJflB9kl5Xn7zL2kIuzzMp9uP14
+         E7H74erMgUpNyVTXSMshejw6/yLedRNfRAhGpsUEfSlZluA/CoqW+aRyyge1czBCNKVv
+         shKqryYSM/XEx7HHF+vwcKY+ciQlcqFoar7K60u5AEKX8vSzkFBvPtBSe2oivlVqhFW9
+         9KvA==
+X-Gm-Message-State: AOJu0YwZ1MmS4TRROLZUyAVCqqa9DeiIOzA/f+J/c1MoQRHepTM+fn9f
+	A4hXZcr2a33U3ch6uFMuq7v8wA==
+X-Google-Smtp-Source: AGHT+IGgMcUlrxzNfqqHe78YYSvX3aV3pVOIM49svcB/97itt7dCfRegpnWl2b3r6JsMSitWyjekwg==
+X-Received: by 2002:a17:906:32d6:b0:9a1:ec3d:8ffe with SMTP id k22-20020a17090632d600b009a1ec3d8ffemr7807813ejk.18.1695039537709;
+        Mon, 18 Sep 2023 05:18:57 -0700 (PDT)
+Received: from [172.25.80.114] ([217.67.225.27])
+        by smtp.gmail.com with ESMTPSA id a18-20020a170906191200b0098e42bef736sm6399192eje.176.2023.09.18.05.18.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Sep 2023 05:18:57 -0700 (PDT)
+Message-ID: <289ebd53-ed20-c5df-5b99-754de5a0ccf2@linaro.org>
+Date: Mon, 18 Sep 2023 14:18:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3XwjkoR69/2cL2MM"
-Content-Disposition: inline
-In-Reply-To: <ZQg2AxAIxkadOiIr@makrotopia.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH] dt-bindings: power: supply: Drop deprecated
+ ab8500-battery
+Content-Language: en-US
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Sebastian Reichel <sre@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20230917190124.1012316-1-sebastian.reichel@collabora.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230917190124.1012316-1-sebastian.reichel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+On 17/09/2023 21:01, Sebastian Reichel wrote:
+> Linus Walleij modified AB8500 to use the generic simple-battery
+> and samsung,battery bindings. This is an unused leftover that
+> can be removed.
+> 
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
 
---3XwjkoR69/2cL2MM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> On Mon, Sep 18, 2023 at 12:29:11PM +0200, Lorenzo Bianconi wrote:
-> > Fix MTK_WED_EXT_INT_STATUS_RX_FBUF_LO_TH and
-> > MTK_WED_EXT_INT_STATUS_RX_FBUF_HI_TH definitions for MT7986 (MT7986 is
-> > the only SoC to use them).
->=20
-> Afaik this applies also to MT7981 which is very similar to MT7986.
+Best regards,
+Krzysztof
 
-ack, fine. Can you please test it out when you have some free cycles?
-I do not have a MT7981 device for testing.
-
-Regards,
-Lorenzo
-
->=20
-> >=20
-> > Fixes: de84a090d99a ("net: ethernet: mtk_eth_wed: add wed support for m=
-t7986 chipset")
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  drivers/net/ethernet/mediatek/mtk_wed_regs.h | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/drivers/net/ethernet/mediatek/mtk_wed_regs.h b/drivers/net=
-/ethernet/mediatek/mtk_wed_regs.h
-> > index 47ea69feb3b2..f87ab9b8a590 100644
-> > --- a/drivers/net/ethernet/mediatek/mtk_wed_regs.h
-> > +++ b/drivers/net/ethernet/mediatek/mtk_wed_regs.h
-> > @@ -64,8 +64,8 @@ struct mtk_wdma_desc {
-> >  #define MTK_WED_EXT_INT_STATUS_TKID_TITO_INVALID	BIT(4)
-> >  #define MTK_WED_EXT_INT_STATUS_TX_FBUF_LO_TH		BIT(8)
-> >  #define MTK_WED_EXT_INT_STATUS_TX_FBUF_HI_TH		BIT(9)
-> > -#define MTK_WED_EXT_INT_STATUS_RX_FBUF_LO_TH		BIT(12)
-> > -#define MTK_WED_EXT_INT_STATUS_RX_FBUF_HI_TH		BIT(13)
-> > +#define MTK_WED_EXT_INT_STATUS_RX_FBUF_LO_TH		BIT(10) /* wed v2 */
-> > +#define MTK_WED_EXT_INT_STATUS_RX_FBUF_HI_TH		BIT(11) /* wed v2 */
-> >  #define MTK_WED_EXT_INT_STATUS_RX_DRV_R_RESP_ERR	BIT(16)
-> >  #define MTK_WED_EXT_INT_STATUS_RX_DRV_W_RESP_ERR	BIT(17)
-> >  #define MTK_WED_EXT_INT_STATUS_RX_DRV_COHERENT		BIT(18)
-> > --=20
-> > 2.41.0
-> >=20
-> >=20
-
---3XwjkoR69/2cL2MM
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZQg/9QAKCRA6cBh0uS2t
-rMYuAPwLlBwabmv9CBuoMVQSW6yos/0jwMwqx2hC30mstqMXugD/SkmJjYrTRWsA
-7Wg219Zkui+ubUI3KZoNdXylN5X8FAw=
-=C28k
------END PGP SIGNATURE-----
-
---3XwjkoR69/2cL2MM--
 
