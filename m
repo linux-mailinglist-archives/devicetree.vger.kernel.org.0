@@ -1,139 +1,110 @@
-Return-Path: <devicetree+bounces-958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C9717A4211
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 09:17:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CABD7A430D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 09:43:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C0E21C2101C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 07:17:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 023972810C6
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 07:43:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D566F748E;
-	Mon, 18 Sep 2023 07:17:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68523F50B;
+	Mon, 18 Sep 2023 07:43:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3C166D39
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 07:17:39 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E2C1A8;
-	Mon, 18 Sep 2023 00:17:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695021458; x=1726557458;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=KsfAbNSSH07DrMGxoNkMeYYnB9cf5vxCWMe2RiqJX1A=;
-  b=XX3yh7FFe1eWIYf3o4NwdH8U8p0+6UzaSL4IE9FwQqRIjaOLv5zZ1hQz
-   sLBJxRvpbsucRCEvaAeiht0IBiaohTMyUQKJAdzOx8ExATkOMcm2uUfwu
-   0Bu/6mctYBmvASgm2Pr/Wh7K13EFtdBtPwoWROoSskU2T4jD5h07CUeGY
-   itxiwGAV9nnGEAWnwfNOBI6Xs6DEUE+nRh4ZKqwSXUEOmFmxvEJQafx5B
-   CQM1f28MRve9/pchNq51SWvC8whWErkk1L1bvpk242vjxjvRWr1n5Hi/i
-   oofCGT8dTvOFIEbESmb9iVcMKrBGBQHYF8cPorv7+lHIOpG69dqLWtQjU
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="382328532"
-X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; 
-   d="scan'208";a="382328532"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2023 00:17:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="888926792"
-X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; 
-   d="scan'208";a="888926792"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2023 00:16:51 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC0)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1qi8Va-0000000EDuQ-1Nt2;
-	Mon, 18 Sep 2023 10:17:26 +0300
-Date: Mon, 18 Sep 2023 10:17:26 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Herve Codina <herve.codina@bootlin.com>,
-	Jonathan Cameron <jonathan.cameron@huawei.com>
-Cc: Rob Herring <robh@kernel.org>, Lizhi Hou <lizhi.hou@amd.com>,
-	Andrew Lunn <andrew@lunn.ch>, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	max.zhen@amd.com, sonal.santan@amd.com,
-	stefano.stabellini@xilinx.com
-Subject: Re: [PATCH V13 0/5] Generate device tree node for pci devices
-Message-ID: <ZQf5huX2AMuf9kHC@smile.fi.intel.com>
-References: <1692120000-46900-1-git-send-email-lizhi.hou@amd.com>
- <ZP96feVs2ev7098Y@smile.fi.intel.com>
- <CAL_JsqKfQJFrd8MOdjW55cYdEb8yyPyR+P3ran9+X3dCwUgdyA@mail.gmail.com>
- <ZQGaSr+G5qu/8nJZ@smile.fi.intel.com>
- <20230915193008.6d87b8a0@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E9611C20
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 07:43:09 +0000 (UTC)
+Received: from mail-m12791.qiye.163.com (mail-m12791.qiye.163.com [115.236.127.91])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD176CCE;
+	Mon, 18 Sep 2023 00:41:54 -0700 (PDT)
+DKIM-Signature: a=rsa-sha256;
+	b=UEh7tRhqxHvTaUFQ0u3MeGBGhtzOP/PIi/s7GFyLhXmIlQ2+/CD2jlRdoQSsXQJf6b48/28Apzu9C/YfbudI/QH1+LjuLnfG8HkNqlPdceoCAU831/uiQX+LDSCLt1w10u+zkYvn1fF7QrQHiPcnBj9aAZm/mLdKrhq0BHFBTkM=;
+	s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=89R2kmI3V5ZPb6807YAI+FcT78Vp6S5FMXaVvIkbARo=;
+	h=date:mime-version:subject:message-id:from;
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by mail-m11879.qiye.163.com (Hmail) with ESMTPA id E9AA868021E;
+	Mon, 18 Sep 2023 15:31:51 +0800 (CST)
+From: Elaine Zhang <zhangqing@rock-chips.com>
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	kever.yang@rock-chips.com,
+	zhangqing@rock-chips.com,
+	heiko@sntech.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	huangtao@rock-chips.com,
+	xxx@rock-chips.com,
+	xf@rock-chips.com
+Subject: [PATCH v1 0/8] clk: rockchip: Support module build
+Date: Mon, 18 Sep 2023 15:31:43 +0800
+Message-Id: <20230918073151.7660-1-zhangqing@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0MdQlZOT0tOQ01MTU9CGBpVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5JVUpLS1VKQl
+	kG
+X-HM-Tid: 0a8aa733eb9e2eb5kusne9aa868021e
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mz46OAw*Lz1RP0pWMg1LSUsD
+	SSswCTVVSlVKTUJOS0lJSEpJQkJKVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUhLT083Bg++
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230915193008.6d87b8a0@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-On Fri, Sep 15, 2023 at 07:30:08PM +0200, Herve Codina wrote:
-> On Wed, 13 Sep 2023 14:17:30 +0300
-> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
-> > On Tue, Sep 12, 2023 at 02:12:04PM -0500, Rob Herring wrote:
-> > > On Mon, Sep 11, 2023 at 3:37 PM Andy Shevchenko
-> > > <andriy.shevchenko@intel.com> wrote:  
-> > > > On Tue, Aug 15, 2023 at 10:19:55AM -0700, Lizhi Hou wrote:  
+Elaine Zhang (8):
+  clk: clk-fractional-divider: Export
+    clk_fractional_divider_general_approximation API
+  clk: rockchip: drop use of rockchip_clk_protect_critical()
+  dt-bindings: clock: rk3188: Add binding id for ACLK_CPU_PRE
+  clk: rockchip: Avoid __clk_lookup() calls
+  clk: rockchip: rk3399: Support module build
+  clk: rockchip: rk3568: Support module build
+  clk: rockchip: rk3588: Support module build
+  clk: rockchip: fix the clk config to support module build
 
-...
-
-> > > > Can you point out to the ACPI excerpt(s) of the description of anything related
-> > > > to the device(s) in question?  
-> > > 
-> > > I don't understand what you are asking for.  
-> > 
-> > Through the email thread it was mentioned that this series was tested on the
-> > ACPI enabled platform, Jonathan (IIRC) asked why do we need to have a shadow
-> > DT for the something that ACPI already describes. That's why I'm trying to
-> > understand if it's the case. and if so, how can we improve the approach.
-> 
-> Patches from Frank Rowand series [1] are needed to create an of_root_node if a DT
-> was not provided by the firmware, bootloader, etc that run the kernel.
-> 
-> [1]: https://lore.kernel.org/lkml/20220624034327.2542112-1-frowand.list@gmail.com/
-> 
-> Current Lizhi's series creates nodes from the PCI host node during the PCI
-> enumeration. It creates PCI-PCI bridge and PCI device nodes.
-> 
-> I use these series on an ACPI system.
-> 
-> I need one more missing component: the node related to the PCI host bridge
-> This was the purpose of Clement's work. This work was not sent upstream yet and I
-> am working on it in order to have a full tree from the of_root to the PCI device
-> ie:
->  of_root                  <-- Frank Rowand series 
->    + of_host_pci_bridge   <-- Clement's work
->        + pci_bridge       <-- Current Lizhi series
->            + pci_bridge   <-- Current Lizhi series
->             ...
->              + pci_dev    <-- Current Lizhi series
-> 
-> Hope that this status helped.
-
-Thanks for the explanation! I suppose it's better to have three series combined
-into one and being sent with a better cover letter to explain all this. Also it
-might make sense (in my opinion) to Cc Jonathan (I did it here). Sorry, Jonathan,
-if you are not wanting this.
+ drivers/clk/clk-fractional-divider.c          |   1 +
+ drivers/clk/rockchip/Kconfig                  |   8 +-
+ drivers/clk/rockchip/clk-cpu.c                |  18 +-
+ drivers/clk/rockchip/clk-px30.c               |  88 +++---
+ drivers/clk/rockchip/clk-rk3036.c             |  42 ++-
+ drivers/clk/rockchip/clk-rk3128.c             |  59 ++--
+ drivers/clk/rockchip/clk-rk3188.c             |  59 ++--
+ drivers/clk/rockchip/clk-rk3228.c             | 147 ++++-----
+ drivers/clk/rockchip/clk-rk3288.c             |  74 ++---
+ drivers/clk/rockchip/clk-rk3308.c             |  46 +--
+ drivers/clk/rockchip/clk-rk3328.c             | 182 +++++------
+ drivers/clk/rockchip/clk-rk3368.c             |  71 ++---
+ drivers/clk/rockchip/clk-rk3399.c             | 283 ++++++++----------
+ drivers/clk/rockchip/clk-rk3568.c             | 114 +++----
+ drivers/clk/rockchip/clk-rk3588.c             |  19 +-
+ drivers/clk/rockchip/clk-rv1108.c             |  65 ++--
+ drivers/clk/rockchip/clk-rv1126.c             |  77 ++---
+ drivers/clk/rockchip/clk.c                    |  20 +-
+ drivers/clk/rockchip/clk.h                    |  18 +-
+ include/dt-bindings/clock/rk3188-cru-common.h |   1 +
+ 20 files changed, 579 insertions(+), 813 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.17.1
 
 
