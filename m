@@ -1,73 +1,99 @@
-Return-Path: <devicetree+bounces-1140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6159F7A507E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:07:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2233B7A4E24
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 18:07:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 260552825CA
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:07:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D06D7282A85
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 16:07:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 354142377E;
-	Mon, 18 Sep 2023 17:07:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EF9121113;
+	Mon, 18 Sep 2023 16:06:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC6C138F9C;
-	Mon, 18 Sep 2023 17:07:32 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9595497;
-	Mon, 18 Sep 2023 10:07:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=lgfas7avhgiihQebG1lQQFSWTYzTTBigEkTfGM3EQc8=; b=z1Ky3EA52riPjKNeUy0vxsCo0I
-	6XNHu4PbKQibr6MGroYyZolishlYuzN+/5cUazf175D1Z3Zt2Ty2bQ3pY4Gq1VN9532VBlyd7akGG
-	wE8a9SaDZOmwdTweuzMC1ygjpC4SPmSwlSnQ1k+dF6qFJBZmattZLfEVYwt6CD+1aBoM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1qiGft-006oAL-TH; Mon, 18 Sep 2023 18:00:37 +0200
-Date: Mon, 18 Sep 2023 18:00:37 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jay Monkman <jtm@lopingdog.com>
-Cc: devicetree@vger.kernel.org, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Piergiorgio Beruto <piergiorgio.beruto@gmail.com>,
-	Arndt Schuebel <Arndt.Schuebel@onsemi.com>,
-	Parthiban.Veerasooran@microchip.com
-Subject: Re: [PATCH 4/4] net/onsemi: Add NCN26010 driver
-Message-ID: <6e19020f-10ff-429b-8df3-cad5e5624e01@lunn.ch>
-References: <ZQf1QwNzK5jjOWk9@lopingdog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 477A920B29
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 16:06:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4191AC43397;
+	Mon, 18 Sep 2023 16:06:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695053165;
+	bh=V2Ca0FDQjE39oqGvsLz24cV0i2ZCGGyShiYZ2H0bMsg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=UldQm7CJ9UETNwt+IdBde9nLe74kkvoFkvfYLgXu1wygHRMBeXhwMD4yoVxTVDqT5
+	 KF7laZavM388qSKV5hu541FbgkeV/OLoJMEGr+esV1HWx69xQ6y+hPQZwPJBJTSHFW
+	 i5jmLAjYCu93Oh0/saLqhJ0sr40KOZQO/dBntn5sFcSBZDrY9AmceMpk0ZnvZ7FZve
+	 yzGiJyTINuLc2TZuyXflbd6l8bjKcZJMnI76hyKDALDA7yESCoJR7uWEPL6OvGPSt4
+	 NGwyHhGF3qIuZbVamVqmwshVBvQbcrA3P5Tl7uoelHpXhj5GrgTl1M/muH0HokK8SJ
+	 34BmXpUUBpeQQ==
+From: Mark Brown <broonie@kernel.org>
+To: alsa-devel@alsa-project.org, John Watts <contact@jookia.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, 
+ Charles Keepax <ckeepax@opensource.cirrus.com>, 
+ patches@opensource.cirrus.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20230918131532.2257615-1-contact@jookia.org>
+References: <20230918131532.2257615-1-contact@jookia.org>
+Subject: Re: [PATCH v4 0/3] ASoC: wm8782: Allow higher audio rates
+Message-Id: <169505316298.74713.188374805406477074.b4-ty@kernel.org>
+Date: Mon, 18 Sep 2023 17:06:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZQf1QwNzK5jjOWk9@lopingdog.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-034f2
 
-On Mon, Sep 18, 2023 at 01:59:15AM -0500, Jay Monkman wrote:
+On Mon, 18 Sep 2023 23:15:29 +1000, John Watts wrote:
+> The wm8782 supports higher audio rates than just 48kHz. This is
+> configured by setting the FSAMPEN pin on the codec chip.
 > 
-> This adds a driver for the onsemi NCN26010 ethernet controller. The
-> NCN26010 is combined MAC/PHY that uses SPI to interface to a
-> microcontroller.
+> This patch series introduces the 'wlf,fsampen' device tree property
+> to indicate the pin status and control the maximum rate available
+> when using the codec.
+> 
+> [...]
 
-Is this an OA TC6 device?  At a quick look it does appear to
-be. Please make use of the framework Microchip is developing:
+Applied to
 
-https://lore.kernel.org/netdev/20230908142919.14849-4-Parthiban.Veerasooran@microchip.com/T/
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-	Andrew
+Thanks!
+
+[1/3] ASoC: wm8782: Constrain maximum audio rate at runtime
+      commit: 00524a8415aa400567538c0e75a463d517cded7f
+[2/3] ASoC: wm8782: Use wlf,fsampen device tree property
+      commit: 5d34887eab8daad8f63d584ae4d12d480beb9f0e
+[3/3] ASoC: dt-bindings: wlf,wm8782: Add wlf,fsampen property
+      commit: 5d5529b0057146043a4328aa194280299ba966c2
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
