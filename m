@@ -1,135 +1,161 @@
-Return-Path: <devicetree+bounces-1077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B0B67A493F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 14:08:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E7BF7A494F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 14:11:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B839D281EF2
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:08:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C1CD1C20CDC
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:11:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1DCC1CAA6;
-	Mon, 18 Sep 2023 12:08:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C11801CAA6;
+	Mon, 18 Sep 2023 12:11:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF74B79CD
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 12:08:00 +0000 (UTC)
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5516A9;
-	Mon, 18 Sep 2023 05:07:59 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-59c0b5f984aso31684307b3.2;
-        Mon, 18 Sep 2023 05:07:59 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3827D38F93
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 12:11:45 +0000 (UTC)
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BEFCA4
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 05:11:10 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2c008d8fd07so16616191fa.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 05:11:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695039069; x=1695643869; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nNg5sBvXpTkFIEXWpv9DgGZCDJnmvTQX83kuJA0NYGE=;
+        b=yf5Kz7a+hEt86reAJzJ/LCYDawqQPqdqCXfg2oCNSfM/IRLT9xK8VVYVpNxvCCmDp1
+         yx0dkzEgjC8glOYGzgd1CKAdTzD1Vof+B69Lq3/YQdggA2Z/0p9PNgYQ4QSyY8DFTzi+
+         LUmeXR9ivoguBpvWj0zwMxg28IVw3nMcWhCWJIxm4QiwDLQ3PAWO+4QwkKlz9G+sCH4M
+         3aB89/1jac81Oe2uADkZUkxwh24DhZEWzoJlBaUswKip1I7bEpvhOGp50sw0a+mGgdkh
+         zaYt7eHa2NA9mfohGsERP8bGNTBRGe8Zgv8Pe0smLoehJHo1krZwcI+NwE56bONJFv+6
+         vfLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695038878; x=1695643678;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qVLFaUZxjITE8rsgw+msJqGq4oa1CVCEEZAwZaJky7Y=;
-        b=Sd51PttW5gIDKNCE/2gQSnJa+93uju8mGp7tF8VNScoozQnI9Ro1VF0PzFprXM40c/
-         Xjja1uXQxdkpFJiUCNada+qRWnVh6208LT1oftwdp12mXJ+eLECLu0Yq1rPvTZVsjgsX
-         DOUzRppZtbfXJAulnCNCO9xHx/16h6/vOk4uZPMttGNiNpFZeBwZEgWB97f4qdZaSu4+
-         eyNbTzYyuS81dkOYem5dgOsXAW0WMBWhi492lLegGTdxES/oFAz/LyuEkcNA1bOry29r
-         SsG/Fd1lcnkBILrL0nw55w1FTu1YbQSNLDH/gR+/DswUeH/2e0zleHlz2Ap5KZEl+lP3
-         pgkw==
-X-Gm-Message-State: AOJu0YxXF2wsszg15NslO2SnBOwFmdxHEkLlBgruqkCFmydlmLQdmdvN
-	K0Drv7ifRhnclsIr5B05tBJS82M25JVX2w==
-X-Google-Smtp-Source: AGHT+IFek3kqpUOJnGFMwvatm/fLTMWJsD34hLXKaBKav8ilU/6R+d5yvUQStlnEpVmpXIjn9nE4Yw==
-X-Received: by 2002:a81:ee0e:0:b0:59b:4bb2:fc2c with SMTP id l14-20020a81ee0e000000b0059b4bb2fc2cmr160497ywm.48.1695038878327;
-        Mon, 18 Sep 2023 05:07:58 -0700 (PDT)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id d194-20020a814fcb000000b0058fb9863fe7sm2485229ywb.103.2023.09.18.05.07.58
+        d=1e100.net; s=20230601; t=1695039069; x=1695643869;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nNg5sBvXpTkFIEXWpv9DgGZCDJnmvTQX83kuJA0NYGE=;
+        b=PTDDh3gSUWdhph1IcS9z1frPm+RYYB5uFlaHAOaP5Io9Y6AXySs+H4WKkM0bwR1G9G
+         jRo4U82PTqFHyS6INQ3+sXrqAb17qxqs4kPUm+W3bgGpZXM/hyoYiyol8HslQc4zTAue
+         PWwLkYvfD7AcE/XCF5Y+BF8tbou4vL/ZYGy8WldZi7899ox52IYl/YTvgN7bWzoVXjDL
+         eTGZDeHpxpgOV31WO3AQ+GHS0aG5IBF71C6ynPYjMmrf1Mr2hd5UjrXJw5+VvTq9sRHn
+         meOiDz88eCRphplGi1AWem/WORlKblVVqUxTbAjvl9RxQwD7k3rlBMpmwN6pQPGDUbBc
+         nsCQ==
+X-Gm-Message-State: AOJu0YyMe/xVqKukciIVhIJkl9ocSlLZPQOW2Fnyjlr3xiO8UCKT8DAV
+	2wjsSXCgMt5pbNz9njkT9z8YXQ==
+X-Google-Smtp-Source: AGHT+IFwerwMQ9p0BqOOgGf8TfiZGafrKqJF/xTtLKwKD07Ub3Rfj01f0aVJZ19zwA3dnMtXaMRXaA==
+X-Received: by 2002:a05:651c:2115:b0:2bf:df8c:4e56 with SMTP id a21-20020a05651c211500b002bfdf8c4e56mr8540093ljq.39.1695039068635;
+        Mon, 18 Sep 2023 05:11:08 -0700 (PDT)
+Received: from [172.25.80.114] ([217.67.225.27])
+        by smtp.gmail.com with ESMTPSA id rp9-20020a170906d96900b0099e05fb8f95sm6346237ejb.137.2023.09.18.05.11.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Sep 2023 05:07:58 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-59be6605e1dso47396927b3.3;
-        Mon, 18 Sep 2023 05:07:58 -0700 (PDT)
-X-Received: by 2002:a81:8287:0:b0:59c:7d0:ab06 with SMTP id
- s129-20020a818287000000b0059c07d0ab06mr9944623ywf.45.1695038877926; Mon, 18
- Sep 2023 05:07:57 -0700 (PDT)
+        Mon, 18 Sep 2023 05:11:08 -0700 (PDT)
+Message-ID: <ed222918-68ca-cb57-15b8-57f45cdb5a5b@linaro.org>
+Date: Mon, 18 Sep 2023 14:11:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230911214623.2201324-1-robh@kernel.org>
-In-Reply-To: <20230911214623.2201324-1-robh@kernel.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 18 Sep 2023 14:07:46 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXAW6MNEdo+vuTPkpGPXa0ebfG3Ec_=i0UhEtt6YfSQeQ@mail.gmail.com>
-Message-ID: <CAMuHMdXAW6MNEdo+vuTPkpGPXa0ebfG3Ec_=i0UhEtt6YfSQeQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: Apply overlays to base dtbs
-To: Rob Herring <robh@kernel.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: Add Richtek rtq9128 audio
+ amplifier
+Content-Language: en-US
+To: cy_huang@richtek.com, Mark Brown <broonie@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Allen Lin <allen_lin@richtek.com>, alsa-devel@alsa-project.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1695030341-20711-1-git-send-email-cy_huang@richtek.com>
+ <1695030341-20711-2-git-send-email-cy_huang@richtek.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1695030341-20711-2-git-send-email-cy_huang@richtek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Rob,
+On 18/09/2023 11:45, cy_huang@richtek.com wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
+> 
+> Create richtek,rtq9128.yaml for rtq9128 amplifier.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> ---
+>  .../bindings/sound/richtek,rtq9128.yaml       | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/richtek,rtq9128.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/richtek,rtq9128.yaml b/Documentation/devicetree/bindings/sound/richtek,rtq9128.yaml
+> new file mode 100644
+> index 000000000000..a79694c2b169
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/richtek,rtq9128.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
-On Mon, Sep 11, 2023 at 11:47=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
-e:
-> DT overlays in tree need to be applied to a base DTB to validate they
-> apply, to run schema checks on them, and to catch any errors at compile
-> time.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Dual license is needed. Just like checkpatch is asking for.
 
-Thanks for your patch!
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/richtek,rtq9128.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Richtek RTQ9128 Automative Audio Power Amplifier
+> +
+> +maintainers:
+> +  - ChiYuan Huang <cy_huang@richtek.com>
+> +
+> +description: |
 
-> Looks like some of these apply to multiple base DTs. I've only added them
-> to 1 base.
+Do not need '|' unless you need to preserve formatting.
 
-Indeed:
-  - draak-ebisu-panel-aa104xd12.dtbo applies to r8a77990-ebisu.dtb, too,
-  - salvator-panel-aa104xd12.dtbo applies to all salvator-x(s) variants.
+> +  The RTQ9128 is a ultra-low output noise, high-efficiency, four-channel
+> +  class-D audio power amplifier and delivering 4x75W into 4OHm at 10%
+> +  THD+N from a 25V supply in automotive applications.
+> +
 
-So should they be added to all bases they apply to?
+Missing ref to dai common.
 
-Or, if you intend none of the composite DTBs to be consumed as-is, but
-only intend them to be created for validation, perhaps the additional
-rules should be grouped together at the bottom of the Makefile?
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - richtek,rtq9128
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  enable-gpios:
+> +    maxItems: 1
+> +
+> +  '#sound-dai-cells':
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#sound-dai-cells'
+> +
+> +unevaluatedProperties: false
 
-> --- a/arch/arm64/boot/dts/renesas/Makefile
-> +++ b/arch/arm64/boot/dts/renesas/Makefile
-> @@ -64,6 +65,8 @@ dtb-$(CONFIG_ARCH_R8A779F0) +=3D r8a779f0-spider.dtb
->
->  dtb-$(CONFIG_ARCH_R8A779G0) +=3D r8a779g0-white-hawk.dtb
->  dtb-$(CONFIG_ARCH_R8A779G0) +=3D r8a779g0-white-hawk-ard-audio-da7212.dt=
-bo
-
-Do you still need the individual *.dtbo rules? Perhaps you are
-afraid that make will auto-delete them as they are only used as
-intermediaries?
-
-> +r8a779g0-white-hawk-ard-audio-da7212-dtbs :=3D r8a779g0-white-hawk.dtb r=
-8a779g0-white-hawk-ard-audio-da7212.dtbo
-> +dtb-$(CONFIG_ARCH_R8A779G0) +=3D r8a779g0-white-hawk-ard-audio-da7212.dt=
-b
+This goes with mentioned $ref. Alone would not be correct.
 
 
-Gr{oetje,eeting}s,
+Best regards,
+Krzysztof
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
