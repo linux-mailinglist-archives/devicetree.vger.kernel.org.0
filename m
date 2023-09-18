@@ -1,100 +1,132 @@
-Return-Path: <devicetree+bounces-1042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B2277A4752
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:40:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C9877A4756
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:41:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8318281FA3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 10:40:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2531A281E31
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 10:41:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 768793FB2A;
-	Mon, 18 Sep 2023 10:32:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F340938FB3;
+	Mon, 18 Sep 2023 10:35:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C3531A76
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 10:32:48 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F22C191;
-	Mon, 18 Sep 2023 03:32:29 -0700 (PDT)
-Received: from localhost.localdomain (unknown [IPv6:2001:b07:646b:e2:e4be:399f:af39:e0db])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laura.nao)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 9038D6607079;
-	Mon, 18 Sep 2023 11:32:27 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1695033148;
-	bh=Uc7V1QnED3jqO7q91bCXab1gBM9VqY9HU30Ul0mVYpA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=JzoSEqsNwon3ssPk59x0nv4g1mS0wowA87TrL3zpgUt5sR/z4pW+qKcP3YEAQ2N9B
-	 oLPelEgZ/EonnxadFgXEwzAoS/sCA1C3sT+vpR/mgqB/FyjsNHA9M3XOH8WiEaOu+H
-	 pwBA7rc7hDe8CKTTqloT2LUtAP59Mc1EEzncYp3tkSP0IH34ttzLDFOyo7nrNUf+ir
-	 8nAToLSw9zfHPQ+Lr3cn2rrEBHzohp0KeIqwtGHhLjrlWvyQzrZMcZPAKJZzJHGbgo
-	 +JLWocaKSPU7V1h52+BxdugDC8bw8WJ+MTEQEGem2v5A3yDWGaEMD33q57oOIMYYW7
-	 K6xx4Hb5u4sEw==
-From: Laura Nao <laura.nao@collabora.com>
-To: mathieu.poirier@linaro.org
-Cc: Project_Global_Chrome_Upstream_Group@mediatek.com,
-	andersson@kernel.org,
-	angelogioacchino.delregno@collabora.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-remoteproc@vger.kernel.org,
-	matthias.bgg@gmail.com,
-	robh+dt@kernel.org,
-	tinghan.shen@mediatek.com,
-	kernel@collabora.com
-Subject: Re: [PATCH v17 00/14] Add support for MT8195 SCP 2nd core
-Date: Mon, 18 Sep 2023 12:31:41 +0200
-Message-Id: <20230918103141.126271-1-laura.nao@collabora.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <ZQH2dG+l/dONUsyi@p14s>
-References: <ZQH2dG+l/dONUsyi@p14s>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D71138FA9
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 10:35:37 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81D59E4A;
+	Mon, 18 Sep 2023 03:34:54 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38I9hXZg027122;
+	Mon, 18 Sep 2023 10:34:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=T+txr2ye61IUfnpU9SRWfUYE35JY6BsBVJV5qifYwjc=;
+ b=fkz3niR0S7/BLwO9foPYw/q6W3YKKfvyvLR/yup5Rdlryxz7IoGCZdYK16nB4gPJ+Xnc
+ WnLLz67vUVOIKNl9ze9sOD1QeESe3/h4cTBr/d9WXqdUqde5K9xI24NDGgKF/YMwlFMH
+ WZfCle+dScSwNSeYLulVOo/koFrKdTH6Hx+WeRjNuWi/OiKoc/5VLNghxGT96wB7NWAR
+ H/y+aZX4JS7gVxMvxxkPv7WhRlUJr4xOlTC+Pzgff3s3shDC0OKpUs0D/TVTaceXYxR+
+ EJvWWXBVjSCijj2TgRU9EG+yJQHbBRxLoAnHQXoST6ZCfkbW+3yVVW7fp2QyEkOVlu4x WQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t53ps2trg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Sep 2023 10:34:18 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38IAYGlN005858
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Sep 2023 10:34:16 GMT
+Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Mon, 18 Sep
+ 2023 03:34:08 -0700
+Message-ID: <1a7fdafb-e75e-46a1-94be-36a9c3c94c15@quicinc.com>
+Date: Mon, 18 Sep 2023 18:34:06 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 6/8] arm64: dts: qcom: sm4450: Add RPMH and Global
+ clock controller
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <will@kernel.org>,
+        <robin.murphy@arm.com>, <joro@8bytes.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <catalin.marinas@arm.com>
+CC: <geert+renesas@glider.be>, <arnd@arndb.de>, <neil.armstrong@linaro.org>,
+        <nfraprado@collabora.com>, <rafal@milecki.pl>, <peng.fan@nxp.com>,
+        <linux-arm-kernel@lists.infradead.org>, <iommu@lists.linux.dev>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <quic_tsoni@quicinc.com>,
+        <quic_shashim@quicinc.com>, <quic_kaushalk@quicinc.com>,
+        <quic_tdas@quicinc.com>, <quic_tingweiz@quicinc.com>,
+        <quic_aiquny@quicinc.com>, <kernel@quicinc.com>,
+        Ajit Pandey
+	<quic_ajipan@quicinc.com>
+References: <20230915021509.25773-1-quic_tengfan@quicinc.com>
+ <20230915021509.25773-8-quic_tengfan@quicinc.com>
+ <c4e95307-3f09-5704-e5ea-cb42befb9921@linaro.org>
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+In-Reply-To: <c4e95307-3f09-5704-e5ea-cb42befb9921@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: UJ96XdCTDZ-UeHyYLrp6swZMtqUMmrad
+X-Proofpoint-GUID: UJ96XdCTDZ-UeHyYLrp6swZMtqUMmrad
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-18_02,2023-09-15_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
+ suspectscore=0 lowpriorityscore=0 clxscore=1015 adultscore=0
+ malwarescore=0 mlxlogscore=482 spamscore=0 bulkscore=0 impostorscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309180092
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-> Other than patch 2 and 14, I have applied this set.  The remaining patches will
-> have to be resent to Matthias.
 
-> Thanks,
-> Mathieu
 
-Hello,
+在 9/15/2023 3:22 PM, Krzysztof Kozlowski 写道:
+> On 15/09/2023 04:15, Tengfei Fan wrote:
+>> From: Ajit Pandey <quic_ajipan@quicinc.com>
+>>
+>> Add device node for RPMH and Global clock controller on Qualcomm
+>> SM4450 platform.
+>>
+>> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
+>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> 
+> Warnings in your code:
+> sm4450-qrd.dtb: clock-controller@100000: clocks: [[28, 0], [29]] is too
+> short
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
+Hi Krzyszrof,
+Want to know how did you find this warning?
+I cannot find this warning when I do dt check(make ARCH=arm64 
+DT_CHECKER_FLAGS=-m dtbs_check) or kernel compile(make -j8 ARCH=arm64 
+CROSS_COMPILE=aarch64-linux-gnu- Image.gz dtbs modules).
 
-With patch 2 missing, the SCP is not probed correctly anymore on asurada (MT8192) and kukui (MT8183). The mtk-scp driver relies on the existence of the `cros-ec-rpmsg` node in the dt to determine if the SCP is single or multicore. Without patch 2 the driver wrongly assumes the SCP on MT8192 and MT8183 are multicore, leading to the following errors during initialization:   
-
-10696 04:33:59.126671  <3>[   15.465714] platform 10500000.scp:cros-ec: invalid resource (null)
-10697 04:33:59.142855  <3>[   15.478560] platform 10500000.scp:cros-ec: Failed to parse and map sram memory
-10698 04:33:59.149650  <3>[   15.486121] mtk-scp 10500000.scp: Failed to initialize core 0 rproc
-
-The issue was caught by KernelCI, complete logs can be found here:
-- asurada: https://storage.kernelci.org/next/master/next-20230914/arm64/defconfig+arm64-chromebook+videodec/gcc-10/lab-collabora/baseline-nfs-mt8192-asurada-spherion-r0.html
-- kukui: https://storage.kernelci.org/next/master/next-20230914/arm64/defconfig+arm64-chromebook+videodec/gcc-10/lab-collabora/baseline-nfs-mt8183-kukui-jacuzzi-juniper-sku16.html
-
-Reporting the issue so that patch 2 and 14 can be resent and merged soon.
-
-Best,
-
-Laura
-
+-- 
+Thx and BRs,
+Tengfei Fan
 
