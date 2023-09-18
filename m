@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-1179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B27977A530F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 21:24:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 731FE7A530A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 21:24:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B15E281A0D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:24:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EA1D281FCE
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:24:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1434828683;
-	Mon, 18 Sep 2023 19:22:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF7EE27EDA;
+	Mon, 18 Sep 2023 19:22:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6081727ECE
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 19:22:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1170D27739
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 19:22:22 +0000 (UTC)
 Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01D4611F;
-	Mon, 18 Sep 2023 12:22:19 -0700 (PDT)
-X-UUID: a8b86e8c565811ee8051498923ad61e6-20230919
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54AA1112;
+	Mon, 18 Sep 2023 12:22:17 -0700 (PDT)
+X-UUID: a8ba440a565811ee8051498923ad61e6-20230919
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=/UOv9xZiXKefNR6q5rMt8+g3tJ4eyURnjoxNDdrYYPY=;
-	b=qclhOeUWvzH1H0Egt7GLgJAyJrbI9L848aDHO5gSdrT6YkL2RHFiF9pRR98ni5ye6sU5yyKNjX93lEOEPLwpEIowgDdc6KUZ4s5eeT/IUZjfn1lpGrt2sCZThzNY6HACvJqptDj3VWfe1PYD3A2gFNU3XVkqdu/PciIUorn+uCg=;
+	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=AA6HVejvp6awQg2Gak+WLVNYgMCN9kZXJeFcHSpn1pg=;
+	b=UjuJAZnubSKjPRkABlZbxC8bLxZbt3JuBVyz4it1V4ZLNW0+Vn4oZ2lYjJH/JIMcvl6kOF4+QcMVzQ5JnEt7hXvIzbgfrY3YkmRx7402GZt/gz96och22+ymM8QcM0Mi7gKNBbdVv3qTC1Rfsk/pTURZwYXxUZ+BFVTLwS8qvD4=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:21fafd34-8548-47c5-9548-315a8f4112a1,IP:0,U
-	RL:0,TC:0,Content:100,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:100
-X-CID-META: VersionHash:0ad78a4,CLOUDID:00dafabe-14cc-44ca-b657-2d2783296e72,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:801|102,TC:nil,Content:3,EDM:-3,IP:n
-	il,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR
-	:NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
+X-CID-O-INFO: VERSION:1.1.31,REQID:121d22cb-8030-48ad-91a0-dbd117989058,IP:0,U
+	RL:0,TC:0,Content:38,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:38
+X-CID-META: VersionHash:0ad78a4,CLOUDID:be0b1514-4929-4845-9571-38c601e9c3c9,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:3,EDM:-3,IP:nil,U
+	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: a8b86e8c565811ee8051498923ad61e6-20230919
+X-UUID: a8ba440a565811ee8051498923ad61e6-20230919
 Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
 	(envelope-from <jason-jh.lin@mediatek.com>)
 	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1727443107; Tue, 19 Sep 2023 03:22:08 +0800
+	with ESMTP id 1128183981; Tue, 19 Sep 2023 03:22:08 +0800
 Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
  mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
@@ -63,10 +63,12 @@ CC: Conor Dooley <conor+dt@kernel.org>, Jason-ch Chen
 	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
 	<dri-devel@lists.freedesktop.org>,
 	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH 00/15] Add CMDQ secure driver for SVP
-Date: Tue, 19 Sep 2023 03:21:49 +0800
-Message-ID: <20230918192204.32263-1-jason-jh.lin@mediatek.com>
+Subject: [PATCH 01/15] dt-bindings: mailbox: Add property for CMDQ secure driver
+Date: Tue, 19 Sep 2023 03:21:50 +0800
+Message-ID: <20230918192204.32263-2-jason-jh.lin@mediatek.com>
 X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20230918192204.32263-1-jason-jh.lin@mediatek.com>
+References: <20230918192204.32263-1-jason-jh.lin@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,18 +77,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--1.467400-8.000000
-X-TMASE-MatchedRID: 7eVHqPQV5C/JmaR8yBHGWNRZ1mKTfKthE21NSmBqEKfOxDyJFXIPjjFa
-	TRf5dTetwavfQ6gcAlY7b3Js3F6vVGymsXpN1zOArDFtme53Kvsuhg66Itb65XyKcwQTdriqZSg
-	PkksZfMCRWd5j2pelskrNzRlf/eAmxHJTZUnf9cgD2WXLXdz+AX9oOiiWbcZdRi9INZ1ZpGEwrA
-	JnuG4aIS/rjK1CMnpugDLqnrRlXrZ8nn9tnqel2MZW5ai5WKlyMMz1R7/AueTvlEkaSw9lGL93v
-	k9lpGptRcLjcbUyXX7JxRwU0I1U81K2ZEtDP2FLo548hMsDjb15pPWcZ/qZbFb8T69FNrV2jofs
-	MjQaxVwyYjbiqIQ3CsykhtyXcigD6rVdgBjDT2oh1j2M6LiVMg==
+X-TM-AS-Result: No-10--10.597900-8.000000
+X-TMASE-MatchedRID: iSQL5szRvdEXSulpnju2H6wxbZnudyr7ELbqrOgWzyfOxDyJFXIPjpM5
+	rPAxB6p1j6kCfX0Edc5fvtuIsaf1ZSpMHNWH39YQXSKcwPTzq/J5y+Nu7/EOOgv/nTOPQovs3k1
+	HMnSDPkfLqCJZs0VuwMJTJNWmePeVNyl1nd9CIt0URSScn+QSXt0H8LFZNFG7bkV4e2xSge4egJ
+	CKnUjm4eHgAk/GRGDANamVZCBGTM1A7arqKflzisWFcyN1Agmm
 X-TM-AS-User-Approved-Sender: No
 X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--1.467400-8.000000
+X-TMASE-Result: 10--10.597900-8.000000
 X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: 8B037BF6E71F03E6BA839CFECE3F62CBC7C30FEDB63D7993BBFEE9AEF3E9DB932000:8
+X-TM-SNTS-SMTP: 7A111DE7BC234BF0F37F0DC80E0B29F8EB7F0415BBC63A13F4559B242582EBAC2000:8
 X-MTK: N
 X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
@@ -95,53 +95,73 @@ X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-For the Secure Video Path (SVP) feature, inculding the memory stored
-secure video content, the registers of display HW pipeline and the
-HW configure operations are required to execute in the secure world.
+Add mboxes to define a GCE loopping thread as a secure irq handler.
+Add mediatek,event to define a GCE software event siganl as a secure
+irq.
 
-So using a CMDQ secure driver to make all display HW registers
-configuration secure DRAM access permision settings execute by GCE
-secure thread in the secure world.
+These 2 properties are required for CMDQ secure driver.
 
-We are landing this feature on mt8188 and mt8195 currently.
+Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+---
+ .../mailbox/mediatek,gce-mailbox.yaml         | 30 +++++++++++++++----
+ 1 file changed, 24 insertions(+), 6 deletions(-)
 
-Jason-JH.Lin (15):
-  dt-bindings: mailbox: Add property for CMDQ secure driver
-  dt-bindings: gce: mt8195: Add CMDQ_SYNC_TOKEN_SECURE_THR_EOF event id
-  soc: mailbox: Add SPR definition for GCE
-  soc: mailbox: Add cmdq_pkt_logic_command to support math operation
-  mailbox: mediatek: Add cmdq_pkt_write_s_reg_value to CMDQ driver
-  mailbox: mediatek: Add cmdq_mbox_stop to disable GCE thread
-  mailbox: mediatek: Add loop pkt flag and irq handling for loop command
-  soc: mediatek: Add cmdq_pkt_finalize_loop to CMDQ driver
-  mailbox: mediatek: Add secure CMDQ driver support for CMDQ driver
-  mailbox: mediatek: Add CMDQ secure mailbox driver
-  soc: mediatek: Add cmdq_insert_backup_cookie before EOC for secure pkt
-  mailbox: mediatek: Add CMDQ driver support for mt8188
-  mailbox: mediatek: Add mt8188 support for CMDQ secure driver
-  mailbox: mediatek: Add mt8195 support for CMDQ secure driver
-  arm64: dts: mediatek: mt8195: Add CMDQ secure driver support for gce0
-
- .../mailbox/mediatek,gce-mailbox.yaml         |   30 +-
- arch/arm64/boot/dts/mediatek/mt8195.dtsi      |    2 +
- drivers/mailbox/Makefile                      |    2 +-
- drivers/mailbox/mtk-cmdq-mailbox.c            |   67 +-
- drivers/mailbox/mtk-cmdq-sec-mailbox.c        | 1103 +++++++++++++++++
- drivers/mailbox/mtk-cmdq-sec-tee.c            |  202 +++
- drivers/soc/mediatek/mtk-cmdq-helper.c        |   81 ++
- include/dt-bindings/gce/mt8195-gce.h          |    6 +
- include/linux/mailbox/mtk-cmdq-mailbox.h      |   15 +
- .../linux/mailbox/mtk-cmdq-sec-iwc-common.h   |  293 +++++
- include/linux/mailbox/mtk-cmdq-sec-mailbox.h  |   83 ++
- include/linux/mailbox/mtk-cmdq-sec-tee.h      |   31 +
- include/linux/soc/mediatek/mtk-cmdq.h         |   65 +
- 13 files changed, 1971 insertions(+), 9 deletions(-)
- create mode 100644 drivers/mailbox/mtk-cmdq-sec-mailbox.c
- create mode 100644 drivers/mailbox/mtk-cmdq-sec-tee.c
- create mode 100644 include/linux/mailbox/mtk-cmdq-sec-iwc-common.h
- create mode 100644 include/linux/mailbox/mtk-cmdq-sec-mailbox.h
- create mode 100644 include/linux/mailbox/mtk-cmdq-sec-tee.h
-
+diff --git a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
+index cef9d7601398..5c9aebe83d2d 100644
+--- a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
++++ b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
+@@ -49,6 +49,21 @@ properties:
+     items:
+       - const: gce
+ 
++  mboxes:
++    description:
++      A mailbox channel used as a secure irq handler in normal world.
++      Using mailbox to communicate with GCE to setup looping thread,
++      it should have this property and a phandle, mailbox specifiers.
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++
++  mediatek,gce-events:
++    description:
++      The event id which is mapping to a software event signal to gce.
++      It is used as a secure irq for every secure gce threads.
++      The event id is defined in the gce header
++      include/dt-bindings/mailbox/mediatek,<chip>-gce.h of each chips.
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++
+ required:
+   - compatible
+   - "#mbox-cells"
+@@ -71,20 +86,23 @@ additionalProperties: false
+ 
+ examples:
+   - |
+-    #include <dt-bindings/clock/mt8173-clk.h>
++    #include <dt-bindings/clock/mediatek,mt8188-clk.h>
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+     #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/mailbox/mediatek,mt8188-gce.h>
+ 
+     soc {
+         #address-cells = <2>;
+         #size-cells = <2>;
+ 
+-        gce: mailbox@10212000 {
+-            compatible = "mediatek,mt8173-gce";
+-            reg = <0 0x10212000 0 0x1000>;
+-            interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_LOW>;
++        gce0: mailbox@10320000 {
++            compatible = "mediatek,mt8188-gce";
++            reg = <0 0x10320000 0 0x4000>;
++            interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH 0>;
+             #mbox-cells = <2>;
+-            clocks = <&infracfg CLK_INFRA_GCE>;
++            clocks = <&infracfg_ao CLK_INFRA_AO_GCE>;
+             clock-names = "gce";
++            mboxes = <&gce0 15 CMDQ_THR_PRIO_1>;
++            mediatek,gce-events = <CMDQ_SYNC_TOKEN_SECURE_THR_EOF>;
+         };
+     };
 -- 
 2.18.0
 
