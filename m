@@ -1,244 +1,177 @@
-Return-Path: <devicetree+bounces-931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FA077A400B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 06:21:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B6427A402E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 06:51:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29E201C209FA
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 04:21:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8099F1C20859
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 04:51:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56807440E;
-	Mon, 18 Sep 2023 04:21:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7E2246AC;
+	Mon, 18 Sep 2023 04:51:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DAF41FD0
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 04:21:31 +0000 (UTC)
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F737B5
-	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 21:21:28 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-ccc462deca6so3661527276.0
-        for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 21:21:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1695010887; x=1695615687; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BSAM1wAdtshDQfCXiQwF4h/ka9KcanO5IUqHuu9JJ+g=;
-        b=ijOj9c6sXyE0ShivHl2XAHQRQFS3UpiMZeEzAfBcuNOBLVJx+GiOzNCa27/ZP7czO5
-         ER4QtpI9JS/WM9saTt+TpeCHrD0pS5OiU5jd/7H5pgjEkG0vOCKbvGBkDjEwCTTBid8h
-         w/ORzn+8xERXDwnStvawtMkks08IHVyMEEkOo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695010887; x=1695615687;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BSAM1wAdtshDQfCXiQwF4h/ka9KcanO5IUqHuu9JJ+g=;
-        b=Z1RsrKIl7+wwxGsr5K5Yti4ZLAaMli/0LbUpyiH7tQX9Drne/ipeQ2Nu8h1W+X6Nqf
-         QTwluZYYNc4LQ6vfiwuRBRvFxl+5NnpTLnp5O7IIiEOKx5yYRsnxuZBQWglor5a6II2C
-         96qam6K0JsKlpJiHpkTU/LDYc2ym+Ta9XU50tvwEYNZ4f6uIH3ubyUIp9NWI73yWAJnW
-         kL5KSaoU79JlnOPkgU+C73MWx0Y37Y/vy2Cmv07bmXgJ6b0eRjQwFIEOe2sc0VAOTjw9
-         t5QLSTM2y3xyZn2xZ+hkxu89TMvXuASEOU4HywROCMHD7PpIUrRFUt0gtjptCEWUcddl
-         IvYg==
-X-Gm-Message-State: AOJu0YxaS+J2wHiVieE+jmHOq3pSeg+VuzrPsBooNLCjlAOXCvLHePo/
-	rF8xZdGuJOmhDTwS/JC6jf/QfrUoGYJbgj1PITuT24l3iQinGLflusQ=
-X-Google-Smtp-Source: AGHT+IGamdtg8sH9Us3wVyYRxsSvWDzZYYbwpQFSURHsvVuCzGoCXTMg3//zKJ+piq0Zy4QOFvJKH7Mnw3aBUtLx2dI=
-X-Received: by 2002:a05:6871:552:b0:1d1:425b:8029 with SMTP id
- t18-20020a056871055200b001d1425b8029mr10951176oal.13.1695010866866; Sun, 17
- Sep 2023 21:21:06 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DAEA1FD5
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 04:51:42 +0000 (UTC)
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1371121
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 21:51:40 -0700 (PDT)
+Received: from epcas1p1.samsung.com (unknown [182.195.41.45])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20230918045136epoutp019f33ec452f305ebbaf538663169e6c0c~F5REGf9rU0169901699epoutp01E
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 04:51:36 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20230918045136epoutp019f33ec452f305ebbaf538663169e6c0c~F5REGf9rU0169901699epoutp01E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1695012696;
+	bh=4FgVh3QxMa/Oikq/jXVD32FeK6Wx2JOARgZJ7Ni1RI4=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=ZnK4yGcXT5dFy/B9rbTeCBi/i6VCHpNiR4JcNFnSKZK7KGkXlWIowdAJTickqjyxA
+	 KE5VMAQSXX9gj8dXtUW+kT3cGXLIxvjPvzRi0AtLefhqxJz+vvFtjZgAoakYIU310I
+	 Gm/Cy/5oyWwCHieepLhRa+SvrawU9jcBwm396+7A=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20230918045135epcas1p25bee43ead6f894264e78fc4145651b9d~F5RDnUjZQ0670906709epcas1p2J;
+	Mon, 18 Sep 2023 04:51:35 +0000 (GMT)
+Received: from epsmges1p3.samsung.com (unknown [182.195.38.231]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4Rpsny3thxz4x9Px; Mon, 18 Sep
+	2023 04:51:34 +0000 (GMT)
+Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
+	epsmges1p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+	19.E3.09646.657D7056; Mon, 18 Sep 2023 13:51:34 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas1p4.samsung.com (KnoxPortal) with ESMTPA id
+	20230918045133epcas1p42fa41cb80a1250b9db28f398b31d041c~F5RCIf5p03009130091epcas1p4D;
+	Mon, 18 Sep 2023 04:51:33 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20230918045133epsmtrp14a4e100ea519bd5d6c5c025eed515910~F5RCFcE4G1930419304epsmtrp1W;
+	Mon, 18 Sep 2023 04:51:33 +0000 (GMT)
+X-AuditID: b6c32a37-b23ff700000025ae-b9-6507d756af12
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	B6.A4.08742.557D7056; Mon, 18 Sep 2023 13:51:33 +0900 (KST)
+Received: from mediaserver.. (unknown [10.113.111.131]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20230918045133epsmtip1e90f1f5e8eaf366cc5538f719f0474e0~F5RByW3bD1750717507epsmtip1j;
+	Mon, 18 Sep 2023 04:51:33 +0000 (GMT)
+From: Kwanghoon Son <k.son@samsung.com>
+To: p.zabel@pengutronix.de, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jszhang@kernel.org,
+	guoren@kernel.org, wefu@redhat.com, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, inki.dae@samsung.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v3 0/3] Introduce reset driver for T-HEAD th1520 SoC
+Date: Mon, 18 Sep 2023 04:51:22 +0000
+Message-Id: <20230918045125.4000083-1-k.son@samsung.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230908101539.2622864-1-yich@google.com> <2ec056f3-e8a8-c5f3-b132-4b9d2beb616e@linaro.org>
-In-Reply-To: <2ec056f3-e8a8-c5f3-b132-4b9d2beb616e@linaro.org>
-From: Yi Chou <yich@chromium.org>
-Date: Mon, 18 Sep 2023 12:20:55 +0800
-Message-ID: <CABOkjxJpcOUyyh9vjRuqrhmd=EdQdnyyuBX-++0R+UdENfqw9A@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: Add Google Widevine initialization parameters
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	devicetree@vger.kernel.org, devicetree-spec@vger.kernel.org, yich@google.com, 
-	jens.wiklander@linaro.org, chenyian@google.com, jkardatzke@google.com, 
-	jwerner@chromium.org, sjg@chromium.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrGJsWRmVeSWpSXmKPExsWy7bCmgW7YdfZUg+NPxS22/p7FbrFm7zkm
+	i/lHzrFavNjbyGIx6f4EFovmY+vZLPpePGS2uLxrDpvFts8tbBZ3751gsXh5uYfZom0Wv0Xr
+	3iPsFi37p7A48Hm8efmSxeNwxxd2j02rOtk87lzbw+axeUm9R/9fA4/3+66yefRtWcXocan5
+	OrvH501yAVxR2TYZqYkpqUUKqXnJ+SmZeem2St7B8c7xpmYGhrqGlhbmSgp5ibmptkouPgG6
+	bpk5QPcrKZQl5pQChQISi4uV9O1sivJLS1IVMvKLS2yVUgtScgpMC/SKE3OLS/PS9fJSS6wM
+	DQyMTIEKE7IzJu1bw1owmbdi5revbA2Mi7i6GDk5JARMJI6cfcECYgsJ7GCUWHVEsYuRC8j+
+	xChxef1JRojEN0aJzh+VMA3dff1MEEV7GSXufHjMCOG8YZT49KALrINNQF1iSdtadpCEiMB/
+	Rok3f1qZQBLMAvESJ66dYwaxhQVcJC7tOgHWwCKgKvGlcTrYHbwCFhI7zxxghlgnL7H/4Flm
+	iLigxMmZT1gg5shLNG+dzQyyQEJgJYfE1Pt9TBANLhKTrj+FsoUlXh3fwg5hS0m87G+DsrMl
+	jn7cywZhl0hcn7WIFcI2lti/dDJQLwfQAk2J9bv0IcKKEjt/z2WE2Msn8e5rDytIiYQAr0RH
+	mxCEKS9xq7McolpU4szTj1DDPSSurT3IBlIiJBArMWeRxARG+VlIfpmF5JdZCGsXMDKvYhRL
+	LSjOTU8tNiwwhkdpcn7uJkZwAtYy38E47e0HvUOMTByMhxglOJiVRHhnGrKlCvGmJFZWpRbl
+	xxeV5qQWH2I0BYbuRGYp0eR8YA7IK4k3NLE0MDEzMjaxMDQzVBLnvfWsN0VIID2xJDU7NbUg
+	tQimj4mDU6qBSaqmjWGmVMO6PUaFwfyOYe8SSypaJNKmK8oKt6mff5tUuyXmjULYnq/8lXeu
+	MH1YezP9isdMwTr5O+GCE/7n9W4z4lFYmiPe80xBePvt7EP3uKSsL1zQWGkQpfH4/WphV7cw
+	q93CXKe1dbfmzAoKfJjSxv7vZVHSe7VV2smrd65U+1sdcux0fONMXvvw33uL/+i07C1IumJm
+	nmpod32Pfbfm/sCvL+yOSoUaX+7bcYsxLb/VSFjpaLuF5uoYf/lFjXdrt+rOrnUSXprM8Lpe
+	Uu+duLpcyvOgr0fPT9QqW69qViYhcFY07gl/wwPWs2kBP9SM+D2mca1nblr+l0Fu4fuXQl3r
+	1fr2hmhpfFJiKc5INNRiLipOBAAyF+joSQQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrBLMWRmVeSWpSXmKPExsWy7bCSnG7odfZUgzmthhZbf89it1iz9xyT
+	xfwj51gtXuxtZLGYdH8Ci0XzsfVsFn0vHjJbXN41h81i2+cWNou7906wWLy83MNs0TaL36J1
+	7xF2i5b9U1gc+DzevHzJ4nG44wu7x6ZVnWwed67tYfPYvKTeo/+vgcf7fVfZPPq2rGL0uNR8
+	nd3j8ya5AK4oLpuU1JzMstQifbsEroxJ+9awFkzmrZj57StbA+Miri5GTg4JAROJ7r5+pi5G
+	Lg4hgd2MEreOXWGFSIhKdFxuZOxi5ACyhSUOHy6GqHnFKLHi9io2kBo2AXWJJW1r2UESIgK9
+	TBIfPi5hAkkwCyRKbPn6mhnEFhZwkbi06wQjiM0ioCrxpXE6C4jNK2AhsfPMAWaIZfIS+w+e
+	ZYaIC0qcnPmEBWKOvETz1tnMExj5ZiFJzUKSWsDItIpRMrWgODc9t9iwwDAvtVyvODG3uDQv
+	XS85P3cTIzgytDR3MG5f9UHvECMTB+MhRgkOZiUR3pmGbKlCvCmJlVWpRfnxRaU5qcWHGKU5
+	WJTEecVf9KYICaQnlqRmp6YWpBbBZJk4OKUamA7sMBSsPm6npP/FevGjuucx8234rgfEibm8
+	2W+awBxd1M7X8aTj/dPXRyY+XjdhWY3+jUsTuepLD3EmB5Xs0lt79ZKp4NZzr2OWXFJL7rad
+	y6b/L/KmYGboz92lP3nZbat9M1aemHHzYvaFpV8cztSXtxhIex+vftjfVtF6pmDhCplD8Udl
+	4msuZCz04vtxsDon7PHOWfY+qcv/F6VnPd111X82l9BmbfEv+79dvjz9woOzn2R/+HmLbeoq
+	PlYX2TBf+cW5pu98bWIVQb9frUsVlI1Km/X7NZ/tbX+PJy4/565J4XlgL30u/8IXnj9VbKf4
+	zzXNMvUIFvGw5i3VWJnLP/VD2T5N0V7vJaIP5iuxFGckGmoxFxUnAgCqHlk4+wIAAA==
+X-CMS-MailID: 20230918045133epcas1p42fa41cb80a1250b9db28f398b31d041c
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20230918045133epcas1p42fa41cb80a1250b9db28f398b31d041c
+References: <CGME20230918045133epcas1p42fa41cb80a1250b9db28f398b31d041c@epcas1p4.samsung.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Sun, Sep 17, 2023 at 4:40=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 08/09/2023 12:15, Yi Chou wrote:
-> > The necessary fields to initialize the widevine related functions in
-> > OP-TEE.
-> >
-> > Signed-off-by: Yi Chou <yich@google.com>
-> > Reviewed-by: Simon Glass <sjg@chromium.org>
-> > ---
-> >  .../bindings/options/google,widevine.yaml     | 124 ++++++++++++++++++
-> >  1 file changed, 124 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/options/google,wi=
-devine.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/options/google,widevine.=
-yaml b/Documentation/devicetree/bindings/options/google,widevine.yaml
-> > new file mode 100644
-> > index 0000000000000..bf2b834cb1454
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/options/google,widevine.yaml
->
-> There is no such hardware as "options". What is this supposed to be for?
-> firmware?
+This patchset adds initial support for reset driver.
+Register information is from vendor kernel [1].
+I sent an e-mail to get permission the original author,
+but there was no answer. So I upload patch since it has GPL license.
 
-These DT fields would not be consumed by the OS.
-https://www.spinics.net/lists/devicetree-spec/msg01195.html
-The previous discussion tended to use the "options" node.
-Do we have any better place for these widevine related fields?
+This patch also can be tested with watchdog simply with 
 
->
-> > @@ -0,0 +1,124 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/options/google,widevine.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Google Widevine initialization parameters.
->
-> This is a title, drop full stop.
+watchdog0: watchdog@ffefc30000 {
+        compatible = "snps,dw-wdt";
+        reg = <0xff 0xefc30000 0x0 0x1000>;
+        interrupts = <24 IRQ_TYPE_LEVEL_HIGH>;
+        clocks = <&osc>;
+        resets = <&rst TH1520_RESET_WDT0>;
+};
 
-Got it, will be fixed in the next patch.
+[1] https://github.com/revyos/thead-kernel
 
->
-> > +
-> > +maintainers:
-> > +  - Jeffrey Kardatzke <jkardatzke@chromium.org>
-> > +  - Yi Chou <yich@chromium.org>
-> > +
-> > +description:
-> > +  The necessary fields to initialize the widevine related functions in
-> > +  OP-TEE. This node does not represent a real device, but serves as a
-> > +  place for passing data between firmware and OP-TEE.
-> > +  The public fields (e.g. tpm-auth-public-key & root-of-trust-cert) ca=
-n
-> > +  be ignored because it's safe to pass the public information with the
-> > +  other methods(e.g. userland OP-TEE plugins).
->
-> Then why isn't this a property of optee node?
+Changelog:
+v2:
+https://lore.kernel.org/linux-riscv/20230912024914.3769440-1-k.son@samsung.com/
+- wrong patch version
+- yaml file indent
+- missing vendor prefix
+- drop okay
 
-Are you talking about the /firmware/optee node?
-If I understand correctly, that node was talking about how the kernel
-communicates with the OP-TEE.
-But what we are doing here is passing some secrets from trusted
-firmware into OP-TEE, and the data would not go through the linux
-kernel.
-I'm not sure if it is a good idea to mix two different purpose fields
-in the same node...
+rfc:
+https://lore.kernel.org/linux-riscv/20230904042559.2322997-1-k.son@samsung.com/
+- dt_binding_check
+- enable reset controller default
 
->
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: google,widevine
->
-> From the description I have no clue what is "widevine". The more
-> surprising is to see it as "not hardware" but having its node and
-> compatible, like it was a hardware node.
+Kwanghoon Son (3):
+  dt-bindings: reset: Document th1520 reset control
+  reset: Add th1520 reset driver support
+  riscv: dts: Add th1520 reset device tree
 
-We already have a "chosen" node that is "not hardware" in the DT.
-Should we just remove the compatible field from this node?
+ .../bindings/reset/thead,th1520-reset.yaml    |  44 +++++++
+ arch/riscv/boot/dts/thead/th1520.dtsi         |   7 ++
+ drivers/reset/Kconfig                         |  10 ++
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-th1520.c                  | 109 ++++++++++++++++++
+ .../dt-bindings/reset/thead,th1520-reset.h    |   9 ++
+ 6 files changed, 180 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
+ create mode 100644 drivers/reset/reset-th1520.c
+ create mode 100644 include/dt-bindings/reset/thead,th1520-reset.h
 
-BTW, Widevine is a digital rights management (DRM) system to make sure
-the video stream can only be decoded on the valid devices.
+-- 
+2.34.1
 
->
-> > +
-> > +  hardware-unique-key:
-> > +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> > +    description: |
-> > +      The hardware-unique key of the Widevine OP-TEE. It will be used
-> > +      to derive the secure storage key. The length should be 32 bytes.
-> > +      For more information, please reference:
-> > +      https://optee.readthedocs.io/en/latest/architecture/porting_guid=
-elines.html#hardware-unique-key
->
-> Why would you store it in DT? This is world readable... or you mean this
-> is some seed?
-
-We will not pass this node to the linux kernel.
-This DT node is only intended to be used between the ARM trusted
-firmware(BL31) and the OPTEE.
-
->
-> > +
-> > +  tpm-auth-public-key:
-> > +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> > +    description: |
-> > +      The TPM auth public key. Used to communicate the TPM from OP-TEE=
-.
-> > +      The format of data should be TPM2B_PUBLIC.
-> > +      For more information, please reference the 12.2.5 section:
-> > +      https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1=
-p59_Part2_Structures_pub.pdf
-> > +
-> > +  root-of-trust:
-> > +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> > +    description: |
-> > +      The Widevine root of trust secret. Used to sign the widevine
-> > +      request in OP-TEE. The length should be 32 bytes. The value
-> > +      is an ECC NIST P-256 scalar.
-> > +      For more information, please reference the G.1.2 section:
-> > +      https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.80=
-0-186.pdf
-> > +
-> > +  root-of-trust-cert:
-> > +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> > +    description: |
-> > +      The X.509 certificate of the Widevine root of trust on this
-> > +      device. Used to provision the device status with the Widevine
-> > +      server in OP-TEE.
-> > +      For more information, please reference:
-> > +      https://www.itu.int/rec/T-REC-X.509
-> > +
-> > +required:
-> > +  - compatible
-> > +  - hardware-unique-key
-> > +  - root-of-trust
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |+
->
-> Why + ?
-
-The extra "+" will be removed in the next patch.
-
->
-> > +    options {
->
-> There is no such node as "options".
-
-This is a new node that was suggested in this thread:
-https://www.spinics.net/lists/devicetree-spec/msg01195.html
-
->
->
-> Best regards,
-> Krzysztof
->
-
-Thanks,
-Yi
 
