@@ -1,370 +1,133 @@
-Return-Path: <devicetree+bounces-1159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56EF27A5244
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 20:44:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF0827A52CE
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 21:16:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13E862819A2
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 18:44:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C760E1C20AEB
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:16:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A8EA224F6;
-	Mon, 18 Sep 2023 18:44:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6247B273E1;
+	Mon, 18 Sep 2023 19:16:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ED9821101;
-	Mon, 18 Sep 2023 18:44:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EC69C433C8;
-	Mon, 18 Sep 2023 18:44:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695062687;
-	bh=l94fNcvQJf/PIKELnXSlgPSkqASiwOKlOKbSxFVwC6A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E2VzlRoLMm7NBWOFWE82KEzGVGHQdnSPvWMA9hoL6OAaB+IEu6drWsA1e7wt1CfH1
-	 C2QbKJqt+c8hmtrL63FHUj+Rq5JkuvZ6Q1mrd+4oiF/G9WLzWI9hoZkqOCYu4jRzf+
-	 O2xPQM49wxEY00m66uzp5tkxiRDrJDhgl/NVm5z1zsE/tlagklF716JwRtGXLcEg21
-	 vqDrVOLJF5X7IxWkbnJr0L6kJO9HpTtIJ7Spjj+RAoUy2QmLYnVe52jD25k2I3Evpj
-	 75/eyzJiZD9567+KqLwGlC0fHgVtQG+O6ldxOOuBGy2Asom9a8JpWbAnOME2jdmAMi
-	 Jk8WpHJ75RVVA==
-Received: (nullmailer pid 1497106 invoked by uid 1000);
-	Mon, 18 Sep 2023 18:44:38 -0000
-Date: Mon, 18 Sep 2023 13:44:38 -0500
-From: Rob Herring <robh@kernel.org>
-To: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, George McCollister <george.mccollister@gmail.com>, Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean <olteanv@gmail.com>, Kurt Kanzenbach <kurt@linutronix.de>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com, Linus Walleij <linus.walleij@linaro.org>, Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>, =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>, Marcin Wojtas <mw@semihalf.com>, "Russell King (Oracle)" <linux@armlinux.org.uk>, Lars Povlsen <lars.povlsen@microchip.com>, Steen Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon <daniel.machon@microchip.com>
- , Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>, Daniel Golle <daniel@makrotopia.org>, Landen Chao <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>, Sean Wang <sean.wang@mediatek.com>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, Nicolas Ferre <nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@microchip.com>, Marek Vasut <marex@denx.de>, Claudiu Manoil <claudiu.manoil@nxp.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, John Crispin <john@phrozen.org>, Madalin Bucur <madalin.bucur@nxp.com>, Ioana Ciornei <ioana.ciornei@nxp.com>, Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>, Horatiu Vultur <horatiu.vultur@microchip.com>, Oleksij Rempel <linux@rempel-privat.de>, Alexandre Torgue <alexandre.torgue@foss.st.com>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>, Grygorii Strashko <grygorii.strashko@ti.com>, Sekhar
-  Nori <nsekhar@ti.com>, Shyam Pandey <radhey.shyam.pandey@xilinx.com>, mithat.guner@xeront.com, erkin.bozoglu@xeront.com, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH net-next v2 05/10] dt-bindings: net: dsa: define MDIO bus
- child node
-Message-ID: <20230918184438.GC1464506-robh@kernel.org>
-References: <20230916110902.234273-1-arinc.unal@arinc9.com>
- <20230916110902.234273-6-arinc.unal@arinc9.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D32B121110
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 19:16:53 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C66EFF7;
+	Mon, 18 Sep 2023 12:16:51 -0700 (PDT)
+Received: from nicolas-tpx395.localdomain (unknown [IPv6:2606:6d00:15:bae9::7a9])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 57D646607186;
+	Mon, 18 Sep 2023 20:16:48 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1695064610;
+	bh=ghwssrv6LMhLjo/fzK7LxIyO3gF6PBgn2BzLfbzm+Mo=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=ID2KRBKYLpI/a9zZTJxdwIpFGXEC2fMdhddvY4ujyhojlYJE193QalJIvWrvISLFa
+	 toBU/GtVYBe1KY4V3YOmIWcTnT8KrNfSefQ/uPR+TlahTk1Lbl6jbHm0cvMofPLTdT
+	 QwYAixFqImhO6XzGkRuFdlWj0gaWjpdbAqDK1SH7ughvLgVx9hdsjt8ysFIW6bCtuP
+	 ZCQEQaeqyDToXvfBgPBAxEvq98IxEWcmdZ7b38c5cQe7QDPV3UwYNxk8LKcg/NxJGH
+	 +QC5FJJNlUrHbf5cFoS+/j5OYBX32aSMsQcTD/GG2ngB0VULiQrwMR9P6N1PA4h8/J
+	 /lzwI7J7Sn5lw==
+Message-ID: <7412a756ee4c83c62b3dc866b5a351e1bc4afa33.camel@collabora.com>
+Subject: Re: [PATCH v12 6/7] dt-bindings: media: wave5: add yaml devicetree
+ bindings
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Sebastian Fricke
+	 <sebastian.fricke@collabora.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Nas Chung
+ <nas.chung@chipsnmedia.com>, Sascha Hauer <s.hauer@pengutronix.de>, Fabio
+ Estevam <festevam@gmail.com>, Rob Herring <robh+dt@kernel.org>, Shawn Guo
+ <shawnguo@kernel.org>,  Philipp Zabel <p.zabel@pengutronix.de>, Jackson Lee
+ <jackson.lee@chipsnmedia.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, NXP Linux Team <linux-imx@nxp.com>, 
+ Hans Verkuil <hverkuil@xs4all.nl>, Conor Dooley <conor+dt@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org, Robert
+ Beckett <bob.beckett@collabora.com>,  linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@collabora.com
+Date: Mon, 18 Sep 2023 15:16:39 -0400
+In-Reply-To: <6d87034e-6727-09fd-60fc-10f8ca47f85b@linaro.org>
+References: 
+	<20230915-wave5_v12_on_media_master-v12-0-92fc66cd685d@collabora.com>
+	 <20230915-wave5_v12_on_media_master-v12-6-92fc66cd685d@collabora.com>
+	 <30384744-94d7-2675-63ad-d8531e3156d1@linaro.org>
+	 <20230918064954.iuomunsckduawiay@basti-XPS-13-9310>
+	 <6d87034e-6727-09fd-60fc-10f8ca47f85b@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230916110902.234273-6-arinc.unal@arinc9.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Sat, Sep 16, 2023 at 02:08:57PM +0300, Arınç ÜNAL wrote:
-> Some DSA subdrivers register the MDIO bus of the switch they control. Or
-> let the DSA driver register the MDIO bus. The node for these buses are
-> either required or optional, depending on the subdriver. Document this on
-> all of the affected DSA switch schemas.
-> 
-> The attributes of a DSA subdriver that lets the DSA driver register the
-> bus:
-> - ds->ops->phy_read() and ds->ops->phy_write() are present.
-> - ds->slave_mii_bus is not populated by the DSA subdriver.
-> - The bus is registered non-OF-based or OF-based. Registered OF-based if
->   "mdio" child node is defined.
-> 
-> The affected DSA switch schemas are documented below.
-> 
-> - brcm,b53.yaml
-> 
-> drivers/net/dsa/b53/b53_common.c:
-> - The DSA subdriver lets the DSA driver register the bus.
-> 
-> ---
+Le lundi 18 septembre 2023 =C3=A0 14:02 +0200, Krzysztof Kozlowski a =C3=A9=
+crit=C2=A0:
+> On 18/09/2023 08:49, Sebastian Fricke wrote:
+> > Hey Krzysztof,
+> >=20
+> > thanks for your review.
+> >=20
+> > On 17.09.2023 09:56, Krzysztof Kozlowski wrote:
+> > > On 15/09/2023 23:11, Sebastian Fricke wrote:
+> > > > From: Robert Beckett <bob.beckett@collabora.com>
+> > > >=20
+> > > > Add bindings for the wave5 chips&media codec driver
+> > > >=20
+> > > > Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+> > > > Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+> > > > Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
+> > >=20
+> > > So this is v12 and still no tested?
+> >=20
+> > I have tested it, multiple times actually since V11. (For some reason
+> > that indentation issue slipped by me though ...)
+> > If you mean the tested by tag, the patch was completely unnoticed until
+> > v10 by the community, which was partially because me and the previous
+> > commiters didn't use the right recipients for this patch. So from that
+> > point of view this is more like v2.
+> >=20
+> > >=20
+> > > A nit, subject: drop second/last, redundant "yaml devicetree indings"=
+.
+> > > The "dt-bindings" prefix is already stating that these are bindings.
+> > > Basically three words bringing zero information.
+> >=20
+> > Okay so:
+> > `dt-bindings: media: wave5: add devicetree`
+>=20
+> Still not, because devicetree is duplicating "dt". It's redundant.
+>=20
+> Instead should be (with correct order of prefixes):
+>=20
+> media: dt-bindings: wave5: add AzureWaveFooBar XYL ABC10 (whatever
+> company and full product name it is)
 
-This will cause everything after here to be dropped when the patch is 
-applied.
+So maybe this one ?
 
-In any case, write binding commit message without Linux details. 
-Ideally, variations should be based on hardware differences not driver 
-policies.
+  media: dt-bindings: wave5: add Chips&Media 521c codec IP support
 
-> 
-> - mediatek,mt7530.yaml
-> 
-> drivers/net/dsa/mt7530.c:
-> - The DSA subdriver won't let the DSA driver register the bus.
->   - No ds->ops->phy_read() or ds->ops->phy_write().
-> - Registers the bus non-OF-based or OF-based. Registers OF-based if "mdio"
->   child node is defined.
-> 
-> ---
-> 
-> - microchip,ksz.yaml
-> - microchip,lan937x.yaml
-> 
-> drivers/net/dsa/microchip/ksz_common.c:
-> - The DSA subdriver won't let the DSA driver register the bus when "mdio"
->   child node is defined. Registers the bus OF-based only. Registers the bus
->   when "mdio" child node is defined.
->   - mdio_np = of_get_child_by_name(dev->dev->of_node, "mdio");
->     if (!mdio_np)
->       return 0;
->     ds->slave_mii_bus = bus;
-> 
-> ---
-> 
-> - nxp,sja1105.yaml
-> 
-> drivers/net/dsa/sja1105/sja1105_mdio.c:
-> - The DSA subdriver won't let the DSA driver register the bus.
->   - No ds->ops->phy_read() or ds->ops->phy_write().
-> - Registers multiple buses OF-based only. Registers the buses when "mdios"
->   child node and "nxp,sja1110-base-tx-mdio" and "nxp,sja1110-base-t1-mdio"
->   compatible strings per child node under "mdios" is defined.
->   - mdio_node = of_get_child_by_name(switch_node, "mdios");
->     if (!mdio_node)
->       return 0;
->   - np = of_get_compatible_child(mdio_node, "nxp,sja1110-base-tx-mdio");
->     if (!np)
->       return 0;
->   - np = of_get_compatible_child(mdio_node, "nxp,sja1110-base-t1-mdio");
->     if (!np)
->       return 0;
-> 
-> ---
-> 
-> - qca8k.yaml
-> 
-> drivers/net/dsa/qca/qca8k-8xxx.c:
-> - The DSA subdriver won't let the DSA driver register the bus.
->   - No ds->ops->phy_read() or ds->ops->phy_write().
-> - Registers the bus non-OF-based or OF-based. Registers OF-based if "mdio"
->   child node is defined.
->   - mdio = of_get_child_by_name(priv->dev->of_node, "mdio");
-> 
-> ---
-> 
-> - realtek.yaml
-> 
-> drivers/net/dsa/realtek/realtek-smi.c:
-> - The DSA subdriver won't let the DSA driver register the bus. Registers
->   the bus OF-based only. Registering the bus is mandatory. Registers the
->   bus when compatible string "realtek,smi-mdio" on a child node is defined.
->   - mdio_np = of_get_compatible_child(priv->dev->of_node, "realtek,smi-mdio");
->     if (!mdio_np)
->       return -ENODEV;
->     ds->slave_mii_bus = priv->slave_mii_bus;
-> 
-> drivers/net/dsa/realtek/realtek-mdio.c:
-> - The DSA subdriver lets the DSA driver register the bus.
-> 
-> ---
-> 
-> - renesas,rzn1-a5psw.yaml
-> 
-> drivers/net/dsa/rzn1_a5psw.c:
-> - The DSA subdriver won't let the DSA driver register the bus.
->   - No ds->ops->phy_read() or ds->ops->phy_write().
-> - Registers the bus OF-based only. Registers the bus when "mdio" child node
->   is defined.
->   -	mdio = of_get_child_by_name(dev->of_node, "mdio");
->     if (of_device_is_available(mdio))
->       ret = a5psw_probe_mdio(a5psw, mdio);
-> 
-> ---
-> 
-> - ar9331.txt
-> 
-> drivers/net/dsa/qca/ar9331.c:
-> - The DSA subdriver won't let the DSA driver register the bus.
->   - No ds->ops->phy_read() or ds->ops->phy_write().
-> - Registers the bus OF-based only. Registering the bus is mandatory.
->   Registers the bus when "mdio" child node is defined.
->   - mnp = of_get_child_by_name(np, "mdio");
->     if (!mnp)
->       return -ENODEV;
-> 
-> ---
-> 
-> - lan9303.txt
-> 
-> drivers/net/dsa/lan9303-core.c:
-> - The DSA subdriver lets the DSA driver register the bus.
-> 
-> ---
-> 
-> - lantiq-gswip.txt
-> 
-> drivers/net/dsa/lantiq_gswip.c:
-> - The DSA subdriver won't let the DSA driver register the bus.
->   - No ds->ops->phy_read() or ds->ops->phy_write().
-> - Registers the bus OF-based only. Registers the bus when compatible string
->   "lantiq,xrx200-mdio" on a child node is defined.
->   - mdio_np = of_get_compatible_child(dev->of_node, "lantiq,xrx200-mdio");
->     if (mdio_np)
->       err = gswip_mdio(priv, mdio_np);
-> 
-> ---
-> 
-> - marvell.txt
-> 
-> drivers/net/dsa/mv88e6xxx/chip.c:
-> - The DSA subdriver won't let the DSA driver register the bus.
->   - ds->slave_mii_bus = mv88e6xxx_default_mdio_bus(chip);
-> - Registers the bus non-OF-based or OF-based. Registers OF-based if "mdio"
->   child node is defined.
-> 
-> ---
-> 
-> - vitesse,vsc73xx.txt
-> 
-> drivers/net/dsa/vitesse-vsc73xx-core.c:
-> - The DSA subdriver lets the DSA driver register the bus.
-> 
-> I will convert the non json-schema documents accordingly.
-> 
-> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-> ---
->  .../devicetree/bindings/net/dsa/brcm,b53.yaml          |  7 +++++++
->  .../devicetree/bindings/net/dsa/mediatek,mt7530.yaml   |  7 +++++++
->  .../devicetree/bindings/net/dsa/microchip,ksz.yaml     |  7 +++++++
->  .../devicetree/bindings/net/dsa/microchip,lan937x.yaml |  3 +++
->  .../devicetree/bindings/net/dsa/nxp,sja1105.yaml       |  3 ++-
->  Documentation/devicetree/bindings/net/dsa/qca8k.yaml   | 10 +++++-----
->  Documentation/devicetree/bindings/net/dsa/realtek.yaml |  4 ++++
->  .../bindings/net/dsa/renesas,rzn1-a5psw.yaml           |  3 +++
->  8 files changed, 38 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml b/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-> index 4c78c546343f..0bb2ff0cf2d0 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-> @@ -65,6 +65,13 @@ properties:
->                - brcm,bcm63268-switch
->            - const: brcm,bcm63xx-switch
->  
-> +  mdio:
-> +    description:
-> +      The optional node for the MDIO bus of the switch. The bus will be
-> +      registered non-OF-based if this is not defined.
-> +    $ref: /schemas/net/mdio.yaml#
-> +    unevaluatedProperties: false
-> +
->  required:
->    - compatible
->    - reg
-> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> index e532c6b795f4..31a7dbbf704d 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> @@ -151,6 +151,13 @@ properties:
->        ethsys.
->      maxItems: 1
->  
-> +  mdio:
-> +    description:
-> +      The optional node for the MDIO bus of the switch. The bus will be
-> +      registered non-OF-based if this is not defined.
-> +    $ref: /schemas/net/mdio.yaml#
-> +    unevaluatedProperties: false
-> +
->  patternProperties:
->    "^(ethernet-)?ports$":
->      type: object
-> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> index e51be1ac0362..20e4174fe1ab 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> @@ -49,6 +49,13 @@ properties:
->        Set if the output SYNCLKO clock should be disabled. Do not mix with
->        microchip,synclko-125.
->  
-> +  mdio:
-> +    description:
-> +      The optional node for the MDIO bus of the switch. The bus will be
-> +      registered non-OF-based if this is not defined.
-> +    $ref: /schemas/net/mdio.yaml#
-> +    unevaluatedProperties: false
-> +
->  required:
->    - compatible
->    - reg
-> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
-> index d187034fb31a..33a4926b2d94 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
-> @@ -32,6 +32,9 @@ properties:
->      maxItems: 1
->  
->    mdio:
-> +    description:
-> +      The optional node for the MDIO bus of the switch. The bus will be
-> +      registered non-OF-based if this is not defined.
->      $ref: /schemas/net/mdio.yaml#
->      unevaluatedProperties: false
->  
-> diff --git a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-> index 3f3c4ecc6442..6838dc165d06 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-> @@ -37,7 +37,8 @@ properties:
->  
->    mdios:
->      description:
-> -      The optional container node for the two MDIO buses of the SJA1110.
-> +      The optional container node for the two MDIO buses of the SJA1110. The bus
-> +      won't be registered if its node is not defined.
->      type: object
->  
->      properties:
-> diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> index df64eebebe18..c472050582be 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> @@ -60,13 +60,13 @@ properties:
->        B68 on the QCA832x and B49 on the QCA833x.
->  
->    mdio:
-> +    description:
-> +      The optional node for the MDIO bus of the switch. The bus will be
-> +      registered non-OF-based if this is not defined. In that case, the legacy
-> +      mapping will be used. With the legacy mapping, the reg corresponding to
-> +      the MDIO bus is the switch reg with an offset of -1.
->      $ref: /schemas/net/mdio.yaml#
->      unevaluatedProperties: false
-> -    description: Qca8k switch have an internal mdio to access switch port.
-> -                 If this is not present, the legacy mapping is used and the
-> -                 internal mdio access is used.
-> -                 With the legacy mapping the reg corresponding to the internal
-> -                 mdio is the switch reg with an offset of -1.
->  
->  $ref: dsa.yaml#
->  
-> diff --git a/Documentation/devicetree/bindings/net/dsa/realtek.yaml b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-> index 7eb025df0df8..62ebaa4b5ae3 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-> @@ -96,6 +96,10 @@ properties:
->        - '#interrupt-cells'
->  
->    mdio:
-> +    description:
-> +      The node for the MDIO bus of the switch. For the MDIO controlled switches,
-> +      this is optional and the bus will be registered non-OF-based if this is
-> +      not defined.
->      $ref: /schemas/net/mdio.yaml#
->      unevaluatedProperties: false
->  
-> diff --git a/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
-> index 833d2f68daa1..9ad9f5cdf688 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
-> @@ -46,6 +46,9 @@ properties:
->      maxItems: 1
->  
->    mdio:
-> +    description:
-> +      The optional node for the MDIO bus of the switch. The bus won't be
-> +      registered if this is not defined.
->      $ref: /schemas/net/mdio.yaml#
->      unevaluatedProperties: false
->  
-> -- 
-> 2.39.2
-> 
+>=20
+>=20
+> Best regards,
+> Krzysztof
+>=20
+
 
