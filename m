@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-1112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43A847A4BF4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:23:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C17F7A4BFC
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:24:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C6E0281C64
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 15:23:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E354E1C20D8C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 15:24:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 159E21D68A;
-	Mon, 18 Sep 2023 15:23:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD67E1CF8D;
+	Mon, 18 Sep 2023 15:23:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20BED1CABB
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 15:23:31 +0000 (UTC)
-Received: from out-217.mta1.migadu.com (out-217.mta1.migadu.com [IPv6:2001:41d0:203:375::d9])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1512010D2
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 08:19:41 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB5701D694
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 15:23:37 +0000 (UTC)
+Received: from out-213.mta0.migadu.com (out-213.mta0.migadu.com [91.218.175.213])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD682E71
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 08:19:51 -0700 (PDT)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-	t=1695042950;
+	t=1695042958;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=xSNguzTtIikVl+RQdSUYwmi0RN1Huyk35tspr09PREQ=;
-	b=isHIvKmXlXetcHeWf7DjvK3hd0YtioC94nvej32bNq/CvGmTve1YeRzk+rYdpbOh0eQmpk
-	3aiceae+rP8+l/Bty+m+0HhdJ1aPNr9wTOaaXq8QcJU/1D3y62W4pOmNmmFobZ3fW+9BI5
-	IteLeq+6kc4S8MCQ1xLRVOVJdBKUGOEqHm/qlXmvM085CmOb7lyFmN67ZPTrwlR5rA92kH
-	BLmKr17w/zrQraxWAHXbs6ZAPSqI1ztNaVsn6me2MSKb/5xeUJ8BB9L9M/UquqEbTNmhzf
-	Y3xECSLmLS/OImXDAGxVOfMUi014+rkxkLAHyEw90TlaljKsCYCp6MqrfVh0fw==
+	bh=4QFpVPz6Dj2StxlRB+kfzhXVotf0zGse0COR5Gm2ZtU=;
+	b=SE9BSu6/4xhSdGqLkCq7BClR4+SWO4YbbsABZP/UR+5ItB9hbFerzMeBdcdLlSL7FLqy6x
+	liihzn367XnuIFSbIjQ+oOgsAJeegWiY9/bhcfCTXR1tiPX2u7paDd5n7IQ90dFGt6/sQH
+	33T4dU66rpYhoSrt3ZzqUmZHgBNXakoZrCufRnUXs6h/1g8PhjOf4PqFqvDwiNptQlBP3X
+	/s3H9GF/Ekhh26gNc2QNEh6qha+UXeVhzLoEge/WmokXZnt40vIpQi3rcyTxay8AfiYG0S
+	VF0UMOlMDd1rrB+mmazdq7GIJ5RJ9q438Zz3KFGlt99GY/t+JVkZ0iEFW6HntQ==
 From: John Watts <contact@jookia.org>
 To: alsa-devel@alsa-project.org
 Cc: Liam Girdwood <lgirdwood@gmail.com>,
@@ -48,9 +48,9 @@ Cc: Liam Girdwood <lgirdwood@gmail.com>,
 	patches@opensource.cirrus.com,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 1/3] ASoC: wm8782: Constrain maximum audio rate at runtime
-Date: Mon, 18 Sep 2023 23:15:30 +1000
-Message-ID: <20230918131532.2257615-2-contact@jookia.org>
+Subject: [PATCH v4 2/3] ASoC: wm8782: Use wlf,fsampen device tree property
+Date: Mon, 18 Sep 2023 23:15:31 +1000
+Message-ID: <20230918131532.2257615-3-contact@jookia.org>
 In-Reply-To: <20230918131532.2257615-1-contact@jookia.org>
 References: <20230918131532.2257615-1-contact@jookia.org>
 Precedence: bulk
@@ -63,97 +63,64 @@ Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The wm8782 supports up to 192kHz audio when pins are set correctly.
-Instead of hardcoding which rates are supported constrain them at
-runtime based on a max_rate variable.
+The wm8782 supports rates 96kHz and 192kHz as long as the hardware
+is configured properly. Allow this to be specified in the device tree.
 
 Signed-off-by: John Watts <contact@jookia.org>
 Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 ---
- sound/soc/codecs/wm8782.c | 42 ++++++++++++++++++++++++++++-----------
- 1 file changed, 30 insertions(+), 12 deletions(-)
+ sound/soc/codecs/wm8782.c | 25 ++++++++++++++++++++++---
+ 1 file changed, 22 insertions(+), 3 deletions(-)
 
 diff --git a/sound/soc/codecs/wm8782.c b/sound/soc/codecs/wm8782.c
-index 95ff4339d103..f3dc87b92b1e 100644
+index f3dc87b92b1e..3a2acdfa9b85 100644
 --- a/sound/soc/codecs/wm8782.c
 +++ b/sound/soc/codecs/wm8782.c
-@@ -23,6 +23,27 @@
- #include <sound/initval.h>
- #include <sound/soc.h>
+@@ -119,8 +119,9 @@ static const struct snd_soc_component_driver soc_component_dev_wm8782 = {
+ static int wm8782_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
++	struct device_node *np = dev->of_node;
+ 	struct wm8782_priv *priv;
+-	int ret, i;
++	int ret, i, fsampen;
  
-+/* regulator power supply names */
-+static const char *supply_names[] = {
-+	"Vdda", /* analog supply, 2.7V - 3.6V */
-+	"Vdd",  /* digital supply, 2.7V - 5.5V */
-+};
-+
-+struct wm8782_priv {
-+	struct regulator_bulk_data supplies[ARRAY_SIZE(supply_names)];
-+	int max_rate;
-+};
-+
-+static int wm8782_dai_startup(struct snd_pcm_substream *sub, struct snd_soc_dai *dai)
-+{
-+	struct snd_pcm_runtime *runtime = sub->runtime;
-+	struct wm8782_priv *priv =
-+		snd_soc_component_get_drvdata(dai->component);
-+
-+	return snd_pcm_hw_constraint_minmax(runtime, SNDRV_PCM_HW_PARAM_RATE,
-+					   8000, priv->max_rate);
-+}
-+
- static const struct snd_soc_dapm_widget wm8782_dapm_widgets[] = {
- SND_SOC_DAPM_INPUT("AINL"),
- SND_SOC_DAPM_INPUT("AINR"),
-@@ -33,28 +54,22 @@ static const struct snd_soc_dapm_route wm8782_dapm_routes[] = {
- 	{ "Capture", NULL, "AINR" },
- };
- 
-+static const struct snd_soc_dai_ops wm8782_dai_ops = {
-+	.startup = &wm8782_dai_startup,
-+};
-+
- static struct snd_soc_dai_driver wm8782_dai = {
- 	.name = "wm8782",
- 	.capture = {
- 		.stream_name = "Capture",
- 		.channels_min = 2,
- 		.channels_max = 2,
--		/* For configurations with FSAMPEN=0 */
--		.rates = SNDRV_PCM_RATE_8000_48000,
-+		.rates = SNDRV_PCM_RATE_8000_192000,
- 		.formats = SNDRV_PCM_FMTBIT_S16_LE |
- 			   SNDRV_PCM_FMTBIT_S20_3LE |
- 			   SNDRV_PCM_FMTBIT_S24_LE,
- 	},
--};
--
--/* regulator power supply names */
--static const char *supply_names[] = {
--	"Vdda", /* analog supply, 2.7V - 3.6V */
--	"Vdd",  /* digital supply, 2.7V - 5.5V */
--};
--
--struct wm8782_priv {
--	struct regulator_bulk_data supplies[ARRAY_SIZE(supply_names)];
-+	.ops = &wm8782_dai_ops,
- };
- 
- static int wm8782_soc_probe(struct snd_soc_component *component)
-@@ -121,6 +136,9 @@ static int wm8782_probe(struct platform_device *pdev)
+ 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+ 	if (!priv)
+@@ -136,8 +137,26 @@ static int wm8782_probe(struct platform_device *pdev)
  	if (ret < 0)
  		return ret;
  
-+	/* For configurations with FSAMPEN=0 */
-+	priv->max_rate = 48000;
+-	/* For configurations with FSAMPEN=0 */
+-	priv->max_rate = 48000;
++	// Assume lowest value by default to avoid inadvertent overclocking
++	fsampen = 0;
 +
++	if (np)
++		of_property_read_u32(np, "wlf,fsampen", &fsampen);
++
++	switch (fsampen) {
++	case 0:
++		priv->max_rate = 48000;
++		break;
++	case 1:
++		priv->max_rate = 96000;
++		break;
++	case 2:
++		priv->max_rate = 192000;
++		break;
++	default:
++		dev_err(dev, "Invalid wlf,fsampen value");
++		return -EINVAL;
++	}
+ 
  	return devm_snd_soc_register_component(&pdev->dev,
  			&soc_component_dev_wm8782, &wm8782_dai, 1);
- }
 -- 
 2.42.0
 
