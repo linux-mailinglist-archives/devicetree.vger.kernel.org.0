@@ -1,248 +1,206 @@
-Return-Path: <devicetree+bounces-1083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD1B67A4978
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 14:23:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EDF07A498E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 14:27:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35E69281E7A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:23:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 207B01C20D09
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 12:27:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DDB51CAB1;
-	Mon, 18 Sep 2023 12:23:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63D061CF8B;
+	Mon, 18 Sep 2023 12:26:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E738C79CD
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 12:22:59 +0000 (UTC)
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2043.outbound.protection.outlook.com [40.107.104.43])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14578C7;
-	Mon, 18 Sep 2023 05:22:54 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mTQXNDMwvDbJ2k8lGU55VcEriNk/H38Ep9JtagXSb0VeRzV9bdUbR4MFxd49IYygWImaUIDHHE7oozpXc/J1ci5ufL82eosz8zVrJbOzm3a5LT0jv+0WIFweGDKs+7+DzQRzUvIw4yZlXiLoOQr8MTeGEnSK4LvpPySQsq8TNR7oCffCaZddq8p9tjSDbCaJdj+077idxJYRKKBjoM6ZDWg1YStIoMkoV77FcGEFkCQTflp1oLtdeMOZyrv67oK80mbhH8xIkvipO6bkPrNMS/gaZMIl1JH2NQMa1H6RuRncHviQ9c8NRwwSgQpvjTZHXiVNRAFcBAiiRvqBeHx6xA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eT5TLfbod9WNxDAkzKu/viKH5r15oYqM7J6YirYKn0o=;
- b=SaA+XBT2ins15hUErZ5kc3o0ApnnWzQ2AH2MddD8SVG+SaHo/QVL9eOLrNI0jJTZwjNfN156O02F/Zc4tkxNfeQFDDsUKgJTl34jYYBz/ycTUPJ2JXs+siuj8lPWW3CjdndNzan4SkglKV2VpnyILvfoYcCAet2X/NlyXadOmnmij4KdHCwsGPAdkdsouHAerYbRPyVnv6ZpBrFM0idqYwmVCUtQJ6/obrXU27oqrkzoy8QGBBCNYQC5NHJQd7PGsTbKuPzDUWFOeqQDM06gREe5ieABUO7q5qVNpNF9WMOVIa2H/cKc3Q9a+TEXfGOSA4bhd5AwGhVke5fi/q40Wg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=asem.it; dmarc=pass action=none header.from=asem.it; dkim=pass
- header.d=asem.it; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=asem.it; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eT5TLfbod9WNxDAkzKu/viKH5r15oYqM7J6YirYKn0o=;
- b=orJLgGTnAvlWV6B+MUJisKxMQ/58WPMb3zt84sgnbhErA59tLOZCMZh3eCBEioGIBf1mwHfCEwwegYeGQwKOruBLqrvDsiOh2x40bApPQKdGnrVs0iCZc+qKB0FEZW3bk+TeFShNRMLYrAG13glwDEhWN9l0ht6ALg4eGuMIYPU=
-Received: from DU2PR01MB8034.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:273::14) by AM0PR01MB6306.eurprd01.prod.exchangelabs.com
- (2603:10a6:20b:16a::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.15; Mon, 18 Sep
- 2023 12:22:51 +0000
-Received: from DU2PR01MB8034.eurprd01.prod.exchangelabs.com
- ([fe80::11d:15c1:fca6:e077]) by DU2PR01MB8034.eurprd01.prod.exchangelabs.com
- ([fe80::11d:15c1:fca6:e077%7]) with mapi id 15.20.6813.013; Mon, 18 Sep 2023
- 12:22:51 +0000
-From: Flavio Suligoi <f.suligoi@asem.it>
-To: Conor Dooley <conor@kernel.org>
-CC: Lee Jones <lee@kernel.org>, Daniel Thompson <daniel.thompson@linaro.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>, Pavel Machek
-	<pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v2 1/2] dt-bindings: backlight: Add MPS MP3309C
-Thread-Topic: [PATCH v2 1/2] dt-bindings: backlight: Add MPS MP3309C
-Thread-Index: AQHZ592r0UV0+OQAK0qc65NPyGpwxrAcB2yAgAR937A=
-Date: Mon, 18 Sep 2023 12:22:51 +0000
-Message-ID:
- <DU2PR01MB80342BFB3FC5C5B49EDA3E73F9FBA@DU2PR01MB8034.eurprd01.prod.exchangelabs.com>
-References: <20230915140516.1294925-1-f.suligoi@asem.it>
- <20230915-sinuous-domestic-80cd8775ecb0@spud>
-In-Reply-To: <20230915-sinuous-domestic-80cd8775ecb0@spud>
-Accept-Language: it-IT, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=asem.it;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU2PR01MB8034:EE_|AM0PR01MB6306:EE_
-x-ms-office365-filtering-correlation-id: c0c416de-d132-4ce0-e0fb-08dbb841fa51
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- 4Y9hoUwdn1TIPmCqI1lg4BiR/xlGQK6oTXZYDRUmgf2u7vLDq4rzXp/vK3eVh09fYHHxj+hYuKzRcbLNqxc7eC8uJNGjmCFEJq9AFbI0Mu9mq54crpNYkNDZCNArIv/Xafxb+o5b7fcnvJp5wk4cfYYEvEvxVd9q2AtvnLb/GhV4V9UORz6bfmIT2BqB0Ys8o5UBNnsneuOvVGx2D2KTuaDlp4xpDq97jsG4bd6Ze8KRUeu+kUsiapiAXtVTeA7fOTr+jNWicXg0TVRIKq+yhwQW1XCR3rkeKeYkPSBFBE8cYzyMafkOrGNvtTGGUdccb9ufYoXD1gM4wq8f6aZAMPIj76HLPUgXnc8rGG5aXTbubG+BiCUNcUCG0EgkJ/bT73gtgk+lzoinUaKI17FiYz2C/sJ2ECPtP3Rq/Y24nF+81C+zVeF4MbDRRyEaXwkV59Wq9fW1eWWfwf7Z55clR/CygqZp92A7HtlLv0DYKaUFlk/j5dotYs1585OuGAaqBYg/ZMmL2ZmIhAWFAp7BiFuo+DBcB9XRNcnwCQmmn1RxcmSJW/BDI7J8ixv4rLIGvaxOqBi2kTFhXauG/JzGCCbVls2Fsjc/aOsrLhAGJbY=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR01MB8034.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(346002)(39850400004)(366004)(136003)(396003)(1800799009)(186009)(451199024)(7696005)(6506007)(966005)(71200400001)(9686003)(478600001)(26005)(2906002)(7416002)(66446008)(76116006)(66946007)(64756008)(54906003)(316002)(66476007)(6916009)(66556008)(4326008)(8676002)(52536014)(5660300002)(8936002)(41300700001)(55016003)(86362001)(33656002)(38070700005)(38100700002)(122000001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?K0Dq9iQwmr9z99yDPMpNKDjPoa26xybdJtTCbJv4CuvhcZySyba119RWa2ir?=
- =?us-ascii?Q?iwu3qehmodGpFtGGa45OZAch36nsKJzY6MX+m3a3xKHVKZ9OM2cmqRaJBokP?=
- =?us-ascii?Q?suFDCOTiNs2ofhpa+tbvASoOB/4NMmKrRV+Qm/IV/ruXSPYCYsjtJDOBnbK1?=
- =?us-ascii?Q?FwhP+nx23nNaYvqvWHBnlLIQmRT7en+HCguZOIWKQk5LAa9zcyRzwK/cm62H?=
- =?us-ascii?Q?u+BrhAOaR6hAVYwEYnlCtD2VxMyYJrVhynGue9ruz6LBSg5zjkVvjWmXTAjz?=
- =?us-ascii?Q?vAJZQXXp7AAVWNENh9AFuXGvTnmAtKe6XffJqPvnf3BybH12m8VAT+fjOQOl?=
- =?us-ascii?Q?SSbBTlfmTFkyM6OgvPdF55JRyyNLJPa/ThAiCvnPZYT5sMK7jZHV/oQiojuG?=
- =?us-ascii?Q?X4ZCw9OccAt0xGRbo0Cojsj2hAeiM2ZU1KxypDrDjo301BjV8TVacnLrXdku?=
- =?us-ascii?Q?gdOiAwukQCAa1r6BbHukTPzmzfpDPJ4JNaAxsCb+zrghO0O9mMBZuhjn2/un?=
- =?us-ascii?Q?6I3EyLyv5DXyFAcoAPxQYScjfUQfcr2a31Tsu2Y5yCw7AuTADFpuJdBOYMhj?=
- =?us-ascii?Q?cRvC/L+4xP3kWpFcKKSV1X026u9NZCNs0Q59Zu3RupuniJnngtHURg2ROi3q?=
- =?us-ascii?Q?GNWRJd9KPaYnqwybvVNpgOFV6n8Gs0nfCGkLwqr9MrAMf0ZrnuaHp29/m01g?=
- =?us-ascii?Q?x1LFJat/2yaP/6n0SRot6SuxCra0qgPtE1XNm6AjYPfBt+UY6R6RLEZNWfJJ?=
- =?us-ascii?Q?lAxJ1+kTy6lldh9gENyrImzY1r7YUwGUnPqat2670Wd2WC+z5/ZThOG2Ur/p?=
- =?us-ascii?Q?AvB/5eQtCHvLX6FOraI7BlBQVCQi3AQ8F3UtiIZXd9wLO+YQ3UpBqLYYbT/2?=
- =?us-ascii?Q?wkjl8qIiY2H6kTMmu3Ok4ostc1n3nVsZ/qm8SKEQsnSNhzIIEvK0ouEGFJE+?=
- =?us-ascii?Q?dyd7tbR/cCeqR/8Rriz3pcFIsEpwd/varAlxN03fB4ej6csWSvoFQlbw0Abj?=
- =?us-ascii?Q?Hbwgo2TGqldpCkeo2/JIJcaDbGAO397ylHvZ8B+5Dr2aSuSwlvphnJ4QNGfV?=
- =?us-ascii?Q?pOqhx5li+I6yuGbU0N4ib6DYwA6DXV2VJrBm8g4UVCVW67Fi6C26ReAEEy7A?=
- =?us-ascii?Q?6OmtC9JBW0Mq14SCX5c3y2DAz8f159Cw0wD0DIN/oTQhXAet4wZIw5nmXcQw?=
- =?us-ascii?Q?1GTQORtH0JBTUuZ8qxE35QAKEq23xmFm/pSKw3yCfadBjvjIx3z/SXDiE1Mz?=
- =?us-ascii?Q?iRHKDB4JoC+Y4kfx/ohd6ue7qG7GG2bGRVn3jkFHdDLw/OeJwYWuCr1ehh+S?=
- =?us-ascii?Q?5TLmdv7ONPQlbyt5F3s1fN2o1yBo8159W3mKempIARAXEzZm9OV0PhktIrXs?=
- =?us-ascii?Q?ZRpLkTojof5xae9iGPImfPMR+HKrwcQS8GyE3UCxfIRJH8dHuDqhncDPtpPr?=
- =?us-ascii?Q?/V5HxOtlosklFZlCvMYXdP0bJ0EBEvs0nmCpMhUAz7nuDLyaDGRluTxjiIGD?=
- =?us-ascii?Q?r6MteH7wXG0D98xBdL6HWU1lkxgwo5TZjBf1NRuHFEIBiE3SsjKZEPOPp5h2?=
- =?us-ascii?Q?vBY9FtBydag2gCgtnLc=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1CD21CAB8
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 12:26:31 +0000 (UTC)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A21DB11C
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 05:25:53 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-529fb04a234so5386803a12.3
+        for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 05:25:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695039952; x=1695644752; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nh7sVBi8Tr0GCkJ5LEg4c3aaDQBLO8oy7P4IhXqjoh0=;
+        b=tgWQe8tMVLxLX0migf21dRYpneXO5RhjgI2Z64g+PCM+TsjPsAMD92Xf5cKADSGKBW
+         kipqwJSQAqwZ4dONxqPn7cEz7meAgsNwXB/9rIfPrxuxNCpcqQsGF3jaqx4zkzJ555so
+         6Zi1r474jA45Bu7qrjJyjA9JvCJEu1bVSby4ikExPPYmenY+xqj5M/Z2eYMRa38ZOML1
+         j7tikX1QCSwyEj8qri0cqxkiyOPRbYuwafYvNqTKt9n/0Ba3yPtxR7imNSGcQQCNyapM
+         zNZ9JEjVbbjFh2g0UDWRXHFvPTpTeYV58TPSVqB8xypwaF1uTRePp9X8E/eVKz1L3sZc
+         V5+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695039952; x=1695644752;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nh7sVBi8Tr0GCkJ5LEg4c3aaDQBLO8oy7P4IhXqjoh0=;
+        b=u8c6n4Yx05XGCH5B/eems9vEsSAN+Lc8cpbuiAkpOu1BDvh4X7AowU9sXLWV/5nqk3
+         Bv/s0TX69Ok+59SkQoC68CRkzcYbqwxyRahN4p9fJVIqW8i+xrFfi48Vhz+npgR9VsgB
+         Y2cKanv6PILjPumuakS9IVOhKc7Rhj3HOzfngyqi5oGIGz1uJh8Cd76IiXodx84HwSOy
+         d+mfUlSLyjqNkgDWK1uUixKlwKY2XqhmGPekVSy/JW0SlmyTJvFAstwZJDmosfyCNfiK
+         8pKk/eEKUxLubOx5w8i9yDXTboJKwbDiAdTsGdHav+X3mVVsR9DudWMenNejKn/0iagW
+         JOUw==
+X-Gm-Message-State: AOJu0Yzp/8JyLYjjD7ECKogxwgY9nqyvDM9RV20V1NRhchxsG09HjNBO
+	GCtOQkYU+koMGcKxN/usv+fB9Q==
+X-Google-Smtp-Source: AGHT+IFUsmBxk+UST91vkvG7DlspBA0d9tLOkRo5UFxKQJHZ0oiyt0tGaJ1O4VjssoKueW88iRybFw==
+X-Received: by 2002:a50:9358:0:b0:530:db1d:bd99 with SMTP id n24-20020a509358000000b00530db1dbd99mr4044416eda.13.1695039951975;
+        Mon, 18 Sep 2023 05:25:51 -0700 (PDT)
+Received: from [172.25.80.114] ([217.67.225.27])
+        by smtp.gmail.com with ESMTPSA id s25-20020aa7cb19000000b0052333e5237esm5993474edt.88.2023.09.18.05.25.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Sep 2023 05:25:51 -0700 (PDT)
+Message-ID: <b27b58d9-9e55-b803-dd61-dd86a78e7c5c@linaro.org>
+Date: Mon, 18 Sep 2023 14:25:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: asem.it
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR01MB8034.eurprd01.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c0c416de-d132-4ce0-e0fb-08dbb841fa51
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2023 12:22:51.4684
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d0a766c6-7992-4344-a4a2-a467a7bb1ed2
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: OSaHs4GhYzWneQIuE0DP6QknkbJsnwmFfj1Ib04J2uXtRbHQmB14USRpmGGSMgwKQ/L4IGZ+sUhsK6BNAKR+Mw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR01MB6306
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [RFC 1/2] dt-bindings: iio: imu: Add DT binding doc for BMI323
+Content-Language: en-US
+To: Jagath Jog J <jagathjog1996@gmail.com>, jic23@kernel.org,
+ andriy.shevchenko@linux.intel.com, lars@metafoo.de, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20230918080314.11959-1-jagathjog1996@gmail.com>
+ <20230918080314.11959-2-jagathjog1996@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230918080314.11959-2-jagathjog1996@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Conor,
+On 18/09/2023 10:03, Jagath Jog J wrote:
+> Add devicetree description document for Bosch BMI323, a 6-Axis IMU.
 
-...
+I don't know why this is RFC and cover letter does not explain it. Shall
+I just ignore it? Patch is no ready? Recently at least two times someone
+was disappointed that his code marked as RFC received my review.
+
+A nit, subject: drop second/last, redundant "DT binding doc for". The
+"dt-bindings" prefix is already stating that these are bindings. Four
+words entirely redundant and duplicating what prefix is saying...
 
 
-> On Fri, Sep 15, 2023 at 04:05:15PM +0200, Flavio Suligoi wrote:
-> > The Monolithic Power (MPS) MP3309C is a WLED step-up converter,
-> > featuring a programmable switching frequency to optimize efficiency.
-> > The brightness can be controlled either by I2C commands (called "analog=
-"
-> > mode) or by a PWM input signal (PWM mode).
-> > This driver supports both modes.
-> >
-> > For device driver details, please refer to:
-> > - drivers/video/backlight/mp3309c_bl.c
-> >
-> > The datasheet is available at:
-> > - https://www.monolithicpower.com/en/mp3309c.html
-> >
-> > Signed-off-by: Flavio Suligoi <f.suligoi@asem.it>
-> > ---
-> >
-> > v2:
-> >  - remove useless properties (dimming-mode, pinctrl-names, pinctrl-0,
-> >    switch-on-delay-ms, switch-off-delay-ms, reset-gpios, reset-on-delay=
--ms,
-> >    reset-on-length-ms)
-> >  - add common.yaml#
-> >  - remove already included properties (default-brightness,
-> > max-brightness)
-> >  - substitute three boolean properties, used for the overvoltage-protec=
-tion
-> >    values, with a single enum property
-> >  - remove some conditional definitions
-> >  - remove the 2nd example
-> > v1:
-> >  - first version
-> >
-> >  .../bindings/leds/backlight/mps,mp3309c.yaml  | 73
-> > +++++++++++++++++++
-> >  1 file changed, 73 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
-> >
-> > diff --git
-> > a/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
-> > b/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
-> > new file mode 100644
-> > index 000000000000..99ccdba2c08f
-> > --- /dev/null
-> > +++
-> b/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yam
-> > +++ l
-> > @@ -0,0 +1,73 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/leds/backlight/mps,mp3309c.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: MPS MP3309C backlight
-> > +
-> > +maintainers:
-> > +  - Flavio Suligoi <f.suligoi@asem.it>
+> 
+> Signed-off-by: Jagath Jog J <jagathjog1996@gmail.com>
+> ---
+>  .../bindings/iio/imu/bosch,bmi323.yaml        | 81 +++++++++++++++++++
+>  1 file changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/imu/bosch,bmi323.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/imu/bosch,bmi323.yaml b/Documentation/devicetree/bindings/iio/imu/bosch,bmi323.yaml
+> new file mode 100644
+> index 000000000000..9c08988103c5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/imu/bosch,bmi323.yaml
+> @@ -0,0 +1,81 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/imu/bosch,bmi323.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Bosch BMI323 6-Axis IMU
+> +
+> +maintainers:
+> +  - Jagath Jog J <jagathjog1996@gmail.com>
+> +
+> +description:
+> +  BMI323 is a 6-axis inertial measurement unit that supports acceleration and
+> +  gyroscopic measurements with hardware fifo buffering. Sensor also provides
+> +  events information such as motion, steps, orientation, single and double
+> +  tap detection.
+> +
+> +properties:
+> +  compatible:
+> +    const: bosch,bmi323
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-names:
+> +    enum:
+> +      - INT1
+> +      - INT2
+> +    description: |
 
-...
+Do not need '|' unless you need to preserve formatting.
 
-> > +  mps,overvoltage-protection-microvolt:
-> > +    description: Overvoltage protection (13.5V, 24V or 35.5V). If miss=
-ing, the
-> > +      hardware default of 35.5V is used.
-> > +    enum: [ 13500000, 24000000, 35500000 ]
-> You can add "default: 35500000" and drop the free form default as text in=
- the
-> description.
+> +      set to "INT1" if INT1 pin should be used as interrupt input, set
+> +      to "INT2" if INT2 pin should be used instead
 
-Ok, thanks.
+And what happens with other INT pin? Remains floating?
 
->=20
-> Cheers,
-> Conor.
->=20
-> > +
-> > +  mps,no-sync-mode:
-> > +    description: disable synchronous rectification mode
-> > +    type: boolean
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - max-brightness
-> > +  - default-brightness
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        /* Backlight with PWM control */
-> > +        backlight_pwm: backlight@17 {
-> > +            compatible =3D "mps,mp3309c-backlight";
->=20
-> As the bot pointed out, the compatible doesn't contain "backlight".
+> +
+> +  drive-open-drain:
+> +    description: |
 
-Right, fixed!
+Do not need '|' unless you need to preserve formatting.
 
-Thanks and regards,
-Flavio
+> +      set if the specified interrupt pin should be configured as
+> +      open drain. If not set, defaults to push-pull.
+
+Missing supplies. Are you sure device does not use any electric energy?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    // Example for I2C
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +> +        bmi323@68 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +            compatible = "bosch,bmi323";
+> +            reg = <0x68>;
+> +            interrupt-parent = <&gpio1>;
+> +            interrupts = <29 IRQ_TYPE_EDGE_RISING>;
+> +            interrupt-names = "INT1";
+> +        };
+> +    };
+> +  - |
+> +    // Example for SPI
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    spi {
+
+
+It's the same as other example. No difference. Drop.
+
+Best regards,
+Krzysztof
+
 
