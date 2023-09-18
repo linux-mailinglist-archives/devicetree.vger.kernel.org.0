@@ -1,237 +1,244 @@
-Return-Path: <devicetree+bounces-930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A958B7A4008
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 06:17:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FA077A400B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 06:21:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0150D281382
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 04:17:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29E201C209FA
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 04:21:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF031440E;
-	Mon, 18 Sep 2023 04:17:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56807440E;
+	Mon, 18 Sep 2023 04:21:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F25601FCC
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 04:17:24 +0000 (UTC)
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 834FA1B5;
-	Sun, 17 Sep 2023 21:16:11 -0700 (PDT)
-X-UUID: 15f41fa255da11ee8051498923ad61e6-20230918
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=2DmFBdQCJbP1WThR9XAnxRp/dD1egzcvosJnuUzD64g=;
-	b=UsYE4iAm19va2h33CgPlYLN8KMNsAoy2oQHnanVMpAugW46ocHoJwclW0o5h2DqKIcsRRIXlgqSG/zouJZDW3lGW/YYY727K3bo0ZpvY0/A5XYDc9KstekFX70pC21vxQfnY+Gmy8Naj5VrF3aTkqJz9NpXIKIDtAF39lnsnVHE=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:31aea067-0f94-49ec-8eb8-52291372a515,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:0ad78a4,CLOUDID:605924c3-1e57-4345-9d31-31ad9818b39f,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
-	NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_ULN,TF_CID_SPAM_SNR
-X-UUID: 15f41fa255da11ee8051498923ad61e6-20230918
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-	(envelope-from <ck.hu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 546654801; Mon, 18 Sep 2023 12:16:05 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 18 Sep 2023 12:16:04 +0800
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 18 Sep 2023 12:16:04 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DHDIPrSB/oUO8+uGADZf9Hcm8/lkUI2Af68BLLMCHHiUsNcqfJBmdZ4fta+GvAUpODqLZ4ohp73h8kRwgAGcBI/zq8cZ3vP1wm1Z6++y9n9hV7V10Z5QUCV/wK3DouaRsLwIKKgJkqg54GnRAaxldaeimFJlMoBaKghSBfpMCxAK4C23nEXeTlDBNQmgWr9S0WEFpcT+kK4GTEriHA+5f3MhRZUrPOkl/qnOe0bXyK7jns5I9mJiWRh+LQXxKcswfm8bB8c/v0rErpsqVD5nFxC0t+g5AKlfFZyo8GPcAUcbSV5blJS5tR/fuDy+MKx7WgnvenyhilRbi3tnfRBeyQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2DmFBdQCJbP1WThR9XAnxRp/dD1egzcvosJnuUzD64g=;
- b=mSlADrya9cmuj49kmRxrSmppSV6lQ9px+o5rubcvovzRW6YRIoKoXWhe6Vdp/cCkQhnVcJB0rGYeG4zXZlHW6xv1rfZwDzNTxsoW8zUL8+AoZ+dDShlQGCDaXSDaSJ0IJ6Pre8grprFmZzKWC4x/TK4KsDiIvhDjFiKrZEJhQ0mYy9i+bnkWI7r/liDUj5i+QYnpPPnBJCBEmTLYWosnOsptZCo+CfqZvdKeNl43KQwNd2d5HK69pfRSYymuKRhmnPp1mGKGsqrOrmrCx/mnnp+Fhyy1o98q1+i7siT7vEnaQco2u0mUFmFRbtJWzsl1jJE4KTUTRtIaMj9RCf5I0w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DAF41FD0
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 04:21:31 +0000 (UTC)
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F737B5
+	for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 21:21:28 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-ccc462deca6so3661527276.0
+        for <devicetree@vger.kernel.org>; Sun, 17 Sep 2023 21:21:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2DmFBdQCJbP1WThR9XAnxRp/dD1egzcvosJnuUzD64g=;
- b=JV91h6QqsR3+DL1sayYtRdjR9EIXoNeNwZlp/fY8fQBN21DdDumH1K5qySqFxLNoydVzxiL14gpoWUY87xBLq5Q9cNVg+q4c2A4RaXrpIJx22UOMKq2j8mvdOOSikdb+y20Dx3Mqcx36Wf6Bb21crC5anjDvNlKCFjcoGcaq+8w=
-Received: from TYZPR03MB6624.apcprd03.prod.outlook.com (2603:1096:400:1f4::13)
- by SG2PR03MB6399.apcprd03.prod.outlook.com (2603:1096:4:17e::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.24; Mon, 18 Sep
- 2023 04:16:00 +0000
-Received: from TYZPR03MB6624.apcprd03.prod.outlook.com
- ([fe80::9c2c:c08a:212f:e984]) by TYZPR03MB6624.apcprd03.prod.outlook.com
- ([fe80::9c2c:c08a:212f:e984%6]) with mapi id 15.20.6792.022; Mon, 18 Sep 2023
- 04:15:59 +0000
-From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
-To: =?utf-8?B?U2h1aWppbmcgTGkgKOadjuawtOmdmSk=?= <Shuijing.Li@mediatek.com>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>, "chunkuang.hu@kernel.org"
-	<chunkuang.hu@kernel.org>, =?utf-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?=
-	<jitao.shi@mediatek.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "airlied@gmail.com" <airlied@gmail.com>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"angelogioacchino.delregno@collabora.com"
-	<angelogioacchino.delregno@collabora.com>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, Project_Global_Chrome_Upstream_Group
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: Re: [PATCH v6,4/4] drm/mediatek: dp: Add support MT8188 dp/edp
- function
-Thread-Topic: [PATCH v6,4/4] drm/mediatek: dp: Add support MT8188 dp/edp
- function
-Thread-Index: AQHZ1KJCuBhOm53M/UaYvQYb3a396bAgJGOA
-Date: Mon, 18 Sep 2023 04:15:59 +0000
-Message-ID: <07ac11372f131c65ae2096d8a3fe1783046dc9dc.camel@mediatek.com>
-References: <20230822024155.26670-1-shuijing.li@mediatek.com>
-	 <20230822024155.26670-5-shuijing.li@mediatek.com>
-In-Reply-To: <20230822024155.26670-5-shuijing.li@mediatek.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR03MB6624:EE_|SG2PR03MB6399:EE_
-x-ms-office365-filtering-correlation-id: ad6322be-83f5-4c82-784a-08dbb7fdf6cd
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Ipo+Fio+TRcLN0+6qjCaoVVVEcJezSBUNw/A4Z4gPjzt7At3bSWcXAoNWKsnYqcAxd7nchbM7W0IeCUuPPz1IF1vyoNZnLXuyo2jz/q3GtBBIThiXCov+TcBqCHJLiXSTQCj4yyCmrKESY8jRqNAmCDsw4wnuYToWE2XRMtADbDwDCbk6wKjkD91vxiunU59aeThEwzXedLc34jILGjYAWMVYHRoFqkZ1aBcd6thrJpEdYUFU0amS3qHS6ua3nhDKI04yvf9s2aYa//diRBVtOMDv9FZ9kWOdIMDqLmj8FDAREyU7wr5Dhha6Wy1QPjoX8Yke3U9EZTE7oVAN0pC3RANfFYuvZKuhTrf+ZjbjFeTF2xcj6DVLVvkkaiPHiMVoSx9oh/VN8BSwYOwJZrvdZ7PTg8byy5geb/+vwU5keh5e8S83IOFPDQYhNJCzxMBYYo681VSmhFK3XFe/FryOFU+/0WktBzaH0rPKvvbI93phdL2ciD4aN8KDLUllhtbabxzujQvAvoGadxnw/0nmXSpR2CKVdBVJBcHDA5ZzxHGxdkXp+d4SyQMCmvfqmJYOraBJuwZ/8czM4pdYcpbM8huTVxiGM19jBeFd5x6+8jfASUpQluo2fRdeBEoQLtgdL2PVwipOE4as2+J8PJmOnLz4S8v7CQRYC8Jte/GX2tZrtlJP6r0FcufQ1GzY/XpdUeiRIhDy263ZNgs1n9A1A==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6624.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(396003)(366004)(39860400002)(136003)(346002)(451199024)(186009)(1800799009)(2906002)(41300700001)(8676002)(8936002)(107886003)(478600001)(966005)(110136005)(54906003)(64756008)(4326008)(66556008)(66446008)(66476007)(76116006)(66946007)(7416002)(316002)(71200400001)(6486002)(6506007)(6512007)(36756003)(5660300002)(86362001)(2616005)(26005)(38070700005)(85182001)(921005)(38100700002)(122000001)(83380400001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?aFlBSmFWS2p2aWl2cWtkc3dEUjcwdWdPT0ZjeUtTSG5Fall6ekpmWUVxUExa?=
- =?utf-8?B?NXlnRG9QcC9lVko3ZGhlUHo5SjYzVktTR3g5djRqelAwYmFlYjU1TVFHUG1h?=
- =?utf-8?B?bkFvR1pYY1ppQXZZb3dDTHkzN0FueXpDZUtFYS84OWd5OGh1THZmQlRlaGs4?=
- =?utf-8?B?SHFmNXVML1pPU0xNbi9LbW5sdWpNaU9uVW9waDAyeUJzZ1prZXF0aWlubzNS?=
- =?utf-8?B?RUNFVHhtSHpCZEtRbG8zaS9aa2U3VmlHVjdVenIzWWhwVkg3cTV1VVg0K1Zi?=
- =?utf-8?B?b21oU3VBSHNYbjg1Ny85V2VsbE9oSVZwWGw2Y3JaaUZlbmFVbG1oc0NDaHI3?=
- =?utf-8?B?M3hNSlhUa0ZvbWU2S0pTSE9Ub05JQ3hwaXp6UWRTREphNHQ2ZVhVTGJUc2s0?=
- =?utf-8?B?RVRqdG5sUHJjMjgzUmdDRXhFUWp3ZStjSmVGZ3BTUXBrS0pjQlJ5dFJ2RHBU?=
- =?utf-8?B?cHpadEdldmp3bEJoZ2lGMit0a0EzaWZzMXN0N2s3b0hqNE83ZkV1alRnNmFj?=
- =?utf-8?B?MUZnZVMrMkpFa2NXOGVFeFo0SGMzSlYxbXJsSHdSenhvUU1xdDJ2cWpqckl2?=
- =?utf-8?B?T3FOeFlQT1NqNWhPMDBoZmw0R3c3NUZHUDBjaTJ0a29iMStPVEdVNktORnZ0?=
- =?utf-8?B?QXJqSGx1cWc4QmdhcmVuRzlqODBXMWVQWjZxdzRxbkR3SFlFNTl6ZEg4N0Z4?=
- =?utf-8?B?TnkwbUNsblcraGZVeFVBTyt3Nm1wMGxMbUNNSG1lTDBHYk9INGJ3UW1uTGVm?=
- =?utf-8?B?REtNY1BVeitwa0RMOXNvang2TVc0MzFMc1VqVGdkNjVNT0V5cnBDUnVxSHNQ?=
- =?utf-8?B?OFN2ZDJDcjZwWjE1VjdpSGdUcHJUSzNqOUc4eXpoaDdRL2dLTzJBZHpCSE5Q?=
- =?utf-8?B?NVkxVGRXeGNiRG9wM1VJS3lzTnlZQlJTck16SnF4UU9tMlFQRjFpcWZmUTVP?=
- =?utf-8?B?V1laK1loZ0JDL2tZZ25vb0tQd1BGbi9DbFVZYVB6dXpWcmZEVXp5N0gyOWtx?=
- =?utf-8?B?RmxLWUxaRElmUDJDQUdMTjV6eUcwSGdvYWRWNTA3RlZCNmZ3cUU2NFV1bzNx?=
- =?utf-8?B?Qm0yOEhDK2kzQzZWMjRzTW45SC84QVdsUjZpRWRVSllxQlFNUDMzazNMNmNn?=
- =?utf-8?B?MDJHRXh2MDYyeGl4Vk1SWTl0MzBPWFVnMTZsU05JWThHYTU1dWphbmlXWVpD?=
- =?utf-8?B?ekxDYk12MVBublhNbUdIdTNUU3NZeGVYK2RRaUJnSTNmODE2ak16NVcxWE1S?=
- =?utf-8?B?bUppYW5JV2E0cnY1c04xUWRxYUZTWUdPU0xrZzZ2OFgraEdwSkJOMllULzBy?=
- =?utf-8?B?WUVqZ3B6OGJMcUI0ZEUxcktSb0lFNjRiMTZLQlY2dWRmdFlGZFNIUGIvRDRm?=
- =?utf-8?B?QXlOeGpPNDlTaHJsUFVtL2llSTVLY1VXOTd4MkJscUlkVUlWZzBMM0Nwa0N5?=
- =?utf-8?B?UUUybGdQUGFWVnpMWk1iZWhDRnRHREZqQkV6SG13U2JpSG4xU1BBaVIzYUZM?=
- =?utf-8?B?aU9IZFRQc0EyNjVsZ1RMNHFMUzNWM1NJdEgxWmluRE5yL3Mwc09yU1F6S1FZ?=
- =?utf-8?B?emdzSHp3UFBwVGNmRTZSQ25qZ3gwdVlnbmpJZSs2SmJGSmlYd2JEVjd1ZWli?=
- =?utf-8?B?UkVnTk5mOTRCOTZHbEZkQ3pqdUZXRlhtTEsyWFFiMm5rWXBua2Q0RUIxK2dy?=
- =?utf-8?B?a21JR2RDcTVvM0o3ZVdWTU5CdTVJTzlxZmorcExLUjRPcE5ZTHFxQ05Xa05H?=
- =?utf-8?B?em5xY0tFbEFMT3hSSzN0dmlzbS8vMW1BS3ZzSFg1OTdlWlpiZDNLaGI5cUEv?=
- =?utf-8?B?NGozMHIyQ01zZzAvWHBzV0puYU9FN3N3ekdOeDFKaHdZQ0xLUFIra0l5amov?=
- =?utf-8?B?UnFlZkVWS1dzYnBMV1Y4S2hLc3ZQNnZ3NjM0MTNzc0kzYkJXelljV3VGMkdX?=
- =?utf-8?B?MjltSDdwTkFuS0JCZWkyR0ZIQkd5T2xzV2dkaWs0bmZ0VjFkMHRYQVREemxJ?=
- =?utf-8?B?VDhyYXlQV2VVc3ZqWVpuL1pPRjRSUnB6eTNLVFYvZWlVMG45eFN6M2pQRVd3?=
- =?utf-8?B?VGZzTnhnVVo3amJOOXY2OUorTVZLaFpWZHBmV3VwalBPK3VKWDJ0Mjg0aGZ6?=
- =?utf-8?Q?P+jCkUEDuKHmlrRmqptUCHhWi?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <1F500226F76F264CA6884921DCE9DBAD@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=chromium.org; s=google; t=1695010887; x=1695615687; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BSAM1wAdtshDQfCXiQwF4h/ka9KcanO5IUqHuu9JJ+g=;
+        b=ijOj9c6sXyE0ShivHl2XAHQRQFS3UpiMZeEzAfBcuNOBLVJx+GiOzNCa27/ZP7czO5
+         ER4QtpI9JS/WM9saTt+TpeCHrD0pS5OiU5jd/7H5pgjEkG0vOCKbvGBkDjEwCTTBid8h
+         w/ORzn+8xERXDwnStvawtMkks08IHVyMEEkOo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695010887; x=1695615687;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BSAM1wAdtshDQfCXiQwF4h/ka9KcanO5IUqHuu9JJ+g=;
+        b=Z1RsrKIl7+wwxGsr5K5Yti4ZLAaMli/0LbUpyiH7tQX9Drne/ipeQ2Nu8h1W+X6Nqf
+         QTwluZYYNc4LQ6vfiwuRBRvFxl+5NnpTLnp5O7IIiEOKx5yYRsnxuZBQWglor5a6II2C
+         96qam6K0JsKlpJiHpkTU/LDYc2ym+Ta9XU50tvwEYNZ4f6uIH3ubyUIp9NWI73yWAJnW
+         kL5KSaoU79JlnOPkgU+C73MWx0Y37Y/vy2Cmv07bmXgJ6b0eRjQwFIEOe2sc0VAOTjw9
+         t5QLSTM2y3xyZn2xZ+hkxu89TMvXuASEOU4HywROCMHD7PpIUrRFUt0gtjptCEWUcddl
+         IvYg==
+X-Gm-Message-State: AOJu0YxaS+J2wHiVieE+jmHOq3pSeg+VuzrPsBooNLCjlAOXCvLHePo/
+	rF8xZdGuJOmhDTwS/JC6jf/QfrUoGYJbgj1PITuT24l3iQinGLflusQ=
+X-Google-Smtp-Source: AGHT+IGamdtg8sH9Us3wVyYRxsSvWDzZYYbwpQFSURHsvVuCzGoCXTMg3//zKJ+piq0Zy4QOFvJKH7Mnw3aBUtLx2dI=
+X-Received: by 2002:a05:6871:552:b0:1d1:425b:8029 with SMTP id
+ t18-20020a056871055200b001d1425b8029mr10951176oal.13.1695010866866; Sun, 17
+ Sep 2023 21:21:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6624.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ad6322be-83f5-4c82-784a-08dbb7fdf6cd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2023 04:15:59.8263
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: boGOSMo3W6UMjnheggWxxiEi703r9FU0BexgxQSBT3m+XIPy9ry6XgdcYNgM2ha2mgum/hibWTfzJgZ+UHOUpw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR03MB6399
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
-	SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=no
+References: <20230908101539.2622864-1-yich@google.com> <2ec056f3-e8a8-c5f3-b132-4b9d2beb616e@linaro.org>
+In-Reply-To: <2ec056f3-e8a8-c5f3-b132-4b9d2beb616e@linaro.org>
+From: Yi Chou <yich@chromium.org>
+Date: Mon, 18 Sep 2023 12:20:55 +0800
+Message-ID: <CABOkjxJpcOUyyh9vjRuqrhmd=EdQdnyyuBX-++0R+UdENfqw9A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Add Google Widevine initialization parameters
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	devicetree@vger.kernel.org, devicetree-spec@vger.kernel.org, yich@google.com, 
+	jens.wiklander@linaro.org, chenyian@google.com, jkardatzke@google.com, 
+	jwerner@chromium.org, sjg@chromium.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-SGksIFNodWlqaW5nOg0KDQpPbiBUdWUsIDIwMjMtMDgtMjIgYXQgMTA6NDEgKzA4MDAsIFNodWlq
-aW5nIExpIHdyb3RlOg0KPiBBZGQgc3VwcG9ydCBNVDgxODggZHAvZWRwIGZ1bmN0aW9uDQoNClJl
-dmlld2VkLWJ5OiBDSyBIdSA8Y2suaHVAbWVkaWF0ZWsuY29tPg0KDQo+IA0KPiBTaWduZWQtb2Zm
-LWJ5OiBTaHVpamluZyBMaSA8c2h1aWppbmcubGlAbWVkaWF0ZWsuY29tPg0KPiAtLS0NCj4gQ2hh
-bmdlcyBpbiB2NjoNCj4gTW92ZSBhdWRpbyBmdW5jdGlvbiB0byBwYXRjaCBbMi80XS4NCj4gcGVy
-IHN1Z2dlc3Rpb24gZnJvbSB0aGUgcHJldmlvdXMgdGhyZWFkOg0KPiANCmh0dHBzOi8vbG9yZS5r
-ZXJuZWwub3JnL2FsbC8xZDQxNzQ3MDYwYzYxM2NhMGFlOGUzYjYzOTVjYzMzYmZhNGQ5MDU2LmNh
-bWVsQG1lZGlhdGVrLmNvbS8NCj4gQ2hhbmdlcyBpbiB2NToNCj4gU2VwYXJhdGUgbXQ4MTg4IHJl
-bGF0ZWQgY29kZSBpbnRvIG10a19kcF9kYXRhIHN0cnVjdHVyZSBhbmQgbXQ4MTg4DQo+IGRwL2Vk
-cCBmdW5jdGlvbg0KPiBwZXIgc3VnZ2VzdGlvbiBmcm9tIHRoZSBwcmV2aW91cyB0aHJlYWQ6DQo+
-IA0KaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGttbC9jMWM4NDYxNmYzZGE4M2E4YTJiYzI0NWIw
-ZDNjNzY5NzE1M2NkODFhLmNhbWVsQG1lZGlhdGVrLmNvbS8NCj4gLS0tDQo+ICBkcml2ZXJzL2dw
-dS9kcm0vbWVkaWF0ZWsvbXRrX2RwLmMgICAgIHwgMTcgKysrKysrKysrKysrKysrKysNCj4gIGRy
-aXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHBfcmVnLmggfCAgNiArKysrKysNCj4gIDIgZmls
-ZXMgY2hhbmdlZCwgMjMgaW5zZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9tZWRpYXRlay9tdGtfZHAuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9t
-dGtfZHAuYw0KPiBpbmRleCAwYmE5YTRmZGY4MzkuLjY3OTg2ZGQ3YzlkNyAxMDA2NDQNCj4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcC5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9tZWRpYXRlay9tdGtfZHAuYw0KPiBAQCAtMjYzMSw2ICsyNjMxLDE1IEBAIHN0YXRpYyBp
-bnQgbXRrX2RwX3Jlc3VtZShzdHJ1Y3QgZGV2aWNlICpkZXYpDQo+ICANCj4gIHN0YXRpYyBTSU1Q
-TEVfREVWX1BNX09QUyhtdGtfZHBfcG1fb3BzLCBtdGtfZHBfc3VzcGVuZCwNCj4gbXRrX2RwX3Jl
-c3VtZSk7DQo+ICANCj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgbXRrX2RwX2RhdGEgbXQ4MTg4X2Rw
-X2RhdGEgPSB7DQo+ICsJLmJyaWRnZV90eXBlID0gRFJNX01PREVfQ09OTkVDVE9SX0Rpc3BsYXlQ
-b3J0LA0KPiArCS5zbWNfY21kID0gTVRLX0RQX1NJUF9BVEZfVklERU9fVU5NVVRFLA0KPiArCS5l
-ZnVzZV9mbXQgPSBtdDgxOTVfZHBfZWZ1c2VfZm10LA0KPiArCS5hdWRpb19zdXBwb3J0ZWQgPSB0
-cnVlLA0KPiArCS5hdWRpb19wa3RfaW5faGJsYW5rX2FyZWEgPSB0cnVlLA0KPiArCS5hdWRpb19t
-X2RpdjJfYml0ID0NCj4gTVQ4MTg4X0FVRElPX01fQ09ERV9NVUxUX0RJVl9TRUxfRFBfRU5DMF9Q
-MF9ESVZfMiwNCj4gK307DQo+ICsNCj4gIHN0YXRpYyBjb25zdCBzdHJ1Y3QgbXRrX2RwX2RhdGEg
-bXQ4MTk1X2VkcF9kYXRhID0gew0KPiAgCS5icmlkZ2VfdHlwZSA9IERSTV9NT0RFX0NPTk5FQ1RP
-Ul9lRFAsDQo+ICAJLnNtY19jbWQgPSBNVEtfRFBfU0lQX0FURl9FRFBfVklERU9fVU5NVVRFLA0K
-PiBAQCAtMjY0OCw2ICsyNjU3LDE0IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgbXRrX2RwX2RhdGEg
-bXQ4MTk1X2RwX2RhdGENCj4gPSB7DQo+ICB9Ow0KPiAgDQo+ICBzdGF0aWMgY29uc3Qgc3RydWN0
-IG9mX2RldmljZV9pZCBtdGtfZHBfb2ZfbWF0Y2hbXSA9IHsNCj4gKwl7DQo+ICsJCS5jb21wYXRp
-YmxlID0gIm1lZGlhdGVrLG10ODE4OC1lZHAtdHgiLA0KPiArCQkuZGF0YSA9ICZtdDgxOTVfZWRw
-X2RhdGEsDQo+ICsJfSwNCj4gKwl7DQo+ICsJCS5jb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE4
-OC1kcC10eCIsDQo+ICsJCS5kYXRhID0gJm10ODE4OF9kcF9kYXRhLA0KPiArCX0sDQo+ICAJew0K
-PiAgCQkuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxOTUtZWRwLXR4IiwNCj4gIAkJLmRhdGEg
-PSAmbXQ4MTk1X2VkcF9kYXRhLA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL21lZGlh
-dGVrL210a19kcF9yZWcuaA0KPiBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHBfcmVn
-LmgNCj4gaW5kZXggYjk4NTllZjA2N2NlLi43MDliNzk0ODA2OTMgMTAwNjQ0DQo+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHBfcmVnLmgNCj4gKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL21lZGlhdGVrL210a19kcF9yZWcuaA0KPiBAQCAtMTY1LDYgKzE2NSwxMiBAQA0KPiAgI2Rl
-ZmluZSBNVDgxOTVfQVVESU9fTV9DT0RFX01VTFRfRElWX1NFTF9EUF9FTkMwX1AwX0RJVl8yCSg1
-IDw8DQo+IDgpDQo+ICAjZGVmaW5lIE1UODE5NV9BVURJT19NX0NPREVfTVVMVF9ESVZfU0VMX0RQ
-X0VOQzBfUDBfRElWXzQJKDYgPDwNCj4gOCkNCj4gICNkZWZpbmUgTVQ4MTk1X0FVRElPX01fQ09E
-RV9NVUxUX0RJVl9TRUxfRFBfRU5DMF9QMF9ESVZfOAkoNyA8PA0KPiA4KQ0KPiArI2RlZmluZSBN
-VDgxODhfQVVESU9fTV9DT0RFX01VTFRfRElWX1NFTF9EUF9FTkMwX1AwX01VTF8yCSgxIDw8DQo+
-IDgpDQo+ICsjZGVmaW5lIE1UODE4OF9BVURJT19NX0NPREVfTVVMVF9ESVZfU0VMX0RQX0VOQzBf
-UDBfTVVMXzQJKDIgPDwNCj4gOCkNCj4gKyNkZWZpbmUgTVQ4MTg4X0FVRElPX01fQ09ERV9NVUxU
-X0RJVl9TRUxfRFBfRU5DMF9QMF9NVUxfOAkoMyA8PA0KPiA4KQ0KPiArI2RlZmluZSBNVDgxODhf
-QVVESU9fTV9DT0RFX01VTFRfRElWX1NFTF9EUF9FTkMwX1AwX0RJVl8yCSg0IDw8DQo+IDgpDQo+
-ICsjZGVmaW5lIE1UODE4OF9BVURJT19NX0NPREVfTVVMVF9ESVZfU0VMX0RQX0VOQzBfUDBfRElW
-XzQJKDUgPDwNCj4gOCkNCj4gKyNkZWZpbmUgTVQ4MTg4X0FVRElPX01fQ09ERV9NVUxUX0RJVl9T
-RUxfRFBfRU5DMF9QMF9ESVZfOAkoNyA8PA0KPiA4KQ0KPiAgI2RlZmluZSBNVEtfRFBfRU5DMF9Q
-MF8zMEQ4CQkJMHgzMGQ4DQo+ICAjZGVmaW5lIE1US19EUF9FTkMwX1AwXzMxMkMJCQkweDMxMmMN
-Cj4gICNkZWZpbmUgQVNQX0hCMl9EUF9FTkMwX1AwX01BU0sJCQkJR0VOTUFTSw0KPiAoNywgMCkN
-Cg==
+On Sun, Sep 17, 2023 at 4:40=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 08/09/2023 12:15, Yi Chou wrote:
+> > The necessary fields to initialize the widevine related functions in
+> > OP-TEE.
+> >
+> > Signed-off-by: Yi Chou <yich@google.com>
+> > Reviewed-by: Simon Glass <sjg@chromium.org>
+> > ---
+> >  .../bindings/options/google,widevine.yaml     | 124 ++++++++++++++++++
+> >  1 file changed, 124 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/options/google,wi=
+devine.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/options/google,widevine.=
+yaml b/Documentation/devicetree/bindings/options/google,widevine.yaml
+> > new file mode 100644
+> > index 0000000000000..bf2b834cb1454
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/options/google,widevine.yaml
+>
+> There is no such hardware as "options". What is this supposed to be for?
+> firmware?
+
+These DT fields would not be consumed by the OS.
+https://www.spinics.net/lists/devicetree-spec/msg01195.html
+The previous discussion tended to use the "options" node.
+Do we have any better place for these widevine related fields?
+
+>
+> > @@ -0,0 +1,124 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/options/google,widevine.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Google Widevine initialization parameters.
+>
+> This is a title, drop full stop.
+
+Got it, will be fixed in the next patch.
+
+>
+> > +
+> > +maintainers:
+> > +  - Jeffrey Kardatzke <jkardatzke@chromium.org>
+> > +  - Yi Chou <yich@chromium.org>
+> > +
+> > +description:
+> > +  The necessary fields to initialize the widevine related functions in
+> > +  OP-TEE. This node does not represent a real device, but serves as a
+> > +  place for passing data between firmware and OP-TEE.
+> > +  The public fields (e.g. tpm-auth-public-key & root-of-trust-cert) ca=
+n
+> > +  be ignored because it's safe to pass the public information with the
+> > +  other methods(e.g. userland OP-TEE plugins).
+>
+> Then why isn't this a property of optee node?
+
+Are you talking about the /firmware/optee node?
+If I understand correctly, that node was talking about how the kernel
+communicates with the OP-TEE.
+But what we are doing here is passing some secrets from trusted
+firmware into OP-TEE, and the data would not go through the linux
+kernel.
+I'm not sure if it is a good idea to mix two different purpose fields
+in the same node...
+
+>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: google,widevine
+>
+> From the description I have no clue what is "widevine". The more
+> surprising is to see it as "not hardware" but having its node and
+> compatible, like it was a hardware node.
+
+We already have a "chosen" node that is "not hardware" in the DT.
+Should we just remove the compatible field from this node?
+
+BTW, Widevine is a digital rights management (DRM) system to make sure
+the video stream can only be decoded on the valid devices.
+
+>
+> > +
+> > +  hardware-unique-key:
+> > +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> > +    description: |
+> > +      The hardware-unique key of the Widevine OP-TEE. It will be used
+> > +      to derive the secure storage key. The length should be 32 bytes.
+> > +      For more information, please reference:
+> > +      https://optee.readthedocs.io/en/latest/architecture/porting_guid=
+elines.html#hardware-unique-key
+>
+> Why would you store it in DT? This is world readable... or you mean this
+> is some seed?
+
+We will not pass this node to the linux kernel.
+This DT node is only intended to be used between the ARM trusted
+firmware(BL31) and the OPTEE.
+
+>
+> > +
+> > +  tpm-auth-public-key:
+> > +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> > +    description: |
+> > +      The TPM auth public key. Used to communicate the TPM from OP-TEE=
+.
+> > +      The format of data should be TPM2B_PUBLIC.
+> > +      For more information, please reference the 12.2.5 section:
+> > +      https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1=
+p59_Part2_Structures_pub.pdf
+> > +
+> > +  root-of-trust:
+> > +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> > +    description: |
+> > +      The Widevine root of trust secret. Used to sign the widevine
+> > +      request in OP-TEE. The length should be 32 bytes. The value
+> > +      is an ECC NIST P-256 scalar.
+> > +      For more information, please reference the G.1.2 section:
+> > +      https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.80=
+0-186.pdf
+> > +
+> > +  root-of-trust-cert:
+> > +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> > +    description: |
+> > +      The X.509 certificate of the Widevine root of trust on this
+> > +      device. Used to provision the device status with the Widevine
+> > +      server in OP-TEE.
+> > +      For more information, please reference:
+> > +      https://www.itu.int/rec/T-REC-X.509
+> > +
+> > +required:
+> > +  - compatible
+> > +  - hardware-unique-key
+> > +  - root-of-trust
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |+
+>
+> Why + ?
+
+The extra "+" will be removed in the next patch.
+
+>
+> > +    options {
+>
+> There is no such node as "options".
+
+This is a new node that was suggested in this thread:
+https://www.spinics.net/lists/devicetree-spec/msg01195.html
+
+>
+>
+> Best regards,
+> Krzysztof
+>
+
+Thanks,
+Yi
 
