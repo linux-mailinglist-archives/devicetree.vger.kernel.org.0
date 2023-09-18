@@ -1,174 +1,139 @@
-Return-Path: <devicetree+bounces-952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8732B7A41A6
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 09:00:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C9717A4211
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 09:17:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 578591C20D75
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 07:00:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C0E21C2101C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 07:17:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B71A6FC2;
-	Mon, 18 Sep 2023 07:00:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D566F748E;
+	Mon, 18 Sep 2023 07:17:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD43246A5
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 07:00:32 +0000 (UTC)
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABAC9F1;
-	Mon, 18 Sep 2023 00:00:30 -0700 (PDT)
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-493639d616eso1354153e0c.0;
-        Mon, 18 Sep 2023 00:00:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695020429; x=1695625229;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=37fpoq0Mdhc+DRKUSXeLkG6CRGdl6l+61BM4V42y2OQ=;
-        b=wg0X65Wp1LoBixsuQjWPsXOcpcHIT5OF1kZGNfxBj0IWz0xjIp9Odqr22pgoXE4HWs
-         W/fatH3ajRi8RhyA8XFifPrVlBO/DM48EJrO4+21gFVurFy4PQTnbv9LptOacQUHXO3+
-         jD1Py4Bpcv6fAPlzF/+daHnmBMaPUyFIuqI6gIhdbNfVe+gpBOqfPmgy/AKThx4rzn/v
-         4B7ZOHfEWQsQ2VvFUNYSIEtDsuZkv1K3fLJ3xhdYfFTdUSn+/3GStNWG+f0R0cveAzoR
-         5gLqVHt/ZeUt99zKXU9ONeuNRoNYvA6Pkmmi3R7mi+d0MSkedTM0ja0q4WNfeaENF5EQ
-         FFhA==
-X-Gm-Message-State: AOJu0YwI1ybc6GkWNXe1KXSkAsN3iY8x+ukNGMzDoCkR6h55vqa7Ah1k
-	BqUQiv+cDMpXjTgl/mTd4bnwc70o7vli+Q==
-X-Google-Smtp-Source: AGHT+IHMVvCmkRdoxk5z09MmDyIlMYkNVzcAoWPhbFuOQ8oW8zqpPKAPXZkAgHXpWGs3V4o7GDG/qg==
-X-Received: by 2002:a1f:48c3:0:b0:486:de54:b11 with SMTP id v186-20020a1f48c3000000b00486de540b11mr3185969vka.16.1695020429257;
-        Mon, 18 Sep 2023 00:00:29 -0700 (PDT)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
-        by smtp.gmail.com with ESMTPSA id dt9-20020a05690c250900b0058ddb62f99bsm1685821ywb.38.2023.09.18.00.00.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Sep 2023 00:00:28 -0700 (PDT)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-59bc956b029so39683977b3.2;
-        Mon, 18 Sep 2023 00:00:28 -0700 (PDT)
-X-Received: by 2002:a0d:d808:0:b0:59b:cff1:a8eb with SMTP id
- a8-20020a0dd808000000b0059bcff1a8ebmr7661269ywe.34.1695020428210; Mon, 18 Sep
- 2023 00:00:28 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3C166D39
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 07:17:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E2C1A8;
+	Mon, 18 Sep 2023 00:17:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1695021458; x=1726557458;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=KsfAbNSSH07DrMGxoNkMeYYnB9cf5vxCWMe2RiqJX1A=;
+  b=XX3yh7FFe1eWIYf3o4NwdH8U8p0+6UzaSL4IE9FwQqRIjaOLv5zZ1hQz
+   sLBJxRvpbsucRCEvaAeiht0IBiaohTMyUQKJAdzOx8ExATkOMcm2uUfwu
+   0Bu/6mctYBmvASgm2Pr/Wh7K13EFtdBtPwoWROoSskU2T4jD5h07CUeGY
+   itxiwGAV9nnGEAWnwfNOBI6Xs6DEUE+nRh4ZKqwSXUEOmFmxvEJQafx5B
+   CQM1f28MRve9/pchNq51SWvC8whWErkk1L1bvpk242vjxjvRWr1n5Hi/i
+   oofCGT8dTvOFIEbESmb9iVcMKrBGBQHYF8cPorv7+lHIOpG69dqLWtQjU
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="382328532"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; 
+   d="scan'208";a="382328532"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2023 00:17:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="888926792"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; 
+   d="scan'208";a="888926792"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2023 00:16:51 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC0)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1qi8Va-0000000EDuQ-1Nt2;
+	Mon, 18 Sep 2023 10:17:26 +0300
+Date: Mon, 18 Sep 2023 10:17:26 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Herve Codina <herve.codina@bootlin.com>,
+	Jonathan Cameron <jonathan.cameron@huawei.com>
+Cc: Rob Herring <robh@kernel.org>, Lizhi Hou <lizhi.hou@amd.com>,
+	Andrew Lunn <andrew@lunn.ch>, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	max.zhen@amd.com, sonal.santan@amd.com,
+	stefano.stabellini@xilinx.com
+Subject: Re: [PATCH V13 0/5] Generate device tree node for pci devices
+Message-ID: <ZQf5huX2AMuf9kHC@smile.fi.intel.com>
+References: <1692120000-46900-1-git-send-email-lizhi.hou@amd.com>
+ <ZP96feVs2ev7098Y@smile.fi.intel.com>
+ <CAL_JsqKfQJFrd8MOdjW55cYdEb8yyPyR+P3ran9+X3dCwUgdyA@mail.gmail.com>
+ <ZQGaSr+G5qu/8nJZ@smile.fi.intel.com>
+ <20230915193008.6d87b8a0@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
- <20230912045157.177966-23-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdUCpbPA3cDjNAq1irvr6z4Jux-5-tVDBuyr6nx_qOQGpg@mail.gmail.com> <e8d3f59a-fa1d-9993-6e84-99d976eb05fa@tuxon.dev>
-In-Reply-To: <e8d3f59a-fa1d-9993-6e84-99d976eb05fa@tuxon.dev>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 18 Sep 2023 09:00:16 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWcfK0GjKsho5+SOQT0mk9pRXTfPgu2rc-peAM2yeiV-Q@mail.gmail.com>
-Message-ID: <CAMuHMdWcfK0GjKsho5+SOQT0mk9pRXTfPgu2rc-peAM2yeiV-Q@mail.gmail.com>
-Subject: Re: [PATCH 22/37] clk: renesas: add minimal boot support for RZ/G3S SoC
-To: claudiu beznea <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
-	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
-	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
-	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230915193008.6d87b8a0@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Claudiu,
+On Fri, Sep 15, 2023 at 07:30:08PM +0200, Herve Codina wrote:
+> On Wed, 13 Sep 2023 14:17:30 +0300
+> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+> > On Tue, Sep 12, 2023 at 02:12:04PM -0500, Rob Herring wrote:
+> > > On Mon, Sep 11, 2023 at 3:37 PM Andy Shevchenko
+> > > <andriy.shevchenko@intel.com> wrote:  
+> > > > On Tue, Aug 15, 2023 at 10:19:55AM -0700, Lizhi Hou wrote:  
 
-On Mon, Sep 18, 2023 at 8:20=E2=80=AFAM claudiu beznea <claudiu.beznea@tuxo=
-n.dev> wrote:
-> On 15.09.2023 15:52, Geert Uytterhoeven wrote:
-> > On Tue, Sep 12, 2023 at 6:53=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.d=
-ev> wrote:
-> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >>
-> >> Add minimal clock and reset support for RZ/G3S SoC to be able to boot
-> >> Linux from SD Card/eMMC. This includes necessary core clocks for booti=
-ng
-> >> and GIC, SCIF, GPIO, SD0 mod clocks and resets.
-> >>
-> >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >
-> > Thanks for your patch!
-> >
-> >> --- /dev/null
-> >> +++ b/drivers/clk/renesas/r9a08g045-cpg.c
-> >> @@ -0,0 +1,217 @@
-> >> +// SPDX-License-Identifier: GPL-2.0
-> >> +/*
-> >> + * RZ/G3S CPG driver
-> >> + *
-> >> + * Copyright (C) 2023 Renesas Electronics Corp.
-> >> + */
-> >> +
-> >> +#include <linux/clk-provider.h>
-> >> +#include <linux/device.h>
-> >> +#include <linux/init.h>
-> >> +#include <linux/kernel.h>
-> >> +
-> >> +#include <dt-bindings/clock/r9a08g045-cpg.h>
-> >> +
-> >> +#include "rzg2l-cpg.h"
-> >> +
-> >> +/* RZ/G3S Specific registers. */
-> >> +#define G3S_CPG_PL2_DDIV               (0x204)
-> >> +#define G3S_CPG_SDHI_DDIV              (0x218)
-> >> +#define G3S_CPG_PLL_DSEL               (0x240)
-> >> +#define G3S_CPG_SDHI_DSEL              (0x244)
-> >> +#define G3S_CLKSELSTATUS               (0x284)
-> >> +
-> >> +/* RZ/G3S Specific division configuration.  */
-> >> +#define G3S_DIVPL2B            DDIV_PACK(G3S_CPG_PL2_DDIV, 4, 3)
-> >> +#define G3S_DIV_SDHI0          DDIV_PACK(G3S_CPG_SDHI_DDIV, 0, 1)
-> >> +
-> >> +/* RZ/G3S Clock status configuration. */
-> >> +#define G3S_DIVPL1A_STS                DDIV_PACK(CPG_CLKSTATUS, 0, 1)
-> >> +#define G3S_DIVPL2B_STS                DDIV_PACK(CPG_CLKSTATUS, 5, 1)
-> >> +#define G3S_DIVPL3A_STS                DDIV_PACK(CPG_CLKSTATUS, 8, 1)
-> >> +#define G3S_DIVPL3B_STS                DDIV_PACK(CPG_CLKSTATUS, 9, 1)
-> >> +#define G3S_DIVPL3C_STS                DDIV_PACK(CPG_CLKSTATUS, 10, 1=
-)
-> >> +#define G3S_DIV_SDHI0_STS      DDIV_PACK(CPG_CLKSTATUS, 24, 1)
-> >
-> > The register at offset 0x280 is called CPG_CLKDIVSTATUS, so
-> > you probably want to add and use a G3S-specific definition.
->
-> I just used the already definition as there is no conflict at the moment,
-> it points to the same offset and is almost identical in name. With this
-> would you still prefer to have it separately ?
+...
 
-I think that would be clearer for the casual reader.
-On RZ/G2L, there is a single CPG_CLKSTATUS register to monitor frequency
-dividers and selectors.
-On RZ/G3S, this register was split into separate registers to monitor
-frequency dividers (CPG_CLKDIVSTATUS) and selectors (CPG_CLKSELSTATUS).
-You had to add a new definition for the latter anyway.
+> > > > Can you point out to the ACPI excerpt(s) of the description of anything related
+> > > > to the device(s) in question?  
+> > > 
+> > > I don't understand what you are asking for.  
+> > 
+> > Through the email thread it was mentioned that this series was tested on the
+> > ACPI enabled platform, Jonathan (IIRC) asked why do we need to have a shadow
+> > DT for the something that ACPI already describes. That's why I'm trying to
+> > understand if it's the case. and if so, how can we improve the approach.
+> 
+> Patches from Frank Rowand series [1] are needed to create an of_root_node if a DT
+> was not provided by the firmware, bootloader, etc that run the kernel.
+> 
+> [1]: https://lore.kernel.org/lkml/20220624034327.2542112-1-frowand.list@gmail.com/
+> 
+> Current Lizhi's series creates nodes from the PCI host node during the PCI
+> enumeration. It creates PCI-PCI bridge and PCI device nodes.
+> 
+> I use these series on an ACPI system.
+> 
+> I need one more missing component: the node related to the PCI host bridge
+> This was the purpose of Clement's work. This work was not sent upstream yet and I
+> am working on it in order to have a full tree from the of_root to the PCI device
+> ie:
+>  of_root                  <-- Frank Rowand series 
+>    + of_host_pci_bridge   <-- Clement's work
+>        + pci_bridge       <-- Current Lizhi series
+>            + pci_bridge   <-- Current Lizhi series
+>             ...
+>              + pci_dev    <-- Current Lizhi series
+> 
+> Hope that this status helped.
 
-Gr{oetje,eeting}s,
+Thanks for the explanation! I suppose it's better to have three series combined
+into one and being sent with a better cover letter to explain all this. Also it
+might make sense (in my opinion) to Cc Jonathan (I did it here). Sorry, Jonathan,
+if you are not wanting this.
 
-                        Geert
+-- 
+With Best Regards,
+Andy Shevchenko
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
