@@ -1,148 +1,109 @@
-Return-Path: <devicetree+bounces-974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 299577A4385
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 09:53:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F7017A4398
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 09:54:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 521FC1C20C73
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 07:52:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDD1A280F42
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 07:54:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20EA1134A5;
-	Mon, 18 Sep 2023 07:52:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 713CD1426B;
+	Mon, 18 Sep 2023 07:54:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95B351C20
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 07:52:55 +0000 (UTC)
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6CB63AA4
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 00:50:47 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2c00b37ad84so10732641fa.0
-        for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 00:50:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1695023432; x=1695628232; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3y431fp7zImpDWkvcmWfe4LAHrYOVE+zuYJQGH6Vve8=;
-        b=SISV0CS8M5bxkkPkub1VMfMVIDBOE2nLvyt9OK5Yc8nrVfgdWuhLYOV0FuDEVzVBuA
-         3y83V5Fj2s7lqszoHZ/V5ULI7nGf5pqU9hCRz6mXzxrub0WXLerP9+QVWPGbUhCvKq+h
-         XXElYbaAKLNGJ260n5qM3flrj6P7SelcmSCBMAAy5TSpI5YnphYLFqBA790hDM9n0KQG
-         CTgkQvZFbspQuu8HgG2bObtmiCLwn52G9O3D+c13cWV0dYQS4RUaBAnnhBQJeMuC8jAh
-         j972D6N2rUmqCRyNSrUMYSNAQvkfsUT2QIyCl/EhbJSfRsSSB9MKqstiExrEqWgo+6Ps
-         9j7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695023432; x=1695628232;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3y431fp7zImpDWkvcmWfe4LAHrYOVE+zuYJQGH6Vve8=;
-        b=dH7kfO8ijHBz32M9QOcfW8iQiywEB5q5DV49Zq2feTVe2OBxZHohXbsqbzdlkOm9vI
-         Y+drcut0Qn1SSiXESFUg2qjeu3xgxENHa1n9+EPUB84zXmQ4yQ1/nM+A/8C8n3KZKyNe
-         H0ifop/W9BBWiklUdNobFh1mzUpqf2ftJD55Hrwv6wJKCUirtvcJMtSDsVHbCPSmxJBw
-         WQQ4NoZE3IJtj4t3Aso5Y3L6PvEktmBb+RdoG8WHjL8TKqu+Kz+sgRdpUv9iHZVHPGLV
-         iM0jKCKxCdGpRMS51xxz0F/tFK5Eu5hCwUUpr9tD2mC9fg6aOtE1sBDPdH0sNjrx5Dnu
-         Lv+Q==
-X-Gm-Message-State: AOJu0YxH0IL2O7vKP6D0KkWe6l6JSScS2iCfUYFLs69vCXB6JHBMf0zD
-	bX9tzsoE3dQS1AskAXutZm+jBg==
-X-Google-Smtp-Source: AGHT+IGDwTGCqvI7ErFSwd5+9EaU2bhKoinXXuDhfENDvQM6ygOX7ZuQ/7Sf1mEAGjlycsO7Ct0+tg==
-X-Received: by 2002:a2e:9b87:0:b0:2bd:d4d:7fb6 with SMTP id z7-20020a2e9b87000000b002bd0d4d7fb6mr6798737lji.2.1695023431915;
-        Mon, 18 Sep 2023 00:50:31 -0700 (PDT)
-Received: from [192.168.32.2] ([82.78.167.145])
-        by smtp.gmail.com with ESMTPSA id r11-20020a170906350b00b009a5f1d1564dsm5993808eja.126.2023.09.18.00.50.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Sep 2023 00:50:31 -0700 (PDT)
-Message-ID: <701ee3bd-5d16-6b5f-2d34-4a4919c4c532@tuxon.dev>
-Date: Mon, 18 Sep 2023 10:50:28 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EADE13AF7;
+	Mon, 18 Sep 2023 07:54:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A7D4C433CC;
+	Mon, 18 Sep 2023 07:54:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695023664;
+	bh=a3re9QgHeOZBxzT5bdJ5U4VTTN31mPT7AHtXRfmJaV4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=moI/Gs7NvfV40COVsr1CU7NanXM6KqQR3MYY9K5GVkVb1+7T+hybfkstskwBIKfQE
+	 oV0LzvIFSYuXEu/HGaAWJ6ruv2R4UqUtv/T++NgGCaJYD2PDmzhBbZQ+5lZ7GMV6qg
+	 UNxAGuUREXkd6NYrP19SDx5Kmtlgiqv5+DeT+p0Re4kvuHLcTqluLEFtgvUQK8yUmH
+	 pWSR4J5+GP66QMRcpaP7SJVi5DBw003QHNmweanr1xdT1m/6JyO1CY41vEMzJWlOcn
+	 5fpyG2aJhe8H2kF4KAR7jZuszQL9FsaT1H7j0eLvHlnE0c+OCEaQDC6mlmY/CK4fQl
+	 9w0iq/MLGVv4w==
+Date: Mon, 18 Sep 2023 09:54:20 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Simon Horman <horms@kernel.org>
+Cc: netdev@vger.kernel.org, lorenzo.bianconi@redhat.com, nbd@nbd.name,
+	john@phrozen.org, sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, daniel@makrotopia.org,
+	linux-mediatek@lists.infradead.org, sujuan.chen@mediatek.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 13/15] net: ethernet: mtk_wed: introduce hw_rro
+ support for MT7988
+Message-ID: <ZQgCLIUUbX51eV+R@lore-desk>
+References: <cover.1694701767.git.lorenzo@kernel.org>
+ <da27f7333fa31808ceae581d9bef5030c6072f33.1694701767.git.lorenzo@kernel.org>
+ <20230917084728.GI1125562@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 22/37] clk: renesas: add minimal boot support for RZ/G3S
- SoC
-Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- ulf.hansson@linaro.org, linus.walleij@linaro.org,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, magnus.damm@gmail.com,
- catalin.marinas@arm.com, will@kernel.org,
- prabhakar.mahadev-lad.rj@bp.renesas.com, biju.das.jz@bp.renesas.com,
- quic_bjorande@quicinc.com, arnd@arndb.de, konrad.dybcio@linaro.org,
- neil.armstrong@linaro.org, nfraprado@collabora.com, rafal@milecki.pl,
- wsa+renesas@sang-engineering.com, linux-renesas-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
- <20230912045157.177966-23-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdUCpbPA3cDjNAq1irvr6z4Jux-5-tVDBuyr6nx_qOQGpg@mail.gmail.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <CAMuHMdUCpbPA3cDjNAq1irvr6z4Jux-5-tVDBuyr6nx_qOQGpg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="STv4kEpNkY3aM+1s"
+Content-Disposition: inline
+In-Reply-To: <20230917084728.GI1125562@kernel.org>
 
-Hi, Geert,
 
-On 15.09.2023 15:52, Geert Uytterhoeven wrote:
-> Hi Claudiu,
-> 
-> On Tue, Sep 12, 2023 at 6:53 AM Claudiu <claudiu.beznea@tuxon.dev> wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> Add minimal clock and reset support for RZ/G3S SoC to be able to boot
->> Linux from SD Card/eMMC. This includes necessary core clocks for booting
->> and GIC, SCIF, GPIO, SD0 mod clocks and resets.
->>
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> 
-> Thanks for your patch!
-> 
+--STv4kEpNkY3aM+1s
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[ ... ]
+[...]
+> > +
+> > +			buf +=3D MTK_WED_PAGE_BUF_SIZE;
+>=20
+> clang-16 W=3D1 warns that buf is set but otherwise unused in this functio=
+n.
 
->> +       CLK_PLL3_DIV2_4,
->> +       CLK_PLL3_DIV2_8,
->> +       CLK_PLL3_DIV6,
->> +       CLK_PLL4,
->> +       CLK_PLL6,
->> +       CLK_PLL6_DIV2,
->> +       CLK_SEL_SDHI0,
->> +       CLK_SEL_PLL4,
->> +       CLK_P1_DIV2,
->> +       CLK_P3_DIV2,
-> 
-> Do you need CLK_P1_DIV2 and CLK_P3_DIV2?
-> I don't see them in Figure 7.3 ("Clock System Diagram (2)").
-> 
+Hi Simon,
 
-P1_DIV2 is clock source for MHU_PCLK or OTFDE_DDR_PCLK.
-P3_DIV2 is clock source for DMAC_PCLK, OTFDE_SPI_PCLK.
-These are expressed in clock list document
-(RZG3S_clock_list_r1.00_20230602.xlsx).
+ack, I will fix it.
 
-It is true the functionality could be preserved even w/o these 2 clocks but
-I kept them here as I saw them as core clocks even though they are not
-present in the Clock System Diagram from HW manual.
+Regards,
+Lorenzo
 
-With these, would you prefer to keep these clocks or just remove them?
+>=20
+> > +			buf_phys +=3D MTK_WED_PAGE_BUF_SIZE;
+> > +		}
+> > +
+> > +		dma_sync_single_for_device(dev->hw->dev, page_phys, PAGE_SIZE,
+> > +					   DMA_BIDIRECTIONAL);
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >  static int
+> >  mtk_wed_rx_buffer_alloc(struct mtk_wed_device *dev)
+> >  {
+>=20
+> ...
 
-Thank you,
-Claudiu Beznea
+--STv4kEpNkY3aM+1s
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZQgCLAAKCRA6cBh0uS2t
+rHLJAP9dn/+SX9tYlfHutMyHQJiV8Khmb/l/EFGbcIin4O+DtgD+LdGGInL4edXQ
+VyKXBVc/lNBPzFUkLxDoUHUzmSJ4Cgw=
+=B0aa
+-----END PGP SIGNATURE-----
+
+--STv4kEpNkY3aM+1s--
 
