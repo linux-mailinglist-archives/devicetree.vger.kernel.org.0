@@ -1,70 +1,70 @@
-Return-Path: <devicetree+bounces-995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B9D97A44B3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 10:30:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C49887A44B7
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 10:31:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 678591C20B1D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 08:30:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E98A281783
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 08:31:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CB01F4EA;
-	Mon, 18 Sep 2023 08:30:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3D971C28C;
+	Mon, 18 Sep 2023 08:30:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71B3414F64
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 08:30:19 +0000 (UTC)
-Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61A111B0;
-	Mon, 18 Sep 2023 01:30:06 -0700 (PDT)
-Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-1c26bb27feeso2769462fac.0;
-        Mon, 18 Sep 2023 01:30:06 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88EDB21A04
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 08:30:50 +0000 (UTC)
+Received: from mail-oo1-xc2c.google.com (mail-oo1-xc2c.google.com [IPv6:2607:f8b0:4864:20::c2c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0298D114;
+	Mon, 18 Sep 2023 01:30:35 -0700 (PDT)
+Received: by mail-oo1-xc2c.google.com with SMTP id 006d021491bc7-5734b893a11so2800765eaf.1;
+        Mon, 18 Sep 2023 01:30:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695025805; x=1695630605; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1695025835; x=1695630635; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2CykTjmm7r3sahhI260p/6w2uA7V4sOftOr/1tge5W8=;
-        b=ihHwqw5w9NOJ9y3OP0mQhvyP8nuMxqf7d9wNguj0HlfnzZntmELOGiRneB0IIE73Y/
-         olp4c/OsmAFSj1Rtf3+UxCaQi9QkeWMk9BvBm6qUHlc6V4xWJtFIhE+6jqyfuOV4BsR1
-         wQPEC7i8lQuhtgMPJC7UgAcW8F+lpDUWx0qVXr3XjUE37uBu77v6v0dbJqz39Bo0x91y
-         yr8NxirIjYg6WmsIlT2P9HTiqlZ3cFNAy3Gxhm96giv0JwqM1CU9mZzfzUbyfWe9nzw2
-         /hwfFC3B6yeS3il8ZCHYy7pEfBaLnCVHPLJ+mJBQAT/EUk6UhScKL/6XRnGawgmT5JHZ
-         LlMQ==
+        bh=3gxUVSVCUEW7zut2SflwjM4pYcypiURMBMDu4ko25UQ=;
+        b=QtLJTewZQlOhMGjKbwuWodACZeXhFMHj+l21jGQEoV3ME/+wFK3OF1sKcQwgqcz/U/
+         VQYhRJ4kdA8T5/mJL1A6P+YyULYI1FN+nuYS7XReQgo2Po0sUAR15fCvL/xJfq7NWRTY
+         brDPM1v3voobhB/HdKwGmNbmxgB1K4ruNuj1c6/+/3N6Ua3Qwft4hhgGzdfXFZdd3Y4w
+         zHYWe1u/wiPIxbeFfES5unMQu6w7NDIFQrxEDrws632SQ7M1yUej10gU462D3xHqWLIV
+         kc+XBBQGigt0QdN4ejZ3o4+2pH340fP5njc4aTA6KwBVNo7rEnCVd9/Lcog1Y3SHrtBs
+         cJSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695025805; x=1695630605;
+        d=1e100.net; s=20230601; t=1695025835; x=1695630635;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2CykTjmm7r3sahhI260p/6w2uA7V4sOftOr/1tge5W8=;
-        b=EtAYlIu7RCVyp7WNcz9dqbq2ECF5KN4Q2xyQQZTcYwCI9e/iVaKr93sS2cwur4kuN5
-         IhJjPFZHg9ENVkAocSu02jozgM3/w0gvzGKFIcTSyeRVFi2fc/rhKVARc8gcxdrPY2Dz
-         hnrwPDgtQ8HQIK4o6iaO2yIlgqK7hN2sQV2qqADa25FlXb++JxKSup1SIgw+quVZDXdx
-         yREvkxUxF2xsuJN6y1T4dG2zXE7ZpFnLWN9HPIU0qrSvaWLDWpFYmcv6X7y/ybvSd25p
-         /AxrDejJYTLLjc4hryN3x7JD8vauW1rhh1D56PmVdTnn/9tIy6zbjG2pLixqLEM4oSWK
-         kgwg==
-X-Gm-Message-State: AOJu0YxjB0L51gwOvJgzt9G8QtTnAtbPC1aX1V28umSv9ywXfpraLmer
-	ZZCV55aGsEYFIxkuqkkJHqfcfa8wSdAVVk6y3P8=
-X-Google-Smtp-Source: AGHT+IHd3O6UWBhTfjMpeyY7l/jNxI1rxA5vGGYYhuI3QEm+rbwzZV3V7t2xnSEqW2T43g98zxSn8zCrKLmuUgWJnko=
-X-Received: by 2002:a05:6870:3906:b0:1d5:f814:567b with SMTP id
- b6-20020a056870390600b001d5f814567bmr9383856oap.5.1695025805604; Mon, 18 Sep
- 2023 01:30:05 -0700 (PDT)
+        bh=3gxUVSVCUEW7zut2SflwjM4pYcypiURMBMDu4ko25UQ=;
+        b=uLvVuDzobv9Eqyfha538L/G53AYvcCdBoJASK68h0oOZXPI66UTc6r27AfiS4ER9EU
+         pj035zFXQ1RXyOOLGLLEJ3ywsQmC1TC2QAA+mZMzUNKS7pHd9prR0Se2RQxPJ5NtAy+a
+         WS4gMuR/OWckkNuqcWP5J2SOULYRPwFMXoaRO3LI2JVTWnS+3Ho1chdLgs7E+NBhVGCf
+         CzrAZYTPrBbT62ZywDlbbKfS5j2ru+4zEkcIuYY0Wx1Q3dEauly8Y9/f5KMsy7HMkaAY
+         CcSxsJQzNTJTXonyVFY/7Em33XEFDYJrKnsjF1FGg0nvL7w3wfxA+B4LCDBwbBLgsI7p
+         /z/g==
+X-Gm-Message-State: AOJu0YzaezOFCkhUTvUvk3Cq+e3zIFhuIiR2lM16A4PHXbITJaD/JHxn
+	akn69hcUfcd8iH1RTfpxr+yGXwvYKaiNfBOpqyI=
+X-Google-Smtp-Source: AGHT+IHrSDRkd5WNauUdlZMq5j/Pp4W7T1SSLTlkg0boyakoxeUeVrdmPvAbatnVgTgjJF89LlTtpEB1FizNovQ6HuM=
+X-Received: by 2002:a05:6870:95aa:b0:1ba:d044:8a4 with SMTP id
+ k42-20020a05687095aa00b001bad04408a4mr10884539oao.18.1695025835198; Mon, 18
+ Sep 2023 01:30:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230917162837.277405-1-arinc.unal@arinc9.com>
-In-Reply-To: <20230917162837.277405-1-arinc.unal@arinc9.com>
+References: <20230917162837.277405-1-arinc.unal@arinc9.com> <20230917162837.277405-2-arinc.unal@arinc9.com>
+In-Reply-To: <20230917162837.277405-2-arinc.unal@arinc9.com>
 From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date: Mon, 18 Sep 2023 10:29:54 +0200
-Message-ID: <CAMhs-H99_O5jt7j6kHhKYfO3yQDXHKqzb=Gi8GDzJDxCs=JYuw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: mtmips: add deprecated ralink,rt2880-pinmux
+Date: Mon, 18 Sep 2023 10:30:24 +0200
+Message-ID: <CAMhs-H-MPjiRLY1khOdj7AXhvU62HKTZfoXTH=fsvngF-rsnCg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: mtmips: document pins of groups
 To: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
 Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -78,29 +78,28 @@ Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Sun, Sep 17, 2023 at 6:29=E2=80=AFPM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.un=
+On Sun, Sep 17, 2023 at 6:30=E2=80=AFPM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.un=
 al@arinc9.com> wrote:
 >
-> The "ralink,rt2880-pinmux" compatible string applies to all MediaTek MTMI=
-PS
-> SoC pin controllers. Add it as a deprecated compatible string.
+> Document the pins of each group on the MediaTek MTMIPS SoC pin controller=
+s.
 >
 > Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
 > ---
->  .../devicetree/bindings/pinctrl/mediatek,mt7620-pinctrl.yaml | 5 ++++-
->  .../devicetree/bindings/pinctrl/mediatek,mt7621-pinctrl.yaml | 5 ++++-
->  .../devicetree/bindings/pinctrl/mediatek,mt76x8-pinctrl.yaml | 5 ++++-
->  .../devicetree/bindings/pinctrl/ralink,rt2880-pinctrl.yaml   | 5 ++++-
->  .../devicetree/bindings/pinctrl/ralink,rt305x-pinctrl.yaml   | 5 ++++-
->  .../devicetree/bindings/pinctrl/ralink,rt3352-pinctrl.yaml   | 5 ++++-
->  .../devicetree/bindings/pinctrl/ralink,rt3883-pinctrl.yaml   | 5 ++++-
->  .../devicetree/bindings/pinctrl/ralink,rt5350-pinctrl.yaml   | 5 ++++-
->  8 files changed, 32 insertions(+), 8 deletions(-)
+>  .../pinctrl/mediatek,mt7620-pinctrl.yaml      | 22 ++++++++++++-
+>  .../pinctrl/mediatek,mt7621-pinctrl.yaml      | 18 +++++++++-
+>  .../pinctrl/mediatek,mt76x8-pinctrl.yaml      | 33 ++++++++++++++++++-
+>  .../pinctrl/ralink,rt2880-pinctrl.yaml        | 17 +++++++++-
+>  .../pinctrl/ralink,rt305x-pinctrl.yaml        | 16 ++++++++-
+>  .../pinctrl/ralink,rt3352-pinctrl.yaml        | 17 +++++++++-
+>  .../pinctrl/ralink,rt3883-pinctrl.yaml        | 16 ++++++++-
+>  .../pinctrl/ralink,rt5350-pinctrl.yaml        | 13 +++++++-
+>  8 files changed, 144 insertions(+), 8 deletions(-)
 
 Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 
