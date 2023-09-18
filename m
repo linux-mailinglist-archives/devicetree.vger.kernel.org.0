@@ -1,230 +1,82 @@
-Return-Path: <devicetree+bounces-1116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEE2D7A4C32
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:28:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCABE7A509F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 19:10:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A7572819F4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 15:28:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76DF328194E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 17:10:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF1EE1D6AF;
-	Mon, 18 Sep 2023 15:28:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C99B126E1B;
+	Mon, 18 Sep 2023 17:07:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 498071D6B2
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 15:28:34 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74087E4C;
-	Mon, 18 Sep 2023 08:26:48 -0700 (PDT)
-Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7FB4F8A5F;
-	Mon, 18 Sep 2023 17:22:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1695050524;
-	bh=eUeGACMHyZhM2g7i0GeSAmr3+zMDlgtDBBJJ5VCvzd8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZGKbN7IwyXjMBQs0fHMLzXURSn1AGbY+U+0UN5o/ZUHVgnvRnUrTD7xGHSCoaIY2E
-	 BSXk0K3+hGkPNfQZ15HzjPwTA/QERvQD9Z95swmRFptXk4GKdpkw2atxYDnNI7bhzw
-	 gJ3gqRrzVQvT64Ov395rz6OfHKPjQq9PsB/NpLlA=
-Message-ID: <a8c5d3a8-5c1f-7b37-5f5f-41773d66b7e3@ideasonboard.com>
-Date: Mon, 18 Sep 2023 18:23:35 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B6F826E19;
+	Mon, 18 Sep 2023 17:07:48 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70390192;
+	Mon, 18 Sep 2023 10:07:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=ZDG2UZigKOWJ038WXoUKb1KefBm5hAW9BvHKmAdM9gg=; b=O3jBt7mEzv4sgCXD4Zd78Adiw3
+	o6Hn7tyP4VgDXPkAVVzD9k5+bgLAIHEcMw8zfb0c2JOPFhNb2xw4SV9wjGN+zQiND/552P92Wad8b
+	mYQEA2h6ykcLgLtRDQ7G3JTZBlIq0PXomnUADenREWD+ikLKrZKPFKT67B2m+J6se5KE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qiDsc-006nGM-ME; Mon, 18 Sep 2023 15:01:34 +0200
+Date: Mon, 18 Sep 2023 15:01:34 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Parthiban.Veerasooran@microchip.com
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	corbet@lwn.net, Steen.Hegelund@microchip.com, rdunlap@infradead.org,
+	horms@kernel.org, casper.casan@gmail.com, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, Horatiu.Vultur@microchip.com,
+	Woojung.Huh@microchip.com, Nicolas.Ferre@microchip.com,
+	UNGLinuxDriver@microchip.com, Thorsten.Kummermehr@microchip.com
+Subject: Re: [RFC PATCH net-next 4/6] net: ethernet: implement data
+ transaction interface
+Message-ID: <51d1565f-e43e-4906-af65-2ae672309b89@lunn.ch>
+References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
+ <20230908142919.14849-5-Parthiban.Veerasooran@microchip.com>
+ <e874dab4-e701-44f8-bbe0-ce66784ecf5c@lunn.ch>
+ <3900f818-9ff1-cc19-f545-fbb3e2db4d52@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v2 2/2] drivers/tidss: Add support for AM62A7 DSS
-Content-Language: en-US
-To: Aradhya Bhatia <a-bhatia1@ti.com>, Jyri Sarha <jyri.sarha@iki.fi>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: DRI Development List <dri-devel@lists.freedesktop.org>,
- Devicetree List <devicetree@vger.kernel.org>,
- Linux Kernel List <linux-kernel@vger.kernel.org>, Nishanth Menon
- <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Devarsh Thakkar <devarsht@ti.com>, Jayesh Choudhary <j-choudhary@ti.com>,
- Jai Luthra <j-luthra@ti.com>
-References: <20230818142124.8561-1-a-bhatia1@ti.com>
- <20230818142124.8561-3-a-bhatia1@ti.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <20230818142124.8561-3-a-bhatia1@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3900f818-9ff1-cc19-f545-fbb3e2db4d52@microchip.com>
+X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 18/08/2023 17:21, Aradhya Bhatia wrote:
-> Add support for the DSS controller on TI's AM62A7 SoC in the tidss
-> driver.
-> 
-> This contrller has 2 video pipelines that can render 2 video planes on
+> >> +#define MAX_ETH_LEN  1536
+> > 
+> > Where do 1536 come from? Maybe this needs an OA_TC6 prefix to make it
+> > clear this is specific to this protocol?
+> Ah it is a mistake. It is supposed to be an ethernet packet size which 
+> is 1518 (1500 bytes MTU size + 18 bytes overhead) and it is not from OA. 
+> It is a mistake and will correct it in the next version.
 
-"controller".
+Please try to express this using ETH_DATA_LEN + sizeof(struct
+oa_tc6_overhead). Doing it like this will avoid errors like this since
+it is also part documentation.
 
-> over a screen, using the overlay managers. The output of the DSS comes
-> from video port 2 (VP2) in the form of RGB88 DPI signals, while the VP1
-> is tied off inside the SoC.
-
-If the VP1 is tied off, I think we should somehow mark it in the feats 
-below. Maybe just a comment, or perhaps a new DISPC_VP_* flag.
-
-  Tomi
-
-> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
-> ---
-> Notes:
->         Changes from V1:
->         * Correctly sort DISPC_AM62A7 macro after DISPC_AM625.
-> 
->   drivers/gpu/drm/tidss/tidss_dispc.c | 53 +++++++++++++++++++++++++++++
->   drivers/gpu/drm/tidss/tidss_dispc.h |  2 ++
->   drivers/gpu/drm/tidss/tidss_drv.c   |  1 +
->   3 files changed, 56 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
-> index 9d9dee7abaef..5539ddb7f338 100644
-> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
-> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
-> @@ -322,6 +322,54 @@ const struct dispc_features dispc_am625_feats = {
->   	.vid_order = { 1, 0 },
->   };
->   
-> +const struct dispc_features dispc_am62a7_feats = {
-> +	.max_pclk_khz = {
-> +		[DISPC_VP_DPI] = 165000,
-> +	},
-> +
-> +	.scaling = {
-> +		.in_width_max_5tap_rgb = 1280,
-> +		.in_width_max_3tap_rgb = 2560,
-> +		.in_width_max_5tap_yuv = 2560,
-> +		.in_width_max_3tap_yuv = 4096,
-> +		.upscale_limit = 16,
-> +		.downscale_limit_5tap = 4,
-> +		.downscale_limit_3tap = 2,
-> +		/*
-> +		 * The max supported pixel inc value is 255. The value
-> +		 * of pixel inc is calculated like this: 1+(xinc-1)*bpp.
-> +		 * The maximum bpp of all formats supported by the HW
-> +		 * is 8. So the maximum supported xinc value is 32,
-> +		 * because 1+(32-1)*8 < 255 < 1+(33-1)*4.
-> +		 */
-> +		.xinc_max = 32,
-> +	},
-> +
-> +	.subrev = DISPC_AM62A7,
-> +
-> +	.common = "common",
-> +	.common_regs = tidss_am65x_common_regs,
-> +
-> +	.num_vps = 2,
-> +	.vp_name = { "vp1", "vp2" },
-> +	.ovr_name = { "ovr1", "ovr2" },
-> +	.vpclk_name =  { "vp1", "vp2" },
-> +	.vp_bus_type = { DISPC_VP_INTERNAL, DISPC_VP_DPI },
-> +
-> +	.vp_feat = { .color = {
-> +			.has_ctm = true,
-> +			.gamma_size = 256,
-> +			.gamma_type = TIDSS_GAMMA_8BIT,
-> +		},
-> +	},
-> +
-> +	.num_planes = 2,
-> +	/* note: vid is plane_id 0 and vidl1 is plane_id 1 */
-> +	.vid_name = { "vid", "vidl1" },
-> +	.vid_lite = { false, true, },
-> +	.vid_order = { 1, 0 },
-> +};
-> +
->   static const u16 *dispc_common_regmap;
->   
->   struct dss_vp_data {
-> @@ -824,6 +872,7 @@ dispc_irq_t dispc_read_and_clear_irqstatus(struct dispc_device *dispc)
->   	case DISPC_K2G:
->   		return dispc_k2g_read_and_clear_irqstatus(dispc);
->   	case DISPC_AM625:
-> +	case DISPC_AM62A7:
->   	case DISPC_AM65X:
->   	case DISPC_J721E:
->   		return dispc_k3_read_and_clear_irqstatus(dispc);
-> @@ -840,6 +889,7 @@ void dispc_set_irqenable(struct dispc_device *dispc, dispc_irq_t mask)
->   		dispc_k2g_set_irqenable(dispc, mask);
->   		break;
->   	case DISPC_AM625:
-> +	case DISPC_AM62A7:
->   	case DISPC_AM65X:
->   	case DISPC_J721E:
->   		dispc_k3_set_irqenable(dispc, mask);
-> @@ -1331,6 +1381,7 @@ void dispc_ovr_set_plane(struct dispc_device *dispc, u32 hw_plane,
->   					x, y, layer);
->   		break;
->   	case DISPC_AM625:
-> +	case DISPC_AM62A7:
->   	case DISPC_AM65X:
->   		dispc_am65x_ovr_set_plane(dispc, hw_plane, hw_videoport,
->   					  x, y, layer);
-> @@ -2250,6 +2301,7 @@ static void dispc_plane_init(struct dispc_device *dispc)
->   		dispc_k2g_plane_init(dispc);
->   		break;
->   	case DISPC_AM625:
-> +	case DISPC_AM62A7:
->   	case DISPC_AM65X:
->   	case DISPC_J721E:
->   		dispc_k3_plane_init(dispc);
-> @@ -2357,6 +2409,7 @@ static void dispc_vp_write_gamma_table(struct dispc_device *dispc,
->   		dispc_k2g_vp_write_gamma_table(dispc, hw_videoport);
->   		break;
->   	case DISPC_AM625:
-> +	case DISPC_AM62A7:
->   	case DISPC_AM65X:
->   		dispc_am65x_vp_write_gamma_table(dispc, hw_videoport);
->   		break;
-> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.h b/drivers/gpu/drm/tidss/tidss_dispc.h
-> index 33ac5ad7a423..7f203f83559b 100644
-> --- a/drivers/gpu/drm/tidss/tidss_dispc.h
-> +++ b/drivers/gpu/drm/tidss/tidss_dispc.h
-> @@ -60,6 +60,7 @@ enum dispc_vp_bus_type {
->   enum dispc_dss_subrevision {
->   	DISPC_K2G,
->   	DISPC_AM625,
-> +	DISPC_AM62A7,
->   	DISPC_AM65X,
->   	DISPC_J721E,
->   };
-> @@ -88,6 +89,7 @@ struct dispc_features {
->   
->   extern const struct dispc_features dispc_k2g_feats;
->   extern const struct dispc_features dispc_am625_feats;
-> +extern const struct dispc_features dispc_am62a7_feats;
->   extern const struct dispc_features dispc_am65x_feats;
->   extern const struct dispc_features dispc_j721e_feats;
->   
-> diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/tidss_drv.c
-> index 4d063eb9cd0b..edf69d020544 100644
-> --- a/drivers/gpu/drm/tidss/tidss_drv.c
-> +++ b/drivers/gpu/drm/tidss/tidss_drv.c
-> @@ -231,6 +231,7 @@ static void tidss_shutdown(struct platform_device *pdev)
->   static const struct of_device_id tidss_of_table[] = {
->   	{ .compatible = "ti,k2g-dss", .data = &dispc_k2g_feats, },
->   	{ .compatible = "ti,am625-dss", .data = &dispc_am625_feats, },
-> +	{ .compatible = "ti,am62a7-dss", .data = &dispc_am62a7_feats, },
->   	{ .compatible = "ti,am65x-dss", .data = &dispc_am65x_feats, },
->   	{ .compatible = "ti,j721e-dss", .data = &dispc_j721e_feats, },
->   	{ }
-
+   Andrew
 
