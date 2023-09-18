@@ -1,89 +1,110 @@
-Return-Path: <devicetree+bounces-1203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC60C7A54DD
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 23:10:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F1567A54E0
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 23:12:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 041BE1C20CC9
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 21:10:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 398092825F0
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 21:12:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A21128693;
-	Mon, 18 Sep 2023 21:09:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F420828693;
+	Mon, 18 Sep 2023 21:12:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA79D450E8
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 21:09:18 +0000 (UTC)
-Received: from out-222.mta1.migadu.com (out-222.mta1.migadu.com [IPv6:2001:41d0:203:375::de])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0DD410D
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 14:09:16 -0700 (PDT)
-Date: Tue, 19 Sep 2023 07:08:55 +1000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-	t=1695071355;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZZomkiVeqQePLkvnRcH7LRW8XoaXDjBYaYpZxuuvnrE=;
-	b=TM+L0mLmXFJbKLdV3EPOLnnZrMC3GK1swbB1Ci+li00xC67T8F/qnPQsiuTZXStwpNNF2p
-	cAGmR05E8PA73llDJajAoXAAjbiHM2xM89Xt6zL0ZxM3gc2yypDt0CN9YH5sGScdc1DQ+6
-	VccUkI44OSvCFzn2yneTLKC2mbzTtvempUcD9nbIzqR+A7iGXeTQM8OglEynhZtYqEZXWQ
-	qFZTBp9/a9jOGYmMGaNk0qCQnAk/A2BP5RR9tFAGfiAt1hISDdWgZ01H47eD4gqV7rpgBD
-	vLgJ1OYNj/SETgEB7CmuwPwG+TmPHCwMBuaMxHNUnBsSJc5QUy8sOQ/+PiUEig==
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: John Watts <contact@jookia.org>
-To: Paul Cercueil <paul@crapouillou.net>
-Cc: Jessica Zhang <quic_jesszhan@quicinc.com>,
-	dri-devel@lists.freedesktop.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Jagan Teki <jagan@edgeble.ai>,
-	Christophe Branchereau <cbranchereau@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 3/9] drm/panel: nv3052c: Sleep for 150ms after
- reset
-Message-ID: <ZQi8Z45VCqr-GqN6@titan>
-References: <20230918125853.2249187-1-contact@jookia.org>
- <20230918125853.2249187-4-contact@jookia.org>
- <7fc1ca68-ca7c-59b2-0b70-27bc34d83cee@quicinc.com>
- <ZQi4fFZ0VnsUIiXO@titan>
- <4d2079d66249a7052acded0abf30169a4e95d151.camel@crapouillou.net>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECE75450CB
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 21:12:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8AAEC433C8;
+	Mon, 18 Sep 2023 21:12:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695071525;
+	bh=m/n53GAvddAGYEj8KIWHPEfGhiEY0hHq/daTN/xqmFs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lT6zdRyXLl3hGuDf4Nmys6NDjz2efBIL530DSrN/5R5/MRcQKduO3iwEIe/7x/+w2
+	 Z8CCwA50YfY9NmcTYlhnpktZTivUUex6T+i5eEfh0sP7g4927U7pMO84D07R5uQK5M
+	 vBIlzWxcu1TwjS/d4EVqTPKVPrLn4+69kUMEIoDy7RwpksLVaFf/wg9sZXzQ8NEJ79
+	 p1VOE/dv37lACSur8VEm86e4EzSZJsXMvfFNl5tCpidcZat1b2us9VdssDOB+m1zRj
+	 NLYItvKkINSQ6o1g6ynePQDp+4HuEpK3ybeCVliZ7KCbTkdDnCDOXVbkuvfwSJT7cG
+	 XDOt1yurB5n0A==
+Received: (nullmailer pid 1768524 invoked by uid 1000);
+	Mon, 18 Sep 2023 21:12:02 -0000
+Date: Mon, 18 Sep 2023 16:12:02 -0500
+From: Rob Herring <robh@kernel.org>
+To: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc: Sergio Paracuellos <sergio.paracuellos@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, mithat.guner@xeront.com, erkin.bozoglu@xeront.com, linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: mtmips: document pins of groups
+Message-ID: <20230918211202.GA1743810-robh@kernel.org>
+References: <20230917162837.277405-1-arinc.unal@arinc9.com>
+ <20230917162837.277405-2-arinc.unal@arinc9.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <4d2079d66249a7052acded0abf30169a4e95d151.camel@crapouillou.net>
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230917162837.277405-2-arinc.unal@arinc9.com>
 
-On Mon, Sep 18, 2023 at 11:01:15PM +0200, Paul Cercueil wrote:
-> The datasheet does say a 5ms sleep time is necesary after a reset. I
-> assume the 120ms delay you quote is when a *software* reset is
-> performed in Sleep-out mode. The code here does a hard-reset.
+On Sun, Sep 17, 2023 at 07:28:37PM +0300, Arınç ÜNAL wrote:
+> Document the pins of each group on the MediaTek MTMIPS SoC pin controllers.
 > 
-> Cheers,
-> -Paul
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+> ---
+>  .../pinctrl/mediatek,mt7620-pinctrl.yaml      | 22 ++++++++++++-
+>  .../pinctrl/mediatek,mt7621-pinctrl.yaml      | 18 +++++++++-
+>  .../pinctrl/mediatek,mt76x8-pinctrl.yaml      | 33 ++++++++++++++++++-
+>  .../pinctrl/ralink,rt2880-pinctrl.yaml        | 17 +++++++++-
+>  .../pinctrl/ralink,rt305x-pinctrl.yaml        | 16 ++++++++-
+>  .../pinctrl/ralink,rt3352-pinctrl.yaml        | 17 +++++++++-
+>  .../pinctrl/ralink,rt3883-pinctrl.yaml        | 16 ++++++++-
+>  .../pinctrl/ralink,rt5350-pinctrl.yaml        | 13 +++++++-
+>  8 files changed, 144 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7620-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7620-pinctrl.yaml
+> index 221adcef6e14..eb9d9d2bd90f 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7620-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7620-pinctrl.yaml
+> @@ -44,8 +44,28 @@ patternProperties:
+>                     wdt refclk, wdt rst, wled]
+>  
+>            groups:
+> -            description:
+> +            description: |
+>                An array of strings. Each string contains the name of a group.
+> +
+> +              group             pins
+> +              ------------------------------------------------------------------
+> +              "i2c"             1, 2
+> +              "spi"             3, 4, 5, 6
+> +              "uartf"           7, 8, 9, 10, 11, 12, 13, 14
+> +              "uartlite"        15, 16
+> +              "wdt"             17
+> +              "pa"              18, 19, 20, 21
+> +              "mdio"            22, 23
+> +              "rgmii1"          24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35
+> +              "pcie"            36
+> +              "spi refclk"      37, 38, 39
+> +              "ephy"            40, 41, 42, 43, 44
+> +              "nd_sd"           45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
+> +                                57, 58, 59
+> +
+> +              "rgmii2"          60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71
+> +              "wled"            72
 
-Hello Paul,
+This list of strings should be an enum like 'function' above.
 
-Section 7.3 of the data sheet (AC characteristic) says that the reset can take
-up to 120ms to complete if the reset is applied during sleep out mode.
+> +
+>              maxItems: 1
 
-John.
+This is wrong if more than 1 string is allowed...
+
+Same goes for the rest of the changes.
+
+Rob
 
