@@ -1,172 +1,119 @@
-Return-Path: <devicetree+bounces-1064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1B787A489A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 13:42:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 228D07A48C8
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 13:53:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1E521C21198
-	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 11:42:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A4021C20B2C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Sep 2023 11:53:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7862B1C6A3;
-	Mon, 18 Sep 2023 11:42:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0B5C1CA8D;
+	Mon, 18 Sep 2023 11:53:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2487038F8A
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 11:42:16 +0000 (UTC)
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39394C3;
-	Mon, 18 Sep 2023 04:42:15 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-503012f4e71so2181240e87.0;
-        Mon, 18 Sep 2023 04:42:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695037333; x=1695642133; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6VqtxL5s67XQMQv+XRQaf354eoULULKL7lw9uhdGZpw=;
-        b=gsgmlcdiCdNLdcszGJyGO5eL3F7DxOdnWs8X98QTx+Gqq4rbuwjBDQV39aA2fHY+by
-         BKey1St08/vMHpjBJ6FVnz4E4rhy6HMYu03xiglnEMqGXyf7UBpi9sqxlSAx1dfDYyRv
-         m3WpF2Cm174L84Od3Jk+eAHJu8OqqHmruqe06Oq/93h24FnabsLg7Qw7ayueaXdqHN6E
-         9T5OMfigx2KX8f92ISXMkbGFny1xk63TnHvtF2qvYa7AQZYBdLjRp9cNVyF1ZuELya14
-         fIrGQoNQRFDC5TLV+X5BgBiDNSOH445fz7ij6nRgF+JtNNBz+Syf0xew85iyrZfhBW4U
-         lp4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695037333; x=1695642133;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6VqtxL5s67XQMQv+XRQaf354eoULULKL7lw9uhdGZpw=;
-        b=TihEdbx9kTgaRVxonXpUGsRitfJxtgsnH6utXvwDLsD1jMhYDi2X6yQMTPLmLRiIWG
-         u3qNyURVgGmpWyQxLYcGai8u+06xLEfDFk6mkJDmazrHxre1SlQtMQnwS0yhaJynyM1R
-         ZIQkHwT86fX0TlN7pO/L7pFir8UFc0idItfbTrNakojgqIgfDVHTEOtiO2FxMkq1lCTG
-         /b/Nj630USGnHAQGPIomsyBUJMc0qeibeGpAR/eaNsdURndahVXsMQ59C4y3GfkXJ3wJ
-         WnxRbq5E0QTwzghiZPwb32bl/LvWopg308Wab9tqBVz5DdUMKfti53hMQBiNbbCSvF1J
-         jlmA==
-X-Gm-Message-State: AOJu0Yyaxr8tUQvpp+7D2HnTASAMj39CYPBr2CvjBOwgf7zQP/wE70hw
-	rKgUKA+/mU8iFn1BTOogQCI=
-X-Google-Smtp-Source: AGHT+IFafyU+jaXJvIwyzFuHlrYPrdMRQAJYuf4EZPKNBQhmlWesULuoeRipZvWIIhfCWnQzdWpPdQ==
-X-Received: by 2002:a05:6512:1319:b0:500:d96e:f6eb with SMTP id x25-20020a056512131900b00500d96ef6ebmr3906867lfu.19.1695037332892;
-        Mon, 18 Sep 2023 04:42:12 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f8:1500::3? (dc78bmyyyyyyyyyyyyybt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::3])
-        by smtp.gmail.com with ESMTPSA id d27-20020ac25edb000000b004ff91a94156sm286576lfq.121.2023.09.18.04.42.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Sep 2023 04:42:12 -0700 (PDT)
-Message-ID: <4084c827-abf6-0f15-7957-13db50912943@gmail.com>
-Date: Mon, 18 Sep 2023 14:42:11 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D93A31CA86
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 11:53:20 +0000 (UTC)
+Received: from out28-77.mail.aliyun.com (out28-77.mail.aliyun.com [115.124.28.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B7718F;
+	Mon, 18 Sep 2023 04:53:09 -0700 (PDT)
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.2156935|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0370854-0.000192717-0.962722;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047193;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=27;RT=27;SR=0;TI=SMTPD_---.Ui7aPDz_1695037977;
+Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.Ui7aPDz_1695037977)
+          by smtp.aliyun-inc.com;
+          Mon, 18 Sep 2023 19:53:05 +0800
+From: wangweidong.a@awinic.com
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	perex@perex.cz,
+	tiwai@suse.com,
+	rf@opensource.cirrus.com,
+	wangweidong.a@awinic.com,
+	herve.codina@bootlin.com,
+	shumingf@realtek.com,
+	13916275206@139.com,
+	ryans.lee@analog.com,
+	linus.walleij@linaro.org,
+	ckeepax@opensource.cirrus.com,
+	povik+lin@cutebit.org,
+	arnd@arndb.de,
+	harshit.m.mogalapalli@oracle.com,
+	u.kleine-koenig@pengutronix.de,
+	yang.lee@linux.alibaba.com,
+	liweilei@awinic.com,
+	yijiangtao@awinic.com,
+	trix@redhat.com,
+	colin.i.king@gmail.com,
+	alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH V3 0/5] ASoC: codecs: Add aw87390 amplifier driver
+Date: Mon, 18 Sep 2023 19:52:50 +0800
+Message-ID: <20230918115255.33171-1-wangweidong.a@awinic.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 2/3] iio: pressure: Support ROHM BU1390
-Content-Language: en-US, en-GB
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Angel Iglesias
- <ang.iglesiasg@gmail.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Andreas Klinger <ak@it-klinger.de>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1694001462.git.mazziesaccount@gmail.com>
- <08f7085ba1af2fae21c942f6c20a94c237df53ba.1694001462.git.mazziesaccount@gmail.com>
- <20230910142225.5863a850@jic23-huawei>
- <b8817140-508e-5c94-e37b-8727cf1abe4a@gmail.com>
- <20230917102615.618dd01a@jic23-huawei>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20230917102615.618dd01a@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 9/17/23 12:26, Jonathan Cameron wrote:
-> On Thu, 14 Sep 2023 14:47:44 +0300
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-> 
->> On 9/10/23 16:22, Jonathan Cameron wrote:
->>> On Wed, 6 Sep 2023 15:37:48 +0300
->>> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
->>>    
->>>> Support for the ROHM BM1390 pressure sensor. The BM1390GLV-Z can measure
->>>> pressures ranging from 300 hPa to 1300 hPa with configurable measurement
->>>> averaging and internal FIFO. The sensor does also provide temperature
->>>> measurements.
->>>>
->>>> Sensor does also contain IIR filter implemented in HW. The data-sheet
->>>> says the IIR filter can be configured to be "weak", "middle" or
->>>> "strong". Some RMS noise figures are provided in data sheet but no
->>>> accurate maths for the filter configurations is provided. Hence, the IIR
->>>> filter configuration is not supported by this driver and the filter is
->>>> configured to the "middle" setting (at least not for now).
->>
->>>> +
->>>> +static irqreturn_t bm1390_irq_thread_handler(int irq, void *private)
->>>> +{
->>>> +	struct iio_dev *idev = private;
->>>> +	struct bm1390_data *data = iio_priv(idev);
->>>> +	int ret = IRQ_NONE;
->>>> +
->>>> +	mutex_lock(&data->mutex);
->>>> +
->>>> +	if (data->trigger_enabled) {
->>>> +		iio_trigger_poll_nested(data->trig);
->>>> +		ret = IRQ_HANDLED;
->>>> +	}
->>>> +
->>>> +	if (data->state == BM1390_STATE_FIFO) {
->>>
->>> Can this and trigger_enabled be true?
->>
->> Thanks for asking this question. Intention was that these are mutually
->> exclusive. However, I think that the check
->> if (iio_device_get_current_mode(idev) == INDIO_BUFFER_TRIGGERED)
->> in bm1390_buffer_postenable(), before calling the bm1390_fifo_enable()
->> is not 100% race free.
->>
->> I, however, like the idea of having this check in the buffer-enable
->> function - I think it makes the design much more obvious. What I will do
->> is adding another check for:
->> 	if (data->trigger_enable) {
->> 		ret = -EBUSY;
->> 		goto unlock_out;
->> 	}
->>
->> inside the bm1390_fifo_enable() to the section which holds the mutex.
-> 
-> You could make the exclusive nature obvious in the thread_handler by using an
-> else if () above.
+From: Weidong Wang <wangweidong.a@awinic.com>
 
-Right. Thanks.
+The awinic aw87390 is a new high efficiency, low noise,
+constant large volume, 6th Smart K audio amplifier.
 
-> 
->>
->>
->> Yours,
->> 	-- Matti
->>
->>
->>
-> 
+Add a DT schema for describing awinic aw87390 audio amplifiers.
+They are controlled using I2C.
 
+v2 -> v3: Modify the type of "awinic,sync-flag" property to bool
+          Modify function return value
+          Modify commit information
+          Change the name of "sync-flag" to "awinic,sync-flag"
+
+Weidong Wang (5):
+  ASoC: dt-bindings: awinic,aw88395: Add properties for multiple PA
+    support
+  ASoC: dt-bindings: Add schema for "awinic,aw87390"
+  ASoC: codecs: Add code for bin parsing compatible with aw87390
+  ASoC: codecs: Change the aw88261 variable name and i2c driver name
+  ASoC: codecs: Add aw87390 amplifier driver
+
+ .../bindings/sound/awinic,aw87390.yaml        |  58 +++
+ .../bindings/sound/awinic,aw88395.yaml        |  16 +
+ sound/soc/codecs/Kconfig                      |  15 +-
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/aw87390.c                    | 462 ++++++++++++++++++
+ sound/soc/codecs/aw87390.h                    |  85 ++++
+ sound/soc/codecs/aw88261.c                    |  27 +-
+ sound/soc/codecs/aw88261.h                    |   4 +-
+ sound/soc/codecs/aw88395/aw88395.c            |   9 +-
+ sound/soc/codecs/aw88395/aw88395.h            |   2 +-
+ sound/soc/codecs/aw88395/aw88395_device.c     |  47 +-
+ sound/soc/codecs/aw88395/aw88395_device.h     |   6 +-
+ sound/soc/codecs/aw88395/aw88395_lib.c        |  25 +-
+ sound/soc/codecs/aw88395/aw88395_reg.h        |   1 +
+ 14 files changed, 686 insertions(+), 73 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/awinic,aw87390.yaml
+ create mode 100644 sound/soc/codecs/aw87390.c
+ create mode 100644 sound/soc/codecs/aw87390.h
+
+
+base-commit: ce9ecca0238b140b88f43859b211c9fdfd8e5b70
 -- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
+2.41.0
 
 
